@@ -1,0 +1,717 @@
+@charset "UTF-8";
+
+/* ----------    top    ------------------------------------------------------------------------------------------------------------------------------- */
+
+.container-fluid #navbar-header{
+	height: 70px;
+}
+.container-fluid #navbar-header #brand{
+	width: 370px;
+}
+.container-fluid .navbar-collapse .navbar-right .dropdown #dropdown-toggle{
+	height: 70px;
+	padding-top: 27px;
+}
+.container-fluid .navbar-collapse .navbar-right .dropdown .dropdown-menu .drop{
+	width: 370px;
+	border-radius: 2px 0 2px 2px;
+	padding: 20px;
+}
+.container-fluid .navbar-collapse .navbar-right .dropdown .dropdown-menu .drop>h4{
+	
+    margin-bottom: 5px;
+    font-weight: 600;
+    font-size: 1.438em;
+    line-height: 1.5em;
+    color: #0771c4;
+}
+.container-fluid .navbar-collapse .navbar-right .dropdown .dropdown-menu .drop>p{
+	font-size: 13px;
+    margin-bottom: 7px;
+    font-weight: 400;
+    color: #666;
+    line-height: 1.4;
+}
+.container-fluid .navbar-collapse .navbar-right .dropdown .dropdown-menu .drop #btnEmailFind{
+	color: #003580!important;
+	font-size: 12px;
+    font-weight: 400;
+    line-height: 1.5em;
+    margin-bottom: 20px;
+}
+
+/*-------top > modal------------------------------------------------------------------*/
+.modal #modal-dialog{
+	width: 350px;
+}
+
+/*-------media ----------------------------------------------------------------------------*/
+@media (max-width: @screen-xs-max) {
+}
+@media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
+	#rentSearch #left #hiddenFillterBack{
+		display: none;
+	}
+	
+
+
+}
+@media (min-width: @screen-md-min) and (max-width: @screen-md-max) {
+
+}
+@media (min-width: @screen-lg-min) {
+
+}
+
+/*-------mid (rentSearch)----------------------------------------------------------------------------*/
+#rentSearch{
+}
+#rentSearch #left{
+}
+#rentSearch #left #fillter {
+	padding-top:15px;
+	height: 50px;
+}
+#rentSearch #left #fillter #btnFillter{
+	width: 100%;
+	height: 100%;
+	z-index: 3;
+	
+}
+#rentSearch #left #map{
+	position: absolute;
+	height: 930px;
+	z-index: 0!important;
+}
+#rentSearch #left #hiddenFillterBack{
+	background-color:#eee;
+	opacity: 0.8;
+	position: absolute;
+	height: 930px;
+	z-index: 1;
+	display: none;
+}
+#rentSearch #left  #hiddenFillter{
+	height:auto;
+	display: none;
+	z-index: 2;
+}
+#rentSearch #left  #hiddenFillter #btnHiddenFillter{
+	margin-top:20px;
+	width: 100%;
+}
+#rentSearch #left  #hiddenFillter #placeFillter{
+	width: 100%;
+	height: auto;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	background-color: #fff;
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+#rentSearch #left  #hiddenFillter #placeFillter h5{
+	font-size: 1.2em;
+	font-weight: bold;
+}
+#rentSearch #left  #hiddenFillter #placeFillter>label{
+	font-size: 0.9em;
+	font-weight: lighter;
+}
+#rentSearch #left  #hiddenFillter #placeFillter>div{
+	text-align: center;
+}
+#rentSearch #left  #hiddenFillter #placeFillter>div>input[type='text']{
+	text-align: center;
+}
+#rentSearch #left  #hiddenFillter #helpFillter{
+	padding: 0px;
+}
+#rentSearch #left  #hiddenFillter #helpFillter #collapse1 div{
+	text-align: center;
+	font-size: 1.0em;
+	font-weight: bold;
+	padding: 10px;
+	color: orange;
+}
+
+#rentSearch #left  #hiddenFillter #companyFillter{
+	padding: 0px;
+}
+#rentSearch #left  #hiddenFillter #companyFillter .panel-collapse div{
+	text-align: left;
+	font-size: 1.0em;
+	font-weight: bold;
+	padding:10px;
+	color: #2b96ed;
+	padding-top: 20px;
+}
+#rentSearch #left  #hiddenFillter #companyFillter div label{
+	margin-bottom: 10px;
+}
+
+#rentSearch #left  #hiddenFillter #reviewFillter{
+	padding: 0px;
+}
+#rentSearch #left  #hiddenFillter #reviewFillter .panel-collapse div{
+	text-align: left;
+	font-size: 1.0em;
+	font-weight: bold;
+	padding:10px;
+	color: #2b96ed;
+	padding-top: 20px;
+}
+#rentSearch #left  #hiddenFillter #reviewFillter div label{
+	margin-bottom: 10px;
+}
+
+#rentSearch #left  #hiddenFillter #fuelFillter{
+	padding: 0px;
+}
+#rentSearch #left  #hiddenFillter #fuelFillter .panel-collapse div{
+	text-align: left;
+	font-size: 1.0em;
+	font-weight: bold;
+	padding:10px;
+	color: #2b96ed;
+	padding-top: 20px;
+}
+#rentSearch #left  #hiddenFillter #fuelFillter div label{
+	margin-bottom: 10px;
+}
+
+#rentSearch #left  #hiddenFillter #specFillter{
+	padding: 0px;
+}
+#rentSearch #left  #hiddenFillter #specFillter .panel-collapse div{
+	text-align: left;
+	font-size: 1.0em;
+	font-weight: bold;
+	padding:10px;
+	color: #2b96ed;
+	padding-top: 20px;
+}
+#rentSearch #left  #hiddenFillter #specFillter div label{
+	margin-bottom: 10px;
+}
+
+#rentSearch #left  #hiddenFillter #peopleFillter{
+	padding: 0px;
+}
+#rentSearch #left  #hiddenFillter #peopleFillter .panel-collapse div{
+	text-align: left;
+	font-size: 1.0em;
+	font-weight: bold;
+	padding:10px;
+	color: #2b96ed;
+	padding-top: 20px;
+}
+#rentSearch #left  #hiddenFillter #peopleFillter div label{
+	margin-bottom: 10px;
+}
+
+#rentSearch #left  #hiddenFillter #priceFillter{
+	padding: 0px;
+}
+#rentSearch #left  #hiddenFillter #priceFillter .panel-collapse div{
+	text-align: left;
+	font-size: 1.0em;
+	font-weight: bold;
+	padding:10px;
+	color: #2b96ed;
+	padding-top: 20px;
+}
+#rentSearch #left  #hiddenFillter #priceFillter div label{
+	margin-bottom: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+#rentSearch #right{
+	background-color:#eee;
+	padding: 20px 40px 20px 40px;
+}
+#rentSearch #right #depart{
+	height: auto;
+	background-color:#fff;
+	border: 1px solid #eee;
+	box-sizing: border-box;
+	box-shadow: 1px 1px 4px 1px #ccc;
+}
+#rentSearch #right #depart #depart_1{
+	height: auto;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+#rentSearch #right #depart #depart_1 div{
+	font-size: 0.9em;
+	color:#ccc;
+	margin-bottom: 5px;
+}
+#rentSearch #right #depart #depart_1 span{
+	font-size: 1.2em;
+	color: #777;
+}
+#rentSearch #right #depart #depart_2{
+	height: auto;
+	text-align: right;
+	padding-top:15px;
+	padding-bottom:15px;
+}
+#rentSearch #right #depart #depart_2 span{
+	font-size: 2.1em;
+	color:#777;
+}
+#rentSearch #right #depart #depart_2 span b{
+	font-size: 0.5em;
+	color:#ccc;
+}
+
+
+#rentSearch #right #arrive{
+	height: auto;
+	background-color:#eee;
+	border: 1px solid #eee;
+	box-sizing: border-box;
+	box-shadow: 1px 1px 4px 1px #ccc;
+}
+#rentSearch #right #arrive #arrive_1{
+	height: auto;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+#rentSearch #right #arrive #arrive_1 div{
+	font-size: 0.9em;
+	color:#ccc;
+	margin-bottom: 5px;
+}
+#rentSearch #right #arrive #arrive_1 span{
+	font-size: 1.2em;
+	color: #777;
+}
+#rentSearch #right #arrive #arrive_2{
+	height: auto;
+	text-align: right;
+	padding-top:15px;
+	padding-bottom:15px;
+}
+#rentSearch #right #arrive #arrive_2 span{
+	font-size: 2.1em;
+	color:#777;
+}
+#rentSearch #right #arrive #arrive_2 span b{
+	font-size: 0.5em;
+	color:#ccc;
+}
+
+
+#rentSearch #right #carPhoto{
+	margin-top: 20px;	
+	margin-right: 10px;
+}
+
+#rentSearch #right #carPhoto>div>div{
+	box-sizing: border-box;
+	border-bottom: 4px solid #2b96ed;
+	box-shadow: 0 0 4px 1px rgba(143,143,143,0.2);
+	border-radius: 5px 5px 5px 5px;
+	
+	background-color: #fff;
+	text-align: center;
+}
+#rentSearch #right #carPhoto>div>div:hover{
+	cursor: pointer;
+	border : 2px solid #2b96fe;
+}
+#rentSearch #right #carPhoto>div>div #photoTop{
+	text-align: center;
+	font-size: 0.9em;
+	font-weight:bold;
+	color:#555;
+	padding:0px;
+	padding-top:10px;
+	height: 35px;
+}
+#rentSearch #right #carPhoto>div>div #photoMid{
+	padding: 0px;
+}
+#rentSearch #right #carPhoto>div>div #photoMid img{
+	max-width: 100%;
+	height: auto;
+}
+#rentSearch #right #carPhoto>div>div #photoBottom{
+	padding: 0px;
+}
+#rentSearch #right #carPhoto>div>div #photoBottom img{
+	max-width: 100%;
+	height: auto;
+}
+
+
+/*---------rentSearchsub1------------------------------------------------*/
+#rentSearch #right #company{
+	margin-top:20px;
+	background-color: #fff;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	box-sizing: border-box;
+	border-radius: 5px 5px 5px 5px;
+	box-shadow: 1px 1px 5px 1px rgba(143,143,143,0.2);
+}
+#rentSearch #right #company:hover{
+	border: 1px solid #2b96ed;
+	cursor: pointer;
+}
+#rentSearch #right #company>div{
+}
+#rentSearch #right #company #companyLeft{
+}
+#rentSearch #right #company #companyLeft #leftImage{
+	padding: 0px;
+}
+#rentSearch #right #company #companyLeft #leftImage img{
+	max-width: 100%;
+	height: auto;
+}
+#rentSearch #right #company #companyLeft #rightInfo{
+	font-size: 1.4em;
+	font-weight: 800;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	color:#222;
+}
+#rentSearch #right #company #companyLeft #rightInfo span{
+	font-size: 0.7em;
+	font-weight: 600;
+	color:#666;
+}
+#rentSearch #right #company #companyMid1{
+	text-align: center;
+	padding-top:10px;
+}
+#rentSearch #right #company #companyMid1 span{
+	font-size: 0.3em;
+	color:#333;
+	
+}
+#rentSearch #right #company #companyMid1 div{
+	font-size:1.4em;
+	font-weight:800;
+	color:#222;
+}
+#rentSearch #right #company #companyMid2{
+	text-align: center;
+	padding-top:20px;
+}
+#rentSearch #right #company #companyMid2 span{
+	font-size:1.4em;
+	font-weight:800;
+	color:#222;
+}
+#rentSearch #right #company #companyMid2 div{
+	font-size: 0.3em;
+	color:#333;
+}
+#rentSearch #right #company #companyRight{
+	text-align: center;
+}
+#rentSearch #right #company #companyRight button{
+	width: 100%;
+	margin-top:25px;
+	background-color:#2b96ed;
+	font-weight: 800;
+}
+#rentSearch #right #company #companyRight span{
+	font-size: 0.3em;
+	color:green;
+	font-weight: 700;
+}
+
+
+/*-------rentSearchSub2-------------------------------------------------------------------*/
+#rentSearch #right #car{
+	margin-top:20px;
+	background-color:#fff;
+	box-sizing: border-box;
+	border: 1px solid #eee;
+	padding: 20px;
+	box-shadow: 1px 1px 5px 1px rgba(143,143,143,0.2);
+}
+#rentSearch #right #underInfo{
+	box-shadow: 1px 1px 5px 1px rgba(143,143,143,0.2);
+}
+#rentSearch #right #car>div{
+}
+#rentSearch #right #car #carMainPhoto{
+	padding: 0px;
+	text-align: center;
+}
+#rentSearch #right #car #carMainPhoto img{
+	max-width: 100%;
+	height: auto;
+}
+
+#rentSearch #right #car #carInfo>span{
+	font-size:1.7em;
+	font-weight: 700;
+	color:#222;
+}
+#rentSearch #right #car #carInfo>span>b{
+	font-size:0.5em;
+	font-weight: 300;
+	color:#333;
+}
+#rentSearch #right #car #carInfo>div>div{
+	height: 20px;
+}
+#rentSearch #right #car #carInfo>div>div>img{
+	max-height:100%;
+	width: auto;
+}
+#rentSearch #right #car #carInfo>div>div .info_f{
+	font-size:0.9em;
+	font-weight: 300;
+	color:#222;
+}
+
+#rentSearch #right #car #carPrice{
+	text-align: right;
+}
+#rentSearch #right #car #carPrice #whatProduct{
+	padding:5px;
+	background-color: #2b96ed;
+	color: #fff;
+	text-align: center;
+	font-size: 0.6em;
+	font-weight: 600;
+}
+#rentSearch #right #car #carPrice .carPrice_info1{
+	margin-top: 40px;
+	font-size: 0.8em;
+	color:#444;
+}
+#rentSearch #right #car #carPrice .carPrice_info2{
+	font-size: 1.7em;
+	font-weight: 800;
+	color:#333;
+}
+#rentSearch #right #car #carPrice .carPrice_info3{
+	color: green;
+	font-size:0.5em;
+	font-weight: 600;
+}
+
+
+#rentSearch #right #underInfo{
+	background-color: #ddd;
+}
+#rentSearch #right #underInfo div #carSubInfo1{
+	border: 0.5px solid #bbb;
+}
+#rentSearch #right #underInfo div #carSubInfo1 #carSubInfo1_1{
+	border-bottom: 0.5px solid #bbb;
+	font-size:0.8em;
+	padding-top:5px;
+	padding-bottom:5px;
+}
+#rentSearch #right #underInfo div #carSubInfo1 #carSubInfo1_2{
+	font-size:0.8em;
+	color:#2b96ed;
+	padding-top:5px;
+	padding-bottom:5px;
+}
+#rentSearch #right #underInfo div #carSubInfo1 #carSubInfo1_2 span{
+	width: 30px;
+	height: 30px;
+	background-color:#2b96ed;
+	border-radius: 3px 3px 3px 3px;
+	color:white;
+	font-size: 1.5em;
+	font-weight: 600;
+}
+#rentSearch #right #underInfo div #carSubInfo1 #carSubInfo1_2 p{
+	color:#2b96fe;
+}
+#rentSearch #right #underInfo div #carSubInfo1 #carSubInfo1_2 span b{
+	font-size: 0.5em;
+	font-weight: 400;
+}
+#rentSearch #right #underInfo div #carSubInfo2 #carSubInfo2_1{
+	padding-top:5px;
+	padding-bottom:5px;
+	border-top: 0.5px solid #bbb;
+	border-right: 0.5px solid #bbb;
+	border-bottom: 0.5px solid #bbb;
+}
+#rentSearch #right #underInfo div #carSubInfo2 #carSubInfo2_2{
+	padding-top:5px;
+	padding-bottom:5px;
+	border-right: 0.5px solid #bbb;
+	border-bottom: 0.5px solid #bbb;
+}
+#rentSearch #right #underInfo div #carSubInfo2 #carSubInfo2_1 span{
+	color:green;
+	font-size: 0.9em;
+}
+#rentSearch #right #underInfo div #carSubInfo2 #carSubInfo2_1 span b{
+	color:green;
+	font-size: 1.1em;
+}
+#rentSearch #right #underInfo div #carSubInfo3 .carSubInfo_info3{
+	font-size: 0.9em;
+	color:#ggg!important;
+	font-weight: normal;
+}
+#rentSearch #right #underInfo div #carSubInfo3 {
+	padding-top:5px;
+	padding-bottom:5px;
+	font-size: 0.8em;
+	color:green;
+	font-weight: bold;
+}
+#rentSearch #right #underInfo div #carSubInfo4{
+	text-align: right;
+	padding-right: 10px;
+}
+#rentSearch #right #underInfo div #carSubInfo4 button{
+	margin-top:10px;
+	padding-top:30px;
+	padding-bottom:30px;
+	font-weight: bold;
+	font-size: 1.2em;
+	width: 100%;
+}
+
+
+
+/*----------------rentView---------------------------------------------------------------------*/
+#rentView{
+}
+#rentView>div #viewMid{
+}
+#rentView>div #viewMid div{
+	padding: 
+}
+#rentView>div #viewMid #viewLeft{
+	padding: 0px;
+	
+}
+#rentView>div #viewMid #viewLeft .tripTime{
+	padding: 15px;
+	border: 1px solid #ddd;
+	padding: 15px 0px 0px 0px;
+	margin-bottom: 30px;
+}
+
+#rentView>div #viewMid #viewLeft .tripTime #tripTimeLeft{
+	background-color: white;
+	padding: 0px;
+	text-align: center;
+}
+#rentView>div #viewMid #viewLeft .tripTime #tripTimeLeft img{
+	max-width: 100%;
+	height: auto;
+}
+#rentView>div #viewMid #viewLeft .tripTime #tripTimeRight{
+	padding-left:5px;
+}
+#rentView>div #viewMid #viewLeft .tripTime .tripTime0{
+	background-color: #6fdaff;
+	padding: 10px;
+	text-align: center;
+}
+#rentView>div #viewMid #viewLeft .tripTime div .tripTime1{
+	
+}
+#rentView>div #viewMid #viewLeft .tripTime div .tripTime2{
+	color: #2b96ed;
+	font-size: 1.6em;
+	font-weight: 600;
+}
+#rentView>div #viewMid #viewLeft .tripTime div .tripTime3{
+	font-size: 0.8em;
+}
+
+#rentView>div #viewMid #viewLeft #helpFillter{
+	padding: 15px;
+	margin-bottom: 10px;
+}
+#rentView>div #viewMid #viewLeft #helpFillter #collapse1 div{
+	text-align: center;
+	font-size: 1.0em;
+	font-weight: bold;
+	padding: 10px;
+	color: orange;
+}
+#rentView>div #viewMid #viewLeft .rentInfo{
+	background-color:#2b96ed;
+	border: 1px solid #ddd;
+	color:white;
+	padding-top:10px;
+	padding-bottom:10px;
+}
+#rentView>div #viewMid #viewLeft .rentInfo:hover{
+	cursor: pointer;
+}
+#rentView>div #viewMid #viewLeft .rentInfo>div>div:nth-child(2){
+	padding-top:5px;
+}
+
+
+
+
+#rentView>div #viewMid #viewRight{
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

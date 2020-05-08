@@ -1,0 +1,16 @@
+@charset "UTF-8";
+
+.min-width-180 {
+	
+	min-width:180px;
+	font-size:15px;
+	
+}
+
+#codeCheck {
+	
+	
+	display:none;
+	
+}
+

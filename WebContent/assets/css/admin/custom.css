@@ -1,0 +1,149 @@
+@charset "UTF-8";
+
+
+/*
+	============================= 01. badges
+	============================= 02. dataTable
+	============================= 03. Modal
+	============================= 04. profile-page
+	============================= 05. sweetalert
+*/
+
+/*
+	01. badges
+*/
+.badge {
+    border-radius: 0.25rem;
+    font-size: 11px;
+    font-weight: initial;
+    line-height: 1;
+    padding: 4px 6px;
+    font-family: "roboto", sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.04rem;
+}
+.badge-inverse-danger {
+    background: rgba(255, 98, 88, 0.3);
+    color: #ff6258;
+}
+.badge-inverse-info {
+    background: rgba(136, 98, 224, 0.3);
+    color: #8862e0;
+}
+.badge-inverse-success {
+    background: rgba(25, 216, 149, 0.3);
+    color: #19d895;
+}
+
+/*
+	02. dataTable
+*/
+
+div.dt-buttons {
+    position: relative;
+    float: left;
+}
+
+/*
+	03. Modal
+*/
+.modal{    background-color: rgba(0, 0, 0, 0.2);}
+.modal .modal-dialog .modal-content .modal-header {
+    padding: 25px 26px;
+    border-bottom: 1px solid #dee2e6;
+}
+.modal-header {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    padding: 1rem 1rem;
+    border-bottom: 1px solid #dee2e6;
+    border-top-left-radius: 0.3rem;
+    border-top-right-radius: 0.3rem;
+}
+
+.modal-footer {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: end;
+    -ms-flex-pack: end;
+    justify-content: flex-end;
+    padding: 15px;
+    border-top: 1px solid #dee2e6;
+    border-bottom-right-radius: 0.3rem;
+    border-bottom-left-radius: 0.3rem;
+}
+.modal .modal-dialog .modal-content .modal-body {
+    padding: 35px 26px;
+}
+
+.modal-header .close {
+    padding: 1rem 1rem;
+    margin: -25px -26px -25px auto;
+}
+.modal .modal-dialog .modal-content .modal-header .close span {
+    font-size: 20px;
+    font-weight: 400;
+    color: #6a6a6a;
+}
+	/* report (신고글 modal) */
+	.modal .report-wrap	{    max-height: 33em;
+	    overflow-y: auto;}
+
+/*
+	04. profile-page
+*/
+.profile-page .profile-body .tab-switch {
+    border-bottom: 1px solid #dee2e6;
+}
+.profile-page .profile-body .tab-switch .nav-item .nav-link.active {
+    color: #000;
+    border-bottom: 3px solid #2196f3;
+}
+.profile-page .profile-body .tab-switch .nav-item .nav-link {
+    color: #6c757d;
+    font-size: 1rem;
+    padding-bottom: 1.2rem;
+    font-weight: 600;
+    border-bottom: 3px solid #ffffff;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+    -webkit-transition-timing-function: ease-in;
+    transition-timing-function: ease-in;
+    -webkit-transition-property: color, border-color;
+    transition-property: color, border-color;
+}
+
+
+/*
+	05.sweetalert
+*/
+.swal2-popup{width: 28em !important;}
+.btn, .ajax-upload-dragdrop .ajax-file-upload, .swal2-modal .swal2-buttonswrapper .swal2-styled, .swal2-modal .swal2-buttonswrapper .swal2-styled.swal2-confirm, .swal2-modal .swal2-buttonswrapper .swal2-styled.swal2-cancel, .wizard > .actions a {
+    font-size: 0.875rem !important;
+    line-height: 1;
+    font-family: "roboto", sans-serif;
+}
+
+/*
+	06.dropdown
+*/
+.dropdown .dropdown-toggle.btn-outline-danger:after {
+    color: #ff6258;
+}
+.dropdown .dropdown-toggle.btn-outline-danger:hover:after,
+.dropdown .dropdown-toggle.btn-outline-danger:active:after,
+.dropdown .dropdown-toggle.btn-outline-danger:focus:after {
+    color: #fff;
+} 
+
