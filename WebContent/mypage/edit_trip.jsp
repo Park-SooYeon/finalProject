@@ -32,7 +32,10 @@
     <link rel="stylesheet" href="../template/css/owl.carousel.css" />
     <link rel="stylesheet" href="../template/css/main.css" />
     <link rel="stylesheet" href="../css/custom.css" />
+
+    <!--datepicker css-->
     <link rel="stylesheet" href="../plugin/air-datepicker/css/datepicker.min.css">
+    
     <title>Insert title here</title>
     <style>
     </style>

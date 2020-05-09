@@ -43,7 +43,7 @@
     <div class="col-lg-4">
       <div class="single-destinations">
         <div class="thumb-review">
-          <img src="./custom-image//food3.jpg" alt="" />
+          <img src="./custom-image/food3.jpg" alt="" />
         </div>
         <div class="details">
           <h4 class="d-flex justify-content-between">

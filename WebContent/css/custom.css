@@ -142,7 +142,9 @@ body {
 
 .thumb-custom {
   overflow: hidden;
-  height: 205px;
+  background: #e0e0e0;
+  height: 13rem;
+  line-height: 13rem;
 }
 
 .thumb-custom img {
@@ -151,7 +153,7 @@ body {
 
 .thumb-review {
   overflow: hidden;
-  height: 121px;
+  height: 8rem;
 }
 
 .thumb-review img {
@@ -168,7 +170,7 @@ body {
 }
 
 .list-container {
-  height: 315px;
+  height: 20rem;
   border: 1px solid #eee;
   background: #ffffff;
   overflow: hidden;
@@ -181,7 +183,53 @@ body {
 .add-new-container {
   width: 100%;
   text-align: center;
-  line-height: 315px;
+  line-height: 20rem;
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.add-new-container h3 {
+  display: inline-block;
+}
+
+.add-new-container:hover {
+  opacity: 1;
+}
+
+/* 새 여행 추가하기 모달창 */
+.privacy-option span {
+  border: 1px solid rgb(179, 179, 179);
+  width: 2rem;
+  height: 2rem;
+  display: inline-block;
+  line-height: 2rem;
+  font-size: 1.2rem;
+  color: white;
+  background: black;
+}
+
+.privacy-option {
+  padding: 5px;
+}
+
+.privacy-option h6 {
+  display: inline-block;
+}
+
+#trip-name {
+  border: none;
+  outline: none;
+  border-bottom: 0.1rem solid rgb(133, 132, 132);
+  text-align: center;
+  width: 100%;
+  padding: 0.6rem;
+}
+
+#trip-name::placeholder {
+  font-size: 1rem;
+  color: #555555;
+  font-weight: 400;
+  opacity: 0.7;
 }
 
 .edit-trip-input {

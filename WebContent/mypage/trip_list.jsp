@@ -26,7 +26,7 @@
       <div class="single-destinations">
         <div class="list-container">
           <div class="add-new-container">
-            <h3 style="display: inline-block;"> 추가하기</h3>
+            <h3><i class="fa fa-plus-circle"></i> 추가하기</h3>
           </div>
         </div>
       </div>
@@ -99,7 +99,10 @@
       <div class="single-destinations">
         <div class="list-container">
           <div class="thumb-custom">
-            <img src="https://images.unsplash.com/photo-1540998145333-e2eef1a9822d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1233&q=80" alt="" />
+            <img
+              src="https://images.unsplash.com/photo-1540998145333-e2eef1a9822d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1233&q=80"
+              alt=""
+            />
           </div>
           <div class="details">
             <h4 class="d-flex justify-content-between">
@@ -130,26 +133,43 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="modal-body">
+        <div class="modal-body" style="color: #000; padding: 2rem 5rem;">
           <form>
             <div class="form-group">
-              <label for="trip-name" class="col-form-label">여행이름 : </label>
-              <input type="text" class="form-control" id="trip-name" />
+              <input
+                type="text"
+                id="trip-name"
+                placeholder="여행이름을 입력해주세요."
+                onfocus="this.placeholder=''"
+                onblur="this.placeholder='여행이름을 입력해주세요."
+              />
             </div>
             <div class="form-group">
-              <label for="set-privacy" class="col-form-label">공개범위 설정 : </label>
+              <label for="set-privacy" class="col-form-label"><h5>공개범위 설정하기</h5> </label>
 
-              <div style="border: 1px solid #ced4da; border-radius: 0.25rem; padding: 5px;">
+              <div class="privacy-option">
                 <div>
-                  <label><input type="radio" name="privacy" /><i class="fas fa-unlock-alt"></i> 공개</label>
+                  <label
+                    ><input type="radio" name="privacy" /><span class="rounded-circle text-center mx-1"
+                      ><i class="fa fa-unlock-alt"></i
+                    ></span>
+                    <h6>공개</h6>
+                  </label>
                 </div>
                 <div>
-                  <label><input type="radio" name="privacy" /><i class="fas fa-lock"></i> 비공개</label>
+                  <label
+                    ><input type="radio" name="privacy" /><span
+                      class="rounded-circle text-center mx-1"
+                      style="background: #fff; color: #000;"
+                      ><i class="fa fa-lock"></i
+                    ></span>
+                    <h6>비공개</h6></label
+                  >
                 </div>
               </div>
             </div>
             <div class="form-group">
-              <label for="set-privacy" class="col-form-label">날짜 또는 일수 사용 </label>
+              <label for="set-privacy" class="col-form-label"><h5>날짜 또는 일수 사용</h5></label>
               <select id="select-day">
                 <option>선택하세요</option>
                 <option value="1">일수 사용</option>
@@ -158,13 +178,21 @@
             </div>
 
             <div class="form-group" id="trip-day-input" style="display: none;">
-              <label for="trip-day-input" class="col-form-label">일수 입력 : </label>
+              <label for="trip-day-input" class="col-form-label"><h5>일수 입력</h5> </label>
               <input type="text" class="form-control col-sm-4" />
             </div>
 
             <div class="form-group" id="trip-cal-input" style="display: none;">
-              <label for="trip-cal-input" class="col-form-label">날짜 선택 : </label>
-              <input type="text" class="form-control col-sm-4" />
+              <label for="trip-cal-input" class="col-form-label"><h5>날짜 선택</h5> </label>
+              <input
+                type="text"
+                id="datePickInput"
+                class="form-control col-sm-8 datepicker-here"
+                data-range="true"
+                data-position="right top"
+                data-language="kr"
+                data-multiple-dates-separator=" - "
+              />
             </div>
           </form>
         </div>
