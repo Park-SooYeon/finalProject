@@ -133,10 +133,11 @@ body {
   border-radius: 3px;
 }
 
+/* trip list */
+
 .thumb-custom {
   overflow: hidden;
   height: 205px;
-  background: #ffffff;
 }
 
 .thumb-custom img {

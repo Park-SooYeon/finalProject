@@ -39,7 +39,7 @@
   </head>
 
   <body>
-    <header id="header" style="width: 100%; position: relative; float: left; background: rgba(43, 130, 237, 0.9);">
+    <header id="header" style="width: 100%; position: relative; float: left; background: #1C5E9A">
       <div class="container main-menu">
         <div class="row align-items-center justify-content-between d-flex">
           <div id="logo">
@@ -84,7 +84,7 @@
     <div class="my-main-wrapper">
       <div class="my-main-side">
         <div class="date-box">
-            <div><i class="far fa-calendar-alt"></i> 05.6 ~ 05.13</div>
+            <div id="edit-day"><i class="far fa-calendar-alt"></i> 05.6 ~ 05.13</div>
           <div class="show-all-day text-center">전체 일정 보기</div>
         </div>
         <ul class="plan-category">
