@@ -478,6 +478,7 @@
 	font-size:0.9em;
 	font-weight: 300;
 	color:#222;
+	cursor: pointer;
 }
 
 #rentSearch #right #car #carPrice{
@@ -567,6 +568,9 @@
 	font-size: 0.9em;
 	color:#ggg!important;
 	font-weight: normal;
+}
+#rentSearch #right #underInfo div #carSubInfo3,#carSubInfo2 .info_f2{
+	cursor: pointer;
 }
 #rentSearch #right #underInfo div #carSubInfo3 {
 	padding-top:5px;

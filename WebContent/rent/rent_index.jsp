@@ -30,6 +30,7 @@
     
     <script src="../lib/jquery-3.4.1.js"></script>
     
+    <script src='../template/js/bootstrap.min.js'></script>
     
 
  </head>
@@ -40,7 +41,7 @@
 		<%@include file="rent_top.jsp" %>
 	</div>
 	<div id='mid'>
-		<%@include file="rentView.jsp" %>
+		<%@include file="rentSearch.jsp" %>
 	</div>
 
   
