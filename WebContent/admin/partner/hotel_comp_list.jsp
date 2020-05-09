@@ -190,7 +190,7 @@
                     </div>
                     <div class="modal-body pt-2">
 
-                        <form action="" name="frmAdmHtCompAdd" id="frmAdmHtCompAdd">
+                        <form action="" name="frmAdmHtCompAdd" id="frmAdmHtCompAdd" class="pt-2">
                             <div class="form-group row">
                                 <div class="col-lg-3">
                                     <label class="col-form-label">호텔명 <span class="text-danger">*</span></label>
@@ -299,19 +299,25 @@
                                             </div>
                                         </div>
                                     </div>
-
-
                                 </div>
                             </div>
-                            <div class="form-group col-12 text-right mt-5">
-                                <button type="submit" class="btn btn-secondary mr-2">취소</button>
-                                <button type="submit" class="btn btn-success">등록</button>
+                            
+                            <div class="form-group row">
+                                <div class="col-lg-3">
+                                    <label for="address_etc" class="col-form-label">보유객실</label>
+                                </div>
+                                <div class="col-lg-8">
+                                    <p class="mb-0 py-2">A호텔 스위트룸</p>
+                                    <p class="mb-0 py-2">A호텔 패밀리룸</p>
+                                    <p class="mb-0 py-2">A호텔 디럭스룸</p>
+                                </div>
                             </div>
                         </form>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-light" data-dismiss="modal">취소</button>
-                        <button type="button" class="btn btn-success">저장</button>
+                        <button type="button" class="btn btn-danger" onclick="showSwal('warning-message-and-cancel')">삭제</button>
+                        <button type="button" class="btn btn-success" onclick="showSwal('success-message')">저장</button>
                     </div>
                 </div>
             </div>
