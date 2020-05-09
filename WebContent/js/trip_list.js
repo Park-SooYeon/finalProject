@@ -25,12 +25,12 @@ function init() {
     // 추후 submit으로 변경
   });
 
-  $("#datePickInput").datepicker({
-    language: "kr",
-    minDate: new Date(),
-    range: true,
-    toggleSelected: false
-  });
+//  $("#datePickInput").datepicker({
+//    language: "kr",
+//    minDate: new Date(),
+//    range: true,
+//    toggleSelected: false
+//  });
 }
 
 init();

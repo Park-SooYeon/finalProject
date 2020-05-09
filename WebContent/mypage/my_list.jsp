@@ -230,6 +230,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 			 <!-- datepicker -->
 	<script src="../plugin/air-datepicker/js/datepicker.js"></script>
 	<script src="../plugin/air-datepicker/js/i18n/datepicker.en.js"></script>
+	<script src="../plugin/air-datepicker/js/i18n/datepicker.kr.js"></script>
 
 </body>
 </html>

@@ -150,7 +150,7 @@
               <div class="privacy-option">
                 <div>
                   <label
-                    ><input type="radio" name="privacy" /><span class="rounded-circle text-center mx-1"
+                    ><input type="radio" name="privacy" /><span class="privacy-circle mx-1"
                       ><i class="fa fa-unlock-alt"></i
                     ></span>
                     <h6>공개</h6>
@@ -159,7 +159,7 @@
                 <div>
                   <label
                     ><input type="radio" name="privacy" /><span
-                      class="rounded-circle text-center mx-1"
+                      class="privacy-circle mx-1"
                       style="background: #fff; color: #000;"
                       ><i class="fa fa-lock"></i
                     ></span>
@@ -178,8 +178,8 @@
             </div>
 
             <div class="form-group" id="trip-day-input" style="display: none;">
-              <label for="trip-day-input" class="col-form-label"><h5>일수 입력</h5> </label>
-              <input type="text" class="form-control col-sm-4" />
+              <label for="trip-day-input" class="col-form-label"><h5>일수 입력</h5> </label><br/>
+              <input type="number" class="form-control col-sm-3" style="display:inline-block;"/> 일
             </div>
 
             <div class="form-group" id="trip-cal-input" style="display: none;">
@@ -198,7 +198,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
-          <button type="button" class="btn btn-primary" data-dismiss="modal" id="btnCreateTrip">저장</button>
+          <button type="submit" class="btn btn-primary" data-dismiss="modal" id="btnCreateTrip">저장</button>
         </div>
       </div>
     </div>

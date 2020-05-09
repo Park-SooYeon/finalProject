@@ -197,7 +197,8 @@ body {
 }
 
 /* 새 여행 추가하기 모달창 */
-.privacy-option span {
+
+.privacy-circle {
   border: 1px solid rgb(179, 179, 179);
   width: 2rem;
   height: 2rem;
@@ -206,6 +207,8 @@ body {
   font-size: 1.2rem;
   color: white;
   background: black;
+  text-align: center;
+  border-radius: 50% !important;
 }
 
 .privacy-option {
@@ -232,6 +235,11 @@ body {
   opacity: 0.7;
 }
 
+#trip-day-input input::placeholder {
+  text-align: right;
+}
+
+/* 여행 커스터마이징 페이지 */
 .edit-trip-input {
   outline: none;
   border: none;
