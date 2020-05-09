@@ -19,7 +19,7 @@
         <span class="icon-bar"></span>
       </button>
       <a class="navbar-brand" href="#">
-      	<img alt="Brand" src="./images/rc_logo.png" id="brand">
+      	<img alt="Brand" src="../images/rent/rc_logo.png" id="brand">
       </a>
     </div>
 

@@ -12,33 +12,33 @@
 			<div class="row">
 			
 				<div id='carMainPhoto' class='col-lg-3 col-md-3 col-sm-3 col-xs-3'>
-					<img src='./images/carInfo1.png'/>
+					<img src='../images/rent/carInfo1.png'/>
 				</div>
 				
 				<div id='carInfo'      class='col-lg-5 col-md-5 col-sm-5 col-xs-5'>
 					<span>Nissan Versa Note <b> 또는 동급</b></span>
 					<div class='row'>
 						<div class='col-lg-6 col-md-6 col-sm-6 col-xs-6'>
-							<img src='./images/people.png'/><span class='info_f'>&nbsp;&nbsp; 5 인승</span>
+							<img src='../images/rent/people.png'/><span class='info_f'>&nbsp;&nbsp; 5 인승</span>
 						</div>
 						<div class='col-lg-6 col-md-6 col-sm-6 col-xs-6'>
-							<img src='./images/door.png'/><span class='info_f'>&nbsp;&nbsp; 4 도어</span>
-						</div>
-					</div>
-					<div class='row'>
-						<div class='col-lg-6 col-md-6 col-sm-6 col-xs-6'>
-							<img src='./images/bigbag.png'/><span class='info_f'>&nbsp;&nbsp; 큰 가방 1</span>
-						</div>
-						<div class='col-lg-6 col-md-6 col-sm-6 col-xs-6'>
-							<img src='./images/smallbag.png'/><span class='info_f'>&nbsp;&nbsp; 작은 가방 1</span>
+							<img src='../images/rent/door.png'/><span class='info_f'>&nbsp;&nbsp; 4 도어</span>
 						</div>
 					</div>
 					<div class='row'>
 						<div class='col-lg-6 col-md-6 col-sm-6 col-xs-6'>
-							<img src='./images/aircon.png'/><span class='info_f'>&nbsp;&nbsp; 에어컨 장착</span>
+							<img src='../images/rent/bigbag.png'/><span class='info_f'>&nbsp;&nbsp; 큰 가방 1</span>
 						</div>
 						<div class='col-lg-6 col-md-6 col-sm-6 col-xs-6'>
-							<img src='./images/gear.png'/><span class='info_f'>&nbsp;&nbsp; 자동 기어</span>
+							<img src='../images/rent/smallbag.png'/><span class='info_f'>&nbsp;&nbsp; 작은 가방 1</span>
+						</div>
+					</div>
+					<div class='row'>
+						<div class='col-lg-6 col-md-6 col-sm-6 col-xs-6'>
+							<img src='../images/rent/aircon.png'/><span class='info_f'>&nbsp;&nbsp; 에어컨 장착</span>
+						</div>
+						<div class='col-lg-6 col-md-6 col-sm-6 col-xs-6'>
+							<img src='../images/rent/gear.png'/><span class='info_f'>&nbsp;&nbsp; 자동 기어</span>
 						</div>
 					</div>
 				</div>

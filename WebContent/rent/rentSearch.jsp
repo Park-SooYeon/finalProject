@@ -6,11 +6,11 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-<link href="css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" href="./css/rent.css"/>
+<link href="../template/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="../css/rent.css"/>
 
-<link href="./checkbox/skins/square/blue.css" rel="stylesheet">
-<script src="./checkbox/icheck.js"></script>
+<link href="../plugin/checkbox/skins/square/blue.css" rel="stylesheet">
+<script src="../plugin/checkbox/icheck.js"></script>
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=7af3181a84930dab295e1feac3c38680"></script>
 
@@ -231,42 +231,42 @@
 						<div id='carPhoto_1' class='col-lg-2 col-md-2 col-sm-2 col-xs-2'>
 								<div id='photoTop' class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>소형 차량</div>
 								<div id='photoMid' class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
-									<img src="./images/car1.png"/>
+									<img src="../images/rent/car1.png"/>
 								</div>
 								
 						</div>
 						<div id='carPhoto_2' class='col-lg-2 col-md-2 col-sm-2 col-xs-2'>
 								<div id='photoTop' class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>중형 차량</div>
 								<div id='photoMid' class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
-									<img src="./images/car2.png"/>
+									<img src="../images/rent/car2.png"/>
 								</div>
 								
 						</div>
 						<div id='carPhoto_3' class='col-lg-2 col-md-2 col-sm-2 col-xs-2'>
 								<div id='photoTop' class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>대형 차량</div>
 								<div id='photoMid' class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
-									<img src="./images/car3.png"/>
+									<img src="../images/rent/car3.png"/>
 								</div>
 								
 						</div>
 						<div id='carPhoto_4' class='col-lg-2 col-md-2 col-sm-2 col-xs-2'>
 								<div id='photoTop' class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>프리미엄 차량</div>
 								<div id='photoMid' class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
-									<img src="./images/car4.png"/>
+									<img src="../images/rent/car4.png"/>
 								</div>
 								
 						</div>
 						<div id='carPhoto_5' class='col-lg-2 col-md-2 col-sm-2 col-xs-2'>
 								<div id='photoTop' class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>미니벤</div>
 								<div id='photoMid' class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
-									<img src="./images/car5.png"/>
+									<img src="../images/rent/car5.png"/>
 								</div>
 								
 						</div>
 						<div id='carPhoto_6' class='col-lg-2 col-md-2 col-sm-2 col-xs-2'>
 								<div id='photoTop' class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>SUV</div>
 								<div id='photoMid' class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
-									<img src="./images/car6.png"/>
+									<img src="../images/rent/car6.png"/>
 								</div>
 								
 						</div>

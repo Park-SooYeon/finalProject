@@ -15,12 +15,12 @@
 	</script>
 	<!-- Meta tags -->
 	<!--stylesheets-->
-	<link href="./css/style.css" rel='stylesheet' type='text/css' media="all">
+	<link href="../plugin/KDGtemplate/style.css" rel='stylesheet' type='text/css' media="all">
 	<!--//style sheet end here-->
 	<!-- Calendar -->
-	<link rel="stylesheet" href="./css/jquery-ui.css" />
+	<link rel="stylesheet" href="../template/css/jquery-ui.css" />
 	<!-- //Calendar -->
-	<link href="./css/wickedpicker.css" rel="stylesheet" type='text/css' media="all" />
+	<link href="../template/css/wickedpicker.css" rel="stylesheet" type='text/css' media="all" />
 	<!-- Time-script-CSS -->
 
 	<link href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
@@ -129,16 +129,16 @@
 	</div>
 	</div>
 	<!-- js -->
-	<script type='text/javascript' src='./lib/jquery-3.4.1.js'></script>
+	<script type='text/javascript' src='../lib/jquery-3.4.1.js'></script>
 	<!-- //js -->
 	<!-- Calendar -->
-	<script src="./js/jquery-ui.js"></script>
+	<script src="../template/js/jquery-ui.js"></script>
 	<script>
 	$("#datepicker1,#datepicker2").datepicker();
 	</script>
 	<!-- //Calendar -->
 	<!-- Time -->
-	<script type="text/javascript" src="./js/wickedpicker.js"></script>
+	<script type="text/javascript" src="../template/js/wickedpicker.js"></script>
 	<script type="text/javascript">
 		$('#timepicker1,#timepicker2').wickedpicker({ twentyFour: false });
 	</script>

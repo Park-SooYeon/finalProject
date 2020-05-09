@@ -14,7 +14,7 @@
 						<div id='companyLeft'  class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
 							<div class='row'>
 								<div id='leftImage' class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-									<img src='./images/company.png'>
+									<img src='../images/rent/company.png'>
 								</div>
 								<div id='rightInfo' class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
 									경기도 안양시 만안구 2222-22<br/>
@@ -45,7 +45,7 @@
 						<div id='companyLeft'  class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
 							<div class='row'>
 								<div id='leftImage' class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-									<img src='./images/company.png'>
+									<img src='../images/rent/company.png'>
 								</div>
 								<div id='rightInfo' class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
 									경기도 안양시 만안구 2222-22<br/>

@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="./css/rent.css"/>
+<link rel="stylesheet" href="../css/rent.css"/>
 </head>
 <body>
 	<div id='rentView'>
@@ -23,7 +23,7 @@
 							<div>
 								<div class='row'>
 									<div id='tripTimeLeft' class='col-lg-3 col-md-3 col-sm-3 col-xs-3' >
-										<img src='./images/rentTime.png'/>
+										<img src='../images/rent/rentTime.png'/>
 									</div>
 									<div id='tripTimeRight' class='col-lg-9 col-md-9 col-sm-9 col-xs-9' >
 										지금가격, 놓치지 마시고 바로예약하세요
@@ -59,7 +59,7 @@
 						<div class='rentInfo'>
 							<div class='row'>
 									<div class='col-lg-3 col-md-3 col-sm-3 col-xs-3' >
-										<img src='./images/rentInfo.png'/>
+										<img src='../images/rent/rentInfo.png'/>
 									</div>
 									<div class='col-lg-9 col-md-9 col-sm-9 col-xs-9' >
 										고객님 렌트카에대한 주요사항
@@ -82,7 +82,7 @@
 								  <div class="container-fluid">
 								    <!-- Brand and toggle get grouped for better mobile display -->
 								    <div class="navbar-header">
-								    	<p class="navbar-text navbar-right"><a href="#" class="navbar-link"><img src="./images/icon_view1.png"/>차량정보</a><a href="#" class="navbar-link"><img src="./images/icon_view2.png"/>고객평가</a><a href="#" class="navbar-link"><img src="./images/icon_view3.png"/>중요안내사항</a></p>
+								    	<p class="navbar-text navbar-right"><a href="#" class="navbar-link"><img src="../images/rent/icon_view1.png"/>차량정보</a><a href="#" class="navbar-link"><img src="../images/rent/icon_view2.png"/>고객평가</a><a href="#" class="navbar-link"><img src="../images/rent/icon_view3.png"/>중요안내사항</a></p>
 								    </div>
 								    </div>
 								    </nav>
