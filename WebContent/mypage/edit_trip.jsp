@@ -22,27 +22,28 @@
     <!--
 			CSS
 			============================================= -->
-    <link rel="stylesheet" href="./css/linearicons.css" />
-    <link rel="stylesheet" href="./css/font-awesome.min.css" />
-    <link rel="stylesheet" href="./css/bootstrap.css" />
-    <link rel="stylesheet" href="./css/magnific-popup.css" />
-    <link rel="stylesheet" href="./css/jquery-ui.css" />
-    <link rel="stylesheet" href="./css/nice-select.css" />
-    <link rel="stylesheet" href="./css/animate.min.css" />
-    <link rel="stylesheet" href="./css/owl.carousel.css" />
-    <link rel="stylesheet" href="./css/main.css" />
-    <link rel="stylesheet" href="./css/custom.css" />
+    <link rel="stylesheet" href="../template/css/linearicons.css" />
+    <link rel="stylesheet" href="../template/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="../template/css/bootstrap.css" />
+    <link rel="stylesheet" href="../template/css/magnific-popup.css" />
+    <link rel="stylesheet" href="../template/css/jquery-ui.css" />
+    <link rel="stylesheet" href="../template/css/nice-select.css" />
+    <link rel="stylesheet" href="../template/css/animate.min.css" />
+    <link rel="stylesheet" href="../template/css/owl.carousel.css" />
+    <link rel="stylesheet" href="../template/css/main.css" />
+    <link rel="stylesheet" href="../css/custom.css" />
+    <link rel="stylesheet" href="../plugin/air-datepicker/css/datepicker.min.css">
     <title>Insert title here</title>
     <style>
     </style>
   </head>
 
   <body>
-    <header id="header" style="width: 100%; position: relative; float: left; background: #777;">
+    <header id="header" style="width: 100%; position: relative; float: left; background: rgba(43, 130, 237, 0.9);">
       <div class="container main-menu">
         <div class="row align-items-center justify-content-between d-flex">
           <div id="logo">
-            <a href="index.html"><img src="./img/logo.png" alt="" title="" /></a>
+            <a href="index.html"><img src="../template/img/logo.png" alt="" title="" /></a>
           </div>
           <nav id="nav-menu-container">
             <ul class="nav-menu">
@@ -242,7 +243,7 @@
           >
              <div class="item-ctrl-box" style="display: none;">
                 <div class="btn-del" title="삭제">
-				<img class="add-icon" src="./custom-image/sign.png"></img>
+				<img class="add-icon" src="sign.png"></img>
                 </div>
               </div>
 
@@ -272,7 +273,7 @@
             >
                <div class="item-ctrl-box" style="display: none;">
                 <div class="btn-del" title="삭제">
-				<img class="add-icon" src="./custom-image/sign.png"></img>
+				<img class="add-icon" src="sign.png"></img>
                 </div>
               </div>
 
@@ -323,7 +324,7 @@
             >
                <div class="item-ctrl-box" style="display: none;">
                 <div class="btn-del" title="삭제">
-				<img class="add-icon" src="./custom-image/sign.png"></img>
+				<img class="add-icon" src="sign.png"></img>
                 </div>
               </div>
 
@@ -352,7 +353,7 @@
             >
                <div class="item-ctrl-box" style="display: none;">
                 <div class="btn-del" title="삭제">
-				<img class="add-icon" src="./custom-image/sign.png"></img>
+				<img class="add-icon" src="sign.png"></img>
                 </div>
               </div>
 
@@ -385,9 +386,9 @@
         <div class="list-search-full-wrap">
           <div class="list-search-box">
             <div class="input-group mb-2" style="padding: 0 20px;">
-              <input type="text" class="form-control" placeholder="장소검색" />
-              <div class="input-group-append">
-                <button class="btn btn-outline-secondary" style="border: 1px solid #ced4da;" type="button">
+              <input name="searchPlace" type="text" class="form-control" placeholder="장소검색" />
+              <div class="input-group-append search-append">
+                <button type="button">
                   <i class="fas fa-search"></i>
                 </button>
               </div>
@@ -411,8 +412,8 @@
             </div>
           </div>
           <div class="list-category-wrapper">
-            <div class="list-category-box">
-              <div class="list-cat-item on rounded-circle" data="3">
+            <div class="list-category-box pt-2">
+              <div class="list-cat-item rounded-circle" data="3">
                 <span class="fas fa-camera-retro search-cat-icon"></span>
               </div>
               <div class="list-cat-item rounded-circle" data="2">
@@ -423,7 +424,7 @@
               </div>
             </div>
             <div class="flex flex-center">
-              <select class="form-control" id="sel1" name="sellist1" style="width: 90%;">
+              <select class="form-control" id="sel1" name="sellist1">
                 <option>검색옵션 선택</option>
                 <option>1</option>
                 <option>2</option>
@@ -458,7 +459,7 @@
               <!-- <div class="small info-small include_pn_day" style="color: #1a7ad9;">DAY1</div>  -->
             </div>
             <div class="spot-to-inspot">
-              <object class="add-icon" type="image/svg+xml" data="./custom-image/interface.svg"></object>
+              <img class="add-icon" src="interface.png"></img>
             </div>
           </div>
 
@@ -485,7 +486,7 @@
               <!-- <div class="small info-small include_pn_day" style="color: #1a7ad9;">DAY1</div>  -->
             </div>
             <div class="spot-to-inspot">
-              <object class="add-icon" type="image/svg+xml" data="./custom-image/interface.svg"></object>
+              <img class="add-icon" src="interface.png"/>
             </div>
           </div>
 
@@ -512,7 +513,7 @@
               <!-- <div class="small info-small include_pn_day" style="color: #1a7ad9;">DAY1</div>  -->
             </div>
             <div class="spot-to-inspot">
-              <object class="add-icon" type="image/svg+xml" data="./custom-image/interface.svg"></object>
+              <img class="add-icon" src="interface.png"/>
             </div>
           </div>
         </div>
@@ -521,9 +522,9 @@
 
       <div class="list-search-box-small">
         <div class="input-group mb-2" style="padding: 0 20px;">
-          <input type="text" class="form-control" placeholder="장소검색" />
-          <div class="input-group-append">
-            <button class="btn btn-outline-secondary" style="border: 1px solid #ced4da;" type="button">
+          <input type="text" class="form-control" name="searchPlace" placeholder="장소검색" />
+          <div class="input-group-append search-append">
+            <button class="btn btn-outline-secondary" style="padding-top:4px; border: 1px solid #ced4da;" type="button">
               <i class="fas fa-search"></i>
             </button>
           </div>
@@ -556,21 +557,24 @@
       src="//dapi.kakao.com/v2/maps/sdk.js?appkey=52d0cd9eb539c564cdc52bb34a626875"
     ></script>
 
-    <script src="./js/vendor/jquery-2.2.4.min.js"></script>
-    <script src="./js/popper.min.js"></script>
-    <script src="./js/vendor/bootstrap.min.js"></script>
-    <script src="./js/jquery-ui.js"></script>
-    <script src="./js/easing.min.js"></script>
-    <script src="./js/hoverIntent.js"></script>
-    <script src="./js/superfish.min.js"></script>
-    <script src="./js/jquery.ajaxchimp.min.js"></script>
-    <script src="./js/jquery.magnific-popup.min.js"></script>
-    <script src="./js/jquery.nice-select.min.js"></script>
-    <script src="./js/owl.carousel.min.js"></script>
-    <script src="./js/mail-script.js"></script>
-    <script src="./js/main.js"></script>
-    <script src="./my_page.js"></script>
+    <script src="../template/js/vendor/jquery-2.2.4.min.js"></script>
+    <script src="../template/js/popper.min.js"></script>
+    <script src="../template/js/vendor/bootstrap.min.js"></script>
+    <script src="../template/js/jquery-ui.js"></script>
+    <script src="../template/js/easing.min.js"></script>
+    <script src="../template/js/hoverIntent.js"></script>
+    <script src="../template/js/superfish.min.js"></script>
+    <script src="../template/js/jquery.ajaxchimp.min.js"></script>
+    <script src="../template/js/jquery.magnific-popup.min.js"></script>
+    <script src="../template/js/jquery.nice-select.min.js"></script>
+    <script src="../template/js/owl.carousel.min.js"></script>
+    <script src="../template/js/mail-script.js"></script>
+    <script src="../template/js/main.js"></script>
+    <script src="../js/my_page.js"></script>
     <!-- fontawesome -->
     <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+    
+    <!-- datepicker -->
+    <script src="../plugin/air-datepicker/js/datepicker.min.js"></script>
   </body>
 </html>

@@ -17,11 +17,11 @@ function init() {
   });
 
   $(".plan-category li").click(function () {
-      $(".schedule-detail-box").show("fade", { direction: "left" });
-      $(".plan-category li").not(this).removeClass("on");
-      $(".show-all-day").removeClass("on");
-      $(this).addClass("on");
-    });
+    $(".schedule-detail-box").show("fade", { direction: "left" });
+    $(".plan-category li").not(this).removeClass("on");
+    $(".show-all-day").removeClass("on");
+    $(this).addClass("on");
+  });
 
   $(".show-all-day").click(function () {
     $(".schedule-detail-box, #right-full-box").hide();
@@ -37,10 +37,16 @@ function init() {
   $(".schedule-detail-box .day-spot-item").hover(function () {
     $(this).find(".item-ctrl-box").toggle();
   });
+
+  // 검색 필터 아이콘을 클릭하면 색 변화
+  $(".list-cat-item").click(function () {
+    $(".list-cat-item").not(this).removeClass("on");
+    $(this).toggleClass("on");
+  });
 } // end of init
 
 init();
 
-function add_plan_day(){
-	$(".plan-category li:last-child").clone().appendTo(".plan-category");
+function add_plan_day() {
+  $(".plan-category li:last-child").clone().appendTo(".plan-category");
 }
