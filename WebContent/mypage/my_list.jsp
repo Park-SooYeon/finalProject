@@ -7,7 +7,7 @@
 		<!-- Mobile Specific Meta -->
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<!-- Favicon-->
-		<link rel="shortcut icon" href="./img/fav.png">
+		<link rel="shortcut icon" href="../template/img/fav.png">
 		<!-- Author Meta -->
 		<meta name="author" content="colorlib">
 		<!-- Meta Description -->
@@ -62,7 +62,7 @@
 				<div class="container main-menu">
 					<div class="row align-items-center justify-content-between d-flex">
 				      <div id="logo">
-				        <a href="index.html"><img src="./img/logo.png" alt="" title="" /></a>
+				        <a href="index.html"><img src="../template/img/logo.png" alt="" title="" /></a>
 				      </div>
 				      <nav id="nav-menu-container">
 				        <ul class="nav-menu">
@@ -179,14 +179,14 @@
 							<div class="single-footer-widget mail-chimp">
 								<h6 class="mb-20">InstaFeed</h6>
 								<ul class="instafeed d-flex flex-wrap">
-									<li><img src="./img/i1.jpg" alt=""></li>
-									<li><img src="./img/i2.jpg" alt=""></li>
-									<li><img src="./img/i3.jpg" alt=""></li>
-									<li><img src="./img/i4.jpg" alt=""></li>
-									<li><img src="./img/i5.jpg" alt=""></li>
-									<li><img src="./img/i6.jpg" alt=""></li>
-									<li><img src="./img/i7.jpg" alt=""></li>
-									<li><img src="./img/i8.jpg" alt=""></li>
+									<li><img src="../template/img/i1.jpg" alt=""></li>
+									<li><img src="../template/img/i2.jpg" alt=""></li>
+									<li><img src="../template/img/i3.jpg" alt=""></li>
+									<li><img src="../template/img/i4.jpg" alt=""></li>
+									<li><img src="../template/img/i5.jpg" alt=""></li>
+									<li><img src="../template/img/i6.jpg" alt=""></li>
+									<li><img src="../template/img/i7.jpg" alt=""></li>
+									<li><img src="../template/img/i8.jpg" alt=""></li>
 								</ul>
 							</div>
 						</div>						

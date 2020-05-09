@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <!-- 관심리스트 -->
-<section class="destinations-area mb-20">
+<section class="destinations-area my-list-area mb-20">
   <div class="row">
     <div class="col-lg-4">
       <div class="single-destinations">
         <div class="thumb-custom">
-          <img src="./img/hotels/d2.jpg" alt="" />
+          <img src="../template/img/hotels/d2.jpg" alt="" />
         </div>
         <div class="details">
           <h4 class="d-flex justify-content-between">
@@ -32,16 +32,14 @@
           <img src="./custom-image/3.jpg" alt="" />
         </div>
         <div class="details">
-          <h4 class="d-flex justify-content-left">
-            <i class="fa fa-camera"></i>&nbsp;&nbsp;종묘
-          </h4>
+          <h4 class="d-flex justify-content-left"><i class="fa fa-camera"></i>&nbsp;&nbsp;종묘</h4>
           <p>
             서울, 대한민국 | 49 Reviews
           </p>
           <div class="trip-list-box text-center">서울 여행</div>
         </div>
       </div>
-    </div>                                                                                                 
+    </div>
     <div class="col-lg-4">
       <div class="single-destinations">
         <div class="thumb-review">
@@ -72,7 +70,7 @@
     <div class="col-lg-4">
       <div class="single-destinations">
         <div class="thumb-custom">
-          <img src="./img/hotels/d4.jpg" alt="" />
+          <img src="../template/img/hotels/d4.jpg" alt="" />
         </div>
         <div class="details">
           <h4 class="d-flex justify-content-between">
@@ -95,7 +93,7 @@
     <div class="col-lg-4">
       <div class="single-destinations">
         <div class="thumb-custom">
-          <img src="./img/hotels/d5.jpg" alt="" />
+          <img src="../template/img/hotels/d5.jpg" alt="" />
         </div>
         <div class="details">
           <h4 class="d-flex justify-content-between">
@@ -118,7 +116,7 @@
     <div class="col-lg-4">
       <div class="single-destinations">
         <div class="thumb-custom">
-          <img src="./img/hotels/d6.jpg" alt="" />
+          <img src="../template/img/hotels/d6.jpg" alt="" />
         </div>
         <div class="details">
           <h4 class="d-flex justify-content-between">
