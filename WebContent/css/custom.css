@@ -1,3 +1,9 @@
+/*
+작성자 : 안주현
+mypage css
+*/
+
+/* my-social css */
 .profile {
   padding-bottom: 20px;
   padding-top: 20px;
@@ -17,6 +23,7 @@ body {
 .profile-image {
   width: 120px;
   height: 120px;
+  cursor: pointer;
 }
 
 .profile-menu a:hover {
@@ -25,6 +32,7 @@ body {
 }
 
 .profile-menu a {
+  transition: none;
   font-size: 17px;
   color: #000000;
 }
@@ -39,12 +47,33 @@ body {
   height: 20px;
 }
 
+.profile-detail {
+  padding-bottom: 20px !important;
+  cursor: pointer;
+}
+
+.profile-detail li:hover,
+p:hover {
+  color: black;
+}
+
 .profile-detail a {
   color: #777777;
 }
 
-.profile-detail li {
+.profile-detail li,
+p {
   margin-bottom: 10px;
+  text-align: left;
+}
+
+.profile-detail li i {
+  font-size: 1.1rem;
+  color: black;
+}
+
+.profile-detail li span {
+  margin-left: 0.5rem;
 }
 
 .posting-list .posting-title h3 {
@@ -125,6 +154,14 @@ body {
 }
 .post-bottom-bar {
   min-height: 20px;
+}
+
+/* social -> 프로필 수정 modal */
+#mp-proModifyFrm > div {
+  border: solid 1px #eee;
+}
+#mp-proModifyFrm > label {
+  font-weight: 550;
 }
 
 /* trip_list */
@@ -873,6 +910,10 @@ input[name="searchPlace"]::placeholder {
 
   .list-search-box-small {
     order: 3;
+  }
+
+  .profile {
+    height: 47vh;
   }
 }
 
