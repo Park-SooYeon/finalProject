@@ -119,7 +119,7 @@
   <!-- modal -->
   <div
     class="modal fade"
-    id="exampleModal"
+    id="newTripModal"
     tabindex="-1"
     role="dialog"
     aria-labelledby="exampleModalLabel"

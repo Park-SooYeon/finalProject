@@ -833,6 +833,27 @@ input[name="searchPlace"]::placeholder {
   .toggle-on {
     display: block;
   }
+
+  .thumb-custom {
+    height: 20rem;
+    line-height: 20rem;
+  }
+
+  .thumb-review {
+    height: 15rem;
+  }
+
+  .add-new-trip {
+    display: none;
+  }
+
+  .list-container {
+    height: 27rem;
+  }
+
+  #addTripBtn {
+    display: inline-block !important;
+  }
 }
 
 /* ipad 크기 */
@@ -852,5 +873,21 @@ input[name="searchPlace"]::placeholder {
 
   .list-search-box-small {
     order: 3;
+  }
+}
+
+@media (max-width: 455px) {
+  .button-container {
+    padding: 1.5rem 0;
+  }
+  .button-container button {
+    font-size: 0.8rem;
+  }
+  .thumb-custom {
+    height: 14rem;
+    line-height: 14rem;
+  }
+  .list-container {
+    height: 21rem;
   }
 }

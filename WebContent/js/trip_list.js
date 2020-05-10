@@ -1,6 +1,6 @@
 function init() {
   $(".add-new-trip").click(function () {
-    $("#exampleModal").on("show.bs.modal", function (event) {
+    $("#newTripModal").on("show.bs.modal", function (event) {
       const ADD_BTN = $(event.relatedTarget); // Button that triggered the modal
       const TRIP_NAME = ADD_BTN.data("whatever"); // Extract info from data-* attributes
       // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).

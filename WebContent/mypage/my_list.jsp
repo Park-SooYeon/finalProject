@@ -113,11 +113,17 @@
 			</section>
 			<div class="container">
 		            <div class="row d-flex justify-content-center">
-		                <div class="menu-content p-40 col-lg-8 text-center">
-		                    <button class="btn btn-dark">모든 여행</button>
-		                    <button class="btn btn-dark">여행 (비공개)</button>
-		                    <button class="btn btn-dark">여행 (공개)</button>
-		                    <button class="btn btn-dark">관심리스트</button>
+		                <div class="button-container p-40 col-lg-8 text-center">
+		                    <button class="btn dropdown-toggle" data-toggle="dropdown">여행 리스트</button>
+		                    
+		                    <div class="dropdown-menu">
+		                    	<button class="dropdown-item">모든 여행</button>
+        						<button class="dropdown-item">여행 (비공개)</button>
+        						<button class="dropdown-item">여행 (공개)</button>
+      						</div>
+		                    
+		                    <button class="btn"><i class="fa fa-heart"></i> 관심 리스트</button>
+		                    <button class="btn add-new-trip" data-toggle="modal" data-target="#newTripModal" style="display:none;" id="addTripBtn">여행 추가</button>
 		                </div>
 		            </div>
 			  
