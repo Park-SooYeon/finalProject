@@ -41,7 +41,7 @@
 		<%@include file="rent_top.jsp" %>
 	</div>
 	<div id='mid'>
-		<%@include file="rentSearch.jsp" %>
+		<%@include file="rentView.jsp" %>
 	</div>
 
   

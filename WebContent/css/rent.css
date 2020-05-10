@@ -659,6 +659,7 @@
 	color:white;
 	padding-top:10px;
 	padding-bottom:10px;
+	margin-bottom: 30px;
 }
 #rentView>div #viewMid #viewLeft .rentInfo:hover{
 	cursor: pointer;
@@ -668,15 +669,378 @@
 }
 
 
-
-
 #rentView>div #viewMid #viewRight{
+	padding-left: 30px;
+	padding-right: 30px;
+}
+#rentView>div #viewMid #viewRight div #viewRightTop>#viewNavbar{
+	height: auto;
+	border: none;
+	background-color:#fff;
+	border-bottom: 2px solid #2b96ed;
+	border-radius: 0px 0xp 0px 0px;
+}
+#rentView>div #viewMid #viewRight div #viewRightTop nav #viewCon{
+	height: 20px;
+	border: none;
+	background-color:#fff;
+	text-align: center;
+}
+#rentView>div #viewMid #viewRight div #viewRightTop nav #viewCon>div{
+	text-align: center;
+	height: 20px;
+}
+#rentView>div #viewMid #viewRight div #viewRightTop nav #viewCon div #viewNav{
+	height: 20px;
+	margin: 0px;
+}
+#rentView>div #viewMid #viewRight div #viewRightTop nav #viewCon div #viewNav a{
+	margin-left: 15px;
+}
+#rentView>div #viewMid #viewRight div #viewRightTop nav #viewCon div #viewNav a img{
+	width: 20px;
+	height: 20px;
+}
+
+
+#rentView>div #viewMid #viewRight #viewRightBot{
+	border: 1px solid #bbb;
+	box-sizing: border-box;
+	border-radius: 5px 5px 5px 5px ;
+	margin-bottom:20px;
+}
+#rentView>div #viewMid #viewRight #viewRightBot #fullInfo{
+	margin-bottom: 20px;
+}
+#rentView>div #viewMid #viewRight #viewRightBot #fullInfo i{
+	font-size: 0.5em;
+	color:#bbb;
+}
+#rentView>div #viewMid #viewRight #viewRightBot #fullcheck>div>div{
+	text-align: center;
+}
+
+
+#rentView>div #viewMid #viewRight #viewRightMid{
+	padding: 10px;
+}
+
+#rentView>div #viewMid #viewRight #fullBtn>div>button{
+	width:100%;
+	height: auto;
+}
+#rentView>div #viewMid #viewRight #fullBtn>div>button:first-child{
+	border: 1px solid #2b96cb!important;
+}
+#rentView>div #viewMid #viewRight #fullBtn>div>.btn-default>div{
+	font-weight: bold;
+	font-size: 1.2em;
+}
+#rentView>div #viewMid #viewRight #fullBtn>div>.btn-primary>div{
+	font-weight: bold;
+	font-size: 1.2em;
+}
+#rentView>div #viewMid #viewRight #fullBtn>div>.btn-default>span{
+	font-size: 0.3em;
+}
+#rentView>div #viewMid #viewRight #fullBtn>div>.btn-primary>span{
+	font-size: 0.3em;
+}
+
+
+#rentView>div #viewMid #viewRight #viewRightMid{
+	margin-bottom: 40px;
+}
+#rentView>div #viewMid #viewRight #viewRightMid #mid_left h4{
+	font-weight: bold;
+}
+#rentView>div #viewMid #viewRight #viewRightMid #mid_left h4 span{
+	font-size: 0.6em;
+	color:#aaa;
+}
+#rentView>div #viewMid #viewRight #viewRightMid #mid_left img{
+	max-width: 100%;
+	height: auto;
+}
+#rentView>div #viewMid #viewRight #viewRightMid #mid_left>div>b{
+	font-size: 0.7em;
+	color:#aaa;
+}
+#rentView>div #viewMid #viewRight #viewRightMid #mid_left>div>span{
+	color:#2b96cb;
+	font-size: 1.0em;
+}
+#rentView>div #viewMid #viewRight #viewRightMid #mid_left>p>i{
+	font-size: 1.5em;
+	color:#2b96ed;
+	font-weight: bold;
+}
+#rentView>div #viewMid #viewRight #viewRightMid #mid_left>p>b{
+	font-size:0.9em;
+	color:#aaa;
+}
+#rentView>div #viewMid #viewRight #viewRightMid #mid_left>p>span{
+	font-size:0.5em;
+	color:#bbb;
+}
+#rentView>div #viewMid #viewRight #viewRightMid #mid_left_info{
+	text-align: center;
+	color: #bbb;
+	font-size: 0.7em;
+	border: 1px solid #bbb;
+	padding: 5px;
+	cursor: pointer;
+	margin-bottom: 20px;
+}
+#rentView>div #viewMid #viewRight #viewRightMid #mid_right>div>div{
+	height: 20px;
+}
+#rentView>div #viewMid #viewRight #viewRightMid #mid_right>div>div img{
+	max-height:100%;
+	width: auto;
+}
+#rentView>div #viewMid #viewRight #viewRightMid #mid_right>h4{
+	font-size: 0.9em;
+	color:#bbb;
+	margin-top: 20px;
+}
+#rentView>div #viewMid #viewRight #viewRightMid #mid_right #mid_left_free>div>div{
+	height: 20px;
+	font-size: 0.8em;
+	color:#888;
+}
+#rentView>div #viewMid #viewRight #viewRightMid #mid_right #mid_left_free>div>div img{
+	max-height: 100%;
+	width: auto;
+	margin-right: 10px;
+}
+
+#rentView>div #viewMid #viewRight #viewRightMid #viewReview>div:nth-child(2){
+	border: 2px solid #eee;
+	height: auto;
+	margin-bottom: 30px;
+}
+
+#rentView>div #viewMid #viewRight #viewRightMid #viewReview #viewReviewTop{
+	margin-top:20px;
+	margin-bottom: 20px;
+}
+#rentView>div #viewMid #viewRight #viewRightMid #viewReview #viewReviewTop h5{
+	color: #ccc;
+	font-weight: bold;
 	
+}
+#rentView>div #viewMid #viewRight #viewRightMid #viewReview #viewReviewTop span{
+	font-size: 1.4em;
+	color:#888;
+	font-weight: bold;
+}
+#rentView>div #viewMid #viewRight #viewRightMid #viewReview #viewReviewMid>div>#viewReviewMidLeft{
+	border-right: 2px solid #eee;
+}
+#rentView>div #viewMid #viewRight #viewRightMid #viewReview #viewReviewMid>div>#viewReviewMidLeft>div{
+	height: 30px;
+	padding-top:5px;
+	height: auto;
+}
+#rentView>div #viewMid #viewRight #viewRightMid #viewReview #viewReviewMid>div>#viewReviewMidLeft>div:nth-child(2n-1) {
+	background-color:#eee;
+}
+#rentView>div #viewMid #viewRight #viewRightMid #viewReview #viewReviewMid>div>#viewReviewMidLeft>div>div:first-child {
+	color:#2b96ed;
+	font-weight: bold;
+	text-align: center;
+	font-size: 1.05em;
+	
+}
+#rentView>div #viewMid #viewRight #viewRightMid #viewReview #viewReviewMid>div>#viewReviewMidLeft>div>div:last-child {
+	font-size: 0.9em;
+	color:#888;
+	padding-top:3px;
+	padding-bottom:3px;
+	border-left: 3px solid #2b96cb;
+}
+#rentView>div #viewMid #viewRight #viewRightMid #viewReview #viewReviewMid>div>#viewReviewMidRight{
+	text-align: center;
+	padding-top:60px;
+}
+#rentView>div #viewMid #viewRight #viewRightMid #viewReview #viewReviewMid>div>#viewReviewMidRight>div{
+	font-size:1.2em;
+	font-weight: bold;
+	color:#2b96dc;
+}
+#rentView>div #viewMid #viewRight #viewRightMid #viewReview #viewReviewMid>div>#viewReviewMidRight>span{
+	font-size:1.7em;
+	font-weight: bold;
+	color:#2b96ed;
+}
+#rentView>div #viewMid #viewRight #viewRightMid #viewReview #viewReviewMid>div>#viewReviewMidRight>span>b{
+	font-size:0.7em;
+	color:#bbb;
+}
+#rentView>div #viewMid #viewRight #viewRightMid #viewReview #viewReviewMid>div>#viewReviewMidRight>p{
+	font-size:0.6em;
+	color:#aaa;
+	margin-top:40px;
+}
+
+#rentView>div #viewMid #viewRight #viewRightMid #viewReview>div:nth-child(3) {
+}
+#rentView>div #viewMid #viewRight #viewRightMid #viewReview>div:nth-child(3)>div{
+	padding-right: 35px;
+	padding-top:  25px;
+}
+#rentView>div #viewMid #viewRight #viewRightMid #viewReview>div:nth-child(3)>div:nth-child(2) {
+	background-color: #f9f9f9;
+	margin-top: 15px;
+	
+}
+
+#rentView>div #viewMid #viewRight #viewRightMid #viewReview>div:nth-child(3)>div:nth-child(2)>div>div>div>div:first-child {
+	height: 40px;
+	text-align: right;
+	padding: 0px;
+}
+#rentView>div #viewMid #viewRight #viewRightMid #viewReview>div:nth-child(3)>div:nth-child(2)>div>div>div>div:first-child img{
+	max-height: 100%;
+	width: auto;
+}
+#rentView>div #viewMid #viewRight #viewRightMid #viewReview>div:nth-child(3)>div:nth-child(2)>div>div>div>div:nth-child(2) {
+	background-color:#fff;
+	border:1px solid #ddd;
+	padding: 15px 15px 15px 15px;
+	margin-bottom: 15px;
+	box-sizing: border-box;
+}
+#rentView>div #viewMid #viewRight #viewRightMid #viewReview>div:nth-child(3)>div:nth-child(2)>div>div>div>div:nth-child(2):hover{
+	box-shadow: 1px 1px 5px 1px #ddd;
+}
+
+
+#rentView>div #viewMid #viewRight #viewRightMid #viewReview>div:nth-child(3)>div:nth-child(2)>div>div>div>div:nth-child(2)>div:nth-child(1){
+	
+}
+#rentView>div #viewMid #viewRight #viewRightMid #viewReview>div:nth-child(3)>div:nth-child(2)>div>div>div>div:nth-child(2)>div:nth-child(1)>div:nth-child(1){
+	margin-bottom: 20px;
+}
+#rentView>div #viewMid #viewRight #viewRightMid #viewReview>div:nth-child(3)>div:nth-child(2)>div>div>div>div:nth-child(2)>div:nth-child(1)>div:nth-child(1)>span{
+	color:#fff;
+	background-color:#2b96ed;
+	font-weight: bold;
+	padding: 5px;
+	
+}
+#rentView>div #viewMid #viewRight #viewRightMid #viewReview>div:nth-child(3)>div:nth-child(2)>div>div>div>div:nth-child(2)>div:nth-child(1)>div:nth-child(2){
+	text-align: right;
+}
+#rentView>div #viewMid #viewRight #viewRightMid #viewReview>div:nth-child(3)>div:nth-child(2)>div>div>div>div:nth-child(2)>div:nth-child(1)>div:nth-child(2)>span:nth-child(1){
+	color:#bbb;
+	font-size: 0.9em;
+}
+#rentView>div #viewMid #viewRight #viewRightMid #viewReview>div:nth-child(3)>div:nth-child(2)>div>div>div>div:nth-child(2)>div:nth-child(1)>div:nth-child(2)>span:nth-child(2){
+	color: #2b96ed;
+	font-size: 1.1em;
+	font-weight: bold;
+}
+
+
+
+#rentView>div #viewMid #viewRight #viewRightMid #viewReview>div:nth-child(3)>div:nth-child(2)>div>div>div>div:nth-child(2)>div:nth-child(2)>div{
+	height: 15px!important;
+	color:#aaa;
+	font-size: 0.6em;
+	margin-bottom: 15px;
+}
+#rentView>div #viewMid #viewRight #viewRightMid #viewReview>div:nth-child(3)>div:nth-child(2)>div>div>div>div:nth-child(2)>div:nth-child(2)>div>img{
+	max-height: 100%;
+	width: auto;
+}
+
+#rentView>div #viewMid #viewRight #viewRightMid #viewReview>div:nth-child(3)>div:nth-child(2)>div>div>div>div:nth-child(2)>div:nth-child(3)>{
+	
+}
+#rentView>div #viewMid #viewRight #viewRightMid #viewReview>div:nth-child(3)>div:nth-child(2)>div>div>div>div:nth-child(2)>div:nth-child(3)>div:nth-child(1){
+	height: auto;
+}
+#rentView>div #viewMid #viewRight #viewRightMid #viewReview>div:nth-child(3)>div:nth-child(2)>div>div>div>div:nth-child(2)>div:nth-child(3)>div:nth-child(1)>div{
+	height: 17px!important;
+	width: 17px;
+	display: inline-block;
+}
+#rentView>div #viewMid #viewRight #viewRightMid #viewReview>div:nth-child(3)>div:nth-child(2)>div>div>div>div:nth-child(2)>div:nth-child(3)>div:nth-child(1)>span{
+	height: 17px!important;
+	color:#666;
+	font-size: 0.8em!important;
+	margin-bottom: 5px;
+}
+#rentView>div #viewMid #viewRight #viewRightMid #viewReview>div:nth-child(3)>div:nth-child(2)>div>div>div>div:nth-child(2)>div:nth-child(3)>div:nth-child(1)>div>img{
+	max-height: 100%;
+	width: auto;
+}
+#rentView>div #viewMid #viewRight #viewRightMid #viewReview>div:nth-child(3)>div:nth-child(2)>div>div>div>div:nth-child(2)>div:nth-child(3)>div:nth-child(2){
+	height: auto;
+}
+#rentView>div #viewMid #viewRight #viewRightMid #viewReview>div:nth-child(3)>div:nth-child(2)>div>div>div>div:nth-child(2)>div:nth-child(3)>div:nth-child(2)>div{
+	height: 17px!important;
+	width: 17px;
+	display: inline-block;
+}
+#rentView>div #viewMid #viewRight #viewRightMid #viewReview>div:nth-child(3)>div:nth-child(2)>div>div>div>div:nth-child(2)>div:nth-child(3)>div:nth-child(2)>span{
+	height: 17px!important;
+	color:#666;
+	font-size: 0.8em;
+	margin-bottom: 5px;
+}
+#rentView>div #viewMid #viewRight #viewRightMid #viewReview>div:nth-child(3)>div:nth-child(2)>div>div>div>div:nth-child(2)>div:nth-child(3)>div:nth-child(2)>div>img{
+	max-height: 100%;
+	width: auto;
+}
+#rentView>div #viewMid #viewRight #viewRightMid #viewReview>div:nth-child(3)>div:nth-child(2)>div>div>div>div:nth-child(2)>div:nth-child(4){
+	border-top: 1px dashed #bbb;
+	margin-top: 10px;
+	padding-top : 5px;
+}
+#rentView>div #viewMid #viewRight #viewRightMid #viewReview>div:nth-child(3)>div:nth-child(2)>div>div>div>div:nth-child(2)>div:nth-child(4)>div{
+	font-size: 0.6em!important;
+	color:#2b96ba;
+	cursor: pointer;
+	text-align: right;
 }
 
 
 
 
+
+
+
+#rentView>div #viewMid #viewRight #viewRightMid #view_inprotant_info{
+	border:1px solid #eee;
+	box-sizing: border-box;
+	padding: 15px;
+	border-radius: 10px 10px 10px 10px;
+}
+
+#rentView>div #viewMid #viewRight #viewRightMid #view_inprotant_info>div>span{
+	font-size:1.3em;
+	color:#777;
+	font-weight: bold;
+}
+#rentView>div #viewMid #viewRight #viewRightMid #view_inprotant_info>div>div{
+	border-bottom: 1px dashed #bbb;
+	padding-bottom: 20px;
+	margin-bottom: 20px;
+}
+#rentView>div #viewMid #viewRight #viewRightMid #view_inprotant_info>div>div>div:nth-child(1) {
+	font-size: 0.9em;
+	font-weight: bold;
+	color:#444;
+	padding: 0px;
+}
+#rentView>div #viewMid #viewRight #viewRightMid #view_inprotant_info>div>div>div:nth-child(2) {
+	font-size: 0.8em;
+	color:#777;
+	padding: 0px;
+}
 
 
 
