@@ -103,13 +103,13 @@
                 <div class="collapse" id="rent">
                     <ul class="nav flex-column sub-menu">
                         <li class="nav-item">
-                            <a class="nav-link" href="pages/ui-features/buttons.html">회사관리</a>
+                            <a class="nav-link" href="../partner/rent_comp_list.jsp">회사관리</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="pages/ui-features/dropdowns.html">차량관리</a>
+                            <a class="nav-link" href="../partner/rent_car_list.jsp">차량관리</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="pages/ui-features/dropdowns.html">주문관리</a>
+                            <a class="nav-link" href="../partner/rent_order_list.jsp">예약관리</a>
                         </li>
                     </ul>
                 </div>

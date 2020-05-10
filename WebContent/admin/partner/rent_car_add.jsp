@@ -9,38 +9,50 @@
                             <div class="d-flex pb-4 mb-4 border-bottom">
                                 <div class="d-flex align-items-center">
                                     <h5 class="page-title mb-n2 font-weight-bold">
-		                            	<span class="breadcrumb-item active" aria-current="page">객실등록</span>
+		                            	<span class="breadcrumb-item active" aria-current="page">차량등록</span>
 		                            </h5>
                                 </div>
                             </div>
                             <form action="" name="frmAdmHtCompAdd" id="frmAdmHtCompAdd">
                                 <div class="form-group row">
                                     <div class="col-lg-3">
-                                        <label class="col-form-label">호텔 <span class="text-danger">*</span></label>
+                                        <label class="col-form-label">회사명 <span class="text-danger">*</span></label>
                                     </div>
                                     <div class="col-lg-8">
-                                        <select class="form-control" id="htCompNm">
-					                        <option value="">A 호텔</option>
-					                        <option value="">B 호텔</option>
-					                        <option value="">C 호텔</option>
-					                    </select>
+                                        <select class="form-control" id="rtCompNm">
+				                        <option value="">A 렌터카</option>
+				                        <option value="">B 렌터카</option>
+				                        <option value="">C 렌터카</option>
+				                    </select>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-lg-3">
+                                        <label class="col-form-label">차량명 <span class="text-danger">*</span></label>
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <input type="text" class="form-control" />
+				                    </select>
                                     </div>
                                 </div>
 								<div class="form-group row">
                                     <div class="col-lg-3">
-                                        <label class="col-form-label">객실유형 <span class="text-danger">*</span></label>
+                                        <label class="col-form-label">종류 <span class="text-danger">*</span></label>
                                     </div>
                                     <div class="col-lg-8">
-                                        <select class="form-control" id="htRommType">
-					                        <option value="">디럭스</option>
-					                        <option value="">패밀리</option>
-					                        <option value="">스위트</option>
+                                        <select class="form-control" id="rtCompNm">
+					                        <option value="">소형</option>
+					                        <option value="">중형</option>
+					                        <option value="">대형</option>
+					                        <option value="">승합</option>
+					                        <option value="">SUV/5인승</option>
+					                        <option value="">수입/전기차</option>
 					                    </select>
 									</div>
                                 </div>
                                 <div class="form-group row">
 	                                <div class="col-lg-3">
-	                                    <label class="col-form-label">가격 <span class="text-danger">*</span></label>
+	                                    <label class="col-form-label">가격(시간당) <span class="text-danger">*</span></label>
 	                                </div>
 	                                <div class="col-lg-8">
 	                                    <input class="form-control" data-inputmask="'alias': 'currency'" im-insert="true" style="text-align: right;">
@@ -66,54 +78,57 @@
 									</div>
                                 </div>
                                 <div class="form-group row">
-                                    <div class="col-lg-3">
-                                        <label class="col-form-label">옵션</label>
-                                    </div>
-                                    <div class="col-lg-8">
+	                                <div class="col-lg-3">
+	                                    <label class="col-form-label">차량 문수 <span class="text-danger">*</span></label>
+	                                </div>
+	                                <div class="col-lg-8">
+	                                    <input class="form-control" type="number" min="0">
+	                                </div>
+	                            </div>
+	                            <div class="form-group row">
+	                                <div class="col-lg-3">
+	                                    <label class="col-form-label">기어타입 <span class="text-danger">*</span></label>
+	                                </div>
+	                                <div class="col-lg-8">
+	                                    <input class="form-control" type="number" min="0">
+	                                </div>
+	                            </div>
+	                            <div class="form-group row">
+	                                <div class="col-lg-3">
+	                                    <label class="col-form-label">탑승자 정원 <span class="text-danger">*</span></label>
+	                                </div>
+	                                <div class="col-lg-8">
+	                                    <input class="form-control" type="number" min="0">
+	                                </div>
+	                            </div>
+	                            <div class="form-group row">
+	                                <div class="col-lg-3">
+	                                    <label class="col-form-label">옵션 <span class="text-danger">*</span></label>
+	                                </div>
+	                                <div class="col-lg-8">
                                     	<div class="row">
                                     		<div class="col-sm-3 col-6">
                                     			<div class="form-check form-check-flat">
 					                              <label class="form-check-label">
-					                                <input type="checkbox" class="form-check-input"> Wi-Fi <i class="input-helper"></i></label>
+					                                <input type="checkbox" class="form-check-input"> 짐가방 <i class="input-helper"></i></label>
 					                            </div>
                                     		</div>
                                     		<div class="col-sm-3 col-6">
                                     			<div class="form-check form-check-flat">
 					                              <label class="form-check-label">
-					                                <input type="checkbox" class="form-check-input"> 금연 <i class="input-helper"></i></label>
+					                                <input type="checkbox" class="form-check-input"> 작은가방 <i class="input-helper"></i></label>
 					                            </div>
                                     		</div>
                                     		<div class="col-sm-3 col-6">
                                     			<div class="form-check form-check-flat">
 					                              <label class="form-check-label">
-					                                <input type="checkbox" class="form-check-input"> 주차장 <i class="input-helper"></i></label>
+					                                <input type="checkbox" class="form-check-input"> 에어컨 <i class="input-helper"></i></label>
 					                            </div>
                                     		</div>
                                     	</div>
-                                        <div class="row">
-                                    		<div class="col-sm-3 col-6">
-                                    			<div class="form-check form-check-flat">
-					                              <label class="form-check-label">
-					                                <input type="checkbox" class="form-check-input"> 오션뷰 <i class="input-helper"></i></label>
-					                            </div>
-                                    		</div>
-                                    		<div class="col-sm-3 col-6">
-                                    			<div class="form-check form-check-flat">
-					                              <label class="form-check-label">
-					                                <input type="checkbox" class="form-check-input"> 시티뷰 <i class="input-helper"></i></label>
-					                            </div>
-                                    		</div>
-                                    		<div class="col-sm-3 col-6">
-                                    			<div class="form-check form-check-flat">
-					                              <label class="form-check-label">
-					                                <input type="checkbox" class="form-check-input"> 마운틴뷰 <i class="input-helper"></i></label>
-					                            </div>
-                                    		</div>
-                                    	</div>
-			                            
 			                            
 									</div>
-                                </div>
+	                            </div>
                                 <div class="form-group col-12 text-right mt-5">
                                 	<button type="submit" class="btn btn-secondary mr-2">취소</button>
                                 	<button type="submit" class="btn btn-success" onclick="showSwal('success-message')">등록</button>
