@@ -18,6 +18,7 @@
 <link rel="stylesheet" type="text/css" href="../template/css/animate.min.css">
 <link rel="stylesheet" type="text/css" href="../template/css/owl.carousel.css">				
 <link rel="stylesheet" type="text/css" href="../template/css/main.css">
+<link rel="stylesheet" type="text/css" href="../css/food.css">
 
 <title>Insert title here</title>
 
