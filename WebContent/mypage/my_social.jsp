@@ -33,68 +33,9 @@
     <link rel="stylesheet" href="../css/custom.css" />
   </head>
   <body>
-    <header id="header">
-      <div class="header-top">
-        <div class="container">
-          <div class="row align-items-center">
-            <div class="col-lg-6 col-sm-6 col-6 header-top-left">
-              <ul>
-                <li><a href="#">Visit Us</a></li>
-                <li><a href="#">Buy Tickets</a></li>
-              </ul>
-            </div>
-            <div class="col-lg-6 col-sm-6 col-6 header-top-right">
-              <div class="header-social">
-                <a href="#"><i class="fa fa-facebook"></i></a>
-                <a href="#"><i class="fa fa-twitter"></i></a>
-                <a href="#"><i class="fa fa-dribbble"></i></a>
-                <a href="#"><i class="fa fa-behance"></i></a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="container main-menu">
-        <div class="row align-items-center justify-content-between d-flex">
-          <div id="logo">
-            <a href="index.html"><img src="../template/img/logo.png" alt="" title="" /></a>
-          </div>
-          <nav id="nav-menu-container">
-            <ul class="nav-menu">
-              <li><a href="index.html">Home</a></li>
-              <li><a href="about.html">About</a></li>
-              <li><a href="packages.html">Packages</a></li>
-              <li><a href="hotels.html">Hotels</a></li>
-              <li><a href="insurance.html">Insurence</a></li>
-              <li class="menu-has-children">
-                <a href="">Blog</a>
-                <ul>
-                  <li><a href="blog-home.html">Blog Home</a></li>
-                  <li><a href="blog-single.html">Blog Single</a></li>
-                </ul>
-              </li>
-              <li class="menu-has-children">
-                <a href="">Pages</a>
-                <ul>
-                  <li><a href="elements.html">Elements</a></li>
-                  <li class="menu-has-children">
-                    <a href="">Level 2 </a>
-                    <ul>
-                      <li><a href="#">Item One</a></li>
-                      <li><a href="#">Item Two</a></li>
-                    </ul>
-                  </li>
-                </ul>
-              </li>
-              <li><a href="contact.html">Contact</a></li>
-            </ul>
-          </nav>
-          <!-- #nav-menu-container -->
-        </div>
-      </div>
-    </header>
-    <!-- #header -->
-
+  
+  <jsp:include page="../top.jsp"></jsp:include>
+  
     <!-- start banner Area -->
     <section class="relative about-banner" style="z-index: -1;">
       <div class="overlay overlay-bg"></div>
@@ -134,7 +75,13 @@
           </div>
         </span>
         <span class="col-md-3 col-sm-3"
-          ><button type="button" class="btn btn-default pull-right" data-toggle="modal" data-target="#mp-modifyModal" id="mp-btnModifyProfile">
+          ><button
+            type="button"
+            class="btn btn-default pull-right"
+            data-toggle="modal"
+            data-target="#mp-modifyModal"
+            id="mp-btnModifyProfile"
+          >
             프로필수정
           </button></span
         >
@@ -203,16 +150,15 @@
               <span class="col-md-1 text-center">
                 <img class="rounded-circle posting-profile" src="../template/img/blog/s-img.jpg" />
               </span>
-              <div class="col-md-11 mt-1" style="position:relative;">
+              <div class="col-md-11 mt-1" style="position: relative;">
                 <div>
                   <b>JuHyeon An</b>
                   님이 새 여행리스트를 추가했습니다.
-                  <span style="float: right; position:absolute; right:-23px;"
-                  ><img width="17px" src="./custom-image/ellipsis-h-solid.svg"
-                /></span>
+                  <span style="float: right; position: absolute; right: -23px;"
+                    ><img width="17px" src="./custom-image/ellipsis-h-solid.svg"
+                  /></span>
                 </div>
                 <small>2019년 6월 26일</small>
-                
               </div>
             </div>
             <div class="single-post row">
@@ -272,60 +218,84 @@
     </section>
     <!-- End post-content Area -->
 
-<div
-    class="modal fade"
-    id="mp-modifyModal"
-    tabindex="-1"
-    role="dialog"
-    aria-labelledby="mp-modifyModalLabel"
-    aria-hidden="true"
-  >
-    <div class="modal-dialog" role="document" style="max-width:590px;">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="mp-modifyModalLabel">프로필 수정하기</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body" style="color: #000; padding: 2rem 2rem;">
-        <div class="row">
-		<div class="col-md-3 col-sm-3 text-center mb-4">
-			<img class="rounded-circle profile-image" src="../template/img/blog/c2.jpg">
-		</div>
-		<div class="col-md-9 col-sm-9">
-		<form id="mp-proModifyFrm" action="#">
-				<label for="mp-id">아이디</label>
-				<div class="mb-10">
-					<input type="text" name="mp-id" placeholder="아이디를 입력해주세요." onfocus="this.placeholder = ''" onblur="this.placeholder = '아이디를 입력해주세요.'" class="single-input">
-				</div>
-				<label for="mp-name">이름</label>
-				<div class="mb-10">
-					<input type="text" name="mp-name" placeholder="이름을 입력해주세요." onfocus="this.placeholder = ''" onblur="this.placeholder = '이름을 입력해주세요.'" class="single-input">
-				</div>
-				<label for="mp-address">거주도시</label>
-				<div class="input-group-icon mb-10">
-					<div class="icon"><i class="fa fa-thumb-tack" aria-hidden="true"></i></div>
-					<input type="text" name="mp-address" placeholder="거주도시를 입력해주세요." onfocus="this.placeholder = ''" onblur="this.placeholder = '거주도시를 입력해주세요.'" class="single-input">
-				</div>
-				<label for="mp-detail">자기소개</label>
-				<div class="mb-10">
-					<textarea class="single-textarea" placeholder="자기소개를 입력해주세요." onfocus="this.placeholder = ''" onblur="this.placeholder = '자기소개를 입력해주세요.'"></textarea>
-				</div>
-		</form>
-		</div>
-		</div>
-
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
-          <button type="submit" class="btn btn-primary" data-dismiss="modal" id="btnCreateTrip">저장</button>
+    <div
+      class="modal fade"
+      id="mp-modifyModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="mp-modifyModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document" style="max-width: 590px;">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="mp-modifyModalLabel">프로필 수정하기</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body" style="color: #000; padding: 2rem 2rem;">
+            <div class="row">
+              <div class="col-md-3 col-sm-3 text-center mb-4">
+                <img class="rounded-circle profile-image" src="../template/img/blog/c2.jpg" />
+              </div>
+              <div class="col-md-9 col-sm-9">
+                <form id="mp-proModifyFrm" action="#">
+                  <label for="mp-id">아이디</label>
+                  <div class="mb-10">
+                    <input
+                      type="text"
+                      name="mp-id"
+                      placeholder="아이디를 입력해주세요."
+                      onfocus="this.placeholder = ''"
+                      onblur="this.placeholder = '아이디를 입력해주세요.'"
+                      class="single-input"
+                    />
+                  </div>
+                  <label for="mp-name">이름</label>
+                  <div class="mb-10">
+                    <input
+                      type="text"
+                      name="mp-name"
+                      placeholder="이름을 입력해주세요."
+                      onfocus="this.placeholder = ''"
+                      onblur="this.placeholder = '이름을 입력해주세요.'"
+                      class="single-input"
+                    />
+                  </div>
+                  <label for="mp-address">거주도시</label>
+                  <div class="input-group-icon mb-10">
+                    <div class="icon"><i class="fa fa-thumb-tack" aria-hidden="true"></i></div>
+                    <input
+                      type="text"
+                      name="mp-address"
+                      placeholder="거주도시를 입력해주세요."
+                      onfocus="this.placeholder = ''"
+                      onblur="this.placeholder = '거주도시를 입력해주세요.'"
+                      class="single-input"
+                    />
+                  </div>
+                  <label for="mp-detail">자기소개</label>
+                  <div class="mb-10">
+                    <textarea
+                      class="single-textarea"
+                      placeholder="자기소개를 입력해주세요."
+                      onfocus="this.placeholder = ''"
+                      onblur="this.placeholder = '자기소개를 입력해주세요.'"
+                    ></textarea>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+            <button type="submit" class="btn btn-primary" data-dismiss="modal" id="btnCreateTrip">저장</button>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <!-- model end -->
-
+    <!-- model end -->
 
     <!-- start footer Area -->
     <footer class="footer-area section-gap">

@@ -42,41 +42,36 @@
   </head>
 
   <body>
+  
     <header id="header" style="width: 100%; position: relative; float: left; background: #1C5E9A">
-      <div class="container main-menu">
+      <div class="main-menu">
         <div class="row align-items-center justify-content-between d-flex">
           <div id="logo">
             <a href="index.html"><img src="../template/img/logo.png" alt="" title="" /></a>
           </div>
           <nav id="nav-menu-container">
-            <ul class="nav-menu">
-              <li><a href="index.html">Home</a></li>
-              <li><a href="about.html">About</a></li>
-              <li><a href="packages.html">Packages</a></li>
-              <li><a href="hotels.html">Hotels</a></li>
-              <li><a href="insurance.html">Insurence</a></li>
-              <li class="menu-has-children">
-                <a href="">Blog</a>
-                <ul>
-                  <li><a href="blog-home.html">Blog Home</a></li>
-                  <li><a href="blog-single.html">Blog Single</a></li>
-                </ul>
-              </li>
-              <li class="menu-has-children">
-                <a href="">Pages</a>
-                <ul>
-                  <li><a href="elements.html">Elements</a></li>
-                  <li class="menu-has-children">
-                    <a href="">Level 2 </a>
-                    <ul>
-                      <li><a href="#">Item One</a></li>
-                      <li><a href="#">Item Two</a></li>
-                    </ul>
-                  </li>
-                </ul>
-              </li>
-              <li><a href="contact.html">Contact</a></li>
+            <ul class="nav-menu" style="position:absolute; left:11rem;">
+              <li><a href="index.html">호텔</a></li>
+              <li><a href="about.html">즐길거리</a></li>
+              <li><a href="packages.html">음식점</a></li>
+              <li><a href="hotels.html">축제</a></li>
+              <li><a href="insurance.html">리뷰</a></li>
             </ul>
+                        <ul class="nav-menu pull-left">
+              <li>
+						<form class="form-inline my-2 my-lg-0">
+							<input class="form-control mr-sm-2" type="search" style="width: 80%;"
+								placeholder="지역, 관광지 검색" onfocus="this.placeholder = ''"
+									onblur="this.placeholder = '지역, 관광지 검색'" aria-label="Search">
+							<button class="btn btn-primary my-2 my-sm-0" style="width: 15%;"
+								type="submit"><i class="fa fa-search"></i></button>
+						</form>
+
+					</li>
+					
+					<li><a href="#">로그인</a></li>
+					<li><a href="#">회원가입</a></li>
+</ul>
           </nav>
           <!-- #nav-menu-container -->
         </div>

@@ -106,7 +106,7 @@
 							<h1 class="text-white">
 								My Trip				
 							</h1>	
-							<p class="text-white link-nav"><a href="index.html">Home </a>  <span class="lnr lnr-arrow-right"></span>  <a href="hotels.html"> My Trips</a></p>
+							<p class="text-white link-nav text-center"><a href="index.html">Home </a>  <span class="lnr lnr-arrow-right"></span>  <a href="hotels.html"> My Trips</a></p>
 						</div>	
 					</div>
 				</div>
