@@ -22,7 +22,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
 
     <!-- Link Swiper's CSS -->
-    <link rel="stylesheet" href="Swiper-3.4.2/dist/css/swiper.min.css">
+    <link rel="stylesheet" href="swiper-5.3.8/package/css/swiper.min.css">
 	<!-- CSS ============================================= -->
 	<link rel="stylesheet" href="template/css/linearicons.css">
 	<link rel="stylesheet" href="template/css/font-awesome.min.css">

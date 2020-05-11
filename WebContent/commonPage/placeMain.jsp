@@ -528,5 +528,5 @@ let move = function() {
 </div>
 
 <!-- Swiper JS -->
-<script src="./Swiper-3.4.2/dist/js/swiper.min.js"></script>
+<script src="./swiper-5.3.8/package/js/swiper.min.js"></script>
 <script src="js/main.js"></script>
