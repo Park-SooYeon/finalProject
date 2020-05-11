@@ -7,7 +7,7 @@
 		<!-- Mobile Specific Meta -->
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<!-- Favicon-->
-		<link rel="shortcut icon" href="./img/fav.png">
+		<link rel="shortcut icon" href="../template/img/fav.png">
 		<!-- Author Meta -->
 		<meta name="author" content="colorlib">
 		<!-- Meta Description -->
@@ -23,16 +23,18 @@
 			<!--
 			CSS
 			============================================= -->
-			<link rel="stylesheet" href="./css/linearicons.css">
-			<link rel="stylesheet" href="./css/font-awesome.min.css">
-			<link rel="stylesheet" href="./css/bootstrap.css">
-			<link rel="stylesheet" href="./css/magnific-popup.css">
-			<link rel="stylesheet" href="./css/jquery-ui.css">				
-			<link rel="stylesheet" href="./css/nice-select.css">							
-			<link rel="stylesheet" href="./css/animate.min.css">
-			<link rel="stylesheet" href="./css/owl.carousel.css">				
-			<link rel="stylesheet" href="./css/main.css">
-			<link rel="stylesheet" href="./css/custom.css">
+			<link rel="stylesheet" href="../template/css/linearicons.css">
+			<link rel="stylesheet" href="../template/css/font-awesome.min.css">
+			<link rel="stylesheet" href="../template/css/bootstrap.css">
+			<link rel="stylesheet" href="../template/css/magnific-popup.css">
+			<link rel="stylesheet" href="../template/css/jquery-ui.css">				
+			<link rel="stylesheet" href="../template/css/nice-select.css">							
+			<link rel="stylesheet" href="../template/css/animate.min.css">
+			<link rel="stylesheet" href="../template/css/owl.carousel.css">				
+			<link rel="stylesheet" href="../template/css/main.css">
+			<link rel="stylesheet" href="../css/custom.css">
+			<!--datepicker css-->
+			<link rel="stylesheet" href="../plugin/air-datepicker/css/datepicker.min.css">
 <title>Insert title here</title>
 </head>
 <body>
@@ -58,11 +60,11 @@
 			  			</div>
 			  		</div>			  					
 					</div>
-				</div>
+				</div>  
 				<div class="container main-menu">
 					<div class="row align-items-center justify-content-between d-flex">
 				      <div id="logo">
-				        <a href="index.html"><img src="./img/logo.png" alt="" title="" /></a>
+				        <a href="index.html"><img src="../template/img/logo.png" alt="" title="" /></a>
 				      </div>
 				      <nav id="nav-menu-container">
 				        <ul class="nav-menu">
@@ -104,22 +106,28 @@
 							<h1 class="text-white">
 								My Trip				
 							</h1>	
-							<p class="text-white link-nav"><a href="index.html">Home </a>  <span class="lnr lnr-arrow-right"></span>  <a href="hotels.html"> My Trips</a></p>
+							<p class="text-white link-nav text-center"><a href="index.html">Home </a>  <span class="lnr lnr-arrow-right"></span>  <a href="hotels.html"> My Trips</a></p>
 						</div>	
 					</div>
 				</div>
 			</section>
 			<div class="container">
 		            <div class="row d-flex justify-content-center">
-		                <div class="menu-content p-40 col-lg-8 text-center">
-		                    <button class="btn btn-dark">모든 여행</button>
-		                    <button class="btn btn-dark">여행 (비공개)</button>
-		                    <button class="btn btn-dark">여행 (공개)</button>
-		                    <button class="btn btn-dark">관심리스트</button>
+		                <div class="button-container p-40 col-lg-8 text-center">
+		                    <button class="btn dropdown-toggle" data-toggle="dropdown">여행 리스트</button>
+		                    
+		                    <div class="dropdown-menu">
+		                    	<button class="dropdown-item">모든 여행</button>
+        						<button class="dropdown-item">여행 (비공개)</button>
+        						<button class="dropdown-item">여행 (공개)</button>
+      						</div>
+		                    
+		                    <button class="btn"><i class="fa fa-heart"></i> 관심 리스트</button>
+		                    <button class="btn add-new-trip" data-toggle="modal" data-target="#newTripModal" style="display:none;" id="addTripBtn">여행 추가</button>
 		                </div>
 		            </div>
 			  
-			<%-- <jsp:include page="like_list.jsp"></jsp:include> --%>
+			<jsp:include page="like_list.jsp"></jsp:include>
 			<jsp:include page="trip_list.jsp"></jsp:include>
 			</div>
 			<!-- start footer Area -->		
@@ -179,14 +187,14 @@
 							<div class="single-footer-widget mail-chimp">
 								<h6 class="mb-20">InstaFeed</h6>
 								<ul class="instafeed d-flex flex-wrap">
-									<li><img src="./img/i1.jpg" alt=""></li>
-									<li><img src="./img/i2.jpg" alt=""></li>
-									<li><img src="./img/i3.jpg" alt=""></li>
-									<li><img src="./img/i4.jpg" alt=""></li>
-									<li><img src="./img/i5.jpg" alt=""></li>
-									<li><img src="./img/i6.jpg" alt=""></li>
-									<li><img src="./img/i7.jpg" alt=""></li>
-									<li><img src="./img/i8.jpg" alt=""></li>
+									<li><img src="../template/img/i1.jpg" alt=""></li>
+									<li><img src="../template/img/i2.jpg" alt=""></li>
+									<li><img src="../template/img/i3.jpg" alt=""></li>
+									<li><img src="../template/img/i4.jpg" alt=""></li>
+									<li><img src="../template/img/i5.jpg" alt=""></li>
+									<li><img src="../template/img/i6.jpg" alt=""></li>
+									<li><img src="../template/img/i7.jpg" alt=""></li>
+									<li><img src="../template/img/i8.jpg" alt=""></li>
 								</ul>
 							</div>
 						</div>						
@@ -207,20 +215,28 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 			</footer>
 			<!-- End footer Area -->	
 
-			<script src="./js/vendor/jquery-2.2.4.min.js"></script>
-			<script src="./js/popper.min.js"></script>
-			<script src="./js/vendor/bootstrap.min.js"></script>			
+			<script src="../template/js/vendor/jquery-2.2.4.min.js"></script>
+			<script src="../template/js/popper.min.js"></script>
+			<script src="../template/js/vendor/bootstrap.min.js"></script>			
 			<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script>		
- 			<script src="./js/jquery-ui.js"></script>					
-  			<script src="./js/easing.min.js"></script>			
-			<script src="./js/hoverIntent.js"></script>
-			<script src="./js/superfish.min.js"></script>	
-			<script src="./js/jquery.ajaxchimp.min.js"></script>
-			<script src="./js/jquery.magnific-popup.min.js"></script>						
-			<script src="./js/jquery.nice-select.min.js"></script>					
-			<script src="./js/owl.carousel.min.js"></script>							
-			<script src="./js/mail-script.js"></script>	
-			<script src="./js/main.js"></script>	
+ 			<script src="../template/js/jquery-ui.js"></script>					
+  			<script src="../template/js/easing.min.js"></script>			
+			<script src="../template/js/hoverIntent.js"></script>
+			<script src="../template/js/superfish.min.js"></script>	
+			<script src="../template/js/jquery.ajaxchimp.min.js"></script>
+			<script src="../template/js/jquery.magnific-popup.min.js"></script>						
+			<script src="../template/js/jquery.nice-select.min.js"></script>					
+			<script src="../template/js/owl.carousel.min.js"></script>							
+			<script src="../template/js/mail-script.js"></script>	
+			<script src="../template/js/main.js"></script>	
+			<script src="../js/trip_list.js"></script>
+			
+			<!-- fontawesome -->
+			
+			 <!-- datepicker -->
+	<script src="../plugin/air-datepicker/js/datepicker.js"></script>
+	<script src="../plugin/air-datepicker/js/i18n/datepicker.en.js"></script>
+	<script src="../plugin/air-datepicker/js/i18n/datepicker.kr.js"></script>
 
 </body>
 </html>

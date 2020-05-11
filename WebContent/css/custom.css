@@ -1,9 +1,15 @@
+/*
+작성자 : 안주현
+mypage css
+*/
+
+/* my-social css */
 .profile {
   padding-bottom: 20px;
   padding-top: 20px;
   padding-left: 15px;
   padding-right: 15px;
-  height: 230px;
+  height: 13.5rem;
   border: none;
   background: #ffffff;
   margin-top: -100px;
@@ -17,6 +23,7 @@ body {
 .profile-image {
   width: 120px;
   height: 120px;
+  cursor: pointer;
 }
 
 .profile-menu a:hover {
@@ -25,6 +32,7 @@ body {
 }
 
 .profile-menu a {
+  transition: none;
   font-size: 17px;
   color: #000000;
 }
@@ -39,12 +47,33 @@ body {
   height: 20px;
 }
 
+.profile-detail {
+  padding-bottom: 20px !important;
+  cursor: pointer;
+}
+
+.profile-detail li:hover,
+p:hover {
+  color: black;
+}
+
 .profile-detail a {
   color: #777777;
 }
 
-.profile-detail li {
+.profile-detail li,
+p {
   margin-bottom: 10px;
+  text-align: left;
+}
+
+.profile-detail li i {
+  font-size: 1.1rem;
+  color: black;
+}
+
+.profile-detail li span {
+  margin-left: 0.5rem;
 }
 
 .posting-list .posting-title h3 {
@@ -61,7 +90,11 @@ body {
 .posts-list {
   background: #ffffff;
   border: 1px solid #eee;
-  height: 670px;
+  height: 41rem;
+}
+
+.profile-widget .widget-wrap {
+  background: #ffffff;
 }
 
 .posting-title {
@@ -88,14 +121,12 @@ body {
   font-size: 12px;
   line-height: 16px;
   background-color: #fff;
-  min-width: 270px;
-  width: 270px;
-  overflow: hidden;
+  width: 215px;
   border-radius: 2px;
   border: 1px solid #e0e0e0;
   box-sizing: border-box;
   float: left;
-  margin-right: 15px;
+  margin-right: 10px;
 }
 
 .travel-box img {
@@ -105,7 +136,39 @@ body {
   width: 65px;
 }
 
+.item-list-wrapper {
+  position: relative;
+  width: 100%;
+  height: 70px;
+  overflow: hidden;
+}
+
+.swipe-to-right {
+  position: absolute;
+  top: 70px;
+  z-index: 3;
+  right: 2px;
+  font-size: 1.5rem;
+  opacity: 0.5;
+}
+
+.swipe-to-right:hover,
+.swipe-to-left:hover {
+  opacity: 0.8;
+}
+
+.swipe-to-left {
+  display: none;
+  position: absolute;
+  top: 70px;
+  z-index: 3;
+  left: -6px;
+  font-size: 1.5rem;
+  opacity: 0.5;
+}
+
 .travel-item-list {
+  position: absolute;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
@@ -125,28 +188,45 @@ body {
 }
 .post-bottom-bar {
   min-height: 20px;
+  position: absolute;
+  bottom: 0.8rem;
+}
+
+/* social -> 프로필 수정 modal */
+#mp-proModifyFrm > div {
+  border: solid 1px #eee;
+}
+#mp-proModifyFrm > label {
+  font-weight: 550;
+}
+
+/* trip_list */
+
+.my-list-area .single-destinations {
+  border: none;
 }
 
 .trip-list-box {
   padding: 10px;
   background: #eee;
   border-radius: 3px;
+  cursor: pointer;
 }
 
 .thumb-custom {
   overflow: hidden;
-  height: 205px;
-  background: #ffffff;
+  background: #e0e0e0;
+  height: 13rem;
+  line-height: 13rem;
 }
 
 .thumb-custom img {
   width: 100%;
-  height: auto;
 }
 
 .thumb-review {
   overflow: hidden;
-  height: 121px;
+  height: 8rem;
 }
 
 .thumb-review img {
@@ -155,25 +235,84 @@ body {
 }
 
 .single-destinations {
-  height: 80%;
+  margin-bottom: 2rem;
+}
+
+.destinations-area {
+  background: transparent;
 }
 
 .list-container {
-  height: 315px;
+  height: 20rem;
   border: 1px solid #eee;
   background: #ffffff;
   overflow: hidden;
-}
-
-.list-container h3 {
-  padding: 40% 20%;
-  text-align: center;
 }
 
 .list-container p {
   margin-bottom: 0;
 }
 
+.add-new-container {
+  width: 100%;
+  text-align: center;
+  line-height: 20rem;
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.add-new-container h3 {
+  display: inline-block;
+}
+
+.add-new-container:hover {
+  opacity: 1;
+}
+
+/* 새 여행 추가하기 모달창 */
+
+.privacy-circle {
+  border: 1px solid rgb(179, 179, 179);
+  width: 2rem;
+  height: 2rem;
+  display: inline-block;
+  line-height: 2rem;
+  font-size: 1.2rem;
+  color: white;
+  background: black;
+  text-align: center;
+  border-radius: 50% !important;
+}
+
+.privacy-option {
+  padding: 5px;
+}
+
+.privacy-option h6 {
+  display: inline-block;
+}
+
+#trip-name {
+  border: none;
+  outline: none;
+  border-bottom: 0.1rem solid rgb(133, 132, 132);
+  text-align: center;
+  width: 100%;
+  padding: 0.6rem;
+}
+
+#trip-name::placeholder {
+  font-size: 1rem;
+  color: #555555;
+  font-weight: 400;
+  opacity: 0.7;
+}
+
+#trip-day-input input::placeholder {
+  text-align: right;
+}
+
+/* 여행 커스터마이징 페이지 */
 .edit-trip-input {
   outline: none;
   border: none;
@@ -261,12 +400,12 @@ body {
 .my-main-wrapper {
   display: flex;
   width: 100%;
-  height : 92.8vh;
+  height: 92.8vh;
 }
 
 .my-main-side {
   background: #203341;
-  max-height:100%;
+  max-height: 100%;
 }
 
 .date-box {
@@ -301,11 +440,12 @@ body {
   cursor: pointer;
   display: flex;
   padding-top: 15px;
-  justify-content: center;http://localhost:8888/1907-spring/mypage/custom-image/sign.png
+  justify-content: center;
+  http: ; //localhost:8888/1907-spring/mypage/custom-image/sign.png
 }
 
 .plan-category li.on,
-.show-all-day.on{
+.show-all-day.on {
   background: #1a7ad9;
 }
 
@@ -350,8 +490,9 @@ body {
   background: rgb(32, 51, 65);
   color: rgb(255, 255, 255);
   padding: 30px 0;
+  position: sticky;
+  bottom: 0;
 }
-
 
 .cat-add-box div {
   width: 124px;
@@ -451,9 +592,13 @@ body {
   position: absolute;
   right: 12px;
   opacity: 0.3;
-  width:15%;
-  cursor:pointer;
-  z-index:10;
+  width: 15%;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.item-ctrl-box:hover {
+  opacity: 0.5;
 }
 
 .item-ctrl-box div {
@@ -508,12 +653,12 @@ body {
   padding: 0px 5px;
   margin-top: 70px;
   z-index: 1;
-  left:100px;
+  left: 100px;
 }
 
 #right-full-box {
   z-index: 3;
-  width: auto;
+  width: 295px;
   height: 100%;
   border-right: solid #a9a9a9 1px;
 }
@@ -560,18 +705,24 @@ body {
 
 .list-category-box {
   background: #f7f7f7;
-  height: 90px;
+  height: 78px;
   display: flex;
-  padding: 8px 22px;
+  justify-content: center;
 }
 
 .list-cat-item {
-  margin: 0 12px;
+  margin: 0 15px;
   text-align: center;
   cursor: pointer;
   border: 2px solid rgb(182, 181, 181);
-  width: 65px;
-  height: 65px;
+  width: 4em;
+  height: 4em;
+}
+
+/* 아이콘 클릭됐을 때 */
+.list-cat-item.on {
+  color: #ff9320;
+  border-color: #ff9320;
 }
 
 .list-cat-item img {
@@ -605,7 +756,7 @@ body {
 
 .list-category-wrapper {
   background: #f7f7f7;
-  height: 150px;
+  height: 120px;
 }
 
 .list-box {
@@ -623,6 +774,11 @@ body {
   width: 35px;
   padding-top: 10px;
   cursor: pointer;
+  opacity: 0.3;
+}
+
+.add-icon:hover {
+  opacity: 0.5;
 }
 
 .info-small {
@@ -653,7 +809,7 @@ body {
 }
 
 #on-city-close-btn {
-  left: 315px;
+  left: 294px;
 }
 
 #on-city-open-btn {
@@ -690,13 +846,49 @@ body {
   width: 15px;
 }
 
-#trip-save-btn{
-	background:#1A7AD9;
-	border:none;
+#trip-save-btn {
+  background: #1a7ad9;
+  border: none;
+}
+
+input[name="searchPlace"] {
+  height: 2em;
+}
+
+input[name="searchPlace"]::placeholder {
+  font-size: 1em;
+}
+
+.search-append {
+  height: 2.3em;
+}
+
+#sel1 {
+  width: 90%;
+  height: 2em;
+  font-size: 1em;
+  color: #777;
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+
+.list-search-box button {
+  padding-top: 4px;
+  border: 1px solid #ced4da;
+  outline: none;
+  border-radius: 0 0.25rem 0.25rem 0;
+  width: 2.7em;
 }
 
 /* trip customizing media query*/
-@media (max-width: 1180px) {
+
+@media (max-width: 1200px) {
+  .posts-list {
+    height: 37rem;
+  }
+}
+
+@media (max-width: 1100px) {
   .list-search-box-small {
     display: block;
   }
@@ -706,9 +898,12 @@ body {
   #on-city-open-btn {
     display: none;
   }
+  .posts-list {
+    height: 37rem;
+  }
 }
 
-@media (max-width: 990px) {
+@media (max-width: 991px) {
   .my-main-side {
     display: none;
   }
@@ -721,10 +916,45 @@ body {
   .toggle-on {
     display: block;
   }
+
+  .thumb-custom {
+    height: 20rem;
+    line-height: 20rem;
+  }
+
+  .thumb-review {
+    height: 15rem;
+  }
+
+  .add-new-trip {
+    display: none;
+  }
+
+  .list-container {
+    height: 27rem;
+  }
+
+  #addTripBtn {
+    display: inline-block !important;
+  }
+
+  .profile-widget .widget-wrap {
+    padding: 10px 0;
+    margin-top: 0;
+    margin-bottom: 1.2rem;
+  }
+
+  .profile-widget {
+    padding-right: 0;
+  }
+
+  .posts-list {
+    height: 83vh;
+  }
 }
 
 /* ipad 크기 */
-@media (max-width: 768px) {
+@media (max-width: 769px) {
   .my-main-wrapper {
     flex-direction: column;
   }
@@ -741,5 +971,75 @@ body {
   .list-search-box-small {
     order: 3;
   }
+
+  .profile {
+    height: 21rem;
+  }
+
+  .posts-list {
+    height: 32rem;
+  }
+  .posting-title span {
+    width: 10%;
+  }
+
+  .posting-title > div {
+    width: 90%;
+  }
 }
 
+@media (max-width: 576px) {
+  .follow-status span {
+    width: 30%;
+  }
+
+  .modify-btn {
+    display: none;
+  }
+
+  .profile-menu .navbar-nav {
+    flex-direction: row !important;
+  }
+
+  .profile-menu .navbar-nav li {
+    padding-right: 2rem;
+  }
+
+  .posting-title span {
+    width: 15%;
+  }
+
+  .posting-title > div {
+    width: 85%;
+  }
+  .posts-list {
+    height: 32rem;
+  }
+}
+
+@media (max-width: 455px) {
+  .button-container {
+    padding: 1.5rem 0;
+  }
+  .button-container button {
+    font-size: 0.8rem;
+  }
+  .thumb-custom {
+    height: 14rem;
+    line-height: 14rem;
+  }
+  .list-container {
+    height: 21rem;
+  }
+
+  .posting-title span {
+    width: 20%;
+  }
+
+  .posting-title > div {
+    width: 80%;
+  }
+  .posts-list {
+    height: 30rem;
+  }
+}
