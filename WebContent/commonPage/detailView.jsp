@@ -4,25 +4,34 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" type="text/css" href="../template/css/linearicons.css">
+<link rel="stylesheet" type="text/css" href="../template/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="../template/css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="../template/css/magnific-popup.css">
+<link rel="stylesheet" type="text/css" href="../template/css/jquery-ui.css">				
+<link rel="stylesheet" type="text/css" href="../template/css/nice-select.css">							
+<link rel="stylesheet" type="text/css" href="../template/css/animate.min.css">
+<link rel="stylesheet" type="text/css" href="../template/css/owl.carousel.css">				
+<link rel="stylesheet" type="text/css" href="../template/css/main.css">
+
 <meta charset="UTF-8">
 <meta property="og:url"           content="https://www.naver.com/" />
 <meta property="og:type"          content="website" />
 <meta property="og:title"         content="Your Website Title" />
 <meta property="og:description"   content="Your description" />
 <meta property="og:image"         content="https://www.your-domain.com/path/image.jpg" />
+
 <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
-<script  src='./jquery-3.4.1.js'></script>
+<script  src='../lib/jquery-3.4.1.js'></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=	a8effece1d8215cec0ceddf314763998&libraries=services,clusterer"></script>
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 
 
-
 <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
 
-<link rel="stylesheet" href="./Swiper-3.4.2/dist/css/swiper.min.css">
+<link rel="stylesheet" href="../plugin/Swiper-3.4.2/dist/css/swiper.min.css">
 <style>
 ul { 
 	margin: 0;
@@ -85,6 +94,32 @@ ul {
 
 </head>
 <body>
+	<!-- top.jsp -->
+	<%@ include file="../top.jsp" %>
+	<section class="banner-area relative">
+	<div class="container pt-50">
+		<div class="row d-flex justify-content-center align-items-center"
+			style="height: 250px">
+			<div class="menu-content col-lg-8">
+				<div class="title text-center">
+					<h1 class="text-white mb-10">어떤 축제를 즐기고 싶으세요?</h1>
+				</div>
+				<form class="" style="display: flex;">
+					<input type="text" placeholder="축제를 검색해주세요!"
+						onfocus="this.placeholder = ''"
+						onblur="this.placeholder = '축제를 검색해주세요!'" class="single-input">
+					<button class="btn btn-primary" style="width: 15%; height: 40px;"
+						type="submit">
+						<i class="fa fa-search"></i>
+					</button>
+				</form>
+			</div>
+		</div>
+	</div>
+	</section>
+	
+	
+
 <form name='frm_review' id='frm_review' method='post' class='frm_review'>
 	<br/>
 	<br/>
@@ -102,6 +137,7 @@ ul {
 				    js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
 				    fjs.parentNode.insertBefore(js, fjs);
 				    }(document, 'script', 'facebook-jssdk'));
+  				 	
   				 </script>
   			<div>
   			<!--  -->
@@ -115,7 +151,7 @@ ul {
 							    data-layout="button_count">
 					</div>
 			   <div id="kakao-link-btn" href="javascript:sendLink()">
-					<img src="//developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_medium.png "style='width:40px;padding-left:3px'/>
+					<img src="//developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_medium.png "style='width:25px;padding-left:3px'/>
 				</div>
 			  </div>
 			</div>
@@ -151,19 +187,19 @@ ul {
 					<div class='col-lg-8 col-sm-12'><!-- 큰사이즈에서 8 스몰에서 12 -->
 						   <div class="swiper-container">
 						        <div class="swiper-wrapper">
-						        	<img class="swiper-slide" src="images/1.png" />
-						     		<img class="swiper-slide" src="images/2.png" />
-						     		<img class="swiper-slide" src="images/3.png" />
-						     		<img class="swiper-slide" src="images/4.png" />
-						     		<img class="swiper-slide" src="images/5.png" />
-						     		<img class="swiper-slide" src="images/6.png" />
-						     		<img class="swiper-slide" src="images/7.png" />
-						     		<img class="swiper-slide" src="images/8.png" />
-						     		<img class="swiper-slide" src="images/9.png" />
-						     		<img class="swiper-slide" src="images/10.png"/>
-						     		<img class="swiper-slide" src="images/11.png" />
-						     		<img class="swiper-slide" src="images/12.png" />
-						     		<img class="swiper-slide" src="images/13.png" />
+						        	<img class="swiper-slide" src="../images/festival/1.png" />
+						     		<img class="swiper-slide" src="../images/festival/2.png" />
+						     		<img class="swiper-slide" src="../images/festival/3.png" />
+						     		<img class="swiper-slide" src="../images/festival/4.png" />
+						     		<img class="swiper-slide" src="../images/festival/5.png" />
+						     		<img class="swiper-slide" src="../images/festival/6.png" />
+						     		<img class="swiper-slide" src="../images/festival/7.png" />
+						     		<img class="swiper-slide" src="../images/festival/8.png" />
+						     		<img class="swiper-slide" src="../images/festival/9.png" />
+						     		<img class="swiper-slide" src="../images/festival/10.png"/>
+						     		<img class="swiper-slide" src="../images/festival/11.png" />
+						     		<img class="swiper-slide" src="../images/festival/12.png" />
+						     		<img class="swiper-slide" src="../images/festival/13.png" />
 						     	
 						        </div>
 						        <!-- Add Pagination -->
@@ -186,7 +222,8 @@ ul {
 							<li>
 								<div class='rating' data-rate='1'> <!-- data-rate에 별점을입력(5초과금지) -->
 									<i class="fas fa-star"></i>
-									<i class="fas fa-star"></i>
+									<i class="fas 
+									fa-star"></i>
 									<i class="fas fa-star"></i>
 									<i class="fas fa-star"></i>
 									<i class="fas fa-star"></i>
@@ -269,14 +306,10 @@ ul {
 				  		<div class="progress-bar progress-bar-stripedfloat-right " role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
 					</div>
 				</div>
-				
-				
-				
-				
-				
-				
 			</div>
+
 			<br/>
+
 			<div class="col-12 mt-2 " >
 				<h5>여행자 리뷰 보기:</h5>
 				<div class="form-row mt-3">
@@ -287,7 +320,7 @@ ul {
 		</div>
 		<div class="row border-bottom py-3">
 			<div class="col-2">
-				<img class="rounded-circle" src="images/5.png" alt="글쓴이">
+				<img class="rounded-circle" src="../festival/images/1.png" alt="글쓴이">
 				<p class='text-center mt-3'>작성자</p>
 			</div>
 			<div class="col-10">
@@ -311,7 +344,7 @@ ul {
 		</div>
 		<div class="row border-bottom py-3">
 			<div class="col-2">
-				<img class="rounded-circle" src="images/1.png" alt="글쓴이">
+				<img class="rounded-circle" src="../festival/images/1.png"alt="글쓴이">
 			</div>
 			<div class="col-10">
 				<div class='rating' data-rate='3'> <!-- data-rate에 별점을입력(5초과금지) -->
@@ -376,16 +409,8 @@ ul {
 	</form>
 
 
-
-
-
-
-
-
-
-
-
-
+	<!-- bottom.jsp -->
+	<%@ include file="../bottom.jsp" %>
 
 	<script>
 	
@@ -495,7 +520,7 @@ ul {
 </script>
 	
   <!-- Swiper JS -->
-    <script src="./Swiper-3.4.2/dist/js/swiper.min.js"></script>
+    <script src="../plugin/Swiper-3.4.2/dist/js/swiper.min.js"></script>
 
     <!-- Initialize Swiper -->
     <script>
@@ -506,7 +531,21 @@ ul {
         paginationType: 'fraction'
     });
    </script>
-    
+   
+   
+<script src="../template/js/vendor/jquery-2.2.4.min.js"></script>
+<script src="../template/js/popper.min.js"></script>
+<script src="../template/js/vendor/bootstrap.min.js"></script>
+<script src="../template/js/jquery-ui.js"></script>					
+<script src="../template/js/easing.min.js"></script>
+<script src="../template/js/hoverIntent.js"></script>
+<script src="../template/js/superfish.min.js"></script>	
+<script src="../template/js/jquery.ajaxchimp.min.js"></script>
+<script src="../template/js/jquery.magnific-popup.min.js"></script>						
+<script src="../template/js/jquery.nice-select.min.js"></script>					
+<script src="../template/js/owl.carousel.min.js"></script>							
+<script src="../template/js/mail-script.js"></script>	
+<script src="../template/js/main.js"></script>
     
 </body>
 </html>
