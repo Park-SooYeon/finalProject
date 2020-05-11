@@ -4,7 +4,7 @@
 	<div class="container main-menu">
 		<div class="row align-items-center justify-content-between d-flex">
 			<div id="logo">
-				<a href="index.html"><img src="img/logo.png" alt="" title="" /></a>
+				<a href="index.jsp"><img src="template/img/logo.png" alt="" title="" /></a>
 			</div>
 
 			<nav id="nav-menu-container">
@@ -19,8 +19,8 @@
 						</form>
 
 					</li>
-					<li><a href="#">로그인</a></li>
-					<li><a href="#">회원가입</a></li>
+					<li><a href="./?inc=membership/login.jsp">로그인</a></li>
+					<li><a href="./?inc=membership/memberJoin.jsp">회원가입</a></li>
 				</ul>
 			</nav>
 			<!-- #nav-menu-container -->
@@ -31,7 +31,7 @@
 			<nav id="top-menu-container">
 				<ul class="top-menu">
 					<li><a href="#">호텔</a></li>
-					<li><a href="#">즐길거리</a></li>
+					<li><a href="./?inc=commonPage/menuMain.jsp">즐길거리</a></li>
 					<li><a href="#">음식점</a></li>
 					<li><a href="#">축제</a></li>
 					<li><a href="#">렌트카</a></li>
