@@ -250,8 +250,3 @@
             <script src="../../assets/js/shared/data-table.js"></script>
             <!-- End custom js for this page -->
             
-            <script>
-            $.fn.modal.Constructor.prototype._enforceFocus = function() {};
-
-            </script>
-            

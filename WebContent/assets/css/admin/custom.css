@@ -7,6 +7,9 @@
 	============================= 03. Modal
 	============================= 04. profile-page
 	============================= 05. sweetalert
+	============================= 06. dropdown
+	============================= 07. checkbox
+	
 */
 
 /*
@@ -147,3 +150,24 @@ div.dt-buttons {
     color: #fff;
 } 
 
+/*
+	07. checkbox
+*/
+
+.form-check.form-check-flat label input:checked + .input-helper:before {
+    background-color: #19d895;
+    border: none;
+}
+.form-check .form-check-label input:checked + .input-helper:after {
+    width: 18px;
+    opacity: 1;
+    line-height: 18px;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+} 
+
+
+/*
+	08.dropify
+*/
+.modal .dropify-wrapper { height: 130px;}
