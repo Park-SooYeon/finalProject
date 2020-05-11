@@ -19,6 +19,10 @@
 	<title>Travel</title>
 
 	<link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet"> 
+	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+
+    <!-- Link Swiper's CSS -->
+    <link rel="stylesheet" href="Swiper-3.4.2/dist/css/swiper.min.css">
 	<!-- CSS ============================================= -->
 	<link rel="stylesheet" href="template/css/linearicons.css">
 	<link rel="stylesheet" href="template/css/font-awesome.min.css">
@@ -31,11 +35,18 @@
 	<link rel="stylesheet" href="template/css/main.css">
 </head>
 <body>
+
+<%
+	String inc = "main.jsp";
+	if(request.getParameter("inc")!=null){
+		inc = request.getParameter("inc");
+	}	
+%>
 	<!-- top.jsp -->
 	<%@ include file="top.jsp" %>
 	
 	<!-- content -->
-  	<jsp:include page='main.jsp'/>                     
+  	<jsp:include page='<%=inc %>'/>
 	
 	<!-- bottom.jsp -->
 	<%@ include file="bottom.jsp" %>
