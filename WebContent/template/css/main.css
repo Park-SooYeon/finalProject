@@ -3662,7 +3662,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 .blog-pagination .page-item.active .page-link {
-	background-color: #f8b600;
+	background-color: #2b96ed;
 	border-color: transparent;
 	color: #fff;
 }
@@ -3689,7 +3689,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 .blog-pagination .page-link:hover {
 	color: #fff;
 	text-decoration: none;
-	background-color: #f8b600;
+	background-color: #2b96ed;
 	border-color: #eee;
 }
 

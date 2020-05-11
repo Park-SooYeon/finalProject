@@ -189,8 +189,14 @@ food_filter.func = function(){
 		}
 	});
 	
+	//카드형, 리스트형 정렬방법 버튼
 	$('#cardsort').click(function(){
-		$('#')
+		$('#widthsort_list').hide();
+		$('#cardsort_list').show();
+	});
+	$('#widthsort').click(function(){
+		$('#widthsort_list').show();
+		$('#cardsort_list').hide();
 	});
 	
 }
