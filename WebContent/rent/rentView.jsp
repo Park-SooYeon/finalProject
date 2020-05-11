@@ -73,7 +73,7 @@
 						</div>
 						
 						<div id='viewRightMid' class='row'>
-								<%@include file="rentViewSub1.jsp" %>
+								<%@include file="rentViewSub3.jsp" %>
 						</div>
 						
 						

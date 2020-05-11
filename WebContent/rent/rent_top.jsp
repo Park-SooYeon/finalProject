@@ -18,21 +18,21 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">
+      <a class="navbar-brand" href="#" style="width:340px">
       	<img alt="Brand" src="../images/rent/rc_logo.png" id="brand">
       </a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style="overflow: visible;">
      
       
       <ul class="nav navbar-nav navbar-right">
         
-        <li class="dropdown">
-          <a href="#" id="dropdown-toggle" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">예약관리 <span class="caret"></span></a>
-          <ul class="dropdown-menu" role="menu">
-            <div class="drop">
+        <li class="dropdown" >
+          <a href="#" id="dropdown-toggle" class="dropdown-toggle" data-toggle="collapse" data-target="#drop" role="button" aria-expanded="false">예약관리 <span class="caret"></span></a>
+          <ul id='drop' class="dropdown-menu collapse" role="menu" style="height: auto">
+            <li class="drop">
             	<h4>예약 관리</h4>
             	<p>계정이 없어도 예약관리가 가능합니다.</p>
             	<div class="form-group">
@@ -51,7 +51,7 @@
 				
 				
 				<button type="button" class="btn btn-primary btn-lg">Go</button>
-            </div>
+            </li>
           </ul>
         </li>
       </ul>

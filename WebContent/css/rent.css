@@ -1048,9 +1048,275 @@
 
 
 
+/*----------------rentReserveResult----------------------------*/
+#mid_left h4{
+	font-weight: bold;
+}
+#mid_left h4 span{
+	font-size: 0.6em;
+	color:#aaa;
+}
+#mid_left img{
+	max-width: 100%;
+	height: auto;
+}
+#mid_left>div>b{
+	font-size: 0.7em;
+	color:#aaa;
+}
+#mid_left>div>span{
+	color:#2b96cb;
+	font-size: 1.0em;
+}
+#mid_left>p>i{
+	font-size: 1.5em;
+	color:#2b96ed;
+	font-weight: bold;
+}
+#mid_left>p>b{
+	font-size:0.9em;
+	color:#aaa;
+}
+#mid_left>p>span{
+	font-size:0.5em;
+	color:#bbb;
+}
+#mid_left_info{
+	text-align: center;
+	color: #bbb;
+	font-size: 0.7em;
+	border: 1px solid #bbb;
+	padding: 5px;
+	cursor: pointer;
+	margin-bottom: 20px;
+}
+#mid_right>div>div{
+	height: 20px;
+}
+#mid_right>div>div img{
+	max-height:100%;
+	width: auto;
+}
+#mid_right>h4{
+	font-size: 0.9em;
+	color:#bbb;
+	margin-top: 20px;
+}
+#mid_right #mid_left_free>div>div{
+	height: 20px;
+	font-size: 0.8em;
+	color:#888;
+}
+#mid_right #mid_left_free>div>div img{
+	max-height: 100%;
+	width: auto;
+	margin-right: 10px;
+}
 
 
 
+
+
+
+#reserveResultTop{
+	padding: 20px 0px 20px 0px;
+	margin-bottom: 30px;
+}
+#reserveResultTop #depart{
+	height: auto;
+	background-color:#fff;
+	border: 1px solid #eee;
+	box-sizing: border-box;
+	box-shadow: 1px 1px 4px 1px #ccc;
+}
+#reserveResultTop #depart #depart_1{
+	height: auto;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+#reserveResultTop #depart #depart_1 div{
+	font-size: 0.9em;
+	color:#ccc;
+	margin-bottom: 5px;
+}
+#reserveResultTop #depart #depart_1 span{
+	font-size: 1.2em;
+	color: #777;
+}
+#reserveResultTop #depart #depart_2{
+	height: auto;
+	text-align: right;
+	padding-top:15px;
+	padding-bottom:15px;
+}
+#reserveResultTop #depart #depart_2 span{
+	font-size: 2.1em;
+	color:#777;
+}
+#reserveResultTop #depart #depart_2 span b{
+	font-size: 0.5em;
+	color:#ccc;
+}
+
+
+#reserveResultTop #arrive{
+	height: auto;
+	background-color:#eee;
+	border: 1px solid #eee;
+	box-sizing: border-box;
+	box-shadow: 1px 1px 4px 1px #ccc;
+}
+#reserveResultTop #arrive #arrive_1{
+	height: auto;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+#reserveResultTop #arrive #arrive_1 div{
+	font-size: 0.9em;
+	color:#ccc;
+	margin-bottom: 5px;
+}
+#reserveResultTop #arrive #arrive_1 span{
+	font-size: 1.2em;
+	color: #777;
+}
+#reserveResultTop #arrive #arrive_2{
+	height: auto;
+	text-align: right;
+	padding-top:15px;
+	padding-bottom:15px;
+}
+#reserveResultTop #arrive #arrive_2 span{
+	font-size: 2.1em;
+	color:#777;
+}
+#reserveResultTop #arrive #arrive_2 span b{
+	font-size: 0.5em;
+	color:#ccc;
+}
+
+
+
+
+#reserveResultBot{
+	padding: 20px 0px 20px 0px;
+	margin-bottom: 30px;
+	margin-top:30px;
+}
+#reserveResultBot #depart{
+	height: auto;
+	background-color:#fff;
+	border: 1px solid #eee;
+	box-sizing: border-box;
+	box-shadow: 1px 1px 4px 1px #ccc;
+}
+#reserveResultBot #depart #depart_1{
+	height: auto;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+#reserveResultBot #depart #depart_1 div{
+	font-size: 0.9em;
+	color:#ccc;
+	margin-bottom: 5px;
+}
+#reserveResultBot #depart #depart_1 span{
+	font-size: 1.2em;
+	color: #777;
+}
+#reserveResultBot #depart #depart_2{
+	height: auto;
+	text-align: right;
+	padding-top:15px;
+	padding-bottom:15px;
+}
+#reserveResultBot #depart #depart_2 span{
+	font-size: 2.1em;
+	color:#777;
+}
+#reserveResultBot #depart #depart_2 span b{
+	font-size: 0.5em;
+	color:#ccc;
+}
+
+
+#reserveResultBot #arrive{
+	height: auto;
+	background-color:#eee;
+	border: 1px solid #eee;
+	box-sizing: border-box;
+	box-shadow: 1px 1px 4px 1px #ccc;
+}
+#reserveResultBot #arrive #arrive_1{
+	height: auto;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+#reserveResultBot #arrive #arrive_1 div{
+	font-size: 0.9em;
+	color:#ccc;
+	margin-bottom: 5px;
+}
+#reserveResultBot #arrive #arrive_1 span{
+	font-size: 1.2em;
+	color: #777;
+}
+#reserveResultBot #arrive #arrive_2{
+	height: auto;
+	text-align: right;
+	padding-top:15px;
+	padding-bottom:15px;
+}
+#reserveResultBot #arrive #arrive_2 span{
+	font-size: 2.1em;
+	color:#777;
+}
+#reserveResultBot #arrive #arrive_2 span b{
+	font-size: 0.5em;
+	color:#ccc;
+}
+#reserveResultBot #arrive #arrive_2 button{
+	width: 100%;
+	height: auto;
+}
+
+
+
+
+
+#reserveResultHead>div>h4{
+	margin-top:70px;
+	text-align: center;
+	font-weight: bold;
+	color: #2b96cb;
+	font-size: 1.6em;
+}
+
+
+#reserveResultPrice>div{
+	text-align: right;
+}
+#reserveResultPrice>div>span:nth-child(1) {
+	font-size: 1.1em;
+	color:#888;
+}
+#reserveResultPrice>div>span:nth-child(1)>b {
+	font-size: 1.8em;
+	color:#2b96cb;
+	font-weight: bold;
+}
+#reserveResultPrice>div>div {
+	font-size: 0.8em;
+	color:green;
+}
+#reserveResultPrice>div>i {
+	font-size: 1.1em;
+	color:#bbb;
+}
+#reserveResultPrice>div>i>b {
+	font-size: 0.8em;
+	color:orange!important;
+}
 
 
 
