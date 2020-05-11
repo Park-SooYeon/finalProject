@@ -13,7 +13,7 @@
     <title>마이리얼트립 > 렌터카</title>
 
     <!-- 부트스트랩 -->
-    <link href="../template/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../template/css/bootstrap.css">
 
     <!-- IE8 에서 HTML5 요소와 미디어 쿼리를 위한 HTML5 shim 와 Respond.js -->
     <!-- WARNING: Respond.js 는 당신이 file:// 을 통해 페이지를 볼 때는 동작하지 않습니다. -->
@@ -24,13 +24,13 @@
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/8.11.8/sweetalert2.all.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/8.11.8/sweetalert2.min.js"></script>
-    <link rel="stylesheet" href="../plugin/cssAlert/sweetalert2.css" />
+    <link rel="stylesheet" href="../plugin/sweetAlert/css/sweetalert2.css" />
     
     <link rel="stylesheet" href="../css/rent.css"/>
     
     <script src="../lib/jquery-3.4.1.js"></script>
     
-    <script src='../template/js/bootstrap.min.js'></script>
+    <script src="../template/js/vendor/bootstrap.min.js"></script>
     
 
  </head>
