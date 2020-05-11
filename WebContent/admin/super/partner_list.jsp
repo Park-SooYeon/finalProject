@@ -204,5 +204,5 @@
 
         <%@include file="../partials/footer.jsp" %>
         <!-- Custom js for this page -->
-        <script src="/traveler/assets/js/shared/data-table.js"></script>
+        <script src="../../assets/js/shared/data-table.js"></script>
         <!-- End custom js for this page -->
