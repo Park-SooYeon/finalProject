@@ -34,19 +34,28 @@ function init() {
   $(".swipe-to-left").click(function () {
     let total_width = $(".travel-item-list").width();
     let container_width = $(".trip-slide").width();
+    let right_index = parseInt($(".travel-item-list").css("right"));
+    let each_width = $(".travel-box").outerWidth() + parseInt($(".travel-box").css("margin-right"));
+    let sub_width = total_width - container_width;
 
-    $(".travel-item-list").animate(
-      {
-        right: "-=225",
-      },
-      200,
-      function () {
-        $(".swipe-to-right").show();
-        if (parseInt($(".travel-item-list").css("right")) <= -(total_width - container_width)) {
-          $(".swipe-to-left").hide();
+    console.log(total_width - container_width);
+    console.log(right_index);
+    console.log(each_width);
+
+    if (sub_width - right_index <= 225) {
+      $(".travel-item-list").animate(
+        {
+          right: "-=225",
+        },
+        200,
+        function () {
+          $(".swipe-to-right").show();
+          if (right_index <= -(total_width - container_width)) {
+            $(".swipe-to-left").hide();
+          }
         }
-      }
-    );
+      );
+    }
 
     //$(".travel-item-list").css("left", move - 250 + "px");
     //move = move - 250;
