@@ -57,7 +57,7 @@
           <div class="row">
             <div class="col-md-12 give-a-space"></div>
           </div>
-          <div class="row">
+          <div class="row follow-status">
             <span class="col-lg-2 col-md-4 col-sm-4 col-xs-4 text-center">
               <h4>포스팅</h4>
               <h4>10</h4>
@@ -77,7 +77,7 @@
         <span class="col-md-3 col-sm-3"
           ><button
             type="button"
-            class="btn btn-default pull-right"
+            class="btn btn-default pull-right modify-btn"
             data-toggle="modal"
             data-target="#mp-modifyModal"
             id="mp-btnModifyProfile"
@@ -109,8 +109,8 @@
     <section class="post-content-area single-post-area" style="padding-top: 20px;">
       <div class="container">
         <div class="row">
-          <div class="col-lg-3 sidebar-widgets" style="padding-left: 0px;">
-            <div class="widget-wrap pt-0" style="background: #ffffff;">
+          <div class="col-lg-3 sidebar-widgets profile-widget pl-0">
+            <div class="widget-wrap pt-0">
               <div class="single-sidebar-widget search-widget">
                 <form class="search-form" action="#">
                   <input
@@ -147,10 +147,10 @@
 
           <div class="col-lg-9 posts-list">
             <div class="posting-title row">
-              <span class="col-md-1 text-center">
+              <span class="col-xl-1 col-lg-1 col-md-1 text-center p-0">
                 <img class="rounded-circle posting-profile" src="../template/img/blog/s-img.jpg" />
               </span>
-              <div class="col-md-11 mt-1" style="position: relative;">
+              <div class="col-xl-11 col-lg-11 col-md-11 mt-1" style="position: relative;">
                 <div>
                   <b>JuHyeon An</b>
                   님이 새 여행리스트를 추가했습니다.
@@ -167,11 +167,38 @@
                   <img class="img-fluid" src="../template/img/blog/feature-img1.jpg" alt="" />
                 </div>
 
-                <div class="col-lg-12 col-md-12">
+                <div class="col-lg-12 col-md-12 trip-slide">
+                  <span class="fa fa-chevron-right swipe-to-right"></span>
+                  <span class="fa fa-chevron-left swipe-to-left"></span>
                   <h3 class="mt-20 mb-20">
                     ChiangMai
                   </h3>
+                  <div class="item-list-wrapper">
                   <div class="travel-item-list">
+                  <span class="travel-box">
+                      <img src="../template/img/blog/pp1.jpg" />
+                      <div class="m-2">
+                        <h5>Sook Hostel</h5>
+                        <div>❤❤❤❤❤<small>3건의 리뷰</small></div>
+                        <div>치앙마이, 태국</div>
+                      </div>
+                    </span>
+                  <span class="travel-box">
+                      <img src="../template/img/blog/pp1.jpg" />
+                      <div class="m-2">
+                        <h5>Sook Hostel</h5>
+                        <div>❤❤❤❤❤<small>3건의 리뷰</small></div>
+                        <div>치앙마이, 태국</div>
+                      </div>
+                    </span>
+                  <span class="travel-box">
+                      <img src="../template/img/blog/pp1.jpg" />
+                      <div class="m-2">
+                        <h5>Sook Hostel</h5>
+                        <div>❤❤❤❤❤<small>3건의 리뷰</small></div>
+                        <div>치앙마이, 태국</div>
+                      </div>
+                    </span>
                     <span class="travel-box">
                       <img src="../template/img/blog/pp1.jpg" />
                       <div class="m-2">
@@ -205,6 +232,7 @@
                       </div>
                     </span>
                   </div>
+                  </div><!-- end of wrapper -->
                 </div>
               </div>
               <div class="post-bottom-bar">

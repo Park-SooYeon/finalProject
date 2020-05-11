@@ -43,6 +43,8 @@ function init() {
     $(".list-cat-item").not(this).removeClass("on");
     $(this).toggleClass("on");
   });
+
+  $("#btnEditDay").click(function () {});
 } // end of init
 
 init();

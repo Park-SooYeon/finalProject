@@ -22,7 +22,7 @@
 
 <section class="destinations-area my-list-area mb-20">
   <div class="row">
-    <div class="col-lg-4 add-new-trip" data-toggle="modal" data-target="#exampleModal">
+    <div class="col-lg-4 add-new-trip" data-toggle="modal" data-target="#newTripModal">
       <div class="single-destinations">
         <div class="list-container">
           <div class="add-new-container">
@@ -122,13 +122,13 @@
     id="newTripModal"
     tabindex="-1"
     role="dialog"
-    aria-labelledby="exampleModalLabel"
+    aria-labelledby="newTripModalLabel"
     aria-hidden="true"
   >
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">여행 추가하기</h5>
+          <h5 class="modal-title" id="newTripModalModalLabel">여행 추가하기</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
