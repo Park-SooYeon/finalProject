@@ -4,7 +4,7 @@
 <div class="single-destination relative">
 	<div class="thumb relative">
 		<div class="overlay overlay-bg"></div>
-		<img class="img-fluid" src="../images/map.png" alt="">
+		<img class="img-fluid" src="../images/food/map.png" alt="">
 	</div>
 	<div class="desc">
 		<a class="genric-btn default radius" data-toggle="modal" href="#mapModal" ><i class="fa fa-map-marker"></i> 지도 보기</a>
