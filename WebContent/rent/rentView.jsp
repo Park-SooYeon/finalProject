@@ -5,7 +5,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="../css/rent.css"/>
 </head>
 <body>
 	<div id='rentView'>
@@ -73,7 +72,7 @@
 						</div>
 						
 						<div id='viewRightMid' class='row'>
-								<%@include file="rentViewSub3.jsp" %>
+								<%@include file="rentViewSub1.jsp" %>
 						</div>
 						
 						

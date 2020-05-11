@@ -18,7 +18,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#" style="width:340px">
+      <a class="navbar-brand" href="#" style="width:340px;">
       	<img alt="Brand" src="../images/rent/rc_logo.png" id="brand">
       </a>
     </div>

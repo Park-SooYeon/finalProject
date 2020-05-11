@@ -20,7 +20,7 @@
 	<!-- Calendar -->
 	<link rel="stylesheet" href="../template/css/jquery-ui.css" />
 	<!-- //Calendar -->
-	<link href="../template/css/wickedpicker.css" rel="stylesheet" type='text/css' media="all" />
+	<link href="../plugin/wickedpicker/css/wickedpicker.css" rel="stylesheet" type='text/css' media="all" />
 	<!-- Time-script-CSS -->
 
 	<link href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
@@ -138,7 +138,7 @@
 	</script>
 	<!-- //Calendar -->
 	<!-- Time -->
-	<script type="text/javascript" src="../template/js/wickedpicker.js"></script>
+	<script type="text/javascript" src="../plugin/wickedpicker/js/wickedpicker.js"></script>
 	<script type="text/javascript">
 		$('#timepicker1,#timepicker2').wickedpicker({ twentyFour: false });
 	</script>
