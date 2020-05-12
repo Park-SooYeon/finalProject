@@ -34,6 +34,9 @@
 	<link rel="stylesheet" href="template/css/owl.carousel.css">				
 	<link rel="stylesheet" href="template/css/main.css">
 	
+	<!--datepicker css-->
+	<link rel="stylesheet" href="plugin/air-datepicker/css/datepicker.min.css">
+	
 </head>
 <body>
 
@@ -66,6 +69,11 @@
 	<script src="template/js/mail-script.js"></script>	
 	<script src="template/js/main.js"></script>	
 	<script src="swiper-5.3.8/package/js/swiper.min.js"></script>
+	
+	<!-- datepicker -->
+	<script src="plugin/air-datepicker/js/datepicker.js"></script>
+	<script src="plugin/air-datepicker/js/i18n/datepicker.en.js"></script>
+	<script src="plugin/air-datepicker/js/i18n/datepicker.kr.js"></script>
 	
 	<!-- mypage js -->
 	<script src="js/my_page.js"></script>

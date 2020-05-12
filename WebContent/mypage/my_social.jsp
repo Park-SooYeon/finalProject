@@ -16,7 +16,7 @@
     <meta charset="UTF-8" />
     <!-- Site Title -->
     <title>Travel</title>
-
+<link rel="stylesheet" href="./css/custom.css">
   </head>
   <body>
 

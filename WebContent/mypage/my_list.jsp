@@ -20,13 +20,11 @@
 		<!-- Site Title -->
 		<title>Travel</title>
 
-		<link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet"> 
 			<!--
 			CSS
 			============================================= -->
 			<link rel="stylesheet" href="./css/custom.css">
-			<!--datepicker css-->
-			<link rel="stylesheet" href="./plugin/air-datepicker/css/datepicker.min.css">
+			
 <title>Insert title here</title>
 </head>
 
@@ -67,13 +65,6 @@
 		            </div>
 			  <jsp:include page='<%=list %>'/>
 			</div>
-
-			<script src="./js/trip_list.js"></script>
-			
-			 <!-- datepicker -->
-	<script src="./plugin/air-datepicker/js/datepicker.js"></script>
-	<script src="./plugin/air-datepicker/js/i18n/datepicker.en.js"></script>
-	<script src="./plugin/air-datepicker/js/i18n/datepicker.kr.js"></script>
 
 </body>
 </html>
