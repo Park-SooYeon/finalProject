@@ -1275,9 +1275,10 @@
 	font-size: 0.5em;
 	color:#ccc;
 }
-#reserveResultBot #arrive #arrive_2 button{
+#reserveResultBot #arrive #depart_2 button{
 	width: 100%;
 	height: auto;
+	margin-top:15px;
 }
 
 

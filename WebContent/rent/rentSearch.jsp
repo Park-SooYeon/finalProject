@@ -6,13 +6,9 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-<link href="../template/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" href="../css/rent.css"/>
 
-<link href="../plugin/checkbox/skins/square/blue.css" rel="stylesheet">
-<script src="../plugin/checkbox/icheck.js"></script>
 
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=7af3181a84930dab295e1feac3c38680"></script>
+
 
 </head>
 <body>
@@ -35,13 +31,13 @@
 						<label>> 차량 인수</label>
 						<div class="form-group">
 							<label>안양시</label>
-							<input type="text" class="form-control" placeholder="2014/3/20 10:00">
+							<input type="text" id='search_rent' class="form-control datepicker-here" data-timepicker="true" data-time-format='hh:ii aa' placeholder="2014/3/20 10:00">
 						</div>
 						<hr/>
 						<label>> 차량 반납</label>
 						<div class="form-group">
 							<label>안양시</label>
-							<input type="text" class="form-control" placeholder="2014/3/29 12:30">
+							<input type="text" id='search_return' class="form-control datepicker-here" data-timepicker="true" data-time-format='hh:ii aa' placeholder="2014/3/20 10:00">
 						</div>
 						<button type="button" id='btnSearch' class="btn btn-primary">검색</button>
 					</div>
@@ -279,7 +275,6 @@
 			
 			<div id='SerachResult'>
 				<%@include file="rentSearchSub1.jsp" %>
-				<%@include file="rentSearchSub2.jsp" %>
 			</div>
 			
 			
@@ -290,6 +285,9 @@
 </div>
 
 <script>
+
+		rent.func()
+
 		
 		var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
 		var options = { //지도를 생성할 때 필요한 기본 옵션
@@ -319,6 +317,54 @@
 			$('#fillter').css("display","inline-block");
 		});
 	}
+	
+	/*------Air datepicker-----*/
+	// Create start date
+    var start = new Date(),
+        prevDay,
+        startHours = 9;
+
+    // 09:00 AM
+    start.setHours(9);
+    start.setMinutes(0);
+
+    // If today is Saturday or Sunday set 10:00 AM
+    if ([6, 0].indexOf(start.getDay()) != -1) {
+        start.setHours(10);
+        startHours = 10
+    }
+
+    $('#search_rent ,#search_return').datepicker({
+        timepicker: true,
+        language: 'en',
+        startDate: start,
+        minHours: startHours,
+        maxHours: 18,
+        onSelect: function (fd, d, picker) {
+            // Do nothing if selection was cleared
+            if (!d) return;
+
+            var day = d.getDay();
+
+            // Trigger only if date is changed
+            if (prevDay != undefined && prevDay == day) return;
+            prevDay = day;
+
+            // If chosen day is Saturday or Sunday when set
+            // hour value for weekends, else restore defaults
+            if (day == 6 || day == 0) {
+                picker.update({
+                    minHours: 10,
+                    maxHours: 16
+                })
+            } else {
+                picker.update({
+                    minHours: 9,
+                    maxHours: 18
+                })
+            }
+        }
+    })
 	
 	
 	

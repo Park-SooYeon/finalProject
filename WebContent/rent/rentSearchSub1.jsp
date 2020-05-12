@@ -1,12 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
+
 	
 	<div class='row'>
 				<div id='company' class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
@@ -32,7 +27,7 @@
 							<div>공급업체</div>
 						</div>
 						<div id='companyRight' class="col-lg-3 col-md-3 col-sm-5 col-xs-12">
-							<button type="button" class="btn btn-primary">55 차량 모두 보기</button>
+							<button type="button" id='btnCar' class="btn btn-primary">55 차량 모두 보기</button>
 							<span>무료취소 가능</span>
 						</div>
 					</div>
@@ -63,11 +58,9 @@
 							<div>공급업체</div>
 						</div>
 						<div id='companyRight' class="col-lg-3 col-md-3 col-sm-5 col-xs-12">
-							<button type="button" class="btn btn-primary">55 차량 모두 보기</button>
+							<button type="button" id='btnCar' class="btn btn-primary">55 차량 모두 보기</button>
 							<span>무료취소 가능</span>
 						</div>
 					</div>
 				</div>
 			</div>
-</body>
-</html>

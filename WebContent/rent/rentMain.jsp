@@ -20,7 +20,7 @@
 	<!-- Calendar -->
 	<link rel="stylesheet" href="../template/css/jquery-ui.css" />
 	<!-- //Calendar -->
-	<link href="../template/css/wickedpicker.css" rel="stylesheet" type='text/css' media="all" />
+	<link href="../plugin/wickedpicker/css/wickedpicker.css" rel="stylesheet" type='text/css' media="all" />
 	<!-- Time-script-CSS -->
 
 	<link href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
@@ -40,15 +40,13 @@
 
 					
 					<div class="form-left-w3l">
-						<input id="datepicker1" name="text1" type="text" placeholder="차량인수일  &" required="">
-						<input type="text" id="timepicker1" name="Time" class="timepicker form-control hasWickedpicker" placeholder="Time" required=""
-						 onkeypress="return false;">
+						<input id="mainRent" class='datepicker-here' data-timepicker="true" data-language='en' name="text1" type="text" placeholder="차량인수일  &" required="">
+						
 						<div class="clear"></div>
 					</div>
 					<div class="form-left-w3l">
-						<input id="datepicker2" name="text2" type="text" placeholder="차량반납일  &" required="">
-						<input type="text" id="timepicker2" name="Time" class="timepicker form-control hasWickedpicker" placeholder="Time" required=""
-						 onkeypress="return false;">
+						<input id="mainReturn" class='datepicker-here' data-timepicker="true" data-language='en' name="text2" type="text" placeholder="차량반납일  &" required="">
+						
 						<div class="clear"></div>
 					</div>
 				</div>
@@ -120,7 +118,7 @@
 			
 			
 			<div class="btnn">
-				<input type="submit" value="검색">
+				<input id='btnCompanySearch' type="submit" value="검색">
 			</div>
 		</form>
 	</div>
@@ -128,24 +126,58 @@
 		<p>&copy;차량렌트 - 검색,비교후 예약 900개 공급업체 보유, 최저가 맞춤 <a href="http://www.W3Layouts.com" target="_blank">마이리얼트립</a> <br/> 문의전화 000-0000-0000 <br/> 기타 상담전화 111-1111-1111</p>
 	</div>
 	</div>
-	<!-- js -->
-	<script type='text/javascript' src='../lib/jquery-3.4.1.js'></script>
-	<!-- //js -->
+	
+	
+	
 	<!-- Calendar -->
-	<script src="../template/js/jquery-ui.js"></script>
 	<script>
-	$("#datepicker1,#datepicker2").datepicker();
-	</script>
-	<!-- //Calendar -->
-	<!-- Time -->
-	<script type="text/javascript" src="../template/js/wickedpicker.js"></script>
-	<script type="text/javascript">
-		$('#timepicker1,#timepicker2').wickedpicker({ twentyFour: false });
-	</script>
-	<!-- //Time -->
-	
-	
-	
+    // Create start date
+    var start = new Date(),
+        prevDay,
+        startHours = 9;
+
+    // 09:00 AM
+    start.setHours(9);
+    start.setMinutes(0);
+
+    // If today is Saturday or Sunday set 10:00 AM
+    if ([6, 0].indexOf(start.getDay()) != -1) {
+        start.setHours(10);
+        startHours = 10
+    }
+
+    $('#mainRent , #mainReturn').datepicker({
+        timepicker: true,
+        language: 'en',
+        startDate: start,
+        minHours: startHours,
+        maxHours: 18,
+        onSelect: function (fd, d, picker) {
+            // Do nothing if selection was cleared
+            if (!d) return;
+
+            var day = d.getDay();
+
+            // Trigger only if date is changed
+            if (prevDay != undefined && prevDay == day) return;
+            prevDay = day;
+
+            // If chosen day is Saturday or Sunday when set
+            // hour value for weekends, else restore defaults
+            if (day == 6 || day == 0) {
+                picker.update({
+                    minHours: 10,
+                    maxHours: 16
+                })
+            } else {
+                picker.update({
+                    minHours: 9,
+                    maxHours: 18
+                })
+            }
+        }
+    })
+</script>
 	
 	
 	<script>
@@ -374,7 +406,7 @@
 		});
 		
 		
-		
+		rent.func();
 	</script>
 
 </body>
