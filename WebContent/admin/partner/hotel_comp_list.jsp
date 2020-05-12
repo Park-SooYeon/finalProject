@@ -28,6 +28,7 @@
                                                 <th>주소</th>
                                                 <th>연락처</th>
                                                 <th>보유객실</th>
+                                                <th>상태</th>
                                                 <th>Actions</th>
                                             </tr>
                                         </thead>
@@ -43,6 +44,7 @@
                                                 <td>경기 성남시 분당구 판교역로 235 (에이치스퀘어 엔동)</td>
                                                 <td>02-2341-5123</td>
                                                 <td>9개</td>
+                                                <td><div class="badge badge-primary">활성화</div></td>
                                                 <td>
                                                     <button class="btn btn-outline-primary" data-toggle="modal" data-target="#ModalHotelInfo">View</button>
                                                 </td>
@@ -58,6 +60,7 @@
                                                 <td>경기 성남시 분당구 판교역로 235 (에이치스퀘어 엔동)</td>
                                                 <td>02-2341-5123</td>
                                                 <td>9개</td>
+                                                <td><div class="badge badge-primary">활성화</div></td>
                                                 <td>
                                                     <button class="btn btn-outline-primary" data-toggle="modal" data-target="#ModalHotelInfo">View</button>
                                                 </td>
@@ -73,6 +76,7 @@
                                                 <td>경기 성남시 분당구 판교역로 235 (에이치스퀘어 엔동)</td>
                                                 <td>02-2341-5123</td>
                                                 <td>9개</td>
+                                                <td><div class="badge badge-primary">활성화</div></td>
                                                 <td>
                                                     <button class="btn btn-outline-primary" data-toggle="modal" data-target="#ModalHotelInfo">View</button>
                                                 </td>
@@ -88,6 +92,7 @@
                                                 <td>경기 성남시 분당구 판교역로 235 (에이치스퀘어 엔동)</td>
                                                 <td>02-2341-5123</td>
                                                 <td>9개</td>
+                                                <td><div class="badge badge-primary">활성화</div></td>
                                                 <td>
                                                     <button class="btn btn-outline-primary" data-toggle="modal" data-target="#ModalHotelInfo">View</button>
                                                 </td>
@@ -103,6 +108,7 @@
                                                 <td>경기 성남시 분당구 판교역로 235 (에이치스퀘어 엔동)</td>
                                                 <td>02-2341-5123</td>
                                                 <td>9개</td>
+                                                <td><div class="badge badge-secondary text-muted">비활성화</div></td>
                                                 <td>
                                                     <button class="btn btn-outline-primary" data-toggle="modal" data-target="#ModalHotelInfo">View</button>
                                                 </td>
@@ -118,6 +124,7 @@
                                                 <td>경기 성남시 분당구 판교역로 235 (에이치스퀘어 엔동)</td>
                                                 <td>02-2341-5123</td>
                                                 <td>9개</td>
+                                                <td><div class="badge badge-primary">활성화</div></td>
                                                 <td>
                                                     <button class="btn btn-outline-primary" data-toggle="modal" data-target="#ModalHotelInfo">View</button>
                                                 </td>
@@ -133,6 +140,7 @@
                                                 <td>경기 성남시 분당구 판교역로 235 (에이치스퀘어 엔동)</td>
                                                 <td>02-2341-5123</td>
                                                 <td>9개</td>
+                                                <td><div class="badge badge-primary">활성화</div></td>
                                                 <td>
                                                     <button class="btn btn-outline-primary" data-toggle="modal" data-target="#ModalHotelInfo">View</button>
                                                 </td>
@@ -148,6 +156,7 @@
                                                 <td>경기 성남시 분당구 판교역로 235 (에이치스퀘어 엔동)</td>
                                                 <td>02-2341-5123</td>
                                                 <td>9개</td>
+                                                <td><div class="badge badge-primary">활성화</div></td>
                                                 <td>
                                                     <button class="btn btn-outline-primary" data-toggle="modal" data-target="#ModalHotelInfo">View</button>
                                                 </td>
@@ -163,6 +172,7 @@
                                                 <td>경기 성남시 분당구 판교역로 235 (에이치스퀘어 엔동)</td>
                                                 <td>02-2341-5123</td>
                                                 <td>9개</td>
+                                                <td><div class="badge badge-primary">활성화</div></td>
                                                 <td>
                                                     <button class="btn btn-outline-primary" data-toggle="modal" data-target="#ModalHotelInfo">View</button>
                                                 </td>
@@ -314,6 +324,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-light" data-dismiss="modal">취소</button>
+                        <button type="button" class="btn btn-secondary" onclick="showSwal('warning-message-and-cancel')">비활성화</button>
                         <button type="button" class="btn btn-danger" onclick="showSwal('warning-message-and-cancel')">삭제</button>
                         <button type="button" class="btn btn-success" onclick="showSwal('success-message')">저장</button>
                     </div>

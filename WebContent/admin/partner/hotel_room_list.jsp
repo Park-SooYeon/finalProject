@@ -26,16 +26,18 @@
                                                 <th>객실유형</th>
                                                 <th>가격</th>
                                                 <th>옵션</th>
+                                                <th>판매 상태</th>
                                                 <th>Actions</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
+                                        <tbody> 
                                             <tr>
                                                 <td>1</td>
                                                 <td>Derrick</td>
-                                                <td>디럭스</td>
+                                                <td>스위트</td>
                                                 <td>183,000원</td>
                                                 <td>금연/주차장/오션뷰</td>
+                                                <td><div class="badge badge-secondary text-muted">비활성화</div></td>
                                                 <td>
                                                     <button class="btn btn-outline-primary" data-toggle="modal" data-target="#ModalHotelInfo">View</button>
                                                 </td>
@@ -46,6 +48,7 @@
                                                 <td>디럭스</td>
                                                 <td>183,000원</td>
                                                 <td>금연/주차장/오션뷰</td>
+                                                <td><div class="badge badge-primary">활성화</div></td>
                                                 <td>
                                                     <button class="btn btn-outline-primary" data-toggle="modal" data-target="#ModalHotelInfo">View</button>
                                                 </td>
@@ -53,9 +56,10 @@
                                             <tr>
                                                 <td>3</td>
                                                 <td>Derrick</td>
-                                                <td>경기 성남시 분당구 판교역로 235 (에이치스퀘어 엔동)</td>
-                                                <td>02-2341-5123</td>
-                                                <td>9개</td>
+                                                <td>디럭스</td>
+                                                <td>183,000원</td>
+                                                <td>금연/주차장/오션뷰</td>
+                                                <td><div class="badge badge-primary">활성화</div></td>
                                                 <td>
                                                     <button class="btn btn-outline-primary" data-toggle="modal" data-target="#ModalHotelInfo">View</button>
                                                 </td>
@@ -63,9 +67,10 @@
                                             <tr>
                                                 <td>4</td>
                                                 <td>Derrick</td>
-                                                <td>경기 성남시 분당구 판교역로 235 (에이치스퀘어 엔동)</td>
-                                                <td>02-2341-5123</td>
-                                                <td>9개</td>
+                                                <td>디럭스</td>
+                                                <td>183,000원</td>
+                                                <td>금연/주차장/오션뷰</td>
+                                                <td><div class="badge badge-primary">활성화</div></td>
                                                 <td>
                                                     <button class="btn btn-outline-primary" data-toggle="modal" data-target="#ModalHotelInfo">View</button>
                                                 </td>
@@ -73,9 +78,10 @@
                                             <tr>
                                                 <td>5</td>
                                                 <td>Derrick</td>
-                                                <td>경기 성남시 분당구 판교역로 235 (에이치스퀘어 엔동)</td>
-                                                <td>02-2341-5123</td>
-                                                <td>9개</td>
+                                                <td>디럭스</td>
+                                                <td>183,000원</td>
+                                                <td>금연/주차장/오션뷰</td>
+                                                <td><div class="badge badge-primary">활성화</div></td>
                                                 <td>
                                                     <button class="btn btn-outline-primary" data-toggle="modal" data-target="#ModalHotelInfo">View</button>
                                                 </td>
@@ -184,6 +190,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-light" data-dismiss="modal">취소</button>
+                        <button type="button" class="btn btn-secondary" onclick="showSwal('warning-message-and-cancel')">비활성화</button>
                         <button type="button" class="btn btn-danger" onclick="showSwal('warning-message-and-cancel')">삭제</button>
                         <button type="button" class="btn btn-success" onclick="showSwal('success-message')">저장</button>
                     </div>
