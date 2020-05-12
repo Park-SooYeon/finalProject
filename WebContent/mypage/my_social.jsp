@@ -17,24 +17,8 @@
     <!-- Site Title -->
     <title>Travel</title>
 
-    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet" />
-    <!--
-			CSS
-			============================================= -->
-    <link rel="stylesheet" href="./template/css/linearicons.css" />
-    <link rel="stylesheet" href="./template/css/font-awesome.min.css" />
-    <link rel="stylesheet" href="./template/css/bootstrap.css" />
-    <link rel="stylesheet" href="./template/css/magnific-popup.css" />
-    <link rel="stylesheet" href="./template/css/jquery-ui.css" />
-    <link rel="stylesheet" href="./template/css/nice-select.css" />
-    <link rel="stylesheet" href="./template/css/animate.min.css" />
-    <link rel="stylesheet" href="./template/css/owl.carousel.css" />
-    <link rel="stylesheet" href="./template/css/main.css" />
-    <link rel="stylesheet" href="../css/custom.css" />
-    <link rel="stylesheet" href="../swiper-5.3.8/package/css/swiper.min.css" />
   </head>
   <body>
-    <jsp:include page="../top.jsp"></jsp:include>
 
     <!-- start banner Area -->
     <section class="relative about-banner" style="z-index: -1;">
@@ -551,23 +535,5 @@
         </div>
       </div>
     </div>
-    <!-- model end -->
-
-    <script src="./template/js/vendor/jquery-2.2.4.min.js"></script>
-    <script src="./template/js/popper.min.js"></script>
-    <script src="./template/js/vendor/bootstrap.min.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script>
-    <script src="./template/js/jquery-ui.js"></script>
-    <script src="./template/js/easing.min.js"></script>
-    <script src="./template/js/hoverIntent.js"></script>
-    <script src="./template/js/superfish.min.js"></script>
-    <script src="./template/js/jquery.ajaxchimp.min.js"></script>
-    <script src="./template/js/jquery.magnific-popup.min.js"></script>
-    <script src="./template/js/jquery.nice-select.min.js"></script>
-    <script src="./template/js/owl.carousel.min.js"></script>
-    <script src="./template/js/mail-script.js"></script>
-    <script src="./template/js/main.js"></script>
-    <!-- swiper -->
-    <script src="./swiper-5.3.8/package/js/swiper.min.js"></script>
   </body>
 </html>

@@ -68,6 +68,7 @@
 	<script src="template/js/owl.carousel.min.js"></script>							
 	<script src="template/js/mail-script.js"></script>	
 	<script src="template/js/main.js"></script>	
+	<script src="swiper-5.3.8/package/js/swiper.min.js"></script>
 	
 	<!-- mypage js -->
 	<script src="js/my_page.js"></script>

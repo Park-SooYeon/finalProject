@@ -82,7 +82,7 @@ function init() {
   */
 
   // 여행리스트 - swiper
-  var swiper = new Swiper(".swiper-container", {
+  var swiper = new Swiper(".trip-slide .swiper-container", {
     slidesPerView: 3,
     spaceBetween: 30,
     slidesPerGroup: 3,
