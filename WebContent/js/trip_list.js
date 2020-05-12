@@ -31,6 +31,11 @@ function init() {
 //    range: true,
 //    toggleSelected: false
 //  });
+  
+  $(".single-destinations .list-container").click(function(){
+		location.href="./mypage/edit_trip.jsp";
+	})
+  
 }
 
 init();

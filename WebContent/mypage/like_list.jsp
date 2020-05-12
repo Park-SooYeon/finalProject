@@ -6,7 +6,7 @@
     <div class="col-lg-4">
       <div class="single-destinations">
         <div class="thumb-custom">
-          <img src="../template/img/hotels/d2.jpg" alt="" />
+          <img src="./template/img/hotels/d2.jpg" alt="" />
         </div>
         <div class="details">
           <h4 class="d-flex justify-content-between">
@@ -29,7 +29,7 @@
     <div class="col-lg-4">
       <div class="single-destinations">
         <div class="thumb-custom">
-          <img src="./custom-image/3.jpg" alt="" />
+          <img src="./mypage/custom-image/3.jpg" alt="" />
         </div>
         <div class="details">
           <h4 class="d-flex justify-content-left"><i class="fa fa-camera"></i>&nbsp;&nbsp;종묘</h4>
@@ -43,7 +43,7 @@
     <div class="col-lg-4">
       <div class="single-destinations">
         <div class="thumb-review">
-          <img src="./custom-image/food3.jpg" alt="" />
+          <img src="./mypage/custom-image/food3.jpg" alt="" />
         </div>
         <div class="details">
           <h4 class="d-flex justify-content-between">
@@ -70,7 +70,7 @@
     <div class="col-lg-4">
       <div class="single-destinations">
         <div class="thumb-custom">
-          <img src="../template/img/hotels/d4.jpg" alt="" />
+          <img src="./template/img/hotels/d4.jpg" alt="" />
         </div>
         <div class="details">
           <h4 class="d-flex justify-content-between">
@@ -93,7 +93,7 @@
     <div class="col-lg-4">
       <div class="single-destinations">
         <div class="thumb-custom">
-          <img src="../template/img/hotels/d5.jpg" alt="" />
+          <img src="./template/img/hotels/d5.jpg" alt="" />
         </div>
         <div class="details">
           <h4 class="d-flex justify-content-between">
@@ -116,7 +116,7 @@
     <div class="col-lg-4">
       <div class="single-destinations">
         <div class="thumb-custom">
-          <img src="../template/img/hotels/d6.jpg" alt="" />
+          <img src="./template/img/hotels/d6.jpg" alt="" />
         </div>
         <div class="details">
           <h4 class="d-flex justify-content-between">
