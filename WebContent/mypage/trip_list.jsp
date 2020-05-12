@@ -3,7 +3,7 @@
 <!-- Mobile Specific Meta -->
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <!-- Favicon-->
-<link rel="shortcut icon" href="../template/img/fav.png" />
+<link rel="shortcut icon" href="./template/img/fav.png" />
 <!-- Author Meta -->
 <meta name="author" content="colorlib" />
 <!-- Meta Description -->
@@ -31,11 +31,11 @@
         </div>
       </div>
     </div>
-    <div class="col-lg-4" onclick="location.href='./edit-trip2.jsp';">
-      <div class="single-destinations">
+    <div class="col-lg-4">
+      <div class="single-destinations" onclick="location.href='./mypage/edit_trip.jsp';">
         <div class="list-container">
           <div class="thumb-custom">
-            <img src="./mypage/custom-image/food10.jpg" alt="" />
+            <img src="./images/myPage/food10.jpg" alt="" />
           </div>
           <div class="details">
             <h4 class="d-flex justify-content-between">
@@ -51,7 +51,7 @@
       <div class="single-destinations">
         <div class="list-container">
           <div class="thumb-custom">
-            <img src="./mypage/custom-image/food16.jpg" alt="" />
+            <img src="./images/myPage/food16.jpg" alt="" />
           </div>
           <div class="details">
             <h4 class="d-flex justify-content-between">
@@ -67,7 +67,7 @@
       <div class="single-destinations">
         <div class="list-container">
           <div class="thumb-custom">
-            <img src="./mypage/custom-image/place.jpg" alt="" />
+            <img src="./images/myPage/place.jpg" alt="" />
           </div>
           <div class="details">
             <h4 class="d-flex justify-content-between">
@@ -83,7 +83,7 @@
       <div class="single-destinations">
         <div class="list-container">
           <div class="thumb-custom">
-            <img src="./mypage/custom-image/hotel1.jpg" alt="" />
+            <img src="./images/myPage/hotel1.jpg" alt="" />
           </div>
           <div class="details">
             <h4 class="d-flex justify-content-between">

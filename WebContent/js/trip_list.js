@@ -32,9 +32,9 @@ function init() {
 //    toggleSelected: false
 //  });
   
-  $(".single-destinations .list-container").click(function(){
-		location.href="./mypage/edit_trip.jsp";
-	})
+  $(".trip-list-box").click(function(){
+  	location.href="./mypage/edit_trip.jsp";
+  })
   
 }
 

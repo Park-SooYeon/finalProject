@@ -47,15 +47,15 @@
       <div class="main-menu">
         <div class="row align-items-center justify-content-between d-flex">
           <div id="logo">
-            <a href="index.html"><img src="../template/img/logo.png" alt="" title="" /></a>
+            <a href="../index.jsp"><img src="../template/img/logo.png" alt="" title="" /></a>
           </div>
           <nav id="nav-menu-container">
             <ul class="nav-menu" style="position:absolute; left:11rem;">
-              <li><a href="index.html">호텔</a></li>
-              <li><a href="about.html">즐길거리</a></li>
-              <li><a href="packages.html">음식점</a></li>
-              <li><a href="hotels.html">축제</a></li>
-              <li><a href="insurance.html">리뷰</a></li>
+              <li><a href="../index.jsp">호텔</a></li>
+              <li><a href="../index.jsp">즐길거리</a></li>
+              <li><a href="../index.jsp">음식점</a></li>
+              <li><a href="../index.jsp">축제</a></li>
+              <li><a href="../index.jsp">리뷰</a></li>
             </ul>
                         <ul class="nav-menu pull-left">
               <li>
@@ -241,7 +241,7 @@
           >
              <div class="item-ctrl-box" style="display: none;">
                 <div class="btn-del" title="삭제">
-				<img class="add-icon" src="sign.png"></img>
+				<img class="add-icon" src="../images/myPage/sign.png"></img>
                 </div>
               </div>
 
@@ -271,7 +271,7 @@
             >
                <div class="item-ctrl-box" style="display: none;">
                 <div class="btn-del" title="삭제">
-				<img class="add-icon" src="sign.png"></img>
+				<img class="add-icon" src="../images/myPage/sign.png"></img>
                 </div>
               </div>
 
@@ -322,7 +322,7 @@
             >
                <div class="item-ctrl-box" style="display: none;">
                 <div class="btn-del" title="삭제">
-				<img class="add-icon" src="sign.png"></img>
+				<img class="add-icon" src="../images/myPage/sign.png"></img>
                 </div>
               </div>
 
@@ -351,7 +351,7 @@
             >
                <div class="item-ctrl-box" style="display: none;">
                 <div class="btn-del" title="삭제">
-				<img class="add-icon" src="sign.png"></img>
+				<img class="add-icon" src="../images/myPage/sign.png"></img>
                 </div>
               </div>
 
@@ -445,7 +445,7 @@
             data-ci="10907"
           >
             <div class="img-box fl">
-              <img src="./custom-image/place2.jpg" />
+              <img src="../images/myPage/place2.jpg" />
             </div>
             <div class="info-box">
               <div class="info-title">우리집</div>
@@ -457,7 +457,7 @@
               <!-- <div class="small info-small include_pn_day" style="color: #1a7ad9;">DAY1</div>  -->
             </div>
             <div class="spot-to-inspot">
-              <img class="add-icon" src="interface.png"></img>
+              <img class="add-icon" src="../images/myPage/interface.png"></img>
             </div>
           </div>
 
@@ -472,7 +472,7 @@
             data-ci="10907"
           >
             <div class="img-box fl">
-              <img src="./custom-image/place3.jpg" />
+              <img src="../images/myPage/place3.jpg" />
             </div>
             <div class="info-box">
               <div class="info-title">우리집앞</div>
@@ -484,7 +484,7 @@
               <!-- <div class="small info-small include_pn_day" style="color: #1a7ad9;">DAY1</div>  -->
             </div>
             <div class="spot-to-inspot">
-              <img class="add-icon" src="interface.png"/>
+              <img class="add-icon" src="../images/myPage/interface.png"/>
             </div>
           </div>
 
@@ -499,7 +499,7 @@
             data-ci="10907"
           >
             <div class="img-box fl">
-              <img src="./custom-image/place1.jpg" />
+              <img src="../images/myPage/place1.jpg" />
             </div>
             <div class="info-box">
               <div class="info-title">한강공원</div>
@@ -511,7 +511,7 @@
               <!-- <div class="small info-small include_pn_day" style="color: #1a7ad9;">DAY1</div>  -->
             </div>
             <div class="spot-to-inspot">
-              <img class="add-icon" src="interface.png"/>
+              <img class="add-icon" src="../images/myPage/interface.png"/>
             </div>
           </div>
         </div>

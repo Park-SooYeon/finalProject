@@ -29,7 +29,7 @@
     <div class="col-lg-4">
       <div class="single-destinations">
         <div class="thumb-custom">
-          <img src="./mypage/custom-image/3.jpg" alt="" />
+          <img src="./images/myPage/3.jpg" alt="" />
         </div>
         <div class="details">
           <h4 class="d-flex justify-content-left"><i class="fa fa-camera"></i>&nbsp;&nbsp;종묘</h4>
@@ -43,7 +43,7 @@
     <div class="col-lg-4">
       <div class="single-destinations">
         <div class="thumb-review">
-          <img src="./mypage/custom-image/food3.jpg" alt="" />
+          <img src="./images/myPage/food3.jpg" alt="" />
         </div>
         <div class="details">
           <h4 class="d-flex justify-content-between">

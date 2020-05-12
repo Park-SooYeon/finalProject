@@ -29,11 +29,14 @@
 			<link rel="stylesheet" href="./plugin/air-datepicker/css/datepicker.min.css">
 <title>Insert title here</title>
 </head>
-<body>
 
 		<body>	
-			  
-			  
+			  <%
+	String list = "trip_list.jsp";
+	if(request.getParameter("list")!=null){
+		list = request.getParameter("list");
+	}	
+%>
 			  <section class="about-banner relative">
 				<div class="overlay overlay-bg"></div>
 				<div class="container">				
@@ -53,39 +56,19 @@
 		                    <button class="btn dropdown-toggle" data-toggle="dropdown">여행 리스트</button>
 		                    
 		                    <div class="dropdown-menu">
-		                    	<button class="dropdown-item">모든 여행</button>
+		                    	<button class="dropdown-item" onclick="location.href='./?inc=mypage/my_list.jsp&list=trip_list.jsp'">모든 여행</button>
         						<button class="dropdown-item">여행 (비공개)</button>
         						<button class="dropdown-item">여행 (공개)</button>
       						</div>
 		                    
-		                    <button class="btn"><i class="fa fa-heart"></i> 관심 리스트</button>
+		                    <button class="btn" onclick="location.href='./?inc=mypage/my_list.jsp?list=like_list.jsp'"><i class="fa fa-heart"></i> 관심 리스트</button>
 		                    <button class="btn add-new-trip" data-toggle="modal" data-target="#newTripModal" style="display:none;" id="addTripBtn">여행 추가</button>
 		                </div>
 		            </div>
-			  
-			<jsp:include page="like_list.jsp"></jsp:include>
-			<jsp:include page="trip_list.jsp"></jsp:include>
+			  <jsp:include page='<%=list %>'/>
 			</div>
 
-			<jsp:include page="../bottom.jsp"></jsp:include>			
-
-			<script src="../template/js/vendor/jquery-2.2.4.min.js"></script>
-			<script src="../template/js/popper.min.js"></script>
-			<script src="../template/js/vendor/bootstrap.min.js"></script>			
-			<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script>		
- 			<script src="../template/js/jquery-ui.js"></script>					
-  			<script src="../template/js/easing.min.js"></script>			
-			<script src="../template/js/hoverIntent.js"></script>
-			<script src="../template/js/superfish.min.js"></script>	
-			<script src="../template/js/jquery.ajaxchimp.min.js"></script>
-			<script src="../template/js/jquery.magnific-popup.min.js"></script>						
-			<script src="../template/js/jquery.nice-select.min.js"></script>					
-			<script src="../template/js/owl.carousel.min.js"></script>							
-			<script src="../template/js/mail-script.js"></script>	
-			<script src="../template/js/main.js"></script>	
 			<script src="./js/trip_list.js"></script>
-			
-			<!-- fontawesome -->
 			
 			 <!-- datepicker -->
 	<script src="./plugin/air-datepicker/js/datepicker.js"></script>
