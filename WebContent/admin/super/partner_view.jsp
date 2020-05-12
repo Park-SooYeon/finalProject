@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@include file="../partials/header.jsp" %>
-        <div class="content-wrapper">
             <div class="row profile-page">
                 <div class="col-12">
                     <div class="card">
@@ -244,10 +242,3 @@
                     </div>
                 </div>
             </div>
-        </div>
-
-        <%@include file="../partials/footer.jsp" %>
-            <!-- Custom js for this page -->
-            <script src="../../assets/js/shared/data-table.js"></script>
-
-            <!-- End custom js for this page -->
