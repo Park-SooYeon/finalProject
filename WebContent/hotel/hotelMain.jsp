@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <link rel="stylesheet" href="css/main.css">
+
+
+
 <!-- start banner Area -->
 <section class="banner-area relative">
 	<div class="container pt-50 mb-30">
@@ -37,7 +40,7 @@
 
 <script>
 let detailMove = function() {
-	location.href = './?inc=detailView.jsp';
+	location.href = './?inc=hotel_body.jsp';
 }
 </script>
 

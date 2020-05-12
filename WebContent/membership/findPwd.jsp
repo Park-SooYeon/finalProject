@@ -41,6 +41,23 @@
 
 </head>
 <body>
+<!-- start banner -->
+
+<section class="banner-area relative">
+	<div class="container pt-50">
+		<div class="row d-flex justify-content-center align-items-center"
+			style="height: 250px">
+			<div class="menu-content col-lg-8">
+				<div class="title text-center">
+					<h1 class="text-white mb-10">비밀번호 찾기</h1>
+				</div>
+			
+			</div>
+		</div>
+	</div>
+</section>
+<!-- start banner -->
+
 
 	<div class="container">
 		<div class="col-lg-7 offset-lg-3">

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<!-- top.jsp -->
+	<%@ include file="../top.jsp" %>
 
 <div class="whole-wrap">
   <div class="container">
@@ -41,3 +43,7 @@
     </div>
   </div>
 </div>
+
+
+<!-- top.jsp -->
+	<%@ include file="../bottom.jsp" %>
