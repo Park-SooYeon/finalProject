@@ -22,6 +22,7 @@
 					<li><a href="./?inc=membership/login.jsp">로그인</a></li>
 					<li><a href="./?inc=membership/memberJoin.jsp">회원가입</a></li>
 					<li><a href="./?inc=membership/partnerJoin.jsp">파트너 등록하기</a></li>
+					<li><a href="./?inc=mypage/my_list.jsp">mypage1</a></li>
 				</ul>
 			</nav>
 			<!-- #nav-menu-container -->
@@ -35,8 +36,9 @@
 					<li><a href="./?inc=commonPage/menuMain.jsp">즐길거리</a></li>
 					<li><a href="#">음식점</a></li>
 					<li><a href="#">축제</a></li>
-					<li><a href="" onclick="openInNewTab('rent/rent_index.jsp')">렌트카</a></li>
-					<li><a href="#">관리자 페이지</a></li>
+					<li><a href="#" onclick="openInNewTab('rent/rent_index.jsp')">렌트카</a></li>
+					<li><a href="#" onclick="openInNewTab('admin/super')">관리자 페이지</a></li>
+					<li><a href="#" onclick="openInNewTab('admin/partner')">파트너 페이지</a></li>
 				</ul>
 			</nav>
 		</div>
