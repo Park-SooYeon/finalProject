@@ -64,7 +64,11 @@
 								  <div id ='viewCon'  class="container-fluid">
 								    <!-- Brand and toggle get grouped for better mobile display -->
 								    <div class="navbar-header">
-								    	<p id='viewNav' class="navbar-text navbar-right"><a href="#" class="navbar-link"><img src="../images/rent/icon_view1.png"/>&nbsp;차량정보</a><a href="#" class="navbar-link"><img src="../images/rent/icon_view2.png"/>&nbsp;고객평가</a><a href="#" class="navbar-link"><img src="../images/rent/icon_view3.png"/>&nbsp;중요안내사항</a></p>
+								    	<p id='viewNav' class="navbar-text navbar-right">
+									    	<a href="javascript:void(0);" onclick="rent.carInfo()" class="navbar-link"><img src="../images/rent/icon_view1.png"/>&nbsp;차량정보</a>
+									    	<a href="javascript:void(0);" onclick="rent.review()" class="navbar-link"><img src="../images/rent/icon_view2.png"/>&nbsp;고객평가</a>
+									    	<a href="javascript:void(0);" onclick="rent.importantInfo()" class="navbar-link"><img src="../images/rent/icon_view3.png"/>&nbsp;중요안내사항</a>
+								    	</p>
 								    </div>
 								    </div>
 								    </nav>
@@ -222,12 +226,15 @@
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-	        <button type="button" class="btn btn-primary">지금 결제</button>
+	        <button type="button" id='btnReserveResult' class="btn btn-primary">지금 결제</button>
 	      </div>
 	    </div>
 	  </div>
 	</div>
 
+	<script>
+	rent.func();
+	</script>
 
 </body>
 </html>

@@ -18,7 +18,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#" style="width:340px;">
+      <a class="navbar-brand" href="javascript:void(0);" onclick="rent.goMain()" style="width:340px;">
       	<img alt="Brand" src="../images/rent/rc_logo.png" id="brand">
       </a>
     </div>
@@ -50,7 +50,7 @@
 				</button><br/>
 				
 				
-				<button type="button" class="btn btn-primary btn-lg">Go</button>
+				<button type="button" id='btnGoReserveSearch' class="btn btn-primary btn-lg">Go</button>
             </li>
           </ul>
         </li>
@@ -109,7 +109,9 @@
 				</div>
 
 
-
+<script>
+rent.func()
+</script>
 
 </body>
 </html>
