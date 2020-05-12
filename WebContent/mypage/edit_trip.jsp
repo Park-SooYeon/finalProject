@@ -568,7 +568,7 @@
     <script src="../template/js/owl.carousel.min.js"></script>
     <script src="../template/js/mail-script.js"></script>
     <script src="../template/js/main.js"></script>
-    <script src="../js/my_page.js"></script>
+    <script src="../js/custom_trip.js"></script>
     <!-- fontawesome -->
     <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
     

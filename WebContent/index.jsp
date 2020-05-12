@@ -76,7 +76,6 @@
 	<script src="plugin/air-datepicker/js/i18n/datepicker.kr.js"></script>
 	
 	<!-- mypage js -->
-	<script src="js/my_page.js"></script>
 	<script src="js/my_social.js"></script>
 	<script src="js/trip_list.js"></script>
 </body>
