@@ -31,11 +31,11 @@
     <link rel="stylesheet" href="../template/css/owl.carousel.css" />
     <link rel="stylesheet" href="../template/css/main.css" />
     <link rel="stylesheet" href="../css/custom.css" />
+    <link rel="stylesheet" href="../swiper-5.3.8/package/css/swiper.min.css" />
   </head>
   <body>
-  
-  <jsp:include page="../top.jsp"></jsp:include>
-  
+    <jsp:include page="../top.jsp"></jsp:include>
+
     <!-- start banner Area -->
     <section class="relative about-banner" style="z-index: -1;">
       <div class="overlay overlay-bg"></div>
@@ -154,9 +154,7 @@
                 <div>
                   <b>JuHyeon An</b>
                   님이 새 여행리스트를 추가했습니다.
-                  <span style="float: right; position: absolute; right: -23px;"
-                    ><img width="17px" src="./custom-image/ellipsis-h-solid.svg"
-                  /></span>
+                  <span class="ellipsis-btn"><img width="17px" src="./custom-image/ellipsis-h-solid.svg"/></span>
                 </div>
                 <small>2019년 6월 26일</small>
               </div>
@@ -168,71 +166,74 @@
                 </div>
 
                 <div class="col-lg-12 col-md-12 trip-slide">
-                  <span class="fa fa-chevron-right swipe-to-right"></span>
-                  <span class="fa fa-chevron-left swipe-to-left"></span>
                   <h3 class="mt-20 mb-20">
                     ChiangMai
                   </h3>
-                  <div class="item-list-wrapper">
-                  <div class="travel-item-list">
-                  <span class="travel-box">
-                      <img src="../template/img/blog/pp1.jpg" />
-                      <div class="m-2">
-                        <h5>Sook Hostel</h5>
-                        <div>❤❤❤❤❤<small>3건의 리뷰</small></div>
-                        <div>치앙마이, 태국</div>
-                      </div>
-                    </span>
-                  <span class="travel-box">
-                      <img src="../template/img/blog/pp1.jpg" />
-                      <div class="m-2">
-                        <h5>Sook Hostel</h5>
-                        <div>❤❤❤❤❤<small>3건의 리뷰</small></div>
-                        <div>치앙마이, 태국</div>
-                      </div>
-                    </span>
-                  <span class="travel-box">
-                      <img src="../template/img/blog/pp1.jpg" />
-                      <div class="m-2">
-                        <h5>Sook Hostel</h5>
-                        <div>❤❤❤❤❤<small>3건의 리뷰</small></div>
-                        <div>치앙마이, 태국</div>
-                      </div>
-                    </span>
-                    <span class="travel-box">
-                      <img src="../template/img/blog/pp1.jpg" />
-                      <div class="m-2">
-                        <h5>Sook Hostel</h5>
-                        <div>❤❤❤❤❤<small>3건의 리뷰</small></div>
-                        <div>치앙마이, 태국</div>
-                      </div>
-                    </span>
-                    <span class="travel-box">
-                      <img src="../template/img/blog/pp1.jpg" />
-                      <div class="m-2">
-                        <h5>Sook Hostel</h5>
-                        <div>❤❤❤❤❤<small>3건의 리뷰</small></div>
-                        <div>치앙마이, 태국</div>
-                      </div>
-                    </span>
-                    <span class="travel-box">
-                      <img src="../template/img/blog/pp1.jpg" />
-                      <div class="m-2">
-                        <h5>Sook Hostel</h5>
-                        <div>❤❤❤❤❤<small>3건의 리뷰</small></div>
-                        <div>치앙마이, 태국</div>
-                      </div>
-                    </span>
-                    <span class="travel-box">
-                      <img src="../template/img/blog/pp1.jpg" />
-                      <div class="m-2">
-                        <h5>Sook Hostel</h5>
-                        <div>❤❤❤❤❤<small>3건의 리뷰</small></div>
-                        <div>치앙마이, 태국</div>
-                      </div>
-                    </span>
+                  <div class="item-list-wrapper swiper-container" style="width: 90%;">
+                    <div class="travel-item-list swiper-wrapper">
+                      <span class="travel-box swiper-slide">
+                        <img src="../template/img/blog/pp1.jpg" />
+                        <div class="m-2">
+                          <h5>Sook Hostel</h5>
+                          <div>❤❤❤❤❤<small>3건의 리뷰</small></div>
+                          <div>치앙마이, 태국</div>
+                        </div>
+                      </span>
+                      <span class="travel-box swiper-slide">
+                        <img src="../template/img/blog/pp1.jpg" />
+                        <div class="m-2">
+                          <h5>Sook Hostel</h5>
+                          <div>❤❤❤❤❤<small>3건의 리뷰</small></div>
+                          <div>치앙마이, 태국</div>
+                        </div>
+                      </span>
+                      <span class="travel-box swiper-slide">
+                        <img src="../template/img/blog/pp1.jpg" />
+                        <div class="m-2">
+                          <h5>Sook Hostel</h5>
+                          <div>❤❤❤❤❤<small>3건의 리뷰</small></div>
+                          <div>치앙마이, 태국</div>
+                        </div>
+                      </span>
+                      <span class="travel-box swiper-slide">
+                        <img src="../template/img/blog/pp1.jpg" />
+                        <div class="m-2">
+                          <h5>Sook Hostel</h5>
+                          <div>❤❤❤❤❤<small>3건의 리뷰</small></div>
+                          <div>치앙마이, 태국</div>
+                        </div>
+                      </span>
+                      <span class="travel-box swiper-slide">
+                        <img src="../template/img/blog/pp1.jpg" />
+                        <div class="m-2">
+                          <h5>Sook Hostel</h5>
+                          <div>❤❤❤❤❤<small>3건의 리뷰</small></div>
+                          <div>치앙마이, 태국</div>
+                        </div>
+                      </span>
+                      <span class="travel-box swiper-slide">
+                        <img src="../template/img/blog/pp1.jpg" />
+                        <div class="m-2">
+                          <h5>Sook Hostel</h5>
+                          <div>❤❤❤❤❤<small>3건의 리뷰</small></div>
+                          <div>치앙마이, 태국</div>
+                        </div>
+                      </span>
+                      <span class="travel-box swiper-slide">
+                        <img src="../template/img/blog/pp1.jpg" />
+                        <div class="m-2">
+                          <h5>Sook Hostel</h5>
+                          <div>❤❤❤❤❤<small>3건의 리뷰</small></div>
+                          <div>치앙마이, 태국</div>
+                        </div>
+                      </span>
+                    </div>
+                    
+                    
                   </div>
-                  </div><!-- end of wrapper -->
+                  <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+                  <!-- end of wrapper -->
                 </div>
               </div>
               <div class="post-bottom-bar">
@@ -446,6 +447,8 @@
     <script src="../template/js/owl.carousel.min.js"></script>
     <script src="../template/js/mail-script.js"></script>
     <script src="../template/js/main.js"></script>
+    <!-- swiper -->
+    <script src="../swiper-5.3.8/package/js/swiper.min.js"></script>
     <script src="../js/my_social.js"></script>
   </body>
 </html>

@@ -13,6 +13,7 @@ function init() {
   });
   */
 
+	/*
   $(".swipe-to-right").click(function () {
     $(".travel-item-list").animate(
       {
@@ -60,6 +61,20 @@ function init() {
     //$(".travel-item-list").css("left", move - 250 + "px");
     //move = move - 250;
   });
+  */
+	
+	 var swiper = new Swiper('.swiper-container', {
+	      slidesPerView: 3,
+	      spaceBetween: 30,
+	      slidesPerGroup: 3,
+	      loop: true,
+	      loopFillGroupWithBlank: true,
+
+	      navigation: {
+	        nextEl: '.swiper-button-next',
+	        prevEl: '.swiper-button-prev',
+	      }
+	    });
 }
 
 init();
