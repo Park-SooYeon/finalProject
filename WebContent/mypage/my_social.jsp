@@ -169,7 +169,7 @@
                   <h3 class="mt-20 mb-20">
                     ChiangMai
                   </h3>
-                  <div class="item-list-wrapper swiper-container" style="width: 90%;">
+                  <div class="item-list-wrapper swiper-container" style="width: 91%;">
                     <div class="travel-item-list swiper-wrapper">
                       <span class="travel-box swiper-slide">
                         <img src="../template/img/blog/pp1.jpg" />
@@ -237,8 +237,8 @@
                 </div>
               </div>
               <div class="post-bottom-bar">
-                <span><i class="fa fa-thumbs-up"></i> 도움이 됐어요</span
-                ><span><i class="fa fa-share-alt"></i> 공유하기</span>
+                <span id="social-like"><i class="fa fa-thumbs-up"></i> 도움이 됐어요</span
+                ><span id="social-share"><i class="fa fa-share-alt"></i> 공유하기</span>
               </div>
             </div>
           </div>

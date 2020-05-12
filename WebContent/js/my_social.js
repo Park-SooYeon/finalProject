@@ -13,7 +13,7 @@ function init() {
   });
   */
 
-	/*
+  /*
   $(".swipe-to-right").click(function () {
     $(".travel-item-list").animate(
       {
@@ -62,19 +62,30 @@ function init() {
     //move = move - 250;
   });
   */
-	
-	 var swiper = new Swiper('.swiper-container', {
-	      slidesPerView: 3,
-	      spaceBetween: 30,
-	      slidesPerGroup: 3,
-	      loop: true,
-	      loopFillGroupWithBlank: true,
 
-	      navigation: {
-	        nextEl: '.swiper-button-next',
-	        prevEl: '.swiper-button-prev',
-	      }
-	    });
+  // 여행리스트 - swiper
+  var swiper = new Swiper(".swiper-container", {
+    slidesPerView: 3,
+    spaceBetween: 30,
+    slidesPerGroup: 3,
+    loop: true,
+    loopFillGroupWithBlank: true,
+
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+  });
+
+  $(".profile-menu a").click(function () {
+    $(this).toggleClass("on");
+    $(".profile-menu a").not(this).removeClass("on");
+  });
+
+  // "도움이 됐어요" 눌렀을때 css 변경
+  $("#social-like").click(function () {
+    $("#social-like i").toggleClass("on");
+  });
 }
 
 init();

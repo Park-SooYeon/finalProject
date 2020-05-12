@@ -36,6 +36,7 @@ body {
   transition: none;
   font-size: 17px;
   color: #000000;
+  margin-right: 8px;
 }
 
 .profile-nickname {
@@ -174,15 +175,20 @@ p {
   transition-property: transform;
 }
 
+/* 포스팅 아래 "좋아요", 공유버튼*/
+.post-bottom-bar {
+  min-height: 20px;
+  position: absolute;
+  bottom: 0.8rem;
+}
 .post-bottom-bar > span {
   margin-left: 15px;
   padding: 3px;
   box-sizing: border-box;
 }
-.post-bottom-bar {
-  min-height: 20px;
-  position: absolute;
-  bottom: 0.8rem;
+
+.post-bottom-bar i {
+  color: #000;
 }
 
 .ellipsis-btn {
@@ -191,6 +197,17 @@ p {
   right: -23px;
   opacity: 0.7;
   cursor: pointer;
+}
+
+/* social : 도움이 됐어요, 공유하기*/
+#social-like,
+#social-share {
+  cursor: pointer;
+}
+
+#social-like i.on {
+  color: #007bff;
+  transition: all 0.3s ease 0s;
 }
 
 /* social -> 프로필 수정 modal */
