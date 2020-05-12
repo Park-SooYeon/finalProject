@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@include file="../partials/header.jsp" %>
-        <div class="content-wrapper">
             <div class="row">
                 <div class="col-lg-12 grid-margin stretch-card">
                     <div class="card">
@@ -27,8 +25,7 @@
                                                 <th>업체명</th>
                                                 <th>주소</th>
                                                 <th>총 보유대수</th>
-                                                <th>승용차 보유대수</th>
-                                                <th>승합차 보유대수</th>
+                                                <th>상태</th>
                                                 <th>Actions</th>
                                             </tr>
                                         </thead>
@@ -37,10 +34,8 @@
                                                 <td>1</td>
                                                 <td>Derrick</td>
                                                 <td>경기 성남시 분당구 판교역로 235 (에이치스퀘어 엔동)</td>
-
                                                 <td>924대</td>
-                                                <td>453대</td>
-                                                <td>234대</td>
+                                                <td><div class="badge badge-secondary text-muted">비활성화</div></td>
                                                 <td>
                                                     <button class="btn btn-outline-primary" data-toggle="modal" data-target="#ModalRentCompInfo">View</button>
                                                 </td>
@@ -49,10 +44,8 @@
                                                 <td>2</td>
                                                 <td>Derrick</td>
                                                 <td>경기 성남시 분당구 판교역로 235 (에이치스퀘어 엔동)</td>
-
                                                 <td>924대</td>
-                                                <td>453대</td>
-                                                <td>234대</td>
+                                                <td><div class="badge badge-primary">활성화</div></td>
                                                 <td>
                                                     <button class="btn btn-outline-primary" data-toggle="modal" data-target="#ModalRentCompInfo">View</button>
                                                 </td>
@@ -63,8 +56,7 @@
                                                 <td>경기 성남시 분당구 판교역로 235 (에이치스퀘어 엔동)</td>
 
                                                 <td>924대</td>
-                                                <td>453대</td>
-                                                <td>234대</td>
+                                                <td><div class="badge badge-primary">활성화</div></td>
                                                 <td>
                                                     <button class="btn btn-outline-primary" data-toggle="modal" data-target="#ModalRentCompInfo">View</button>
                                                 </td>
@@ -75,8 +67,7 @@
                                                 <td>경기 성남시 분당구 판교역로 235 (에이치스퀘어 엔동)</td>
 
                                                 <td>924대</td>
-                                                <td>453대</td>
-                                                <td>234대</td>
+                                                <td><div class="badge badge-primary">활성화</div></td>
                                                 <td>
                                                     <button class="btn btn-outline-primary" data-toggle="modal" data-target="#ModalRentCompInfo">View</button>
                                                 </td>
@@ -87,8 +78,7 @@
                                                 <td>경기 성남시 분당구 판교역로 235 (에이치스퀘어 엔동)</td>
 
                                                 <td>924대</td>
-                                                <td>453대</td>
-                                                <td>234대</td>
+                                                <td><div class="badge badge-primary">활성화</div></td>
                                                 <td>
                                                     <button class="btn btn-outline-primary" data-toggle="modal" data-target="#ModalRentCompInfo">View</button>
                                                 </td>
@@ -99,8 +89,7 @@
                                                 <td>경기 성남시 분당구 판교역로 235 (에이치스퀘어 엔동)</td>
 
                                                 <td>924대</td>
-                                                <td>453대</td>
-                                                <td>234대</td>
+                                                <td><div class="badge badge-primary">활성화</div></td>
                                                 <td>
                                                     <button class="btn btn-outline-primary" data-toggle="modal" data-target="#ModalRentCompInfo">View</button>
                                                 </td>
@@ -111,8 +100,7 @@
                                                 <td>경기 성남시 분당구 판교역로 235 (에이치스퀘어 엔동)</td>
 
                                                 <td>924대</td>
-                                                <td>453대</td>
-                                                <td>234대</td>
+                                                <td><div class="badge badge-primary">활성화</div></td>
                                                 <td>
                                                     <button class="btn btn-outline-primary" data-toggle="modal" data-target="#ModalRentCompInfo">View</button>
                                                 </td>
@@ -123,8 +111,7 @@
                                                 <td>경기 성남시 분당구 판교역로 235 (에이치스퀘어 엔동)</td>
 
                                                 <td>924대</td>
-                                                <td>453대</td>
-                                                <td>234대</td>
+                                                <td><div class="badge badge-primary">활성화</div></td>
                                                 <td>
                                                     <button class="btn btn-outline-primary" data-toggle="modal" data-target="#ModalRentCompInfo">View</button>
                                                 </td>
@@ -134,8 +121,7 @@
                                                 <td>Derrick</td>
                                                 <td>경기 성남시 분당구 판교역로 235 (에이치스퀘어 엔동)</td>
                                                 <td>924대</td>
-                                                <td>453대</td>
-                                                <td>234대</td>
+                                                <td><div class="badge badge-primary">활성화</div></td>
                                                 <td>
                                                     <button class="btn btn-outline-primary" data-toggle="modal" data-target="#ModalRentCompInfo">View</button>
                                                 </td>
@@ -148,7 +134,6 @@
                     </div>
                 </div>
             </div>
-        </div>
 
         <!-- 사용자 정보 modal -->
         <div class="modal fade" id="ModalRentCompInfo" tabindex="-1" role="dialog" aria-labelledby="ModalRentCompInfo" aria-hidden="true">
@@ -203,6 +188,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-light" data-dismiss="modal">취소</button>
+                        <button type="button" class="btn btn-secondary" onclick="showSwal('warning-message-and-cancel')">비활성화</button>
                         <button type="button" class="btn btn-danger" onclick="showSwal('warning-message-and-cancel')">삭제</button>
                         <button type="button" class="btn btn-success" onclick="showSwal('success-message')">저장</button>
                     </div>
@@ -210,24 +196,4 @@
             </div>
         </div>
         <!-- end of 사용자 정보 modal -->
-
-
-        <%@include file="../partials/footer.jsp" %>
-
-            <script src="../../assets/js/shared/data-table.js"></script>
-            <!-- End custom js for this page -->
-            <script>
-                // 다음 우편번호 서비스
-                function openDaumZipAddress() {
-                    new daum.Postcode({
-                        oncomplete: function (data) {
-                            jQuery("#postcode1").val(data.postcode1);
-                            jQuery("#postcode2").val(data.postcode2);
-                            jQuery("#zonecode").val(data.zonecode);
-                            jQuery("#address").val(data.address);
-                            jQuery("#address2").focus();
-                            console.log(data);
-                        }
-                    }).open();
-                }
-            </script>
+        
