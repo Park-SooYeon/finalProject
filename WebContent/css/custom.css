@@ -92,7 +92,9 @@ p {
 .posts-list {
   background: #ffffff;
   border: 1px solid #eee;
+  padding: 5px 30px;
   height: 41rem;
+  margin-bottom: 15px;
 }
 
 .profile-widget .widget-wrap {
@@ -176,11 +178,6 @@ p {
 }
 
 /* 포스팅 아래 "좋아요", 공유버튼*/
-.post-bottom-bar {
-  min-height: 20px;
-  position: absolute;
-  bottom: 0.8rem;
-}
 .post-bottom-bar > span {
   margin-left: 15px;
   padding: 3px;
@@ -192,20 +189,69 @@ p {
 }
 
 .ellipsis-btn {
+  text-align: right;
   float: right;
-  position: absolute;
-  right: -23px;
-  opacity: 0.7;
+  position: relative;
+  right: -46px;
   cursor: pointer;
+  z-index: 3;
+  width: 50px;
+}
+
+.ellipsis-btn img {
+  opacity: 0.7;
+}
+
+.ellipsis-menu {
+  position: absolute;
+  width: auto;
+  height: 35px;
+  padding: 0 15px;
+  background-color: #fff;
+  border: 1px solid #c1c1c1;
+  border-radius: 4px;
+  line-height: 35px;
+  vertical-align: middle;
+  right: -17px;
+  top: 36px;
+  z-index: 2;
+  display: none;
+  cursor: pointer;
+}
+
+.ellipsis-menu:before {
+  content: "";
+  position: absolute;
+  left: 23px;
+  top: -42px;
+  z-index: 2;
+  width: 15px;
+  height: 41px;
+  border-bottom: solid 11px #c1c1c1;
+  border-left: solid 11px transparent;
+  border-right: solid 12px transparent;
+}
+
+.ellipsis-menu:after {
+  content: "";
+  position: absolute;
+  left: 24px;
+  top: -41px;
+  z-index: 2;
+  width: 15px;
+  height: 41px;
+  border-bottom: solid 10px white;
+  border-left: solid 10px transparent;
+  border-right: solid 11px transparent;
 }
 
 /* social : 도움이 됐어요, 공유하기*/
-#social-like,
-#social-share {
+.social-like,
+.social-share {
   cursor: pointer;
 }
 
-#social-like i.on {
+.social-like i.on {
   color: #007bff;
   transition: all 0.3s ease 0s;
 }

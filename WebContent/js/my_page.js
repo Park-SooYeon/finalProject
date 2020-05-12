@@ -50,5 +50,6 @@ function init() {
 init();
 
 function add_plan_day() {
-  $(".plan-category li:last-child").clone().appendTo(".plan-category");
+	// 리스트의 마지막 항목 on 클래스 제거한 뒤 append
+  $(".plan-category li:last-child").removeClass("on").clone().appendTo(".plan-category");
 }
