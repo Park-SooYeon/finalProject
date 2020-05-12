@@ -1,8 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<div class="col-md-12" id="widthsort_list">
-  <div class="row">
+<script>
+let roomDetailMove = function() {
+	location.href = './?inc=hotel/roomDetailView.jsp';
+}
+</script>
+
+
+<div class="col-md-12" id="widthsort_list" onclick="roomDetailMove()">
+  <div class="row" >
 	<div class="col-md-3">
 		<img src="../template/img/elements/d.jpg" alt="" class="img-fluid">
 	</div>	

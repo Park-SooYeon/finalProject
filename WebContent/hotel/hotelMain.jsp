@@ -40,7 +40,7 @@
 <!-- End banner Area -->
 
 <script>
-let detailMove = function() {
+let hotelDetailMove = function() {
 	location.href = './?inc=hotel/hotel_body.jsp';
 }
 </script>
@@ -60,7 +60,7 @@ let detailMove = function() {
 						<div class="p-1 heart" onclick="main.like(this)">
 							<i class="fa fa-heart-o" style="vertical-align: middle;"></i>
 						</div>
-						<div class="single-destinations" onclick="detailMove()">
+						<div class="single-destinations" onclick="hotelDetailMove()">
 							<div class="thumb">
 								<img src="template/img/packages/d1.jpg" alt="">
 							</div>
