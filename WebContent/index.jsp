@@ -33,6 +33,10 @@
 	<link rel="stylesheet" href="template/css/animate.min.css">
 	<link rel="stylesheet" href="template/css/owl.carousel.css">				
 	<link rel="stylesheet" href="template/css/main.css">
+	
+	<!-- mypage css -->
+	<link rel="stylesheet" href="css/custom.css">
+	
 </head>
 <body>
 
@@ -64,5 +68,10 @@
 	<script src="template/js/owl.carousel.min.js"></script>							
 	<script src="template/js/mail-script.js"></script>	
 	<script src="template/js/main.js"></script>	
+	
+	<!-- mypage js -->
+	<script src="js/my_page.js"></script>
+	<script src="js/my_social.js"></script>
+	<script src="js/trip_list.js"></script>
 </body>
 </html>

@@ -23,6 +23,7 @@
 					<li><a href="./?inc=membership/memberJoin.jsp">회원가입</a></li>
 					<li><a href="./?inc=membership/partnerJoin.jsp">파트너 등록하기</a></li>
 					<li><a href="./?inc=mypage/my_list.jsp">mypage1</a></li>
+					<li><a href="./?inc=mypage/my_social.jsp">mypage2</a></li>
 				</ul>
 			</nav>
 			<!-- #nav-menu-container -->

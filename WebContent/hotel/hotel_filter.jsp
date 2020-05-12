@@ -2,68 +2,72 @@
     pageEncoding="UTF-8"%>
 
 <div class="single-destination relative">
-	<div class="thumb relative">
-		<div class="overlay overlay-bg"></div>
-		<img class="img-fluid" src="../images/map.png" alt="">
-	</div>
-	<div class="desc">
-		<a class="genric-btn default radius" data-toggle="modal" href="#mapModal" ><i class="fa fa-map-marker"></i> 지도 보기</a>
-		
-	</div>
+   <div class="thumb relative">
+      <div class="overlay overlay-bg"></div>
+      <img class="img-fluid" src="../images/map.png" alt="">
+   </div>
+   <div class="desc">
+      <a class="genric-btn default radius" data-toggle="modal" href="#mapModal" ><i class="fa fa-map-marker"></i> 지도 보기</a>
+      
+   </div>
 </div> 
 <br/>
+
 <div class="single-element-widget">
     <h4 class="mb-20">호텔 등급</h4>
+    
+  
+    
     <div class="custom-control custom-checkbox">
-	  <input type="checkbox" class="custom-control-input" name='check_kor' id='check_grade_five' value='five'/>
-	  <label class="custom-control-label" for="check_five">5성급</label>
+     <input type="checkbox" class="custom-control-input" name='check_grade_five' id='check_grade_five' value='five'/>
+     <label class="custom-control-label" for="check_grade_five">5성급</label>
     </div>
-	<div class="custom-control custom-checkbox">
-	  <input type="checkbox" class="custom-control-input" name='check_west' id='check_grade_four' value='four'/>
-	  <label class="custom-control-label" for="check_four">4성급</label>
-    </div>
-    <div class="custom-control custom-checkbox">
-	  <input type="checkbox" class="custom-control-input" name='check_jap' id='check_grade_three' value='three'/>
-	  <label class="custom-control-label" for="check_three">3성급</label>
+   <div class="custom-control custom-checkbox">
+     <input type="checkbox" class="custom-control-input" name='check_grade_four' id='check_grade_four' value='four'/>
+     <label class="custom-control-label" for="check_grade_four">4성급</label>
     </div>
     <div class="custom-control custom-checkbox">
-	  <input type="checkbox" class="custom-control-input" name='check_chin' id='check_grade_two' value='two'/>
-	  <label class="custom-control-label" for="check_two">2성급</label>
+     <input type="checkbox" class="custom-control-input" name='check_grade_three' id='check_grade_three' value='three'/>
+     <label class="custom-control-label" for="check_grade_three">3성급</label>
+    </div>
+    <div class="custom-control custom-checkbox">
+     <input type="checkbox" class="custom-control-input" name='check_grade_two' id='check_grade_two' value='two'/>
+     <label class="custom-control-label" for="check_grade_two">2성급</label>
     </div>    
     <div class="custom-control custom-checkbox">
-	  <input type="checkbox" class="custom-control-input" name='check_w_etc' id='check_grade_one' value='one'/>
-	  <label class="custom-control-label" for="check_one">1성급</label>
+     <input type="checkbox" class="custom-control-input" name='check_grade_one' id='check_grade_one' value='one'/>
+     <label class="custom-control-label" for="check_grade_one">1성급</label>
     </div>
 </div>
 <div class="single-element-widget">
     <h4 class="mb-20">객실의 종류</h4>
     <div class="custom-control custom-checkbox">
-	  <input type="checkbox" class="custom-control-input" name='check_cafe' id='check_deluxe ' value='deluxe '/>
-	  <label class="custom-control-label" for="check_deluxe">디럭스</label>	  
+     <input type="checkbox" class="custom-control-input" name='check_deluxe' id='check_deluxe' value='deluxe '/>
+     <label class="custom-control-label" for="check_deluxe">디럭스</label>     
     </div>
-	<div class="custom-control custom-checkbox">
-	  <input type="checkbox" class="custom-control-input" name='check_bar' id='check_family' value='family'/>
-	  <label class="custom-control-label" for="check_family">패밀리</label>
+   <div class="custom-control custom-checkbox">
+     <input type="checkbox" class="custom-control-input" name='check_family' id='check_family' value='family'/>
+     <label class="custom-control-label" for="check_family">패밀리</label>
     </div>
     <div class="custom-control custom-checkbox" >
-	  <input type="checkbox" class="custom-control-input" name='check_rest' id='check_sweet' value='sweet'/>
-	  <label class="custom-control-label" for="check_sweet">스위트</label>
+     <input type="checkbox" class="custom-control-input" name='check_sweet' id='check_sweet' value='sweet'/>
+     <label class="custom-control-label" for="check_sweet">스위트</label>
     </div>
      
 </div>
 <div class="single-element-widget">
     <h4 class="mb-20">부대 시설</h4>
     <div class="custom-control custom-checkbox">
-	  <input type="checkbox" class="custom-control-input" name='check_kor' id='check_wifi' value='wifi'/>
-	  <label class="custom-control-label" for="check_wifi">와이파이</label>
+     <input type="checkbox" class="custom-control-input" name='check_wifi' id='check_wifi' value='wifi'/>
+     <label class="custom-control-label" for="check_wifi">와이파이</label>
     </div>
-	<div class="custom-control custom-checkbox">
-	  <input type="checkbox" class="custom-control-input" name='check_west' id='check_noSmoking' value='noSmoking'/>
-	  <label class="custom-control-label" for="check_noSmoking">금연</label>
+   <div class="custom-control custom-checkbox">
+     <input type="checkbox" class="custom-control-input" name='check_noSmoking' id='check_noSmoking' value='noSmoking'/>
+     <label class="custom-control-label" for="check_noSmoking">금연</label>
     </div>
     <div class="custom-control custom-checkbox">
-	  <input type="checkbox" class="custom-control-input" name='check_jap' id='check_parking' value='parking'/>
-	  <label class="custom-control-label" for="check_parking">주차장</label>
+     <input type="checkbox" class="custom-control-input" name='check_parking' id='check_parking' value='parking'/>
+     <label class="custom-control-label" for="check_parking">주차장</label>
     </div>
     
 </div>
@@ -71,16 +75,16 @@
 <div class="single-element-widget">
     <h4 class="mb-20">뷰</h4>
     <div class="custom-control custom-checkbox">
-	  <input type="checkbox" class="custom-control-input" name='check_kor' id='check_view_mt' value='view_mt'/>
-	  <label class="custom-control-label" for="check_view_mt">마운틴뷰</label>
+     <input type="checkbox" class="custom-control-input" name='check_view_mt' id='check_view_mt' value='view_mt'/>
+     <label class="custom-control-label" for="check_view_mt">마운틴뷰</label>
     </div>
-	<div class="custom-control custom-checkbox">
-	  <input type="checkbox" class="custom-control-input" name='check_west' id='check_view_city' value='city_view'/>
-	  <label class="custom-control-label" for="check_view_city">시티뷰</label>
+   <div class="custom-control custom-checkbox">
+     <input type="checkbox" class="custom-control-input" name='check_view_city' id='check_view_city' value='city_view'/>
+     <label class="custom-control-label" for="check_view_city">시티뷰</label>
     </div>
     <div class="custom-control custom-checkbox">
-	  <input type="checkbox" class="custom-control-input" name='check_jap' id='check_view_sea' value='view_sea'/>
-	  <label class="custom-control-label" for="check_view_sea">오션뷰</label>
+     <input type="checkbox" class="custom-control-input" name='check_view_sea' id='check_view_sea' value='view_sea'/>
+     <label class="custom-control-label" for="check_view_sea">오션뷰</label>
     </div>
     
 </div>
@@ -108,4 +112,4 @@
 
 
 
-	
+   
