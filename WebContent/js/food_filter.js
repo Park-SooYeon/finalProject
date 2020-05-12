@@ -1,5 +1,8 @@
 var food_filter={}
 
+$('#widthsort_list').show();
+$('#cardsort_list').hide();
+
 food_filter.func = function(){
 //필터옵션 전체해제
 	$('#check_release').click(function(){

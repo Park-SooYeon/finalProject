@@ -4,7 +4,7 @@
 <div class="col-md-12" id="widthsort_list">
   <div class="row">
 	<div class="col-md-3">
-		<img src="../template/img/elements/d.jpg" alt="" class="img-fluid">
+		<img src="template/img/elements/d.jpg" alt="" class="img-fluid">
 	</div>	
 	<div class="col-md-9 mt-sm-20 left-align-p" >	
 	    <span>1(순번). 업체명</span></br>
@@ -28,8 +28,9 @@
 
 <div class="col-md-3" id="cardsort_list">
 	<div class="col-md-12">
-		<img src="../template/img/elements/d.jpg" alt="" class="img-fluid">
-	</div>	
+		<img src="template/img/elements/d.jpg" alt="" class="img-fluid">
+	</div>
+	</br>
 	<div class="col-md-12 mt-sm-20 left-align-p" >	
 	    <span>1(순번). 업체명</span></br>
 	    <div class="star">
