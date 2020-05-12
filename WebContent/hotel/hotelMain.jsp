@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <link rel="stylesheet" href="css/main.css">
 
+<script src='./js/hotel_filter.js'></script>
 
 
 <!-- start banner Area -->
@@ -40,7 +41,7 @@
 
 <script>
 let detailMove = function() {
-	location.href = './?inc=hotel_body.jsp';
+	location.href = './?inc=hotel/hotel_body.jsp';
 }
 </script>
 
