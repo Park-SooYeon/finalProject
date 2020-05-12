@@ -35,7 +35,7 @@
 					<li><a href="./?inc=commonPage/menuMain.jsp">즐길거리</a></li>
 					<li><a href="#">음식점</a></li>
 					<li><a href="#">축제</a></li>
-					<li><a href="#">렌트카</a></li>
+					<li><a href="" onclick="openInNewTab('rent/rent_index.jsp')">렌트카</a></li>
 					<li><a href="#">관리자 페이지</a></li>
 				</ul>
 			</nav>
@@ -43,3 +43,9 @@
 	</div>
 </header>
 <!-- #header -->
+<script>
+function openInNewTab(url) {
+    var win = window.open(url, '_blank');
+    win.focus();
+}
+</script>
