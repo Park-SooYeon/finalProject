@@ -34,9 +34,6 @@
 	<link rel="stylesheet" href="template/css/owl.carousel.css">				
 	<link rel="stylesheet" href="template/css/main.css">
 	
-	<!-- mypage css -->
-	<link rel="stylesheet" href="css/custom.css">
-	
 </head>
 <body>
 
