@@ -3,34 +3,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="../template/css/linearicons.css">
-<link rel="stylesheet" type="text/css" href="../template/css/font-awesome.min.css">
-<link rel="stylesheet" type="text/css" href="../template/css/bootstrap.css">
-<link rel="stylesheet" type="text/css" href="../template/css/magnific-popup.css">
-<link rel="stylesheet" type="text/css" href="../template/css/jquery-ui.css">				
-<link rel="stylesheet" type="text/css" href="../template/css/nice-select.css">							
-<link rel="stylesheet" type="text/css" href="../template/css/animate.min.css">
-<link rel="stylesheet" type="text/css" href="../template/css/owl.carousel.css">				
-<link rel="stylesheet" type="text/css" href="../template/css/main.css">
-
-<meta charset="UTF-8">
-<meta property="og:url"           content="https://www.naver.com/" />
-<meta property="og:type"          content="website" />
-<meta property="og:title"         content="Your Website Title" />
-<meta property="og:description"   content="Your description" />
-<meta property="og:image"         content="https://www.your-domain.com/path/image.jpg" />
-
 <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
-<script  src='../lib/jquery-3.4.1.js'></script>
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+<!-- 
+
+ -->
+<script src="js/main.js"></script>
+<script  src='./lib/jquery-3.4.1.js'></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=	a8effece1d8215cec0ceddf314763998&libraries=services,clusterer"></script>
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
-
-
-<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-
 <!-- Link Swiper's CSS -->
-  <link rel="stylesheet" href="../swiper-5.3.8/package/css/swiper.min.css">
   
 <style>
 ul { 
@@ -129,12 +111,16 @@ ul {
 	<br/>
 	<div class='container'>
 		맛있는 치킨집
-		<div class="float-right" style="display:flex">
-			<a href='#' style='padding:.450rem .75rem ;font-size: medium;'><i class="fas fa-heart"></i>저장</a>
+		  <div class="float-right" style="display:flex">
+		<!--	<a href='#' style='padding:.450rem .75rem ;font-size: medium; margin-right:15px'><i class="fas fa-heart"></i>저장</a>
+  		-->	
+  			<div class="p-1 heart" onclick="main.like(this)">
+				<i class="fa fa-heart" style="vertical-align: middle;margin-right: 10px; font-size: 32px; padding: 0.10rem !important; "></i>
+			</div>
   			<div>
   			<!--  -->
 			<div class="btn-group">
-			  <button type="button" class="btn btn-default dropdown-toggle" style='color: #007bff; margin-left:-15px;' data-toggle="dropdown" aria-expanded="false"><i class="fas fa-share-alt mr-1"></i>
+			  <button type="button" class="btn btn-default dropdown-toggle" style='color: #007bff; margin-left:-15px;' data-toggle="dropdown" aria-expanded="false"><i class="fa fa-share-alt mr-1"></i>
 			   공유하기 <span class="caret"></span>
 			  </button>
 			  <div class="dropdown-menu" role="menu">
@@ -157,11 +143,11 @@ ul {
 		
 			<div class='rating' data-rate='4'> <!-- data-rate에 별점을입력(평균별점입력5를넘기지않아야함) -->
 				<span>별점:
-				<i class="fas fa-star"></i>
-				<i class="fas fa-star"></i>
-				<i class="fas fa-star"></i>
-				<i class="fas fa-star"></i>
-				<i class="fas fa-star"></i>
+				<i class="fa fa-star"></i>
+				<i class="fa fa-star"></i>
+				<i class="fa fa-star"></i>
+				<i class="fa fa-star"></i>
+				<i class="fa fa-star"></i>
 				</span>
 			</div>
 			<span>4건의 리뷰</span>
@@ -182,16 +168,16 @@ ul {
 						  <!-- Swiper -->
 				  <div class="swiper-container gallery-top">
 				    <div class="swiper-wrapper">
-				    	<img class="swiper-slide" src="../images/festival/1.png"style="background-image" />
-						<img class="swiper-slide" src="../images/festival/2.png"style="background-image" />
-						<img class="swiper-slide" src="../images/festival/3.png"style="background-image" />
-						<img class="swiper-slide" src="../images/festival/4.png"style="background-image" />
-						<img class="swiper-slide" src="../images/festival/5.png"style="background-image" />
-						<img class="swiper-slide" src="../images/festival/6.png"style="background-image" />
-						<img class="swiper-slide" src="../images/festival/7.png"style="background-image" />
-						<img class="swiper-slide" src="../images/festival/8.png"style="background-image" />
-					    <img class="swiper-slide" src="../images/festival/9.png"style="background-image" />   
-				   		<img class="swiper-slide" src="../images/festival/10.png"style="background-image"/>
+				    	<img class="swiper-slide" src="./images/festival/1.png"style="background-image" />
+						<img class="swiper-slide" src="./images/festival/2.png"style="background-image" />
+						<img class="swiper-slide" src="./images/festival/3.png"style="background-image" />
+						<img class="swiper-slide" src="./images/festival/4.png"style="background-image" />
+						<img class="swiper-slide" src="./images/festival/5.png"style="background-image" />
+						<img class="swiper-slide" src="./images/festival/6.png"style="background-image" />
+						<img class="swiper-slide" src="./images/festival/7.png"style="background-image" />
+						<img class="swiper-slide" src="./images/festival/8.png"style="background-image" />
+					    <img class="swiper-slide" src="./images/festival/9.png"style="background-image" />   
+				   		<img class="swiper-slide" src="./images/festival/10.png"style="background-image"/>
 				    </div>
 				    <!-- Add Arrows -->
 				    <div class="swiper-button-next swiper-button-white"></div>
@@ -199,53 +185,53 @@ ul {
 				  </div>
 				  <div class="swiper-container gallery-thumbs">
 				    <div class="swiper-wrapper">
-						<img class="swiper-slide" src="../images/festival/1.png"style="background-image" />
-						<img class="swiper-slide" src="../images/festival/2.png"style="background-image" />
-						<img class="swiper-slide" src="../images/festival/3.png"style="background-image" />
-						<img class="swiper-slide" src="../images/festival/4.png"style="background-image" />
-						<img class="swiper-slide" src="../images/festival/5.png"style="background-image" />
-						<img class="swiper-slide" src="../images/festival/6.png"style="background-image" />
-						<img class="swiper-slide" src="../images/festival/7.png"style="background-image" />
-						<img class="swiper-slide" src="../images/festival/8.png"style="background-image" />
-					    <img class="swiper-slide" src="../images/festival/9.png"style="background-image" />   
-				   		<img class="swiper-slide" src="../images/festival/10.png"style="background-image"/>				    </div>
+						<img class="swiper-slide" src="./images/festival/1.png"style="background-image" />
+						<img class="swiper-slide" src="./images/festival/2.png"style="background-image" />
+						<img class="swiper-slide" src="./images/festival/3.png"style="background-image" />
+						<img class="swiper-slide" src="./images/festival/4.png"style="background-image" />
+						<img class="swiper-slide" src="./images/festival/5.png"style="background-image" />
+						<img class="swiper-slide" src="./images/festival/6.png"style="background-image" />
+						<img class="swiper-slide" src="./images/festival/7.png"style="background-image" />
+						<img class="swiper-slide" src="./images/festival/8.png"style="background-image" />
+					    <img class="swiper-slide" src="./images/festival/9.png"style="background-image" />   
+				   		<img class="swiper-slide" src="./images/festival/10.png"style="background-image"/>				   
+				    </div>
 				  </div>
 				
 				<div >
 					<h3>평가</h3>
 					<div class="clearfix">
 						<ul class='float-left' >
-							<li><i class="fas fa-utensils mr-2"></i>음식</li>
-							<li><i class="fas fa-hand-holding-heart mr-2"></i>서비스</li>
-							<li><i class="far fa-money-bill-alt mr-2"></i>가격</li>
+							<li><i class="fa fa-utensils mr-2"></i>음식</li>
+							<li><i class="fa fa-hand-holding-heart mr-2"></i>서비스</li>
+							<li><i class="fa fa-money-bill-alt mr-2"></i>가격</li>
 						</ul>
 						<ul class="float-right">
 							<li>
 								<div class='rating' data-rate='1'> <!-- data-rate에 별점을입력(5초과금지) -->
-									<i class="fas fa-star"></i>
-									<i class="fas 
-									fa-star"></i>
-									<i class="fas fa-star"></i>
-									<i class="fas fa-star"></i>
-									<i class="fas fa-star"></i>
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star"></i>
 								</div>
 							</li>
 							<li>
 								<div class='rating' data-rate='2'> <!-- data-rate에 별점을입력(5초과금지) -->
-									<i class="fas fa-star"></i>
-									<i class="fas fa-star"></i>
-									<i class="fas fa-star"></i>
-									<i class="fas fa-star"></i>
-									<i class="fas fa-star"></i>
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star"></i>
 								</div>
 							</li>
 							<li>
 								<div class='rating' data-rate='3'> <!-- data-rate에 별점을입력(5초과금지) -->
-									<i class="fas fa-star"></i>
-									<i class="fas fa-star"></i>
-									<i class="fas fa-star"></i>
-									<i class="fas fa-star"></i>
-									<i class="fas fa-star"></i>
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star"></i>
 								</div>
 							</li>
 							
@@ -266,7 +252,7 @@ ul {
 		</div>
 		<div class="row">
 			<div class="col-12 pt-3" style='height:70px; border-top:1px solid black;' >
-				<h3 style='float:left'>리뷰(4)</h3>
+				<h3 style='float:left'>리뷰(2)</h3>
 				<input class="btn btn-primary float-right" type='button' id='review'  name='review' value='리뷰작성'/>
 			</div>
 				
@@ -314,46 +300,47 @@ ul {
 			<div class="col-12 mt-2 " >
 				<h5>여행자 리뷰 보기:</h5>
 				<div class="form-row mt-3">
-					<input type='text' class="form-control col-11" id='find' name='find' value=''  placeholder="검색하실 리뷰를 작성해주세요........." >
-					<button class="form-group btn btn-primary col-1" id='findStr' name='findStr' ><i class="fas fa-search"></i></button>
+					<input type='text' class="form-control col-11 " id='find' name='find' value=''  placeholder="검색하실 리뷰를 작성해주세요........." style="height: fit-content;" >
+					<button class="form-group btn btn-primary col-1" id='findStr' name='findStr' ><i class="fa fa-search"></i></button>
 				</div>
 			</div>
 		</div>
 		<div class="row border-bottom py-3">
 			<div class="col-2">
-				<img class="rounded-circle" src="../images/festival/1.png" alt="글쓴이">
+				<img class="rounded-circle" src="./images/festival/1.png" alt="글쓴이">
 				<p class='text-center mt-3'>작성자</p>
 			</div>
 			<div class="col-10">
 				<div class='rating' data-rate='5'> <!-- data-rate에 별점을입력(5초과금지) -->
-					<i class="fas fa-star"></i>
-					<i class="fas fa-star"></i>
-					<i class="fas fa-star"></i>
-					<i class="fas fa-star"></i>
-					<i class="fas fa-star"></i>
+					<i class="fa fa-star"></i>
+					<i class="fa fa-star"></i>
+					<i class="fa fa-star"></i>
+					<i class="fa fa-star"></i>
+					<i class="fa fa-star"></i>
 				</div>
 				<span>2020년 1월 15일에 작성</span>
 				<span class="float-right">8명의 이용자가 도움이 됐다고 하던뎁숑?!</span>
 				<h5>리뷰제목</h5>
 				<div class="review-box">
-					<p class="pre-view">리뷰입니다리뷰입니다리뷰입니다리뷰입니다리뷰입니다리뷰입니다리뷰입니다리뷰입니다리뷰입니다리뷰입니다리뷰입니다입니다리뷰입니다입니다리뷰입니다입니다리뷰입니다ㄴ난ㄴㄴ</p>
+					<p class="pre-view">리뷰입니다리뷰입니다리뷰입니다리뷰입니다리뷰입니다리뷰입니다리뷰입니다리뷰입니다리뷰입니다리뷰입니다리뷰입니다입니다리뷰입니다입니다리뷰입니다입니다리뷰입니다ㄴ난다리뷰입니다ㄴ난다리뷰입니다ㄴ난다리뷰입니다ㄴ난다리뷰입니다ㄴ난다리뷰입니다ㄴ난다리뷰입니다ㄴ난다리뷰입니다ㄴ난다리뷰입니다ㄴ난다리뷰입니다ㄴ난다리뷰입니다ㄴ난ㄴㄴ</p>
 					<span class="btn-moreInfo">[더보기]</span>
 				</div>
 				<p><span>방문 날짜 : </span>2020년 1월</p>
-				<p>도움이 됐나요? <button class="btn btn-outline-secondary"><i class="far fa-thumbs-up"></i></button></p>
+				<p>도움이 됐나요? <button class="btn btn-outline-secondary"><i class="fa fa-thumbs-up"></i></button></p>
 			</div>
 		</div>
 		<div class="row border-bottom py-3">
 			<div class="col-2">
-				<img class="rounded-circle" src="../images/festival/1.png"alt="글쓴이">
+				<img class="rounded-circle" src="./images/festival/1.png"alt="글쓴이">
+				<p class='text-center mt-3'>작성자</p>
 			</div>
 			<div class="col-10">
 				<div class='rating' data-rate='3'> <!-- data-rate에 별점을입력(5초과금지) -->
-					<i class="fas fa-star"></i>
-					<i class="fas fa-star"></i>
-					<i class="fas fa-star"></i>
-					<i class="fas fa-star"></i>
-					<i class="fas fa-star"></i>
+					<i class="fa fa-star"></i>
+					<i class="fa fa-star"></i>
+					<i class="fa fa-star"></i>
+					<i class="fa fa-star"></i>
+					<i class="fa fa-star"></i>
 				</div>
 				<span>2020년 1월 15일에 작성</span>
 				<span class="float-right">8명의 이용자가 도움이 됐다고 하던뎁숑?!</span>
@@ -363,10 +350,35 @@ ul {
 					<span class="btn-moreInfo">[더보기]</span>
 				</div>
 				<p><span>방문 날짜 : </span>2020년 1월</p>
-				<p>도움이 됐나요? <button class="btn btn-outline-secondary"><i class="far fa-thumbs-up"></i></button></p>
+				<p>도움이 됐나요? <button class="btn btn-outline-secondary"><i class="fa fa-thumbs-up"></i></button></p>
 			</div>
 		</div>			
 		
+		    
+		<!-- Modal -->
+		<div class="modal fade" data-backdrop="static"
+			id="exampleModalScrollable" tabindex="-1" role="dialog"
+			aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-scrollable" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalScrollableTitle">여행 목록에 추가</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body" id="modal-body">
+						<div class="folder p-2" id="folderInsert" onclick="main.insertFolder(this)">
+							<i class="fa fa-plus pr-2"></i>여행 추가
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+						<button type="button" class="btn btn-primary" id="btnLikeInsert" onclick="main.makeHeart()">추가</button>
+					</div>
+				</div>
+			</div>
+		</div>
 		
 	<!-- paging -->
 
@@ -445,7 +457,7 @@ ul {
 				
 		});
 	
-	//  다음 지도  api 
+		//  다음 지도  api 
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 			mapOption = {
 				center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
@@ -474,7 +486,7 @@ ul {
 				// 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
 				map.setCenter(coords);
 			} 
-		});    
+		});  
 		
 	</script>
 
@@ -521,7 +533,7 @@ ul {
 </script>
 	
   <!-- Swiper JS -->
-  <script src="../swiper-5.3.8/package/js/swiper.min.js"></script>
+  <script src="./swiper-5.3.8/package/js/swiper.min.js"></script>
 
   <!-- Initialize Swiper -->
   <script>
@@ -546,19 +558,6 @@ ul {
    
    
    
-<script src="../template/js/vendor/jquery-2.2.4.min.js"></script>
-<script src="../template/js/popper.min.js"></script>
-<script src="../template/js/vendor/bootstrap.min.js"></script>
-<script src="../template/js/jquery-ui.js"></script>					
-<script src="../template/js/easing.min.js"></script>
-<script src="../template/js/hoverIntent.js"></script>
-<script src="../template/js/superfish.min.js"></script>	
-<script src="../template/js/jquery.ajaxchimp.min.js"></script>
-<script src="../template/js/jquery.magnific-popup.min.js"></script>						
-<script src="../template/js/jquery.nice-select.min.js"></script>					
-<script src="../template/js/owl.carousel.min.js"></script>							
-<script src="../template/js/mail-script.js"></script>	
-<script src="../template/js/main.js"></script>
     
 </body>
 </html>
