@@ -35,7 +35,7 @@
       <div class="single-destinations">
         <div class="list-container">
           <div class="thumb-custom">
-            <img src="./custom-image/food10.jpg" alt="" />
+            <img src="./mypage/custom-image/food10.jpg" alt="" />
           </div>
           <div class="details">
             <h4 class="d-flex justify-content-between">
@@ -51,7 +51,7 @@
       <div class="single-destinations">
         <div class="list-container">
           <div class="thumb-custom">
-            <img src="./custom-image/food16.jpg" alt="" />
+            <img src="./mypage/custom-image/food16.jpg" alt="" />
           </div>
           <div class="details">
             <h4 class="d-flex justify-content-between">
@@ -67,7 +67,7 @@
       <div class="single-destinations">
         <div class="list-container">
           <div class="thumb-custom">
-            <img src="./custom-image/place.jpg" alt="" />
+            <img src="./mypage/custom-image/place.jpg" alt="" />
           </div>
           <div class="details">
             <h4 class="d-flex justify-content-between">
@@ -83,7 +83,7 @@
       <div class="single-destinations">
         <div class="list-container">
           <div class="thumb-custom">
-            <img src="./custom-image/hotel1.jpg" alt="" />
+            <img src="./mypage/custom-image/hotel1.jpg" alt="" />
           </div>
           <div class="details">
             <h4 class="d-flex justify-content-between">
