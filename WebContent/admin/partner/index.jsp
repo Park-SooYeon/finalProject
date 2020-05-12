@@ -7,7 +7,7 @@
 		inc = request.getParameter("inc");
 	}	
 %>
-	<%@include file="../partials/header.jsp" %>
+	<%@include file="../partials/header_partner.jsp" %>
 	<div class="content-wrapper">
 	    <!-- Page Title Header Starts-->
 	    <jsp:include page="<%=inc %>"></jsp:include>
