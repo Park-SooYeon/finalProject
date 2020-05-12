@@ -9,6 +9,8 @@
 	============================= 05. sweetalert
 	============================= 06. dropdown
 	============================= 07. checkbox
+	============================= 08. dropify
+	============================= 09. logo
 	
 */
 
@@ -168,6 +170,13 @@ div.dt-buttons {
 
 
 /*
-	08.dropify
+	08. dropify
 */
 .modal .dropify-wrapper { height: 130px;}
+
+
+/*
+	09. logo
+*/
+
+.navbar.default-layout .navbar-brand-wrapper .navbar-brand img {width: 140px;}
