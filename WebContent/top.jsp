@@ -21,6 +21,7 @@
 					</li>
 					<li><a href="./?inc=membership/login.jsp">로그인</a></li>
 					<li><a href="./?inc=membership/memberJoin.jsp">회원가입</a></li>
+					<li><a href="./?inc=membership/partnerJoin.jsp">파트너 등록하기</a></li>
 				</ul>
 			</nav>
 			<!-- #nav-menu-container -->
@@ -30,11 +31,12 @@
 		<div class="row align-items-center justify-content-between d-flex">
 			<nav id="top-menu-container">
 				<ul class="top-menu">
-					<li><a href="#">호텔</a></li>
+					<li><a href="./?inc=hotel/hotelMain.jsp">호텔</a></li>
 					<li><a href="./?inc=commonPage/menuMain.jsp">즐길거리</a></li>
 					<li><a href="#">음식점</a></li>
 					<li><a href="#">축제</a></li>
 					<li><a href="#">렌트카</a></li>
+					<li><a href="#">관리자 페이지</a></li>
 				</ul>
 			</nav>
 		</div>

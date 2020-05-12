@@ -41,10 +41,27 @@
 </head>
 <body>
 
+<section class="banner-area relative">
+	<div class="container pt-50">
+		<div class="row d-flex justify-content-center align-items-center"
+			style="height: 250px">
+			<div class="menu-content col-lg-8">
+				<div class="title text-center">
+					<h1 class="text-white mb-10">로그인</h1>
+				</div>
+			
+			</div>
+		</div>
+	</div>
+</section>
+
+	
 	
 	<div class="container">
 		<div class="col-lg-7 offset-lg-3">
 			<div class="jumbotron" style="padding-top: 20px; background: white">
+				
+				
 				<form method="post" name="frm_ms" id="frm_ms"></form>
 
 				<div class="form-group col-lg-10">
@@ -74,7 +91,7 @@
 						</div>
 						
 						<div class="offset-6 ">
-						<a href="memberJoin.jsp" >비밀번호 찾기</a>
+						<a href="./membership/findPwd.jsp" >비밀번호 찾기</a>
 						</div>
 						
 						
@@ -88,7 +105,7 @@
 				</div>
         <br>
              <div class="col-lg-7 offset-lg-3">
-             <label>아직 회원이 아니신가요? </label><a href="memberJoin.jsp" >&nbsp;&nbsp;회원가입</a>
+             <label>아직 회원이 아니신가요? </label><a href="./membership/memberJoin.jsp" >&nbsp;&nbsp;회원가입</a>
              </div>
 
 
