@@ -126,7 +126,7 @@ ul {
 			   공유하기 <span class="caret"></span>
 			  </button>
 			  <div class="dropdown-menu" role="menu">
-			   <div id="kakao-link-btn" href="javascript:sendLink()" style="">
+			   <div id="kakao-link-btn" href="javascript:sendLink()" style="cursor: pointer">
 					<img src="//developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_medium.png" style='width:18px;padding-left:3px;'/>카카오톡
 				</div>
 				<span>
@@ -159,9 +159,9 @@ ul {
 		<div class='preinfo' style='font-size:18px'>
 			<span><i class="fa fa-location-arrow" style="margin-right: 3px" aria-hidden="true"></i>주소: 서울트윽벼얼시 조오옹로구우  </span>
 			<span><i class="fa fa-mobile"style="margin-right: 3px" aria-hidden="true"></i>연락처: 02-222-2222</span><br/>
-			<div class="clearfix"><i class="fa fa-desktop"style="margin-right: 3px" aria-hidden="true"></i>홈페이지 
-				<a href='http://localhost:8888/review/review.jsp'>http://localhost:8888/review/review.jsp</a>
-				<span><i class="fa fa-clock-o"style="margin-right: 3px" aria-hidden="true"></i>오픈:10:00, 마감22:00 ,휴일 (일요일)</span>
+			<div class="clearfix"><i class="fa fa-desktop"  style="margin-right:3px;margin-top: 10px; 3px" aria-hidden="true"></i>홈페이지 
+				<a href='http://localhost:8888/review/review.jsp' style="margin-right:5px">http://localhost:8888/review/review.jsp</a>
+				<span><i class="fa fa-clock-o "style="margin-right: 3px" aria-hidden="true"></i>오픈:10:00, 마감22:00 ,휴일 (일요일)</span>
 			</div>
 			
 		</div>
