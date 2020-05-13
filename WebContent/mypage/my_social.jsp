@@ -16,10 +16,29 @@
     <meta charset="UTF-8" />
     <!-- Site Title -->
     <title>Travel</title>
-<link rel="stylesheet" href="./css/custom.css">
+    <link rel="stylesheet" href="./css/custom.css" />
+    <style>
+      .drag-over {
+        background-color: #ff0;
+      }
+      .thumb {
+        width: 200px;
+        height: 200px;
+        overflow:hidden;
+        padding: 5px;
+        float: left;
+      }
+      .thumb > img {
+        width: 100%;
+      }
+      .thumb > .close {
+        position: absolute;
+        background-color: red;
+        cursor: pointer;
+      }
+    </style>
   </head>
   <body>
-
     <!-- start banner Area -->
     <section class="relative about-banner" style="z-index: -1;">
       <div class="container">
@@ -127,7 +146,9 @@
               <div class="single-sidebar-widget user-info-widget profile-detail">
                 <a href="#"><h4 class="my-3">여행경험을 공유하세요!</h4></a>
                 <ul>
-                  <li><i class="fa fa-camera" aria-hidden="true"></i> 사진 게시</li>
+                  <li data-toggle="modal" data-target="#mp-uploadModal">
+                    <i class="fa fa-camera" aria-hidden="true"></i> 사진 게시
+                  </li>
                   <li><i class="fa fa-edit"></i> 리뷰 작성하기</li>
                 </ul>
               </div>
@@ -526,6 +547,43 @@
                 </form>
               </div>
             </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+            <button type="submit" class="btn btn-primary" data-dismiss="modal" id="btnCreateTrip">수정</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 사진 & 리뷰 작성 모달 -->
+    <div
+      class="modal fade"
+      id="mp-uploadModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="mp-uploadModallabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document" style="max-width: 730px;">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="mp-uploadModalLabel">사진 업로드하기</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body" style="color: #000; padding: 2rem 2rem;">
+
+			<div id="drop" class="mp-drop p-3" style="background:#eee; text-align:center; overflow:auto;">
+			<div class="mp-upload-top" style="line-height: 65px;">
+			<button type="button" class="btn btn-secondary">사진업로드</button>
+			<br/>또는<br/> <h5>데스크톱에서 파일을 끌어오세요.</h5>
+			</div>
+			<div id="thumbnails">
+			</div>
+			</div>
+
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
