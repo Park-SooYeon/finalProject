@@ -1054,12 +1054,13 @@ input[name="searchPlace"]::placeholder {
   color: #343a40;
 }
 
-.mp-hotel-date-in,
+.mp-hotel-date-in, 
 .mp-hotel-date-out {
   color: #343a40;
-  font-size: 16px;
+  font-size: 17px;
   font-weight: bold;
 }
+
 
 /* trip customizing media query*/
 @media (max-width: 1200px) {
