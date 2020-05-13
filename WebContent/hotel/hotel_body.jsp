@@ -66,10 +66,10 @@
 									<input type="number" min="1" max="20" class="form-control" name="adults" placeholder="인원 " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Adults '">
 									</div>
 									
-								
+								     <div>
 										<button class="btn btn-primary" style="width: 15%; height: 40px;"
-									type="submit"><i class="fa fa-search"></i></button>
-													
+									type="submit"><i class="fa fa-search"></i>예약하기 </button>
+									</div>				
 								</form>		
 				</div>
 			</div>

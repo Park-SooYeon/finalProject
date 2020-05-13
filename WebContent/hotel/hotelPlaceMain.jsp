@@ -2,28 +2,44 @@
 	pageEncoding="UTF-8"%>
 <link rel="stylesheet" href="css/main.css">
 <script src="lib/jquery-3.4.1.js"></script>
+
 <!-- start banner Area -->
 <section class="banner-area relative">
-	<div class="container pt-50">
+	<div class="container pt-50 mb-30">
 		<div class="row d-flex justify-content-center align-items-center"
 			style="height: 250px">
-			<div class="menu-content col-lg-8">
+			<div class="menu-content col-lg-12">
 				<div class="title text-center">
-					<h1 class="text-white mb-10">지역명</h1>
+					<h1 class="text-white mb-10">호텔 상세보기 (지역)</h1>
+					<form  method="post" name="frm_ms" id="frm_ms" class="row" >
+	                        <div class="col-lg-2  col-md-12 ">
+									<input type="text" class="form-control" name="name" placeholder="From " onfocus="this.placeholder = ''" onblur="this.placeholder = 'From '" value="지역">									
+									</div>
+									<div class="col-lg-3  " >
+									<input type="text" class="form-control date-picker" name="start" placeholder="Start " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Start '">
+									</div>
+									<div class="col-lg-3">
+									<input type="text" class="form-control date-picker" name="return" placeholder="Return " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Return '">
+									</div>
+									<div class="col-lg-2  ">
+									<input type="number" min="1" max="20" class="form-control" name="adults" placeholder="인원 " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Adults '">
+									</div>
+									
+								
+										<button class="btn btn-primary" style="width: 15%; height: 40px;"
+									type="submit"><i class="fa fa-search"></i></button>
+													
+								</form>		
 				</div>
 			</div>
 		</div>
 	</div>
 </section>
 <!-- End banner Area -->
+	
 <script>
 let move = function() {
 	location.href = './?inc=commonPage/food_index.jsp';
-}
-
-
-let hotelMove = function(){
-	location.href = './?inc=hotel/hotelPlaceMain.jsp';
 }
 </script>
 <section>
@@ -32,13 +48,12 @@ let hotelMove = function(){
 			<div class="col-lg-4">
 				<div class="row">
 					<div class="col">
-						<div class="single-menu relative" onclick="hotelMove()">
+						<div class="single-menu relative">
 							<div class="thumb relative">
 								<div class="overlay overlay-bg"></div>
 							</div>
 							<div class="desc">
 								<h4>호텔</h4>
-								
 							</div>
 						</div>
 					</div>

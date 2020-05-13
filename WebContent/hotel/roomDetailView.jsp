@@ -3,15 +3,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="../template/css/linearicons.css">
-<link rel="stylesheet" type="text/css" href="../template/css/font-awesome.min.css">
-<link rel="stylesheet" type="text/css" href="../template/css/bootstrap.css">
-<link rel="stylesheet" type="text/css" href="../template/css/magnific-popup.css">
-<link rel="stylesheet" type="text/css" href="../template/css/jquery-ui.css">				
-<link rel="stylesheet" type="text/css" href="../template/css/nice-select.css">							
-<link rel="stylesheet" type="text/css" href="../template/css/animate.min.css">
-<link rel="stylesheet" type="text/css" href="../template/css/owl.carousel.css">				
-<link rel="stylesheet" type="text/css" href="../template/css/main.css">
+<link rel="stylesheet" type="text/css" href="./template/css/linearicons.css">
+<link rel="stylesheet" type="text/css" href="./template/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="./template/css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="./template/css/magnific-popup.css">
+<link rel="stylesheet" type="text/css" href="./template/css/jquery-ui.css">				
+<link rel="stylesheet" type="text/css" href="./template/css/nice-select.css">							
+<link rel="stylesheet" type="text/css" href="./template/css/animate.min.css">
+<link rel="stylesheet" type="text/css" href="./template/css/owl.carousel.css">				
+<link rel="stylesheet" type="text/css" href="./template/css/main.css">
+<link rel="stylesheet" href="./css/css_syj.css">
 
 <meta charset="UTF-8">
 <meta property="og:url"           content="https://www.naver.com/" />
@@ -21,7 +22,8 @@
 <meta property="og:image"         content="https://www.your-domain.com/path/image.jpg" />
 
 <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
-<script  src='../lib/jquery-3.4.1.js'></script>
+<script  src='./lib/jquery-3.4.1.js'></script>
+<script  src='./js/hotel.js'></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=	a8effece1d8215cec0ceddf314763998&libraries=services,clusterer"></script>
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 
@@ -30,7 +32,7 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 
 <!-- Link Swiper's CSS -->
-  <link rel="stylesheet" href="../swiper-5.3.8/package/css/swiper.min.css">
+  <link rel="stylesheet" href="./swiper-5.3.8/package/css/swiper.min.css">
   
 <style>
 ul { 
@@ -106,7 +108,7 @@ ul {
 			style="height: 250px">
 			<div class="menu-content col-lg-12">
 				<div class="title text-center">
-					<h1 class="text-white mb-10">호텔 상세보기</h1>
+					<h1 class="text-white mb-10">객실 상세보기</h1>
 					<form  method="post" name="frm_ms" id="frm_ms" class="row" >
 	                        <div class="col-lg-2  col-md-12 ">
 									<input type="text" class="form-control" name="name" placeholder="From " onfocus="this.placeholder = ''" onblur="this.placeholder = 'From '">									
@@ -222,6 +224,12 @@ ul {
 				   		<img class="swiper-slide" src="../images/festival/10.png"style="background-image"/>				    </div>
 				  </div>
 				
+				
+				
+				
+				
+				
+				
 				<div >
 					<h3>평가</h3>
 					<div class="clearfix">
@@ -270,6 +278,19 @@ ul {
 							일반음식점<br/>
 						</div>
 					</div>
+					
+					
+				
+					
+					
+						
+							<div class="col-lg-7 offset-lg-3">
+					<input type="button" class="genric-btn info min-width-350  e-large"
+						value="예약하러 가기" id="btnReserv" onclick="ReservMove()"><br>
+				</div>
+						
+						
+						
 				
 				</div><br/>
 				<div id="map" style="width:100%;height:400px;"></div>	
