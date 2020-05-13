@@ -13,7 +13,7 @@
                                 </div>
 
                                 <div class="ml-auto d-flex align-items-stretch justify-content-end">
-                                    <a href="./rent_car_add.jsp" class="btn btn-inverse-primary no-wrap ml-4">차량등록</a>
+                                    <a href="./?inc=rent_car_add.jsp" class="btn btn-inverse-primary no-wrap ml-4">차량등록</a>
                                 </div>
                             </div>
                             <div id="order-listing_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
