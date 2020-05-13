@@ -40,12 +40,12 @@
 
 					
 					<div class="form-left-w3l">
-						<input id="mainRent" class='datepicker-here' data-timepicker="true" data-language='en' name="text1" type="text" placeholder="차량인수일  &" required="">
+						<input id="mainRent" class='datepicker-here' data-timepicker="true" data-language='en' name="text1" type="text" placeholder="차량인수일 " required="">
 						
 						<div class="clear"></div>
 					</div>
 					<div class="form-left-w3l">
-						<input id="mainReturn" class='datepicker-here' data-timepicker="true" data-language='en' name="text2" type="text" placeholder="차량반납일  &" required="">
+						<input id="mainReturn" class='datepicker-here' data-timepicker="true" data-language='en' name="text2" type="text" placeholder="차량반납일 " required="">
 						
 						<div class="clear"></div>
 					</div>
@@ -89,7 +89,7 @@
 							<option value="서울">서울</option>
 							<option value="부산">부산</option>
 							<option value="대구">대구</option>
-							<option value="안천">인천</option>
+							<option value="인천">인천</option>
 							<option value="광주">광주</option>
 							<option value="대전">대전</option>
 							<option value="울산">울산</option>
