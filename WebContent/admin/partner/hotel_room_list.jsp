@@ -13,7 +13,7 @@
                                 </div>
 
                                 <div class="ml-auto d-flex align-items-stretch justify-content-end">
-                                    <a href="./hotel_room_add.jsp" class="btn btn-inverse-primary no-wrap ml-4">객실등록</a>
+                                    <a href="./?inc=hotel_room_add.jsp" class="btn btn-inverse-primary no-wrap ml-4">객실등록</a>
                                 </div>
                             </div>
                             <div id="order-listing_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
