@@ -8,8 +8,8 @@
 			</div>
 
 			<nav id="nav-menu-container">
-				<ul class="nav-menu">
-					<li>
+				<ul class="nav-menu" style="line-height: 43px;">
+					<li class="mt-2">
 						<form class="form-inline my-2 my-lg-0">
 							<input class="form-control mr-sm-2" type="search" style="width: 80%;"
 								placeholder="지역, 관광지 검색" onfocus="this.placeholder = ''"
@@ -22,8 +22,20 @@
 					<li><a href="./?inc=membership/login.jsp">로그인</a></li>
 					<li><a href="./?inc=membership/memberJoin.jsp">회원가입</a></li>
 					<li><a href="./?inc=membership/partnerJoin.jsp">파트너 등록하기</a></li>
-					<li><a href="./?inc=mypage/my_list.jsp">mypage1</a></li>
-					<li><a href="./?inc=mypage/my_social.jsp">mypage2</a></li>
+					
+					<li>
+					<div class="main-profile">
+					<img class="rounded-circle" width="100%" src="template/img/blog/c1.jpg">
+					</div>
+					<ul class="main-pro-menu">
+					<li><a><span>안주현 </span>님</a></li>
+					<hr/>
+					<li><a href="./?inc=mypage/my_social.jsp">프로필 보기</a></li>
+					<li><a href="./?inc=mypage/my_page.jsp">예약내역 확인</a></li>
+					<li><a href="./?inc=mypage/my_list.jsp">My Trip</a></li>
+					</ul>
+					</li>
+				
 				</ul>
 			</nav>
 			<!-- #nav-menu-container -->

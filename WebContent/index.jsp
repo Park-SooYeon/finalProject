@@ -78,5 +78,6 @@
 	<!-- mypage js -->
 	<script src="js/my_social.js"></script>
 	<script src="js/trip_list.js"></script>
+	<script src="js/my_page.js"></script>
 </body>
 </html>

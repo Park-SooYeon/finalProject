@@ -215,8 +215,8 @@ p {
   right: -17px;
   top: 36px;
   z-index: 2;
-  display: none;
   cursor: pointer;
+  display:none;
 }
 
 .ellipsis-menu:before {

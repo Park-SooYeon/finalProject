@@ -22,7 +22,6 @@
 
     <!-- start banner Area -->
     <section class="relative about-banner" style="z-index: -1;">
-      <div class="overlay overlay-bg"></div>
       <div class="container">
         <div class="row d-flex align-items-center justify-content-center">
           <div class="about-content col-lg-12"></div>

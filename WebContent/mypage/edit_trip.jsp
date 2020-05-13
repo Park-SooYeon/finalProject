@@ -546,7 +546,7 @@
         </div>
       </div>
 
-      <div id="map" class="my-main-map" style="width: 100%; height: 100%;"></div>
+      <div id="mp-map" class="my-main-map" style="width: 100%; height: 100%;"></div>
     </div>
     <!-- 전체 wrapper -->
 
