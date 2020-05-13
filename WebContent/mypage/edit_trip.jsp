@@ -374,8 +374,25 @@
       <!-- depth 2 -->
       <div id="right-full-box" style="display: none;">
         <div class="title-box" style="background: #1a7ad9;">
-          <span>서울</span>
-          <span class="list-title-option-menu pull-right mt-10" data-is_open="off"> 도시변경 🔽 </span>
+          <div class="default-select" id="default-select">
+				<select style="display: none;">
+					<option value="1">서울</option>
+					<option value="1">제주도</option>
+					<option value="1">부산</option>
+					<option value="1">경주</option>
+					<option value="1">강릉</option>
+					<option value="1">여수</option>
+				</select><div class="nice-select" tabindex="0"><span class="current">도시선택</span>
+				<ul class="list">
+				<li data-value="1" class="option selected focus">서울</li>
+				<li data-value="2" class="option">제주도</li>
+				<li data-value="3" class="option">부산</li>
+				<li data-value="4" class="option">경주</li>
+				<li data-value="5" class="option">강릉</li>
+				<li data-value="6" class="option">여수</li>
+</ul></div>
+			</div>
+			
           <button type="button" id="on-city-close-btn">
             <i class="fas fa-chevron-left"></i>
           </button>
@@ -420,15 +437,6 @@
               <div class="list-cat-item rounded-circle" data="4">
                 <span class="fas fa-bed search-cat-icon"></span>
               </div>
-            </div>
-            <div class="flex flex-center">
-              <select class="form-control" id="sel1" name="sellist1">
-                <option>검색옵션 선택</option>
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-              </select>
             </div>
           </div>
         </div>
