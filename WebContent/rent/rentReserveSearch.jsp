@@ -235,7 +235,7 @@
 					<div class='row'>
 						<div id='arrive_1' class='col-lg-6 col-md-6 col-sm-6 col-xs-6'>
 							<div>고객님 의 후기 (별점) ></div>
-							<span>8.9 "훌륭함"</span>
+							<span>-</span>
 						</div>
 						<div id='depart_2' class='col-lg-6 col-md-6 col-sm-6 col-xs-6 '>
 							<button type="button" class="btn btn-primary " data-toggle="modal" data-target="#MRT-001">후기 작성하기</button>
@@ -529,10 +529,10 @@
 					<div class='row'>
 						<div id='arrive_1' class='col-lg-6 col-md-6 col-sm-6 col-xs-6'>
 							<div>고객님 의 후기 (별점) ></div>
-							<span> - </span>
+							<span>8.9 "훌륭함"</span>
 						</div>
 						<div id='depart_2' class='col-lg-6 col-md-6 col-sm-6 col-xs-6 '>
-							<button type="button" class="btn btn-primary" disabled="disabled">후기 작성하기</button>
+							<button type="button" class="btn btn-primary" disabled="disabled">후기 작성완료</button>
 						</div>
 					</div>
 				</div>
