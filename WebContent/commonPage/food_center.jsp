@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<div class="col-md-12" id="widthsort_list">
+<div class="col-md-12" id="widthsort_list" onclick="detailMove()">
   <div class="row">
 	<div class="col-md-3">
 		<img src="template/img/elements/d.jpg" alt="" class="img-fluid">
 	</div>	
-	<div class="col-md-9 mt-sm-20 left-align-p" >	
+	<div class="col-md-9 mt-sm-20 left-align-p">	
 	    <span>1(순번). 업체명</span></br>
 	    <div style="width: 30px; float: left;">별점</div>	    
 	    <div class="rating" data-rate="4" style="float: left;">	    
@@ -27,7 +27,7 @@
   </div>
 </div>
 
-<div class="col-md-3" id="cardsort_list">
+<div class="col-md-3" id="cardsort_list" onclick="detailMove()">
 	<div class="col-md-12">
 		<img src="template/img/elements/d.jpg" alt="" class="img-fluid">
 	</div>
