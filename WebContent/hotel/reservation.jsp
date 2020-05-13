@@ -49,7 +49,21 @@ padding-bottom:5px;
 </style>
 </head>
 <body>
-
+<!-- start banner Area -->
+<section class="banner-area relative">
+	<div class="container pt-50 mb-30">
+		<div class="row d-flex justify-content-center align-items-center"
+			style="height: 250px">
+			<div class="menu-content col-lg-12">
+				<div class="title text-center">
+					<h1 class="text-white mb-10"> 호텔 예약하기</h1>
+				
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- End banner Area -->
 
 
 <div class="container">
@@ -159,9 +173,10 @@ padding-bottom:5px;
 						&nbsp;	&nbsp;	
 						<input type="button" class="genric-btn info min-width-180  e-large"
 						value="예약하기" id="btnReservation"><br>
-			
+			       
 						
                        </div>
+                      
             </div>
 				
 			</div>		
