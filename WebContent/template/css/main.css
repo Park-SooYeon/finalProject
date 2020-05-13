@@ -2139,7 +2139,7 @@ h1, h2, h3, h4, h5, h6 {
 	list-style: none;
 }
 
-.nav-menu ul {
+.nav-menu ul:not(.main-pro-menu) {
 	position: absolute;
 	display: none;
 	top: 100%;
@@ -4923,4 +4923,65 @@ body.mobile-nav-active #mobile-nav-toggle {
 .main-location .location-div {
 	position: absolute;
 	top : 90%;
+}
+
+
+/* 메인 - top mypage 프로필 */
+.main-profile{
+	width: 40px;
+    height: 40px;
+    border: 2px solid #eee;
+    text-align: center;
+    line-height: 35px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.main-pro-menu{
+    position: absolute;
+    width: 9rem;
+    padding: 0 15px;
+    background-color: #fff;
+    border: 1px solid #c1c1c1;
+    border-radius: 4px;
+    line-height: 35px;
+    vertical-align: middle;
+    right: -24px;
+    top: 39px;
+    z-index: 2;
+    /*display: block !important;*/
+    display: none;
+    cursor: pointer;
+}
+
+.main-pro-menu li a{
+	font-weight: bold;
+    font-size: 15px !important;
+    padding: 2px !important;
+}
+
+.main-pro-menu:before {
+  content: "";
+  position: absolute;
+  left: 90px;
+  top: -42px;
+  z-index: 2;
+  width: 15px;
+  height: 41px;
+  border-bottom: solid 11px #c1c1c1;
+  border-left: solid 11px transparent;
+  border-right: solid 12px transparent;
+}
+
+.main-pro-menu:after {
+  content: "";
+  position: absolute;
+  left: 91px;
+  top: -41px;
+  z-index: 2;
+  width: 15px;
+  height: 41px;
+  border-bottom: solid 10px white;
+  border-left: solid 10px transparent;
+  border-right: solid 11px transparent;
 }

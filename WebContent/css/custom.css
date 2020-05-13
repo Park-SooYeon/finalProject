@@ -215,8 +215,8 @@ p {
   right: -17px;
   top: 36px;
   z-index: 2;
-  display: none;
   cursor: pointer;
+  display:none;
 }
 
 .ellipsis-menu:before {
@@ -944,8 +944,124 @@ input[name="searchPlace"]::placeholder {
   width: 2.7em;
 }
 
-/* trip customizing media query*/
+/* my_page.jsp */
+.mp-border-wrapper {
+  background: #ffffff;
+  padding: 20px 0px;
+}
 
+.mp-side-li {
+  border-top: 1px solid #e9ecef;
+  display: block;
+  height: 60px;
+  line-height: 60px;
+  position: relative;
+  padding: 0 2rem;
+  font-size: 16px;
+  cursor: pointer;
+  z-index: 3;
+}
+
+.mp-side-li.on {
+  border-left: 4px solid #51abf3;
+  color: #343a40;
+  font-weight: bold;
+  padding: 0 32px 0 28px;
+}
+
+.mp-li-text {
+  color: #343a40;
+  display: inline-block;
+}
+
+.mp-side-li.on .mp-li-cnt {
+  background-color: #51abf3;
+  color: #fff;
+  border-radius: 2px;
+  line-height: 19px;
+  height: 19px;
+  margin: 21px 0;
+  position: absolute;
+  right: 36px;
+  text-align: center;
+  width: auto;
+  padding: 0 4px;
+  font-weight: lighter;
+}
+
+.mp-li-cnt {
+  display: inline-block;
+  border-radius: 2px;
+  line-height: 19px;
+  height: 19px;
+  margin: 21px 0;
+  position: absolute;
+  right: 36px;
+  text-align: center;
+  width: auto;
+  padding: 0 4px;
+}
+
+.mp-body-single {
+  background: #fff;
+  border: 1px solid #eee;
+  margin-bottom: 15px;
+  padding: 1rem 1.8rem 1rem 1.8rem;
+  height: 100%;
+}
+
+.mp-img {
+  width: 26%;
+  height: 16vh;
+  overflow: hidden;
+  padding: 0;
+}
+
+.mp-img img {
+  width: 100%;
+}
+
+.mp-inner {
+  padding: 0 0.6rem;
+  color: #343a40;
+}
+
+.mp-hotel-name {
+  font-size: 1.3rem;
+  line-height: 2.5rem;
+  font-weight: bold;
+}
+
+.mp-hotel-no {
+  font-size: 1rem;
+  line-height: 2rem;
+}
+.mp-hotel-desc {
+  font-size: 1rem;
+  line-height: 1rem;
+}
+
+.mp-hotel-no span {
+  font-weight: 450;
+}
+
+.mp-hotel-price {
+  font-size: 1.5rem;
+  font-weight: 550;
+  position: absolute;
+  bottom: -4px;
+  right: 32px;
+  color: #343a40;
+}
+
+.mp-hotel-date-in,
+.mp-hotel-date-out {
+  color: #343a40;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+/* trip customizing media query*/
 @media (max-width: 1200px) {
   .posts-list {
     height: 37rem;
