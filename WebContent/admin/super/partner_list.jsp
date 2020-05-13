@@ -42,7 +42,7 @@
                                            <td>234</td>
                                            <td>abc@domain.com</td>
                                            <td>
-                                               <a class="btn btn-outline-primary" href="./partner_view.jsp">View</a>
+                                               <a class="btn btn-outline-primary" href="./?inc=partner_view.jsp">View</a>
                                            </td>
                                        </tr>
                                        <tr>
@@ -60,7 +60,7 @@
                                            <td>46</td>
                                            <td>abc@domain.com</td>
                                            <td>
-                                               <a class="btn btn-outline-primary" href="./partner_view.jsp">View</a>
+                                               <a class="btn btn-outline-primary" href="./?inc=partner_view.jsp">View</a>
                                            </td>
                                        </tr>
                                        <tr>
@@ -78,7 +78,7 @@
                                            <td>35</td>
                                            <td>abc@domain.com</td>
                                            <td>
-                                               <a class="btn btn-outline-primary" href="./partner_view.jsp">View</a>
+                                               <a class="btn btn-outline-primary" href="./?inc=partner_view.jsp">View</a>
                                            </td>
                                        </tr>
                                        <tr>
@@ -96,7 +96,7 @@
                                            <td>46</td>
                                            <td>abc@domain.com</td>
                                            <td>
-                                               <a class="btn btn-outline-primary" href="./partner_view.jsp">View</a>
+                                               <a class="btn btn-outline-primary" href="./?inc=partner_view.jsp">View</a>
                                            </td>
                                        </tr>
                                        <tr>
@@ -114,7 +114,7 @@
                                            <td>46</td>
                                            <td>abc@domain.com</td>
                                            <td>
-                                               <a class="btn btn-outline-primary" href="./partner_view.jsp">View</a>
+                                               <a class="btn btn-outline-primary" href="./?inc=partner_view.jsp">View</a>
                                            </td>
                                        </tr>
                                        <tr>
@@ -132,7 +132,7 @@
                                            <td>46</td>
                                            <td>abc@domain.com</td>
                                            <td>
-                                               <a class="btn btn-outline-primary" href="./partner_view.jsp">View</a>
+                                               <a class="btn btn-outline-primary" href="./?inc=partner_view.jsp">View</a>
                                            </td>
                                        </tr>
                                        <tr>
@@ -150,7 +150,7 @@
                                            <td>46</td>
                                            <td>abc@domain.com</td>
                                            <td>
-                                               <a class="btn btn-outline-primary" href="./partner_view.jsp">View</a>
+                                               <a class="btn btn-outline-primary" href="./?inc=partner_view.jsp">View</a>
                                            </td>
                                        </tr>
                                        <tr>
@@ -168,7 +168,7 @@
                                            <td>46</td>
                                            <td>abc@domain.com</td>
                                            <td>
-                                               <a class="btn btn-outline-primary" href="./partner_view.jsp">View</a>
+                                               <a class="btn btn-outline-primary" href="./?inc=partner_view.jsp">View</a>
                                            </td>
                                        </tr>
                                        <tr>
@@ -186,7 +186,7 @@
                                            <td>46</td>
                                            <td>abc@domain.com</td>
                                            <td>
-                                               <a class="btn btn-outline-primary" href="./partner_view.jsp">View</a>
+                                               <a class="btn btn-outline-primary" href="./?inc=partner_view.jsp">View</a>
                                            </td>
                                        </tr>
                                    </tbody>
