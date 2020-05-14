@@ -15,10 +15,10 @@ let roomDetailMove = function() {
 								<img src="template/img/packages/d4.jpg" alt="">
 			</div>
 				<div class="col-md-6">		
-								<h4>Holiday Sea beach Blue Ocean</h4>
+								<h3>Holiday Sea beach Blue Ocean</h3>
 								<label>위치</label>
 								
-								
+								<br>
 						
 								<div class="tags"> 
 								       <div>
@@ -43,7 +43,7 @@ let roomDetailMove = function() {
 	            
 	                <br>
 	                <br>
-	                <h4>최저가 nnnnn원  ~ 최고가 </h4>
+	                <label style="font-size:20px;">최저가 nnnnnn원  ~ 최고가 nnnnnn원 </label>
 	            
 	    
 	        

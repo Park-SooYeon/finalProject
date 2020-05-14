@@ -83,12 +83,7 @@
 			<div class="jumbotron" style="padding-top: 20px; background: white">
 				<form method="post" name="frm" id="frm"></form>
 
-				<div class="form-group col-lg-10">
-
-					<label>회사 로고</label> 
-						<%-- <jsp:include page='../happy/fileUpload.jsp'/>  --%>
-
-				</div>
+		
 				<div class="form-group col-lg-10">
 			<div class="single-element-widget">
 									<label>회사 종류</label>
