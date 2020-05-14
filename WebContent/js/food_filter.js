@@ -1,7 +1,7 @@
 var food_filter={}
 
-$('#widthsort_list').show();
-$('#cardsort_list').hide();
+$('.widthsort_list').show();
+$('.cardsort_list').hide();
 
 food_filter.func = function(){
 //필터옵션 전체해제
@@ -194,12 +194,12 @@ food_filter.func = function(){
 	
 	//카드형, 리스트형 정렬방법 버튼
 	$('#cardsort').click(function(){
-		$('#widthsort_list').hide();
-		$('#cardsort_list').show();
+		$('.widthsort_list').hide();
+		$('.cardsort_list').show();
 	});
 	$('#widthsort').click(function(){
-		$('#widthsort_list').show();
-		$('#cardsort_list').hide();
+		$('.widthsort_list').show();
+		$('.cardsort_list').hide();
 	});
 	
 }
