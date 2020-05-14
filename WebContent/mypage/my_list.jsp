@@ -58,7 +58,8 @@
         						<button class="dropdown-item">여행 (공개)</button>
       						</div>
 		                    
-		                    <button class="btn" onclick="location.href='./?inc=mypage/my_list.jsp?list=like_list.jsp'"><i class="fa fa-heart"></i> 관심 리스트</button>
+		                    <button class="btn" onclick="location.href='./?inc=mypage/my_list.jsp?list=like_list.jsp'"><i class="fa fa-heart"></i> 전체보기</button>
+		                    <button class="btn" onclick="location.href='./?inc=mypage/my_list.jsp?list=like_list.jsp'"><i class="fa fa-thumbs-o-up"></i> 추천한 리뷰</button>
 		                    <button class="btn add-new-trip" data-toggle="modal" data-target="#newTripModal" style="display:none;" id="addTripBtn">여행 추가</button>
 		                </div>
 		            </div>

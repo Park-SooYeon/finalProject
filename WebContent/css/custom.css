@@ -786,7 +786,7 @@ p {
 }
 
 .list-cat-item {
-  margin: 0 15px;
+  margin: 0 8px;
   text-align: center;
   cursor: pointer;
   border: 2px solid rgb(182, 181, 181);
@@ -798,6 +798,10 @@ p {
 .list-cat-item.on {
   color: #ff9320;
   border-color: #ff9320;
+}
+
+.list-cat-item.on svg{
+	color: #ff9320 !important;
 }
 
 .list-cat-item img {
