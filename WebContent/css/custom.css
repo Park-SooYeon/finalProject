@@ -4,6 +4,10 @@ mypage css
 */
 
 /* my-social css */
+.post-wrapper strong {
+  font-weight: 550;
+}
+
 .profile {
   padding-bottom: 20px;
   padding-top: 20px;
@@ -93,7 +97,15 @@ p {
   background: #ffffff;
   border: 1px solid #eee;
   padding: 5px 30px;
-  height: 41rem;
+  height: 41.7rem;
+  margin-bottom: 15px;
+}
+
+.posts-review {
+  background: #ffffff;
+  border: 1px solid #eee;
+  padding: 5px 30px;
+  height: 25.5rem;
   margin-bottom: 15px;
 }
 
@@ -119,6 +131,7 @@ p {
 
 .travel-box {
   zoom: 1;
+  overflow: hidden;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
@@ -216,7 +229,7 @@ p {
   top: 36px;
   z-index: 2;
   cursor: pointer;
-  display:none;
+  display: none;
 }
 
 .ellipsis-menu:before {
@@ -247,7 +260,8 @@ p {
 
 /* social : 도움이 됐어요, 공유하기*/
 .social-like,
-.social-share {
+.social-share,
+.social-save {
   cursor: pointer;
 }
 
@@ -570,7 +584,7 @@ p {
 }
 
 .title-box {
-  display:flex;
+  display: flex;
   position: relative;
   width: 100%;
   height: 50px;
@@ -583,14 +597,14 @@ p {
   border-bottom: #a1a1a1 1px solid;
 }
 
-.title-box #default-select .nice-select{
-	background:transparent;
-	line-height: 45px;
+.title-box #default-select .nice-select {
+  background: transparent;
+  line-height: 45px;
 }
 
-.title-box .list{
-    background: #164C88;
-	margin-top:9px !important;
+.title-box .list {
+  background: #164c88;
+  margin-top: 9px !important;
 }
 
 /* depth1 */
@@ -800,8 +814,8 @@ p {
   border-color: #ff9320;
 }
 
-.list-cat-item.on svg{
-	color: #ff9320 !important;
+.list-cat-item.on svg {
+  color: #ff9320 !important;
 }
 
 .list-cat-item img {
@@ -1069,30 +1083,69 @@ input[name="searchPlace"]::placeholder {
   color: #343a40;
 }
 
-.mp-hotel-date-in, 
+.mp-hotel-date-in,
 .mp-hotel-date-out {
   color: #343a40;
   font-size: 17px;
   font-weight: bold;
 }
 
-
 /* trip customizing map */
-.dot {overflow:hidden;float:left;width:12px;height:12px;background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/mini_circle.png');}    
-.dotOverlay {position:relative;bottom:10px;border-radius:6px;border: 1px solid #ccc;border-bottom:2px solid #ddd;float:left;font-size:12px;padding:5px;background:#fff;}
-.dotOverlay:nth-of-type(n) {border:0; box-shadow:0px 1px 2px #888;}    
-.number {font-weight:bold;color:#ee6152;}
-.dotOverlay:after {content:'';position:absolute;margin-left:-6px;left:50%;bottom:-8px;width:11px;height:8px;background:url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white_small.png')}
-.distanceInfo {position:relative;top:5px;left:5px;list-style:none;margin:0;}
-.distanceInfo .label {display:inline-block;width:50px;}
-.distanceInfo:after {content:none;}
-
-
+.dot {
+  overflow: hidden;
+  float: left;
+  width: 12px;
+  height: 12px;
+  background: url("https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/mini_circle.png");
+}
+.dotOverlay {
+  position: relative;
+  bottom: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  border-bottom: 2px solid #ddd;
+  float: left;
+  font-size: 12px;
+  padding: 5px;
+  background: #fff;
+}
+.dotOverlay:nth-of-type(n) {
+  border: 0;
+  box-shadow: 0px 1px 2px #888;
+}
+.number {
+  font-weight: bold;
+  color: #ee6152;
+}
+.dotOverlay:after {
+  content: "";
+  position: absolute;
+  margin-left: -6px;
+  left: 50%;
+  bottom: -8px;
+  width: 11px;
+  height: 8px;
+  background: url("https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white_small.png");
+}
+.distanceInfo {
+  position: relative;
+  top: 5px;
+  left: 5px;
+  list-style: none;
+  margin: 0;
+}
+.distanceInfo .label {
+  display: inline-block;
+  width: 50px;
+}
+.distanceInfo:after {
+  content: none;
+}
 
 /* trip customizing media query*/
 @media (max-width: 1200px) {
   .posts-list {
-    height: 37rem;
+    height: 41.8rem;
   }
 }
 
@@ -1107,7 +1160,7 @@ input[name="searchPlace"]::placeholder {
     display: none;
   }
   .posts-list {
-    height: 37rem;
+    height: 41.5rem;
   }
 }
 
@@ -1157,7 +1210,7 @@ input[name="searchPlace"]::placeholder {
   }
 
   .posts-list {
-    height: 62vh;
+    height: 88.5vh;
   }
 }
 
@@ -1185,8 +1238,13 @@ input[name="searchPlace"]::placeholder {
   }
 
   .posts-list {
-    height: 32rem;
+    height: 41.5rem;
   }
+
+  .posts-review {
+    height: 27rem;
+  }
+
   .posting-title span {
     width: 10%;
   }
@@ -1221,7 +1279,11 @@ input[name="searchPlace"]::placeholder {
     width: 85%;
   }
   .posts-list {
-    height: 32rem;
+    height: 42rem;
+  }
+
+  .posts-review {
+    height: 29rem;
   }
 }
 
@@ -1248,6 +1310,9 @@ input[name="searchPlace"]::placeholder {
     width: 80%;
   }
   .posts-list {
-    height: 30rem;
+    height: 43rem;
+  }
+  .posts-review {
+    height: 32rem;
   }
 }

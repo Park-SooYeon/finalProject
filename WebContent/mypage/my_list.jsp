@@ -44,7 +44,7 @@
 			<div class="container">
 		            <div class="row d-flex justify-content-center">
 		                <div class="button-container p-40 col-lg-8 text-center">
-		                    <button class="btn dropdown-toggle" data-toggle="dropdown">여행 리스트</button>
+		                    <button class="btn dropdown-toggle" data-toggle="dropdown"><i class="fa fa-folder-open"></i> 여행 리스트</button>
 		                    
 		                    <div class="dropdown-menu">
         						<button class="dropdown-item btn-page" id="mp-tripLock" data-page="trip_list">여행 (비공개)</button>

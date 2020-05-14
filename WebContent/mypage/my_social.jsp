@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> <%@ taglib prefix="c"
+uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
   <head>
@@ -24,7 +25,7 @@
       .thumb {
         width: 200px;
         height: 200px;
-        overflow:hidden;
+        overflow: hidden;
         padding: 5px;
         float: left;
       }
@@ -54,8 +55,8 @@
           <img class="rounded-circle profile-image" id="pro-main-img" src="./template/img/blog/c1.jpg" alt="" />
         </div>
         <span class="col-lg-7 col-md-6 col-sm-9 profile-main-detail">
-          <h2 id="pro-id">JuHyeon An</h2>
-          <span class="profile-nickname"><i class="fa fa-at" aria-hidden="true"></i> IT_Traveler</span>
+          <h2 id="pro-nick">JuHyeon An</h2>
+          <span id="pro-id"><i class="fa fa-at" aria-hidden="true"></i> IT_Traveler</span>
           <div class="row">
             <div class="col-md-12 give-a-space"></div>
           </div>
@@ -112,7 +113,7 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-3 sidebar-widgets profile-widget pl-0">
-            <div class="widget-wrap pt-0">
+            <div class="widget-wrap py-0">
               <div class="single-sidebar-widget search-widget">
                 <form class="search-form" action="#">
                   <input
@@ -146,318 +147,151 @@
               <div class="single-sidebar-widget user-info-widget profile-detail">
                 <a href="#"><h4 class="my-3">여행경험을 공유하세요!</h4></a>
                 <ul>
-                  <li data-toggle="modal" data-target="#mp-uploadModal">
-                    <i class="fa fa-camera" aria-hidden="true"></i> 사진 게시
-                  </li>
-                  <li><i class="fa fa-edit"></i> 리뷰 작성하기</li>
+                  <li><i class="fa fa-edit"></i> 리뷰 작성하러 가기</li>
                 </ul>
               </div>
             </div>
           </div>
 
+          <!--posting wrapper-->
           <div class="col-lg-9 post-wrapper" style="padding: 0;">
-            <div class="posts-list">
-              <div class="posting-title row">
-                <span class="col-xl-1 col-lg-1 col-md-1 text-center p-0">
-                  <img class="rounded-circle posting-profile" src="./template/img/blog/s-img.jpg" />
-                </span>
-                <div class="col-xl-11 col-lg-11 col-md-11 mt-1" style="position: relative;">
-                  <div>
-                    <b>JuHyeon An</b>
-                    님이 새 여행리스트를 추가했습니다.
-                    <div class="ellipsis-btn">
-                      <img width="17px" src="./images/myPage/ellipsis-h-solid.svg" /><span class="ellipsis-menu"
-                        >삭제</span
-                      >
-                    </div>
-                  </div>
-                  <small>2019년 6월 26일</small>
-                </div>
-              </div>
-              <div class="single-post row">
-                <div class="col-lg-12" style="padding-right: 0px; background: #f9f9f9; margin-bottom: 15px;">
-                  <div class="feature-img">
-                    <img class="img-fluid" src="./template/img/blog/feature-img1.jpg" alt="" />
-                  </div>
-
-                  <div class="col-lg-12 col-md-12 trip-slide">
-                    <h3 class="mt-20 mb-20">
-                      ChiangMai
-                    </h3>
-                    <div class="item-list-wrapper swiper-container" style="width: 92%;">
-                      <div class="travel-item-list swiper-wrapper">
-                        <span class="travel-box swiper-slide">
-                          <img src="./template/img/blog/pp1.jpg" />
-                          <div class="m-2">
-                            <h5>Sook Hostel</h5>
-                            <div>❤❤❤❤❤<small>3건의 리뷰</small></div>
-                            <div>치앙마이, 태국</div>
-                          </div>
-                        </span>
-                        <span class="travel-box swiper-slide">
-                          <img src="./template/img/blog/pp1.jpg" />
-                          <div class="m-2">
-                            <h5>Sook Hostel</h5>
-                            <div>❤❤❤❤❤<small>3건의 리뷰</small></div>
-                            <div>치앙마이, 태국</div>
-                          </div>
-                        </span>
-                        <span class="travel-box swiper-slide">
-                          <img src="./template/img/blog/pp1.jpg" />
-                          <div class="m-2">
-                            <h5>Sook Hostel</h5>
-                            <div>❤❤❤❤❤<small>3건의 리뷰</small></div>
-                            <div>치앙마이, 태국</div>
-                          </div>
-                        </span>
-                        <span class="travel-box swiper-slide">
-                          <img src="./template/img/blog/pp1.jpg" />
-                          <div class="m-2">
-                            <h5>Sook Hostel</h5>
-                            <div>❤❤❤❤❤<small>3건의 리뷰</small></div>
-                            <div>치앙마이, 태국</div>
-                          </div>
-                        </span>
-                        <span class="travel-box swiper-slide">
-                          <img src="./template/img/blog/pp1.jpg" />
-                          <div class="m-2">
-                            <h5>Sook Hostel</h5>
-                            <div>❤❤❤❤❤<small>3건의 리뷰</small></div>
-                            <div>치앙마이, 태국</div>
-                          </div>
-                        </span>
-                        <span class="travel-box swiper-slide">
-                          <img src="./template/img/blog/pp1.jpg" />
-                          <div class="m-2">
-                            <h5>Sook Hostel</h5>
-                            <div>❤❤❤❤❤<small>3건의 리뷰</small></div>
-                            <div>치앙마이, 태국</div>
-                          </div>
-                        </span>
-                        <span class="travel-box swiper-slide">
-                          <img src="./template/img/blog/pp1.jpg" />
-                          <div class="m-2">
-                            <h5>Sook Hostel</h5>
-                            <div>❤❤❤❤❤<small>3건의 리뷰</small></div>
-                            <div>치앙마이, 태국</div>
-                          </div>
-                        </span>
+            <!--one post-->
+            <c:forEach begin="1" end="2">
+              <div class="posts-list">
+                <div class="posting-title row">
+                  <span class="col-xl-1 col-lg-1 col-md-1 text-center p-0">
+                    <img class="rounded-circle posting-profile" src="./template/img/blog/s-img.jpg" />
+                  </span>
+                  <div class="col-xl-11 col-lg-11 col-md-11 mt-1" style="position: relative;">
+                    <div>
+                      <b>JuHyeon An</b>
+                      님이 새 <strong>여행리스트</strong>를 추가했습니다.
+                      <div class="ellipsis-btn">
+                        <img width="17px" src="./images/myPage/ellipsis-h-solid.svg" /><span class="ellipsis-menu"
+                          >삭제</span
+                        >
                       </div>
                     </div>
-                    <div class="swiper-button-next"></div>
-                    <div class="swiper-button-prev"></div>
+                    <small>2019년 6월 26일</small>
                   </div>
                 </div>
-                <div class="post-bottom-bar">
-                  <span class="social-like"><i class="fa fa-thumbs-up"></i> 도움이 됐어요</span
-                  ><span class="social-share"><i class="fa fa-share-alt"></i> 공유하기</span>
-                </div>
-              </div>
-            </div>
+                <div class="single-post row">
+                  <div class="col-lg-12 p-2" style="background: #f9f9f9; margin-bottom: 15px;">
+                    <div class="feature-img">
+                      <img
+                        class="img-fluid"
+                        src="https://lh3.googleusercontent.com/proxy/bK14zw4ItYiSoIJ3Ie7owoTzXPplOctufUATbWYu8-enl2dGoiVBJKbaU__b-ppBUfzFjheY2hn_0Ev0AhUkBop7ZtttTEkiWbtgorrH0lw-VhM1HDhNU_wLiz-94CtsA32wrFpUxyo3Fc1tujQMbMwplJERk8iSXIEM"
+                        alt=""
+                        style="height: 23.5rem;"
+                      />
+                    </div>
 
-            <!-- post 2 -->
-            <div class="posts-list">
-              <div class="posting-title row">
-                <span class="col-xl-1 col-lg-1 col-md-1 text-center p-0">
-                  <img class="rounded-circle posting-profile" src="./template/img/blog/s-img.jpg" />
-                </span>
-                <div class="col-xl-11 col-lg-11 col-md-11 mt-1" style="position: relative;">
-                  <div>
-                    <b>JuHyeon An</b>
-                    님이 새 여행리스트를 추가했습니다.
-                    <div class="ellipsis-btn">
-                      <img width="17px" src="./images/myPage/ellipsis-h-solid.svg" /><span class="ellipsis-menu"
-                        >삭제</span
-                      >
+                    <div class="col-lg-12 col-md-12 trip-slide">
+                      <h3 class="mt-20 mb-20">
+                        ChiangMai
+                      </h3>
+                      <div class="item-list-wrapper swiper-container" style="width: 92%;">
+                        <div class="travel-item-list swiper-wrapper">
+                          <c:forEach begin="1" end="5">
+                            <span class="travel-box swiper-slide">
+                              <img src="./template/img/blog/pp1.jpg" />
+                              <div class="m-2">
+                                <h5>Sook Hostel</h5>
+                                <div>
+                                  <i class="fa fa-star"></i>
+                                  <i class="fa fa-star"></i>
+                                  <i class="fa fa-star"></i>
+                                  <i class="fa fa-star"></i>
+                                  <i class="fa fa-star"></i>
+                                  <small>(3건)</small>
+                                </div>
+                                <div>치앙마이, 태국</div>
+                              </div>
+                            </span>
+                          </c:forEach>
+                        </div>
+                      </div>
+                      <div class="swiper-button-next"></div>
+                      <div class="swiper-button-prev"></div>
                     </div>
                   </div>
-                  <small>2019년 6월 26일</small>
+                  <div class="post-bottom-bar">
+                    <span class="social-save"><i class="fa fa-heart-o"></i> 내 여행목록에 담기</span>
+                    <span class="social-share"><i class="fa fa-share-alt"></i> 공유하기</span>
+                  </div>
                 </div>
               </div>
-              <div class="single-post row">
-                <div class="col-lg-12" style="padding-right: 0px; background: #f9f9f9; margin-bottom: 15px;">
-                  <div class="feature-img">
-                    <img class="img-fluid" src="./template/img/blog/feature-img1.jpg" alt="" />
-                  </div>
+            </c:forEach>
+            <!--post 끝-->
 
-                  <div class="col-lg-12 col-md-12 trip-slide">
-                    <h3 class="mt-20 mb-20">
-                      ChiangMai
-                    </h3>
-                    <div class="item-list-wrapper swiper-container" style="width: 92%;">
-                      <div class="travel-item-list swiper-wrapper">
-                        <span class="travel-box swiper-slide">
-                          <img src="./template/img/blog/pp1.jpg" />
-                          <div class="m-2">
-                            <h5>Sook Hostel</h5>
-                            <div>❤❤❤❤❤<small>3건의 리뷰</small></div>
-                            <div>치앙마이, 태국</div>
-                          </div>
-                        </span>
-                        <span class="travel-box swiper-slide">
-                          <img src="./template/img/blog/pp1.jpg" />
-                          <div class="m-2">
-                            <h5>Sook Hostel</h5>
-                            <div>❤❤❤❤❤<small>3건의 리뷰</small></div>
-                            <div>치앙마이, 태국</div>
-                          </div>
-                        </span>
-                        <span class="travel-box swiper-slide">
-                          <img src="./template/img/blog/pp1.jpg" />
-                          <div class="m-2">
-                            <h5>Sook Hostel</h5>
-                            <div>❤❤❤❤❤<small>3건의 리뷰</small></div>
-                            <div>치앙마이, 태국</div>
-                          </div>
-                        </span>
-                        <span class="travel-box swiper-slide">
-                          <img src="./template/img/blog/pp1.jpg" />
-                          <div class="m-2">
-                            <h5>Sook Hostel</h5>
-                            <div>❤❤❤❤❤<small>3건의 리뷰</small></div>
-                            <div>치앙마이, 태국</div>
-                          </div>
-                        </span>
-                        <span class="travel-box swiper-slide">
-                          <img src="./template/img/blog/pp1.jpg" />
-                          <div class="m-2">
-                            <h5>Sook Hostel</h5>
-                            <div>❤❤❤❤❤<small>3건의 리뷰</small></div>
-                            <div>치앙마이, 태국</div>
-                          </div>
-                        </span>
-                        <span class="travel-box swiper-slide">
-                          <img src="./template/img/blog/pp1.jpg" />
-                          <div class="m-2">
-                            <h5>Sook Hostel</h5>
-                            <div>❤❤❤❤❤<small>3건의 리뷰</small></div>
-                            <div>치앙마이, 태국</div>
-                          </div>
-                        </span>
-                        <span class="travel-box swiper-slide">
-                          <img src="./template/img/blog/pp1.jpg" />
-                          <div class="m-2">
-                            <h5>Sook Hostel</h5>
-                            <div>❤❤❤❤❤<small>3건의 리뷰</small></div>
-                            <div>치앙마이, 태국</div>
-                          </div>
-                        </span>
+            <!-- 리뷰 시작 -->
+            <c:forEach begin="1" end="2">
+              <div class="posts-review">
+                <div class="posting-title row">
+                  <span class="col-xl-1 col-lg-1 col-md-1 text-center p-0">
+                    <img class="rounded-circle posting-profile" src="./template/img/blog/s-img.jpg" />
+                  </span>
+                  <div class="col-xl-11 col-lg-11 col-md-11 mt-1" style="position: relative;">
+                    <div>
+                      <b>JuHyeon An</b>
+                      님이 새 <strong>리뷰</strong>를 추가했습니다.
+                      <div class="ellipsis-btn">
+                        <img width="17px" src="./images/myPage/ellipsis-h-solid.svg" /><span class="ellipsis-menu"
+                          >삭제</span
+                        >
                       </div>
                     </div>
-                    <div class="swiper-button-next"></div>
-                    <div class="swiper-button-prev"></div>
-                    <!-- end of wrapper -->
+                    <small>2019년 6월 26일</small>
                   </div>
                 </div>
-                <div class="post-bottom-bar">
-                  <span class="social-like"><i class="fa fa-thumbs-up"></i> 도움이 됐어요</span
-                  ><span class="social-share"><i class="fa fa-share-alt"></i> 공유하기</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- post3 -->
-            <div class="posts-list">
-              <div class="posting-title row">
-                <span class="col-xl-1 col-lg-1 col-md-1 text-center p-0">
-                  <img class="rounded-circle posting-profile" src="./template/img/blog/s-img.jpg" />
-                </span>
-                <div class="col-xl-11 col-lg-11 col-md-11 mt-1" style="position: relative;">
-                  <div>
-                    <b>JuHyeon An</b>
-                    님이 새 여행리스트를 추가했습니다.
-                    <div class="ellipsis-btn">
-                      <img width="17px" src="./images/myPage/ellipsis-h-solid.svg" /><span class="ellipsis-menu"
-                        >삭제</span
-                      >
+                <div class="single-post row">
+                  <div class="col-lg-12 p-2" style="background: #f9f9f9; margin-bottom: 15px;">
+                    <div class="container">
+                      <h3 class="star my-2">
+                        <i class="fa fa-star checked"></i>
+                        <i class="fa fa-star checked"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                      </h3>
+                      <h4>"여긴 가지마세요....</h4>
+                      <p class="my-2">
+                        여기서 먹고 식욕을 잃었습니다.ㅠㅠ 여긴 제발 가지마세요 비추x100 여기서 먹고 식욕을
+                        잃었습니다.ㅠㅠ 여긴 제발 가지마세요 비추x100 여기서 먹고 식욕을 잃었습니다.ㅠㅠ 여긴 제발
+                        가지마세요 비추x100 여기서 먹고 식욕을 잃었습니다.ㅠㅠ 여긴 제발 가지마세요 비추x100
+                      </p>
+                      <span><strong>방문날짜</strong> : 2020년 5월</span>
                     </div>
-                  </div>
-                  <small>2019년 6월 26일</small>
-                </div>
-              </div>
-              <div class="single-post row">
-                <div class="col-lg-12" style="padding-right: 0px; background: #f9f9f9; margin-bottom: 15px;">
-                  <div class="feature-img">
-                    <img class="img-fluid" src="./template/img/blog/feature-img1.jpg" alt="" />
-                  </div>
 
-                  <div class="col-lg-12 col-md-12 trip-slide">
-                    <h3 class="mt-20 mb-20">
-                      ChiangMai
-                    </h3>
-                    <div class="item-list-wrapper swiper-container" style="width: 92%;">
-                      <div class="travel-item-list swiper-wrapper">
-                        <span class="travel-box swiper-slide">
-                          <img src="./template/img/blog/pp1.jpg" />
-                          <div class="m-2">
-                            <h5>Sook Hostel</h5>
-                            <div>❤❤❤❤❤<small>3건의 리뷰</small></div>
-                            <div>치앙마이, 태국</div>
-                          </div>
-                        </span>
-                        <span class="travel-box swiper-slide">
-                          <img src="./template/img/blog/pp1.jpg" />
-                          <div class="m-2">
-                            <h5>Sook Hostel</h5>
-                            <div>❤❤❤❤❤<small>3건의 리뷰</small></div>
-                            <div>치앙마이, 태국</div>
-                          </div>
-                        </span>
-                        <span class="travel-box swiper-slide">
-                          <img src="./template/img/blog/pp1.jpg" />
-                          <div class="m-2">
-                            <h5>Sook Hostel</h5>
-                            <div>❤❤❤❤❤<small>3건의 리뷰</small></div>
-                            <div>치앙마이, 태국</div>
-                          </div>
-                        </span>
-                        <span class="travel-box swiper-slide">
-                          <img src="./template/img/blog/pp1.jpg" />
-                          <div class="m-2">
-                            <h5>Sook Hostel</h5>
-                            <div>❤❤❤❤❤<small>3건의 리뷰</small></div>
-                            <div>치앙마이, 태국</div>
-                          </div>
-                        </span>
-                        <span class="travel-box swiper-slide">
-                          <img src="./template/img/blog/pp1.jpg" />
-                          <div class="m-2">
-                            <h5>Sook Hostel</h5>
-                            <div>❤❤❤❤❤<small>3건의 리뷰</small></div>
-                            <div>치앙마이, 태국</div>
-                          </div>
-                        </span>
-                        <span class="travel-box swiper-slide">
-                          <img src="./template/img/blog/pp1.jpg" />
-                          <div class="m-2">
-                            <h5>Sook Hostel</h5>
-                            <div>❤❤❤❤❤<small>3건의 리뷰</small></div>
-                            <div>치앙마이, 태국</div>
-                          </div>
-                        </span>
-                        <span class="travel-box swiper-slide">
-                          <img src="./template/img/blog/pp1.jpg" />
-                          <div class="m-2">
-                            <h5>Sook Hostel</h5>
-                            <div>❤❤❤❤❤<small>3건의 리뷰</small></div>
-                            <div>치앙마이, 태국</div>
-                          </div>
-                        </span>
+                    <div class="col-lg-12 col-md-12">
+                      <div class="item-list-wrapper" style="width: 92%;">
+                        <div class="travel-item-list">
+                          <span class="travel-box my-2" style="width: 250px;">
+                            <img src="./template/img/blog/pp1.jpg" />
+                            <div class="m-2">
+                              <h5>Sook Hostel</h5>
+                              <div>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <small>(3건)</small>
+                              </div>
+                              <div>치앙마이, 태국</div>
+                            </div>
+                          </span>
+                        </div>
                       </div>
                     </div>
-                    <div class="swiper-button-next"></div>
-                    <div class="swiper-button-prev"></div>
-                    <!-- end of wrapper -->
+                  </div>
+                  <div class="post-bottom-bar">
+                    <span class="social-like"><i class="fa fa-thumbs-up"></i> 도움이 됐어요</span>
+                    <span class="social-share"><i class="fa fa-share-alt"></i> 공유하기</span>
                   </div>
                 </div>
-                <div class="post-bottom-bar">
-                  <span class="social-like"><i class="fa fa-thumbs-up"></i> 도움이 됐어요</span
-                  ><span class="social-share"><i class="fa fa-share-alt"></i> 공유하기</span>
-                </div>
               </div>
-            </div>
-
-            <!-- post2 -->
+            </c:forEach>
           </div>
         </div>
       </div>
@@ -487,20 +321,8 @@
               </div>
               <div class="col-md-9 col-sm-9">
                 <form id="mp-proModifyFrm" action="#">
-                  <label for="mp-id">아이디</label>
-                  <div class="mb-10">
-                    <input
-                      type="text"
-                      name="mp-id"
-                      placeholder="아이디를 입력해주세요."
-                      onfocus="this.placeholder = ''"
-                      onblur="this.placeholder = '아이디를 입력해주세요.'"
-                      class="single-input"
-                    />
-                  </div>
                   <label for="mp-name">닉네임</label>
-                  <div class="input-group-icon mb-10">
-                    <div class="icon"><i class="fa fa-at" aria-hidden="true"></i></div>
+                  <div class="mb-10">
                     <input
                       type="text"
                       name="mp-name"
@@ -508,6 +330,18 @@
                       placeholder="닉네임을 입력해주세요."
                       onfocus="this.placeholder = ''"
                       onblur="this.placeholder = '닉네임을 입력해주세요.'"
+                      class="single-input"
+                    />
+                  </div>
+                  <label for="mp-id">아이디</label>
+                  <div class="input-group-icon mb-10">
+                    <div class="icon"><i class="fa fa-at" aria-hidden="true"></i></div>
+                    <input
+                      type="text"
+                      name="mp-id"
+                      placeholder="아이디를 입력해주세요."
+                      onfocus="this.placeholder = ''"
+                      onblur="this.placeholder = '아이디를 입력해주세요.'"
                       class="single-input"
                     />
                   </div>
@@ -574,16 +408,14 @@
             </button>
           </div>
           <div class="modal-body" style="color: #000; padding: 2rem 2rem;">
-
-			<div id="drop" class="mp-drop p-3" style="background:#eee; text-align:center; overflow:auto;">
-			<div class="mp-upload-top" style="line-height: 65px;">
-			<button type="button" class="btn btn-secondary">사진업로드</button>
-			<br/>또는<br/> <h5>데스크톱에서 파일을 끌어오세요.</h5>
-			</div>
-			<div id="thumbnails">
-			</div>
-			</div>
-
+            <div id="drop" class="mp-drop p-3" style="background: #eee; text-align: center; overflow: auto;">
+              <div class="mp-upload-top" style="line-height: 65px;">
+                <button type="button" class="btn btn-secondary">사진업로드</button>
+                <br />또는<br />
+                <h5>데스크톱에서 파일을 끌어오세요.</h5>
+              </div>
+              <div id="thumbnails"></div>
+            </div>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
