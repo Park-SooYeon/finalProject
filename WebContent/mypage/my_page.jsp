@@ -40,7 +40,7 @@
 	<jsp:include page="../mypage/my_page_submenu.jsp"></jsp:include>
 	
 	<div class="col-lg-9 mp-body-wrapper">
-	<!-- 여기에 loada -->
+	<!-- 여기에 load -->
 	</div>
 	
  </div>

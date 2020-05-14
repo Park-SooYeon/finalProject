@@ -29,12 +29,6 @@
 </head>
 
 		<body>	
-			  <%
-	String list = "trip_list.jsp";
-	if(request.getParameter("list")!=null){
-		list = request.getParameter("list");
-	}	
-%>
 			  <section class="about-banner relative">
 				<div class="container">				
 					<div class="row d-flex align-items-center justify-content-center">
@@ -53,18 +47,20 @@
 		                    <button class="btn dropdown-toggle" data-toggle="dropdown">여행 리스트</button>
 		                    
 		                    <div class="dropdown-menu">
-		                    	<button class="dropdown-item" onclick="location.href='./?inc=mypage/my_list.jsp&list=trip_list.jsp'">모든 여행</button>
-        						<button class="dropdown-item">여행 (비공개)</button>
-        						<button class="dropdown-item">여행 (공개)</button>
+        						<button class="dropdown-item btn-page" id="mp-tripLock" data-page="trip_list">여행 (비공개)</button>
+        						<button class="dropdown-item btn-page" id="mp-tripUnlock" data-page="trip_list">여행 (공개)</button>
       						</div>
 		                    
-		                    <button class="btn" onclick="location.href='./?inc=mypage/my_list.jsp?list=like_list.jsp'"><i class="fa fa-heart"></i> 전체보기</button>
-		                    <button class="btn" onclick="location.href='./?inc=mypage/my_list.jsp?list=like_list.jsp'"><i class="fa fa-thumbs-o-up"></i> 추천한 리뷰</button>
+		                    <button class="btn btn-page" id="mp-likeAll" data-page="like_list"><i class="fa fa-heart"></i> 전체보기</button>
+		                    <button class="btn btn-page" id="mp-likeRev" data-page="review_list"><i class="fa fa-thumbs-o-up"></i> 추천한 리뷰</button>
 		                    <button class="btn add-new-trip" data-toggle="modal" data-target="#newTripModal" style="display:none;" id="addTripBtn">여행 추가</button>
 		                </div>
 		            </div>
-			  <jsp:include page='<%=list %>'/>
+		            <div id="list-here">
+			  </div>
 			</div>
 
+<script>
+</script>
 </body>
 </html>
