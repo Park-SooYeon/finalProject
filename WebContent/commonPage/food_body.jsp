@@ -19,19 +19,10 @@
 	        
 	          <div class="row">
 	            <div class="col-lg-12" style="padding: 0 !important; margin: 0 !important;">
-	              <%@include file="food_search.jsp" %>
+	              <%@include file="food_search.jsp" %>	              
 	            </div>
-	          </div>	          
-	          <br/>
-	          
-	          <div class="row" style="background-color:white;">
-	            <div class="col-lg-12">
-	              <div class="row">
-		            <%@include file="food_center.jsp" %>		              
-		          </div>
-		        </div>
-		      </div>
-		      
+	          </div>
+	              <%@include file="food_center.jsp" %>
 		    </div>	      	          
 		  </div>
 		</div>
