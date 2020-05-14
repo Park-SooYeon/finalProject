@@ -12,7 +12,7 @@
 			style="height: 250px">
 			<div class="menu-content col-lg-12">
 				<div class="title text-center">
-					<h1 class="text-white mb-10">호텔</h1>
+					<h1 class="text-white mb-10">호텔 메인</h1>
 					<form  method="post" name="frm_ms" id="frm_ms" class="row" >
 	                        <div class="col-lg-2  col-md-12 ">
 									<input type="text" class="form-control" name="name" placeholder="From " onfocus="this.placeholder = ''" onblur="this.placeholder = 'From '">									
@@ -40,7 +40,7 @@
 <!-- End banner Area -->
 
 <script>
-let hotelDetailMove = function() {
+let hotelSearchMove = function() {
 	location.href = './?inc=hotel/hotel_body.jsp';
 }
 </script>
@@ -51,6 +51,7 @@ let hotelDetailMove = function() {
 		<div class="row d-flex justify-content-center">
 			<div class="menu-content col-lg-12">
 				<h1 class="mb-10">최근 본 장소</h1>
+				<a href="./?inc=hotel/hotel_body.jsp">더 많은 호텔 검색하기</a>
 			</div>
 		</div>
 		<div class="row">
@@ -153,7 +154,7 @@ let hotelDetailMove = function() {
 		<div class="row d-flex justify-content-center">
 			<div class="menu-content col-lg-12">
 				<h1 class="mb-10">추천 호텔(별점순)</h1>
-				<a>더 보기</a>
+				<a href="./?inc=hotel/hotel_body.jsp">더 많은 호텔 검색하기</a>
 			</div>
 		</div>
 		<div class="row">
@@ -256,7 +257,7 @@ let hotelDetailMove = function() {
 		<div class="row d-flex justify-content-center">
 			<div class="menu-content col-lg-12">
 				<h1 class="mb-10">추천 호텔(리뷰 많은 순)</h1>
-				<a>더 보기</a>
+				<a href="./?inc=hotel/hotel_body.jsp">더 많은 호텔 검색하기</a>
 			</div>
 		</div>
 		<div class="row">

@@ -243,7 +243,7 @@ ul {
 					<div>
 						<h3>상세정보</h3>
 						<div style="border:1px solid #666; padding:8px; margin-top:10px">
-							가격대<i class="fa fa-krw" style="margin-right:3px"; aria-hidden="true"></i>1000~2000<br/> 
+							가격대<i class="fa fa-krw" style="margin-right:3px;" aria-hidden="true"></i>1000~2000<br/> 
 							일반음식점<br/>
 						</div>
 					</div>

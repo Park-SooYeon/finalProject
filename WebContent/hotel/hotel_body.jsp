@@ -49,7 +49,7 @@
 			style="height: 250px">
 			<div class="menu-content col-lg-12">
 				<div class="title text-center">
-					<h1 class="text-white mb-10">호텔</h1>
+					<h1 class="text-white mb-10">호텔 (검색)</h1>
 					<form  method="post" name="frm_ms" id="frm_ms" class="row" >
 	                        <div class="col-lg-2  col-md-12 ">
 									<input type="text" class="form-control" name="name" placeholder="From " onfocus="this.placeholder = ''" onblur="this.placeholder = 'From '">									
