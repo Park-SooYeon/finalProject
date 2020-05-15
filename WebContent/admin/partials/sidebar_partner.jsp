@@ -18,6 +18,7 @@
             
             
             <!-- partner menu -->
+            <!-- hotel menu -->
             <li class="nav-item">
                 <a class="nav-link" href="./?inc=dashboard.jsp">
                     <i class="menu-icon typcn typcn-document-text"></i>
@@ -25,45 +26,45 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" data-toggle="collapse" href="#hotel" aria-expanded="false" aria-controls="hotel">
+                <a class="nav-link" href="./?inc=hotel_comp_list.jsp">
                     <i class="menu-icon typcn typcn-coffee"></i>
                     <span class="menu-title">호텔관리</span>
-                    <i class="menu-arrow"></i>
                 </a>
-                <div class="collapse" id="hotel">
-                    <ul class="nav flex-column sub-menu">
-                        <li class="nav-item">
-                            <a class="nav-link" href="./?inc=hotel_comp_list.jsp">호텔관리</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="./?inc=hotel_room_list.jsp">객실관리</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="./?inc=hotel_order_list.jsp">예약관리</a>
-                        </li>
-                    </ul>
-                </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link" data-toggle="collapse" href="#rent" aria-expanded="false" aria-controls="rent">
+            	<a class="nav-link" href="./?inc=hotel_room_list.jsp">
                     <i class="menu-icon typcn typcn-coffee"></i>
-                    <span class="menu-title">렌트관리</span>
-                    <i class="menu-arrow"></i>
+                    <span class="menu-title">객실관리</span>
                 </a>
-                <div class="collapse" id="rent">
-                    <ul class="nav flex-column sub-menu">
-                        <li class="nav-item">
-                            <a class="nav-link" href="./?inc=rent_comp_list.jsp">회사관리</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="./?inc=rent_car_list.jsp">차량관리</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="./?inc=rent_order_list.jsp">예약관리</a>
-                        </li>
-                    </ul>
-                </div>
             </li>
+            <li class="nav-item">
+            	<a class="nav-link" href="./?inc=hotel_order_list.jsp">
+                    <i class="menu-icon typcn typcn-coffee"></i>
+                    <span class="menu-title">예약관리</span>
+                </a>
+            </li>
+            <!-- end of hotel menu -->
+            
+            <!-- rent menu -->
+            <li class="nav-item">
+            	<a class="nav-link" href="./?inc=rent_comp_list.jsp">
+                    <i class="menu-icon typcn typcn-coffee"></i>
+                    <span class="menu-title">회사관리</span>
+                </a>
+            </li>
+            <li class="nav-item">
+            	<a class="nav-link" href="./?inc=rent_comp_list.jsp">
+                    <i class="menu-icon typcn typcn-coffee"></i>
+                    <span class="menu-title">차량관리</span>
+                </a>
+            </li>
+            <li class="nav-item">
+            	<a class="nav-link" href="./?inc=rent_order_list.jsp">
+                    <i class="menu-icon typcn typcn-coffee"></i>
+                    <span class="menu-title">예약관리</span>
+                </a>
+            </li>
+            <!-- end of rent menu -->
             <!-- partner end -->
         </ul>
     </nav>
