@@ -2,3 +2,18 @@
 #food_top{
 	background: url(../images/food/food_top_banner.jpg) center;
 }
+.nopadding{
+    padding: 0 !important;
+    margin: 0 !important;
+}
+.cardsort_list{
+justify-content:space-between;
+}
+
+
+@media screen and (max-width:425px){
+.col-0{
+	display:none;
+}
+	
+}

@@ -1,3 +1,5 @@
+$(document).ready(function(){
+
 $("#mapModal").on('shown.bs.modal', function() {
 	var container = document.getElementById('food_map'); //지도를 담을 영역의 DOM 레퍼런스		
 	var options = { //지도를 생성할 때 필요한 기본 옵션
@@ -6,3 +8,5 @@ $("#mapModal").on('shown.bs.modal', function() {
 	};		
 var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
 })
+
+});

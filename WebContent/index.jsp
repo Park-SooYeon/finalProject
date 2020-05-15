@@ -37,6 +37,7 @@
 	<!--datepicker css-->
 	<link rel="stylesheet" href="plugin/air-datepicker/css/datepicker.min.css">
 	
+	<script src="template/js/vendor/jquery-2.2.4.min.js"></script>
 </head>
 <body>
 
@@ -55,7 +56,7 @@
 	<!-- bottom.jsp -->
 	<%@ include file="bottom.jsp" %>
 	
-	<script src="template/js/vendor/jquery-2.2.4.min.js"></script>
+	
 	<script src="template/js/popper.min.js"></script>
 	<script src="template/js/vendor/bootstrap.min.js"></script>			
 	<script src="template/js/jquery-ui.js"></script>					
