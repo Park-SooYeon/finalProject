@@ -1,4 +1,4 @@
-
+$(document).ready(function(){
 //받은 별점 표시
 var rating = $('.rating');
 	
@@ -84,3 +84,5 @@ let priceStar = function(foodPriceStarNum) {
 		else ele.classList.remove("checked");
 	}
 });*/
+
+});
