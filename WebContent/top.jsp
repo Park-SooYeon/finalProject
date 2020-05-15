@@ -25,14 +25,16 @@
 					
 					<li>
 					<div class="main-profile">
-					<img class="rounded-circle" width="100%" src="template/img/blog/c1.jpg">
+					<img class="rounded-circle" width="100%" src="https://i.ibb.co/T1FbwJ5/3x4-blue.jpg" alt="3x4-blue" border="0">
 					</div>
 					<ul class="main-pro-menu">
 					<li><a><span>안주현 </span>님</a></li>
 					<hr/>
 					<li><a href="./?inc=mypage/my_social.jsp">프로필 보기</a></li>
+					<li><a href="./?inc=mypage/my_social.jsp">회원정보 수정</a></li>
 					<li><a href="./?inc=mypage/my_page.jsp">예약내역 확인</a></li>
 					<li><a href="./?inc=mypage/my_list.jsp">My Trip</a></li>
+					<li><a href="#">로그아웃</a></li>
 					</ul>
 					</li>
 				

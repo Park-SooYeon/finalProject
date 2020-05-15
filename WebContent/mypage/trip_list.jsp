@@ -141,7 +141,7 @@
                 id="trip-name"
                 placeholder="여행이름을 입력해주세요."
                 onfocus="this.placeholder=''"
-                onblur="this.placeholder='여행이름을 입력해주세요."
+                onblur="this.placeholder='여행이름을 입력해주세요.'"
               />
             </div>
             <div class="form-group">

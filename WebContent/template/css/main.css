@@ -3334,7 +3334,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 	box-shadow: 0px 10px 30px 0px rgba(60, 64, 143, 0.2);
 }
 
-.destinations-area .star .checked {
+.star .checked {
 	color: orange;
 }
 
@@ -4913,7 +4913,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 
 /* 좋아요 하트 색깔 */
 .fa-heart, .fa-heart-o {
-	color: red;
+	color: red !important;
 }
 
 /* main 지역 선택부분 겹치게.. */
@@ -4935,6 +4935,7 @@ body.mobile-nav-active #mobile-nav-toggle {
     line-height: 35px;
     border-radius: 50%;
     cursor: pointer;
+    overflow:hidden;
 }
 
 .main-pro-menu{

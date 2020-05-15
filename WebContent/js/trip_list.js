@@ -1,5 +1,12 @@
+let page = "";
+
+function load(){
+	$("#list-here").load("mypage/trip_list.jsp");
+	init();
+}
+
 function init() {
-  $(".add-new-trip").click(function () {
+	
     $("#newTripModal").on("show.bs.modal", function (event) {
       const ADD_BTN = $(event.relatedTarget); // Button that triggered the modal
       const TRIP_NAME = ADD_BTN.data("whatever"); // Extract info from data-* attributes
@@ -9,33 +16,46 @@ function init() {
       // modal.find('.modal-title').text('여행이름 ' + TRIP_NAME)
       // modal.find('.modal-body input').val(TRIP_NAME)
     });
+  
+  $(document).on('click', '#select-day', function(){
+	  if ($(this).val() == 1) {
+		  $("#trip-day-input").show();
+		  $("#trip-cal-input").hide();
+	  } else if($(this).val() == 2){
+		  $("#trip-cal-input").show();
+		  $("#trip-day-input").hide();
+		  
+		  $("#datePickInput").datepicker({
+	    	  language:"kr",
+	    	  range:true,
+	    	  toggleSelected:true,
+	    	  position:"bottom",
+	    	  multipleDatesSeparator:"-"
+	      });
+		  
+	  }
   });
 
-  $("#select-day").change(function () {
-    if ($(this).val() == 1) {
-      $("#trip-day-input").show();
-      $("#trip-cal-input").hide();
-    } else {
-      $("#trip-cal-input").show();
-      $("#trip-day-input").hide();
-    }
+  /*
+  $(document).on("click", "#datePickInput", function(){
+      
   });
-
+  */
+  
   $("#btnCreateTrip").click(function () {
     // 추후 submit으로 변경
   });
 
-//  $("#datePickInput").datepicker({
-//    language: "kr",
-//    minDate: new Date(),
-//    range: true,
-//    toggleSelected: false
-//  });
-  
   $(".trip-list-box").click(function(){
   	location.href="./mypage/edit_trip.jsp";
   })
   
+  $(".button-container .btn-page").click(function(){
+	  $this = $(this).data("page");
+	  $("#list-here").load("mypage/"+$this+".jsp");
+	  init();
+  })
 }
 
-init();
+load();
+
