@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<div class="row">
+<div class="row col-0">
   <div class="col-md-12 widthsort_list" id="widthsort_list" onclick="detailMove()">
-    <div class="row" style="margin-bottom:10px;">
+    <div class="row mb-10">
 	  <div class="col-md-3 nopadding">
 		<img src="template/img/elements/d.jpg" alt="" class="img-fluid">
 	  </div>	
@@ -29,9 +29,9 @@
   </div>
 </div>
 
-<div class="row">
+<div class="row col-0">
   <div class="col-md-12 widthsort_list" id="widthsort_list" onclick="detailMove()">
-    <div class="row" style="margin-bottom:10px;">
+    <div class="row mb-10">
 	  <div class="col-md-3 nopadding">
 		<img src="template/img/elements/d.jpg" alt="" class="img-fluid">
 	  </div>	
@@ -60,12 +60,12 @@
 
   <div class="row">
 
-	<div class="col-md-3 cardsort_list" id="cardsort_list" onclick="detailMove()">
-	  <div class="row" style="margin-right:5px; margin-bottom:10px;">
-		<div class="col-md-12 nopadding">
+	<div class="col-md-3 col-6 p-1 cardsort_list"id="cardsort_list" onclick="detailMove()">
+	  <div class="row">
+		<div class="col-md-12">
 			<img src="template/img/elements/d.jpg" alt="" class="img-fluid">
 		</div>
-		<div class="col-md-12 mt-sm-20 left-align-p nopadding">
+		<div class="col-md-12 mt-sm-20 left-align-p">
 		<div style="background-color:white; padding:10px;">
 		<div style="height:10px;">&nbsp</div>
 		    <span>1(순번). 업체명</span></br>
@@ -84,12 +84,12 @@
 		</div>
 	  </div>
 	  
-	  <div class="col-md-3 cardsort_list" id="cardsort_list" onclick="detailMove()">
-	  <div class="row" style="margin-right:5px; margin-bottom:10px;">
-		<div class="col-md-12 nopadding">
+	  <div class="col-md-3 col-6 p-1 cardsort_list" id="cardsort_list" onclick="detailMove()">
+	  <div class="row">
+		<div class="col-md-12">
 			<img src="template/img/elements/d.jpg" alt="" class="img-fluid">
 		</div>
-		<div class="col-md-12 mt-sm-20 left-align-p nopadding">
+		<div class="col-md-12 mt-sm-20 left-align-p">
 		<div style="background-color:white; padding:10px;">
 		<div style="height:10px;">&nbsp</div>
 		    <span>1(순번). 업체명</span></br>
@@ -108,12 +108,12 @@
 		</div>
 	  </div>
 	  
-	  <div class="col-md-3 cardsort_list" id="cardsort_list" onclick="detailMove()">
-	  <div class="row" style="margin-right:5px; margin-bottom:10px;">
-		<div class="col-md-12 nopadding">
+	  <div class="col-md-3 col-6 p-1 cardsort_list" id="cardsort_list" onclick="detailMove()">
+	  <div class="row">
+		<div class="col-md-12">
 			<img src="template/img/elements/d.jpg" alt="" class="img-fluid">
 		</div>
-		<div class="col-md-12 mt-sm-20 left-align-p nopadding">
+		<div class="col-md-12 mt-sm-20 left-align-p">
 		<div style="background-color:white; padding:10px;">
 		<div style="height:10px;">&nbsp</div>
 		    <span>1(순번). 업체명</span></br>
@@ -132,12 +132,12 @@
 		</div>
 	  </div>
 	  
-	  <div class="col-md-3 cardsort_list" id="cardsort_list" onclick="detailMove()">
-	  <div class="row" style="margin-right:5px; margin-bottom:10px;">
-		<div class="col-md-12 nopadding">
+	  <div class="col-md-3 col-6 p-1 cardsort_list" id="cardsort_list" onclick="detailMove()">
+	  <div class="row">
+		<div class="col-md-12">
 			<img src="template/img/elements/d.jpg" alt="" class="img-fluid">
 		</div>
-		<div class="col-md-12 mt-sm-20 left-align-p nopadding">
+		<div class="col-md-12 mt-sm-20 left-align-p">
 		<div style="background-color:white; padding:10px;">
 		<div style="height:10px;">&nbsp</div>
 		    <span>1(순번). 업체명</span></br>
@@ -156,12 +156,12 @@
 		</div>
 	  </div>
 	  
-	  <div class="col-md-3 cardsort_list" id="cardsort_list" onclick="detailMove()">
-	  <div class="row" style="margin-right:5px; margin-bottom:10px;">
-		<div class="col-md-12 nopadding">
+	  <div class="col-md-3 col-6 p-1 cardsort_list" id="cardsort_list" onclick="detailMove()">
+	  <div class="row mb-10">
+		<div class="col-md-12">
 			<img src="template/img/elements/d.jpg" alt="" class="img-fluid">
 		</div>
-		<div class="col-md-12 mt-sm-20 left-align-p nopadding">
+		<div class="col-md-12 mt-sm-20 left-align-p">
 		<div style="background-color:white; padding:10px;">
 		<div style="height:10px;">&nbsp</div>
 		    <span>1(순번). 업체명</span></br>
@@ -180,12 +180,12 @@
 		</div>
 	  </div>
 	  
-	  <div class="col-md-3 cardsort_list" id="cardsort_list" onclick="detailMove()">
-	  <div class="row" style="margin-right:5px; margin-bottom:10px;">
-		<div class="col-md-12 nopadding">
+	  <div class="col-md-3 col-6 p-1 cardsort_list" id="cardsort_list" onclick="detailMove()">
+	  <div class="row mb-10">
+		<div class="col-md-12">
 			<img src="template/img/elements/d.jpg" alt="" class="img-fluid">
 		</div>
-		<div class="col-md-12 mt-sm-20 left-align-p nopadding">
+		<div class="col-md-12 mt-sm-20 left-align-p">
 		<div style="background-color:white; padding:10px;">
 		<div style="height:10px;">&nbsp</div>
 		    <span>1(순번). 업체명</span></br>
