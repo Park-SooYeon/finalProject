@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="./css/custom.css" />
   </head>
 
-  <body>
+  <body style="z-index:-1;">
     <!-- start banner Area -->
     <section class="relative about-banner" style="z-index: -1;">
       <div class="container">
