@@ -48,7 +48,7 @@
 					<li><a href="./?inc=hotel/hotelMain.jsp">호텔</a></li>
 					<li><a href="./?inc=commonPage/menuMain.jsp">즐길거리</a></li>
 					<li><a href="./?inc=commonPage/food_index.jsp">음식점</a></li>
-					<li><a href="#">축제</a></li>
+					<li><a href="./?inc=commonPage/menuMain.jsp">축제</a></li>
 					<li><a href="#" onclick="openInNewTab('rent/rent_index.jsp')">렌트카</a></li>
 					<li><a href="#" onclick="openInNewTab('admin/super')">관리자 페이지</a></li>
 					<li><a href="#" onclick="openInNewTab('admin/partner')">파트너 페이지</a></li>
