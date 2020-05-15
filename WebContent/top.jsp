@@ -25,7 +25,7 @@
 					
 					<li>
 					<div class="main-profile">
-					<img class="rounded-circle" width="100%" src="template/img/blog/c1.jpg">
+					<img class="rounded-circle" width="100%" src="https://i.ibb.co/T1FbwJ5/3x4-blue.jpg" alt="3x4-blue" border="0">
 					</div>
 					<ul class="main-pro-menu">
 					<li><a><span>안주현 </span>님</a></li>

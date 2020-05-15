@@ -18,26 +18,6 @@ uri="http://java.sun.com/jsp/jstl/core" %>
     <!-- Site Title -->
     <title>Travel</title>
     <link rel="stylesheet" href="./css/custom.css" />
-    <style>
-      .drag-over {
-        background-color: #ff0;
-      }
-      .thumb {
-        width: 200px;
-        height: 200px;
-        overflow: hidden;
-        padding: 5px;
-        float: left;
-      }
-      .thumb > img {
-        width: 100%;
-      }
-      .thumb > .close {
-        position: absolute;
-        background-color: red;
-        cursor: pointer;
-      }
-    </style>
   </head>
   <body>
     <!-- start banner Area -->
@@ -93,13 +73,10 @@ uri="http://java.sun.com/jsp/jstl/core" %>
       <nav class="navbar navbar-expand-sm profile-menu">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link" href="#">활동 피드</a>
+            <a class="nav-link on" href="#">활동 피드</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">여행</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">사진</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">리뷰</a>
@@ -145,7 +122,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
                 </p>
               </div>
               <div class="single-sidebar-widget user-info-widget profile-detail">
-                <a href="#"><h4 class="my-3">여행경험을 공유하세요!</h4></a>
+                <a href="./?inc=mypage/my_write_review.jsp"><h4 class="my-3">여행경험을 공유하세요!</h4></a>
                 <ul>
                   <li><i class="fa fa-edit"></i> 리뷰 작성하러 가기</li>
                 </ul>
@@ -175,20 +152,15 @@ uri="http://java.sun.com/jsp/jstl/core" %>
                     <small>2019년 6월 26일</small>
                   </div>
                 </div>
-                <div class="single-post row">
+                <div class="single-post row mb-2">
                   <div class="col-lg-12 p-2" style="background: #f9f9f9; margin-bottom: 15px;">
-                    <div class="feature-img">
-                      <img
-                        class="img-fluid"
-                        src="https://lh3.googleusercontent.com/proxy/bK14zw4ItYiSoIJ3Ie7owoTzXPplOctufUATbWYu8-enl2dGoiVBJKbaU__b-ppBUfzFjheY2hn_0Ev0AhUkBop7ZtttTEkiWbtgorrH0lw-VhM1HDhNU_wLiz-94CtsA32wrFpUxyo3Fc1tujQMbMwplJERk8iSXIEM"
-                        alt=""
-                        style="height: 23.5rem;"
-                      />
+                    <div class="text-center post-img-pa">
+                      <img class="post-img" src="https://i.ibb.co/xhTnhzH/place2.jpg" alt="" />
                     </div>
 
                     <div class="col-lg-12 col-md-12 trip-slide">
-                      <h3 class="mt-20 mb-20">
-                        ChiangMai
+                      <h3 class="mt-20 mb-20 px-3">
+                        부싼
                       </h3>
                       <div class="item-list-wrapper swiper-container" style="width: 92%;">
                         <div class="travel-item-list swiper-wrapper">
@@ -196,7 +168,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
                             <span class="travel-box swiper-slide">
                               <img src="./template/img/blog/pp1.jpg" />
                               <div class="m-2">
-                                <h5>Sook Hostel</h5>
+                                <h5>해운대</h5>
                                 <div>
                                   <i class="fa fa-star"></i>
                                   <i class="fa fa-star"></i>
@@ -205,7 +177,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
                                   <i class="fa fa-star"></i>
                                   <small>(3건)</small>
                                 </div>
-                                <div>치앙마이, 태국</div>
+                                <div>부산, 대한민국</div>
                               </div>
                             </span>
                           </c:forEach>
@@ -244,7 +216,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
                     <small>2019년 6월 26일</small>
                   </div>
                 </div>
-                <div class="single-post row">
+                <div class="single-post row mb-2">
                   <div class="col-lg-12 p-2" style="background: #f9f9f9; margin-bottom: 15px;">
                     <div class="container">
                       <h3 class="star my-2">
@@ -298,6 +270,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
     </section>
     <!-- End post-content Area -->
 
+    <!--  여기서부터 모달  -->
     <div
       class="modal fade"
       id="mp-modifyModal"
@@ -317,7 +290,16 @@ uri="http://java.sun.com/jsp/jstl/core" %>
           <div class="modal-body" style="color: #000; padding: 2rem 2rem;">
             <div class="row">
               <div class="col-md-3 col-sm-3 text-center mb-4">
-                <img class="rounded-circle profile-image" id="pro-img" src="./template/img/blog/c2.jpg" />
+                <img
+                  class="rounded-circle profile-image pro-modify-img"
+                  id="pro-img"
+                  src="./template/img/blog/c2.jpg"
+                />
+                <div class="rounded-circle profile-image pro-img-back" onclick="photoUpload();">
+                  <span class="text-white"><i class="fa fa-edit"></i><strong>수정</strong></span>
+                </div>
+                <div class="my-1" onclick="photoUpload();"></div>
+                <input type="file" id="pro-upload" name="pro-upload" />
               </div>
               <div class="col-md-9 col-sm-9">
                 <form id="mp-proModifyFrm" action="#">
@@ -380,41 +362,6 @@ uri="http://java.sun.com/jsp/jstl/core" %>
                   </div>
                 </form>
               </div>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
-            <button type="submit" class="btn btn-primary" data-dismiss="modal" id="btnCreateTrip">수정</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 사진 & 리뷰 작성 모달 -->
-    <div
-      class="modal fade"
-      id="mp-uploadModal"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="mp-uploadModallabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog" role="document" style="max-width: 730px;">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="mp-uploadModalLabel">사진 업로드하기</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body" style="color: #000; padding: 2rem 2rem;">
-            <div id="drop" class="mp-drop p-3" style="background: #eee; text-align: center; overflow: auto;">
-              <div class="mp-upload-top" style="line-height: 65px;">
-                <button type="button" class="btn btn-secondary">사진업로드</button>
-                <br />또는<br />
-                <h5>데스크톱에서 파일을 끌어오세요.</h5>
-              </div>
-              <div id="thumbnails"></div>
             </div>
           </div>
           <div class="modal-footer">

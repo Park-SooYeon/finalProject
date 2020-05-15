@@ -27,7 +27,10 @@ body {
 .profile-image {
   width: 120px;
   height: 120px;
-  cursor: pointer;
+}
+
+#pro-upload {
+  display: none;
 }
 
 .profile-menu a:hover,
@@ -97,7 +100,7 @@ p {
   background: #ffffff;
   border: 1px solid #eee;
   padding: 5px 30px;
-  height: 41.7rem;
+  /*height: 41.7rem;*/
   margin-bottom: 15px;
 }
 
@@ -105,7 +108,8 @@ p {
   background: #ffffff;
   border: 1px solid #eee;
   padding: 5px 30px;
-  height: 25.5rem;
+  /*height: 25.5rem;*/
+  height: auto;
   margin-bottom: 15px;
 }
 
@@ -143,6 +147,35 @@ p {
   border: 1px solid #e0e0e0;
   box-sizing: border-box;
   float: left;
+}
+
+.post-img {
+  width: 90%;
+}
+
+.post-img-pa {
+  overflow: hidden;
+  height: 20.5rem;
+}
+
+.pro-img-back {
+  background: rgb(42, 42, 42);
+  position: absolute;
+  top: 0;
+  opacity: 0;
+  line-height: 120px;
+  font-size: 15px;
+  font-weight: 400;
+  cursor: pointer;
+}
+
+.pro-img-back:hover {
+  opacity: 0.5;
+}
+
+.pro-modify-img:hover {
+  background-color: #555555;
+  opacity: 0.5;
 }
 
 .travel-box img {
@@ -1055,6 +1088,11 @@ input[name="searchPlace"]::placeholder {
   color: #343a40;
 }
 
+.mp-inner i {
+  font-size: 20px;
+  line-height: 28px;
+}
+
 .mp-hotel-name {
   font-size: 1.3rem;
   line-height: 2.5rem;
@@ -1145,7 +1183,7 @@ input[name="searchPlace"]::placeholder {
 /* trip customizing media query*/
 @media (max-width: 1200px) {
   .posts-list {
-    height: 41.8rem;
+    /*height: 41.8rem;*/
   }
 }
 
@@ -1160,7 +1198,7 @@ input[name="searchPlace"]::placeholder {
     display: none;
   }
   .posts-list {
-    height: 41.5rem;
+    /*height: 41.5rem;*/
   }
 }
 
@@ -1210,7 +1248,7 @@ input[name="searchPlace"]::placeholder {
   }
 
   .posts-list {
-    height: 88.5vh;
+    /*eight: 88.5vh;*/
   }
 }
 
@@ -1238,11 +1276,11 @@ input[name="searchPlace"]::placeholder {
   }
 
   .posts-list {
-    height: 41.5rem;
+    /*height: 41.5rem;*/
   }
 
   .posts-review {
-    height: 27rem;
+    /*height: 27rem;*/
   }
 
   .posting-title span {
@@ -1279,11 +1317,15 @@ input[name="searchPlace"]::placeholder {
     width: 85%;
   }
   .posts-list {
-    height: 42rem;
+    /*height: 42rem;*/
   }
 
   .posts-review {
-    height: 29rem;
+    /*height: 29rem;*/
+  }
+
+  .post-img-pa {
+    height: 16rem;
   }
 }
 
@@ -1310,9 +1352,12 @@ input[name="searchPlace"]::placeholder {
     width: 80%;
   }
   .posts-list {
-    height: 43rem;
+    /*height: 43rem;*/
   }
   .posts-review {
-    height: 32rem;
+    /*height: 32rem;*/
+  }
+  .post-img-pa {
+    height: 13rem;
   }
 }
