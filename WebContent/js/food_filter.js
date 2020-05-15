@@ -1,7 +1,7 @@
 var food_filter={}
 
-$('.widthsort_list').show();
-$('.cardsort_list').hide();
+$('.cardsort_list').show();
+$('.widthsort_list').hide();
 
 food_filter.func = function(){
 //필터옵션 전체해제
