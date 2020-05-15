@@ -7,11 +7,9 @@
       <div class="row">
       
       
-        <div class="col-lg-3 col-md-4 mt-sm-30 element-wrap posts-list">
-          <div class="col-lg-12" style="background-color:white;">
+        
 	        <%@include file="../food/food_filter.jsp" %>  
-	      </div>     
-		</div>	    
+	          
           
         <div class="col-lg-9 col-md-9">         
 	      <div class="row">	      
