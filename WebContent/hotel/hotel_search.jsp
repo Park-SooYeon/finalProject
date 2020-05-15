@@ -18,7 +18,3 @@
 
 <div class="button-group-area mt-10" id="filter" style="float:left"></div>
 <br/>
-<div class="icon text-right" >
-<button type="button" id="cardsort" class="btn btn-default"><i type="button" class="fa fa-th-large" aria-hidden="true"></i></button>
-<button type="button" id="widthsort" class="btn btn-default"><i type="button" class="fa fa-align-justify" aria-hidden="true"></i></button>
-</div>

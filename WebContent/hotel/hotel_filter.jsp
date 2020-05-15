@@ -1,18 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<div class="single-destination relative">
-   <div class="thumb relative">
-      <div class="overlay overlay-bg"></div>
-      <img class="img-fluid" src="../images/map.png" alt="">
-   </div>
-   <div class="desc">
-      <a class="genric-btn default radius" data-toggle="modal" href="#mapModal" ><i class="fa fa-map-marker"></i> 지도 보기</a>
-      
-   </div>
-</div> 
-<br/>
-
+<br>
 <div class="single-element-widget">
     <h4 class="mb-20">호텔 등급</h4>
     
@@ -69,6 +58,10 @@
      <input type="checkbox" class="custom-control-input" name='check_parking' id='check_parking' value='parking'/>
      <label class="custom-control-label" for="check_parking">주차장</label>
     </div>
+       <div class="custom-control custom-checkbox">
+     <input type="checkbox" class="custom-control-input" name='check_meal' id='check_meal' value='meal'/>
+     <label class="custom-control-label" for="check_meal">조식</label>
+    </div>
     
 </div>
 
@@ -86,7 +79,7 @@
      <input type="checkbox" class="custom-control-input" name='check_view_sea' id='check_view_sea' value='view_sea'/>
      <label class="custom-control-label" for="check_view_sea">오션뷰</label>
     </div>
-    
+    <br>
 </div>
 
 <!-- Modal -->

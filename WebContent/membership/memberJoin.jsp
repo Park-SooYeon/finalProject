@@ -47,6 +47,7 @@
 </head>
 <body>
 
+
 <!-- start banner -->
 
 <section class="banner-area relative">
@@ -128,8 +129,8 @@
 
 
 				<div class="col-lg-7 offset-lg-3">
-					<input type="submit" class="genric-btn info min-width-180  e-large"
-						value="회원가입" id="btnInsert">
+					<input type="button" class="genric-btn info min-width-180  e-large"
+						value="회원가입" id="btnInsert" >
 				</div>
 				</form>
 			</div>

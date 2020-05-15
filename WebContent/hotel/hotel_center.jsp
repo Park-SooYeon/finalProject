@@ -2,60 +2,122 @@
     pageEncoding="UTF-8"%>
 
 <script>
-let roomDetailMove = function() {
-	location.href = './?inc=hotel/roomDetailView.jsp';
+let hotelDetailMove = function() {
+	location.href = './?inc=hotel/hotelDetailView.jsp';
 }
 </script>
 
 
-<div class="col-md-12" id="widthsort_list" onclick="roomDetailMove()">
-  <div class="row" >
-	<div class="col-md-3">
-		<img src="../template/img/elements/d.jpg" alt="" class="img-fluid">
-	</div>	
-	<div class="col-md-9 mt-sm-20 left-align-p" >	
-	    <span>1(순번). 업체명</span></br>
-	    <div class="star">
-	    <span>별점</span>
-			<span class="fa fa-star checked"></span>
-			<span class="fa fa-star checked"></span>
-			<span class="fa fa-star checked"></span>
-			<span class="fa fa-star checked"></span>
-			<span class="fa fa-star"></span>				
-		<span>00 건의 리뷰 (개수), 오픈 , 마감 , 휴일 시간에 따른 마감여부</span></br>
-		</div>
-	    <span>간단설명 (타입 , 세계 , 메뉴 , 지역 가격)</span></br>
-	    <hr/>
-	    <span>한줄평</span></br>
-	    <span>한줄평</span></br>
-	    
-	</div>
-  </div>
-</div>
+<div class="col-md-12" id="hotel_list"  style="padding-top:10px;"
+ >
+ <div class="row">
 
-<div class="col-md-3" id="cardsort_list">
-	<div class="col-md-12">
-		<img src="../template/img/elements/d.jpg" alt="" class="img-fluid">
-	</div>	
-	<div class="col-md-12 mt-sm-20 left-align-p" >	
-	    <span>1(순번). 업체명</span></br>
-	    <div class="star">
-	    <span>별점</span>
-			<span class="fa fa-star checked"></span>
-			<span class="fa fa-star checked"></span>
-			<span class="fa fa-star checked"></span>
-			<span class="fa fa-star checked"></span>
-			<span class="fa fa-star"></span><br/>
+	<div class="col-md-6">
+
+		    <img src="template/img/packages/d4.jpg" alt="">
+			</div>
+				<div class="col-md-6">		
+								<h3>그랜드 하얏트 호텔 (서울)
+								&nbsp;&nbsp;<span class="badge badge photel">예약 가능</span></h3>
+								<label>위치</label>
+								
+								<br>
+						
+								<div class="tags"> 
+								       <div>
+									    <span class="badge badge-info">와이파이</span>
+								    	<span class="badge badge-info">조식</span>
+								      </div>
+		     
+		     <div class="clearfix" style='margin-top:5px'>
+		     <ul >
+							<li>
+								<div class='rating' data-rate='1'> <!-- data-rate에 별점을입력(5초과금지) -->
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star"></i>
+								</div>
+							</li>
+				</ul>
+				</div>			
+	        
+	            
+	              
+	 
+	          
+	                <label style="font-size:20px; padding-right:33px;">최저가 nnnnnn원
+                        </label>
+	            <br>
+	               
+                    <input type="button" class="genric-btn info min-width-180 pull-right  " 
+                    value="예약하러 가기" id="btnReserv" onclick="hotelDetailMove()">
+                        </div>
+	        </div>
+	        
+	         
 		</div>
-	    <span>타입 : </span></br>
-	    <span>메뉴 : </span></br>
-	    <span>세계요리 :</span></br>	    
-	</div>
-</div>
- 
+								</div>
+						
+					
+						<br>
+					
+				
+						
+<div class="col-md-12" id="noHotel_list"  style="padding-top:10px;" >
+ <div class="row">
+
+	<div class="col-md-6">
+								<img src="template/img/packages/d4.jpg" alt="">
+			</div>
+				<div class="col-md-6">		
+								<h3>Holiday Sea beach Blue Ocean</h3>
+								<label>위치</label>
+								
+								<br>
+						
+								<div class="tags"> 
+								       <div>
+									    <span>태그1</span>
+								    	<span>태그2</span>
+								      </div>
+		     
+		     <div class="clearfix" style='margin-top:5px'>
+		     <ul >
+							<li>
+								<div class='rating' data-rate='1'> <!-- data-rate에 별점을입력(5초과금지) -->
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star"></i>
+								</div>
+							</li>
+				</ul>
+				</div>			
+	        
+	            
+	                <br>
+	                <br>
+	                <label style="font-size:20px;">최저가 nnnnnn원  ~ 최고가 nnnnnn원 </label>
+	            
+	    
+	        
+	        
+	         
+		</div>
+								</div>
+						
+							</div>
+						</div>
+						
+						
+
 <!-- 페이징 -->
 	
 		<div class="col-md-12 blog-pagination justify-content-center d-flex">
+		<div class="row">
 		    <ul class="pagination">
 		        <li class="page-item">
 		            <a href="#" class="page-link" aria-label="Previous">
@@ -77,6 +139,6 @@ let roomDetailMove = function() {
 		            </a>
 		        </li>
 		    </ul>
-		
+		</div>
 		</div>
 	

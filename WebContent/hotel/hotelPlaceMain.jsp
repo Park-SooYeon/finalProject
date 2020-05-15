@@ -10,16 +10,16 @@
 			style="height: 250px">
 			<div class="menu-content col-lg-12">
 				<div class="title text-center">
-					<h1 class="text-white mb-10">호텔 상세보기 (지역)</h1>
+					<h1 class="text-white mb-10">호텔 (지역)</h1>
 					<form  method="post" name="frm_ms" id="frm_ms" class="row" >
 	                        <div class="col-lg-2  col-md-12 ">
-									<input type="text" class="form-control" name="name" placeholder="From " onfocus="this.placeholder = ''" onblur="this.placeholder = 'From '" value="지역">									
+									<input type="text" class="form-control" name="name" placeholder="From " onfocus="this.placeholder = ''" onblur="this.placeholder = 'From '">									
 									</div>
 									<div class="col-lg-3  " >
-									<input type="text" class="form-control date-picker" name="start" placeholder="Start " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Start '">
+									<input type="text" id="datePickInput" class="form-control  datepicker-here" data-range="true" data-position="right top" data-language="kr" data-multiple-dates-separator=" - " name="start" placeholder="Start " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Start '">
 									</div>
 									<div class="col-lg-3">
-									<input type="text" class="form-control date-picker" name="return" placeholder="Return " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Return '">
+									<input type="text" id="datePickInput" class="form-control  datepicker-here" data-range="true" data-position="right top" data-language="kr" data-multiple-dates-separator=" - "  name="return" placeholder="Return " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Return '">
 									</div>
 									<div class="col-lg-2  ">
 									<input type="number" min="1" max="20" class="form-control" name="adults" placeholder="인원 " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Adults '">
