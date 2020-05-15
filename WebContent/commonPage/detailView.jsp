@@ -3,79 +3,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-<!-- 
-<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
-<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
-
- -->
+<script src="js/festival_detail.js"></script>
 <script src="js/main.js"></script>
-<script  src='./lib/jquery-3.4.1.js'></script>
+<script src='./lib/jquery-3.4.1.js'></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=	a8effece1d8215cec0ceddf314763998&libraries=services,clusterer"></script>
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
-<!-- Link Swiper's CSS -->
-  
-<style>
-ul { 
-	margin: 0;
-	padding: 0;
-	list-style-type: none; 
-}
-.preinfo > span{
-	margin-right:16px;
-}
-.info{
-	margin-top:50px;
-}
-.review-box{overflow:hidden;}
-.review-box .pre-view.hidden{
-	white-space:nowrap;
-	word-wrap:normal;
-	width:90%;
-	overflow:hidden;
-	text-overflow: ellipsis;
-	float:left;
-	
-}
-.rounded-circle{
-	width: 100%;
-}
-.btn-moreInfo{display:none;white-space:nowrap;float:right;}
-
-@media screen and (max-width: 533px){
-	.review-box .pre-view.hidden{
-		width:75%;
-	}
-}
-</style>
-<!-- Demo styles -->
- <style>
- body {
-     background:#white;
-     font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-     font-size: 14px;
-     color:#000;
-     margin: 0;
-     padding: 0;
- }
- .swiper-container {
-     width: 500px;
-     height: 300px;
-     margin: 20px auto;
- }
- .swiper-slide {
-     text-align: center;
-     font-size: 18px;
-     background: #fff;
-     line-height: 300px;
- }
- .progress{
- 	width:300px;
- }
- .gallery-thumbs{
- 	height:130px;
- }
- 
- </style>
+<link  rel="stylesheet" href="css/detail_view.css">
 
 </head>
 <body>
@@ -101,10 +34,6 @@ ul {
 		</div>
 	</div>
 	</section>
-
-
-	
-	
 <form name='frm_review' id='frm_review' method='post' class='frm_review'>
 	<br/>
 	<br/>
@@ -113,20 +42,17 @@ ul {
 		<div class="title1" style="margin-bottom:10px">
 		<h2>맛있는 치킨집</h2>
 		</div>
-		  <div class="float-right" style="display:flex">
-		<!--	<a href='#' style='padding:.450rem .75rem ;font-size: medium; margin-right:15px'><i class="fas fa-heart"></i>저장</a>
-  		-->	
+		<div class="float-right" style="display:flex">
   			<div class="p-1 heart" onclick="main.like(this)">
 				<i class="fa fa-heart-o" style="vertical-align;cursor:pointer; middle;margin-right: 20px; font-size: 28px; padding: 0.10rem !important; "></i>
 			</div>
   			<div>
-  			<!--  -->
 			<div class="btn-group">
 			  <button type="button" class="btn btn-default dropdown-toggle" style='color: #007bff; background:ghostwhite; margin-left:-15px;' data-toggle="dropdown" aria-expanded="false"><i class="fa fa-share-alt mr-1"></i>
 			   공유하기 <span class="caret"></span>
 			  </button>
 			  <div class="dropdown-menu" role="menu">
-			   <div id="kakao-link-btn" href="javascript:sendLink()" style="cursor: pointer">
+			   <div id="kakao-link-btn" href="javascript:sendLink()">
 					<img src="//developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_medium.png" style='width:18px;padding-left:3px;'/>카카오톡
 				</div>
 				<span>
@@ -142,65 +68,64 @@ ul {
 		</div>
 
 		<div class='preinfo'>
-		
-		 <div class='rating' data-rate='4' style='font-size: 23px; margin-bottom: 10px;'> <!-- data-rate에 별점을입력(평균별점입력5를넘기지않아야함) -->
+			<div class='rating' data-rate='4' style='font-size: 23px; margin-bottom: 10px;'> <!-- data-rate에 별점을입력(평균별점입력5를넘기지않아야함) -->
 				<i class="fa fa-star"></i>
 				<i class="fa fa-star"></i>
 				<i class="fa fa-star"></i>
 				<i class="fa fa-star"></i>
 				<i class="fa fa-star"style="margin-right: 10px;"></i>
-			<span>4건의 리뷰</span>
-			<span>Type , World , menu , Local , Price </span>
+				<span>4건의 리뷰</span>
+				<span>Type , World , menu , Local , Price </span>
 			</div> 
 
 			
 		</div>
 		
 		<div class='preinfo' style='font-size:18px'>
-			<span><i class="fa fa-location-arrow" style="margin-right: 3px" aria-hidden="true"></i>주소: 서울트윽벼얼시 조오옹로구우  </span>
+			<span><i class="fa fa-location-arrow" style="margin-right: 3px; margin-bottom:10px"aria-hidden="true"></i>주소: 서울트윽벼얼시 조오옹로구우  </span>
 			<span><i class="fa fa-mobile"style="margin-right: 3px" aria-hidden="true"></i>연락처: 02-222-2222</span><br/>
-			<div class="clearfix"><i class="fa fa-desktop"  style="margin-right:3px;margin-top: 10px; 3px" aria-hidden="true"></i>홈페이지 
+			<div class="clearfix"><i class="fa fa-desktop"style="margin-right: 3px" aria-hidden="true"></i>홈페이지 
 				<a href='http://localhost:8888/review/review.jsp' style="margin-right:5px">http://localhost:8888/review/review.jsp</a>
-				<span><i class="fa fa-clock-o "style="margin-right: 3px" aria-hidden="true"></i>오픈:10:00, 마감22:00 ,휴일 (일요일)</span>
+				<span><i class="fa fa-clock-o"style="margin-right: 3px" aria-hidden="true"></i>오픈:10:00, 마감22:00 ,휴일 (일요일)</span>
 			</div>
 			
 		</div>
 				<div class="info row justify-content-center mb-5">
-					<div class='col-lg-8 col-sm-12'><!-- 큰사이즈에서 8 스몰에서 12 -->
+					<div class='col-lg-8 col-md-12'><!-- 큰사이즈에서 8 스몰에서 12 -->
 						  <!-- Swiper -->
-				  <div class="swiper-container gallery-top">
-				    <div class="swiper-wrapper">
-				    	<img class="swiper-slide" src="./images/festival/1.png"style="background-image;cursor:pointer;" />
-						<img class="swiper-slide" src="./images/festival/2.png"style="background-image;cursor:pointer;" />
-						<img class="swiper-slide" src="./images/festival/3.png"style="background-image;cursor:pointer;" />
-						<img class="swiper-slide" src="./images/festival/4.png"style="background-image;cursor:pointer;" />
-						<img class="swiper-slide" src="./images/festival/5.png"style="background-image;cursor:pointer;" />
-						<img class="swiper-slide" src="./images/festival/6.png"style="background-image;cursor:pointer;" />
-						<img class="swiper-slide" src="./images/festival/7.png"style="background-image;cursor:pointer;" />
-						<img class="swiper-slide" src="./images/festival/8.png"style="background-image;cursor:pointer;" />
-					    <img class="swiper-slide" src="./images/festival/9.png"style="background-image;cursor:pointer;" />   
-				   		<img class="swiper-slide" src="./images/festival/10.png"style="background-image;cursor:pointer;"/>
-				    </div>
-				    <!-- Add Arrows -->
-				    <div class="swiper-button-next swiper-button-white"></div>
-				    <div class="swiper-button-prev swiper-button-white"></div>
-				  </div>
-				  <div class="swiper-container gallery-thumbs">
-				    <div class="swiper-wrapper">
-						<img class="swiper-slide" src="./images/festival/1.png"style="background-image;cursor:pointer;" />
-						<img class="swiper-slide" src="./images/festival/2.png"style="background-image;cursor:pointer;" />
-						<img class="swiper-slide" src="./images/festival/3.png"style="background-image;cursor:pointer;" />
-						<img class="swiper-slide" src="./images/festival/4.png"style="background-image;cursor:pointer;" />
-						<img class="swiper-slide" src="./images/festival/5.png"style="background-image;cursor:pointer;" />
-						<img class="swiper-slide" src="./images/festival/6.png"style="background-image;cursor:pointer;" />
-						<img class="swiper-slide" src="./images/festival/7.png"style="background-image;cursor:pointer;" />
-						<img class="swiper-slide" src="./images/festival/8.png"style="background-image;cursor:pointer;" />
-					    <img class="swiper-slide" src="./images/festival/9.png"style="background-image;cursor:pointer;" />   
-				   		<img class="swiper-slide" src="./images/festival/10.png"style="background-image;cursor:pointer;"/>				   
-				    </div>
-				  </div>
+				 		<div class="swiper-container gallery-top">
+				    		<div class="swiper-wrapper">
+						    	<img class="swiper-slide" src="./images/festival/1.png"style="background-image;cursor:pointer;" />
+								<img class="swiper-slide" src="./images/festival/2.png"style="background-image;cursor:pointer;" />
+								<img class="swiper-slide" src="./images/festival/3.png"style="background-image;cursor:pointer;" />
+								<img class="swiper-slide" src="./images/festival/4.png"style="background-image;cursor:pointer;" />
+								<img class="swiper-slide" src="./images/festival/5.png"style="background-image;cursor:pointer;" />
+								<img class="swiper-slide" src="./images/festival/6.png"style="background-image;cursor:pointer;" />
+								<img class="swiper-slide" src="./images/festival/7.png"style="background-image;cursor:pointer;" />
+								<img class="swiper-slide" src="./images/festival/8.png"style="background-image;cursor:pointer;" />
+							    <img class="swiper-slide" src="./images/festival/9.png"style="background-image;cursor:pointer;" />   
+						   		<img class="swiper-slide" src="./images/festival/10.png"style="background-image;cursor:pointer;"/>
+				    		</div>
+							 <!-- Add Arrows -->
+						     <div class="swiper-button-next swiper-button-white"></div>
+							 <div class="swiper-button-prev swiper-button-white"></div>
+				 		 </div>
+					  <div class="swiper-container gallery-thumbs">
+					    <div class="swiper-wrapper">
+							<img class="swiper-slide" src="./images/festival/1.png"style="background-image;cursor:pointer;" />
+							<img class="swiper-slide" src="./images/festival/2.png"style="background-image;cursor:pointer;" />
+							<img class="swiper-slide" src="./images/festival/3.png"style="background-image;cursor:pointer;" />
+							<img class="swiper-slide" src="./images/festival/4.png"style="background-image;cursor:pointer;" />
+							<img class="swiper-slide" src="./images/festival/5.png"style="background-image;cursor:pointer;" />
+							<img class="swiper-slide" src="./images/festival/6.png"style="background-image;cursor:pointer;" />
+							<img class="swiper-slide" src="./images/festival/7.png"style="background-image;cursor:pointer;" />
+							<img class="swiper-slide" src="./images/festival/8.png"style="background-image;cursor:pointer;" />
+						    <img class="swiper-slide" src="./images/festival/9.png"style="background-image;cursor:pointer;" />   
+					   		<img class="swiper-slide" src="./images/festival/10.png"style="background-image;cursor:pointer;"/>				   
+					    </div>
+					  </div>
 				
-				<div >
+				<div>
 					<h3>평가</h3>
 					<div class="clearfix" style='margin-top:5px'>
 						<ul class='float-left' >
@@ -243,19 +168,20 @@ ul {
 					<div>
 						<h3>상세정보</h3>
 						<div style="border:1px solid #666; padding:8px; margin-top:10px">
-							가격대<i class="fa fa-krw" style="margin-right:3px"; aria-hidden="true"></i>1000~2000<br/> 
+							가격대<i class="fa fa-krw" style="margin-right:3px;" aria-hidden="true"></i>1000~2000<br/> 
 							일반음식점<br/>
 						</div>
 					</div>
 				
 				</div><br/>
-				<div id="map" style="width:100%;height:400px;"></div>	
+				<div id="sw-map" style="width:100%;height:400px;"></div>	
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-12 pt-3" style='height:70px; border-top:1px solid black;' >
 				<h3 style='float:left'>리뷰(2)</h3>
 				<input class="btn btn-primary float-right"  onclick="insertMove()"  type='button' id='review'  name='review' value='리뷰작성'/>
+				 
 			</div>
 				
 			<div class="col-12">
@@ -329,6 +255,72 @@ ul {
 				</div>
 				<p><span>방문 날짜 : </span>2020년 1월</p>
 				<p>도움이 됐나요? <button class="btn btn-outline-secondary"><i class="fa fa-thumbs-up"></i></button></p>
+					
+					<button id="testBtn" class="testBtn btn btn-primary" style='float:right'>신고하기</button>
+						<!-- 회원가입 확인 Modal-->
+						<div class="modal fade" id="testModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+							<div class="modal-dialog" role="document">
+								<div class="modal-content" style="width:477px;">
+									<div class="modal-header">
+									<h5 class="modal-title" id="exampleModalLabel">리뷰신고하기!</h5>
+										<button class="close" type="button" data-dismiss="modal" aria-label="Close">
+											<span aria-hidden="true">X</span>
+										</button>
+									</div>
+								<div class="modal-body mb-1"><span>이미지 또는 내용 신고</span>
+										<div class=row>
+										<div class='col-md-6'>
+											<div class="custom-control custom-radio" >
+												<input type="radio" name="jb-radio" id="jb-radio-1" class="custom-control-input">
+												<label class="custom-control-label" for="jb-radio-1">영리목적/홍보성</label>
+											</div>
+											<div class="custom-control custom-radio">
+												<input type="radio" name="jb-radio" id="jb-radio-2" class="custom-control-input">
+												<label class="custom-control-label" for="jb-radio-2">개인정보노출</label>
+											</div>
+											<div class="custom-control custom-radio">
+												<input type="radio" name="jb-radio" id="jb-radio-3" class="custom-control-input">
+												<label class="custom-control-label" for="jb-radio-3">불법정보</label>
+											</div>
+											<div class="custom-control custom-radio">
+												<input type="radio" name="jb-radio" id="jb-radio-4" class="custom-control-input">
+												<label class="custom-control-label" for="jb-radio-4">음란성/선정성</label>
+											</div>
+										</div>
+										<div class='col-md-6'>
+											<div class="custom-control custom-radio">
+												<input type="radio" name="jb-radio" id="jb-radio-5" class="custom-control-input">
+												<label class="custom-control-label" style="float-right" for="jb-radio-5">욕설/인신공격</label>
+											</div>
+											<div class="custom-control custom-radio">
+												<input type="radio" name="jb-radio" id="jb-radio-6" class="custom-control-input">
+												<label class="custom-control-label" style="float-right"for="jb-radio-6">아이디/DB거래</label>
+											</div>
+											<div class="custom-control custom-radio">
+												<input type="radio" name="jb-radio" id="jb-radio-7" class="custom-control-input">
+												<label class="custom-control-label" style="float-right"for="jb-radio-7">같은내용반복(도배)</label>
+											</div>
+											<div class="custom-control custom-radio">
+												<input type="radio" name="jb-radio" id="jb-radio-8" class="custom-control-input">
+												<label class="custom-control-label" style="float-right"for="jb-radio-8">기타</label>
+											</div>
+										</div>
+												<div style='float:left; margin-left: 16px;margin-top: 8px;'>
+													<h5>신고 내용을 입력해주세요..</h5>
+												</div>
+										<div class='col-md-12'>
+											<textarea class='accuse_text' style="margin-top:10px" name='review_accuse' form='inform' 
+												cols='60' rows='10' placeholder="신고하실내용을 입력해주세여" ></textarea>
+										</div>									
+									</div>
+								</div>
+									<div class="modal-footer">
+										<button class="btn success btn-primary" id="asd" >접수하기</button>
+										<button class="btn btn-primary" type="button" data-dismiss="modal">취소하기</button>
+									</div>
+								</div>
+							</div>
+						</div>
 			</div>
 		</div>
 		<div class="row border-bottom py-3">
@@ -353,11 +345,11 @@ ul {
 				</div>
 				<p><span>방문 날짜 : </span>2020년 1월</p>
 				<p>도움이 됐나요? <button class="btn btn-outline-secondary"><i class="fa fa-thumbs-up"></i></button></p>
-			</div>
-		</div>			
+			 
+		<!-- Modal -->
+				<button id="testBtn" class="testBtn btn btn-primary" style='float:right'>신고하기</button>
 		
 		    
-		<!-- Modal -->
 		<div class="modal fade" data-backdrop="static"
 			id="exampleModalScrollable" tabindex="-1" role="dialog"
 			aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
@@ -401,168 +393,39 @@ ul {
 		</div>
 	--%>
 		<!-- 스프링 셋팅 전 -->
-			<div id='page' class='text-center mt-1'>
-			<c:if test="${1 >1}">
-				<input type='button' value='이전' onclick='goPage(${1 -1})'
-					class='btn-sm btn-ok' />
-			</c:if>
-
-			<c:forEach var="i" begin="${1 }" end="${5 }">
-				<input type='button' value='${i }' 
-					class='${ (i== 1)? "btn-sm btn-sw" : "btn-sm btn-ok" }' 
-					onclick='goPage(${i })' />
-
-			</c:forEach>
-
-			<c:if test="${1<10 }">
-				<input type='button' value='다음' onclick='goPage(${1 +1})'
-					class='btn-sm btn-ok' />
-			</c:if>
-		</div>
+		<div class="col-md-12 blog-pagination justify-content-center d-flex">
+		    <ul class="pagination">
+		        <li class="page-item">
+		            <a href="#" class="page-link" aria-label="Previous">
+		                <span aria-hidden="true">
+		                    <span class="lnr lnr-chevron-left"></span>
+		                </span>
+		            </a>
+		        </li>
+		        <li class="page-item"><a href="#" class="page-link">01</a></li>
+		        <li class="page-item active"><a href="#" class="page-link">02</a></li>
+		        <li class="page-item"><a href="#" class="page-link">03</a></li>
+		        <li class="page-item"><a href="#" class="page-link">04</a></li>
+		        <li class="page-item"><a href="#" class="page-link">09</a></li>
+		        <li class="page-item">
+		            <a href="#" class="page-link" aria-label="Next">
+		                <span aria-hidden="true">
+		                    <span class="lnr lnr-chevron-right"></span>
+		                </span>
+		            </a>
+		        </li>
+		    </ul>
+		</div><!-- 페이징 -->
 		
-	</div>
+		</div><!-- 리뷰내용 -->
+		</div><!-- 리뷰사진부분 -->
+	</div> <!-- 컨테이너끝 -->
 	</form>
 
 
-
-	<script>
 	
-	
-	// 리뷰 두줄이상 넘어가면 더보기
-		jQuery(function ($) {
-			var colorbox = $('.review-box .pre-view');
-			colorbox.each( function() {
-				$( this ).outerHeight();
-				if( $(this).outerHeight() > 21 ){
-				$(this).addClass('hidden');
-				var btnMoreCmt = $(this).siblings('.btn-moreInfo');
-				btnMoreCmt.show();
-				btnMoreCmt.on("click",function(){
-					$(this).siblings('.pre-view').removeClass('hidden');
-					$(this).remove();
-				});
-				}
-			} );
-		});
 
-	//별점표시하기
-	
-		 $(function(){
-			var rating = $('.rating');
-			
-			rating.each(function(){
-				var targetScore = $(this).attr('data-rate');
-				$(this).find('i:nth-child(-n+' + targetScore +')').css({color:'#ffc107'});
-			});
-				
-		}); 
-	
-		//  다음 지도  api 
-		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-			mapOption = {
-				center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-				level: 3 // 지도의 확대 레벨
-			};  
-
-		// 지도를 생성합니다    
-		var map = new kakao.maps.Map(mapContainer, mapOption); 
-
-		// 주소-좌표 변환 객체를 생성합니다
-		var geocoder = new kakao.maps.services.Geocoder();
-
-		// 주소로 좌표를 검색합니다
-		geocoder.addressSearch('서울특별시 종로1.2.3.4가동', function(result, status) {
-
-			// 정상적으로 검색이 완료됐으면 
-			if (status === kakao.maps.services.Status.OK) {
-
-				var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-
-				// 결과값으로 받은 위치를 마커로 표시합니다
-				var marker = new kakao.maps.Marker({
-					map: map,
-					position: coords
-				});
-				// 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-				map.setCenter(coords);
-			} 
-		});  
-		
-	</script>
-
-			<script type='text/javascript'>
-  //<![CDATA[
-    // // 사용할 앱의 JavaScript 키를 설정해 주세요.
-    Kakao.init('a8effece1d8215cec0ceddf314763998');
-    // // 카카오링크 버튼을 생성합니다. 처음 한번만 호출하면 됩니다.
-    Kakao.Link.createDefaultButton({
-      container: '#kakao-link-btn',
-      objectType: 'feed',
-      content: {
-        title: '딸기 치즈 케익',
-        description: '#케익 #딸기 #삼평동 #카페 #분위기 #소개팅',
-        imageUrl: 'http://mud-kage.kakao.co.kr/dn/Q2iNx/btqgeRgV54P/VLdBs9cvyn8BJXB3o7N8UK/kakaolink40_original.png',
-        link: {
-          mobileWebUrl: 'https://developers.kakao.com',
-          webUrl: 'https://developers.kakao.com'
-        }
-      },
-      social: {
-        likeCount: 286,
-        commentCount: 45,
-        sharedCount: 845
-      },
-      buttons: [
-        {
-          title: '웹으로 보기',
-          link: {
-            mobileWebUrl: 'https://developers.kakao.com',
-            webUrl: 'https://developers.kakao.com'
-          }
-        },
-        {
-          title: '앱으로 보기',
-          link: {
-            mobileWebUrl: 'https://developers.kakao.com',
-            webUrl: 'https://developers.kakao.com'
-          }
-        }
-      ]
-    });
-  //]]>
-</script>
-	
-  <!-- Swiper JS -->
-  <script src="./swiper-5.3.8/package/js/swiper.min.js"></script>
-
-  <!-- Initialize Swiper -->
-  <script>
-  var galleryThumbs = new Swiper('.gallery-thumbs', {
-      spaceBetween: 10,
-      slidesPerView: 4,
-      freeMode: true,
-      watchSlidesVisibility: true,
-      watchSlidesProgress: true,
-    });
-    var galleryTop = new Swiper('.gallery-top', {
-      spaceBetween: 10,
-      navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-      },
-      thumbs: {
-        swiper: galleryThumbs
-      }
-    });
-  </script>
    
-   
-   <script src="js/festival_review.js"></script>
-   <script>
-   let insertMove = function() {
-		location.href = './?inc=commonPage/review_insert.jsp';
-	}
-   </script> 
     
 </body>
 </html>

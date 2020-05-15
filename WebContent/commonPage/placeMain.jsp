@@ -67,7 +67,7 @@ let hotelMove = function(){
 						</div>
 					</div>
 					<div class="col">
-						<div class="single-menu relative">
+						<div class="single-menu relative" onclick="move()">
 							<div class="thumb relative">
 								<div class="overlay overlay-bg"></div>
 							</div>
