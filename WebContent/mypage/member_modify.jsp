@@ -50,11 +50,11 @@
 
 
 
-				<div class="form-group col-lg-10 "> 
+				<div class="form-group col-lg-10"> 
 
 					<label>아이디</label> 
 					<input type="text" class="form-control "
-						name="mId" id="mId" value="id1234"><br>
+						name="mId" id="mId" value="id1234" readonly><br>
                
       
      
@@ -63,21 +63,21 @@
 		            
 
 				<div class="form-group col-lg-10">
-					<label>비밀번호</label><br> <input type="password"
+					<label>비밀번호</label><input type="password"
 						class="form-control" name="pwd" id="pwd"
-						placeholder="비밀번호를 입력해주세요" maxlength="20" required><br>
+						placeholder="계정 변경을 위해 비밀번호를 입력해주세요." maxlength="20" required>
 				</div>
 
 				<div class="form-group col-lg-10">
-					<label>비밀번호 재확인</label><br> <input type="password"
+					<label>비밀번호 재확인</label> <input type="password"
 						class="form-control" name="pwd_check" id="pwd_check"
-						placeholder="비밀번호 확인을 위해 다시한번 입력 해 주세요" maxlength="20" required>
+						placeholder="비밀번호 확인을 위해 다시한번 입력 해 주세요." maxlength="20" required><br/>
 				</div>
 					
 
 				<div class="form-group col-lg-10">
 					<label>이름</label> <input type="text" class="form-control"
-						name="mName" id="mName" placeholder="이름을 입력해주세요" maxlength="20"  required><br>
+						name="mName" id="mName" value="이룸이요" required>
 				</div>
 
 				
@@ -86,7 +86,7 @@
 				<div class="form-group col-lg-10" id="email_syj">
 					<label for="InputEmail">이메일 주소</label> 
 					<div class="input-group">
-					  <input type="text" class="form-control" placeholder="이메일을 입력해주세요" aria-describedby="basic-addon2"  required>
+					  <input type="text" class="form-control" placeholder="이메일을 입력해주세요" aria-describedby="basic-addon2"  required value="myemail@here.com">
 					 
 					  <input type="button" class="genric-btn info radius input-group-append" value="인증받기"
 						id="btnSendMail">
@@ -103,17 +103,56 @@
 				    </div><br>
 				 
 				
+						<hr/>
 
-
-				<div class="col-lg-7 offset-lg-3">
-					<input type="button" class="genric-btn info min-width-180  e-large"
-						value="회원가입" id="btnInsert" >
+				<div class="col-lg-7">
+						<a class="pull-left" href="#" data-toggle="modal"
+            				data-target="#mp-memberLeave">회원탈퇴</a>
+					<input type="button" class="genric-btn info min-width-150  e-large pull-right"
+						value="변경사항 저장" id="btnInsert" >
 				</div>
 				</form>
 			</div>
 		</div>
 
 	</div>
+	
+	
+	<div
+      class="modal fade"
+      id="mp-memberLeave"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="mp-memberLeave"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document" style="max-width: 450px;">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="mp-memberLeaveLabel">회원탈퇴</h5>
+            
+            
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body" style="color: #000; padding: 1rem 1rem;">
+          
+          <div>
+            	<h5>개선할 점이 있다면 알려주세요.</h5><small class="mb-2">왜 Travelista를 떠나시나요 😢</small><br/>
+            	<textArea class="form-control my-1"></textArea>
+            </div>
+				<p>'탈퇴' 버튼을 누르시면 계정이 삭제됩니다. 한번 탈퇴하면 로그인할 수 없으니 신중하게 선택해주세요.</p>
+            </div><!-- modal-body -->
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary" data-dismiss="modal" id="btnLeaveMember">탈퇴</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+          </div>
+          </div>
+        </div>
+      </div>
+	
+	
 <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
 <script type="text/javascript"> //<![CDATA[ $(function() { $("#frm_ms").validate(); }); //]]> </script>
 

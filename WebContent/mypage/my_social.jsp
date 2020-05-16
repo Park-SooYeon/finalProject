@@ -29,48 +29,50 @@ uri="http://java.sun.com/jsp/jstl/core" %>
       </div>
     </section>
     <!-- End banner Area -->
-    <div class="container profile">
+    <div class="container profile position-relative">
       <div class="row">
-        <div class="col-lg-2 col-md-3 img-container text-center">
+        <div class="col-lg-2 col-md-3 col-sm-3 img-container text-center">
           <img class="rounded-circle profile-image" id="pro-main-img" src="./template/img/blog/c1.jpg" alt="" />
         </div>
-        <span class="col-lg-7 col-md-6 col-sm-9 profile-main-detail">
-          <h2 id="pro-nick">JuHyeon An</h2>
-          <span id="pro-id"><i class="fa fa-at" aria-hidden="true"></i> IT_Traveler</span>
-          <div class="row">
-            <div class="col-md-12 give-a-space"></div>
+        <div class="col-lg-10 col-md-9 col-sm-9 profile-main-detail">
+          <div>
+          <div>
+          <h2 class="d-inline-block" id="pro-nick">JuHyeon An&nbsp;</h2>
+          <button type="button" id="mp-btnFollow">+ Follow</button>
           </div>
-          <div class="row follow-status">
-            <span class="col-lg-2 col-md-4 col-sm-4 col-xs-4 text-center">
-              <h4>포스팅</h4>
-              <h4>10</h4>
-            </span>
-
-            <span class="col-lg-2 col-md-4 col-sm-4 col-xs-4 text-center">
-              <h4>팔로잉</h4>
-              <h4>3</h4>
-            </span>
-            <span class="col-lg-2 col-md-4 col-sm-4 col-xs-4 text-center">
-              <h4>팔로워</h4>
-              <h4>5</h4>
-            </span>
-            <span class="col-lg-6"></span>
-          </div>
-        </span>
-        <span class="col-md-3 col-sm-3"
-          ><button
-            type="button"
-            class="btn btn-default pull-right modify-btn"
+          <div id="pro-id"><i class="fa fa-at" aria-hidden="true"></i> IT_Traveler</div>
+          <a
+          	href="#"
             data-toggle="modal"
             data-target="#mp-modifyModal"
             id="mp-btnModifyProfile"
           >
+          <i class="fa fa-edit"></i>
             프로필수정
-          </button></span
-        >
+          </a>
+           
+          <div class="row">
+            <div class="col-md-12 give-a-space"></div>
+          </div>
+          <div class="row follow-status">
+            <div class="col-lg-2 col-md-4 col-sm-4 col-xs-4 text-center">
+              <h4>포스팅</h4>
+              <h4>10</h4>
+            </div>
+
+            <div class="col-lg-2 col-md-4 col-sm-4 col-xs-4 text-center">
+              <h4>팔로잉</h4>
+              <h4>3</h4>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-4 col-xs-4 text-center">
+              <h4>팔로워</h4>
+              <h4>5</h4>
+            </div>
+            <span class="col-lg-6"></span>
+          </div>
+        </div>
       </div>
-      <br />
-      <nav class="navbar navbar-expand-sm profile-menu">
+      <nav class="navbar navbar-expand-sm profile-menu position-absolute" style="bottom:-9px;">
         <ul class="navbar-nav">
           <li class="nav-item">
             <a class="nav-link on" href="#">활동 피드</a>
@@ -83,6 +85,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
           </li>
         </ul>
       </nav>
+    </div>
     </div>
 
     <!-- Start post-content Area -->
@@ -108,7 +111,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
                 data-toggle="modal"
                 data-target="#mp-modifyModal"
               >
-                <a href="#"><h4 class="my-3">JuHyeon An</h4></a>
+                <div><h4 class="my-3">JuHyeon An</h4></div>
                 <ul>
                   <li>
                     <i class="fa fa-thumb-tack" aria-hidden="true"></i> <span id="pro-addr">경기도 고양시 덕양구</span>
@@ -188,7 +191,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
                     </div>
                   </div>
                   <div class="post-bottom-bar">
-                    <span class="social-save"><i class="fa fa-heart-o"></i> 내 여행목록에 담기</span>
+                    <span class="social-save"><i class="fa fa-heart-o"></i> 내 여행리스트에 담기</span>
                     <span class="social-share"><i class="fa fa-share-alt"></i> 공유하기</span>
                   </div>
                 </div>

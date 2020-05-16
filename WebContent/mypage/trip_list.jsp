@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <meta charset="UTF-8" />
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!-- Mobile Specific Meta -->
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <!-- Favicon-->
@@ -15,11 +16,6 @@
 <!-- Site Title -->
 <title>Travel</title>
 
-<link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet" />
-<!--
-			CSS
-			============================================= -->
-
 <section class="destinations-area my-list-area mb-20">
   <div class="row">
     <div class="col-lg-4 add-new-trip" data-toggle="modal" data-target="#newTripModal">
@@ -31,22 +27,8 @@
         </div>
       </div>
     </div>
-    <div class="col-lg-4">
-      <div class="single-destinations" onclick="location.href='./mypage/edit_trip.jsp';">
-        <div class="list-container">
-          <div class="thumb-custom">
-            <img src="./images/myPage/food10.jpg" alt="" />
-          </div>
-          <div class="details">
-            <h4 class="d-flex justify-content-between">
-              <span>카페투어</span>
-            </h4>
-            <p>작성자 : <b> 카페왕</b></p>
-            <small>만든 날짜 : 2020년 5월 1일</small>
-          </div>
-        </div>
-      </div>
-    </div>
+    
+    <c:forEach begin="1" end="6">
     <div class="col-lg-4">
       <div class="single-destinations">
         <div class="list-container">
@@ -54,6 +36,7 @@
             <img src="./images/myPage/food16.jpg" alt="" />
           </div>
           <div class="details">
+            <span class="privacy-circle circle-dark mx-1 position-absolute"><i class="fa fa-lock"></i></span>
             <h4 class="d-flex justify-content-between">
               <span>강남 맛집투어</span>
             </h4>
@@ -63,57 +46,10 @@
         </div>
       </div>
     </div>
-    <div class="col-lg-4">
-      <div class="single-destinations">
-        <div class="list-container">
-          <div class="thumb-custom">
-            <img src="./images/myPage/place.jpg" alt="" />
-          </div>
-          <div class="details">
-            <h4 class="d-flex justify-content-between">
-              <span>연남동 나들이</span>
-            </h4>
-            <p>작성자 : <b> 김연남</b></p>
-            <small>만든 날짜 : 2020년 5월 1일</small>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-lg-4">
-      <div class="single-destinations">
-        <div class="list-container">
-          <div class="thumb-custom">
-            <img src="./images/myPage/hotel1.jpg" alt="" />
-          </div>
-          <div class="details">
-            <h4 class="d-flex justify-content-between">
-              <span>부산 여행</span>
-            </h4>
-            <p>작성자 : <b> 김부산</b></p>
-            <small>만든 날짜 : 2020년 5월 1일</small>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-lg-4">
-      <div class="single-destinations">
-        <div class="list-container">
-          <div class="thumb-custom">
-            <img
-              src="https://images.unsplash.com/photo-1540998145333-e2eef1a9822d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1233&q=80"
-              alt=""
-            />
-          </div>
-          <div class="details">
-            <h4 class="d-flex justify-content-between">
-              <span>떠나보자 서울여행</span>
-            </h4>
-            <p>작성자 : <b>JuHyeonAn</b></p>
-            <small>만든 날짜 : 2020년 5월 1일</small>
-          </div>
-        </div>
-      </div>
-    </div>
+    </c:forEach>
+    
+    
+    
   </div>
 
   <!-- modal -->
@@ -159,7 +95,7 @@
                 <div>
                   <label
                     ><input type="radio" name="privacy" /><span
-                      class="privacy-circle mx-1"
+                      class="privacy-circle circle-dark mx-1"
                       style="background: #fff; color: #000;"
                       ><i class="fa fa-lock"></i
                     ></span>

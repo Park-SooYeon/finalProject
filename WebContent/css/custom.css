@@ -13,13 +13,13 @@ mypage css
   padding-top: 20px;
   padding-left: 15px;
   padding-right: 15px;
-  height: 13.5rem;
   border: none;
   background: #ffffff;
   margin-top: -100px;
   border-radius: 2px 2px 2px 2px;
   border: 1px solid #eee;
   padding-bottom: 0;
+  height: 28vh;
 }
 body {
   background: #f9f9ff;
@@ -50,6 +50,27 @@ body {
   color: rgb(148, 148, 148);
   font-size: 16px;
   margin-bottom: 10px;
+}
+
+#mp-btnFollow{
+  color: #3399FF;
+  font-family: "Helvetica";
+  font-size: 10pt;
+  background-color: #ffffff;
+  border: 1px solid;
+  border-color: #3399FF;
+  border-radius: 3px;
+  width: 85px;
+  height: 30px;
+  cursor: hand;		    
+}
+
+.btn-follow:before{
+	content:"+ 팔로우";
+}
+
+.btn-following:before{
+	content:"팔로잉";
 }
 
 .give-a-space {
@@ -100,7 +121,6 @@ p {
   background: #ffffff;
   border: 1px solid #eee;
   padding: 5px 30px;
-  /*height: 41.7rem;*/
   margin-bottom: 15px;
 }
 
@@ -108,7 +128,6 @@ p {
   background: #ffffff;
   border: 1px solid #eee;
   padding: 5px 30px;
-  /*height: 25.5rem;*/
   height: auto;
   margin-bottom: 15px;
 }
@@ -250,7 +269,7 @@ p {
 
 .ellipsis-menu {
   position: absolute;
-  width: auto;
+  width: auto !important;
   height: 35px;
   padding: 0 15px;
   background-color: #fff;
@@ -383,16 +402,23 @@ p {
 /* 새 여행 추가하기 모달창 */
 
 .privacy-circle {
+  bottom:129px;
+  left:22px;
   border: 1px solid rgb(179, 179, 179);
   width: 2rem;
   height: 2rem;
   display: inline-block;
   line-height: 2rem;
   font-size: 1.2rem;
-  color: white;
-  background: black;
   text-align: center;
   border-radius: 50% !important;
+  background: #fff;
+  color: #000;
+}
+
+.circle-dark{
+  color: #fff !important;
+  background: #000 !important;
 }
 
 .privacy-option {
@@ -1271,18 +1297,6 @@ input[name="searchPlace"]::placeholder {
     order: 3;
   }
 
-  .profile {
-    height: 21rem;
-  }
-
-  .posts-list {
-    /*height: 41.5rem;*/
-  }
-
-  .posts-review {
-    /*height: 27rem;*/
-  }
-
   .posting-title span {
     width: 10%;
   }
@@ -1295,10 +1309,6 @@ input[name="searchPlace"]::placeholder {
 @media (max-width: 576px) {
   .follow-status span {
     width: 30%;
-  }
-
-  .modify-btn {
-    display: none;
   }
 
   .profile-menu .navbar-nav {
@@ -1316,16 +1326,16 @@ input[name="searchPlace"]::placeholder {
   .posting-title > div {
     width: 85%;
   }
-  .posts-list {
-    /*height: 42rem;*/
-  }
-
-  .posts-review {
-    /*height: 29rem;*/
-  }
 
   .post-img-pa {
     height: 16rem;
+  }
+  .profile {
+    height: 43.5vh;
+  }
+
+  .follow-status div {
+    width: 33%;
   }
 }
 
@@ -1350,12 +1360,6 @@ input[name="searchPlace"]::placeholder {
 
   .posting-title > div {
     width: 80%;
-  }
-  .posts-list {
-    /*height: 43rem;*/
-  }
-  .posts-review {
-    /*height: 32rem;*/
   }
   .post-img-pa {
     height: 13rem;
