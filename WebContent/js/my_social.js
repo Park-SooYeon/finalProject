@@ -129,6 +129,10 @@ function init() {
 	      });
 	    }
 	  }); 
+	
+	$(".mp-modify-area").hover(function(){
+		$("#mp-btnModifyProfile").toggle();
+	});
 }
 
 init();

@@ -29,8 +29,21 @@ body {
   height: 120px;
 }
 
+#pro-nick{
+  cursor:pointer;
+}
+
 #pro-upload {
   display: none;
+}
+
+#mp-btnModifyProfile{
+	color:#000;
+	opacity:0.8;
+}
+
+#mp-btnModifyProfile:hover{
+	text-decoration:underline;
 }
 
 .profile-menu a:hover,
@@ -350,6 +363,20 @@ p {
   line-height: 13rem;
 }
 
+.mp-trip-modify-btn{
+  font-weight: 400;
+}
+
+.mp-trip-modify-btn .mp-trip-modify, 
+.mp-trip-modify-btn .mp-trip-delete{
+	cursor:pointer;
+}
+
+.mp-trip-modify-btn .mp-trip-modify:hover, 
+.mp-trip-modify-btn .mp-trip-delete:hover{
+	color:black;
+} 
+
 .thumb-custom img {
   width: 100%;
 }
@@ -404,7 +431,7 @@ p {
 .privacy-circle {
   bottom:129px;
   left:22px;
-  border: 1px solid rgb(179, 179, 179);
+  border: 2px double #fff;
   width: 2rem;
   height: 2rem;
   display: inline-block;
@@ -412,13 +439,8 @@ p {
   font-size: 1.2rem;
   text-align: center;
   border-radius: 50% !important;
-  background: #fff;
-  color: #000;
-}
-
-.circle-dark{
-  color: #fff !important;
-  background: #000 !important;
+  color: #fff;
+  background: #000;
 }
 
 .privacy-option {
@@ -1336,6 +1358,10 @@ input[name="searchPlace"]::placeholder {
 
   .follow-status div {
     width: 33%;
+  }
+  
+  #mp-btnModifyProfile{
+  	display:none !important;
   }
 }
 

@@ -86,7 +86,7 @@
                   	</li>
                   </ul>
                   <div class="col-md-12 mb-3">
-                <button class="btn btn-outline-primary pull-right" style="position:absolute; right:0; top:62px;">평가하러 가기</button>
+                <button class="btn btn-outline-primary pull-right" style="position:absolute; right:0; top:9px;">평가하러 가기</button>
               </div>
                 </div>
                 </div>

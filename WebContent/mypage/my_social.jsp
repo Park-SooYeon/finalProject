@@ -35,21 +35,24 @@ uri="http://java.sun.com/jsp/jstl/core" %>
           <img class="rounded-circle profile-image" id="pro-main-img" src="./template/img/blog/c1.jpg" alt="" />
         </div>
         <div class="col-lg-10 col-md-9 col-sm-9 profile-main-detail">
+          <div class="mp-modify-area">
           <div>
-          <div>
-          <h2 class="d-inline-block" id="pro-nick">JuHyeon An&nbsp;</h2>
-          <button type="button" id="mp-btnFollow">+ Follow</button>
-          </div>
-          <div id="pro-id"><i class="fa fa-at" aria-hidden="true"></i> IT_Traveler</div>
+          <h2 class="d-inline-block" id="pro-nick" data-toggle="modal"
+            data-target="#mp-modifyModal">JuHyeon An&nbsp;</h2>
           <a
           	href="#"
+            id="mp-btnModifyProfile"
             data-toggle="modal"
             data-target="#mp-modifyModal"
-            id="mp-btnModifyProfile"
+           style="display:none;"
           >
           <i class="fa fa-edit"></i>
             프로필수정
           </a>
+          <button class="pull-right" type="button" id="mp-btnFollow">+ Follow</button>
+          </div>
+          <div id="pro-id"><i class="fa fa-at" aria-hidden="true"></i> IT_Traveler</div>
+          
            
           <div class="row">
             <div class="col-md-12 give-a-space"></div>

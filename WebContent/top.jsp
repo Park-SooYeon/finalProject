@@ -24,20 +24,22 @@
 					<li><a href="./?inc=membership/partnerJoin.jsp">파트너 등록하기</a></li>
 					
 					<li>
+					<div class="d-flex">
 					<div class="main-profile">
 					<img width="100%" src="https://i.ibb.co/T1FbwJ5/3x4-blue.jpg" alt="3x4-blue" border="0">
 					</div>
-					<ul class="main-pro-menu">
-					<li><a><span>안주현 </span>님</a></li>
-					<hr/>
-					<li><a href="./?inc=mypage/my_social.jsp">프로필 보기</a></li>
-					<li><a href="./?inc=mypage/member_modify.jsp">계정관리</a></li>
-					<li><a href="./?inc=mypage/my_page.jsp">예약내역 확인</a></li>
-					<li><a href="./?inc=mypage/my_list.jsp">My Trip</a></li>
-					<li><a href="#">로그아웃</a></li>
-					</ul>
+					<div class="mobile-userId" style="display:none;">안주현 님</div>
+					</div>
+						<ul class="main-pro-menu">
+						<li>안주현 님</li>
+						<hr/>
+						<li><div onclick="location.href='./?inc=mypage/my_social.jsp'">프로필 보기</div></li>
+						<li><div onclick="location.href='./?inc=mypage/member_modify.jsp'">계정관리</div></li>
+						<li><div onclick="location.href='./?inc=mypage/my_page.jsp'">예약내역 확인</div></li>
+						<li><div onclick="location.href='./?inc=mypage/my_list.jsp'">My Trip</div></li>
+						<li><div onclick="location.href='#'">로그아웃</div></li>
+						</ul>
 					</li>
-				
 				</ul>
 			</nav>
 			<!-- #nav-menu-container -->
@@ -65,4 +67,5 @@ function openInNewTab(url) {
     var win = window.open(url, '_blank');
     win.focus();
 }
+
 </script>
