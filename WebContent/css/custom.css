@@ -1122,7 +1122,7 @@ input[name="searchPlace"]::placeholder {
 
 .mp-img {
   width: 26%;
-  height: 16vh;
+  height: 24vh;
   overflow: hidden;
   padding: 0;
 }
@@ -1174,6 +1174,14 @@ input[name="searchPlace"]::placeholder {
   color: #343a40;
   font-size: 17px;
   font-weight: bold;
+}
+
+
+/*review 작성하러 가기 */
+#mp-btnGoReview{
+	position:absolute;
+	right:0;
+	top:9px;
 }
 
 /* trip customizing map */
@@ -1328,6 +1336,16 @@ input[name="searchPlace"]::placeholder {
   }
 }
 
+@media (max-width:640px){
+	  .col-74{
+  width:100%;
+  }
+  
+  #mp-btnGoReview{
+  	font-size:11px;
+  }
+}
+
 @media (max-width: 576px) {
   .follow-status span {
     width: 30%;
@@ -1363,6 +1381,13 @@ input[name="searchPlace"]::placeholder {
   #mp-btnModifyProfile{
   	display:none !important;
   }
+  
+  .mp-img{
+    width: 100%;
+    height: 53vh;
+    overflow: hidden;
+    padding: 30px;
+   }
 }
 
 @media (max-width: 455px) {
@@ -1390,4 +1415,10 @@ input[name="searchPlace"]::placeholder {
   .post-img-pa {
     height: 13rem;
   }
+  
+  .mp-img{
+  	height:40vh;
+  	padding:3px;
+  }
+  
 }

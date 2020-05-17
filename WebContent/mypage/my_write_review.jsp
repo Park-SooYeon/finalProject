@@ -67,12 +67,12 @@
           <div class="col-lg-12">
             <div class="mp-body-single" style="height:auto;">
               <div class="row">
-                <div class="col-lg-3 mp-img" style="height:23vh;">
+                <div class="col-lg-3 col-md-3 col-sm-3 mp-img">
                   <img
                     src="https://i.ibb.co/TvM5WBJ/food17.jpg"
                   />
                 </div>
-                <div class="col-lg-9 p-3">
+                <div class="col-lg-9 col-md-9 col-sm-9 col-74 p-3">
                   <ul class="mp-inner">
                     <li class="mp-hotel-name">레스토랑 이름</li>
                     <li class="mp-hotel-desc"><i class="fa fa-map-marker"></i> <span>서울 서초구 서초동 1317</span></li>
@@ -85,8 +85,8 @@
                   	<small>283명이 이 장소를 평가했습니다.</small>
                   	</li>
                   </ul>
-                  <div class="col-md-12 mb-3">
-                <button class="btn btn-outline-primary pull-right" style="position:absolute; right:0; top:9px;">평가하러 가기</button>
+                  <div class="col-md-12 col-sm-12 mb-3">
+                <button id="mp-btnGoReview" class="btn btn-outline-primary pull-right">평가하러 가기</button>
               </div>
                 </div>
                 </div>

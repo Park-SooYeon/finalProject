@@ -128,11 +128,12 @@
               <input
                 type="text"
                 id="datePickInput"
-                class="form-control col-sm-8 datepicker-here"
+                class="form-control col-sm-8 col-xm-12 datepicker-here"
                 data-range="true"
-                data-position="right top"
+                data-position="top left"
                 data-language="kr"
                 data-multiple-dates-separator=" - "
+                data-toggle-selected="true"
               />
             </div>
           </form>

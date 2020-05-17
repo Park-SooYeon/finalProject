@@ -36,12 +36,6 @@ function init() {
 	  }
   });
 
-  /*
-  $(document).on("click", "#datePickInput", function(){
-      
-  });
-  */
-  
   $("#btnCreateTrip").click(function () {
     // 추후 submit으로 변경
   });
