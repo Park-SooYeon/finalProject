@@ -39,6 +39,11 @@
 	<link rel="stylesheet" href="plugin/air-datepicker/css/datepicker.min.css">
 	
 	<script src="template/js/vendor/jquery-2.2.4.min.js"></script>
+	<!-- map api head로 -->
+	<script
+      type="text/javascript"
+      src="//dapi.kakao.com/v2/maps/sdk.js?appkey=52d0cd9eb539c564cdc52bb34a626875"
+    ></script>
 </head>
 <body>
 
@@ -85,9 +90,5 @@
 	<!-- review_detail -->
 	<script src="js/festival_detail.js"></script>
 	
-	<script
-      type="text/javascript"
-      src="//dapi.kakao.com/v2/maps/sdk.js?appkey=52d0cd9eb539c564cdc52bb34a626875"
-    ></script>
 </body>
 </html>
