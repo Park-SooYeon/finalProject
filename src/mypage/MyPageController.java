@@ -20,7 +20,7 @@ public class MyPageController {
 	
 	ModelAndView mv;
 	
-	@RequestMapping(value = "/profile.mp", method= {RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping(value = "profile.mp", method= {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView profile(HttpServletRequest req) {
 		mv = new ModelAndView();
 		
@@ -30,7 +30,7 @@ public class MyPageController {
 		return mv;
 	}
 	
-	@RequestMapping( value ="/mypage.mp", method= {RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping( value ="mypage.mp", method= {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView mypage(HttpServletRequest req) {
 		mv = new ModelAndView();
 		mv.setViewName("member_modify");
