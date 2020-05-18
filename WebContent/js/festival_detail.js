@@ -81,6 +81,7 @@ function init() {
   $(".success").click(function (e) {
     alert("성공적으로 접수되었습니다.");
   });
-}
+  
 
+}
 init();
