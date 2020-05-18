@@ -34,13 +34,110 @@
 	
 	<!-- mypage servlet -->
 	<servlet>
-    <servlet-name>mypage_mvc</servlet-name>
-    <servlet-class>
+    	<servlet-name>mypage_mvc</servlet-name>
+    	<servlet-class>
 			org.springframework.web.servlet.DispatcherServlet
 		</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>mypage_mvc</servlet-name>
     <url-pattern>*.mp</url-pattern>
+  </servlet-mapping>
+  	
+  	
+  	<!-- rent servlet -->
+  	<servlet>
+    <servlet-name>rent_mvc</servlet-name>
+    <servlet-class>
+			org.springframework.web.servlet.DispatcherServlet
+		</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>rent_mvc</servlet-name>
+    <url-pattern>*.rent</url-pattern>
+  </servlet-mapping>
+  
+  	<!-- membership servlet -->
+  	<servlet>
+    <servlet-name>membership_mvc</servlet-name>
+    <servlet-class>
+			org.springframework.web.servlet.DispatcherServlet
+		</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>membership_mvc</servlet-name>
+    <url-pattern>*.ms</url-pattern>
+  </servlet-mapping>
+  
+  <!-- hotel servlet -->
+  	<servlet>
+    <servlet-name>hotel_mvc</servlet-name>
+    <servlet-class>
+			org.springframework.web.servlet.DispatcherServlet
+		</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>hotel_mvc</servlet-name>
+    <url-pattern>*.ht</url-pattern>
+  </servlet-mapping>
+  
+  <!-- main servlet -->
+  	<servlet>
+    <servlet-name>main_mvc</servlet-name>
+    <servlet-class>
+			org.springframework.web.servlet.DispatcherServlet
+		</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>main_mvc</servlet-name>
+    <url-pattern>*.main</url-pattern>
+  </servlet-mapping>
+  
+  <!-- review servlet -->
+  	<servlet>
+    <servlet-name>review_mvc</servlet-name>
+    <servlet-class>
+			org.springframework.web.servlet.DispatcherServlet
+		</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>review_mvc</servlet-name>
+    <url-pattern>*.rv</url-pattern>
+  </servlet-mapping>
+  
+  <!-- detailView servlet -->
+  	<servlet>
+    <servlet-name>detailView_mvc</servlet-name>
+    <servlet-class>
+			org.springframework.web.servlet.DispatcherServlet
+		</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>detailView_mvc</servlet-name>
+    <url-pattern>*.dv</url-pattern>
+  </servlet-mapping>
+  
+  <!-- partner servlet -->
+  	<servlet>
+    <servlet-name>partner_mvc</servlet-name>
+    <servlet-class>
+			org.springframework.web.servlet.DispatcherServlet
+		</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>partner_mvc</servlet-name>
+    <url-pattern>*.pt</url-pattern>
+  </servlet-mapping>
+  
+  <!-- admin servlet -->
+  	<servlet>
+    <servlet-name>admin_mvc</servlet-name>
+    <servlet-class>
+			org.springframework.web.servlet.DispatcherServlet
+		</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>admin_mvc</servlet-name>
+    <url-pattern>*.os</url-pattern>
   </servlet-mapping>
 </web-app>
