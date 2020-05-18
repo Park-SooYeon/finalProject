@@ -53,7 +53,8 @@ function init() {
       map.setCenter(coords);
     }
   });
-
+  
+  	//swiper
   var galleryThumbs = new Swiper(".gallery-thumbs", {
     spaceBetween: 10,
     slidesPerView: 4,

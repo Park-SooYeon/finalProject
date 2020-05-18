@@ -52,7 +52,7 @@
 			   공유하기 <span class="caret"></span>
 			  </button>
 			  <div class="dropdown-menu" role="menu">
-			   <div id="kakao-link-btn" href="javascript:sendLink()">
+				 <div href="javascript:;" id="kakao-link-btn"> 
 					<img src="//developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_medium.png" style='width:18px;padding-left:3px;'/>카카오톡
 				</div>
 				<span>
@@ -421,11 +421,46 @@
 		</div><!-- 리뷰사진부분 -->
 	</div> <!-- 컨테이너끝 -->
 	</form>
-
-
-	
-
-   
-    
+<script type="text/javascript">
+  //<![CDATA[
+    // // 사용할 앱의 JavaScript 키를 설정해 주세요.
+    Kakao.init('a8effece1d8215cec0ceddf314763998');
+    // // 카카오링크 버튼을 생성합니다. 처음 한번만 호출하면 됩니다.
+    Kakao.Link.createDefaultButton({
+      container: '#kakao-link-btn',  // 컨테이너는 아까 위에 버튼이 쓰여진 부분 id 
+      objectType: 'feed',
+      content: {  // 여기부터 실제 내용이 들어갑니다. 
+        title: '마시꾼마시써', // 본문 제목
+        description: '#맛있다. #삼평동 #카페 #분위기 #소개팅',  // 본문 바로 아래 들어가는 영역?
+        imageUrl: 'http://mud-kage.kakao.co.kr/dn/Q2iNx/btqgeRgV54P/VLdBs9cvyn8BJXB3o7N8UK/kakaolink40_original.png', // 이미지
+        link: {
+          mobileWebUrl: 'https://developers.kakao.com',
+          webUrl: 'https://developers.kakao.com'
+        }
+      },
+      social: {  /* 공유하면 소셜 정보도 같이 줄 수 있는데, 이 부분은 기반 서비스마다 적용이 쉬울수도 어려울 수도 있을듯 합니다. 전 연구해보고 안되면 제거할 예정 (망할 google  blogger...) */
+        likeCount: 286,
+        commentCount: 45,
+        sharedCount: 845
+      },
+      buttons: [
+        {
+          title: '웹으로 보기',
+          link: {
+            mobileWebUrl: 'https://developers.kakao.com',
+            webUrl: 'https://developers.kakao.com'
+          }
+        },
+        {
+          title: '앱으로 보기',
+          link: {
+            mobileWebUrl: 'https://developers.kakao.com',
+            webUrl: 'https://developers.kakao.com'
+          }
+        }
+      ]
+    });
+  //]]>
+</script> 
 </body>
 </html>
