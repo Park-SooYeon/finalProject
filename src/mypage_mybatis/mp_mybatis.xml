@@ -7,7 +7,7 @@
 	
 	<insert id="insert_trip" parameterType="mypage_mybatis.TripListVo">
 		insert into trip_list(trip_list_serial, member_id, trip_name, days_count, start_date, end_date, trip_auth, trip_date) 
-		values(seq_trip_list.nextval, #{member_id}, #{trip_name}, #{days_count}, #{start_date}, #{end_date}, #{trip_auth}, sysdate)
+		values(seq_trip_list.nextval, #{member_id}, #{trip_name}, ${days_count}, #{start_date}, #{end_date}, ${trip_auth}, sysdate)
 	</insert>
 	
 </mapper>
