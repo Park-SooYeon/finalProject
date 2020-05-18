@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<div id='rentView'>
+	<div id='rentView' style="padding-top: 110px;">
 	
 		<div class='row'>
 			<div class='col-lg-2 col-md-2 col-sm-1 hidden-xs'>
@@ -234,6 +234,9 @@
 
 	<script>
 	rent.func();
+	
+	
+	
 	</script>
 
 </body>

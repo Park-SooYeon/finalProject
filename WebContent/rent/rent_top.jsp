@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<nav class="navbar navbar-default" id='topmain'>
+<nav class="navbar navbar-default navbar-fixed-top" id='topmain'>
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header" id="navbar-header">

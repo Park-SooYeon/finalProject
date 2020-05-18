@@ -79,13 +79,13 @@
 	
 }
 #rentSearch #left #map{
-	position: absolute;
+	position: fixed;
 	height: 930px;
 	z-index: 0!important;
 }
 #rentSearch #left #hiddenFillterBack{
 	background-color:#eee;
-	opacity: 0.8;
+	opacity: 0.5;
 	position: absolute;
 	height: 930px;
 	z-index: 1;
@@ -262,7 +262,7 @@
 	height: auto;
 	text-align: right;
 	padding-top:15px;
-	padding-bottom:15px;
+	padding-bottom:10px;
 }
 #rentSearch #right #depart #depart_2 span{
 	font-size: 2.1em;
@@ -299,7 +299,7 @@
 	height: auto;
 	text-align: right;
 	padding-top:15px;
-	padding-bottom:15px;
+	padding-bottom:10px;
 }
 #rentSearch #right #arrive #arrive_2 span{
 	font-size: 2.1em;
@@ -1147,7 +1147,7 @@
 	height: auto;
 	text-align: right;
 	padding-top:15px;
-	padding-bottom:15px;
+	padding-bottom:10px;
 }
 #reserveResultTop #depart #depart_2 span{
 	font-size: 2.1em;
@@ -1184,7 +1184,7 @@
 	height: auto;
 	text-align: right;
 	padding-top:15px;
-	padding-bottom:15px;
+	padding-bottom:10px;
 }
 #reserveResultTop #arrive #arrive_2 span{
 	font-size: 2.1em;
@@ -1228,7 +1228,7 @@
 	height: auto;
 	text-align: right;
 	padding-top:15px;
-	padding-bottom:15px;
+	padding-bottom:10px;
 }
 #reserveResultBot #depart #depart_2 span{
 	font-size: 2.1em;
@@ -1265,7 +1265,7 @@
 	height: auto;
 	text-align: right;
 	padding-top:15px;
-	padding-bottom:15px;
+	padding-bottom:10px;
 }
 #reserveResultBot #arrive #arrive_2 span{
 	font-size: 2.1em;
@@ -1290,6 +1290,13 @@
 	text-align: center;
 	font-weight: bold;
 	color: #2b96cb;
+	font-size: 1.6em;
+}
+#reserveResultCansel>div>h4{
+	margin-top:70px;
+	text-align: center;
+	font-weight: bold;
+	color: orange;
 	font-size: 1.6em;
 }
 
@@ -1321,6 +1328,93 @@
 
 
 
+
+
+
+.reserveCansel{
+	opacity: 0.3;
+}
+.canselInfo{
+	font-size: 0.7em;
+	color: #e17070;
+	text-align: right;
+}
+.canselInfo>span{
+	font-size: 1.1em;
+	font-weight: bold;
+}
+
+.review_warning:hover{
+	cursor: pointer;
+	color: #eb5353;
+	font-weight: bold;
+	text-shadow: 1px 1px 1px #eee;
+}
+
+
+
+
+.warning{
+	height: 400px;
+}
+.warning>div>div:nth-child(1) {
+	margin-top: 20px;
+}
+.warning>div>div:nth-child(1)>div:nth-child(1){
+	font-size: 1.2em!important;
+	color: #555!important;
+}
+.warning>div>div:nth-child(1)>div:nth-child(2){
+	font-size: 1.2em!important;
+	color: #ddd!important;
+}
+
+.warning>div>div:nth-child(2) {
+	margin-top: 20px;
+}
+.warning>div>div:nth-child(2)>div:nth-child(1){
+	font-size: 1.2em!important;
+	color: #555!important;
+}
+.warning>div>div:nth-child(2)>div:nth-child(2){
+	font-size: 1.2em!important;
+	color: #ddd!important;
+}
+
+.warning>div>div:nth-child(3) {
+	margin-top: 20px;
+}
+.warning>div>div:nth-child(3)>div:nth-child(1){
+	font-size: 1.1em!important;
+	color: #ddd!important;
+}
+.warning>div>div:nth-child(3)>div:nth-child(2){
+	font-size: 1.1em!important;
+	color: #555!important;
+}
+
+.warning>div>div:nth-child(4) {
+	margin-top: 20px;
+}
+.warning>div>div:nth-child(4) div label{
+	font-size: 1.0em!important;
+	color:#555!important;
+}
+
+.warning>div>div:nth-child(5) {
+	margin-top: 20px;
+}
+.warning>div>div:nth-child(5)>div>div{
+	font-size: 1.1em!important;
+	color:#555!important;
+}
+.warning>div>div:nth-child(5)>div>input{
+	width: 100%!important;
+	height: 150px!important;
+	border: 1px solid #aaa!important;
+	background-color: #eee!important;
+	border-radius: 5px 5px 5px 5px!important;
+}
 
 
 

@@ -12,7 +12,7 @@
 
 </head>
 <body>
-<div id="rentSearch">
+<div id="rentSearch" style="padding-top: 70px;">
 	<div class="row">
 		<div id='left' class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
 		<div id='map' class="col-lg-12 col-md-12 col-sm-12 hidden-xs"></div>
@@ -308,6 +308,8 @@
 			$('#fillter').css("display","none");
 			$('#hiddenFillter').css("display","inline-block");
 			$('#hiddenFillterBack').css("display","inline-block");
+			$('#right').css('height',$('#hiddenFillter').height());
+			$('#hiddenFillterBack').css('height',$('#hiddenFillter').height());
 		});
 	}
 	if($('#btnHiddenFillter')!=null){
@@ -315,6 +317,7 @@
 			$('#hiddenFillter').css("display","none");
 			$('#hiddenFillterBack').css("display","none");
 			$('#fillter').css("display","inline-block");
+			$('#right').css('height','auto');
 		});
 	}
 	
@@ -364,7 +367,9 @@
                 })
             }
         }
-    })
+    });
+    
+    
 	
 	
 	

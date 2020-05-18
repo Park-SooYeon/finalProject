@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-	<div class='row'>
+	<div class='row' style="padding-top: 70px;">
 	<div class='col-lg-3 col-md-3 col-sm-3'></div>
 	<div class='col-lg-6 col-md-6 col-sm-6 col-xs-12'>
 	
@@ -116,6 +116,7 @@
 				</div>
 			</div>
 			
+			<h4 class='canselInfo'>※<span>예약 취소</span>는 상단의 예약 관리 페이지에서 가능합니다</h4>
 			
 			<div id='reserveResultPrice' class='row'>
 				<div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
