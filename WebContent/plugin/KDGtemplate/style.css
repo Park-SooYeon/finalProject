@@ -450,7 +450,52 @@ h1.header-w3ls {
 
 .hiddenmain{
 	display: none;
+	text-align: center;
 }
+.hiddenmain>div:nth-child(1){
+	width: 70px;
+	height: 70px;
+	margin:auto;
+}
+.hiddenmain>div:nth-child(1):hover,div:nth-child(2):hover{
+	cursor: pointer;
+}
+.hiddenmain>div:nth-child(1)>img{
+	max-width: 100%;
+	height: auto;
+}
+.hiddenmain>div:nth-child(2){
+	color:orange;
+	font-weight: bold;
+}
+#hiddenmainsub{
+	display: none;
+}
+#hiddenmainsub>div{
+	margin-top:15px;
+	color: white;
+	font-weight: bold;
+	font-size: 1.2em;
+}
+#hiddenmainsub>span{
+	margin-top:10px;
+	color:white;
+	font-size: 0.7em;
+	line-height: 3px;
+}
+#callInfosub{
+	width: 10px;
+	height: 10px;
+}
+#callInfosub>img{
+	width: 15px;
+	height: 15px;
+}
+#callInfosub>img:hover{
+	cursor:pointer;
+}
+
+
 .defrent{
 	color:orange!important;
 	font-size: 0.8em;

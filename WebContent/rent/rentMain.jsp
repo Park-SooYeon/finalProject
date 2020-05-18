@@ -27,11 +27,11 @@
 </head>
 
 <body>
-	<div class='rentmain'>
+	<div class='rentmain' style="padding-top: 70px;">
 	<h1 class="header-w3ls">
 		어디에서 픽업하세요?</h1>
 	<div class="appointment-w3">
-		<form action="#" method="post">
+		<form action="" method="post">
 			
 			<div class="information">
 				
@@ -79,36 +79,22 @@
 						<option value="">시</option>
 						</select>
 					</div>
-					<label class="defrent" id="defrent">> 다른 지점에서 차량 반납하기</label><br/><br/>
+					<label class="defrent" id="defrent">> 전화 예약이 필요하신가요??</label><br/><br/>
 					
 					<div class="hiddenmain" id="hiddenmain">
-						<label class="give">차량반납</label>
-						<div class="form-left-w3l">
-						<select class="form-control" id="hiddenplace">
-							<option value="지역">지역</option>
-							<option value="서울">서울</option>
-							<option value="부산">부산</option>
-							<option value="대구">대구</option>
-							<option value="인천">인천</option>
-							<option value="광주">광주</option>
-							<option value="대전">대전</option>
-							<option value="울산">울산</option>
-							<option value="경기도">경기도</option>
-							<option value="강원도">강원도</option>
-							<option value="충청북도">충청북도</option>
-							<option value="충청남도">충청남도</option>
-							<option value="전라북도">전라북도</option>
-							<option value="전라남도">전라남도</option>
-							<option value="경상북도">경상북도</option>
-							<option value="경상남도">경상남도</option>
-							<option value="제주도">제주도</option>
-						</select>
+						<div id="callimg"><img src="../images/rent/phone.png"/></div>
+						<div>예약 전화</div>
+						
+						<div class="hiddenmainsub" id="hiddenmainsub">
+							<div>02 2023 6423</div>
+							<span>
+							영업시간<br/>
+							콜센터로 연락이 어려우신 경우, 오후 3시 이후에 다시 전화 부탁 드리겠습니다.<br/>
+							오후 3시 이후부터는 보다 원활한 상담이 가능합니다.<br/>
+							감사합니다. &nbsp; <i id='callInfosub' data-toggle="tooltip" data-placement="top" title="예약 및 상담시간 : 월 ~ 금  08:00-23:00"><img src='../images/rent/callInfo.png'/></i>
+							</span>
 						</div>
-						<div class="form-right-w3ls">
-							<select class="form-control" id="hiddensubplace">
-								<option value="">시</option>
-							</select>
-						</div>
+						
 					</div>
 				
 				
@@ -184,6 +170,10 @@
 		$('#defrent').click(function(){
 			$('#hiddenmain').slideToggle("fast");
 		});
+		$('#callimg,#hiddenmain>div:nth-child(2)').click(function(){
+			$('#hiddenmainsub').slideToggle("fast");
+		});
+		$('#callInfosub').tooltip();
 		
 		var seoul = new Array("서울전체","종로구","중구","용산구","성동구","광진구","동대문구","중랑구","성북구","강북구","도봉구","노원구","은평구","서대문구","마포구","양천구","강서구","구로구","금천구","영등포구","동작구","관악구","서초구","강남구","송파구","강동구");
 		var busan = new Array("부산전체","중구","서구","동구","영도구","부산진구","동래구","남구","북구","강서구","해운대구","사하구","금정구","연제구","수영구","사상구");
