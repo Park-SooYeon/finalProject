@@ -91,7 +91,7 @@
 										<select>
 											<option value="1">호텔</option>
 											<option value="2">렌트카</option>
-											<option value="3">음식점</option>
+										
 								
 										</select>
 									</div>
