@@ -1,7 +1,5 @@
 package mypage;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -23,7 +21,6 @@ public class MyPageController {
 	@RequestMapping(value = "profile.mp", method= {RequestMethod.GET, RequestMethod.POST})
 	public String profile(HttpServletRequest req) {
 		mv = new ModelAndView();
-		
 		return "my_social";
 	}
 	

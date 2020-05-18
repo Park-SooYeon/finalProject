@@ -68,6 +68,7 @@
     aria-hidden="true"
   >
     <div class="modal-dialog" role="document">
+          <form name="mp-newtripFrm" action="./?inc=mytrip.mp" method="post">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="newTripModalLabel">여행 추가하기</h5>
@@ -76,11 +77,11 @@
           </button>
         </div>
         <div class="modal-body" style="color: #000; padding: 2rem 5rem;">
-          <form>
             <div class="form-group">
               <input
                 type="text"
-                id="trip-name"
+                id="trip_name"
+                id="trip_name"
                 placeholder="여행이름을 입력해주세요."
                 onfocus="this.placeholder=''"
                 onblur="this.placeholder='여행이름을 입력해주세요.'"
@@ -92,7 +93,7 @@
               <div class="privacy-option">
                 <div>
                   <label
-                    ><input type="radio" name="privacy" checked/><span class="privacy-circle mx-1"
+                    ><input type="radio" name="trip_auth" value="1" checked/><span class="privacy-circle mx-1"
                       ><i class="fa fa-unlock-alt"></i
                     ></span>
                     <h6>공개</h6>
@@ -100,7 +101,7 @@
                 </div>
                 <div>
                   <label
-                    ><input type="radio" name="privacy" /><span
+                    ><input type="radio" name="trip_auth" value="1"/><span
                       class="privacy-circle circle-dark mx-1"
                       ><i class="fa fa-lock"></i
                     ></span>
@@ -120,7 +121,7 @@
 
             <div class="form-group" id="trip-day-input" style="display: none;">
               <label for="trip-day-input" class="col-form-label"><h5>일수 입력</h5> </label><br/>
-              <input type="number" class="form-control col-sm-3" style="display:inline-block;"/> 일
+              <input type="number" name="days_count" class="form-control col-sm-3" style="display:inline-block;"/> 일
             </div>
 
             <div class="form-group" id="trip-cal-input" style="display: none;">
@@ -134,15 +135,16 @@
                 data-language="kr"
                 data-multiple-dates-separator=" - "
                 data-toggle-selected="true"
+                name="start_date"
               />
             </div>
-          </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
           <button type="submit" class="btn btn-primary" data-dismiss="modal" id="btnCreateTrip">저장</button>
         </div>
       </div>
+         </form>
     </div>
   </div>
   <!-- model end -->
