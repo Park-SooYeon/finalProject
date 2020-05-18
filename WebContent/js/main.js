@@ -63,7 +63,7 @@ if (mql.matches) {
 } else {
   sliderPage = 4;
 }
-var swiper = new Swiper(".swiper-container", {
+var swiper = new Swiper(".row .swiper-container", {
   slidesPerView: sliderPage,
   paginationClickable: true,
   spaceBetween: 5,
@@ -78,7 +78,7 @@ mql.addListener(function (e) {
   } else {
     sliderPage = 4;
   }
-  var swiper = new Swiper(".swiper-container", {
+  var swiper = new Swiper(".row .swiper-container", {
     slidesPerView: sliderPage,
     paginationClickable: true,
     spaceBetween: 5,

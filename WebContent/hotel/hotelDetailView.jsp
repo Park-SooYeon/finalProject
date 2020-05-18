@@ -71,7 +71,6 @@
     <script src='./js/hotel.js'></script>
     <script src="js/main.js"></script>
     <script  src='./lib/jquery-3.4.1.js'></script>
-    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=	a8effece1d8215cec0ceddf314763998&libraries=services,clusterer"></script>
      <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
     <script type="text/javascript" src="//developers.band.us/js/share/band-button.js?v=11052020"></script>
 	<script type="text/javascript">

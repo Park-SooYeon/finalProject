@@ -84,5 +84,10 @@
 	
 	<!-- review_detail -->
 	<script src="js/festival_detail.js"></script>
+	
+	<script
+      type="text/javascript"
+      src="//dapi.kakao.com/v2/maps/sdk.js?appkey=52d0cd9eb539c564cdc52bb34a626875"
+    ></script>
 </body>
 </html>
