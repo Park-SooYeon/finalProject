@@ -25,7 +25,7 @@ main.like = function (ele) {
 };
 
 /* 여행 선택 모달창에서와 관련된 함수들 */
-//모달창에서 추가 버튼 클릭시 작동
+// 모달창에서 추가 버튼 클릭시 작동
 main.makeHeart = function () {
   // 추가버튼 클릭시 좋아요가 선택됨
   nowEle.classList.remove("fa-heart-o");
@@ -67,8 +67,10 @@ var swiper = new Swiper(".swiper-container", {
   slidesPerView: sliderPage,
   paginationClickable: true,
   spaceBetween: 5,
-  nextButton: ".swiper-button-next",
-  prevButton: ".swiper-button-prev",
+  navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    }
 });
 
 // 스크린 크기가 변할때마다 slider 개수를 다르게 표기
@@ -82,7 +84,9 @@ mql.addListener(function (e) {
     slidesPerView: sliderPage,
     paginationClickable: true,
     spaceBetween: 5,
-    nextButton: ".swiper-button-next",
-    prevButton: ".swiper-button-prev",
-  });
+    navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      }
+  })
 });
