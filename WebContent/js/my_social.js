@@ -102,6 +102,37 @@ function init() {
   $(".ellipsis-btn").click(function () {
     $(this).find(".ellipsis-menu").toggle();
   });
+  
+	$("#mp-btnFollow").click(function(event){
+	    if ($("#mp-btnFollow").text() == "+ Follow"){
+	    	alert("팔로우");
+	    	//event.preventDefault();
+	      $("#mp-btnFollow").animate({ width: '-=10px' }, 100, 'easeInCubic', function () {});
+	      
+	      $("#mp-btnFollow").animate({ width: '+=20px'}, 600, 'easeInOutBack', function () { 
+	        $("#mp-btnFollow").css("color", "#fff");
+	        $("#mp-btnFollow").text("Following");
+
+	        $("#mp-btnFollow").animate({
+	          backgroundColor: "#2B96ED",
+	          borderColor: "##2B96ED"
+	        }, 1000 );
+	      });
+	    }else{
+	      alert("언팔");
+	      // 팔로우가 되지 않은 상태로 css change
+	      $("#mp-btnFollow").animate({ width: '-=10px'}, 600, 'easeInOutBack', function () { 
+	        $("#mp-btnFollow").text("+ Follow");
+	        $("#mp-btnFollow").css("color", "#3399FF");
+	        $("#mp-btnFollow").css("background-color", "#ffffff");
+	        $("#mp-btnFollow").css("border-color", "#3399FF");
+	      });
+	    }
+	  }); 
+	
+	$(".mp-modify-area").hover(function(){
+		$("#mp-btnModifyProfile").toggle();
+	});
 }
 
 init();
@@ -128,3 +159,6 @@ function readURL(input) {
     reader.readAsDataURL(input.files[0]);
   }
 }
+
+
+	  

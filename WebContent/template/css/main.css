@@ -2362,12 +2362,62 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @media ( max-width : 991px) {
+	/* 모바일모드 nav 메뉴 */
 	#mobile-nav-toggle {
 		display: inline;
 	}
 	#nav-menu-container {
 		display: none;
 	}
+	
+	#mobile-nav ul {
+	  display: flex;
+	  flex-direction: column;
+	}
+	#mobile-nav ul li:nth-child(1) {
+	  order: 0;
+	}
+	#mobile-nav ul li:nth-child(4) {
+	  order: 1;
+	}
+	#mobile-nav ul li:nth-child(2) {
+	  order: 2;
+	}
+	#mobile-nav ul li:nth-child(3) {
+	  order: 3;
+	}
+	
+	.main-pro-menu li:first-child,
+	.main-pro-menu::after,
+	.main-pro-menu::before,
+	.main-pro-menu hr{
+		display:none;
+	}
+	
+	.main-profile{
+		margin-left:12px;
+	}
+	
+	.mobile-userId{
+		display:inline-block !important;
+		cursor:pointer;
+		color: #fff;
+	    font-size: 13px;
+	    position: relative;
+	    font-weight: 400;
+	    padding-left:10px;
+	}
+	
+	.main-pro-menu{
+   		all:unset !important;
+    }
+    .main-pro-menu div{
+    	font-size:13px !important;
+    	font-weight:normal !important;
+    	color:white !important;
+    	cursor:pointer;
+    	padding-left:30px;
+    }
 }
 
 /* Mobile Nav Styling */
@@ -4955,10 +5005,16 @@ body.mobile-nav-active #mobile-nav-toggle {
     cursor: pointer;
 }
 
-.main-pro-menu li a{
+.main-pro-menu li, 
+.main-pro-menu div{
 	font-weight: bold;
-    font-size: 15px !important;
-    padding: 2px !important;
+    font-size: 14px;
+    color:#232323;
+    opacity:0.8;
+}
+
+.main-pro-menu li div:hover{
+	opacity:1;
 }
 
 .main-pro-menu:before {

@@ -48,8 +48,10 @@
 	<script src="../plugin/checkbox/icheck.js"></script>
 	
 	<!-- kakao 지도-->
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=7af3181a84930dab295e1feac3c38680"></script>
-	
+    <script
+      type="text/javascript"
+      src="//dapi.kakao.com/v2/maps/sdk.js?appkey=52d0cd9eb539c564cdc52bb34a626875"
+    ></script>	
     <!-- 내전용  -->
     <link rel="stylesheet" href="../css/rent.css"/>
     <script src="../js/rent.js"></script>
