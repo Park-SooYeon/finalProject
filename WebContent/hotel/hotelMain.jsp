@@ -9,11 +9,11 @@
 <section class="banner-area relative" id="hotel_top">
 	<div class="container pt-50 mb-30">
 		<div class="row d-flex justify-content-center align-items-center"
-			style="height: 250px">
-			<div class="menu-content col-lg-8">
+			style="height: 400px">
+			<div class="menu-content col-lg-12">
 				<div class="title text-center">
 					<h1 class="text-white mb-10">호텔 메인</h1>
-					<form  method="post" name="frm_ms" id="frm_ms" class="row">
+					<form  method="post" name="frm_ht" id="frm_ht" class="row">
 	                               <div class="col-lg-4  ">
 									<input type="text" class="form-control" name="name" placeholder="From " onfocus="this.placeholder = ''" onblur="this.placeholder = 'From '">									
 									</div>

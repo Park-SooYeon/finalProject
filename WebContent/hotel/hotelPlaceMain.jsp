@@ -4,37 +4,48 @@
 <script src="lib/jquery-3.4.1.js"></script>
 
 <!-- start banner Area -->
-<section class="banner-area relative">
-	<div class="container pt-50 mb-30">
-		<div class="row d-flex justify-content-center align-items-center"
-			style="height: 250px">
-			<div class="menu-content col-lg-12">
-				<div class="title text-center">
-					<h1 class="text-white mb-10">호텔 (지역)</h1>
-					<form  method="post" name="frm_ms" id="frm_ms" class="row" >
-	                        <div class="col-lg-2  col-md-12 ">
-									<input type="text" class="form-control" name="name" placeholder="From " onfocus="this.placeholder = ''" onblur="this.placeholder = 'From '">									
-									</div>
-									<div class="col-lg-3  " >
-									<input type="text" id="datePickInput" class="form-control  datepicker-here" data-range="true" data-position="right top" data-language="kr" data-multiple-dates-separator=" - " name="start" placeholder="Start " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Start '">
-									</div>
-									<div class="col-lg-3">
-									<input type="text" id="datePickInput" class="form-control  datepicker-here" data-range="true" data-position="right top" data-language="kr" data-multiple-dates-separator=" - "  name="return" placeholder="Return " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Return '">
-									</div>
-									<div class="col-lg-2  ">
-									<input type="number" min="1" max="20" class="form-control" name="adults" placeholder="인원 " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Adults '">
-									</div>
-									
-								
-										<button class="btn btn-primary" style="width: 15%; height: 40px;"
-									type="submit"><i class="fa fa-search"></i></button>
-													
-								</form>		
+<section class="banner-area relative" >
+		<div class="container pt-50 mb-30">
+			<div class="row d-flex justify-content-center align-items-center"
+				style="height: 400px">
+				<div class="menu-content col-lg-8">
+					<div class="title text-center">
+						<h1 class="text-white mb-10">호텔 (지역)</h1>
+						<form method="post" name="frm_ms" id="frm_ms" class="row">
+							<div class="col-lg-4  ">
+								<input type="text" class="form-control" name="name"
+									placeholder="From " onfocus="this.placeholder = ''"
+									onblur="this.placeholder = 'From '">
+							</div>
+							<div class="col-lg-4  ">
+								<input type="text" id="datePickInput"
+									class="form-control  datepicker-here" data-range="true"
+									data-position="right top" data-language="kr"
+									data-multiple-dates-separator=" - " name="start"
+									placeholder="Start " onfocus="this.placeholder = ''"
+									onblur="this.placeholder = 'Start '">
+							</div>
+
+							<div class="col-lg-2  ">
+								<input type="number" min="1" max="20" class="form-control"
+									name="adults" placeholder="인원 " onfocus="this.placeholder = ''"
+									onblur="this.placeholder = 'Adults '">
+							</div>
+
+
+							<button class="btn btn-primary" style="width: 15%; height: 40px;"
+								type="submit">
+								<i class="fa fa-search"></i>
+							</button>
+
+						</form>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-</section>
+
+
+	</section>
 <!-- End banner Area -->
 	
 <script>
