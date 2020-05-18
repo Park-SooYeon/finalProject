@@ -22,6 +22,9 @@
 	
 	<mappers>
 		<!-- mapper 파일 -->
+		
+		<!-- mypage -->
+		<mapper resource="mypage_mybatis/mp_mybatis.xml"/>
 	</mappers>
 
 </configuration>
