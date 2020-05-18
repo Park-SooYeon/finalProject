@@ -5,7 +5,7 @@
 >
 <configuration>
 	
-	<properties resource="config.properties"/>
+	<properties resource="config/config.properties"/>
 	
 	<!-- JDBC 설정 -->
 	<environments default="development">
