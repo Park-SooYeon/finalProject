@@ -22,8 +22,10 @@ public class DitailViewController {
 		ModelAndView mv = new ModelAndView();
 		DitailViewVo vo = null;
 		int place_serial = Integer.parseInt(req.getParameter("code"));
+		vo = dao.view(place_serial);
 		
-		
+		mv.addObject("vo", vo);
+		mv.setViewName("ditailview");
 		
 		return mv;
 	}
