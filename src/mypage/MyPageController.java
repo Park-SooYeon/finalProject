@@ -1,5 +1,7 @@
 package mypage;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -24,12 +26,12 @@ public class MyPageController {
 	public String profile(HttpServletRequest req) {
 		mv = new ModelAndView();
 		return "my_social";
+		// mypage/my_social.jsp
 	}
 	
 	@RequestMapping( value ="mypage.mp", method= {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView mypage(HttpServletRequest req) {
 		mv = new ModelAndView();
-		mv.setViewName("member_modify");
 		return mv;
 	}
 	
@@ -41,14 +43,18 @@ public class MyPageController {
 	}
 
 	@RequestMapping( value = "mytrip.mp", method = {RequestMethod.GET, RequestMethod.POST})
-	public ModelAndView mytrip(HttpServletRequest req, HttpServletResponse resp) {
+	public ModelAndView select(HttpServletRequest req, HttpServletResponse resp) {
 		mv = new ModelAndView();
-		mv.setViewName("my_list");
+		List<TripListVo> list = dao.select();
+		mv.setViewName("trip_list");
+		mv.addObject("list", list);
+		System.out.println("리스트가 없는건 아닌데ㅠㅠ"+list.get(0).toString());
 		return mv;
+		// mypage/my_list.jsp
 	}
 	
 	@RequestMapping( value = "newtrip.mp", method = {RequestMethod.GET, RequestMethod.POST})
-	public String modify(HttpServletRequest req) {
+	public String insert(HttpServletRequest req) {
 		System.out.println("여기 들어오는지");
 		TripListVo vo = new TripListVo(); 
 		
@@ -56,11 +62,7 @@ public class MyPageController {
 		String member_id = "testId";
 		int days_count = 0;
 		String start_date = "";
-<<<<<<< HEAD
-		String end_date = "test";
-=======
-		String end_date = "";
->>>>>>> mypage
+		
 		int trip_auth = 1;
 		
 		if(req.getParameter("trip_name")!=null && req.getParameter("trip_name")!="") {
@@ -75,17 +77,18 @@ public class MyPageController {
 			start_date = req.getParameter("start_date");
 		}
 		
-		if(req.getParameter("end_date")!=null && req.getParameter("end_date")!="") {
-			end_date = req.getParameter("end_date");
-		}
 		trip_auth = Integer.parseInt(req.getParameter("trip_auth"));
 		
 		vo.setTrip_name(trip_name);
 		vo.setMember_id(member_id);
 		vo.setDays_count(days_count);
-<<<<<<< HEAD
-		vo.setStart_date("2020-05-11");
-		vo.setEnd_date("2020-05-13");
+
+		String[] values = start_date.split(" - ");
+		start_date = values[0];
+		String end_date = values[1];
+		
+		vo.setStart_date(start_date);
+		vo.setEnd_date(end_date);
 		vo.setTrip_auth(trip_auth);
 		
 		System.out.println(trip_name);
@@ -95,12 +98,6 @@ public class MyPageController {
 		System.out.println(end_date);
 		System.out.println(trip_auth);
 		
-=======
-		vo.setStart_date(start_date);
-		vo.setEnd_date(end_date);
-		vo.setTrip_auth(trip_auth);
-		
->>>>>>> mypage
 		String msg = dao.insert(vo);
 		System.out.println(msg);
 		
