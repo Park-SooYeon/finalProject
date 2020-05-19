@@ -18,7 +18,7 @@
 	<bean id="mpDao" class="mypage.MyPageDao"/>
 	
 	<!-- controller (servlet code) -->
-	<bean id="mm_controller" class="mypage.MyPageController">
+	<bean id="mp_controller" class="mypage.MyPageController">
 		<constructor-arg ref="mpDao"/>
 	</bean>
 	

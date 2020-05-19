@@ -1,7 +1,5 @@
 package mypage;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -21,13 +19,9 @@ public class MyPageController {
 	ModelAndView mv;
 	
 	@RequestMapping(value = "profile.mp", method= {RequestMethod.GET, RequestMethod.POST})
-	public ModelAndView profile(HttpServletRequest req) {
+	public String profile(HttpServletRequest req) {
 		mv = new ModelAndView();
-		
-		mv.setViewName("my_social");
-		// select라는 페이지에 넘기겠다!
-		// 그럼 얘가 resolver에서 받음 
-		return mv;
+		return "my_social";
 	}
 	
 	@RequestMapping( value ="mypage.mp", method= {RequestMethod.GET, RequestMethod.POST})

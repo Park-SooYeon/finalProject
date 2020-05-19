@@ -451,7 +451,7 @@ p {
   display: inline-block;
 }
 
-#trip-name {
+#trip_name {
   border: none;
   outline: none;
   border-bottom: 0.1rem solid rgb(133, 132, 132);
@@ -460,7 +460,7 @@ p {
   padding: 0.6rem;
 }
 
-#trip-name::placeholder {
+#trip_name::placeholder {
   font-size: 1rem;
   color: #555555;
   font-weight: 400;
