@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import mypage_mybatis.TripListVo;
+
 @Controller
 public class MyPageController {
 	MyPageDao dao;
@@ -45,10 +47,64 @@ public class MyPageController {
 		return mv;
 	}
 	
-	@RequestMapping( value = "modify.mp", method = {RequestMethod.GET, RequestMethod.POST})
-	public ModelAndView modify(HttpServletRequest req) {
-		mv = new ModelAndView();
-		return mv;
+	@RequestMapping( value = "newtrip.mp", method = {RequestMethod.GET, RequestMethod.POST})
+	public String modify(HttpServletRequest req) {
+		System.out.println("여기 들어오는지");
+		TripListVo vo = new TripListVo(); 
+		
+		String trip_name = "";
+		String member_id = "testId";
+		int days_count = 0;
+		String start_date = "";
+<<<<<<< HEAD
+		String end_date = "test";
+=======
+		String end_date = "";
+>>>>>>> mypage
+		int trip_auth = 1;
+		
+		if(req.getParameter("trip_name")!=null && req.getParameter("trip_name")!="") {
+			trip_name = req.getParameter("trip_name");
+		};
+		
+		if(req.getParameter("days_count")!=null && req.getParameter("days_count")!="") {
+			days_count = Integer.parseInt(req.getParameter("days_count"));
+		}
+		
+		if(req.getParameter("start_date")!=null && req.getParameter("start_date")!="") {
+			start_date = req.getParameter("start_date");
+		}
+		
+		if(req.getParameter("end_date")!=null && req.getParameter("end_date")!="") {
+			end_date = req.getParameter("end_date");
+		}
+		trip_auth = Integer.parseInt(req.getParameter("trip_auth"));
+		
+		vo.setTrip_name(trip_name);
+		vo.setMember_id(member_id);
+		vo.setDays_count(days_count);
+<<<<<<< HEAD
+		vo.setStart_date("2020-05-11");
+		vo.setEnd_date("2020-05-13");
+		vo.setTrip_auth(trip_auth);
+		
+		System.out.println(trip_name);
+		System.out.println(member_id);
+		System.out.println(days_count);
+		System.out.println(start_date);
+		System.out.println(end_date);
+		System.out.println(trip_auth);
+		
+=======
+		vo.setStart_date(start_date);
+		vo.setEnd_date(end_date);
+		vo.setTrip_auth(trip_auth);
+		
+>>>>>>> mypage
+		String msg = dao.insert(vo);
+		System.out.println(msg);
+		
+		return "my_list";
 	}
 	
 	@RequestMapping( value = "modifyR.mp", method = {RequestMethod.POST})

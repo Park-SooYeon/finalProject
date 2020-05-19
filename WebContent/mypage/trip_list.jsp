@@ -68,7 +68,7 @@
     aria-hidden="true"
   >
     <div class="modal-dialog" role="document">
-          <form name="mp-newtripFrm" action="./?inc=mytrip.mp" method="post">
+     <form name="mp-newtripFrm" action="./?inc=newtrip.mp" method="post">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="newTripModalLabel">여행 추가하기</h5>
@@ -81,7 +81,7 @@
               <input
                 type="text"
                 id="trip_name"
-                id="trip_name"
+                name="trip_name"
                 placeholder="여행이름을 입력해주세요."
                 onfocus="this.placeholder=''"
                 onblur="this.placeholder='여행이름을 입력해주세요.'"
@@ -141,7 +141,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
-          <button type="submit" class="btn btn-primary" data-dismiss="modal" id="btnCreateTrip">저장</button>
+          <button type="submit" class="btn btn-primary" id="btnCreateTrip">저장</button>
         </div>
       </div>
          </form>
