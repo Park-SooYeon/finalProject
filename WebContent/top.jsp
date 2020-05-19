@@ -19,7 +19,7 @@
 						</form>
 
 					</li>
-					<li><a href="./?inc=membership/login.jsp">로그인</a></li>
+					<li><a href="./?inc=login.ms">로그인</a></li>
 					<li><a href="./?inc=membership/memberJoin.jsp">회원가입</a></li>
 					<li><a href="./?inc=membership/partnerJoin.jsp">파트너 등록하기</a></li>
 					

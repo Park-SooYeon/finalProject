@@ -1,50 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="zxx" class="no-js">
-<head>
-<!-- Mobile Specific Meta -->
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<!-- Favicon-->
-<link rel="shortcut icon" href="img/fav.png">
-<!-- Author Meta -->
-<meta name="author" content="colorlib">
-<!-- Meta Description -->
-<meta name="description" content="">
-<!-- Meta Keyword -->
-<meta name="keywords" content="">
-<!-- meta character set -->
-<meta charset="UTF-8">
-<!-- Site Title -->
-<title>Travel</title>
 
-<link
-	href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700"
-	rel="stylesheet">
-<!--
-			CSS
-			============================================= -->
-<link rel="stylesheet" href="../template/css/linearicons.css">
-<link rel="stylesheet" href="../template/css/font-awesome.min.css">
-<link rel="stylesheet" href="../template/css/bootstrap.css">
-<link rel="stylesheet" href="../template/css/magnific-popup.css">
-<link rel="stylesheet" href="../template/css/jquery-ui.css">
-<link rel="stylesheet" href="../template/css/nice-select.css">
-<link rel="stylesheet" href="../template/css/animate.min.css">
-<link rel="stylesheet" href="../template/css/owl.carousel.css">
-<link rel="stylesheet" href="../template/css/main.css">
-<link rel="stylesheet" href="../css/css_syj.css">
-
-
-<script src='../lib/jquery-3.4.1.js'></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
-
-
-<script type="text/javascript"> //<![CDATA[ $(function() { $("#frm_ms").validate(); }); //]]> </script>
-
-
-</head>
 <body>
 
 
@@ -70,7 +27,8 @@
 
 	<div class="container">
 		<div class="col-lg-7 offset-lg-3">
-			<div class="jumbotron" style="padding-top: 20px; background: white">
+			<div class="jumbotron ms" >
+			  <div style="border: 1px solid #EAEAEA; padding: 50px;">
 				<form method="post" name="frm_ms" id="frm_ms"  >
 
 				<div class="form-group col-lg-10 "> 
@@ -135,7 +93,7 @@
 				</form>
 			</div>
 		</div>
-
+ </div>
 	</div>
 
 <script>
@@ -149,4 +107,4 @@ $('#btnSendMail').click(function(){
 
 
 </body>
-</html>
+\

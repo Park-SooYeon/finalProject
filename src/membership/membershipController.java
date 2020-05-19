@@ -18,7 +18,7 @@ public membershipController(membershipDao dao){
 
 }
 
-ModelAndView mv ;
+     ModelAndView mv;
 
     @RequestMapping( value ="memberJoin.ms", method= {RequestMethod.GET, RequestMethod.POST})
     public ModelAndView memberJoin(HttpServletRequest req) {
@@ -44,10 +44,13 @@ ModelAndView mv ;
     }
 
 
-    @RequestMapping( value ="ChangePwd.ms", method= {RequestMethod.GET, RequestMethod.POST})
-    public ModelAndView ChangePwd(HttpServletRequest req) {
+    @RequestMapping( value ="findPwd.ms", method= {RequestMethod.GET, RequestMethod.POST})
+    public ModelAndView findPwd(HttpServletRequest req) {
         mv = new ModelAndView();
-        mv.setViewName("ChangePwd");
+        
+        System.out.println("d여기야여기");
+        
+        mv.setViewName("findPwd");
         return mv;
     }
 
