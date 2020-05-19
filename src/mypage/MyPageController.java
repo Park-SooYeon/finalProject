@@ -56,7 +56,11 @@ public class MyPageController {
 		String member_id = "testId";
 		int days_count = 0;
 		String start_date = "";
+<<<<<<< HEAD
 		String end_date = "test";
+=======
+		String end_date = "";
+>>>>>>> mypage
 		int trip_auth = 1;
 		
 		if(req.getParameter("trip_name")!=null && req.getParameter("trip_name")!="") {
@@ -79,6 +83,7 @@ public class MyPageController {
 		vo.setTrip_name(trip_name);
 		vo.setMember_id(member_id);
 		vo.setDays_count(days_count);
+<<<<<<< HEAD
 		vo.setStart_date("2020-05-11");
 		vo.setEnd_date("2020-05-13");
 		vo.setTrip_auth(trip_auth);
@@ -90,6 +95,12 @@ public class MyPageController {
 		System.out.println(end_date);
 		System.out.println(trip_auth);
 		
+=======
+		vo.setStart_date(start_date);
+		vo.setEnd_date(end_date);
+		vo.setTrip_auth(trip_auth);
+		
+>>>>>>> mypage
 		String msg = dao.insert(vo);
 		System.out.println(msg);
 		
