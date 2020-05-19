@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,8 +8,8 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<form name='rent_frm' id='rent_frm' method='post'>
 	<div id='rentView' style="padding-top: 110px;">
-	
 		<div class='row'>
 			<div class='col-lg-2 col-md-2 col-sm-1 hidden-xs'>
 			</div>
@@ -36,7 +37,7 @@
 							</div>
 						</div>
 						
-						<div class='rentInfo'>
+						<div class='rentInfo' onclick='rent.importantInfo()'>
 							<div class='row'>
 									<div class='col-lg-3 col-md-3 col-sm-3 col-xs-3' >
 										<img src='../images/rent/rentInfo.png'/>
@@ -76,7 +77,11 @@
 						</div>
 						
 						<div id='viewRightMid' class='row'>
-								<%@include file="rentViewSub1.jsp" %>
+								<c:set var="contentPage" value="${contentPage }"/>
+								<c:if test="${contentPage==null }">
+									<jsp:include page="rentViewSub1.jsp"></jsp:include>
+								</c:if>
+								<jsp:include page="${contentPage }"></jsp:include>
 						</div>
 						
 						
@@ -226,11 +231,12 @@
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-	        <button type="button" id='btnReserveResult' class="btn btn-primary">지금 결제</button>
+	        <button type="button" id='btnReserveResult' class="btn btn-primary" >지금 결제</button>
 	      </div>
 	    </div>
 	  </div>
 	</div>
+	  </form>
 
 	<script>
 	rent.func();

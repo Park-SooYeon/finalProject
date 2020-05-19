@@ -82,7 +82,7 @@
 					&nbsp;&nbsp;&nbsp;<span class='carSubInfo_info3 info_f2' data-toggle="tooltip" data-placement="top" title="차체에 손상을 입혀 수릭 필요한 경우에도, 자차 보험(CDW:Collision Damage Waiver)을 적용 받아 본인이 지불해야 하는 손상 부담금만을 지불하시면 됩니다. 본보상 정책은 차량 렌탈 이용약관을 준수한 경우에만 유효합니다. 차량의 다은부분(ex:창문,휠,내부 인테리어, 루프 혹은 하부 구조),각종 비용 및 벌금(ex:견인비, 차량 수리로 렌터카 대여가 불가능 하는 데에 따른 손해 배상금) 또는 차량 내부 액세서리(ex:유아동반 카시트,GPS,개인 소지품)에 대해서는 보장해드리지 않습니다.">자차보험</span>	<br/>
 				</div>
 				<div id='carSubInfo4' class='col-lg-3 col-md-3 col-sm-3 col-xs-3'>
-					<button type="button" id='btnView' class="btn btn-primary">지금 예약</button>
+					<button type="button" id='btnView' onclick="rent.carView('1')" class="btn btn-primary">지금 예약</button>
 				</div>
 			</div>
 		</div>
