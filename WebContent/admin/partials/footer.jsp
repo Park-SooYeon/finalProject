@@ -62,6 +62,7 @@
     <script src="../../assets/js/demo_1/dashboard.js"></script>
     <!-- End custom js for this page-->
     
+    <script src="../../assets/js/admin/hotel.js"></script>
     
     <!-- 다음 우편번호 서비스 관련 js -->
 	<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>

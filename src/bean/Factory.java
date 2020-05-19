@@ -10,7 +10,7 @@ public class Factory {
 	private static SqlSessionFactory factory; //스태틱형태의 이 형태를 초기화 시키기위해서는 스태틱 블록이 필요하다
 	static {
 		try {
-			Reader r = Resources.getResourceAsReader("config\\config.xml");
+			Reader r = Resources.getResourceAsReader("config/config.xml");
 			factory = new SqlSessionFactoryBuilder().build(r);
 			System.out.println("factory good....");
 		}catch(Exception e) {

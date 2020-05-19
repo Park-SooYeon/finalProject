@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans  xmlns="http://www.springframework.org/schema/beans"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xmlns:context = "http://www.springframework.org/schema/context"
+		xmlns:aop = "http://www.springframework.org/schema/aop"
+		xsi:schemaLocation="http://www.springframework.org/schema/beans
+							http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+							http://www.springframework.org/schema/context
+							http://www.springframework.org/schema/context/spring-context-3.0.xsd
+							http://www.springframework.org/schema/aop
+							http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
+						
+	<context:annotation-config></context:annotation-config>
+	
+	<!-- bean -->
+	<bean id="compDao" class="partner.PtnHtCompDao" />
+	<bean id="roomDao" class="partner.PtnHtRoomDao" />
+	<bean id="orderDao" class="partner.PtnHtOrderDao" />
+				
+	<!-- Controller (servlet code) -->
+	<bean id="comp_controller" class="partner.PtnHtCompController">
+		<constructor-arg ref="compDao"></constructor-arg>
+	</bean>
+	<bean id="room_controller" class="partner.PtnHtRoomController">
+		<constructor-arg ref="roomDao"></constructor-arg>
+	</bean>
+	<bean id="order_controller" class="partner.PtnHtOrderController">
+		<constructor-arg ref="orderDao"></constructor-arg>
+	</bean>
+	
+	
+	
+	<!-- view resolverss (결과 페이지) -->	
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="./" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+							
+</beans>

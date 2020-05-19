@@ -1,143 +1,156 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" version="3.1">
-  <display-name>finalProject</display-name>
-  
-  <!-- 메인 페이지 설정 -->
-  <welcome-file-list>
-    <welcome-file>index.html</welcome-file>
-    <welcome-file>index.htm</welcome-file>
-    <welcome-file>index.jsp</welcome-file>
-    <welcome-file>default.html</welcome-file>
-    <welcome-file>default.htm</welcome-file>
-    <welcome-file>default.jsp</welcome-file>
-  </welcome-file-list>
-  
-  <!-- UTF-8 인코딩 설정 -->
-  <filter>
-    <filter-name>encoding-filter</filter-name>
-	    <filter-class>
-	        org.springframework.web.filter.CharacterEncodingFilter
-	    </filter-class>
-	    <init-param>
-	        <param-name>encoding</param-name>
-	        <param-value>UTF-8</param-value>
-	    </init-param>
-	    <init-param>
-	        <param-name>forceEncoding</param-name>
-	        <param-value>true</param-value>
-	    </init-param>
-	</filter>
-	<filter-mapping>
-	    <filter-name>encoding-filter</filter-name>
-	    <url-pattern>/*</url-pattern>
-	</filter-mapping>
-	
-	<!-- mypage servlet -->
-	<servlet>
-    	<servlet-name>mypage_mvc</servlet-name>
-    	<servlet-class>
-			org.springframework.web.servlet.DispatcherServlet
-		</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>mypage_mvc</servlet-name>
-    <url-pattern>*.mp</url-pattern>
-  </servlet-mapping>
-  	
-  	
-  	<!-- rent servlet -->
-  	<servlet>
-    <servlet-name>rent_mvc</servlet-name>
-    <servlet-class>
-			org.springframework.web.servlet.DispatcherServlet
-		</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>rent_mvc</servlet-name>
-    <url-pattern>*.rent</url-pattern>
-  </servlet-mapping>
-  
-  	<!-- membership servlet -->
-  	<servlet>
-    <servlet-name>membership_mvc</servlet-name>
-    <servlet-class>
-			org.springframework.web.servlet.DispatcherServlet
-		</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>membership_mvc</servlet-name>
-    <url-pattern>*.ms</url-pattern>
-  </servlet-mapping>
-  
-  <!-- hotel servlet -->
-  	<servlet>
-    <servlet-name>hotel_mvc</servlet-name>
-    <servlet-class>
-			org.springframework.web.servlet.DispatcherServlet
-		</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>hotel_mvc</servlet-name>
-    <url-pattern>*.ht</url-pattern>
-  </servlet-mapping>
-  
-  <!-- main servlet -->
-  	<servlet>
     <servlet-name>sub_main_mvc</servlet-name>
-    <servlet-class>
-			org.springframework.web.servlet.DispatcherServlet
-		</servlet-class>
-  </servlet>
-  <servlet-mapping>
     <servlet-name>sub_main_mvc</servlet-name>
     <url-pattern>*.sb</url-pattern>
-  </servlet-mapping>
-  
-  <!-- review servlet -->
-  	<servlet>
-    <servlet-name>review_mvc</servlet-name>
-    <servlet-class>
-			org.springframework.web.servlet.DispatcherServlet
-		</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>review_mvc</servlet-name>
-    <url-pattern>*.rv</url-pattern>
-  </servlet-mapping>
-  
-  <!-- detailView servlet -->
-  	<servlet>
-    <servlet-name>detailView_mvc</servlet-name>
-    <servlet-class>
-			org.springframework.web.servlet.DispatcherServlet
-		</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>detailView_mvc</servlet-name>
-    <url-pattern>*.dv</url-pattern>
-  </servlet-mapping>
-  
-  <!-- partner servlet -->
-  	<servlet>
-    <servlet-name>partner_mvc</servlet-name>
-    <servlet-class>
-			org.springframework.web.servlet.DispatcherServlet
-		</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>partner_mvc</servlet-name>
-    <url-pattern>*.pt</url-pattern>
-  </servlet-mapping>
-  
-  <!-- admin servlet -->
-  	<servlet>
-    <servlet-name>admin_mvc</servlet-name>
-    <servlet-class>
-			org.springframework.web.servlet.DispatcherServlet
-		</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>admin_mvc</servlet-name>
-    <url-pattern>*.os</url-pattern>
-  </servlet-mapping>
+    <display-name>finalProject</display-name>
+
+    <!-- 메인 페이지 설정 -->
+    <welcome-file-list>
+        <welcome-file>index.html</welcome-file>
+        <welcome-file>index.htm</welcome-file>
+        <welcome-file>index.jsp</welcome-file>
+        <welcome-file>default.html</welcome-file>
+        <welcome-file>default.htm</welcome-file>
+        <welcome-file>default.jsp</welcome-file>
+    </welcome-file-list>
+
+    <!-- UTF-8 인코딩 설정 -->
+    <filter>
+        <filter-name>encoding-filter</filter-name>
+        <filter-class>
+            org.springframework.web.filter.CharacterEncodingFilter
+        </filter-class>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>UTF-8</param-value>
+        </init-param>
+        <init-param>
+            <param-name>forceEncoding</param-name>
+            <param-value>true</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>encoding-filter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <!-- mypage servlet -->
+    <servlet>
+        <servlet-name>mypage_mvc</servlet-name>
+        <servlet-class>
+            org.springframework.web.servlet.DispatcherServlet
+        </servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>mypage_mvc</servlet-name>
+        <url-pattern>*.mp</url-pattern>
+    </servlet-mapping>
+
+
+    <!-- rent servlet -->
+    <servlet>
+        <servlet-name>rent_mvc</servlet-name>
+        <servlet-class>
+            org.springframework.web.servlet.DispatcherServlet
+        </servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>rent_mvc</servlet-name>
+        <url-pattern>*.rent</url-pattern>
+    </servlet-mapping>
+
+    <!-- membership servlet -->
+    <servlet>
+        <servlet-name>membership_mvc</servlet-name>
+        <servlet-class>
+            org.springframework.web.servlet.DispatcherServlet
+        </servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>membership_mvc</servlet-name>
+        <url-pattern>*.ms</url-pattern>
+    </servlet-mapping>
+
+    <!-- hotel servlet -->
+    <servlet>
+        <servlet-name>hotel_mvc</servlet-name>
+        <servlet-class>
+            org.springframework.web.servlet.DispatcherServlet
+        </servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>hotel_mvc</servlet-name>
+        <url-pattern>*.ht</url-pattern>
+    </servlet-mapping>
+
+    <!-- main servlet -->
+    <servlet>
+        <servlet-name>main_mvc</servlet-name>
+        <servlet-class>
+            org.springframework.web.servlet.DispatcherServlet
+        </servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>main_mvc</servlet-name>
+        <url-pattern>*.main</url-pattern>
+    </servlet-mapping>
+
+    <!-- review servlet -->
+    <servlet>
+        <servlet-name>review_mvc</servlet-name>
+        <servlet-class>
+            org.springframework.web.servlet.DispatcherServlet
+        </servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>review_mvc</servlet-name>
+        <url-pattern>*.rv</url-pattern>
+    </servlet-mapping>
+
+    <!-- detailView servlet -->
+    <servlet>
+        <servlet-name>detailView_mvc</servlet-name>
+        <servlet-class>
+            org.springframework.web.servlet.DispatcherServlet
+        </servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>detailView_mvc</servlet-name>
+        <url-pattern>*.dv</url-pattern>
+    </servlet-mapping>
+
+    <!-- partner servlet -->
+    <servlet>
+        <servlet-name>partner_hotel_mvc</servlet-name>
+        <servlet-class>
+            org.springframework.web.servlet.DispatcherServlet
+        </servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>partner_hotel_mvc</servlet-name>
+        <url-pattern>*.ph</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>partner_rent_mvc</servlet-name>
+        <servlet-class>
+            org.springframework.web.servlet.DispatcherServlet
+        </servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>partner_rent_mvc</servlet-name>
+        <url-pattern>*.pr</url-pattern>
+    </servlet-mapping>
+
+    <!-- admin servlet -->
+    <servlet>
+        <servlet-name>admin_mvc</servlet-name>
+        <servlet-class>
+            org.springframework.web.servlet.DispatcherServlet
+        </servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>admin_mvc</servlet-name>
+        <url-pattern>*.os</url-pattern>
+    </servlet-mapping>
 </web-app>
