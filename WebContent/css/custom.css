@@ -451,7 +451,7 @@ p {
   display: inline-block;
 }
 
-#trip_name {
+.trip_name {
   border: none;
   outline: none;
   border-bottom: 0.1rem solid rgb(133, 132, 132);
@@ -460,14 +460,14 @@ p {
   padding: 0.6rem;
 }
 
-#trip_name::placeholder {
+.trip_name::placeholder {
   font-size: 1rem;
   color: #555555;
   font-weight: 400;
   opacity: 0.7;
 }
 
-#trip-day-input input::placeholder {
+.trip-day-input input::placeholder {
   text-align: right;
 }
 

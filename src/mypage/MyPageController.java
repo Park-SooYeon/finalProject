@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import mypage_mybatis.TripListVo;
@@ -48,12 +49,12 @@ public class MyPageController {
 		List<TripListVo> list = dao.select();
 		mv.setViewName("trip_list");
 		mv.addObject("list", list);
-		System.out.println("리스트가 없는건 아닌데ㅠㅠ"+list.get(0).toString());
 		return mv;
 		// mypage/my_list.jsp
 	}
 	
-	@RequestMapping( value = "newtrip.mp", method = {RequestMethod.GET, RequestMethod.POST})
+	@ResponseBody
+	@RequestMapping( value = "newtrip.mp", method = {RequestMethod.GET, RequestMethod.POST}, produces = "text/html;charset=utf8")
 	public String insert(HttpServletRequest req) {
 		System.out.println("여기 들어오는지");
 		TripListVo vo = new TripListVo(); 
@@ -62,7 +63,7 @@ public class MyPageController {
 		String member_id = "testId";
 		int days_count = 0;
 		String start_date = "";
-		
+		String end_date = "";
 		int trip_auth = 1;
 		
 		if(req.getParameter("trip_name")!=null && req.getParameter("trip_name")!="") {
@@ -83,25 +84,19 @@ public class MyPageController {
 		vo.setMember_id(member_id);
 		vo.setDays_count(days_count);
 
-		String[] values = start_date.split(" - ");
-		start_date = values[0];
-		String end_date = values[1];
-		
+		if(start_date!="") {
+			String[] values = start_date.split(" - ");
+			start_date = values[0];
+			end_date = values[1];
+		}
 		vo.setStart_date(start_date);
 		vo.setEnd_date(end_date);
 		vo.setTrip_auth(trip_auth);
 		
-		System.out.println(trip_name);
-		System.out.println(member_id);
-		System.out.println(days_count);
-		System.out.println(start_date);
-		System.out.println(end_date);
-		System.out.println(trip_auth);
-		
 		String msg = dao.insert(vo);
 		System.out.println(msg);
 		
-		return "my_list";
+		return msg;
 	}
 	
 	@RequestMapping( value = "modifyR.mp", method = {RequestMethod.POST})

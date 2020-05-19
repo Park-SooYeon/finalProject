@@ -34,7 +34,6 @@ public class MyPageDao {
 			
 			sqlSession.rollback();
 		}finally {
-			//sqlSession.close();
 			return msg;
 		}
 	}
@@ -43,7 +42,6 @@ public class MyPageDao {
 		List<TripListVo> list = new ArrayList<TripListVo>();
 		try {
 			list = sqlSession.selectList("mypage.select_trip");
-			System.out.println(list.get(0).toString());
 		}catch(Exception ex) {
 			ex.printStackTrace();
 		}finally {
