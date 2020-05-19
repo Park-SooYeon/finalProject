@@ -39,7 +39,7 @@
 	<br/>
 	<div class='container'>
 		<div class="title1" style="margin-bottom:10px">
-		<h2>맛있는 치킨집</h2>
+		<h2>'${vo.place_name }'맛있는 치킨집</h2>
 		</div>
 		<div class="float-right" style="display:flex">
   			<div class="p-1 heart" onclick="main.like(this)">
@@ -81,7 +81,7 @@
 		</div>
 		
 		<div class='preinfo' style='font-size:18px'>
-			<span><i class="fa fa-location-arrow" style="margin-right: 3px; margin-bottom:10px"aria-hidden="true"></i>주소: 서울트윽벼얼시 조오옹로구우  </span>
+			<span><i class="fa fa-location-arrow" style="margin-right: 3px; margin-bottom:10px"aria-hidden="true"></i>'${vo.place_location }'주소: 서울트윽벼얼시 조오옹로구우  </span>
 			<span><i class="fa fa-mobile"style="margin-right: 3px" aria-hidden="true"></i>연락처: 02-222-2222</span><br/>
 			<div class="clearfix"><i class="fa fa-desktop"style="margin-right: 3px" aria-hidden="true"></i>홈페이지 
 				<a href='http://localhost:8888/review/review.jsp' style="margin-right:5px">http://localhost:8888/review/review.jsp</a>
