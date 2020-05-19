@@ -40,7 +40,6 @@ public class MyPageDao {
 	}
 	
 	public List<TripListVo> select() {
-		System.out.println("select 시작");
 		List<TripListVo> list = new ArrayList<TripListVo>();
 		try {
 			list = sqlSession.selectList("mypage.select_trip");
@@ -50,8 +49,17 @@ public class MyPageDao {
 		}finally {
 			return list;
 		}
-		
-		 
+	}
+	
+	public TripListVo view(int serial) {
+		TripListVo vo = new TripListVo();
+		try {
+			vo = sqlSession.selectOne("mypage.view_trip", serial);
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		}finally {
+			return vo;
+		}
 	}
 	
 }
