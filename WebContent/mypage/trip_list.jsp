@@ -41,7 +41,14 @@
               <h4 id="mp-tripName">${i.trip_name }</h4>
 				<div class="mp-trip-modify-btn">
 	              <span class="mp-trip-modify" data-toggle="modal"
-            data-target="#mp-modifyTripModal">수정</span>
+            		data-target="#mp-modifyTripModal" 
+            		data-name="${i.trip_name }" 
+            		data-auth="${i.trip_auth }"
+            		data-member="${i.member_id}"
+            		data-days="${i.days_count }"
+            		data-start="${i.start_date}"
+            		data-end="${i.end_date }"
+            		>수정</span>
 	              <span> | </span>
 	              <span class="mp-trip-delete">삭제</span>
               	</div>
@@ -58,7 +65,7 @@
     
   </div>
 
-  <!-- modal -->
+  <!-- 여행 추가 modal -->
   <div
     class="modal fade"
     id="newTripModal"
@@ -68,7 +75,7 @@
     aria-hidden="true"
   >
     <div class="modal-dialog" role="document">
-     <form name="mp-newtripFrm" action="./?inc=newtrip.mp" method="post">
+     <form name="mpNewtripFrm" action="./?inc=newtrip.mp" method="post">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="newTripModalLabel">여행 추가하기</h5>
@@ -101,7 +108,7 @@
                 </div>
                 <div>
                   <label
-                    ><input type="radio" name="trip_auth" value="1"/><span
+                    ><input type="radio" name="trip_auth" value="0"/><span
                       class="privacy-circle circle-dark mx-1"
                       ><i class="fa fa-lock"></i
                     ></span>
@@ -157,13 +164,13 @@
     id="mp-modifyTripModal"
     tabindex="-1"
     role="dialog"
-    aria-labelledby="newTripModalLabel"
+    aria-labelledby="mp-modifyTripModalLabel"
     aria-hidden="true"
   >
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="newTripModalLabel">여행 수정하기</h5>
+          <h5 class="modal-title" id="mp-modifyTripLabel">여행 수정하기</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -173,7 +180,9 @@
             <div class="form-group">
               <input
                 type="text"
-                id="trip-name"
+                id="m-trip_name"
+                name="m-trip_name"
+                value=""
                 placeholder="여행이름을 입력해주세요."
                 onfocus="this.placeholder=''"
                 onblur="this.placeholder='여행이름을 입력해주세요.'"
@@ -193,7 +202,7 @@
                 </div>
                 <div>
                   <label
-                    ><input type="radio" name="privacy" /><span
+                    ><input type="radio" name="m-trip_auth" /><span
                       class="privacy-circle circle-dark mx-1"
                       ><i class="fa fa-lock"></i
                     ></span>
@@ -202,7 +211,6 @@
                 </div>
               </div>
             </div>
-            <!-- 
             <div class="form-group">
               <label for="set-privacy" class="col-form-label"><h5>날짜 또는 일수 사용</h5></label>
               <select id="select-day">
@@ -214,14 +222,15 @@
 
             <div class="form-group" id="trip-day-input" style="display: none;">
               <label for="trip-day-input" class="col-form-label"><h5>일수 입력</h5> </label><br/>
-              <input type="number" class="form-control col-sm-3" style="display:inline-block;"/> 일
+              <input type="number" name="m-days_count" class="form-control col-sm-3" style="display:inline-block;"/> 일
             </div>
 
             <div class="form-group" id="trip-cal-input" style="display: none;">
               <label for="trip-cal-input" class="col-form-label"><h5>날짜 선택</h5> </label>
               <input
                 type="text"
-                id="datePickInput"
+                id="datePickInput2"
+                name="m-start_date"
                 class="form-control col-sm-8 datepicker-here"
                 data-range="true"
                 data-position="right top"
@@ -229,7 +238,6 @@
                 data-multiple-dates-separator=" - "
               />
             </div>
-             -->
           </form>
         </div>
         <div class="modal-footer">
