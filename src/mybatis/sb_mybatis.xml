@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTDMapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="sub_main">
+	
+	<!-- 지역 메인에서 관광지(즐길거리, 음식, 축제) 모두 가져오기 -->
+	<select id="" parameterType="Integer" resultType="bean.vo">
+		select place_serial, place_name, place_loaction from place
+		where 
+	</select>
+	
+
+	<!--
+	<resultMap id="my_map"/>
+	<update/>
+	<insert/>
+	<delete/>
+	-->
+</mapper>

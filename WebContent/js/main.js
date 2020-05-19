@@ -52,6 +52,27 @@ main.insertFolder = function (ele) {
   $("#folderInsert").before(newele);
 };
 
+// main에서 지역별 메인 페이지로 이동
+main.placeMove = function(local) {
+	location.href = './?inc=placeMain.sb&local=' + local;
+}
+
+// 관광지 검색 페이지로 이동
+main.searchMove = function(menu, local = 0) {
+	location.href = './?inc=mainMore.sb&local=' + local + '&menu=' + menu;
+}
+
+//detailView로 이동
+main.detailMove = function(code) {
+	location.href = './?inc=detailView.sb&code=' + code;
+}
+
+
+
+
+
+
+
 /* 메뉴 swiper 동작과 관련된 함수들 */
 // 스크린 크기 가져오기
 var mql = window.matchMedia("screen and (max-width: 768px)");

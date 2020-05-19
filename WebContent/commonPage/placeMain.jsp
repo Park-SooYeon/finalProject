@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <link rel="stylesheet" href="css/main.css">
-<script src="lib/jquery-3.4.1.js"></script>
+
 <!-- start banner Area -->
 <section class="banner-area relative">
 	<div class="container pt-50">
@@ -9,30 +10,42 @@
 			style="height: 250px">
 			<div class="menu-content col-lg-8">
 				<div class="title text-center">
-					<h1 class="text-white mb-10">지역명</h1>
+					<h1 class="text-white mb-10">
+						<c:choose>
+							<c:when test="${param.local == 1 }">
+								서울
+							</c:when>
+							<c:when test="${param.local == 2 }">
+								제주도
+							</c:when>
+							<c:when test="${param.local == 3 }">
+								부산
+							</c:when>
+							<c:when test="${param.local == 4 }">
+								대구
+							</c:when>
+							<c:when test="${param.local == 5 }">
+								경기도
+							</c:when>
+							<c:when test="${param.local == 6 }">
+								인천
+							</c:when>
+						</c:choose>
+					</h1>
 				</div>
 			</div>
 		</div>
 	</div>
 </section>
 <!-- End banner Area -->
-<script>
-let move = function() {
-	location.href = './?inc=commonPage/food_index.jsp';
-}
 
-
-let hotelMove = function(){
-	location.href = './?inc=hotel/hotelPlaceMain.jsp';
-}
-</script>
 <section>
 	<div class="container pb-40 pt-2">
 		<div class="row">
 			<div class="col-lg-4">
 				<div class="row">
 					<div class="col">
-						<div class="single-menu relative" onclick="hotelMove()">
+						<div class="single-menu relative">
 							<div class="thumb relative">
 								<div class="overlay overlay-bg"></div>
 							</div>
@@ -43,7 +56,7 @@ let hotelMove = function(){
 						</div>
 					</div>
 					<div class="col">
-						<div class="single-menu relative" onclick="move()">
+						<div class="single-menu relative" onclick="main.searchMove(1, ${param.local})">
 							<div class="thumb relative">
 								<div class="overlay overlay-bg"></div>
 							</div>
@@ -57,7 +70,7 @@ let hotelMove = function(){
 			<div class="col-lg-4">
 				<div class="row">
 					<div class="col">
-						<div class="single-menu relative" onclick="move()">
+						<div class="single-menu relative" onclick="main.searchMove(2, ${param.local})">
 							<div class="thumb relative">
 								<div class="overlay overlay-bg"></div>
 							</div>
@@ -67,7 +80,7 @@ let hotelMove = function(){
 						</div>
 					</div>
 					<div class="col">
-						<div class="single-menu relative" onclick="move()">
+						<div class="single-menu relative" onclick="main.searchMove(3, ${param.local})">
 							<div class="thumb relative">
 								<div class="overlay overlay-bg"></div>
 							</div>
@@ -108,87 +121,25 @@ let hotelMove = function(){
 		<div class="row">
 			<div class="swiper-container m-2">
 				<div class="swiper-wrapper pl-50 pr-50">
-					<div class="swiper-slide">
-						<div class="p-1 heart" onclick="main.like(this)">
-							<i class="fa fa-heart-o" style="vertical-align: middle;"></i>
-						</div>
-						<div class="single-destinations" onclick="detailMove()">
-							<div class="thumb">
-								<img src="template/img/packages/d1.jpg" alt="">
+					
+					<c:forEach var="i" begin="1" end="10">
+						<div class="swiper-slide">
+							<div class="p-1 heart" onclick="main.like(this)">
+								<i class="fa fa-heart-o" style="vertical-align: middle;"></i>
 							</div>
-							<div class="details p-2">
-								<div class="tags">
-									<ul>
-										<li><a href="#">태그1</a></li>
-										<li><a href="#">태그2</a></li>
-									</ul>
+							<div class="single-destinations" onclick="main.detailMove()">
+								<div class="thumb">
+									<img src="template/img/packages/d${i }.jpg" alt="no-image">
 								</div>
-								<h4>Holiday Sea beach Blue Ocean</h4>
-								<p>United staes of America</p>
-								<h6 class="date">위치</h6>
-							</div>
-						</div>
-					</div>
-					<div class="swiper-slide">
-						<div class="single-destinations">
-							<div class="thumb">
-								<img src="template/img/packages/d2.jpg" alt="">
-							</div>
-							<div class="details p-2">
-								<div class="tags">
-									<ul>
-										<li><a href="#">태그1</a></li>
-										<li><a href="#">태그2</a></li>
-									</ul>
+								<div class="details p-2">
+									<h4>Holiday Sea beach Blue Ocean</h4>
+									<p>United staes of America</p>
+									<h6 class="date">위치</h6>
 								</div>
-								<h4>Holiday Sea beach Blue Ocean</h4>
-								<p>United staes of America</p>
-								<h6 class="date">위치</h6>
 							</div>
 						</div>
-					</div>
-					<div class="swiper-slide">
-						<div class="single-destinations">
-							<div class="thumb">
-								<img src="template/img/packages/d3.jpg" alt="">
-							</div>
-							<div class="details p-2">
-								<div class="tags">
-									<ul>
-										<li><a href="#">태그1</a></li>
-										<li><a href="#">태그2</a></li>
-									</ul>
-								</div>
-								<h4>Holiday Sea beach Blue Ocean</h4>
-								<p>United staes of America</p>
-								<h6 class="date">위치</h6>
-							</div>
-						</div>
-					</div>
-					<div class="swiper-slide">
-						<div class="single-destinations">
-							<div class="thumb">
-								<img src="template/img/packages/d4.jpg" alt="">
-							</div>
-							<div class="details p-2">
-								<div class="tags">
-									<ul>
-										<li><a href="#">태그1</a></li>
-										<li><a href="#">태그2</a></li>
-									</ul>
-								</div>
-								<h4>Holiday Sea beach Blue Ocean</h4>
-								<p>United staes of America</p>
-								<h6 class="date">위치</h6>
-							</div>
-						</div>
-					</div>
-					<div class="swiper-slide">Slide 5</div>
-					<div class="swiper-slide">Slide 6</div>
-					<div class="swiper-slide">Slide 7</div>
-					<div class="swiper-slide">Slide 8</div>
-					<div class="swiper-slide">Slide 9</div>
-					<div class="swiper-slide">Slide 10</div>
+					</c:forEach>
+					
 				</div>
 
 				<!-- Add Arrows -->
@@ -205,93 +156,31 @@ let hotelMove = function(){
 		<div class="row d-flex justify-content-center">
 			<div class="menu-content col-lg-12">
 				<h1 class="mb-10">추천 즐길거리</h1>
-				<a>더 보기</a>
+				<a href="#" onclick="main.searchMove(1, ${param.local})">더 보기</a>
 			</div>
 		</div>
 		<div class="row">
 			<div class="swiper-container m-2">
 				<div class="swiper-wrapper pl-50 pr-50">
-					<div class="swiper-slide">
-						<div class="p-1 heart" onclick="main.like(this)">
-							<i class="fa fa-heart-o" style="vertical-align: middle;"></i>
-						</div>
-						<div class="single-destinations" onclick="detailMove()">
-							<div class="thumb">
-								<img src="template/img/packages/d1.jpg" alt="">
+					
+					<c:forEach var="i" begin="1" end="10">
+						<div class="swiper-slide">
+							<div class="p-1 heart" onclick="main.like(this)">
+								<i class="fa fa-heart-o" style="vertical-align: middle;"></i>
 							</div>
-							<div class="details p-2">
-								<div class="tags">
-									<ul>
-										<li><a href="#">태그1</a></li>
-										<li><a href="#">태그2</a></li>
-									</ul>
+							<div class="single-destinations" onclick="main.detailMove(1)">
+								<div class="thumb">
+									<img src="template/img/packages/d${i }.jpg" alt="no-image">
 								</div>
-								<h4>Holiday Sea beach Blue Ocean</h4>
-								<p>United staes of America</p>
-								<h6 class="date">위치</h6>
-							</div>
-						</div>
-					</div>
-					<div class="swiper-slide">
-						<div class="single-destinations">
-							<div class="thumb">
-								<img src="template/img/packages/d2.jpg" alt="">
-							</div>
-							<div class="details p-2">
-								<div class="tags">
-									<ul>
-										<li><a href="#">태그1</a></li>
-										<li><a href="#">태그2</a></li>
-									</ul>
+								<div class="details p-2">
+									<h4>Holiday Sea beach Blue Ocean</h4>
+									<p>United staes of America</p>
+									<h6 class="date">위치</h6>
 								</div>
-								<h4>Holiday Sea beach Blue Ocean</h4>
-								<p>United staes of America</p>
-								<h6 class="date">위치</h6>
 							</div>
 						</div>
-					</div>
-					<div class="swiper-slide">
-						<div class="single-destinations">
-							<div class="thumb">
-								<img src="template/img/packages/d3.jpg" alt="">
-							</div>
-							<div class="details p-2">
-								<div class="tags">
-									<ul>
-										<li><a href="#">태그1</a></li>
-										<li><a href="#">태그2</a></li>
-									</ul>
-								</div>
-								<h4>Holiday Sea beach Blue Ocean</h4>
-								<p>United staes of America</p>
-								<h6 class="date">위치</h6>
-							</div>
-						</div>
-					</div>
-					<div class="swiper-slide">
-						<div class="single-destinations">
-							<div class="thumb">
-								<img src="template/img/packages/d4.jpg" alt="">
-							</div>
-							<div class="details p-2">
-								<div class="tags">
-									<ul>
-										<li><a href="#">태그1</a></li>
-										<li><a href="#">태그2</a></li>
-									</ul>
-								</div>
-								<h4>Holiday Sea beach Blue Ocean</h4>
-								<p>United staes of America</p>
-								<h6 class="date">위치</h6>
-							</div>
-						</div>
-					</div>
-					<div class="swiper-slide">Slide 5</div>
-					<div class="swiper-slide">Slide 6</div>
-					<div class="swiper-slide">Slide 7</div>
-					<div class="swiper-slide">Slide 8</div>
-					<div class="swiper-slide">Slide 9</div>
-					<div class="swiper-slide">Slide 10</div>
+					</c:forEach>
+				
 				</div>
 
 				<!-- Add Arrows -->
@@ -308,93 +197,31 @@ let hotelMove = function(){
 		<div class="row d-flex justify-content-center">
 			<div class="menu-content col-lg-12">
 				<h1 class="mb-10">추천 음식점</h1>
-				<a>더 보기</a>
+				<a href="#" onclick="main.searchMove(2, ${param.local})">더 보기</a>
 			</div>
 		</div>
 		<div class="row">
 			<div class="swiper-container m-2">
 				<div class="swiper-wrapper pl-50 pr-50">
-					<div class="swiper-slide">
-						<div class="p-1 heart" onclick="main.like(this)">
-							<i class="fa fa-heart-o" style="vertical-align: middle;"></i>
-						</div>
-						<div class="single-destinations" onclick="detailMove()">
-							<div class="thumb">
-								<img src="template/img/packages/d1.jpg" alt="">
+					
+					<c:forEach var="i" begin="1" end="10">
+						<div class="swiper-slide">
+							<div class="p-1 heart" onclick="main.like(this)">
+								<i class="fa fa-heart-o" style="vertical-align: middle;"></i>
 							</div>
-							<div class="details p-2">
-								<div class="tags">
-									<ul>
-										<li><a href="#">태그1</a></li>
-										<li><a href="#">태그2</a></li>
-									</ul>
+							<div class="single-destinations" onclick="main.detailMove()">
+								<div class="thumb">
+									<img src="template/img/packages/d${i }.jpg" alt="no-image">
 								</div>
-								<h4>Holiday Sea beach Blue Ocean</h4>
-								<p>United staes of America</p>
-								<h6 class="date">위치</h6>
-							</div>
-						</div>
-					</div>
-					<div class="swiper-slide">
-						<div class="single-destinations">
-							<div class="thumb">
-								<img src="template/img/packages/d2.jpg" alt="">
-							</div>
-							<div class="details p-2">
-								<div class="tags">
-									<ul>
-										<li><a href="#">태그1</a></li>
-										<li><a href="#">태그2</a></li>
-									</ul>
+								<div class="details p-2">
+									<h4>Holiday Sea beach Blue Ocean</h4>
+									<p>United staes of America</p>
+									<h6 class="date">위치</h6>
 								</div>
-								<h4>Holiday Sea beach Blue Ocean</h4>
-								<p>United staes of America</p>
-								<h6 class="date">위치</h6>
 							</div>
 						</div>
-					</div>
-					<div class="swiper-slide">
-						<div class="single-destinations">
-							<div class="thumb">
-								<img src="template/img/packages/d3.jpg" alt="">
-							</div>
-							<div class="details p-2">
-								<div class="tags">
-									<ul>
-										<li><a href="#">태그1</a></li>
-										<li><a href="#">태그2</a></li>
-									</ul>
-								</div>
-								<h4>Holiday Sea beach Blue Ocean</h4>
-								<p>United staes of America</p>
-								<h6 class="date">위치</h6>
-							</div>
-						</div>
-					</div>
-					<div class="swiper-slide">
-						<div class="single-destinations">
-							<div class="thumb">
-								<img src="template/img/packages/d4.jpg" alt="">
-							</div>
-							<div class="details p-2">
-								<div class="tags">
-									<ul>
-										<li><a href="#">태그1</a></li>
-										<li><a href="#">태그2</a></li>
-									</ul>
-								</div>
-								<h4>Holiday Sea beach Blue Ocean</h4>
-								<p>United staes of America</p>
-								<h6 class="date">위치</h6>
-							</div>
-						</div>
-					</div>
-					<div class="swiper-slide">Slide 5</div>
-					<div class="swiper-slide">Slide 6</div>
-					<div class="swiper-slide">Slide 7</div>
-					<div class="swiper-slide">Slide 8</div>
-					<div class="swiper-slide">Slide 9</div>
-					<div class="swiper-slide">Slide 10</div>
+					</c:forEach>
+					
 				</div>
 
 				<!-- Add Arrows -->
@@ -411,93 +238,31 @@ let hotelMove = function(){
 		<div class="row d-flex justify-content-center">
 			<div class="menu-content col-lg-12">
 				<h1 class="mb-10">추천 축제</h1>
-				<a>더 보기</a>
+				<a href="#"  onclick="main.searchMove(3, ${param.local})">더 보기</a>
 			</div>
 		</div>
 		<div class="row">
 			<div class="swiper-container m-2">
 				<div class="swiper-wrapper pl-50 pr-50">
-					<div class="swiper-slide">
-						<div class="p-1 heart" onclick="main.like(this)">
-							<i class="fa fa-heart-o" style="vertical-align: middle;"></i>
-						</div>
-						<div class="single-destinations" onclick="detailMove()">
-							<div class="thumb">
-								<img src="template/img/packages/d1.jpg" alt="">
+					
+					<c:forEach var="i" begin="1" end="10">
+						<div class="swiper-slide">
+							<div class="p-1 heart" onclick="main.like(this)">
+								<i class="fa fa-heart-o" style="vertical-align: middle;"></i>
 							</div>
-							<div class="details p-2">
-								<div class="tags">
-									<ul>
-										<li><a href="#">태그1</a></li>
-										<li><a href="#">태그2</a></li>
-									</ul>
+							<div class="single-destinations" onclick="main.detailMove()">
+								<div class="thumb">
+									<img src="template/img/packages/d${i }.jpg" alt="no-image">
 								</div>
-								<h4>Holiday Sea beach Blue Ocean</h4>
-								<p>United staes of America</p>
-								<h6 class="date">위치</h6>
-							</div>
-						</div>
-					</div>
-					<div class="swiper-slide">
-						<div class="single-destinations">
-							<div class="thumb">
-								<img src="template/img/packages/d2.jpg" alt="">
-							</div>
-							<div class="details p-2">
-								<div class="tags">
-									<ul>
-										<li><a href="#">태그1</a></li>
-										<li><a href="#">태그2</a></li>
-									</ul>
+								<div class="details p-2">
+									<h4>Holiday Sea beach Blue Ocean</h4>
+									<p>United staes of America</p>
+									<h6 class="date">위치</h6>
 								</div>
-								<h4>Holiday Sea beach Blue Ocean</h4>
-								<p>United staes of America</p>
-								<h6 class="date">위치</h6>
 							</div>
 						</div>
-					</div>
-					<div class="swiper-slide">
-						<div class="single-destinations">
-							<div class="thumb">
-								<img src="template/img/packages/d3.jpg" alt="">
-							</div>
-							<div class="details p-2">
-								<div class="tags">
-									<ul>
-										<li><a href="#">태그1</a></li>
-										<li><a href="#">태그2</a></li>
-									</ul>
-								</div>
-								<h4>Holiday Sea beach Blue Ocean</h4>
-								<p>United staes of America</p>
-								<h6 class="date">위치</h6>
-							</div>
-						</div>
-					</div>
-					<div class="swiper-slide">
-						<div class="single-destinations">
-							<div class="thumb">
-								<img src="template/img/packages/d4.jpg" alt="">
-							</div>
-							<div class="details p-2">
-								<div class="tags">
-									<ul>
-										<li><a href="#">태그1</a></li>
-										<li><a href="#">태그2</a></li>
-									</ul>
-								</div>
-								<h4>Holiday Sea beach Blue Ocean</h4>
-								<p>United staes of America</p>
-								<h6 class="date">위치</h6>
-							</div>
-						</div>
-					</div>
-					<div class="swiper-slide">Slide 5</div>
-					<div class="swiper-slide">Slide 6</div>
-					<div class="swiper-slide">Slide 7</div>
-					<div class="swiper-slide">Slide 8</div>
-					<div class="swiper-slide">Slide 9</div>
-					<div class="swiper-slide">Slide 10</div>
+					</c:forEach>
+					
 				</div>
 
 				<!-- Add Arrows -->
