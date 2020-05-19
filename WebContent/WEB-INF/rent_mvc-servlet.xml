@@ -18,7 +18,7 @@
 	<bean id='rentDao' class='rent.RentDao'/>
 	
 	<!-- controller -->
-	<bean id='brd_controller' class='rent.RentControllor'>
+	<bean id='rent_controller' class='rent.RentControllor'>
 		<constructor-arg ref='rentDao'/>
 	</bean>
 	

@@ -31,7 +31,7 @@
 	<h1 class="header-w3ls">
 		어디에서 픽업하세요?</h1>
 	<div class="appointment-w3">
-		<form action="" method="post">
+		<form name="rent_frm" id="rent_frm" method="post">
 			
 			<div class="information">
 				
@@ -40,12 +40,12 @@
 
 					
 					<div class="form-left-w3l">
-						<input id="mainRent" class='datepicker-here' data-timepicker="true" data-language='en' name="text1" type="text" placeholder="차량인수일 " required="">
+						<input id="mainRent"  class='datepicker-here' data-timepicker="true" data-language='en' name="rentDate" type="text" placeholder="차량인수일 " required="">
 						
 						<div class="clear"></div>
 					</div>
 					<div class="form-left-w3l">
-						<input id="mainReturn" class='datepicker-here' data-timepicker="true" data-language='en' name="text2" type="text" placeholder="차량반납일 " required="">
+						<input id="mainReturn" class='datepicker-here' data-timepicker="true" data-language='en' name="returnDate" type="text" placeholder="차량반납일 " required="">
 						
 						<div class="clear"></div>
 					</div>
@@ -54,28 +54,18 @@
 				<div class="main">
 
 					<div class="form-left-w3l">
-						<select class="form-control" id="place" >
+						<select class="form-control" name='placeMain' id="place" >
 							<option value="지역">지역</option>
 							<option value="서울">서울</option>
+							<option value="경기도">경기도</option>
+							<option value="안천">인천</option>
 							<option value="부산">부산</option>
 							<option value="대구">대구</option>
-							<option value="안천">인천</option>
-							<option value="광주">광주</option>
-							<option value="대전">대전</option>
-							<option value="울산">울산</option>
-							<option value="경기도">경기도</option>
-							<option value="강원도">강원도</option>
-							<option value="츙정북도">충청북도</option>
-							<option value="츙정남도">충청남도</option>
-							<option value="전라북도">전라북도</option>
-							<option value="전라남도">전라남도</option>
-							<option value="경상북도">경상북도</option>
-							<option value="경상남도">경상남도</option>
 							<option value="제주도">제주도</option>
 						</select>
 					</div>
 					<div class="form-right-w3ls">
-						<select class="form-control" id="subplace">
+						<select class="form-control" name='palceSub' id="subplace">
 						<option value="">시</option>
 						</select>
 					</div>

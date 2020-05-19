@@ -43,7 +43,7 @@ rent.func = function(){
 //		         }
 //		      
 //		      })
-		      $('#mid').load('rentSearch.jsp');
+		      $('#rent_frm').attr('action','companySearch.rent');
 		      
 		});
 		
