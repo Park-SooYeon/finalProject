@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>	
 <header id="header">
 	<div class="container main-menu">
 		<div class="row align-items-center justify-content-between d-flex">
@@ -11,6 +12,8 @@
 				<ul class="nav-menu" style="line-height: 43px;">
 					<li class="mt-2">
 						<form class="form-inline my-2 my-lg-0">
+						
+						
 							<input class="form-control mr-sm-2" type="search" style="width: 80%;"
 								placeholder="지역, 관광지 검색" onfocus="this.placeholder = ''"
 									onblur="this.placeholder = '지역, 관광지 검색'" aria-label="Search">
@@ -19,7 +22,16 @@
 						</form>
 
 					</li>
-					<li><a href="./?inc=login.ms">로그인</a></li>
+					<!-- 로그인했을 떄 보이기  -->
+					
+					<c:if test="${empty member_id}">
+					<li><a href="./?inc=membership/login.jsp">로그인</a></li>
+					</c:if>
+					
+					<c:if test="${member_id != null}">
+					<li><a href="./?inc=logout.ms">로그아웃</a></li>
+					</c:if>
+					
 					<li><a href="./?inc=membership/memberJoin.jsp">회원가입</a></li>
 					<li><a href="./?inc=membership/partnerJoin.jsp">파트너 등록하기</a></li>
 					
@@ -31,7 +43,7 @@
 					<div class="mobile-userId" style="display:none;">안주현 님</div>
 					</div>
 						<ul class="main-pro-menu">
-						<li>안주현 님</li>
+						<li>${sessionScope.nickName} 님</li>
 						<hr/>
 						<li><div onclick="location.href='./?inc=profile.mp'">프로필 보기</div></li>
 						<li><div onclick="location.href='./?inc=mypage.mp'">계정관리</div></li>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ms">
+
+
+
+
+<select id='loginCheck' parameterType="bean.membershipVo"  resultType="boolean">
+ select case
+       when count(member_id)>0 then 1
+       else 0
+       end result 
+ from membership 
+ where member_id=#{member_id}
+
+</select>
+ 
+ 
+ <select id='login' parameterType="bean.membershipVo"  resultType="Integer">
+                     
+   select case
+       when count(member_id)>0 then 1
+       else 0
+       end result 
+   from membership 
+   where member_id = #{member_id} and pwd = #{pwd}              
+  </select>
+
+ <select id='loginNickName' parameterType="String"  resultType="String">
+                     
+   select nickName
+   from membership 
+   where member_id = #{member_id}
+</select>
+
+</mapper>

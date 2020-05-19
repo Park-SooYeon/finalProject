@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>		
 <!DOCTYPE html>
 
 <body>
@@ -25,12 +26,12 @@
 				<div style="border: 1px solid #EAEAEA; padding: 50px;">
 
 
-					<form method="post" name="frm_ms" id="frm_ms"></form>
+					<form method="post" name="frm_ms" id="frm_ms">
 
 					<div class="form-group col-lg-10 offset-1">
 
 						<label>아이디</label> <input type="text" class="form-control"
-							name="mId" id="mId" placeholder="아이디을 입력해 주세요" maxlength="20">
+							name="member_id" id="member_id" placeholder="아이디을 입력해 주세요" maxlength="20">
 					</div>
 
 
@@ -46,7 +47,8 @@
 
 						<input type="button"
 							class="genric-btn info min-width-350  e-large" value="로그인"
-							id="btnLogin" style="padding-left: 20px;">
+							id="btnLogin" 
+							 style="padding-left: 20px;">
 
 
 
@@ -65,12 +67,31 @@
 
 
 					</div>
+					
+				
+					<c:if test="${msg == 'noId'}">
+				      <div class="form-group col-lg-10 offset-1">
+				           <label>아이디가 존재하지 않습니다!</label>
+				      </div>
+				      
+					</c:if>
+					
+						<c:if test="${msg == 'noPwd'}">
+				      <div class="form-group col-lg-10 offset-1">
+				           <label>비밀번호를 다시 확인해주세요!</label>
+				      </div>
+				      
+					</c:if>
+					
+					
+					</form>
 				</div>
 			</div>
 
 		</div>
 	</div>
 	<script>
-		
+
+
 	</script>
 </body>

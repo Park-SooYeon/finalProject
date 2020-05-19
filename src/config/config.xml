@@ -22,6 +22,10 @@
 	
 	<mappers>
 		<!-- mapper 파일 -->
+		
+		<!-- membership -->
+		   <mapper resource="./membership_mybatis/membership.xml"/>
+  
 	</mappers>
 
 </configuration>
