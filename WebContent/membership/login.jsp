@@ -84,11 +84,7 @@
 								for="default-checkbox"></label>
 						</div>
                    
-                        <div class="pull-left">
-						<label>&nbsp;로그인 상태 유지
-					
-						</label>
-						</div>
+                  
 						
 						<div class="offset-6 ">
 						<a href="./membership/findPwd.jsp" >비밀번호 찾기</a>

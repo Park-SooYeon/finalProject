@@ -1,0 +1,82 @@
+package bean;
+
+import java.util.Date;
+
+public class hotelBookingVo {
+     int booking_serial;
+     int rooms_serial;
+     String member_id;
+     int place_serial;
+     String member_name; // 투숙인 이름. member_id에 해당하는 이름과 다를 수 있음.
+     int state;
+     Date checkin_date;
+     Date checkout_date;
+     Date cancle_date;
+	 String cancle_reason;
+	public int getBooking_serial() {
+		return booking_serial;
+	}
+	public void setBooking_serial(int booking_serial) {
+		this.booking_serial = booking_serial;
+	}
+	public int getRooms_serial() {
+		return rooms_serial;
+	}
+	public void setRooms_serial(int rooms_serial) {
+		this.rooms_serial = rooms_serial;
+	}
+	public String getMember_id() {
+		return member_id;
+	}
+	public void setMember_id(String member_id) {
+		this.member_id = member_id;
+	}
+	public int getPlace_serial() {
+		return place_serial;
+	}
+	public void setPlace_serial(int place_serial) {
+		this.place_serial = place_serial;
+	}
+	public String getMember_name() {
+		return member_name;
+	}
+	public void setMember_name(String member_name) {
+		this.member_name = member_name;
+	}
+	public int getState() {
+		return state;
+	}
+	public void setState(int state) {
+		this.state = state;
+	}
+	public Date getCheckin_date() {
+		return checkin_date;
+	}
+	public void setCheckin_date(Date checkin_date) {
+		this.checkin_date = checkin_date;
+	}
+	public Date getCheckout_date() {
+		return checkout_date;
+	}
+	public void setCheckout_date(Date checkout_date) {
+		this.checkout_date = checkout_date;
+	}
+	public Date getCancle_date() {
+		return cancle_date;
+	}
+	public void setCancle_date(Date cancle_date) {
+		this.cancle_date = cancle_date;
+	}
+	public String getCancle_reason() {
+		return cancle_reason;
+	}
+	public void setCancle_reason(String cancle_reason) {
+		this.cancle_reason = cancle_reason;
+	}
+	
+	
+	 
+	 
+	 
+	 
+}
