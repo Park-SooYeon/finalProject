@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ko">
  <head>
@@ -59,11 +60,23 @@
   
   
  <body>
+ 
+ 	<%
+	String mid = "rentMain.jsp";
+	if(request.getParameter("mid")!=null){
+		mid = request.getParameter("mid");
+	}	
+	%>
+ 
   	<div id='top'>
 		<%@include file="rent_top.jsp" %>
 	</div>
 	<div id='mid'>
-		<%@include file="rentMain.jsp" %>
+		<c:set var="contentPage" value="${contentPage }"/>
+		<c:if test="${contentPage==null }">
+			<jsp:include page="rentMain.jsp"></jsp:include>
+		</c:if>
+		<jsp:include page="${contentPage }"></jsp:include>
 	</div>
 
   
