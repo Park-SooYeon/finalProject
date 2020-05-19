@@ -36,7 +36,7 @@
 						<li><div onclick="location.href='./?inc=profile.mp'">프로필 보기</div></li>
 						<li><div onclick="location.href='./?inc=mypage.mp'">계정관리</div></li>
 						<li><div onclick="location.href='./?inc=mybooking.mp'">예약내역 확인</div></li>
-						<li><div onclick="location.href='./?inc=mytrip.mp'">My Trip</div></li>
+						<li><div onclick="location.href='./?inc=mypage/my_list.jsp'">My Trip</div></li>
 						<li><div onclick="location.href='#'">로그아웃</div></li>
 						</ul>
 					</li>
