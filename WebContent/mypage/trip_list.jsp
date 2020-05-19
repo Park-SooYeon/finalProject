@@ -28,7 +28,7 @@
       </div>
     </div>
     
-    <c:forEach begin="1" end="6">
+    <c:forEach var="i" items="${list }">
     <div class="col-lg-4">
       <div class="single-destinations">
         <div class="list-container">
@@ -38,7 +38,7 @@
           <div class="details">
             <span class="privacy-circle mx-1 position-absolute"><i class="fa fa-unlock-alt"></i></span>
             <div class="d-flex justify-content-between">
-              <h4 id="mp-tripName">강남 맛집투어</h4>
+              <h4 id="mp-tripName">${i.trip_name }</h4>
 				<div class="mp-trip-modify-btn">
 	              <span class="mp-trip-modify" data-toggle="modal"
             data-target="#mp-modifyTripModal">수정</span>
@@ -46,8 +46,8 @@
 	              <span class="mp-trip-delete">삭제</span>
               	</div>
             </div>
-            <p>작성자 : <b class="mp-authorName">오세왕</b></p>
-            <small>만든 날짜 : 2020년 5월 1일</small>
+            <p>작성자 : <b class="mp-authorName">${i.member_id }</b></p>
+            <small>만든 날짜 : ${i.trip_date }</small>
           </div>
         </div>
       </div>
