@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,6 +21,7 @@
 
 
 <div id="rentSearch" style="padding-top: 70px;">
+	<form name='rent_frm' id='rent_frm' method='post'>
 	<div class="row">
 		<div id='left' class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
 		<div id='map' class="col-lg-12 col-md-12 col-sm-12 hidden-xs"></div>
@@ -281,7 +283,11 @@
 			
 			
 			<div id='SerachResult'>
-				<%@include file="rentSearchSub1.jsp" %>
+				<c:set var="contentPage" value="${contentPage }"/>
+				<c:if test="${contentPage==null }">
+					<jsp:include page="rentSearchSub1.jsp"></jsp:include>
+				</c:if>
+				<jsp:include page="${contentPage }"></jsp:include>
 			</div>
 			
 			
@@ -289,6 +295,7 @@
 			
 		</div>
 	</div>
+	</form>
 </div>
 
 <script>

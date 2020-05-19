@@ -61,22 +61,16 @@
   
  <body>
  
- 	<%
-	String mid = "rentMain.jsp";
-	if(request.getParameter("mid")!=null){
-		mid = request.getParameter("mid");
-	}	
-	%>
- 
+
   	<div id='top'>
 		<%@include file="rent_top.jsp" %>
 	</div>
 	<div id='mid'>
-		<c:set var="contentPage" value="${contentPage }"/>
-		<c:if test="${contentPage==null }">
+		<c:set var="contentPage" value="${mainPage }"/>
+		<c:if test="${mainPage==null }">
 			<jsp:include page="rentMain.jsp"></jsp:include>
 		</c:if>
-		<jsp:include page="${contentPage }"></jsp:include>
+		<jsp:include page="${mainPage }"></jsp:include>
 	</div>
 
   

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 	<div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'> 
 			<div class='row'>			 
@@ -8,7 +9,7 @@
 				<img src="../images/rent/viewCar.png"/> 
 				<div><b>평가 : </b><span>"훌륭함"</span></div> 
 				<p><i>8.4</i> <b>/ 10 </b><span> (리뷰 2000+건)</span></p> 
-				<div id='mid_left_info' class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>렌탈에 대한 주요 정보</div> 
+				<div id='mid_left_info' class='col-lg-12 col-md-12 col-sm-12 col-xs-12' onclick='rent.importantInfo()'>렌탈에 대한 주요 정보</div> 
 			</div> 
 			<div id='mid_right' class='col-lg-8 col-md-8 col-sm-8 col-xs-12'> 
 					<div class='row'> 

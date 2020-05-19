@@ -7,7 +7,7 @@ public class CarVo {
 	private String kind;		//차량종류
 	private int price;			//시간당 가격
 	private int door;			//도어 수
-	private String gear;		//기어 타입
+	private String gear;		//기어 타입 수동or자동
 	private int maxPeople;		//최대 인원
 	private int bogBag;			//큰가방
 	private int smallBag;		//작은가방
