@@ -420,6 +420,12 @@
 		</div><!-- 리뷰사진부분 -->
 	</div> <!-- 컨테이너끝 -->
 	</form>
+<!-- 리뷰작성페이지 이동 -->
+<script>
+  let insertMove = function() {
+  	location.href = './?inc=commonPage/review_insert.jsp';
+  }
+</script>
 <script type="text/javascript">
   //<![CDATA[
     // // 사용할 앱의 JavaScript 키를 설정해 주세요.
