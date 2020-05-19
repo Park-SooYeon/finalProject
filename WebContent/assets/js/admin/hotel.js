@@ -3,13 +3,13 @@
  * 작성자 : lje
  * 작성일자 : 2020.05
  */
-let adm = {};
-adm.init = function(){ 
-	$("#main").load("select.brd");
+let ptn = {};
+ptn.init = function(){ 
+	$("#main").load("dashboard.ph");
 }
 
 
-adm.go = function(nowPage){
+ptn.go = function(nowPage){
 	frm_brd.nowPage.value = nowPage;
 	let param = $("#frm_adm").serialize();	// 	직렬화 
 	
@@ -18,4 +18,10 @@ adm.go = function(nowPage){
 	$.post("select.adm", param, function(data, state){
 		$("#main").html(data);
 	});
+}
+
+let ptn2 = {};
+
+ptn2.init = function(){ 
+	$("#main").load("hotel_comp_list.ph");
 }
