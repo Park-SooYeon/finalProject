@@ -34,11 +34,15 @@
 	<link rel="stylesheet" href="template/css/animate.min.css">
 	<link rel="stylesheet" href="template/css/owl.carousel.css">				
 	<link rel="stylesheet" href="template/css/main.css">
-	
+	<link rel="stylesheet" href="css/css_syj.css">
 	<!--datepicker css-->
 	<link rel="stylesheet" href="plugin/air-datepicker/css/datepicker.min.css">
 	
 	<script src="template/js/vendor/jquery-2.2.4.min.js"></script>
+	
+	
+	<!-- membership js -->
+	<script src="js/membership.js"></script>
 	
 	<!-- map api head로 -->
 	<script
@@ -57,7 +61,7 @@
 %>
 	<!-- top.jsp -->
 	<%@ include file="top.jsp" %>
-	
+
 	<!-- content -->
   	<jsp:include page='<%=inc %>'/>
 	
@@ -93,6 +97,7 @@
 	
 	<!-- review_detail -->
 	<script src="js/festival_detail.js"></script>
+	
 	
 </body>
 </html>

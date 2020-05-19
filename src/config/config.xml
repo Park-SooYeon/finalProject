@@ -23,6 +23,9 @@
 	<mappers>
 		<!-- mapper 파일 -->
 		
+		<!-- membership -->
+		   <mapper resource="./membership_mybatis/membership.xml"/>
+		
 		<!-- mypage -->
 		<mapper resource="mypage_mybatis/mp_mybatis.xml"/>
 	</mappers>
