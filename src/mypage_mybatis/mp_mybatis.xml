@@ -11,7 +11,16 @@
 	</insert>
 	
 	<select id="select_trip" resultType="mypage_mybatis.TripListVo">
-		select trip_list_serial, member_id, trip_name, days_count, start_date, end_date, trip_auth, to_char(trip_date,'rrrr-mm-dd') trip_date from trip_list
+		select 	trip_list_serial, 
+				member_id, 
+				trip_name, 
+				days_count, 
+				to_char(start_date,'rrrr/mm/dd') start_date, 
+				to_char(end_date,'rrrr/mm/dd') end_date, 
+				trip_auth, 
+				trip_date 
+				from trip_list
+				order by trip_date desc
 	</select>
 	
 	<select id="view_trip" parameterType="Integer" resultType="mypage_mybatis.TripListVo">

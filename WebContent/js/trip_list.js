@@ -1,3 +1,4 @@
+let fullDate = "";
 
 function load(){
 	$("#list-here").load("mytrip.mp");
@@ -23,35 +24,44 @@ function load(){
 	$(document).on("show.bs.modal", "#mp-modifyTripModal", function(event){
 		
 		let modal = $(this);
-		console.log("모달2");
 		const ADD_BTN = $(event.relatedTarget);
-		console.log(ADD_BTN);
 		
-		ADD_BTN.data("name");
-		ADD_BTN.data("auth");
-		ADD_BTN.data("member");
-		ADD_BTN.data("days");
-		ADD_BTN.data("start");
-		ADD_BTN.data("end");
+		let name = ADD_BTN.data("name");
+		let auth = ADD_BTN.data("auth");
+		let member = ADD_BTN.data("member");
+		let days = ADD_BTN.data("days");
+		let start = ADD_BTN.data("start");
+		let end = ADD_BTN.data("end");
 		
+		if(days==0 || days==null){
+			getCal();
+		}else if (days>0){
+			getDay();
+		}
+		
+		fullDate = start+" - "+end;
+		$("#mTrip_name").val(name);
+		$("#mDays_count").val(days);
+		$("#datePickInput2").val(fullDate);
+		
+		if(auth==1){
+			$("#unlock").prop("checked", true);
+		}else if(auth==0){
+			$("#lock").prop("checked", true);
+		}
 	})
 	
-	  $(document).on('change', '#select-day', function(){
-	  if ($(this).val() == 1) {
-		  $("#trip-day-input").show();
-		  $("#trip-cal-input").hide();
-	  } else if($(this).val() == 2){
-		  $("#trip-cal-input").show();
-		  $("#trip-day-input").hide();
+		// 일수 or 날짜 선택 가능
+	  $(document).on('change', '.select-day', function(){
+	  $this = $(this);
 		  
-		  $("#datePickInput").datepicker({
-	    	  language:"kr",
-	    	  range:true,
-	    	  toggleSelected:true,
-	    	  position:"bottom",
-	    	  multipleDatesSeparator:"-"
-	      });
+	  let date = $("#datePickInput2").val();
+	  let str = date.split(" - ");
 		  
+	  if ($this.val() == 1) {
+		  getDay();
+	  } else if($this.val() == 2){
+		  getCal();
 	  }
   });
 	
@@ -69,9 +79,29 @@ function load(){
     });
     */
 
-  $("#btnCreateTrip").click(function () {
-    // 추후 submit으로 변경
+		
+		$(document).on("click", "#btnCreateTrip", function(){
+			 console.log("여기");
+			  let param = $("#mpNewtripFrm").serialize();
+			  
+				$.post("newtrip.mp", param, function(data, state) {
+					alert(data);
+					location.reload();
+//					$("#main").html(data);
+				});
+		})
+		
+/*
+  $("#btnCreateTrip").on('click',function () {
+	  console.log("여기");
+	  let param = $("#mpNewtripFrm").serialize();
+	  
+		$.post("newtrip.mm", param, function(data, state) {
+			alert(data);
+//			$("#main").html(data);
+		});
   });
+  */
 
   $(".trip-list-box").on('click', function(){
   	location.href="./mypage/edit_trip.jsp";
@@ -85,6 +115,21 @@ function load(){
 }
 
 load();
+
+function getCal(){
+	$(".trip-cal-input").show();
+	$(".trip-day-input").hide();
+	$(".datepicker-here").datepicker();
+	
+	// datepicker 호출 후에 다시 값 넣어주기
+	$("#datePickInput2").val(fullDate);
+}
+
+function getDay(){
+	$(".trip-day-input").show();
+	$(".trip-cal-input").hide();
+	$(".datepicker-here").datepicker();
+}
 
 
 
