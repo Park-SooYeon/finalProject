@@ -4,6 +4,7 @@
 <html>
 <head>
 <script src="js/festival_detail.js"></script>
+
 <script src="js/main.js"></script>
 <script src='./lib/jquery-3.4.1.js'></script>
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
@@ -460,6 +461,10 @@
       ]
     });
   //]]>
+    let insertMove = function() {
+    	location.href = './?inc=commonPage/review_insert.jsp';
+    } 
 </script> 
+
 </body>
 </html>
