@@ -49,14 +49,39 @@ public class MyPageDao {
 		}
 	}
 	
-	public TripListVo view(int serial) {
-		TripListVo vo = new TripListVo();
+	public String modify(TripListVo vo) {
+		String msg = "정상적으로 수정되었습니다.";
 		try {
-			vo = sqlSession.selectOne("mypage.view_trip", serial);
-		}catch(Exception ex) {
+			int cnt = sqlSession.update("mypage.modify_trip", vo);
+			if(cnt<1) {
+				throw new Exception("여행 수정 중 오류발생");
+			}
+			sqlSession.commit();
+		}catch(Exception ex){
+			msg = ex.getMessage();
 			ex.printStackTrace();
+			
+			sqlSession.rollback();
 		}finally {
-			return vo;
+			return msg;
+		}
+	}
+	
+	public String delete(int trip_list_serial) {
+		String msg = "정상적으로 삭제되었습니다.";
+		try {
+			int cnt = sqlSession.update("mypage.delete_trip", trip_list_serial);
+			if(cnt<1) {
+				throw new Exception("여행 삭제 중 오류발생");
+			}
+			sqlSession.commit();
+		}catch(Exception ex){
+			msg = ex.getMessage();
+			ex.printStackTrace();
+			
+			sqlSession.rollback();
+		}finally {
+			return msg;
 		}
 	}
 	

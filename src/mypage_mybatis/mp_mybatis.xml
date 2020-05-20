@@ -23,16 +23,35 @@
 				order by trip_date desc
 	</select>
 	
-	<select id="view_trip" parameterType="Integer" resultType="mypage_mybatis.TripListVo">
-		select 	trip_list_serial, 
-				member_id, 
-				trip_name, 
-				days_count, 
-				start_date, 
-				end_date, 
-				trip_auth, 
-				to_char(trip_date,'rrrr-mm-dd') trip_date 
-				from trip_list 
-		where trip_list_serial = ${_parameter}
+	<update id="modify_trip" parameterType="mypage_mybatis.TripListVo">
+		update trip_list set trip_name = #{trip_name}, 
+							 days_count = ${days_count},
+							 start_date = #{start_date,jdbcType=DATE},
+							 end_date = #{end_date,jdbcType=DATE},
+							 trip_auth = ${trip_auth}
+							 where trip_list_serial = ${trip_list_serial}
+	</update>
+	
+	<delete id="delete_trip" parameterType="Integer">
+		delete from trip_list where trip_list_serial = ${_parameter}
+	</delete>
+	
+	<select id="select_like" parameterType="String" resultType="">
+		select like_serial, 
+			   member_id, 
+			   trip_list, 
+			   place_serial, 
+			   partner_serial 
+			   from like_list 
+			   where member_id = ${_parameter}
 	</select>
+	
+	<select id="select_review" parameterType="String" resultType="">
+		select like_serial, 
+			   review_serial, 
+			   like_id from 
+			   review_like 
+			   where like_id = #{_parameter}
+	</select>
+	
 </mapper>
