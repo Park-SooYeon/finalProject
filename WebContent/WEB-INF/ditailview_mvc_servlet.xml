@@ -15,11 +15,11 @@
 	<context:annotation-config />
 	
 	<!-- bean -->
-	<bean id="rvDao" class="review.ReviewDao"/>
+	<bean id="dvDao" class="ditailview.DitailViewDao"/>
 	
 	<!-- controller (servlet code) -->
-	<bean id="rv_controller" class="review.ReviewController">
-		<constructor-arg ref="rvDao"/>
+	<bean id="rv_controller" class="ditailview.DitailViewController">
+		<constructor-arg ref="dvDao"/>
 	</bean>
 	
 	<!-- view resolver (결과 페이지)-->
