@@ -13,8 +13,11 @@ rent.func = function(){
 	}
 	//rent_Main >> rentSearch(rentSearchSub1) 
 	if($('#btnCompanySearch')!=null){
-		$('#btnCompanySearch').click(function(){			
-		      $('#rent_frm').attr('action','./companySearch.rent');
+		$('#btnCompanySearch').click(function(){		
+			
+				$('#rent_frm').attr('action','./companySearch.rent');
+				
+			
 		});
 		
 	}

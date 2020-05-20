@@ -23,8 +23,7 @@
 							<span>5일</span>
 						</div>
 						<div id='companyMid2'  class="col-lg-1 col-md-1 col-sm-2 col-xs-6">
-							<span>8</span>
-							<div>공급업체</div>
+							
 						</div>
 						<div id='companyRight' class="col-lg-3 col-md-3 col-sm-5 col-xs-12">
 							<button type="button" id='btnCar' onclick="rent.carSearch('1')" class="btn btn-primary">55 차량 모두 보기</button>
@@ -54,8 +53,7 @@
 							<span>5일</span>
 						</div>
 						<div id='companyMid2'  class="col-lg-1 col-md-1 col-sm-2 col-xs-6">
-							<span>8</span>
-							<div>공급업체</div>
+							
 						</div>
 						<div id='companyRight' class="col-lg-3 col-md-3 col-sm-5 col-xs-12">
 							<button type="button" id='btnCar' onclick="rent.carSearch('2')" class="btn btn-primary">55 차량 모두 보기</button>
