@@ -64,9 +64,8 @@ main.searchMove = function(menu, local = 0) {
 
 //detailView로 이동
 main.detailMove = function(code) {
-	location.href = './?inc=detailView.sb&code=' + code;
+	location.href = './?inc=detailView.dv&code=' + code;
 }
-
 
 
 

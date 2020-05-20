@@ -1,6 +1,6 @@
 package bean;
 
-public class DitailViewVo {
+public class DetailViewVo {
 	int place_serial;
 	int partner_serial;
 	int place_code;

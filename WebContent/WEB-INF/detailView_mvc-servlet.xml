@@ -15,10 +15,10 @@
 	<context:annotation-config />
 	
 	<!-- bean -->
-	<bean id="dvDao" class="ditailview.DitailViewDao"/>
+	<bean id="dvDao" class="detailview.DetailViewDao"/>
 	
 	<!-- controller (servlet code) -->
-	<bean id="rv_controller" class="ditailview.DitailViewController">
+	<bean id="dv_controller" class="detailview.DetailViewController">
 		<constructor-arg ref="dvDao"/>
 	</bean>
 	
