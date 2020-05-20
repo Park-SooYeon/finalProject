@@ -61,5 +61,13 @@ public class TripListVo {
 		this.trip_date = trip_date;
 	}
 	
+	@Override
+	public String toString() {
+		return "TripListVo [trip_list_serial=" + trip_list_serial + ", member_id=" + member_id + ", trip_name="
+				+ trip_name + ", days_count=" + days_count + ", start_date=" + start_date + ", end_date=" + end_date
+				+ ", trip_auth=" + trip_auth + ", trip_date=" + trip_date + "]";
+	}
+	
+	
 	
 }

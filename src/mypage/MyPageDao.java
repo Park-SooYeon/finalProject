@@ -1,5 +1,8 @@
 package mypage;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 
 import bean.Factory;
@@ -19,9 +22,7 @@ public class MyPageDao {
 	public String insert(TripListVo vo) {
 		String msg = "정상적으로 저장되었습니다.";
 		try {
-			System.out.println("try");
 			int cnt = sqlSession.insert("mypage.insert_trip", vo);
-			System.out.println("본문 저장 : "+cnt);
 			if(cnt<1) {
 				throw new Exception("본문 저장 중 오류발생");
 			}
@@ -33,8 +34,29 @@ public class MyPageDao {
 			
 			sqlSession.rollback();
 		}finally {
-			//sqlSession.close();
 			return msg;
+		}
+	}
+	
+	public List<TripListVo> select() {
+		List<TripListVo> list = new ArrayList<TripListVo>();
+		try {
+			list = sqlSession.selectList("mypage.select_trip");
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		}finally {
+			return list;
+		}
+	}
+	
+	public TripListVo view(int serial) {
+		TripListVo vo = new TripListVo();
+		try {
+			vo = sqlSession.selectOne("mypage.view_trip", serial);
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		}finally {
+			return vo;
 		}
 	}
 	
