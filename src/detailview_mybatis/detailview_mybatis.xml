@@ -2,8 +2,8 @@
 <!DOCTYPE mapper
    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="ditailView">
-<select id='view' parameterType='Integer' resultType='bead.DitailViewVo'>
+<mapper namespace="detailView">
+<select id='view' parameterType='Integer' resultType='bean.DetailViewVo'>
 		select PLACE_SERIAL, PARTNER_SERIAL, PLACE_CODE, PLACE_NAME, PLACE_LOCATION, LATITUDE, LONGITUDE, GRADE, STATE, BREAKFAST, WI_FI, PARKING, LOCAL_CODE
 		from place
 		where place_serial = ${_parameter}
