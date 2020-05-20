@@ -28,6 +28,9 @@
 		
 		<!-- mypage -->
 		<mapper resource="mypage_mybatis/mp_mybatis.xml"/>
+		
+		<!-- admin -->
+		<mapper resource="adSuper_mybatis/adSuper_mybatis.xml"/>
 	</mappers>
 
 </configuration>

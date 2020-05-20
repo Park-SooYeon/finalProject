@@ -1,5 +1,7 @@
 package adSuper;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -7,6 +9,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+
+import bean.membershipVo;
+import mypage_mybatis.TripListVo;
 
 @Controller
 public class AdSuperController {
@@ -18,11 +23,26 @@ public class AdSuperController {
 	
 	ModelAndView mv;
 	
-	@RequestMapping(value = "user_list.os", method= {RequestMethod.GET, RequestMethod.POST})
-	public String user_list(HttpServletRequest req) {
+	@RequestMapping(value = "/admin/super/user_list.os", method= {RequestMethod.GET, RequestMethod.POST})
+	public ModelAndView user_list(HttpServletRequest req) {
 		mv = new ModelAndView();
-		return "user_list";
+		System.out.println("user_list컨트롤 들어오나");
+		List<membershipVo> list = dao.select();
+		mv.setViewName("user_list");
+		mv.addObject("list", list);
+//		for(membershipVo vo : list) {
+//			System.out.println(vo.getMember_id());
+//			System.out.println(vo.getState());
+//		}
+		return mv;
+		//admin/super/user_list.jsp
 	}
+	
+	
+	
+	
+	
+	
 	
 	@RequestMapping( value ="mypage.mp", method= {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView mypage(HttpServletRequest req) {
