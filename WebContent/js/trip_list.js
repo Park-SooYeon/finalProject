@@ -1,6 +1,10 @@
+const TRIP_CAL = ".trip-cal-input";
+const TRIP_DAY = ".trip-day-input";
 let fullDate = "";
 
+
 function load(){
+	// 첫화면에 모든 여행리스트 조회
 	$("#list-here").load("mytrip.mp");
 	
 //	$.ajax({
@@ -13,12 +17,7 @@ function load(){
 //		}
 //	});
 	
-	init();
 }
-	
-	$(document).on("show.bs.modal", "#newTripModal", function(event){
-		console.log("모달1");
-	})
 	
 	//수정 모달창이 켜졌을때
 	$(document).on("show.bs.modal", "#mp-modifyTripModal", function(event){
@@ -32,17 +31,20 @@ function load(){
 		let days = ADD_BTN.data("days");
 		let start = ADD_BTN.data("start");
 		let end = ADD_BTN.data("end");
+		let serial = ADD_BTN.data("serial");
 		
 		if(days==0 || days==null){
-			getCal();
-		}else if (days>0){
-			getDay();
+			//입력한 여행일수 값이 없으면 CAL를 SHOW
+			inputToggle(TRIP_CAL, TRIP_DAY);
+		}else if (days>0){ 
+			inputToggle(TRIP_DAY, TRIP_CAL);
 		}
 		
 		fullDate = start+" - "+end;
 		$("#mTrip_name").val(name);
 		$("#mDays_count").val(days);
 		$("#datePickInput2").val(fullDate);
+		$("#trip_serial").val(serial);
 		
 		if(auth==1){
 			$("#unlock").prop("checked", true);
@@ -59,76 +61,56 @@ function load(){
 	  let str = date.split(" - ");
 		  
 	  if ($this.val() == 1) {
-		  getDay();
+		  inputToggle(TRIP_DAY, TRIP_CAL);
 	  } else if($this.val() == 2){
-		  getCal();
+		  inputToggle(TRIP_CAL, TRIP_DAY);
 	  }
   });
 	
-	function init() {
-	/*
-    $("#newTripModal").on("show.bs.modal", function (event) {
-    	console.log("모달 실행");
-      const ADD_BTN = $(event.relatedTarget); // Button that triggered the modal
-      const TRIP_NAME = ADD_BTN.data("whatever"); // Extract info from data-* attributes
-      // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-      // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-      var modal = $(this);
-      // modal.find('.modal-title').text('여행이름 ' + TRIP_NAME)
-      // modal.find('.modal-body input').val(TRIP_NAME)
-    });
-    */
-
-		
-		$(document).on("click", "#btnCreateTrip", function(){
-			 console.log("여기");
-			  let param = $("#mpNewtripFrm").serialize();
-			  
-				$.post("newtrip.mp", param, function(data, state) {
-					alert(data);
-					location.reload();
-//					$("#main").html(data);
-				});
-		})
-		
-/*
-  $("#btnCreateTrip").on('click',function () {
-	  console.log("여기");
+	// 여행 추가 버튼을 클릭했을 때 form ajax로 submit
+	$(document).on("click", "#btnCreateTrip", function(){
 	  let param = $("#mpNewtripFrm").serialize();
 	  
-		$.post("newtrip.mm", param, function(data, state) {
-			alert(data);
-//			$("#main").html(data);
-		});
-  });
-  */
-
-  $(".trip-list-box").on('click', function(){
-  	location.href="./mypage/edit_trip.jsp";
-  })
-  
+		$.post("newtrip.mp", param, function(data, state) {
+				alert(data);
+				location.reload();
+			});
+		})
+		
+	// 여행 수정 버튼을 클릭했을 때 form ajax로 submit
+	$(document).on("click", "#btnModifyTrip", function(){
+	  let param = $("#mpModifyTripFrm").serialize();
+	  	console.log(param);
+		$.post("modify_trip.mp", param, function(data, state) {
+				alert(data);
+				location.reload();
+			});
+		})
+	
   $(".button-container .btn-page").on('click',function(){
 	  $this = $(this).data("page");
 	  $("#list-here").load("mypage/"+$this+".jsp");
-	  init();
   })
-}
 
 load();
 
-function getCal(){
-	$(".trip-cal-input").show();
-	$(".trip-day-input").hide();
-	$(".datepicker-here").datepicker();
+
+function inputToggle(a, b){
+	$(a).show();
+	$(a).find("input").attr("disabled", false);
 	
-	// datepicker 호출 후에 다시 값 넣어주기
-	$("#datePickInput2").val(fullDate);
+	$(b).hide();
+	$(b).find("input").attr("disabled", true);
+	$(".datepicker-here").datepicker();
 }
 
-function getDay(){
-	$(".trip-day-input").show();
-	$(".trip-cal-input").hide();
-	$(".datepicker-here").datepicker();
+function deleteTrip(serial){
+	
+	// 여행 삭제 버튼을 클릭했을 때 form ajax로 submit
+	$.get("deleteTrip.mp?serial="+serial, function(data, state) {
+		alert(data);
+		location.reload();
+	});
 }
 
 

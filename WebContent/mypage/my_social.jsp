@@ -194,7 +194,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
                     </div>
                   </div>
                   <div class="post-bottom-bar">
-                    <span class="social-save"><i class="fa fa-heart-o"></i> 내 여행리스트에 담기</span>
+                    <span class="social-save"><i class="fa fa-heart-o"></i> 모두 관심리스트에 담기</span>
                     <span class="social-share"><i class="fa fa-share-alt"></i> 공유하기</span>
                   </div>
                 </div>

@@ -50,9 +50,10 @@
             		data-days="${i.days_count }"
             		data-start="${i.start_date}"
             		data-end="${i.end_date }"
+            		data-serial="${i.trip_list_serial }"
             		>수정</span>
 	              <span> | </span>
-	              <span class="mp-trip-delete">삭제</span>
+	              <span class="mp-trip-delete" id="btnDeleteTrip" onclick="deleteTrip(${i.trip_list_serial})">삭제</span>
               	</div>
             </div>
             <p>작성자 : <b class="mp-authorName">${i.member_id }</b></p>
@@ -121,7 +122,7 @@
               </div>
             </div>
             <div class="form-group">
-              <label for="set-privacy" class="col-form-label"><h5>날짜 또는 일수 사용</h5></label>
+              <label for="set-privacy" class="col-form-label"><h5 class="d-inline-block">날짜 또는 일수 사용 </h5>(선택사항)</label>
               <select class="select-day">
                 <option>선택하세요</option>
                 <option value="1">일수 사용</option>
@@ -171,6 +172,8 @@
     aria-hidden="true"
   >
     <div class="modal-dialog" role="document">
+     <form id="mpModifyTripFrm">
+     <input type="text" id="trip_serial" name="trip_serial"/>
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="mp-modifyTripLabel">여행 수정하기</h5>
@@ -179,12 +182,11 @@
           </button>
         </div>
         <div class="modal-body" style="color: #000; padding: 2rem 5rem;">
-          <form>
             <div class="form-group">
               <input
                 type="text"
                 id="mTrip_name"
-                name="mTrip_name"
+                name="trip_name"
                 class="trip_name"
                 placeholder="여행이름을 입력해주세요."
                 onfocus="this.placeholder=''"
@@ -197,15 +199,15 @@
               <div class="privacy-option">
                 <div>
                   <label
-                    ><input type="radio" name="privacy" id="unlock" value="1"/><span class="privacy-circle mx-1"
-                      ><i class="fa fa-unlock-alt"></i
-                    ></span>
+                    ><input type="radio" name="trip_auth" id="unlock" value="1"/><span class="privacy-circle mx-1"
+                      ><i class="fa fa-unlock-alt">
+                      </i></span>
                     <h6>공개</h6>
                   </label>
                 </div>
                 <div>
                   <label
-                    ><input type="radio" name="privacy" id="lock" value="0"/><span
+                    ><input type="radio" name="trip_auth" id="lock" value="0"/><span
                       class="privacy-circle circle-dark mx-1"
                       ><i class="fa fa-lock"></i
                     ></span>
@@ -215,9 +217,9 @@
               </div>
             </div>
             <div class="form-group">
-              <label for="set-privacy" class="col-form-label"><h5>날짜 또는 일수 사용</h5></label>
+              <label for="set-privacy" class="col-form-label"><h5 class="d-inline-block">날짜 또는 일수 사용</h5>(선택사항)</label>
               <select class="select-day">
-                <option>선택하세요</option>
+                <option selected>선택하세요</option>
                 <option value="1">일수 사용</option>
                 <option value="2">날짜 사용</option>
               </select>
@@ -225,7 +227,7 @@
 
             <div class="form-group trip-day-input" style="display: none;">
               <label for="trip-day-input" class="col-form-label"><h5>일수 입력</h5> </label><br/>
-              <input type="number" id="mDays_count" name="mDays_count" class="form-control col-sm-3" style="display:inline-block;"/> 일
+              <input type="number" id="mDays_count" name="days_count" class="form-control col-sm-3" style="display:inline-block;"/> 일
             </div>
 
             <div class="form-group trip-cal-input" style="display: none;">
@@ -233,7 +235,7 @@
               <input
                 type="text"
                 id="datePickInput2"
-                name="mstart_date"
+                name="start_date"
                 class="form-control col-sm-8 datepicker-here"
                 data-range="true"
                 data-position="top left"
@@ -241,13 +243,13 @@
                 data-multiple-dates-separator=" - "
               />
             </div>
-          </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
-          <button type="button" class="btn btn-primary" data-dismiss="modal" id="btnModifyTrip">수정</button>
+          <input type="button" class="btn btn-secondary" data-dismiss="modal" value="닫기">
+          <input type="button" class="btn btn-primary" id="btnModifyTrip" value="수정">
         </div>
       </div>
+       </form>
     </div>
   </div>
 </section>
