@@ -147,7 +147,7 @@
 							<div class="p-1 heart" onclick="main.like(this)">
 								<i class="fa fa-heart-o" style="vertical-align: middle;"></i>
 							</div>
-							<div class="single-destinations" onclick="main.detailMove()">
+							<div class="single-destinations" onclick="main.detailMove(1)">
 								<div class="thumb">
 									<img src="template/img/packages/d${i }.jpg" alt="no-image">
 								</div>
@@ -188,7 +188,7 @@
 							<div class="p-1 heart" onclick="main.like(this)">
 								<i class="fa fa-heart-o" style="vertical-align: middle;"></i>
 							</div>
-							<div class="single-destinations" onclick="main.detailMove()">
+							<div class="single-destinations" onclick="main.detailMove(1)">
 								<div class="thumb">
 									<img src="template/img/packages/d${i }.jpg" alt="no-image">
 								</div>
@@ -229,7 +229,7 @@
 							<div class="p-1 heart" onclick="main.like(this)">
 								<i class="fa fa-heart-o" style="vertical-align: middle;"></i>
 							</div>
-							<div class="single-destinations" onclick="main.detailMove()">
+							<div class="single-destinations" onclick="main.detailMove(1)">
 								<div class="thumb">
 									<img src="template/img/packages/d${i }.jpg" alt="no-image">
 								</div>
@@ -270,7 +270,7 @@
 							<div class="p-1 heart" onclick="main.like(this)">
 								<i class="fa fa-heart-o" style="vertical-align: middle;"></i>
 							</div>
-							<div class="single-destinations" onclick="main.detailMove()">
+							<div class="single-destinations" onclick="main.detailMove(1)">
 								<div class="thumb">
 									<img src="template/img/packages/d${i }.jpg" alt="no-image">
 								</div>
