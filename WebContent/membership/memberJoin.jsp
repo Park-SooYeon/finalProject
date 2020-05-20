@@ -61,6 +61,12 @@
 						name="mName" id="mName" placeholder="이름을 입력해주세요" maxlength="20"  required><br>
 				</div>
 
+
+			   <div class="form-group col-lg-10">
+								<label>전화번호</label> <input type="text" class="form-control"
+									name="mPhone" id="mPhone" placeholder="전화번호를 입력해주세요~" maxlength="20"  required><br>
+							</div>
+			   
 				
 
 			
