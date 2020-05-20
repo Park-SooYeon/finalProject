@@ -23,6 +23,8 @@
 	<mappers>
 		<!-- mapper 파일 -->
 		
+		<!--  main -->
+		<mapper resource= "./mybatis/sb_mybatis.xml"/>
 		<!-- membership -->
 		   <mapper resource="./membership_mybatis/membership.xml"/>
 		
