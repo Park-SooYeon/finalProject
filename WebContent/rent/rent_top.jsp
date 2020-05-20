@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<form name='rentTop_frm' id='rentTop_frm' method='post'>
 <nav class="navbar navbar-default navbar-fixed-top" id='topmain'>
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -108,7 +108,7 @@
 				  </div>
 				</div>
 
-
+</form>
 <script>
 rent.func()
 </script>
