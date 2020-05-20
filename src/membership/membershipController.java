@@ -95,7 +95,7 @@ public membershipController(membershipDao dao){
         	   
         	   session.setAttribute("nickName", vo.getNickName());
         	   
-        	   
+        	      mv.setViewName("loginAction");
         	   
         	   
         	   
