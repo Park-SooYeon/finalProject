@@ -5,20 +5,69 @@
 
 <mapper namespace="sub_main">
 	
-	<!-- 지역 메인에서 관광지(즐길거리, 음식, 축제) 모두 가져오기 -->
-	<select id="" parameterType="vo.MainVo" resultType="bean.vo">
-		select a.place_serial, place_name, place_location, avg(REPUTATION)
+	<!-- 모든 관광지(즐길거리) 가져오기 -->
+	<select id="select_place_happy" parameterType="Integer" resultType="bean.PlaceVo">
+		select place_code, local_code, a.place_serial, place_name, place_location, avg(reputation) reputation, count(review_serial) review_cnt, place_name photo_name
 		from place a 
 		left outer join review b
 		on a.place_serial = b.place_serial
-		where place_code = #{menu}
-		<if test="local != 0">
-			and local_code = #{local}
+		where place_code = 1
+		<if test="_parameter != 0">
+			and local_code = #{_parameter}
 		</if>
-		group by a.place_serial, place_name, place_location
+		group by place_code, local_code, a.place_serial, place_name, place_location
+		order by place_serial
 	</select>
 	
+	<!-- 모든 관광지(음식점) 가져오기 -->
+	<select id="select_place_food" parameterType="Integer" resultType="bean.PlaceVo">
+		select place_code, local_code, a.place_serial, place_name, place_location, avg(reputation) reputation, count(review_serial) review_cnt, place_name photo_name
+		from place a 
+		left outer join review b
+		on a.place_serial = b.place_serial
+		where place_code = 2
+		<if test="_parameter != 0">
+			and local_code = #{_parameter}
+		</if>
+		group by place_code, local_code, a.place_serial, place_name, place_location
+		order by place_serial
+	</select>
+	
+	<!-- 모든 관광지(축제) 가져오기 -->
+	<select id="select_place_festival" parameterType="Integer" resultType="bean.PlaceVo">
+		select place_code, local_code, a.place_serial, place_name, place_location, avg(reputation) reputation, count(review_serial) review_cnt, place_name photo_name
+		from place a 
+		left outer join review b
+		on a.place_serial = b.place_serial
+		where place_code = 3
+		<if test="_parameter != 0">
+			and local_code = #{_parameter}
+		</if>
+		group by place_code, local_code, a.place_serial, place_name, place_location
+		order by place_serial
+	</select>
 
+	<!-- 관광지별 메인에서 별점 높은 순으로 가져오기 -->
+	<select id="select_high_stars" parameterType="Integer" resultType="bean.PlaceVo">
+		select local_code, a.place_serial, place_name, place_location, avg(reputation) reputation, count(review_serial) review_cnt, place_name photo_name
+		from place a 
+		join review b
+		on a.place_serial = b.place_serial
+		where place_code = #{_parameter}
+		group by local_code, a.place_serial, place_name, place_location
+		order by reputation DESC
+	</select>
+	
+	<!-- 관광지별 메인에서 리뷰 많은 순으로 가져오기 -->
+	<select id="select_many_review" parameterType="Integer" resultType="bean.PlaceVo">
+		select local_code, a.place_serial, place_name, place_location, avg(reputation) reputation, count(review_serial) review_cnt, place_name photo_name
+		from place a 
+		join review b
+		on a.place_serial = b.place_serial
+		where place_code = #{_parameter}
+		group by local_code, a.place_serial, place_name, place_location
+		order by review_cnt DESC
+	</select>
 	<!--
 	<resultMap id="my_map"/>
 	<update/>

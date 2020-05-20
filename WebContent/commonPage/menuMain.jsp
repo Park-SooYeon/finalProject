@@ -13,12 +13,15 @@
 						<c:choose>
 							<c:when test="${param.menu == 1 }">
 								즐길거리
+								<c:set var="menu_name" value="happy"/>
 							</c:when>
 							<c:when test="${param.menu == 2 }">
 								음식점
+								<c:set var="menu_name" value="food"/>
 							</c:when>
 							<c:when test="${param.menu == 3 }">
 								축제
+								<c:set var="menu_name" value="festival"/>
 							</c:when>
 						</c:choose>
 					</h1>
@@ -90,19 +93,26 @@
 			<div class="swiper-container m-2">
 				<div class="swiper-wrapper pl-50 pr-50">
 
-					<c:forEach var="i" begin="1" end="10">
+					<c:forEach var="i" items="${starList }" begin="0" end="9">
 						<div class="swiper-slide">
 							<div class="p-1 heart" onclick="main.like(this)">
 								<i class="fa fa-heart-o" style="vertical-align: middle;"></i>
 							</div>
-							<div class="single-destinations" onclick="main.detailMove()">
+							<div class="single-destinations" onclick="main.detailMove(${i.place_serial})">
 								<div class="thumb">
-									<img src="template/img/packages/d${i }.jpg" alt="no-image">
+									<img src="images/${menu_name }/${i.local_name }/${i.photo_name }1.jpg" alt="no-image">
 								</div>
 								<div class="details p-2">
-									<h4>Holiday Sea beach Blue Ocean</h4>
-									<p>United staes of America</p>
-									<h6 class="date">위치</h6>
+									<h4>${i.place_name }</h4>
+									<p class="rating" data-rate="${i.reputation }">
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i> 
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+									 ${i.review_cnt } 건의 리뷰
+									</p>
+									<h6 class="date">${i.place_location }</h6>
 								</div>
 							</div>
 						</div>
@@ -131,19 +141,26 @@
 			<div class="swiper-container m-2">
 				<div class="swiper-wrapper pl-50 pr-50">
 
-					<c:forEach var="i" begin="1" end="10">
+					<c:forEach var="i" items="${reviewList }" begin="0" end="9">
 						<div class="swiper-slide">
 							<div class="p-1 heart" onclick="main.like(this)">
 								<i class="fa fa-heart-o" style="vertical-align: middle;"></i>
 							</div>
-							<div class="single-destinations" onclick="main.detailMove()">
+							<div class="single-destinations" onclick="main.detailMove(${i.place_serial})">
 								<div class="thumb">
-									<img src="template/img/packages/d${i }.jpg" alt="no-image">
+									<img src="images/${menu_name }/${i.local_name }/${i.photo_name }1.jpg" alt="no-image">
 								</div>
 								<div class="details p-2">
-									<h4>Holiday Sea beach Blue Ocean</h4>
-									<p>United staes of America</p>
-									<h6 class="date">위치</h6>
+									<h4>${i.place_name }</h4>
+									<p class="rating" data-rate="${i.reputation }">
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i> 
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+									 ${i.review_cnt } 건의 리뷰
+									</p>
+									<h6 class="date">${i.place_location }</h6>
 								</div>
 							</div>
 						</div>
