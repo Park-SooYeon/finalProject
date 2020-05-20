@@ -7,8 +7,15 @@
 	
 	<!-- 지역 메인에서 관광지(즐길거리, 음식, 축제) 모두 가져오기 -->
 	<select id="" parameterType="Integer" resultType="bean.vo">
-		select place_serial, place_name, place_loaction from place
-		where 
+		select a.place_serial, place_name, place_location, avg(REPUTATION)
+		from place a 
+		left outer join review b
+		on a.place_serial = b.place_serial
+		where place_code = #{menu}
+		<if test="local != 0">
+			and local_code = #{local}
+		</if>
+		group by a.place_serial, place_name, place_location
 	</select>
 	
 
