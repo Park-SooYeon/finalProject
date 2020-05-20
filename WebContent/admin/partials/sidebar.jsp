@@ -24,7 +24,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="./?inc=user_list.jsp">
+                <a class="nav-link" href="./?inc=user_list.os">
                     <i class="menu-icon typcn typcn-document-text"></i>
                     <span class="menu-title">회원관리</span>
                 </a>

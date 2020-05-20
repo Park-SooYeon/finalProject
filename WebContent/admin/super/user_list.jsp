@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<script src="../../js/admin.js">    
+</script>
+    
         <div class="row">
             <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
@@ -27,196 +31,50 @@
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
+                                    <%-- <c:forEach var='i' items='${list }'>
+										<div class='items row' onclick='brd.view(${i.serial})'>
+											<span class ='no col-md-1'>${i.serial }</span>
+											<span class='subject col-md-3'>${i.subject }</span>
+											<span class='id col-md-3'>${i.id }</span>
+											<span class='mDate col-md-3'>${i.mDate }</span>
+											<span class='hit col-md-1'>${i.hit }</span>
+										</div>	
+									
+									</c:forEach> --%>
                                     <tbody>
+                                       <c:forEach var='i' items='${list }' varStatus="status"> <!-- 컨트롤러에서 list로한게 이리들어옴 -->
                                         <tr>
-                                            <td>1</td>
+                                            <td>${status.count }</td>
                                             <td>
                                                 <div class="d-flex align-items-center">
                                                     <img class="img-xs rounded-circle" src="../../assets/images/faces/face2.jpg" alt="profile image">
                                                     <div class="wrapper pl-2">
-                                                        <p class="mb-0 text-gray">Derrick Morton</p>
+                                                        <p class="mb-0 text-gray">${i.member_name }</p>
                                                     </div>
                                                 </div>
                                             </td>
-                                            <td>Derrick</td>
-                                            <td>010-0000-0000</td>
-                                            <td>abc@domain.com</td>
-                                            <td>2012/08/03</td>
+                                            <td>${i.member_id }</td>
+                                            <td>${i.phone }</td>
+                                            <td>${i.email }</td>
+                                            <td>${i.mDate }</td>
                                             <td>
-                                                <label class="badge badge-inverse-info">Partner</label>
+                                            	<c:if test='${i.state==1 }'>
+                                 	               <label class="badge badge-inverse-info">user</label>
+												</c:if>
+												<c:if test='${i.state==88 }'>
+                                        	        <label class="badge badge-inverse-primary">partner</label>
+												</c:if>
+												<c:if test='${i.state==99 }'>
+                                                	<label class="badge badge-inverse-danger">admin</label>
+												</c:if>
+												
                                             </td>
                                             <td>
-                                                <button class="btn btn-outline-primary" data-toggle="modal" data-target="#ModalUserInfo">View</button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>
-                                                <div class="d-flex align-items-center">
-                                                    <span class="img-xs rounded-circle bg-warning text-white text-avatar">AV</span>
-                                                    <div class="wrapper pl-2">
-                                                        <p class="mb-0 text-gray">Austin Vaughn</p>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>Austin</td>
-                                            <td>010-0000-0000</td>
-                                            <td>abc@domain.com</td>
-                                            <td>2014/08/03</td>
-                                            <td>
-                                                <label class="badge badge-inverse-danger">Admin</label>
-                                            </td>
-                                            <td>
-                                                <button class="btn btn-outline-primary">View</button>
+                                                <button class="btn btn-outline-primary" data-toggle="modal" data-target="#ModalUserInfo" onclick="member_view('${i.member_id }','${i.member_name }','${i.phone }','${i.email }','${i.state}','${i.mDate }' )">View</button>
                                             </td>
                                         </tr>
-                                        <tr>
-                                            <td>3</td>
-                                            <td>
-                                                <div class="d-flex align-items-center">
-                                                    <img class="img-xs rounded-circle" src="../../assets/images/faces/face4.jpg" alt="profile image">
-                                                    <div class="wrapper pl-2">
-                                                        <p class="mb-0 text-gray">Iva Craig</p>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>Iva</td>
-                                            <td>010-0000-0000</td>
-                                            <td>abc@domain.com</td>
-                                            <td>2018/08/03</td>
-                                            <td>
-                                                <label class="badge badge-inverse-success">User</label>
-                                            </td>
-                                            <td>
-                                                <button class="btn btn-outline-primary">View</button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>4</td>
-                                            <td>
-                                                <div class="d-flex align-items-center">
-                                                    <img class="img-xs rounded-circle" src="../../assets/images/faces/face5.jpg" alt="profile image">
-                                                    <div class="wrapper pl-2">
-                                                        <p class="mb-0 text-gray">Della Yates</p>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>Della</td>
-                                            <td>010-0000-0000</td>
-                                            <td>abc@domain.com</td>
-                                            <td>2011/08/03</td>
-                                            <td>
-                                                <label class="badge badge-inverse-success">User</label>
-                                            </td>
-                                            <td>
-                                                <button class="btn btn-outline-primary">View</button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>5</td>
-                                            <td>
-                                                <div class="d-flex align-items-center">
-                                                    <span class="img-xs rounded-circle bg-primary text-white text-avatar">AW</span>
-                                                    <div class="wrapper pl-2">
-                                                        <p class="mb-0 text-gray">Alexander Wallace</p>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>Alexander</td>
-                                            <td>010-0000-0000</td>
-                                            <td>abc@domain.com</td>
-                                            <td>2017/08/03</td>
-                                            <td>
-                                                <label class="badge badge-inverse-success">User</label>
-                                            </td>
-                                            <td>
-                                                <button class="btn btn-outline-primary">View</button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>6</td>
-                                            <td>
-                                                <div class="d-flex align-items-center">
-                                                    <img class="img-xs rounded-circle" src="../../assets/images/faces/face7.jpg" alt="profile image">
-                                                    <div class="wrapper pl-2">
-                                                        <p class="mb-0 text-gray">Helen Holt</p>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>Helen</td>
-                                            <td>010-0000-0000</td>
-                                            <td>abc@domain.com</td>
-                                            <td>2018/09/03</td>
-                                            <td>
-                                                <label class="badge badge-inverse-info">Partner</label>
-                                            </td>
-                                            <td>
-                                                <button class="btn btn-outline-primary">View</button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>7</td>
-                                            <td>
-                                                <div class="d-flex align-items-center">
-                                                    <span class="img-xs rounded-circle bg-info text-white text-avatar">DR</span>
-                                                    <div class="wrapper pl-2">
-                                                        <p class="mb-0 text-gray">Douglas Reese</p>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>Douglas</td>
-                                            <td>010-0000-0000</td>
-                                            <td>abc@domain.com</td>
-                                            <td>2018/08/23</td>
-                                            <td>
-                                                <label class="badge badge-inverse-success">User</label>
-                                            </td>
-                                            <td>
-                                                <button class="btn btn-outline-primary">View</button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>8</td>
-                                            <td>
-                                                <div class="d-flex align-items-center">
-                                                    <img class="img-xs rounded-circle" src="../../assets/images/faces/face9.jpg" alt="profile image">
-                                                    <div class="wrapper pl-2">
-                                                        <p class="mb-0 text-gray">Jim Jennings</p>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>Jim</td>
-                                            <td>010-0000-0000</td>
-                                            <td>abc@domain.com</td>
-                                            <td>2011/08/03</td>
-                                            <td>
-                                                <label class="badge badge-inverse-info">Partner</label>
-                                            </td>
-                                            <td>
-                                                <button class="btn btn-outline-primary">View</button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>9</td>
-                                            <td>
-                                                <div class="d-flex align-items-center">
-                                                    <span class="img-xs rounded-circle bg-primary text-white text-avatar">MH</span>
-                                                    <div class="wrapper pl-2">
-                                                        <p class="mb-0 text-gray">Maude Hawkins</p>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>Maude</td>
-                                            <td>010-0000-0000</td>
-                                            <td>abc@domain.com</td>
-                                            <td>2018/05/03</td>
-                                            <td>
-                                                <label class="badge badge-inverse-success">User</label>
-                                            </td>
-                                            <td>
-                                                <button class="btn btn-outline-primary">View</button>
-                                            </td>
-                                        </tr>
+                                      </c:forEach>
+                                           
                                     </tbody>
                                 </table>
                             </div>
@@ -226,7 +84,6 @@
                 </div>
             </div>
         </div>
-    </div>
 
 
     <!-- 사용자 정보 modal -->
@@ -243,22 +100,22 @@
                     <div class="wrapper d-flex align-items-center py-2 mb-3">
                         <img class="img-sm rounded-circle" src="../../assets/images/faces/face5.jpg" alt="profile">
                         <div class="wrapper ml-3">
-                            <h6 class="ml-1 mb-1">Stella Davidson</h6>
+                            <h6 class="ml-1 mb-1" id='member_id'></h6>
                         </div>
-                        <small class="time d-none d-sm-block ml-auto ">2018.02.05 가입됨</small>
+                        <small class="time d-none d-sm-block ml-auto " id='member_date'></small>가입됌
                     </div>
                     <form class="" name="usrInfoFrm">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="">사용자명</label>
-                                    <p id="usrInfoUsrNm" class="">userNm</p>
+                                    <p id="usrInfoUsrNm" class="member_name"></p>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="">연락처</label>
-                                    <p id="usrInfoTel" class="">010-0000-0000</p>
+                                    <p id="usrInfoTel" class="member_phone"></p>
                                 </div>
                             </div>
                         </div>
@@ -266,7 +123,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="">이메일</label>
-                                    <p id="usrInfoUsrNm" class="">abc@domain.com</p>
+                                    <p id="usrInfoUsrNm" class="member_email"></p>
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -288,5 +145,6 @@
                 </div>
             </div>
         </div>
+    </div>
     
            
