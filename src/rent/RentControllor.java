@@ -16,6 +16,9 @@ public class RentControllor {
 	
 	
 	RentDao rentDao;
+	ModelAndView mv;
+	String contentPage;
+	String mainPage;
 	
 	public RentControllor(RentDao rentDao) {
 		this.rentDao = rentDao;
@@ -23,9 +26,9 @@ public class RentControllor {
 	
 	@RequestMapping(value="/rentMain.rent",method= {RequestMethod.POST,RequestMethod.GET})
 	public ModelAndView goMain(HttpServletRequest req,HttpServletResponse resp) {
-		ModelAndView mv = new ModelAndView();
-		String contentPage = "";
-		String mainPage = "rentMain.jsp";
+		mv = new ModelAndView();
+		contentPage = "";
+		mainPage = "rentMain.jsp";
 		
 		
 		mv.addObject("contentPage",contentPage);
@@ -36,9 +39,9 @@ public class RentControllor {
 	
 	@RequestMapping(value="/companySearch.rent",method= {RequestMethod.POST,RequestMethod.GET})
 	public ModelAndView companySelect(HttpServletRequest req,HttpServletResponse resp) {
-		ModelAndView mv = new ModelAndView();
-		String contentPage = "rentSearchSub1.jsp";
-		String mainPage = "rentSearch.jsp";
+		mv = new ModelAndView();
+		contentPage = "rentSearchSub1.jsp";
+		mainPage = "rentSearch.jsp";
 		
 		
 		mv.addObject("contentPage",contentPage);
@@ -49,9 +52,9 @@ public class RentControllor {
 	
 	@RequestMapping(value="/carSearch.rent",method= {RequestMethod.POST,RequestMethod.GET})
 	public ModelAndView carSelect(HttpServletRequest req,HttpServletResponse resp) {
-		ModelAndView mv = new ModelAndView();
-		String contentPage = "rentSearchSub2.jsp";
-		String mainPage = "rentSearch.jsp";
+		mv = new ModelAndView();
+		contentPage = "rentSearchSub2.jsp";
+		mainPage = "rentSearch.jsp";
 		
 		
 		mv.addObject("contentPage",contentPage);
@@ -62,9 +65,9 @@ public class RentControllor {
 	
 	@RequestMapping(value="/carView.rent",method= {RequestMethod.POST,RequestMethod.GET})
 	public ModelAndView carView(HttpServletRequest req,HttpServletResponse resp) {
-		ModelAndView mv = new ModelAndView();
-		String contentPage = "rentViewSub1.jsp";
-		String mainPage = "rentView.jsp";
+		mv = new ModelAndView();
+		contentPage = "rentViewSub1.jsp";
+		mainPage = "rentView.jsp";
 		
 		
 		mv.addObject("contentPage",contentPage);
@@ -75,9 +78,9 @@ public class RentControllor {
 	
 	@RequestMapping(value="/carView2.rent",method= {RequestMethod.POST,RequestMethod.GET})
 	public ModelAndView carView2(HttpServletRequest req,HttpServletResponse resp) {
-		ModelAndView mv = new ModelAndView();
-		String contentPage = "rentViewSub2.jsp";
-		String mainPage = "rentView.jsp";
+		mv = new ModelAndView();
+		contentPage = "rentViewSub2.jsp";
+		mainPage = "rentView.jsp";
 		
 		
 		mv.addObject("contentPage",contentPage);
@@ -88,9 +91,9 @@ public class RentControllor {
 	
 	@RequestMapping(value="/carView3.rent",method= {RequestMethod.POST,RequestMethod.GET})
 	public ModelAndView carView3(HttpServletRequest req,HttpServletResponse resp) {
-		ModelAndView mv = new ModelAndView();
-		String contentPage = "rentViewSub3.jsp";
-		String mainPage = "rentView.jsp";
+		mv = new ModelAndView();
+		contentPage = "rentViewSub3.jsp";
+		mainPage = "rentView.jsp";
 		
 		
 		mv.addObject("contentPage",contentPage);
@@ -101,9 +104,22 @@ public class RentControllor {
 	
 	@RequestMapping(value="/reserveResult.rent",method= {RequestMethod.POST,RequestMethod.GET})
 	public ModelAndView reserveResult(HttpServletRequest req,HttpServletResponse resp) {
-		ModelAndView mv = new ModelAndView();
-		String contentPage = "";
-		String mainPage = "rentReserveResult.jsp";
+		mv = new ModelAndView();
+		contentPage = "";
+		mainPage = "rentReserveResult.jsp";
+		
+		
+		mv.addObject("contentPage",contentPage);
+		mv.addObject("mainPage",mainPage);
+		mv.setViewName("rent_index");
+		return mv;
+	}
+	
+	@RequestMapping(value="/reserveSearch.rent",method= {RequestMethod.POST,RequestMethod.GET})
+	public ModelAndView reserveSearch(HttpServletRequest req,HttpServletResponse resp) {
+		mv = new ModelAndView();
+		contentPage = "";
+		mainPage = "rentReserveSearch.jsp";
 		
 		
 		mv.addObject("contentPage",contentPage);

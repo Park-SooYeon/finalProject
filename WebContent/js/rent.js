@@ -8,21 +8,7 @@ rent.func = function(){
 	//rent_Main >> rentReserveSearch
 	if($('#btnGoReserveSearch')!=null){
 	$('#btnGoReserveSearch').click(function(){
-		/*let fd = new FormData($('#frm_brd')[0]);*/
-		$.ajax({
-	         url : 'rentReserveSearch.jsp',
-	         type : 'post',
-	         /*data : fd,*/
-	         contentType: false,
-	         processData : false,
-	         error : function(xhr, status, error){
-	            console.log(error);
-	         },
-	         success : function(data, xhr, status) {
-	            $('#mid').html(data);
-	         }
-	      
-	      })
+		$('#rentTop_frm').attr('action','./reserveSearch.rent').submit();
 	});
 	}
 	//rent_Main >> rentSearch(rentSearchSub1) 

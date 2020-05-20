@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<form name='rent_frm' id='rent_frm' method='post'>
 <div class='row' style="padding-top: 70px;">
 	<div class='col-lg-3 col-md-3 col-sm-3'></div>
 	<div class='col-lg-6 col-md-6 col-sm-6 col-xs-12'>
@@ -710,7 +711,7 @@
 		</div>
 		<div class='col-lg-3 col-md-3 col-sm-3'></div>
 		</div>
-		
+</form>		
 		
 		
 		<script type="text/javascript"> 
