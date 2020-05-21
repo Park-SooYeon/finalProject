@@ -99,7 +99,15 @@ public membershipController(membershipDao dao){
     }
 
     
-    
+
+    @RequestMapping( value ="idCheck.ms", method= {RequestMethod.GET, RequestMethod.POST})
+    public ModelAndView idCheck(HttpServletRequest req) {
+        mv = new ModelAndView();
+        
+        
+        return mv;
+    }
+
     
     @RequestMapping( value ="logout.ms", method= {RequestMethod.GET, RequestMethod.POST})
     public ModelAndView logout(HttpServletRequest req) {

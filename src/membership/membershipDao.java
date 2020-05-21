@@ -107,5 +107,29 @@ public class membershipDao {
 		
 		
 	}
+	
+	
+	public int idCheck(String member_id) {
+		int r =0;
+		boolean b = true;
+		try {
+			b = sqlSession.selectOne("ms.loginCheck", vo);
+			if(b) { //id 중복
+				r=1;
+				 
+			}else {//id 노중복
+				
+				r=0;
+			}
+
+		}catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			
+		}
+		return r;
+		
+	}
+	
 
 }
