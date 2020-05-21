@@ -14,15 +14,19 @@ public class DetailViewController {
 	DetailViewDao dao;
 	
 	public DetailViewController(DetailViewDao dao) {
-		this.dao = dao;		
+		this.dao = dao;
+		System.out.println("DetailViewController 생성자");
 	}
 	
-	@RequestMapping(value = "/view.dv", method= {RequestMethod.GET})
+	@RequestMapping(value = "detailView.dv", method= {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView view(HttpServletRequest req) {
 		ModelAndView mv = new ModelAndView();
-		DetailViewVo vo = null;
-		int place_serial = Integer.parseInt(req.getParameter("code"));		
+		DetailViewVo vo = null;		
+		int place_serial = Integer.parseInt(req.getParameter("code"));
+		System.out.println("ModelAndView view place_serial : " + place_serial);
 		vo = dao.view(place_serial);
+		System.out.println("ModelAndView view vo : " + vo);
+		
 		
 		mv.addObject("vo", vo);
 		mv.setViewName("detailView");
