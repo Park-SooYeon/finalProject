@@ -36,7 +36,7 @@
 		delete from trip_list where trip_list_serial = ${_parameter}
 	</delete>
 	
-	<select id="select_like" parameterType="String" resultType="">
+<!-- 	<select id="select_like" parameterType="String" resultType="">
 		select like_serial, 
 			   member_id, 
 			   trip_list, 
@@ -52,6 +52,6 @@
 			   like_id from 
 			   review_like 
 			   where like_id = #{_parameter}
-	</select>
+	</select> -->
 	
 </mapper>
