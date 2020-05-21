@@ -1,11 +1,15 @@
 package partner;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+
+import bean.DitailViewVo;
 
 @Controller
 public class PtnHtCompController {
@@ -29,9 +33,11 @@ public class PtnHtCompController {
 	@RequestMapping(value="/admin/partner/hotel_comp_list.ph", method= {RequestMethod.GET, RequestMethod.POST}) 
 	public ModelAndView select(HttpServletRequest req) {
 		ModelAndView mv = new ModelAndView();
-		Object vo = null; 
 		
-		mv.addObject("vo", vo);
+		List<DitailViewVo> list = dao.select();
+
+		
+		mv.addObject("list", list);
 		mv.setViewName("hotel_comp_list");
 		return mv;
 	}
@@ -43,6 +49,16 @@ public class PtnHtCompController {
 		
 		mv.addObject("vo", vo);
 		mv.setViewName("hotel_comp_add");
+		return mv;
+	}
+	
+	@RequestMapping(value="/admin/partner/insert.ph", method= {RequestMethod.GET, RequestMethod.POST}) 
+	public ModelAndView insertR(HttpServletRequest req) {
+		ModelAndView mv = new ModelAndView();
+		Object vo = null; 
+		
+		mv.addObject("vo", vo);
+		mv.setViewName("hotel_comp_list");
 		return mv;
 	}
 	
