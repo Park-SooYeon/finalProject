@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <script src="../../js/admin.js">    
 </script>
     
@@ -56,7 +57,7 @@
                                             <td>${i.member_id }</td>
                                             <td>${i.phone }</td>
                                             <td>${i.email }</td>
-                                            <td>${i.mDate }</td>
+                                            <td><fmt:formatDate value="${i.mDate}" pattern="yyyy-MM-dd"/></td>
                                             <td>
                                             	<c:if test='${i.state==1 }'>
                                  	               <label class="badge badge-inverse-info">user</label>
@@ -70,7 +71,10 @@
 												
                                             </td>
                                             <td>
-                                                <button class="btn btn-outline-primary" data-toggle="modal" data-target="#ModalUserInfo" onclick="member_view('${i.member_id }','${i.member_name }','${i.phone }','${i.email }','${i.state}','${i.mDate }' )">View</button>
+                                                <button class="btn btn-outline-primary" data-toggle="modal" data-target="#ModalUserInfo" 
+                                                	onclick="member_view('${i.member_id }','${i.member_name }','${i.phone }','${i.email }',
+                                                		'${i.state}','<fmt:formatDate value="${i.mDate}" pattern="yyyy-MM-dd"/>' )">View
+                                                </button>
                                             </td>
                                         </tr>
                                       </c:forEach>
@@ -102,7 +106,7 @@
                         <div class="wrapper ml-3">
                             <h6 class="ml-1 mb-1" id='member_id'></h6>
                         </div>
-                        <small class="time d-none d-sm-block ml-auto " id='member_date'></small>가입됌
+                        <small class="time d-none d-sm-block ml-auto " id='member_date'></small>
                     </div>
                     <form class="" name="usrInfoFrm">
                         <div class="row">
@@ -129,7 +133,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="">사용자 권한</label>
-                                    <select class="form-control" id="usrInfoState">
+                                    <select class="form-control" id="member_state">
                                         <option>User</option>
                                         <option>Partner</option>
                                         <option>Admin</option>

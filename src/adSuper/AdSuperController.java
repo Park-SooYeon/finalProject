@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import bean.membershipVo;
-import mypage_mybatis.TripListVo;
 
 @Controller
 public class AdSuperController {
