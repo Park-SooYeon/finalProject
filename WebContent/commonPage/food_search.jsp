@@ -9,7 +9,7 @@
 <br/>
 <div class="row">
 <div class="col-md-6 mb-10">
-  <span style="font-weight:bold">00(el)</span><span>개의 결과가 필터와 일치합니다.</span><span id="check_release" style="font-weight:bold; cursor:pointer;">필터옵션 전체해제</span>
+  <span style="font-weight:bold">00(el)</span><span>개의 결과가 필터와 일치합니다.</span><span onclick="filter.removeAll()" style="font-weight:bold; cursor:pointer;">필터옵션 전체해제</span>
 </div>
 <div class="col-md-6 col-0">
 <div class="text-right" >

@@ -2,9 +2,10 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
+<div id="widthsort_list" style="display:none">
 <c:forEach var="i" items="${list }">
 	<div class="row col-0">
-	  <div class="col-md-12 widthsort_list" id="widthsort_list" onclick="detailMove()">
+	  <div class="col-md-12 widthsort_list" onclick="detailMove()">
 	    <div class="row mb-10">
 		  <div class="col-md-3 nopadding">
 			<img src="images/${i.place_type }/${i.local_name }/${i.photo_name }1.jpg" alt="no-image" class="img-fluid">
@@ -31,12 +32,12 @@
 	  </div>
 	</div>
 </c:forEach>
+</div>
 
-  <div class="row">
+  <div class="row" id="cardsort_list">
   
 	<c:forEach var="i" items="${list }">
-		<div class="col-md-3 col-6 p-1 cardsort_list" id="cardsort_list"
-			onclick="detailMove()">
+		<div class="col-md-3 col-6 p-1 cardsort_list" onclick="detailMove()">
 			<div class="row">
 				<div class="col-md-12">
 					<img src="images/${i.place_type }/${i.local_name }/${i.photo_name }1.jpg" alt="no-image" class="img-fluid">
