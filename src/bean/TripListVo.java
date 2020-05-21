@@ -1,4 +1,4 @@
-package mypage_mybatis;
+package bean;
 
 public class TripListVo {
 

@@ -28,8 +28,10 @@
       </div>
     </div>
     
-    <c:forEach var="i" items="${list }">
-    <div class="col-lg-4">
+    <c:forEach var="i" items="${list }" varStatus="status">
+    <div class="col-lg-4 mp-trip" 
+    	 data-index="${status.count }"
+      	 data-flag="${i.trip_auth }">
       <div class="single-destinations">
         <div class="list-container">
           <div class="thumb-custom">

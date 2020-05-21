@@ -5,12 +5,16 @@
 
 <mapper namespace="mypage">
 	
-	<insert id="insert_trip" parameterType="mypage_mybatis.TripListVo">
-		insert into trip_list(trip_list_serial, member_id, trip_name, days_count, start_date, end_date, trip_auth, trip_date) 
-		values(seq_trip_list.nextval, #{member_id}, #{trip_name}, ${days_count}, #{start_date}, #{end_date}, ${trip_auth}, sysdate)
-	</insert>
+   <insert id="insert_trip" parameterType="bean.TripListVo">
+      <selectKey keyProperty="trip_list_serial" resultType="int" order="BEFORE">
+         select seq_trip_list_serial.nextval
+         from dual
+       </selectKey>
+      insert into trip_list(trip_list_serial, member_id, trip_name, days_count, start_date, end_date, trip_auth, trip_date) 
+      values(#{trip_list_serial}, #{member_id}, #{trip_name}, ${days_count}, #{start_date,jdbcType=DATE}, #{end_date,jdbcType=DATE}, ${trip_auth}, sysdate)
+   </insert>
 	
-	<select id="select_trip" resultType="mypage_mybatis.TripListVo">
+	<select id="select_trip" resultType="bean.TripListVo">
 		select 	trip_list_serial, 
 				member_id, 
 				trip_name, 
@@ -23,7 +27,7 @@
 				order by trip_date desc
 	</select>
 	
-	<update id="modify_trip" parameterType="mypage_mybatis.TripListVo">
+	<update id="modify_trip" parameterType="bean.TripListVo">
 		update trip_list set trip_name = #{trip_name}, 
 							 days_count = ${days_count},
 							 start_date = #{start_date,jdbcType=DATE},
@@ -36,22 +40,14 @@
 		delete from trip_list where trip_list_serial = ${_parameter}
 	</delete>
 	
-<!-- 	<select id="select_like" parameterType="String" resultType="">
-		select like_serial, 
-			   member_id, 
-			   trip_list, 
-			   place_serial, 
-			   partner_serial 
-			   from like_list 
-			   where member_id = ${_parameter}
-	</select>
+	<insert id="insert_like" parameterType="bean.LikeListVo">
+      insert into like_list(like_serial, member_id, trip_list, place_serial, partner_serial) 
+               value(seq_like_list.val, 
+               		#{member_id}, 
+               		${trip_list}, 
+               		${place_serial}, 
+               		${partner_serial} )
+   </insert>
 	
-	<select id="select_review" parameterType="String" resultType="">
-		select like_serial, 
-			   review_serial, 
-			   like_id from 
-			   review_like 
-			   where like_id = #{_parameter}
-	</select> -->
 	
 </mapper>

@@ -44,15 +44,15 @@
 			<div class="container">
 		            <div class="row d-flex justify-content-center">
 		                <div class="button-container p-40 col-lg-8 text-center">
-		                    <button class="btn dropdown-toggle" data-toggle="dropdown"><i class="fa fa-folder-open"></i> 여행 리스트</button>
 		                    
-		                    <div class="dropdown-menu">
-        						<button class="dropdown-item btn-page" id="mp-tripLock" data-page="trip_list">여행 (비공개)</button>
-        						<button class="dropdown-item btn-page" id="mp-tripUnlock" data-page="trip_list">여행 (공개)</button>
-      						</div>
+		                    <select class="form-control col-sm-3 d-inline" id="mpTripPrivacy">
+		                    <option value="2">여행 전체보기</option>
+		                    <option value="0">여행(공개)</option>
+		                    <option value="1">여행(비공개)</option>
+		                    </select>
 		                    
-		                    <button class="btn btn-page" id="mp-likeAll" data-page="like_list"><i class="fa fa-heart"></i> 전체보기</button>
-		                    <button class="btn btn-page" id="mp-likeRev" data-page="review_list"><i class="fa fa-thumbs-o-up"></i> 추천한 리뷰</button>
+		                    <button class="btn btn-page" id="mpLikeAll" data-page="like_list"><i class="fa fa-heart"></i> 전체보기</button>
+		                    <button class="btn btn-page" id="mpLikeRev" data-page="review_list"><i class="fa fa-thumbs-o-up"></i> 추천한 리뷰</button>
 		                    <button class="btn add-new-trip" data-toggle="modal" data-target="#newTripModal" style="display:none;" id="addTripBtn">여행 추가</button>
 		                </div>
 		            </div>
