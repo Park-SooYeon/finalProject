@@ -41,7 +41,7 @@
 	<br/>
 	<div class='container'>
 		<div class="title1" style="margin-bottom:10px">
-		<h2>'${vo.place_name }'</h2>
+		<h2>${vo.place_name }</h2>
 		</div>
 		<div class="float-right" style="display:flex">
   			<div class="p-1 heart" onclick="main.like(this)">
@@ -83,7 +83,7 @@
 		</div>
 		
 		<div class='preinfo' style='font-size:18px'>
-			<span><i class="fa fa-location-arrow" style="margin-right: 3px; margin-bottom:10px"aria-hidden="true"></i>주소: '${vo.place_location }'</span>
+			<span><i class="fa fa-location-arrow" style="margin-right: 3px; margin-bottom:10px"aria-hidden="true"></i>주소: ${vo.place_location }</span>
 			<span><i class="fa fa-mobile"style="margin-right: 3px" aria-hidden="true"></i>연락처: 02-222-2222</span><br/>
 			<div class="clearfix"><i class="fa fa-desktop"style="margin-right: 3px" aria-hidden="true"></i>홈페이지 
 				<a href='http://localhost:8888/review/review.jsp' style="margin-right:5px">http://localhost:8888/review/review.jsp</a>
@@ -94,18 +94,10 @@
 				<div class="info row justify-content-center mb-5">
 					<div class='col-lg-8 col-md-12'><!-- 큰사이즈에서 8 스몰에서 12 -->
 						  <!-- Swiper -->
+				    <c:forEach var="i" items="${list }">
 				 		<div class="swiper-container gallery-top">
 				    		<div class="swiper-wrapper">
-						    	<img class="swiper-slide" src="./images/festival/1.png"style="background-image;cursor:pointer;" />
-								<img class="swiper-slide" src="./images/festival/2.png"style="background-image;cursor:pointer;" />
-								<img class="swiper-slide" src="./images/festival/3.png"style="background-image;cursor:pointer;" />
-								<img class="swiper-slide" src="./images/festival/4.png"style="background-image;cursor:pointer;" />
-								<img class="swiper-slide" src="./images/festival/5.png"style="background-image;cursor:pointer;" />
-								<img class="swiper-slide" src="./images/festival/6.png"style="background-image;cursor:pointer;" />
-								<img class="swiper-slide" src="./images/festival/7.png"style="background-image;cursor:pointer;" />
-								<img class="swiper-slide" src="./images/festival/8.png"style="background-image;cursor:pointer;" />
-							    <img class="swiper-slide" src="./images/festival/9.png"style="background-image;cursor:pointer;" />   
-						   		<img class="swiper-slide" src="./images/festival/10.png"style="background-image;cursor:pointer;"/>
+						    	<img class="swiper-slide" src="./images/${i.place_type }/${i.local_name }/${i.photo_name }1.png"style="background-image;cursor:pointer;" />
 				    		</div>
 							 <!-- Add Arrows -->
 						     <div class="swiper-button-next swiper-button-white"></div>
@@ -113,18 +105,10 @@
 				 		 </div>
 					  <div class="swiper-container gallery-thumbs">
 					    <div class="swiper-wrapper">
-							<img class="swiper-slide" src="./images/festival/1.png"style="background-image;cursor:pointer;" />
-							<img class="swiper-slide" src="./images/festival/2.png"style="background-image;cursor:pointer;" />
-							<img class="swiper-slide" src="./images/festival/3.png"style="background-image;cursor:pointer;" />
-							<img class="swiper-slide" src="./images/festival/4.png"style="background-image;cursor:pointer;" />
-							<img class="swiper-slide" src="./images/festival/5.png"style="background-image;cursor:pointer;" />
-							<img class="swiper-slide" src="./images/festival/6.png"style="background-image;cursor:pointer;" />
-							<img class="swiper-slide" src="./images/festival/7.png"style="background-image;cursor:pointer;" />
-							<img class="swiper-slide" src="./images/festival/8.png"style="background-image;cursor:pointer;" />
-						    <img class="swiper-slide" src="./images/festival/9.png"style="background-image;cursor:pointer;" />   
-					   		<img class="swiper-slide" src="./images/festival/10.png"style="background-image;cursor:pointer;"/>				   
+							<img class="swiper-slide" src="./images/${i.place_type }/${i.local_name }/${i.photo_name }1.png"style="background-image;cursor:pointer;" />
 					    </div>
 					  </div>
+					  </c:forEach>
 				<div>
 								
 				<c:if test="${1 == vo.place_code }"><!-- 테스트 후 1를 2로 변경 -->

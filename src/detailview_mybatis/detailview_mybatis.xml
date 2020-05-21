@@ -3,21 +3,32 @@
    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="detailView">
-<select id='view' parameterType='Integer' resultType='bean.DetailViewVo'>
-	select 
-	p.PLACE_SERIAL PLACE_SERIAL, p.PARTNER_SERIAL PARTNER_SERIAL, p.PLACE_CODE PLACE_CODE, p.PLACE_NAME PLACE_NAME, 
-	p.PLACE_LOCATION PLACE_LOCATION, p.LATITUDE LATITUDE, p.LONGITUDE LONGITUDE, p.GRADE GRADE, p.STATE STATE,
-	p.BREAKFAST BREAKFAST, p.WI_FI WI_FI, p.PARKING PARKING, p.LOCAL_CODE LOCAL_CODE,
-	avg(r.REPUTATION) avg_repu, avg(r.SERVICE) avg_serv, avg(r.ACCESSIBILITY) avg_acces, 
-	avg(r.PRICE) avg_price, avg(r.SCALE) avg_scale, avg(r.FOOD) avg_food, count(r.review_serial) cnt_review
-	
-	from place p, review r
-	
-	where p.place_serial = r.place_serial
-	
-	and p.place_serial = ${_parameter}
-	
-	group by p.PLACE_SERIAL, p.PARTNER_SERIAL, p.PLACE_CODE, p.PLACE_NAME, p.PLACE_LOCATION, 
-			 p.LATITUDE, p.LONGITUDE, p.GRADE, p.STATE, p.BREAKFAST, p.WI_FI, p.PARKING, p.LOCAL_CODE
+	<select id='view' parameterType='Integer' resultType='bean.DetailViewVo'>
+		select 
+		p.PLACE_SERIAL PLACE_SERIAL, p.PARTNER_SERIAL PARTNER_SERIAL, p.PLACE_CODE PLACE_CODE, p.PLACE_NAME PLACE_NAME, 
+		p.PLACE_LOCATION PLACE_LOCATION, p.LATITUDE LATITUDE, p.LONGITUDE LONGITUDE, p.GRADE GRADE, p.STATE STATE,
+		p.BREAKFAST BREAKFAST, p.WI_FI WI_FI, p.PARKING PARKING, p.LOCAL_CODE LOCAL_CODE,
+		avg(r.REPUTATION) avg_repu, avg(r.SERVICE) avg_serv, avg(r.ACCESSIBILITY) avg_acces, 
+		avg(r.PRICE) avg_price, avg(r.SCALE) avg_scale, avg(r.FOOD) avg_food, count(r.review_serial) cnt_review
+		
+		from place p, review r
+		
+		where p.place_serial = r.place_serial
+		
+		and p.place_serial = ${_parameter}
+		
+		group by p.PLACE_SERIAL, p.PARTNER_SERIAL, p.PLACE_CODE, p.PLACE_NAME, p.PLACE_LOCATION, 
+				 p.LATITUDE, p.LONGITUDE, p.GRADE, p.STATE, p.BREAKFAST, p.WI_FI, p.PARKING, p.LOCAL_CODE
 	</select>
+	<select id='photoView' parameterType='Integer' resultType='bean.PlaceVo'>
+		select
+		PLACE_SERIAL, PLACE_CODE, LOCAL_CODE, PLACE_NAME photo_name
+		
+		from
+		place
+		
+		where
+		place_serial = ${_parameter} 
+	</select>
+
 </mapper>

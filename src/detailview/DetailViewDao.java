@@ -1,5 +1,7 @@
 package detailview;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 
 import bean.DetailViewVo;
@@ -14,8 +16,7 @@ public class DetailViewDao {
 	}
 	
 	public DetailViewVo view(int place_serial) {		
-		DetailViewVo vo = null;
-		PlaceVo pVo = null;
+		DetailViewVo vo = null;		
 		try {
 			vo = sqlSession.selectOne("detailView.view", place_serial);			
 			
@@ -25,6 +26,16 @@ public class DetailViewDao {
 		
 		return vo;
 		
+	}
+	public List<PlaceVo> photoView(int place_serial) {
+		List<PlaceVo> list = null;
+		try {
+			list = sqlSession.selectList("detailView.photoView", place_serial);
+			
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		}
+		return list;
 	}
 
 }
