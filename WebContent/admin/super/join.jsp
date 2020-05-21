@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
         <div class="row">
             <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
@@ -27,12 +30,18 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                     <c:forEach var='i' items='${list }' varStatus="status"> <!-- 컨트롤러에서 list로한게 이리들어옴 -->
                                         <tr>
-                                            <td>1</td>
-                                            <td>Derrick</td>
-                                            <td>호텔</td>
-                                            <td>A업체</td>
-                                            <td>34-295849-0923</td>
+                                            <td>${status.count }</td>
+                                            <td>${i.member_id }</td>
+                                            <c:if test='${i.state==888 }'>
+                                            	<td>호텔</td>
+											</c:if>
+											<c:if test='${i.state==999 }'>
+                                            	<td>렌트</td>
+											</c:if>
+                                            <td>${i.partner_name }</td>
+                                            <td>${i.business_number }</td>
                                             <td>
                                                 <label class="badge font-weight-bold badge-inverse-warning">승인대기</label>
                                             </td>
@@ -40,111 +49,8 @@
                                                 <button class="btn btn-outline-primary" data-toggle="modal" data-target="#modalPartnerJoin">View</button>
                                             </td>
                                         </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>Austin</td>
-                                            <td>호텔</td>
-                                            <td>A업체</td>
-                                            <td>34-295849-0923</td>
-                                            <td>
-                                                <label class="badge font-weight-bold badge-inverse-warning">승인대기</label>
-                                            </td>
-                                            <td>
-                                                <button class="btn btn-outline-primary">View</button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>3</td>
-                                            <td>Iva</td>
-                                            <td>호텔</td>
-                                            <td>A업체</td>
-                                            <td>34-295849-0923</td>
-                                            <td>
-                                                <label class="badge font-weight-bold badge-inverse-success">승인완료</label>
-                                            </td>
-                                            <td>
-                                                <button class="btn btn-outline-primary">View</button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>4</td>
-                                            <td>Della</td>
-                                            <td>호텔</td>
-                                            <td>A업체</td>
-                                            <td>34-295849-0923</td>
-                                            <td>
-                                                <label class="badge font-weight-bold badge-inverse-success">승인완료</label>
-                                            </td>
-                                            <td>
-                                                <button class="btn btn-outline-primary">View</button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>5</td>
-                                            <td>Alexander</td>
-                                            <td>렌트</td>
-                                            <td>A업체</td>
-                                            <td>34-295849-0923</td>
-                                            <td>
-                                                <label class="badge font-weight-bold badge-inverse-success">승인완료</label>
-                                            </td>
-                                            <td>
-                                                <button class="btn btn-outline-primary">View</button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>6</td>
-                                            <td>Helen</td>
-                                            <td>호텔</td>
-                                            <td>A업체</td>
-                                            <td>34-295849-0923</td>
-                                            <td>
-                                                <label class="badge font-weight-bold badge-inverse-warning">승인대기</label>
-                                            </td>
-                                            <td>
-                                                <button class="btn btn-outline-primary">View</button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>7</td>
-                                            <td>Douglas</td>
-                                            <td>호텔</td>
-                                            <td>A업체</td>
-                                            <td>34-295849-0923</td>
-                                            <td>
-                                                <label class="badge font-weight-bold badge-inverse-success">승인완료</label>
-                                            </td>
-                                            <td>
-                                                <button class="btn btn-outline-primary">View</button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>8</td>
-                                            <td>Jim</td>
-                                            <td>호텔</td>
-                                            <td>A업체</td>
-                                            <td>34-295849-0923</td>
-                                            <td>
-                                                <label class="badge font-weight-bold badge-inverse-warning">승인대기</label>
-                                            </td>
-                                            <td>
-                                                <button class="btn btn-outline-primary">View</button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>9</td>
-                                            <td>Maude</td>
-                                            <td>호텔</td>
-                                            <td>A업체</td>
-                                            <td>34-295849-0923</td>
-                                            <td>
-                                                <label class="badge font-weight-bold badge-inverse-success">승인완료</label>
-                                            </td>
-                                            <td>
-                                                <button class="btn btn-outline-primary">View</button>
-                                            </td>
-                                        </tr>
-                                    </tbody>
+                                      </c:forEach>                                  
+                                   </tbody>
                                 </table>
                             </div>
                         </div>
@@ -152,7 +58,6 @@
                 </div>
             </div>
         </div>
-    </div>
 
 
     <!-- 사용자 정보 modal -->
@@ -235,9 +140,10 @@
                     </form>
                 </div> 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" onclick="showSwal('custom-html')">거절</button>
+                    <button type="button" cㄴlass="btn btn-danger" onclick="showSwal('custom-html')">거절</button>
                     <button type="button" class="btn btn-success" onclick="showSwal('success-message')">승인</button>
                 </div>
             </div>
         </div>
+     </div>
     

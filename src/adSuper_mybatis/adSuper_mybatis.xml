@@ -3,7 +3,21 @@
 	PUBLIC "-//mybatis.org//DTDMapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="admin">
+	<mapper namespace="admin">
+	   <resultMap id="a_partner" type="bean.partnerVo">
+	      <result column="partner_serial" property="partner_serial"/>
+	      <result column="member_id" property="member_id"/>
+	      <result column="business_number" property="business_number"/>
+	      <result column="partner_name" property="partner_name"/>
+	      <result column="partner_phone" property="partner_phone"/>
+	      <result column="state" property="state"/>
+	      <result column="partner_location" property="partner_location"/>
+	      <collection property="vo" 
+	               javaType="bean.membershipVo">
+	         <result column="member_id" property="member_id"/>
+	         <result column="email" property="email"/>
+	      </collection>
+	   </resultMap>
 	<!-- 회원조회 -->
 	<select id="select_member" resultType="bean.membershipVo">
 		select 	member_name,
@@ -21,5 +35,14 @@
       update membership set state = ${state} 
       where member_id = #{member_id} 
    </update>
+    
+    <!-- 파트너조회 -->
+    <select id='partner_approval' resultMap="a_partner">
+   select M.member_id, M.email, P.partner_serial,p.business_number,p.partner_name,p.partner_phone,p.state,p.partner_location
+	from membership M  join partner P 
+	on M.member_id= P.member_id
+
+    </select>
+    
     
 </mapper>

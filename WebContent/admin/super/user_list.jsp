@@ -30,16 +30,6 @@
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
-                                    <%-- <c:forEach var='i' items='${list }'>
-										<div class='items row' onclick='brd.view(${i.serial})'>
-											<span class ='no col-md-1'>${i.serial }</span>
-											<span class='subject col-md-3'>${i.subject }</span>
-											<span class='id col-md-3'>${i.id }</span>
-											<span class='mDate col-md-3'>${i.mDate }</span>
-											<span class='hit col-md-1'>${i.hit }</span>
-										</div>	
-									
-									</c:forEach> --%>
                                     <tbody>
                                        <c:forEach var='i' items='${list }' varStatus="status"> <!-- 컨트롤러에서 list로한게 이리들어옴 -->
                                         <tr>
@@ -133,7 +123,6 @@
                                     <label class="">사용자 권한</label>
                                     <select class="form-control" id="usrInfoState"  name='hidden_status'>
                                         <option value='1'>User</option>
-                                        <option value='88'>Partner</option>
                                         <option value='99'>Admin</option>
                                     </select>
 		             		<input type='hidden'  id='hidden_id' name='hidden_id'>

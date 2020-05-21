@@ -14,7 +14,16 @@ function member_view(mId,mName,phone,email,state,mDate){
 	
 	$('#hidden_id').val(mId);
 }
-
+//partner승인요청 
+//function a_partner_view(p_name,b_number,phone,location,state){
+//	
+//	$('.partner_name').html(p_name);
+//	$('.business_number').html(b_number);
+//	$('.partner_phone').html(phone);
+//	$('.partner_location').html(location);
+//	$('.state').html(state);
+//	
+//}
 
 //member view 수정
 let mm = {}
@@ -30,3 +39,5 @@ $('#member_save').click(function(){ //jquery는 널인지  아닌지 표시를 �
 });
 }
 mm.func();
+
+

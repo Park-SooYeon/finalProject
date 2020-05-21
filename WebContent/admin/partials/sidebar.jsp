@@ -53,7 +53,7 @@
                             <a class="nav-link" href="./?inc=out.jsp">회원탈퇴 승인</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="./?inc=join.jsp">파트너 가입 승인</a>
+                            <a class="nav-link" href="./?inc=join.os">파트너 가입 승인</a>
                         </li>
                     </ul>
                 </div>

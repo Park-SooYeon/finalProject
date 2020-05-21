@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import bean.membershipVo;
+import bean.partnerVo;
 
 @Controller
 public class AdSuperController {
@@ -22,7 +23,7 @@ public class AdSuperController {
 	}
 	
 	ModelAndView mv;
-	
+	//회원관리조회
 	@RequestMapping(value = "/admin/super/user_list.os", method= {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView user_list(HttpServletRequest req) {
 		mv = new ModelAndView();
@@ -37,7 +38,7 @@ public class AdSuperController {
 		return mv;
 		//admin/super/user_list.jsp
 	}
-	
+	//회원관리수정
 	@ResponseBody //메세지만전달하려면 이거 써라..
 	@RequestMapping( value ="/admin/super/status_save.os", method= {RequestMethod.GET, RequestMethod.POST},produces = "text/html;charset=utf8")
 	public String status_save(HttpServletRequest req, HttpServletResponse resp ) {
@@ -51,56 +52,40 @@ public class AdSuperController {
 		return msg;
 	}
 	
+	//퍄트너관리 조회
+//	@RequestMapping(value = "/admin/super/partner_list.os", method= {RequestMethod.GET, RequestMethod.POST})
+//	public ModelAndView partner_list(HttpServletRequest req) {
+//		mv = new ModelAndView();
+//		
+//		System.out.println("partner_list컨트롤 들어오나");
+//		
+//		List<membershipVo> list = dao.select();
+//		mv.setViewName("partner_list");
+//		mv.addObject("list", list);
+//		for(membershipVo vo : list) {
+//			System.out.println(vo.getMember_id());
+//			System.out.println(vo.getState());
+//		}
+//		return mv;
+//		//admin/super/user_list.jsp
+//	}
 	
-	
-	
-	@RequestMapping( value = "mybooking.mp", method = {RequestMethod.GET, RequestMethod.POST})
-	public ModelAndView mybooking() {
+	//승인관리-파트너가입승인 조회
+	@RequestMapping(value = "/admin/super/join.os", method= {RequestMethod.GET, RequestMethod.POST})
+	public ModelAndView join(HttpServletRequest req) {
 		mv = new ModelAndView();
-		mv.setViewName("my_page");
-		return mv;
-	}
-
-	@RequestMapping( value = "mytrip.mp", method = {RequestMethod.GET, RequestMethod.POST})
-	public ModelAndView mytrip(HttpServletRequest req, HttpServletResponse resp) {
-		mv = new ModelAndView();
-		mv.setViewName("my_list");
-		return mv;
-	}
-	
-	@RequestMapping( value = "modify.mp", method = {RequestMethod.GET, RequestMethod.POST})
-	public ModelAndView modify(HttpServletRequest req) {
-		mv = new ModelAndView();
-		return mv;
-	}
-	
-	@RequestMapping( value = "modifyR.mp", method = {RequestMethod.POST})
-	public ModelAndView modifyR(HttpServletRequest req, HttpServletResponse resp) {
-		mv = new ModelAndView();
-		
-		return mv;
-	}
-	
-	@RequestMapping( value = "deleteR.mp", method = {RequestMethod.POST})
-	public ModelAndView deleteR(HttpServletRequest req) {
-		mv = new ModelAndView();
+		System.out.println("join컨트롤 들어오나");
+		List<partnerVo> list = dao.partner_select();
+		mv.setViewName("join");
+		mv.addObject("list", list);
+		for(partnerVo vo : list) {
+			System.out.println(vo.getMember_id());
+			System.out.println(vo.getState());
+		}
 		return mv;
 	}
 	
-	@RequestMapping( value = "repl.mp", method = {RequestMethod.POST})
-	public ModelAndView repl() {
-		mv = new ModelAndView();
-		mv.setViewName("repl");
-		return mv;
-	}
 	
-	@RequestMapping( value = "replR.mp", method = {RequestMethod.POST})
-	public ModelAndView replR(HttpServletRequest req, HttpServletResponse resp) {
-		
-		mv = new ModelAndView();
-		String msg = "";
-		
-		return mv;
-	}
+	
 	
 }
