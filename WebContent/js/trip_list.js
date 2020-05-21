@@ -98,6 +98,11 @@ load();
 		$("#list-here").load("likeList.mp");
 	})
 	
+	// 추천한 리뷰 전체 보기
+	$("#mpLikeRev").on("click", function(){
+		$("#list-here").load("likeReview.mp");
+	})
+	
 
 // 일수선택, 날짜선택 토글
 function inputToggle(a, b){

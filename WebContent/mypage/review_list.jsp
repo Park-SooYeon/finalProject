@@ -5,7 +5,7 @@
   
   
   <div class="row">
-  <c:forEach begin="1" end="6">
+  <c:forEach items="${list }" var="i">
     <div class="col-lg-4">
       <div class="single-destinations">
         <div class="thumb-review">
@@ -15,9 +15,9 @@
           <h4 class="d-flex justify-content-between">
             <span>롤인익선</span>
           </h4>
-          <p>작성자 : 누구누구</p>
+          <p>작성자 : ${i.member_id }</p>
           <h5 class="d-flex justify-content-between my-2">
-            "리뷰 제목"
+            "${i.review_title }"
             <div class="star">
               <span class="fa fa-star checked"></span>
               <span class="fa fa-star checked"></span>
@@ -27,7 +27,7 @@
             </div>
           </h5>
           <p>
-            여기는 제가 학원에 다닐 때 자주 갔던 곳인데 어쩌구 저쩌구.....
+            ${i.review_content }
           </p>
         </div>
       </div>

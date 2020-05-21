@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import bean.Factory;
 import bean.LikeListVo;
+import bean.ReviewVo;
 import bean.TripListVo;
 
 public class MyPageDao {
@@ -90,6 +91,16 @@ public class MyPageDao {
 		List<LikeListVo> list = new ArrayList<LikeListVo>();
 		try {
 			list = sqlSession.selectList("mypage.select_like", member_id);
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		}
+		return list; 
+	}
+	
+	public List<ReviewVo> selectReview(String member_id) {
+		List<ReviewVo> list = new ArrayList<ReviewVo>();
+		try {
+			list = sqlSession.selectList("mypage.select_review", member_id);
 		}catch(Exception ex) {
 			ex.printStackTrace();
 		}

@@ -60,6 +60,19 @@
    		   and T.trip_list_serial = L.trip_list_serial 
    		   and L.member_id = #{_parameter}
    </select>
+   
+   <select id="select_review" parameterType="String" resultType="bean.ReviewVo">
+   		select like_serial,
+   			   R.review_serial, 
+   			   member_id, 
+   			   place_serial, 
+   			   reputation, 
+   			   review_title, 
+   			   review_content
+   		from review R join review_like L
+   		on R.review_serial = L.review_serial
+   		where like_id = #{_parameter};
+   </select>
 	
 	
 </mapper>

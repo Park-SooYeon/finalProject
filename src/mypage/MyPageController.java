@@ -1,6 +1,5 @@
 package mypage;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import bean.LikeListVo;
+import bean.ReviewVo;
 import bean.TripListVo;
 
 @Controller
@@ -163,22 +163,24 @@ public class MyPageController {
 	
 	@RequestMapping( value = "likeList.mp", method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView selectLike() {
-		System.out.println("실행이 안 돼서 속상..");
 		mv = new ModelAndView();
-
-		List<LikeListVo> list = dao.selectLike("세왕");
+		String member_id = "세왕";
+		// 추후 session으로 값 받아와서 id에 넣어주기
+		List<LikeListVo> list = dao.selectLike(member_id);
 		
 		mv.setViewName("like_list");
 		mv.addObject("list", list);
 		return mv;
 	}
 	
-	@RequestMapping( value = "replR.mp", method = {RequestMethod.POST})
-	public ModelAndView replR(HttpServletRequest req, HttpServletResponse resp) {
-		
+	@RequestMapping( value = "likeReview.mp", method = {RequestMethod.GET, RequestMethod.POST})
+	public ModelAndView selectReview(HttpServletRequest req, HttpServletResponse resp) {
 		mv = new ModelAndView();
-		String msg = "";
+		String member_id = "세왕";
+		List<ReviewVo> list = dao.selectReview(member_id);
 		
+		mv.setViewName("review_list");
+		mv.addObject("list", list);
 		return mv;
 	}
 	
