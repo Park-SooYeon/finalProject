@@ -33,6 +33,9 @@
 		
 		<!-- admin -->
 		<mapper resource="adSuper_mybatis/adSuper_mybatis.xml"/>
+		
+		<!-- amdin-partner -->
+		<mapper resource="partner_mybatis/hotel.xml"/>
 	</mappers>
 
 </configuration>

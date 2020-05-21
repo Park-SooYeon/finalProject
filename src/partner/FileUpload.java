@@ -14,9 +14,10 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 import bean.Page;
+import bean.PlaceVo;
 
 public class FileUpload {
-	static public  String upload = "/Users/jieun/eclipse-workspace/1907-spring/WebContent/upload/";
+	static public  String upload = "/Users/jieun/eclipse-workspace/finalProject/WebContent/upload/";
 	String tempDir = "/Library/temp/";
 	
 	int maxSize = 1024*1024*50;	// 약 50mb
@@ -35,11 +36,9 @@ public class FileUpload {
 	}
 	
 	public HttpServletRequest uploading() {
-		BoardVo vo = new BoardVo();
+		PlaceVo vo = new PlaceVo();
 		List<AttVo> attList = new ArrayList<AttVo>();
 		List<AttVo> delList = new ArrayList<AttVo>();
-		Page p = new Page();	// page정보 처리를 위해 
-		
 		
 		DiskFileItemFactory factory = new DiskFileItemFactory();
 		factory.setSizeThreshold(4096);	// file 업로드 시 사용하는 메모리의 크기
@@ -58,30 +57,18 @@ public class FileUpload {
 				
 				if(fi.isFormField()){	// input type이 file이 아니라면
 					switch(k) {
-					case "id":	// 입력상자의 name값이 mId라면
-						vo.setId(v); break;
-					case "pwd" :
-						vo.setPwd(v); break;
-					case "subject" :
-						vo.setSubject(v); break;
-					case "content" : 
-						vo.setContent(v); break;
-					case "mDate" : 
-						vo.setmDate(v); break;
-					case "serial" : 
-						vo.setSerial(Integer.parseInt(v)); break;
-					case "pSerial" : 
-						vo.setpSerial(Integer.parseInt(v)); break;
-						 
+					case "admHCompNm":	// 입력상자의 name값이 mId라면
+						vo.setPlace_name(v); break;
+					case "admHCompTel" :
+						vo.setPlace_tel(v); break;
+					case "address" :
+						vo.setPlace_location(v); break;
 					case "delFile" :
 						AttVo attVo = new AttVo();
 						attVo.setSysFile(v);
 						delList.add(attVo); break;
 						
-					case "findStr" : 
-						p.setFindStr(v); break;
-					case "nowPage" :
-						p.setNowPage(Integer.parseInt(v)); break;
+					
 					}
 				}else {	// input tyoe이 file인 경우
 					if(fi.getSize()>0) {	// fileSize가 0보다 큰경우 = 파일이 선택된 경우
@@ -111,7 +98,6 @@ public class FileUpload {
 		req.setAttribute("vo", vo);
 		req.setAttribute("attList", attList);
 		req.setAttribute("delList", delList);
-		req.setAttribute("p", p);
 		
 		return req;
 	}

@@ -4,15 +4,15 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd"
 >
 <mapper namespace="hotel">
-	<select id="select" resultType="mybatis.DitailViewVo">
-		SELECT h.place_name, h.place_location, (
+	<select id="select" resultType="bean.PlaceVo">
+		SELECT p.photo_name ,h.place_name, h.place_location, h.place_tel, (
 			SELECT count(r.rooms_serial) cnt
 			FROM ROOMS r JOIN PLACE p
 			ON r.PLACE_SERIAL = p.PLACE_SERIAL
-		) roomcnt, state
-		FROM PLACE h LEFT OUTER JOIN PLACE_PHOTO p
-		ON h.place_serial = p.place_serial
-		WHERE place_code=4; 
+		) room_cnt, h.state
+		FROM PLACE h LEFT OUTER JOIN PLACE_PHOTO p 
+		ON h.place_serial = p.place_serial 
+		WHERE place_code=4
 	</select>	
 
 </mapper>

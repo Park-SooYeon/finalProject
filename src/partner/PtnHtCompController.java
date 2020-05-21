@@ -9,7 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import bean.DitailViewVo;
+import bean.PlaceVo;
+
 
 @Controller
 public class PtnHtCompController {
@@ -34,8 +35,7 @@ public class PtnHtCompController {
 	public ModelAndView select(HttpServletRequest req) {
 		ModelAndView mv = new ModelAndView();
 		
-		List<DitailViewVo> list = dao.select();
-
+		List<PlaceVo> list = dao.select();
 		
 		mv.addObject("list", list);
 		mv.setViewName("hotel_comp_list");

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
             <div class="row">
                 <div class="col-lg-12 grid-margin stretch-card">
@@ -33,150 +35,40 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>
-                                                    <div class="d-flex align-items-center">
-                                                        <img class="img-xs rounded" src="../../assets/images/faces/face2.jpg" alt="profile image">
-                                                    </div>
-                                                </td>
-                                                <td>Derrick</td>
-                                                <td>경기 성남시 분당구 판교역로 235 (에이치스퀘어 엔동)</td>
-                                                <td>02-2341-5123</td>
-                                                <td>9개</td>
-                                                <td><div class="badge badge-primary">활성화</div></td>
-                                                <td>
-                                                    <button class="btn btn-outline-primary" data-toggle="modal" data-target="#ModalHotelInfo">View</button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td>
-                                                    <div class="d-flex align-items-center">
-                                                        <span class="img-xs rounded bg-warning text-white text-avatar">AV</span>
-                                                    </div>
-                                                </td>
-                                                <td>Derrick</td>
-                                                <td>경기 성남시 분당구 판교역로 235 (에이치스퀘어 엔동)</td>
-                                                <td>02-2341-5123</td>
-                                                <td>9개</td>
-                                                <td><div class="badge badge-primary">활성화</div></td>
-                                                <td>
-                                                    <button class="btn btn-outline-primary" data-toggle="modal" data-target="#ModalHotelInfo">View</button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>3</td>
-                                                <td>
-                                                    <div class="d-flex align-items-center">
-                                                        <img class="img-xs rounded" src="../../assets/images/faces/face4.jpg" alt="profile image">
-                                                    </div>
-                                                </td>
-                                                <td>Derrick</td>
-                                                <td>경기 성남시 분당구 판교역로 235 (에이치스퀘어 엔동)</td>
-                                                <td>02-2341-5123</td>
-                                                <td>9개</td>
-                                                <td><div class="badge badge-primary">활성화</div></td>
-                                                <td>
-                                                    <button class="btn btn-outline-primary" data-toggle="modal" data-target="#ModalHotelInfo">View</button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>4</td>
-                                                <td>
-                                                    <div class="d-flex align-items-center">
-                                                        <img class="img-xs rounded" src="../../assets/images/faces/face5.jpg" alt="profile image">
-                                                    </div>
-                                                </td>
-                                                <td>Derrick</td>
-                                                <td>경기 성남시 분당구 판교역로 235 (에이치스퀘어 엔동)</td>
-                                                <td>02-2341-5123</td>
-                                                <td>9개</td>
-                                                <td><div class="badge badge-primary">활성화</div></td>
-                                                <td>
-                                                    <button class="btn btn-outline-primary" data-toggle="modal" data-target="#ModalHotelInfo">View</button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>5</td>
-                                                <td>
-                                                    <div class="d-flex align-items-center">
-                                                        <span class="img-xs rounded bg-primary text-white text-avatar">AW</span>
-                                                    </div>
-                                                </td>
-                                                <td>Derrick</td>
-                                                <td>경기 성남시 분당구 판교역로 235 (에이치스퀘어 엔동)</td>
-                                                <td>02-2341-5123</td>
-                                                <td>9개</td>
-                                                <td><div class="badge badge-secondary text-muted">비활성화</div></td>
-                                                <td>
-                                                    <button class="btn btn-outline-primary" data-toggle="modal" data-target="#ModalHotelInfo">View</button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>6</td>
-                                                <td>
-                                                    <div class="d-flex align-items-center">
-                                                        <img class="img-xs rounded" src="../../assets/images/faces/face7.jpg" alt="profile image">
-                                                    </div>
-                                                </td>
-                                                <td>Derrick</td>
-                                                <td>경기 성남시 분당구 판교역로 235 (에이치스퀘어 엔동)</td>
-                                                <td>02-2341-5123</td>
-                                                <td>9개</td>
-                                                <td><div class="badge badge-primary">활성화</div></td>
-                                                <td>
-                                                    <button class="btn btn-outline-primary" data-toggle="modal" data-target="#ModalHotelInfo">View</button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>7</td>
-                                                <td>
-                                                    <div class="d-flex align-items-center">
-                                                        <span class="img-xs rounded bg-info text-white text-avatar">DR</span>
-                                                    </div>
-                                                </td>
-                                                <td>Derrick</td>
-                                                <td>경기 성남시 분당구 판교역로 235 (에이치스퀘어 엔동)</td>
-                                                <td>02-2341-5123</td>
-                                                <td>9개</td>
-                                                <td><div class="badge badge-primary">활성화</div></td>
-                                                <td>
-                                                    <button class="btn btn-outline-primary" data-toggle="modal" data-target="#ModalHotelInfo">View</button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>8</td>
-                                                <td>
-                                                    <div class="d-flex align-items-center">
-                                                        <img class="img-xs rounded" src="../../assets/images/faces/face9.jpg" alt="profile image">
-                                                    </div>
-                                                </td>
-                                                <td>Derrick</td>
-                                                <td>경기 성남시 분당구 판교역로 235 (에이치스퀘어 엔동)</td>
-                                                <td>02-2341-5123</td>
-                                                <td>9개</td>
-                                                <td><div class="badge badge-primary">활성화</div></td>
-                                                <td>
-                                                    <button class="btn btn-outline-primary" data-toggle="modal" data-target="#ModalHotelInfo">View</button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>9</td>
-                                                <td>
-                                                    <div class="d-flex align-items-center">
-                                                        <span class="img-xs rounded bg-primary text-white text-avatar">MH</span>
-                                                    </div>
-                                                </td>
-                                                <td>Derrick</td>
-                                                <td>경기 성남시 분당구 판교역로 235 (에이치스퀘어 엔동)</td>
-                                                <td>02-2341-5123</td>
-                                                <td>9개</td>
-                                                <td><div class="badge badge-primary">활성화</div></td>
-                                                <td>
-                                                    <button class="btn btn-outline-primary" data-toggle="modal" data-target="#ModalHotelInfo">View</button>
-                                                </td>
-                                            </tr>
+                                        	<c:forEach var="vo" items="${list }" varStatus="i">
+                                        		<tr>
+	                                                <td>${i.count }</td>
+	                                                <td>
+	                                                    <div class="d-flex align-items-center">
+	                                                    	<c:if test="${vo.photo_name }">
+	                                                        	<img class="img-xs rounded" src="../../assets/images/upload/hotel/${vo.photo_name }" alt="profile image">
+	                                                        </c:if>
+	                                                        
+	                                                        <c:if test="${vo.photo_name == null}">
+	                                                        	<img class="img-xs rounded" src="https://via.placeholder.com/150" alt="${vo.place_name } image">
+	                                                        </c:if>
+	                                                    </div>
+	                                                </td>
+	                                                <td>${vo.place_name }</td>
+	                                                <td>${vo.place_location }</td>
+	                                                <td>${vo.place_tel }</td>
+	                                                <td>${vo.room_cnt }</td>
+	                                                <td>
+		                                                <c:if test="${vo.state == 0}">
+		                                                	<div class="badge badge-secondary text-muted">비활성화</div>
+		                                                </c:if>
+		                                                <c:if test="${vo.state == 1}">
+		                                                	<div class="badge badge-primary">활성화</div>
+		                                                </c:if>
+	                                                </td>
+	                                                <td>
+	                                                    <button class="btn btn-outline-primary" data-toggle="modal" data-target="#ModalHotelInfo">View</button>
+	                                                </td>
+	                                            </tr>
+                                        	
+                                        	</c:forEach>
+                                            
+                                            
                                         </tbody>
                                     </table>
                                 </div>
