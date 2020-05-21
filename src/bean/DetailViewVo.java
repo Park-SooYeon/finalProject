@@ -13,6 +13,7 @@ public class DetailViewVo {
 	int breakfast;
 	int wifi;
 	int parking;
+	int room_serial;
 	
 	int photo_serial;
 	String photo_name;
@@ -101,6 +102,12 @@ public class DetailViewVo {
 	}
 	public void setPhoto_name(String photo_name) {
 		this.photo_name = photo_name;
+	}
+	public int getRoom_serial() {
+		return room_serial;
+	}
+	public void setRoom_serial(int room_serial) {
+		this.room_serial = room_serial;
 	}
 	
 	
