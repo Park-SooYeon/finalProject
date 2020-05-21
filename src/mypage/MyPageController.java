@@ -1,5 +1,6 @@
 package mypage;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import bean.LikeListVo;
 import bean.TripListVo;
 
 @Controller
@@ -159,10 +161,15 @@ public class MyPageController {
 		return msg;
 	}
 	
-	@RequestMapping( value = "repl.mp", method = {RequestMethod.POST})
-	public ModelAndView repl() {
+	@RequestMapping( value = "likeList.mp", method = {RequestMethod.GET, RequestMethod.POST})
+	public ModelAndView selectLike() {
+		System.out.println("실행이 안 돼서 속상..");
 		mv = new ModelAndView();
-		mv.setViewName("repl");
+
+		List<LikeListVo> list = dao.selectLike("세왕");
+		
+		mv.setViewName("like_list");
+		mv.addObject("list", list);
 		return mv;
 	}
 	

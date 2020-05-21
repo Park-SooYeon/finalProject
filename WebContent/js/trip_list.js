@@ -77,11 +77,13 @@ load();
 			});
 		})
 	
-	// 공개, 비공개 토글
-  $("#mpTripPrivacy").on("change",function(e){
-	  const SELECT = e.target.value;//2 : 전체, 1 : 공개, 0 : 비공개
+	// 여행(공개, 비공개)보기 토글
+  $(document).on("click", "#mpPrivacyFilter span", function(e){
+	  console.log(e);
+	  console.log(e.target.dataset.index);
+	  const SELECT = e.target.dataset.index;//2 : 전체, 1 : 비공개, 0 : 공개
 	  const ELEMENTS = document.querySelectorAll(".mp-trip");
-	  
+
 	  for(const elem of ELEMENTS){
 		  if(elem.dataset.flag==SELECT){
 			  elem.style.display = "none"; // 다른 element는 숨김
@@ -91,11 +93,10 @@ load();
 	  }
   });
 	
-	/*
+	// 관심리스트 전체 보기
 	$("#mpLikeAll").on("click", function(){
 		$("#list-here").load("likeList.mp");
 	})
-	*/
 	
 
 // 일수선택, 날짜선택 토글

@@ -16,6 +16,11 @@
 <!-- Site Title -->
 <title>Travel</title>
 
+  <div class="mb-3 text-right" id="mpPrivacyFilter">
+  <span data-index="2">전체보기</span> | 
+  <span data-index="0">여행 (공개)</span> | 
+  <span data-index="1">여행 (비공개)</span></div>
+  <hr/>
 <section class="destinations-area my-list-area mb-20">
   <div class="row">
     <div class="col-lg-4 add-new-trip" data-toggle="modal" data-target="#newTripModal">

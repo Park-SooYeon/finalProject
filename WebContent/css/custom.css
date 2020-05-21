@@ -344,6 +344,15 @@ p {
 }
 
 /* trip_list */
+#mpPrivacyFilter span{
+	font-size:15px;
+	font-weight:400;
+	cursor:pointer;
+}
+
+#mpPrivacyFilter span:hover{
+	color:#000;
+}
 
 .my-list-area .single-destinations {
   border: none;
