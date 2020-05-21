@@ -2,9 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<script src="../../js/admin.js">    
-</script>
-    
+
         <div class="row">
             <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
@@ -108,7 +106,6 @@
                         </div>
                         <small class="time d-none d-sm-block ml-auto " id='member_date'></small>
                     </div>
-                    <form class="" name="usrInfoFrm">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
@@ -132,23 +129,27 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
+             		<form id='hidden_form'>
                                     <label class="">사용자 권한</label>
-                                    <select class="form-control" id="member_state">
-                                        <option>User</option>
-                                        <option>Partner</option>
-                                        <option>Admin</option>
+                                    <select class="form-control" id="usrInfoState"  name='hidden_status'>
+                                        <option value='1'>User</option>
+                                        <option value='88'>Partner</option>
+                                        <option value='99'>Admin</option>
                                     </select>
+		             		<input type='hidden'  id='hidden_id' name='hidden_id'>
+		             		<input type='hidden'  id='hidden_status'> 
+             		</form>
                                 </div>
                             </div>
                         </div>
-                    </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-light" data-dismiss="modal">취소</button>
-                    <button type="button" class="btn btn-success">저장</button>
+                    <button type="button" class="btn btn-success" id='member_save'>저장</button>
+             		
                 </div>
             </div>
         </div>
     </div>
-    
-           
+  
+          

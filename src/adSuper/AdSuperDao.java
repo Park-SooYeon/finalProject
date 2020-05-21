@@ -33,18 +33,28 @@ public class AdSuperDao {
 			return list;
 		}
 	}
-	//회원관리 상세페이지
-	public membershipVo view(String member_id) {
-		membershipVo vo = new membershipVo();
+
+	public String status_modify(membershipVo vo) {
+		String msg="";
 		try {
-			vo = sqlSession.selectOne("admin.view_member", member_id);
+			int count = sqlSession.update("admin.status_save",vo);//mybatis에 vo를 보내고 받아온걸 count에
+			System.out.println(count);
+			if(count >0) {
+				msg="성공하셨습니다.";
+				sqlSession.commit();
+				
+			}else {
+				msg="수정실패했어요..";
+				sqlSession.rollback();
+			}
 		}catch(Exception ex) {
 			ex.printStackTrace();
 		}finally {
-			return vo;
+			
+			return msg;
 		}
 	}
-
+	
 
 
 

@@ -62,6 +62,7 @@
     <script src="../../assets/js/demo_1/dashboard.js"></script>
     <!-- End custom js for this page-->
     
+    <script src="../../js/admin.js"></script>
     <script src="../../assets/js/admin/hotel.js"></script>
     
     <!-- 다음 우편번호 서비스 관련 js -->
