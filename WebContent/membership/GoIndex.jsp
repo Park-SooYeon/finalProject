@@ -7,5 +7,10 @@
 
  location.href='./index.jsp';
 
+ 
+alert(${msg});
+
+	 
+ 
 </script>
 </body>
