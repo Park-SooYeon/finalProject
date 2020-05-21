@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import bean.Factory;
 import bean.PlaceVo;
+import mypage_mybatis.TripListVo;
 import vo.MainVo;
 
 public class SubMainDao { 
@@ -69,6 +70,39 @@ public class SubMainDao {
 			ex.printStackTrace();
 		}finally {
 			return list;
+		}
+	}
+	
+	// 여행 목록 불러오기
+	public List<TripListVo> callTripList() {
+		List<TripListVo> list = null;
+		try {
+			list = sqlSession.selectList("mypage.select_trip");
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		}finally {
+			return list;
+		}
+	}
+	
+	// 여행 폴더 새로 생성하기
+	public int tripInsert(TripListVo vo) {
+		int result = 0;
+		try {
+			int cnt = sqlSession.insert("mypage.insert_trip", vo);
+			if(cnt<1) {
+				throw new Exception("본문 저장 중 오류발생");
+			}
+			
+			result = vo.getTrip_list_serial();
+			sqlSession.commit();
+		}catch(Exception ex){
+			System.out.println(ex.getMessage());
+			ex.printStackTrace();
+			
+			sqlSession.rollback();
+		}finally {
+			return result;
 		}
 	}
 }
