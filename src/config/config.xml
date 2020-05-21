@@ -33,6 +33,9 @@
 		
 		<!-- admin -->
 		<mapper resource="adSuper_mybatis/adSuper_mybatis.xml"/>
+		
+		<!-- detailView -->
+		<mapper resource="detailview_mybatis/detailview_mybatis.xml"/>
 	</mappers>
 
 </configuration>
