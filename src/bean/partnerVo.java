@@ -8,6 +8,17 @@ public class partnerVo {
     String partner_phone; 
     int state;
     String partner_location;//본사 주소
+    
+    
+    membershipVo vo; 
+    
+    
+	public membershipVo getVo() {
+		return vo;
+	}
+	public void setVo(membershipVo vo) {
+		this.vo = vo;
+	}
 	public int getPartner_serial() {
 		return partner_serial;
 	}
