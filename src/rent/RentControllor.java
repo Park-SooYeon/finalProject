@@ -42,7 +42,9 @@ public class RentControllor {
 		mv = new ModelAndView();
 		contentPage = "rentSearchSub1.jsp";
 		mainPage = "rentSearch.jsp";
-		
+		String placeMain = req.getParameter("placeMain");
+		String placeSub = req.getParameter("placeSub");
+		System.out.println(placeMain + placeSub + "---------------------");
 		
 		mv.addObject("contentPage",contentPage);
 		mv.addObject("mainPage",mainPage);
