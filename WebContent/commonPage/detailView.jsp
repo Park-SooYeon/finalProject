@@ -36,6 +36,7 @@
 	</div>
 	</section>
 <form name='frm_review' id='frm_review' method='post' class='frm_review'>
+<input type="hidden" id="place_serial" name="place_serial" value="${vo.place_serial }" />
 	<br/>
 	<br/>
 	<br/>
@@ -94,10 +95,10 @@
 				<div class="info row justify-content-center mb-5">
 					<div class='col-lg-8 col-md-12'><!-- 큰사이즈에서 8 스몰에서 12 -->
 						  <!-- Swiper -->
-				    <c:forEach var="i" items="${list }">
+				    <c:forEach var="i" items="${list }" varStatus="status">
 				 		<div class="swiper-container gallery-top">
 				    		<div class="swiper-wrapper">
-						    	<img class="swiper-slide" src="./images/${i.place_type }/${i.local_name }/${i.photo_name }1.png"style="background-image;cursor:pointer;" />
+						    	<img class="swiper-slide" src="./images/${i.place_type }/${i.local_name }/${i.photo_name }${status.index+1 }.png"style="background-image;cursor:pointer;" />
 				    		</div>
 							 <!-- Add Arrows -->
 						     <div class="swiper-button-next swiper-button-white"></div>
@@ -105,7 +106,7 @@
 				 		 </div>
 					  <div class="swiper-container gallery-thumbs">
 					    <div class="swiper-wrapper">
-							<img class="swiper-slide" src="./images/${i.place_type }/${i.local_name }/${i.photo_name }1.png"style="background-image;cursor:pointer;" />
+							<img class="swiper-slide" src="./images/${i.place_type }/${i.local_name }/${i.photo_name }${status.index+1 }.png"style="background-image;cursor:pointer;" />
 					    </div>
 					  </div>
 					  </c:forEach>
@@ -312,37 +313,37 @@
 										<div class=row>
 										<div class='col-md-6'>
 											<div class="custom-control custom-radio" >
-												<input type="radio" name="jb-radio" id="jb-radio-1" class="custom-control-input">
+												<input type="radio" name="jb-radio" id="jb-radio-1" class="custom-control-input" value='1'>
 												<label class="custom-control-label" for="jb-radio-1">영리목적/홍보성</label>
 											</div>
 											<div class="custom-control custom-radio">
-												<input type="radio" name="jb-radio" id="jb-radio-2" class="custom-control-input">
+												<input type="radio" name="jb-radio" id="jb-radio-2" class="custom-control-input" value='2'>
 												<label class="custom-control-label" for="jb-radio-2">개인정보노출</label>
 											</div>
 											<div class="custom-control custom-radio">
-												<input type="radio" name="jb-radio" id="jb-radio-3" class="custom-control-input">
+												<input type="radio" name="jb-radio" id="jb-radio-3" class="custom-control-input" value='3'>
 												<label class="custom-control-label" for="jb-radio-3">불법정보</label>
 											</div>
 											<div class="custom-control custom-radio">
-												<input type="radio" name="jb-radio" id="jb-radio-4" class="custom-control-input">
+												<input type="radio" name="jb-radio" id="jb-radio-4" class="custom-control-input" value='4'>
 												<label class="custom-control-label" for="jb-radio-4">음란성/선정성</label>
 											</div>
 										</div>
 										<div class='col-md-6'>
 											<div class="custom-control custom-radio">
-												<input type="radio" name="jb-radio" id="jb-radio-5" class="custom-control-input">
+												<input type="radio" name="jb-radio" id="jb-radio-5" class="custom-control-input" value='5'>
 												<label class="custom-control-label" style="float-right" for="jb-radio-5">욕설/인신공격</label>
 											</div>
 											<div class="custom-control custom-radio">
-												<input type="radio" name="jb-radio" id="jb-radio-6" class="custom-control-input">
+												<input type="radio" name="jb-radio" id="jb-radio-6" class="custom-control-input" value='6'>
 												<label class="custom-control-label" style="float-right"for="jb-radio-6">아이디/DB거래</label>
 											</div>
 											<div class="custom-control custom-radio">
-												<input type="radio" name="jb-radio" id="jb-radio-7" class="custom-control-input">
+												<input type="radio" name="jb-radio" id="jb-radio-7" class="custom-control-input" value='7'>
 												<label class="custom-control-label" style="float-right"for="jb-radio-7">같은내용반복(도배)</label>
 											</div>
 											<div class="custom-control custom-radio">
-												<input type="radio" name="jb-radio" id="jb-radio-8" class="custom-control-input">
+												<input type="radio" name="jb-radio" id="jb-radio-8" class="custom-control-input" value='8'>
 												<label class="custom-control-label" style="float-right"for="jb-radio-8">기타</label>
 											</div>
 										</div>
