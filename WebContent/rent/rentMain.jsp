@@ -65,7 +65,7 @@
 						</select>
 					</div>
 					<div class="form-right-w3ls">
-						<select class="form-control" name='palceSub' id="subplace">
+						<select class="form-control" name='placeSub' id="subplace">
 						<option value="">시</option>
 						</select>
 					</div>
