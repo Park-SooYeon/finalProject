@@ -23,7 +23,14 @@ public class ReviewVo {
 	int like_serial;
 	String like_id;
 	
+	String place_name;
 	
+	public String getPlace_name() {
+		return place_name;
+	}
+	public void setPlace_name(String place_name) {
+		this.place_name = place_name;
+	}
 	public int getReview_serial() {
 		return review_serial;
 	}

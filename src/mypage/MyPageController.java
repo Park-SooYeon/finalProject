@@ -176,7 +176,7 @@ public class MyPageController {
 	@RequestMapping( value = "likeReview.mp", method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView selectReview(HttpServletRequest req, HttpServletResponse resp) {
 		mv = new ModelAndView();
-		String member_id = "세왕";
+		String member_id = "test";
 		List<ReviewVo> list = dao.selectReview(member_id);
 		
 		mv.setViewName("review_list");

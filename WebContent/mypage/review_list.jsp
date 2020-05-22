@@ -13,7 +13,7 @@
         </div>
         <div class="details">
           <h4 class="d-flex justify-content-between">
-            <span>롤인익선</span>
+            <span>${i.place_name }</span>
           </h4>
           <p>작성자 : ${i.member_id }</p>
           <h5 class="d-flex justify-content-between my-2">

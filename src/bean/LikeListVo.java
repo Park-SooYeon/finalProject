@@ -7,22 +7,13 @@ public class LikeListVo {
 	int place_serial;
 	int partner_serial;
 	
-	String trip_name;
-	String place_name;
+	PlaceVo vo;
 	
-	
-
-	public String getPlace_name() {
-		return place_name;
+	public PlaceVo getVo() {
+		return vo;
 	}
-	public void setPlace_name(String place_name) {
-		this.place_name = place_name;
-	}
-	public String getTrip_name() {
-		return trip_name;
-	}
-	public void setTrip_name(String trip_name) {
-		this.trip_name = trip_name;
+	public void setVo(PlaceVo vo) {
+		this.vo = vo;
 	}
 	public int getLike_serial() {
 		return like_serial;

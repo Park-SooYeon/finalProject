@@ -65,13 +65,13 @@
    		select like_serial,
    			   R.review_serial, 
    			   member_id, 
-   			   place_serial, 
+   			   (select place_name from place where place_serial = R.place_serial) place_name,  
    			   reputation, 
    			   review_title, 
    			   review_content
    		from review R join review_like L
    		on R.review_serial = L.review_serial
-   		where like_id = #{_parameter};
+   		where like_id = #{_parameter}
    </select>
 	
 	
