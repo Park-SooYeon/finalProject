@@ -6,8 +6,9 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 
 import bean.Factory;
+import bean.LikeListVo;
 import bean.PlaceVo;
-import mypage_mybatis.TripListVo;
+import bean.TripListVo;
 import vo.MainVo;
 
 public class SubMainDao { 
@@ -104,5 +105,50 @@ public class SubMainDao {
 		}finally {
 			return result;
 		}
+	}
+	
+	// 좋아요로 관심리스트에 관광지 저장하기
+	public void likeInsert(LikeListVo vo) {
+		try {
+			int cnt = sqlSession.insert("mypage.insert_like", vo);
+			if(cnt<1) {
+				throw new Exception("본문 저장 중 오류발생");
+			}
+			
+			sqlSession.commit();
+		}catch(Exception ex){
+			System.out.println(ex.getMessage());
+			ex.printStackTrace();
+			
+			sqlSession.rollback();
+		}
+	}
+	
+	// 관심리스트에 저장된 관광지 삭제하기
+	public void likeDelete(LikeListVo vo) {
+		try {
+			int cnt = sqlSession.insert("sub_main.delete_like", vo);
+			if(cnt<1) {
+				throw new Exception("본문 삭제 중 오류발생");
+			}
+			
+			sqlSession.commit();
+		}catch(Exception ex){
+			System.out.println(ex.getMessage());
+			ex.printStackTrace();
+			
+			sqlSession.rollback();
+		}
+	}
+	
+	// 관심리스트에 추가된 내역들 가져오기
+	public List<Integer> selectLike(String member_id) {
+		List<Integer> list = null;
+		try {
+			list = sqlSession.selectList("sub_main.select_like", member_id);
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		}
+		return list; 
 	}
 }

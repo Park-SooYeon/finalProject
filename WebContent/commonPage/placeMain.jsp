@@ -1,7 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <link rel="stylesheet" href="css/main.css">
+
+<c:set var = "likeList" value = "${likeList }"/>
 
 <!-- start banner Area -->
 <section class="banner-area relative">
@@ -162,11 +165,19 @@
 		<div class="row">
 			<div class="swiper-container m-2">
 				<div class="swiper-wrapper pl-50 pr-50">
-					
+				
 					<c:forEach var="i" items="${happyList }" begin="0" end="9">
 						<div class="swiper-slide">
-							<div class="p-1 heart" onclick="main.like(this)">
-								<i class="fa fa-heart-o" style="vertical-align: middle;"></i>
+							<div class="p-1 heart" onclick="main.like(this, ${i.place_serial})">
+								<c:set var = "temp_serial" value = "${i.place_serial }"/>
+								<c:choose>
+									<c:when test="${fn:contains(likeList, temp_serial ) }">
+										<i class="fa fa-heart" style="vertical-align: middle;"></i>
+									</c:when>
+									<c:otherwise>
+										<i class="fa fa-heart-o" style="vertical-align: middle;"></i>
+									</c:otherwise>
+								</c:choose>
 							</div>
 							<div class="single-destinations" onclick="main.detailMove(${i.place_serial})">
 								<div class="thumb">
@@ -213,8 +224,16 @@
 					
 					<c:forEach var="i" items="${foodList }" begin="0" end="9">
 						<div class="swiper-slide">
-							<div class="p-1 heart" onclick="main.like(this)">
-								<i class="fa fa-heart-o" style="vertical-align: middle;"></i>
+							<div class="p-1 heart" onclick="main.like(this, ${i.place_serial})">
+								<c:set var = "temp_serial" value = "${i.place_serial }"/>
+								<c:choose>
+									<c:when test="${fn:contains(likeList, temp_serial ) }">
+										<i class="fa fa-heart" style="vertical-align: middle;"></i>
+									</c:when>
+									<c:otherwise>
+										<i class="fa fa-heart-o" style="vertical-align: middle;"></i>
+									</c:otherwise>
+								</c:choose>
 							</div>
 							<div class="single-destinations" onclick="main.detailMove(${i.place_serial})">
 								<div class="thumb">
@@ -261,8 +280,16 @@
 					
 					<c:forEach var="i" items="${festivalList }" begin="0" end="9">
 						<div class="swiper-slide">
-							<div class="p-1 heart" onclick="main.like(this)">
-								<i class="fa fa-heart-o" style="vertical-align: middle;"></i>
+							<div class="p-1 heart" onclick="main.like(this, ${i.place_serial})">
+								<c:set var = "temp_serial" value = "${i.place_serial }"/>
+								<c:choose>
+									<c:when test="${fn:contains(likeList, temp_serial ) }">
+										<i class="fa fa-heart" style="vertical-align: middle;"></i>
+									</c:when>
+									<c:otherwise>
+										<i class="fa fa-heart-o" style="vertical-align: middle;"></i>
+									</c:otherwise>
+								</c:choose>
 							</div>
 							<div class="single-destinations" onclick="main.detailMove(${i.place_serial})">
 								<div class="thumb">
@@ -313,7 +340,7 @@
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-secondary" data-dismiss="modal" id="btnClose">닫기</button>
-				<button type="button" class="btn btn-primary" id="btnLikeInsert" onclick="main.makeHeart()">추가</button>
+				<button type="button" class="btn btn-primary" id="btnLikeInsert">추가</button>
 			</div>
 		</div>
 	</div>

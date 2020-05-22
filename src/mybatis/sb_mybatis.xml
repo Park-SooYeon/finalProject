@@ -68,6 +68,18 @@
 		group by local_code, a.place_serial, place_name, place_location
 		order by review_cnt DESC
 	</select>
+	
+	<!-- 아이디별 관심리스트에 추가한 내역들 가져오기 -->
+	<select id="select_like" parameterType="String" resultType="Integer">
+		select place_serial from like_list
+		where member_id = #{_parameter}
+	</select>
+	
+	<delete id="delete_like" parameterType="bean.LikeListVo">
+		delete from like_list
+		where member_id = #{member_id}
+		and place_serial = #{place_serial}
+	</delete>
 	<!--
 	<resultMap id="my_map"/>
 	<update/>
