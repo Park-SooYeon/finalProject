@@ -30,7 +30,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="./?inc=partner_list.jsp">
+                <a class="nav-link" href="./?inc=partner_list.os">
                     <i class="menu-icon typcn typcn-document-text"></i>
                     <span class="menu-title">파트너관리</span>
                 </a>

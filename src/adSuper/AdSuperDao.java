@@ -86,6 +86,18 @@ public class AdSuperDao {
 				return msg;
 			}
 		}
+		
+		//파트너관리-조회
+		public List<partnerVo> partner_Mselect() {
+			List<partnerVo> list = new ArrayList<partnerVo>();
+			try {
+				list = sqlSession.selectList("admin.partner_M");
+			}catch(Exception ex) {
+				ex.printStackTrace();
+			}finally {
+				return list;
+			}
+		}
 
 
 }
