@@ -119,7 +119,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-             		<form id='hidden_form'>
+             		<form id='hidden_form'><!-- 수정해주기위해  폼으로..js로보낸다 -->
                                     <label class="">사용자 권한</label>
                                     <select class="form-control" id="usrInfoState"  name='hidden_status'>
                                         <option value='1'>User</option>

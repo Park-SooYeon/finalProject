@@ -46,7 +46,9 @@
                                                 <label class="badge font-weight-bold badge-inverse-warning">승인대기</label>
                                             </td>
                                             <td>
-                                                <button class="btn btn-outline-primary" data-toggle="modal" data-target="#modalPartnerJoin">View</button>
+                                                <button class="btn btn-outline-primary" data-toggle="modal" data-target="#modalPartnerJoin"
+                                                onclick="a_partner_view('${i.member_id }','${i.partner_name }','${i.business_number }','${i.partner_phone }',
+                                                		'${i.partner_location}','${i.state}','${i.vo.email}')">View</button>
                                             </td>
                                         </tr>
                                       </c:forEach>                                  
@@ -74,7 +76,7 @@
                     <div class="wrapper d-flex align-items-center py-2 mb-3">
                         <img class="img-sm rounded-circle" src="../../assets/images/faces/face5.jpg" alt="profile">
                         <div class="wrapper ml-3">
-                            <h6 class="ml-1 mb-1">Stella Davidson</h6>
+                            <h6 class="ml-1 mb-1" id='member_id'></h6>
                         </div>
                         <small class="time d-none d-sm-block ml-auto ">2018.02.05 요청됨</small>
                     </div>
@@ -97,13 +99,13 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="">업체명</label>
-                                    <p id="usrInfoUsrNm" class="">AB Corp</p>
+                                    <p id="usrInfoUsrNm" class="partner_name"></p>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="">사업자등록번호</label>
-                                    <p>329045-329402-23</p>
+                                    <p class='business_number'></p>
                                 </div> 
                             </div>
                         </div>
@@ -111,13 +113,13 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="">이메일</label>
-                                    <p>sakdas@domain.com</p>
+                                    <p class='eamil'></p>   		<!-- member에서 받아야해서 대기 -->
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="">연락처</label>
-                                    <p>02-3420-0433</p>
+                                    <p class='partner_phone'></p>
                                 </div>
                             </div>
                         </div>
@@ -125,7 +127,7 @@
                             <div class="col-12">
                                 <div class="form-group">
                                     <label class="">주소</label>
-                                    <p>경기 성남시 분당구 판교역로 235 (에이치스퀘어 엔동)</p>
+                                    <p class='partner_location'></p>
                                 </div>
                             </div>
                         </div>
@@ -140,7 +142,7 @@
                     </form>
                 </div> 
                 <div class="modal-footer">
-                    <button type="button" cㄴlass="btn btn-danger" onclick="showSwal('custom-html')">거절</button>
+                    <button type="button" class="btn btn-danger" onclick="showSwal('custom-html')">거절</button>
                     <button type="button" class="btn btn-success" onclick="showSwal('success-message')">승인</button>
                 </div>
             </div>
