@@ -5,24 +5,24 @@
   
   
   <div class="row">
-  <c:forEach items="${list }" var="i">
+  <c:forEach items="${list }" var="i" varStatus="status">
     <div class="col-lg-4">
       <div class="single-destinations">
         <div class="thumb-review">
-          <img src="./images/myPage/food3.jpg" alt="" />
+          <img src="images/${i.p.place_type}/${i.p.local_name }/${i.p.photo_name }${status.count }.jpg" alt="no-image"/>
         </div>
         <div class="details">
           <h4 class="d-flex justify-content-between">
-            <span>${i.place_name }</span>
+            <span>${i.p.place_name }</span>
           </h4>
           <p>작성자 : ${i.member_id }</p>
           <h5 class="d-flex justify-content-between my-2">
             "${i.review_title }"
-            <div class="star">
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star checked"></span>
+            <div class="star rating" data-rate="${ i.p.reputation}">
+              <span class="fa fa-star"></span>
+              <span class="fa fa-star"></span>
+              <span class="fa fa-star"></span>
+              <span class="fa fa-star"></span>
               <span class="fa fa-star"></span>
             </div>
           </h5>

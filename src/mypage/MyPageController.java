@@ -168,6 +168,10 @@ public class MyPageController {
 		// 추후 session으로 값 받아와서 id에 넣어주기
 		List<LikeListVo> list = dao.selectLike(member_id);
 		
+		for(LikeListVo vo : list) {
+			System.out.println(vo.toString());
+		}
+		
 		mv.setViewName("like_list");
 		mv.addObject("list", list);
 		return mv;
@@ -178,6 +182,10 @@ public class MyPageController {
 		mv = new ModelAndView();
 		String member_id = "test";
 		List<ReviewVo> list = dao.selectReview(member_id);
+		
+		for(ReviewVo vo : list) {
+			System.out.println(vo.toString());
+		}
 		
 		mv.setViewName("review_list");
 		mv.addObject("list", list);

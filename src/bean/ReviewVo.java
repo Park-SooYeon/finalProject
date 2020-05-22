@@ -23,14 +23,15 @@ public class ReviewVo {
 	int like_serial;
 	String like_id;
 	
-	String place_name;
+	PlaceVo p;
 	
-	public String getPlace_name() {
-		return place_name;
+	public PlaceVo getP() {
+		return p;
 	}
-	public void setPlace_name(String place_name) {
-		this.place_name = place_name;
+	public void setP(PlaceVo p) {
+		this.p = p;
 	}
+	
 	public int getReview_serial() {
 		return review_serial;
 	}
@@ -144,6 +145,17 @@ public class ReviewVo {
 	}
 	public void setLike_id(String like_id) {
 		this.like_id = like_id;
+	}
+	
+	@Override
+	public String toString() {
+		return "ReviewVo [review_serial=" + review_serial + ", member_id=" + member_id + ", place_serial="
+				+ place_serial + ", review_type=" + review_type + ", reputation=" + reputation + ", review_title="
+				+ review_title + ", review_content=" + review_content + ", visit_date=" + visit_date + ", review_date="
+				+ review_date + ", service=" + service + ", cleanliness=" + cleanliness + ", accessibility="
+				+ accessibility + ", price=" + price + ", scale=" + scale + ", food=" + food + ", photo_serial="
+				+ photo_serial + ", photo_name=" + photo_name + ", like_serial=" + like_serial + ", like_id=" + like_id
+				+ ", p=" + p + "]";
 	}
 	
 	

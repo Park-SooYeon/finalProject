@@ -5,6 +5,54 @@
 
 <mapper namespace="mypage">
 	
+	<resultMap id="mp_map_like" type="bean.LikeListVo">
+		<result column="like_serial" property="like_serial"/>
+		<result column="member_id" property="member_id"/>
+		<result column="trip_list_serial" property="trip_list_serial"/>
+		<result column="place_serial" property="place_serial"/>
+		<result column="partner_serial" property="partner_serial"/>
+		<result column="trip_name" property="trip_name"/>
+			<collection property="p" 
+						javaType="bean.PlaceVo">
+				<result column="place_serial" property="place_serial"/>
+				<result column="place_name" property="place_name"/>
+				<result column="place_code" property="place_code"/>
+				<result column="place_type" property="place_type"/>
+				<result column="place_location" property="place_location"/>
+				<result column="reputation" property="reputation"/>
+				<result column="review_cnt" property="review_cnt"/>
+				<result column="local_code" property="local_code"/>
+				<result column="local_name" property="local_name"/>
+				<result column="photo_serial" property="photo_serial"/>
+				<result column="photo_name" property="photo_name"/>
+			</collection>
+	</resultMap>
+	
+		<resultMap id="mp_map_review" type="bean.ReviewVo">
+		<result column="review_serial" property="review_serial"/>
+		<result column="member_id" property="member_id"/>
+		<result column="place_serial" property="place_serial"/>
+		<result column="review_type" property="review_type"/>
+		<result column="review_title" property="review_title"/>
+		<result column="review_content" property="review_content"/>
+		<result column="visit_date" property="visit_date"/>
+		<result column="review_date" property="review_date"/>
+			<collection property="p" 
+						javaType="bean.PlaceVo">
+				<result column="place_serial" property="place_serial"/>
+				<result column="place_name" property="place_name"/>
+				<result column="place_code" property="place_code"/>
+				<result column="place_type" property="place_type"/>
+				<result column="place_location" property="place_location"/>
+				<result column="reputation" property="reputation"/>
+				<result column="review_cnt" property="review_cnt"/>
+				<result column="local_code" property="local_code"/>
+				<result column="local_name" property="local_name"/>
+				<result column="photo_serial" property="photo_serial"/>
+				<result column="photo_name" property="photo_name"/>
+			</collection>
+	</resultMap>
+	
    <insert id="insert_trip" parameterType="bean.TripListVo">
       <selectKey keyProperty="trip_list_serial" resultType="int" order="BEFORE">
          select seq_trip_list_serial.nextval
@@ -49,29 +97,38 @@
                		${partner_serial,jdbcType=NUMERIC} )
    </insert>
    
-   <select id="select_like" parameterType="String" resultType="bean.LikeListVo">
-   	select L.like_serial, 
+   <select id="select_like" parameterType="String" resultMap="mp_map_like">
+  	select like_serial, 
    		   L.member_id, 
    		   T.trip_name, 
-   		   P.place_name, 
-   		   L.trip_list_serial 
+   		   place_name,
+   		   place_name photo_name, 
+   		   T.trip_list_serial, 
+   		   P.local_code, 
+   		   P.place_code, 
+   		   getRevCnt(P.place_serial) review_cnt, 
+		   getReputation(P.place_serial) reputation   		   
    		   from trip_list T, place P, like_list L 
    		   where P.place_serial = L.place_serial 
    		   and T.trip_list_serial = L.trip_list_serial 
    		   and L.member_id = #{_parameter}
    </select>
    
-   <select id="select_review" parameterType="String" resultType="bean.ReviewVo">
+   <select id="select_review" parameterType="String" resultMap="mp_map_review">
    		select like_serial,
    			   R.review_serial, 
    			   member_id, 
    			   (select place_name from place where place_serial = R.place_serial) place_name,  
    			   reputation, 
    			   review_title, 
-   			   review_content
-   		from review R join review_like L
-   		on R.review_serial = L.review_serial
-   		where like_id = #{_parameter}
+   			   review_content,
+			   P.local_code,
+			   P.place_code,
+			   P.place_name photo_name 			   
+   		from review R, review_like L, place P
+   		where R.review_serial = L.review_serial
+   		and like_id = #{_parameter}
+   		and P.place_serial = R.place_serial
    </select>
 	
 	
