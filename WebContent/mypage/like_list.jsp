@@ -5,25 +5,25 @@
 <section class="destinations-area my-list-area mb-20">
   <div class="row">
   
-  <c:forEach var="i" items="${list }">
+  <c:forEach var="i" items="${list }" varStatus="status">
     <div class="col-lg-4">
       <div class="single-destinations">
         <div class="thumb-custom">
-          <img src="./template/img/hotels/d2.jpg" alt="" />
+          <img src="images/${i.p.place_type}/${i.p.local_name }/${i.p.photo_name }${status.count }.jpg" alt="no-image"/>
         </div>
         <div class="details">
           <h4 class="d-flex justify-content-between">
-            <span>${i.place_name }</span>
-            <div class="star">
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star checked"></span>
+            <span>${i.p.place_name }</span>
+            <div class="star rating" data-rate="${i.p.reputation }">
+              <span class="fa fa-star"></span>
+              <span class="fa fa-star"></span>
+              <span class="fa fa-star"></span>
+              <span class="fa fa-star"></span>
               <span class="fa fa-star"></span>
             </div>
           </h4>
           <p>
-            경주, 대한민국 | 49 Reviews
+            ${i.p.local_name }, Korea | ${i.p.review_cnt} Reviews
           </p>
           <div class="trip-list-box text-center">${i.trip_name }</div>
         </div>

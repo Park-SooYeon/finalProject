@@ -6,23 +6,21 @@ public class LikeListVo {
 	int trip_list_serial;
 	int place_serial;
 	int partner_serial;
-	
 	String trip_name;
-	String place_name;
 	
+	PlaceVo p;
 	
-
-	public String getPlace_name() {
-		return place_name;
-	}
-	public void setPlace_name(String place_name) {
-		this.place_name = place_name;
-	}
 	public String getTrip_name() {
 		return trip_name;
 	}
 	public void setTrip_name(String trip_name) {
 		this.trip_name = trip_name;
+	}
+	public PlaceVo getP() {
+		return p;
+	}
+	public void setP(PlaceVo p) {
+		this.p = p;
 	}
 	public int getLike_serial() {
 		return like_serial;
@@ -54,7 +52,15 @@ public class LikeListVo {
 	public void setPartner_serial(int partner_serial) {
 		this.partner_serial = partner_serial;
 	}
-
+	
+	@Override
+	public String toString() {
+		return "LikeListVo [like_serial=" + like_serial + ", member_id=" + member_id + ", trip_list_serial="
+				+ trip_list_serial + ", place_serial=" + place_serial + ", partner_serial=" + partner_serial
+				+ ", trip_name=" + trip_name + ", p=" + p.toString() + "]";
+	}
+	
+	
 	
 
 }

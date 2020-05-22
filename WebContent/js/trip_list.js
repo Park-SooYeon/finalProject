@@ -125,3 +125,31 @@ function deleteTrip(serial){
 	});
 }
 
+function init(){
+	// 두 줄 이상 '더보기'
+	var colorbox = $(".review-box .pre-view");
+	colorbox.each(function () {
+	  $(this).outerHeight();
+	  if ($(this).outerHeight() > 21) {
+	    $(this).addClass("hidden");
+	    var btnMoreCmt = $(this).siblings(".btn-moreInfo");
+	    btnMoreCmt.show();
+	    btnMoreCmt.on("click", function () {
+	      $(this).siblings(".pre-view").removeClass("hidden");
+	      $(this).remove();
+	    });
+	  }
+	});
+
+	//별점표시하기
+	var rating = $(".rating");
+
+	rating.each(function () {
+	  var targetScore = $(this).attr("data-rate");
+	  $(this)
+	    .find("i:nth-child(-n+" + targetScore + ")")
+	    .css({ color: "#ffc107" });
+	});
+}
+
+init();

@@ -200,6 +200,16 @@ public class PlaceVo {
 	public void setRoom_cnt(int room_cnt) {
 		this.room_cnt = room_cnt;
 	}
+	@Override
+	public String toString() {
+		return "PlaceVo [place_serial=" + place_serial + ", partner_serial=" + partner_serial + ", place_code="
+				+ place_code + ", place_type=" + place_type + ", place_name=" + place_name + ", place_location="
+				+ place_location + ", latitude=" + latitude + ", longitude=" + longitude + ", grade=" + grade
+				+ ", state=" + state + ", breakfast=" + breakfast + ", wifi=" + wifi + ", parking=" + parking
+				+ ", local_code=" + local_code + ", local_name=" + local_name + ", reputation=" + reputation
+				+ ", review_cnt=" + review_cnt + ", photo_serial=" + photo_serial + ", photo_name=" + photo_name
+				+ ", place_tel=" + place_tel + ", room_serial=" + room_serial + ", room_cnt=" + room_cnt + "]";
+	}
 	
 	
 	
