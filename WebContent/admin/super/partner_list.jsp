@@ -30,24 +30,26 @@
                                        </tr>
                                    </thead>
                                    <tbody>
+                                   	<c:forEach var='i' items='${list }' varStatus="status"> <!-- 컨트롤러에서 list로한게 이리들어옴 -->
                                        <tr>
-                                           <td></td>
+                                       	 <td>${status.count }</td>
                                            <td>
                                                <div class="d-flex align-items-center">
                                                    <img class="img-xs rounded-circle" src="../../assets/images/faces/face2.jpg" alt="profile image">
                                                    <div class="wrapper pl-2">
-                                                       <p class="mb-0 text-gray">Derrick Morton</p>
+                                                       <p class="mb-0 text-gray">${i.member_id }</p>
                                                    </div>
                                                </div>
                                            </td>
-                                           <td>호텔</td>
-                                           <td>A업체</td>
+                                           <td>${i.state }</td>
+                                           <td>${i.partner_name }</td>
                                            <td>234</td>
-                                           <td>abc@domain.com</td>
+                                           <td>${i.vo.email }</td>
                                            <td>
                                                <a class="btn btn-outline-primary" href="./?inc=partner_view.jsp">View</a>
                                            </td>
                                        </tr>
+                                     </c:forEach>
                                    </tbody>
                                </table>
                            </div>

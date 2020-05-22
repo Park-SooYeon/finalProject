@@ -15,15 +15,24 @@ function member_view(mId,mName,phone,email,state,mDate){
 	$('#hidden_id').val(mId);
 }
 //partner승인요청 
-//function a_partner_view(p_name,b_number,phone,location,state){
-//	
-//	$('.partner_name').html(p_name);
-//	$('.business_number').html(b_number);
-//	$('.partner_phone').html(phone);
-//	$('.partner_location').html(location);
-//	$('.state').html(state);
-//	
-//}
+function a_partner_view(mId,p_name,b_number,phone,location,state,email){
+	$('#member_id').html(mId);
+	$('.partner_name').html(p_name);
+	$('.business_number').html(b_number);
+	$('.partner_phone').html(phone);
+	$('.partner_location').html(location);
+	$('.eamil').html(email);
+	
+	$('#p_id').val(mId);
+	$('#p_save').val(state);
+	
+	if(state==888){
+		$('#state2').html("렌트요청");
+	}else{
+		$('#state2').html("호텔요청");
+	}
+}
+
 
 //member view 수정
 let mm = {}
@@ -37,6 +46,18 @@ $('#member_save').click(function(){ //jquery는 널인지  아닌지 표시를 �
 		location.reload();
 }); 
 });
+//partner승인요청 저장
+$('#partner_save').click(function(){ //jquery는 널인지  아닌지 표시를 안해줘도 되는 편리함이 이씅ㅁ
+	let param = $('#p_form').serialize();
+	console.log(param);
+	//이렇게 유알엘을 넘기면 boardCotroller가 받음 ./board/insert.jsp를 넘기면 data로 받고 main에 뿌림. 
+	$.post("partner_save.os" ,param, function(data, stat){ //post를가지고 페이지를 넘길것이다.	 //insert가 data로 들어와서 메인으로 가서 뿌린다
+		alert(data);
+		location.reload();
+}); 
+});
+
+
 }
 mm.func();
 
