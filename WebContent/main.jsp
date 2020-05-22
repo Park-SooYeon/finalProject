@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <link rel="stylesheet" href="css/main.css">
 <!-- start banner Area -->
 <section class="banner-area relative">
@@ -183,19 +184,34 @@
 			<div class="swiper-container m-2">
 				<div class="swiper-wrapper pl-50 pr-50">
 					
-					<c:forEach var="i" begin="1" end="10">
+					<c:forEach var="i" items="${happyList }" begin="0" end="9">
 						<div class="swiper-slide">
-							<div class="p-1 heart" onclick="main.like(this)">
-								<i class="fa fa-heart-o" style="vertical-align: middle;"></i>
+							<div class="p-1 heart" onclick="main.like(this, ${i.place_serial})">
+								<c:set var = "temp_serial" value = "${i.place_serial }"/>
+								<c:choose>
+									<c:when test="${fn:contains(likeList, temp_serial ) }">
+										<i class="fa fa-heart" style="vertical-align: middle;"></i>
+									</c:when>
+									<c:otherwise>
+										<i class="fa fa-heart-o" style="vertical-align: middle;"></i>
+									</c:otherwise>
+								</c:choose>
 							</div>
-							<div class="single-destinations" onclick="main.detailMove(1)">
+							<div class="single-destinations" onclick="main.detailMove(${i.place_serial})">
 								<div class="thumb">
-									<img src="template/img/packages/d${i }.jpg" alt="no-image">
+									<img src="images/${i.place_type }/${i.local_name }/${i.photo_name }1.jpg" alt="no-image">
 								</div>
 								<div class="details p-2">
-									<h4>Holiday Sea beach Blue Ocean</h4>
-									<p>United staes of America</p>
-									<h6 class="date">위치</h6>
+									<h4>${i.place_name }</h4>
+									<p class="rating" data-rate="${i.reputation }">
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i> 
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+									 ${i.review_cnt } 건의 리뷰
+									</p>
+									<h6 class="date">${i.place_location }</h6>
 								</div>
 							</div>
 						</div>
@@ -224,19 +240,34 @@
 			<div class="swiper-container m-2">
 				<div class="swiper-wrapper pl-50 pr-50">
 					
-					<c:forEach var="i" begin="1" end="10">
+					<c:forEach var="i" items="${foodList }" begin="0" end="9">
 						<div class="swiper-slide">
-							<div class="p-1 heart" onclick="main.like(this)">
-								<i class="fa fa-heart-o" style="vertical-align: middle;"></i>
+							<div class="p-1 heart" onclick="main.like(this, ${i.place_serial})">
+								<c:set var = "temp_serial" value = "${i.place_serial }"/>
+								<c:choose>
+									<c:when test="${fn:contains(likeList, temp_serial ) }">
+										<i class="fa fa-heart" style="vertical-align: middle;"></i>
+									</c:when>
+									<c:otherwise>
+										<i class="fa fa-heart-o" style="vertical-align: middle;"></i>
+									</c:otherwise>
+								</c:choose>
 							</div>
-							<div class="single-destinations" onclick="main.detailMove(1)">
+							<div class="single-destinations" onclick="main.detailMove(${i.place_serial})">
 								<div class="thumb">
-									<img src="template/img/packages/d${i }.jpg" alt="no-image">
+									<img src="images/${i.place_type }/${i.local_name }/${i.photo_name }1.jpg" alt="no-image">
 								</div>
 								<div class="details p-2">
-									<h4>Holiday Sea beach Blue Ocean</h4>
-									<p>United staes of America</p>
-									<h6 class="date">위치</h6>
+									<h4>${i.place_name }</h4>
+									<p class="rating" data-rate="${i.reputation }">
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i> 
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+									 ${i.review_cnt } 건의 리뷰
+									</p>
+									<h6 class="date">${i.place_location }</h6>
 								</div>
 							</div>
 						</div>
@@ -265,19 +296,34 @@
 			<div class="swiper-container m-2">
 				<div class="swiper-wrapper pl-50 pr-50">
 					
-					<c:forEach var="i" begin="1" end="10">
+					<c:forEach var="i" items="${festivalList }" begin="0" end="9">
 						<div class="swiper-slide">
-							<div class="p-1 heart" onclick="main.like(this)">
-								<i class="fa fa-heart-o" style="vertical-align: middle;"></i>
+							<div class="p-1 heart" onclick="main.like(this, ${i.place_serial})">
+								<c:set var = "temp_serial" value = "${i.place_serial }"/>
+								<c:choose>
+									<c:when test="${fn:contains(likeList, temp_serial ) }">
+										<i class="fa fa-heart" style="vertical-align: middle;"></i>
+									</c:when>
+									<c:otherwise>
+										<i class="fa fa-heart-o" style="vertical-align: middle;"></i>
+									</c:otherwise>
+								</c:choose>
 							</div>
-							<div class="single-destinations" onclick="main.detailMove(1)">
+							<div class="single-destinations" onclick="main.detailMove(${i.place_serial})">
 								<div class="thumb">
-									<img src="template/img/packages/d${i }.jpg" alt="no-image">
+									<img src="images/${i.place_type }/${i.local_name }/${i.photo_name }1.jpg" alt="no-image">
 								</div>
 								<div class="details p-2">
-									<h4>Holiday Sea beach Blue Ocean</h4>
-									<p>United staes of America</p>
-									<h6 class="date">위치</h6>
+									<h4>${i.place_name }</h4>
+									<p class="rating" data-rate="${i.reputation }">
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i> 
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+									 ${i.review_cnt } 건의 리뷰
+									</p>
+									<h6 class="date">${i.place_location }</h6>
 								</div>
 							</div>
 						</div>

@@ -21,10 +21,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import bean.LikeListVo;
 import bean.PlaceVo;
+import bean.TripListVo;
 import dao.SubMainDao;
 import mypage.MyPageDao;
-import mypage_mybatis.TripListVo;
 import vo.MainVo;
 
 @Controller
@@ -32,44 +33,69 @@ public class SubMainController {
 	
 	// 지역 메인으로 이동
 	@GetMapping("placeMain.sb")
-	public String placeMain(@RequestParam int local, Model model) {
-		
+	public String placeMain(@RequestParam int local, HttpServletRequest req, Model model) {
 		List<PlaceVo> happyList = null;
 		List<PlaceVo> foodList = null;
 		List<PlaceVo> festivalList = null;
 		List<TripListVo> tripList = null;
-		// 좋아요한 여행지 번호 가져오기
+		List<Integer> likeList = null;
+		
 		SubMainDao dao = new SubMainDao();
+
+		// session에서 로그인 된 아이디 가져오기
+		HttpSession session = req.getSession();
+		String id = (String) session.getAttribute("member_id");
+		System.out.println(id);
+		
+		id= "test";
+		
+		if(id != null) {
+			tripList = dao.callTripList();
+			likeList = dao.selectLike(id);
+		}		
 		
 		happyList = dao.happyMenuSelect(local);
 		foodList = dao.foodMenuSelect(local);
 		festivalList = dao.festivalMenuSelect(local);
-		tripList = dao.callTripList();
 		
 		model.addAttribute("happyList", happyList);
 		model.addAttribute("foodList", foodList);
 		model.addAttribute("festivalList", festivalList);
 		model.addAttribute("tripList", tripList);
+		model.addAttribute("likeList", likeList);
 		
 		return "placeMain";
 	}
 	
 	// 지역 상관 없는 메인으로 이동
 	@GetMapping("menuMain.sb")
-	public String menuMain(@RequestParam int menu, Model model) {
+	public String menuMain(@RequestParam int menu, HttpServletRequest req, Model model) {
 		
 		List<PlaceVo> starList = null;
 		List<PlaceVo> reviewList = null;
 		List<TripListVo> tripList = null;
+		List<Integer> likeList = null;
+		
 		SubMainDao dao = new SubMainDao();
+
+		// session에서 로그인 된 아이디 가져오기
+		HttpSession session = req.getSession();
+		String id = (String) session.getAttribute("member_id");
+		System.out.println(id);
+		
+		if(id != null) {
+			tripList = dao.callTripList();
+			likeList = dao.selectLike(id);
+		}
 		
 		starList = dao.highStarsSelect(menu);
 		reviewList = dao.manyReviewSelect(menu);
-		tripList = dao.callTripList();
 		
 		model.addAttribute("starList", starList);
 		model.addAttribute("reviewList", reviewList);
 		model.addAttribute("tripList", tripList);
+		model.addAttribute("likeList", likeList);
+		
 		return "menuMain";
 	}
 	
@@ -130,12 +156,13 @@ public class SubMainController {
 		return trip_serial;
 	}
 	
-	// 여행지 추가하기
+	// 관심리스트 추가하기
 	@ResponseBody
 	@PostMapping("insertLikeTrip.sb")
-	public String insertLikeTrip(@RequestParam("trip_serial") String trip_serial, HttpServletRequest req) {
+	public String insertLikeTrip(@RequestParam("trip_serial") int trip_serial, @RequestParam("place_serial") int place_serial, HttpServletRequest req) {
 		System.out.println(trip_serial);
-		MyPageDao dao = new MyPageDao();
+		System.out.println(place_serial);
+		SubMainDao dao = new SubMainDao();
 		
 		// session에서 로그인 된 아이디 가져오기
 		HttpSession session = req.getSession();
@@ -143,14 +170,43 @@ public class SubMainController {
 		System.out.println(id);
 		
 		// 좋아요한 여행지 정보 setting
-		// like_list table에 추가
+		LikeListVo vo = new LikeListVo();
+		vo.setMember_id("test");
+		vo.setPlace_serial(place_serial);
+		vo.setTrip_list_serial(trip_serial);
+		
+		// like_list table에 추가하기
+		dao.likeInsert(vo);
+		
+		return null;
+	}
+	
+	// 관심리스트 삭제하기
+	@ResponseBody
+	@PostMapping("deleteLikeTrip.sb")
+	public String deleteLikeTrip(@RequestParam("place_serial") int place_serial, HttpServletRequest req) {
+		System.out.println(place_serial);
+		SubMainDao dao = new SubMainDao();
+		
+		// session에서 로그인 된 아이디 가져오기
+		HttpSession session = req.getSession();
+		String id = (String) session.getAttribute("member_id");
+		System.out.println(id);
+		
+		// 좋아요 해제한 여행지 정보 setting
+		LikeListVo vo = new LikeListVo();
+		vo.setMember_id("test");
+		vo.setPlace_serial(place_serial);
+		
+		// like_list table에 추가하기
+		dao.likeDelete(vo);
 		
 		return null;
 	}
 	
 	@ResponseBody
 	@PostMapping("restApiTest.sb")
-	public String restApiTest() {
+	public StringBuilder restApiTest() {
 		StringBuilder sb = null;
 		
 		try {
@@ -186,7 +242,7 @@ public class SubMainController {
 			System.out.println("rest api 오류");
 			ex.printStackTrace();
 		}
-		return sb.toString();
+		return sb;
 	}
 	
 }

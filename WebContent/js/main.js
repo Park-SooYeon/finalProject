@@ -7,27 +7,33 @@ let main = {};
 /* 좋아요 하트와 관련된 함수들 */
 var nowEle; // 여행 추가시 좋아요가 선택될 요소를 저장할 변수
 var now_trip_serial; // 여행 추가시 선택된 여행의 serial 번호를 저장할 변수
+var now_place_serial; // 현재 선택한 관광지의 serial 번호를 저장할 변수
 
 // 좋아요 하트 선택시 작동
-main.like = function (ele) {
+main.like = function (ele, place_serial) {
   let heart = ele.childNodes[1];
   nowEle = heart;
+  now_place_serial = place_serial;
+  
   if (heart.classList.contains("fa-heart-o")) {
     // 여행 폴더 선택할 모달창 열기
     heart.setAttribute("data-toggle", "modal");
     heart.setAttribute("data-target", "#exampleModalScrollable");
   } else if (heart.classList.contains("fa-heart")) {
-/*	$.ajax({
-		url : "like_insert.sb",
-		data : {"trip_serial" : now_trip_serial},
+	  alert(place_serial)
+	$.ajax({
+		url : "deleteLikeTrip.sb",
+		data : {"place_serial" : place_serial},
+		method : "post",
 		success : function() {
+			alert("성공!");
 			// 좋아요 해제
 		    heart.classList.remove("fa-heart");
 		    heart.classList.add("fa-heart-o");
 		    heart.removeAttribute("data-toggle", "modal");
 		    heart.removeAttribute("data-target", "#exampleModalScrollable");
 		}
-	});*/
+	});
 	heart.classList.remove("fa-heart");
 	heart.classList.add("fa-heart-o");
 	heart.removeAttribute("data-toggle", "modal");
@@ -78,19 +84,23 @@ $('#btnLikeInsert').on("click", function() {
 	let check_trip = document.getElementsByClassName("folderSelect");
 	if(check_trip.length == 1) { // 체크된 여행 폴더가 있으면 여행지 저장
 		alert(now_trip_serial);
-/*		$.ajax({
-			url : "like_insert.sb",
-			data : {"trip_serial" : now_trip_serial},
+		alert(now_place_serial);
+		$.ajax({
+			url : "insertLikeTrip.sb",
+			method : "post",
+			data : {
+				"trip_serial" : now_trip_serial,
+				"place_serial" : now_place_serial
+			},
 			success : function() {
 				// 추가버튼 클릭 후, 여행 정보가 저장되면 좋아요가 선택됨
-				
+				nowEle.classList.remove("fa-heart-o");
+				nowEle.classList.add("fa-heart");
+				alert("여행지 저장");
+				main.removeSelect();
+				$("#exampleModalScrollable").modal("hide");
 			}
-		});*/
-		nowEle.classList.remove("fa-heart-o");
-		nowEle.classList.add("fa-heart");
-		alert("여행지 저장");
-		main.removeSelect();
-		$("#exampleModalScrollable").modal("hide");
+		});	
 	} else { // 없으면 선택된 여행지가 없다고 알려줌
 		alert("저장할 여행 폴더를 선택해주세요.");
 	}
