@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import mypage_mybatis.TripListVo;
+import bean.LikeListVo;
+import bean.ReviewVo;
+import bean.TripListVo;
 
 @Controller
 public class MyPageController {
@@ -159,19 +161,26 @@ public class MyPageController {
 		return msg;
 	}
 	
-	@RequestMapping( value = "repl.mp", method = {RequestMethod.POST})
-	public ModelAndView repl() {
+	@RequestMapping( value = "likeList.mp", method = {RequestMethod.GET, RequestMethod.POST})
+	public ModelAndView selectLike() {
 		mv = new ModelAndView();
-		mv.setViewName("repl");
+		String member_id = "세왕";
+		// 추후 session으로 값 받아와서 id에 넣어주기
+		List<LikeListVo> list = dao.selectLike(member_id);
+		
+		mv.setViewName("like_list");
+		mv.addObject("list", list);
 		return mv;
 	}
 	
-	@RequestMapping( value = "replR.mp", method = {RequestMethod.POST})
-	public ModelAndView replR(HttpServletRequest req, HttpServletResponse resp) {
-		
+	@RequestMapping( value = "likeReview.mp", method = {RequestMethod.GET, RequestMethod.POST})
+	public ModelAndView selectReview(HttpServletRequest req, HttpServletResponse resp) {
 		mv = new ModelAndView();
-		String msg = "";
+		String member_id = "세왕";
+		List<ReviewVo> list = dao.selectReview(member_id);
 		
+		mv.setViewName("review_list");
+		mv.addObject("list", list);
 		return mv;
 	}
 	

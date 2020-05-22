@@ -2,23 +2,13 @@ const TRIP_CAL = ".trip-cal-input";
 const TRIP_DAY = ".trip-day-input";
 let fullDate = "";
 
-
 function load(){
 	// 첫화면에 모든 여행리스트 조회
 	$("#list-here").load("mytrip.mp");
 	
-//	$.ajax({
-//		url  	 : 'mytrip.mp',
-//		type 	 : 'get',
-//		data 	 : param,
-//		dataType : 'html',
-//		success  : function(data){
-//			$('#list-here').html(data);
-//		}
-//	});
-	
 }
-	
+load();
+
 	//수정 모달창이 켜졌을때
 	$(document).on("show.bs.modal", "#mp-modifyTripModal", function(event){
 		
@@ -87,31 +77,51 @@ function load(){
 			});
 		})
 	
-  $(".button-container .btn-page").on('click',function(){
-	  $this = $(this).data("page");
-	  $("#list-here").load("mypage/"+$this+".jsp");
-  })
+	// 여행(공개, 비공개)보기 토글
+  $(document).on("click", "#mpPrivacyFilter span", function(e){
+	  console.log(e);
+	  console.log(e.target.dataset.index);
+	  const SELECT = e.target.dataset.index;//2 : 전체, 1 : 비공개, 0 : 공개
+	  const ELEMENTS = document.querySelectorAll(".mp-trip");
 
-load();
+	  for(const elem of ELEMENTS){
+		  if(elem.dataset.flag==SELECT){
+			  elem.style.display = "none"; // 다른 element는 숨김
+		  }else{
+			  elem.style.display = "block";  
+		  }
+	  }
+  });
+	
+	// 관심리스트 전체 보기
+	$("#mpLikeAll").on("click", function(){
+		$("#list-here").load("likeList.mp");
+	})
+	
+	// 추천한 리뷰 전체 보기
+	$("#mpLikeRev").on("click", function(){
+		$("#list-here").load("likeReview.mp");
+	})
+	
 
-
+// 일수선택, 날짜선택 토글
 function inputToggle(a, b){
 	$(a).show();
 	$(a).find("input").attr("disabled", false);
-	
 	$(b).hide();
+	
+	// '일수선택' -> '날짜선택' 해도 날짜에 값 남아있도록 
+	$("#datePickInput2").val(fullDate);
 	$(b).find("input").attr("disabled", true);
 	$(".datepicker-here").datepicker();
 }
 
+
 function deleteTrip(serial){
-	
 	// 여행 삭제 버튼을 클릭했을 때 form ajax로 submit
 	$.get("deleteTrip.mp?serial="+serial, function(data, state) {
 		alert(data);
 		location.reload();
 	});
 }
-
-
 

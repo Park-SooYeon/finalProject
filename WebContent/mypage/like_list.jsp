@@ -5,7 +5,7 @@
 <section class="destinations-area my-list-area mb-20">
   <div class="row">
   
-  <c:forEach begin="1" end="6">
+  <c:forEach var="i" items="${list }">
     <div class="col-lg-4">
       <div class="single-destinations">
         <div class="thumb-custom">
@@ -13,7 +13,7 @@
         </div>
         <div class="details">
           <h4 class="d-flex justify-content-between">
-            <span>장소명</span>
+            <span>${i.place_name }</span>
             <div class="star">
               <span class="fa fa-star checked"></span>
               <span class="fa fa-star checked"></span>
@@ -25,7 +25,7 @@
           <p>
             경주, 대한민국 | 49 Reviews
           </p>
-          <div class="trip-list-box text-center">포함되어있는 리스트명</div>
+          <div class="trip-list-box text-center">${i.trip_name }</div>
         </div>
       </div>
     </div>

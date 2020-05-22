@@ -6,7 +6,9 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 
 import bean.Factory;
-import mypage_mybatis.TripListVo;
+import bean.LikeListVo;
+import bean.ReviewVo;
+import bean.TripListVo;
 
 public class MyPageDao {
 // 서블릿과 BoardMybatis를 연결해주는 역할
@@ -83,6 +85,26 @@ public class MyPageDao {
 		}finally {
 			return msg;
 		}
+	}
+	
+	public List<LikeListVo> selectLike(String member_id) {
+		List<LikeListVo> list = new ArrayList<LikeListVo>();
+		try {
+			list = sqlSession.selectList("mypage.select_like", member_id);
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		}
+		return list; 
+	}
+	
+	public List<ReviewVo> selectReview(String member_id) {
+		List<ReviewVo> list = new ArrayList<ReviewVo>();
+		try {
+			list = sqlSession.selectList("mypage.select_review", member_id);
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		}
+		return list; 
 	}
 	
 }
