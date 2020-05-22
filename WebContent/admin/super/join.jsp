@@ -35,10 +35,10 @@
                                             <td>${status.count }</td>
                                             <td>${i.member_id }</td>
                                             <c:if test='${i.state==888 }'>
-                                            	<td>호텔</td>
+                                            	<td>렌트 파트너 신청</td>
 											</c:if>
 											<c:if test='${i.state==999 }'>
-                                            	<td>렌트</td>
+                                            	<td>호텔 파트너 신청</td>
 											</c:if>
                                             <td>${i.partner_name }</td>
                                             <td>${i.business_number }</td>
@@ -80,7 +80,7 @@
                         </div>
                         <small class="time d-none d-sm-block ml-auto ">2018.02.05 요청됨</small>
                     </div>
-                    <form class="" name="usrInfoFrm">
+                    <form class="" name="usrInfoFrm" id='p_form'>
                         <div class="row">
                            <div class="col-md-6">
                                 <div class="form-group">
@@ -91,7 +91,12 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="">상태</label>
+                                      
+                                       <p id='state2'></p>
+                                    
+                                    <!-- 
                                     <p><label class="badge font-weight-bold badge-inverse-warning">승인대기</label></p>
+                                     -->
                                 </div>
                             </div>
                         </div>
@@ -131,19 +136,18 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="form-group">
-                                    <label>개선요청사항</label>
-                                    <p id="outTxt" class="mb-0">-</p>
-                                </div>
-                            </div>
-                        </div>
+                    <input type='hidden'  id='p_id' name='p_id'>
+		            <input type='hidden'  id='p_save' name='p_save'> 
                     </form>
                 </div> 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" onclick="showSwal('custom-html')">거절</button>
+					<button type="button" class="btn btn-success" id='partner_save'>승인</button>
+                    
+                    
+                    <!-- 
                     <button type="button" class="btn btn-success" onclick="showSwal('success-message')">승인</button>
+                     -->
                 </div>
             </div>
         </div>

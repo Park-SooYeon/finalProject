@@ -36,13 +36,24 @@
       where member_id = #{member_id} 
    </update>
     
-    <!-- 파트너조회 -->
+    <!--파트너 승인요청 조회 --> 
     <select id='partner_approval' resultMap="a_partner">
    select M.member_id, M.email, P.partner_serial,p.business_number,p.partner_name,p.partner_phone,p.state,p.partner_location
 	from membership M  join partner P 
 	on M.member_id= P.member_id
-
+	where P.state = 888 or P.state = 999 <!-- 파트너관리조회할때는 8 또는 9로  -->
     </select>
+    
+    <!-- 파트너승인요청 상태값변경 -->
+	<update id="p_save" parameterType="bean.partnerVo">
+      <if test='state == 888'>
+      	 update partner set state = 8 
+      </if>
+ 	  <if test='state == 999'>
+      	 update partner set state = 9 
+      </if>
+      	where member_id = #{member_id} 
+   </update>
     
     
 </mapper>

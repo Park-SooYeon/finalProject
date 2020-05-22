@@ -84,8 +84,19 @@ public class AdSuperController {
 		}
 		return mv;
 	}
-	
-	
+	//승인관리-파트너가입승인 수정(저장)
+	@ResponseBody 
+	@RequestMapping( value ="/admin/super/partner_save.os", method= {RequestMethod.GET, RequestMethod.POST},produces = "text/html;charset=utf8")
+	public String partner_save(HttpServletRequest req, HttpServletResponse resp ) {
+		partnerVo vo = new partnerVo();
+		String id = req.getParameter("p_id"); //jsp에 있는 폼을 js에서 여기로 보낸다.. 그걸 받아서 브이오에 담아준다..
+		int status =Integer.parseInt(req.getParameter("p_save"));
+		System.out.println("파트너컨트롤러"+id+status);		
+		vo.setMember_id(id);
+		vo.setState(status);
+		String msg=dao.partner_modify(vo);
+		return msg;
+	}
 	
 	
 }

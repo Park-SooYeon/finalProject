@@ -10,7 +10,6 @@ import org.apache.ibatis.session.SqlSession;
 import bean.Factory;
 import bean.membershipVo;
 import bean.partnerVo;
-import mypage_mybatis.TripListVo;
 
 public class AdSuperDao {
 // 서블릿과 BoardMybatis를 연결해주는 역할
@@ -66,7 +65,27 @@ public class AdSuperDao {
 			return list;
 		}
 	}
-
+	//파트너승인요청수정
+		public String partner_modify(partnerVo vo) {
+			String msg="";
+			try {
+				int count = sqlSession.update("admin.p_save",vo);//mybatis에 vo를 보내고 받아온걸 count에
+				System.out.println(count);
+				if(count >0) {
+					msg="성공하셨습니다!!";
+					sqlSession.commit();
+					
+				}else {
+					msg="수정실패했어요!!";
+					sqlSession.rollback();
+				}
+			}catch(Exception ex) {
+				ex.printStackTrace();
+			}finally {
+				
+				return msg;
+			}
+		}
 
 
 }
