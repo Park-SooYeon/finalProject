@@ -20,6 +20,19 @@ filter.check = function(ele) {
 	if(ele.checked == true) {
 		// 필터 요소 추가
 		$('#filter').append('<button onclick="filter.remove(this)" id="' + eleId + '" class="genric-btn info-border radius">'+val+'<i class="fa fa-times pl-2"></i></button>');
+		
+		$.ajax({
+			url : "restApiTest.sb",
+			method : "post",
+			dataType : "json",
+			success : function(data) {
+				alert("성공!");
+				console.log(data);
+			},
+			error : function(err) {
+				alert("실패!");
+			}
+		});
 	} else {
 		// 필터 요소 제거
 		let btnId = $("button[id='" + eleId + "']"); // id가 같은 필터 요소 가져오기
