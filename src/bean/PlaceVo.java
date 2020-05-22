@@ -28,6 +28,10 @@ public class PlaceVo {
 	int photo_serial;
 	String photo_name;
 	
+	String place_tel;
+	int room_serial;
+	int room_cnt; // 보유객실 수 
+	
 	
 	public int getPlace_serial() {
 		return place_serial;
@@ -176,5 +180,27 @@ public class PlaceVo {
 	public String getPlace_type() {
 		return place_type;
 	}
+	
+	
+	public String getPlace_tel() {
+		return place_tel;
+	}
+	public void setPlace_tel(String place_tel) {
+		this.place_tel = place_tel;
+	}
+	public int getRoom_serial() {
+		return room_serial;
+	}
+	public void setRoom_serial(int room_serial) {
+		this.room_serial = room_serial;
+	}
+	public int getRoom_cnt() {
+		return room_cnt;
+	}
+	public void setRoom_cnt(int room_cnt) {
+		this.room_cnt = room_cnt;
+	}
+	
+	
 	
 }

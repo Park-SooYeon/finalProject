@@ -179,4 +179,5 @@ div.dt-buttons {
 	09. logo
 */
 
-.navbar.default-layout .navbar-brand-wrapper .navbar-brand img {width: 140px;}
+.navbar.default-layout .navbar-brand-wrapper .navbar-brand.brand-logo img {width: 140px;}
+
