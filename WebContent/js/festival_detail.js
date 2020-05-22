@@ -1,4 +1,60 @@
-// 리뷰 두줄이상 넘어가면 더보기
+//place_serial 값 저장
+var place_serial = document.getElementById("place_serial").value;
+
+//쿠키에 place_serial 저장
+function setCookie(place_serial, value, exp){
+	var date = new Date();
+	date.setTime(date.getTime() + exp*24*60*60*1000);
+	document.cookie = place_serial + '=' + value + ';expires=' + date.toUTCString() + ';path=/';	
+};
+//setCookie(변수이름, 변수값, 기간);
+setCookie("place_serial", place_serial, 1);
+
+//쿠키추가
+function addCookie(id){
+	var items = getCookie('place_serial'); //이미 저장된 값을 쿠키에서 가져오기
+	var maxItemNum = 5; //최대 저장 가능한 아이템 개수
+	var expire = 7; //쿠키값을 저장할 기간
+	
+	if(items){
+		var itemArray = items.split(',');
+		if(itemArray.indexOf(id) != -1){
+			//이미 존재하는 경우 종료
+			console.log('Already exists.');
+		}
+		else{
+			//새로운 값 저장 및 최대 개수 유지하기
+			itemArray.unshift(id);
+			if(itemArray.length > maxItemNum)itemArray.length=5;
+			items=itemArray.join(',');
+			setCookie('place_serial', items, expire);
+		}
+	}else{
+		//신규 id rkqt wjwkdgkrl
+		setCookie('place_serial', id, expire);
+	}	
+	
+	
+}
+
+
+//쿠키 가저오기
+var getCookie = function(place_serial){
+	var value = document.cookie.match('(^|;) ?' + place_serial + '=([^;]*)(;|$)');	
+	return value? value[2] : null;
+}
+// getCookie(변수이름)
+var is_expend = getCookie("place_serial");
+
+//쿠키(Cookie) 삭제하기
+var deleteCookie = function(place_serial){
+	document.cookie = place_serial + '=; expires=Thu, 01 Jan 1999 00:00:10 GMT;';
+}
+deleteCookie('place_serial');
+
+
+
+//리뷰 두줄이상 넘어가면 더보기
 
 function init() {
   var colorbox = $(".review-box .pre-view");
@@ -82,6 +138,40 @@ function init() {
     alert("성공적으로 접수되었습니다.");
   });
   
+  $("#asd").click(function () {	  
+	  report();	  
+  });
 
 }
+function report(){
+	//세션에서 아이디값 가저오기
+	var member_id = sessionStorage.getItem("member_id");
+	
+	//name이 같은 체크박스의 value값 받아오기
+	var radioValues = [];
+	$("input[name='jb-radio']:checked").each(function(i){
+		radioValues.push($(this).val());
+	});
+	
+	//사용자 ID(문자열)와 체크박스 값들(배열)을  name/value 형태로 담는다.
+	var allDate = { "userId": userId, "checkArray": radioValues };
+	
+	$.ajax({
+		url:"goUrl.do",
+		type:'GET',
+		data:allData,
+		success:function(data){
+			alert("신고가 정상적으로 접수되었습니다.");
+			window.opener.location.reload();
+			self.close();
+		},
+		error:function(jqXHR, textStatus, errorThrown){
+			alert("관리자에게 문의하여 주세요. \n" + textStatus + " : " + errorThrown);
+			self.close();
+		}
+		
+	});
+	
+}
+
 init();
