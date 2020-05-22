@@ -18,10 +18,9 @@
   <%@include file="food_body.jsp" %>
 </div>
 <!-- script -->
-<script src="js/food_filter.js"></script>
+<script src="js/filter.js"></script>
 <script src="js/food_map.js"></script>
 <script src="js/food.js"></script>
 
-<script>food_filter.func()</script>
 </body>
 </html>

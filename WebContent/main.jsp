@@ -301,9 +301,6 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<h5 class="modal-title" id="exampleModalScrollableTitle">여행 목록에 추가</h5>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
 			</div>
 			<div class="modal-body" id="modal-body">
 				<div class="folder p-2" id="folderInsert" onclick="main.insertFolder(this)">
