@@ -18,7 +18,7 @@
 </select>
  
  
- <select id='login' parameterType="bean.membershipVo"  resultType="Integer">
+ <select id=" login" parameterType="bean.membershipVo"  resultType="Integer">
                      
    select case
        when count(member_id)>0 then 1
@@ -28,11 +28,26 @@
    where member_id = #{member_id} and pwd = #{pwd} 
   </select>
 
- <select id='loginNickName' parameterType="String"  resultType="String">
+ <select id="loginNickName" parameterType="String"  resultType="String">
                      
    select nickName
    from membership 
    where member_id = #{member_id} 
 </select>
+
+<select id = "defaultNickName"   resultType="Integer">
+
+   select count(member_id)+1 from membership
+
+</select>
+
+
+<insert id="join" parameterType='bean.membershipVo'>
+insert into membership(member_id, email, member_name, mDate, state,nickName, pwd, phone)
+values(#{member_id}, #{email},#{member_name},sysdate,1,#{nickName},#{pwd},#{phone})
+
+</insert>
+
+
 
 </mapper>

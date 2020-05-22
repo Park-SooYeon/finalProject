@@ -13,6 +13,30 @@ public class membershipVo {
    String member_photo;
    String nickName;
    String phone;
+   
+   
+   public membershipVo() {
+	   
+   }
+   
+   public membershipVo(String member_id,String email,String pwd , 
+		   String member_name,Date mDate, int state,String nickName,String phone) {
+	
+	   this.member_id=member_id;
+	   this.email=email;
+	   this.pwd = pwd;
+	   this.member_name =member_name;
+	   this.mDate=mDate;
+	   this.state=state;
+	   this.nickName=nickName;
+	   this.phone=phone;
+	
+	   
+	   
+	   
+   }
+   
+   
   
 public String getPhone() {
 	return phone;

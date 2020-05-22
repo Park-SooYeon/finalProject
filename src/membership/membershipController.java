@@ -27,7 +27,66 @@ public membershipController(membershipDao dao){
     @RequestMapping( value ="memberJoin.ms", method= {RequestMethod.GET, RequestMethod.POST})
     public ModelAndView memberJoin(HttpServletRequest req) {
         mv = new ModelAndView();
-        mv.setViewName("memberJoin");
+        
+        String msg ="";
+        
+        membershipVo vo = new membershipVo();
+        
+        String member_id = req.getParameter("member_id");
+        String pwd = req.getParameter("pwd");
+        String member_name=req.getParameter("member_name");
+        String phone = req.getParameter("phone");
+        String email = req.getParameter("email");
+        String nickName = dao.defaultNickName();
+        
+        		
+        
+        
+        vo.setMember_id(member_id);
+          System.out.println("member_id " +vo.getMember_id());
+        vo.setPwd(pwd);
+        vo.setMember_name(member_name);
+        vo.setPhone(phone);
+        vo.setEmail(email);
+           System.out.println("email :  "+ vo.getEmail());
+        vo.setNickName(nickName);
+        
+        
+       
+        
+       int result = dao.memberJoin(vo);
+        
+     
+        
+        if(result == 2 ) {
+        	
+        	  HttpSession session = req.getSession();
+       	     session.setAttribute("member_id", member_id);
+       	  
+       	   
+       	 
+  
+       	   System.out.println("닉네임 : "+vo.getNickName());
+       	   
+       	   session.setAttribute("nickName", vo.getNickName());
+    
+       	   msg ="회원가입이 완료되었습니다!";
+    	
+       	   mv.addObject("msg",msg);
+       	      mv.setViewName("GoIndex");
+        	
+        	
+        }else {
+        	
+
+        	   msg ="회원가입 중 오류가 발생했습니다!";
+        	      mv.addObject("msg",msg);
+        	
+        	
+        }
+		
+ 
+        
         return mv;
     }
 
@@ -40,7 +99,15 @@ public membershipController(membershipDao dao){
     }
 
     
-    
+
+    @RequestMapping( value ="idCheck.ms", method= {RequestMethod.GET, RequestMethod.POST})
+    public ModelAndView idCheck(HttpServletRequest req) {
+        mv = new ModelAndView();
+        
+        
+        return mv;
+    }
+
     
     @RequestMapping( value ="logout.ms", method= {RequestMethod.GET, RequestMethod.POST})
     public ModelAndView logout(HttpServletRequest req) {
@@ -95,7 +162,7 @@ public membershipController(membershipDao dao){
         	   
         	   session.setAttribute("nickName", vo.getNickName());
         	   
-        	      mv.setViewName("loginAction");
+        	      mv.setViewName("GoIndex");
         	   
         	   
         	   

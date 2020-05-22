@@ -3,8 +3,6 @@ package membership;
 import bean.Factory;
 import bean.membershipVo;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -66,6 +64,72 @@ public class membershipDao {
 	}
 	
 	
+	
+	public int memberJoin(membershipVo vo) {
+		int r=2;
+		int result=0;
+		try {
+			
+			
+			result=sqlSession.insert("ms.join",vo);
+			if (result < 1) {// 회원가입 실패!!!!!!
+
+				throw new Exception("회원 저장 중 오류 발생했다요~~!");
+			    
+			}
+			
+			sqlSession.commit();
+		}catch(Exception ex) {
+			ex.printStackTrace();
+			r=3;
+			sqlSession.rollback();
+			
+		}finally {
+
+		return r;
+		
+		}
+	}
+	
+	
+	public String defaultNickName() {
+		String dn ="";
+		int countmId=0;
+		       
+		countmId =sqlSession.selectOne("ms.defaultNickName");
+		
+		
+		dn="travelista"+"-"+"#"+Integer.toString(countmId);
+		System.out.println(dn);
+		
+		
+		return dn;
+		
+		
+	}
+	
+	
+	public int idCheck(String member_id) {
+		int r =0;
+		boolean b = true;
+		try {
+			b = sqlSession.selectOne("ms.loginCheck", vo);
+			if(b) { //id 중복
+				r=1;
+				 
+			}else {//id 노중복
+				
+				r=0;
+			}
+
+		}catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			
+		}
+		return r;
+		
+	}
 	
 
 }
