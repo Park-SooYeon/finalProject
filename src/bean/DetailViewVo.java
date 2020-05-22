@@ -3,7 +3,7 @@ package bean;
 public class DetailViewVo {
 	int place_serial;
 	int partner_serial;
-	int place_code;
+	int place_code; //0 즐길거리(문화시설), 1 즐길거리(관광지), 2 음식점, 3 축제, 4 호텔
 	String place_name;
 	String place_location;
 	int latitude;
@@ -13,6 +13,16 @@ public class DetailViewVo {
 	int breakfast;
 	int wifi;
 	int parking;
+	
+	int avg_repu; //총점 평균
+	
+	int avg_serv; // 서비스점수 평균
+	int avg_acces; // 접근성점수 평균
+	int avg_price; // 가격점수 평균
+	int avg_scale; // 규모점수 평균
+	int avg_food; // 음식점수 평균
+	int cnt_review; //총 리뷰갯수
+	
 	
 	int photo_serial;
 	String photo_name;
@@ -90,6 +100,52 @@ public class DetailViewVo {
 	public void setParking(int parking) {
 		this.parking = parking;
 	}
+	
+	
+	public int getAvg_repu() {
+		return avg_repu;
+	}
+	public void setAvg_repu(int avg_repu) {
+		this.avg_repu = avg_repu;
+	}
+	public int getAvg_serv() {
+		return avg_serv;
+	}
+	public void setAvg_serv(int avg_serv) {
+		this.avg_serv = avg_serv;
+	}
+	public int getAvg_acces() {
+		return avg_acces;
+	}
+	public void setAvg_acces(int avg_acces) {
+		this.avg_acces = avg_acces;
+	}
+	public int getAvg_price() {
+		return avg_price;
+	}
+	public void setAvg_price(int avg_price) {
+		this.avg_price = avg_price;
+	}
+	public int getAvg_scale() {
+		return avg_scale;
+	}
+	public void setAvg_scale(int avg_scale) {
+		this.avg_scale = avg_scale;
+	}
+	public int getAvg_food() {
+		return avg_food;
+	}
+	public void setAvg_food(int avg_food) {
+		this.avg_food = avg_food;
+	}	
+	public int getCnt_review() {
+		return cnt_review;
+	}
+	public void setCnt_review(int cnt_review) {
+		this.cnt_review = cnt_review;
+	}
+	
+	
 	public int getPhoto_serial() {
 		return photo_serial;
 	}
