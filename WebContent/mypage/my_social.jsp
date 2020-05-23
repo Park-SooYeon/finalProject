@@ -38,7 +38,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
           <div class="mp-modify-area">
           <div>
           <h2 class="d-inline-block" id="pro-nick" data-toggle="modal"
-            data-target="#mp-modifyModal">JuHyeon An&nbsp;</h2>
+            data-target="#mp-modifyModal">${vo.nickname }&nbsp;</h2>
           <a
           	href="#"
             id="mp-btnModifyProfile"
@@ -51,7 +51,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
           </a>
           <button class="pull-right" type="button" id="mp-btnFollow">+ Follow</button>
           </div>
-          <div id="pro-id"><i class="fa fa-at" aria-hidden="true"></i> IT_Traveler</div>
+          <div id="pro-id"><i class="fa fa-at" aria-hidden="true"></i> ${vo.member_id }</div>
           
            
           <div class="row">
@@ -117,14 +117,13 @@ uri="http://java.sun.com/jsp/jstl/core" %>
                 <div><h4 class="my-3">JuHyeon An</h4></div>
                 <ul>
                   <li>
-                    <i class="fa fa-thumb-tack" aria-hidden="true"></i> <span id="pro-addr">경기도 고양시 덕양구</span>
+                    <i class="fa fa-thumb-tack" aria-hidden="true"></i> <span id="pro-addr">${vo.member_city }</span>
                   </li>
-                  <li><i class="fa fa-calendar"></i> <span id="pro-enroll">2019년 6월 26일 가입</span></li>
-                  <li><i class="fa fa-internet-explorer"></i> <span id="pro-web">www.ajh2042.com</span></li>
+                  <li><i class="fa fa-calendar"></i> <span id="pro-enroll">${vo.mDate }</span></li>
+                  <li><i class="fa fa-internet-explorer"></i> <span id="pro-web">${vo.member_web }</span></li>
                 </ul>
                 <p id="self-desc">
-                  안녕하세요. 저는 안주현입니다. 자기소개 자기소개 자기소개 자기소개 입니다. 잘 부탁드립니다. 자기소개
-                  자기소개 자기소개 자기소개 끝.
+                 ${vo.member_info }
                 </p>
               </div>
               <div class="single-sidebar-widget user-info-widget profile-detail">
@@ -311,7 +310,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
               </div>
               <div class="col-md-9 col-sm-9">
               
-              
+              	<input type="text" name="profile_serial" value="${vo.profile_serial }"/>
                   <label for="nickname">닉네임</label>
                   <div class="mb-10">
                     <input

@@ -10,9 +10,15 @@ public class ProfileVo {
 	String member_photo;
 	String nickname;
 	String email;
+	String mDate;
 	
 	
-	
+	public String getmDate() {
+		return mDate;
+	}
+	public void setmDate(String mDate) {
+		this.mDate = mDate;
+	}
 	public String getMember_photo() {
 		return member_photo;
 	}

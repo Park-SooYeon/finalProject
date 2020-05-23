@@ -1,12 +1,17 @@
 package mypage;
 
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.web.multipart.MultipartFile;
 
 import bean.Factory;
 import bean.LikeListVo;
+import bean.ProfileVo;
 import bean.ReviewVo;
 import bean.TripListVo;
 
@@ -105,6 +110,46 @@ public class MyPageDao {
 			ex.printStackTrace();
 		}
 		return list; 
+	}
+	
+	public ProfileVo selectProfile(String member_id) {
+		ProfileVo vo = new ProfileVo();
+		try {
+			vo = sqlSession.selectOne("mypage.select_profile", member_id);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return vo;
+	}
+	
+	public String modifyProfile(ProfileVo vo, MultipartFile imgFile) {
+		String msg  = "";
+		try {
+		    
+			int cnt = sqlSession.selectOne("mypage.modify_profile", vo.getProfile_serial());
+			
+			if(cnt > 0 ) {
+				// 업데이트 성공
+				try {
+					byte[] bytes = imgFile.getBytes();
+					BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(new File(vo.getMember_photo())));
+					stream.write(bytes);
+					stream.close();
+				}catch (Exception e) {
+					sqlSession.rollback();
+					msg = "파일을 업로드하는 데에 실패했습니다.";
+				}
+				sqlSession.commit();
+				msg = "수정이 완료되었습니다.";
+			}else {
+				// 업데이트 실패
+				sqlSession.rollback();
+			}
+	        
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return msg;
 	}
 	
 }

@@ -130,6 +130,25 @@
    		and like_id = #{_parameter}
    		and P.place_serial = R.place_serial
    </select>
+   
+   <select id="select_profile" parameterType="String" resultType="bean.ProfileVo">
+   		select profile_serial, 
+   			   m.member_id, member_city, 
+   			   member_web, member_info, nickname,
+   			   m.member_photo, to_char(m.mDate, 'rrrr"일" mm"월" dd"일"') mDate
+   		from profile p, membership m 
+   		where m.member_id = p.member_id
+   		and p.member_id = #{_parameter}
+   </select>
+   
+   <!-- 사진없이 프로필정보만 수정 -->
+   <!-- nickname이 프로필 테이블로 넘어오면 수정해야됨 -->
+   <update id="modify_profile" parameterType="bean.ProfileVo">
+   		update profile set member_city = #{member_city},
+   						   member_web = #{member_web},
+   						   member_info = #{member_info}
+   		where profile_serial = ${profile_serial}
+   </update>
 	
 	
 </mapper>

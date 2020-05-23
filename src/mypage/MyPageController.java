@@ -36,8 +36,16 @@ public class MyPageController {
 	ModelAndView mv;
 	
 	@RequestMapping(value = "profile.mp", method= {RequestMethod.GET, RequestMethod.POST})
-	public String profile(HttpServletRequest req) {
-		return "my_social";
+	public ModelAndView profile(HttpServletRequest req) {
+		mv = new ModelAndView();
+		String member_id = "testjoin";
+		ProfileVo vo = dao.selectProfile(member_id);
+		
+		System.out.println(vo.toString());
+		
+		mv.setViewName("my_social");
+		mv.addObject("vo", vo);
+		return mv;
 		// mypage/my_social.jsp
 	}
 	
@@ -201,23 +209,6 @@ public class MyPageController {
 		return mv;
 	}
 	
-	/*
-	@RequestMapping( value = "editProfile.mp", method = {RequestMethod.GET, RequestMethod.POST})
-	public String editProfile(HttpServletRequest req, HttpServletResponse resp) {
-		String member_id = "test";
-		List<ReviewVo> list = dao.selectReview(member_id);
-		
-		for(ReviewVo vo : list) {
-			System.out.println(vo.toString());
-		}
-		
-		mv.setViewName("review_list");
-		mv.addObject("list", list);
-		return "";
-	}
-	*/
-	
-	
 	@ResponseBody
 	@RequestMapping( value = "editProfile.mp", method = RequestMethod.POST, produces = "text/html;charset=utf8")
 	public String editProfile(HttpServletRequest request, 
@@ -227,37 +218,32 @@ public class MyPageController {
 			@RequestParam("member_city") String member_city,
 			@RequestParam("member_info") String member_info){
 		
-		System.out.println("nickname : "+nickname);
-		System.out.println("여기가 들어와야지..");
-		String originalFilename = imgFile.getOriginalFilename(); // fileName.jpg
-	    String onlyFileName = originalFilename.substring(0, originalFilename.indexOf(".")); // fileName
-	    String extension = originalFilename.substring(originalFilename.indexOf(".")); // .jpg
-	     
-	    String rename = onlyFileName + "_" + getCurrentDayTime() + extension; // fileName_20150721-14-07-50.jpg
-	    String msg = "";
-	    String fullpath  = request.getServletContext().getRealPath("/")+"images\\myPage\\profile\\"+rename;
-	    System.out.println(fullpath);
-	    
-	    if (!imgFile.isEmpty()) {
-	        try {
-	            byte[] bytes = imgFile.getBytes();
-	            BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(new File(fullpath)));
-	            stream.write(bytes);
-	            stream.close();
-	            msg = "파일 업로드 성공!";
-	        } catch (Exception e) {
-	            msg = "파일을 업로드하는 데에 실패했습니다.";
-	        }
-	    } else {
-	        msg = "업로드할 파일을 선택해주시기 바랍니다.";
-	    }
-	     
+		String msg = "";
 	    ProfileVo vo = new ProfileVo();
 	    vo.setMember_city(member_city);
 	    vo.setMember_info(member_info);
 	    vo.setMember_web(member_web);
 	    vo.setNickname(nickname);
+		
 	    
+		if (!imgFile.isEmpty()) { // 파일이 있으면
+
+		String originalFilename = imgFile.getOriginalFilename(); // 오리지널 파일명
+	    String onlyFileName = originalFilename.substring(0, originalFilename.indexOf(".")); // fileName
+	    String extension = originalFilename.substring(originalFilename.indexOf(".")); // .jpg
+	     
+	    String rename = onlyFileName + "_" + getCurrentDayTime() + extension; // fileName_20150721-14-07-50.jpg
+	    String fullpath  = request.getServletContext().getRealPath("/")+"images\\myPage\\profile\\"+rename;
+	    System.out.println(fullpath);
+	    // 실제로 들어갈 파일경로 + 파일명 
+	    	vo.setMember_photo(fullpath);
+	    } else {
+	      //파일이 없으면
+	    	vo.setMember_photo(null);
+	    }
+	     
+	    // 파라미터로 전달받은 vo 프로퍼티 setting
+		msg = dao.modifyProfile(vo,imgFile);
 	    System.out.println(vo.toString());
 	    
 	    return msg;
