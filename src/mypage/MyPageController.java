@@ -1,17 +1,27 @@
 package mypage;
 
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import bean.LikeListVo;
+import bean.ProfileVo;
 import bean.ReviewVo;
 import bean.TripListVo;
 
@@ -27,7 +37,6 @@ public class MyPageController {
 	
 	@RequestMapping(value = "profile.mp", method= {RequestMethod.GET, RequestMethod.POST})
 	public String profile(HttpServletRequest req) {
-		mv = new ModelAndView();
 		return "my_social";
 		// mypage/my_social.jsp
 	}
@@ -190,6 +199,74 @@ public class MyPageController {
 		mv.setViewName("review_list");
 		mv.addObject("list", list);
 		return mv;
+	}
+	
+	/*
+	@RequestMapping( value = "editProfile.mp", method = {RequestMethod.GET, RequestMethod.POST})
+	public String editProfile(HttpServletRequest req, HttpServletResponse resp) {
+		String member_id = "test";
+		List<ReviewVo> list = dao.selectReview(member_id);
+		
+		for(ReviewVo vo : list) {
+			System.out.println(vo.toString());
+		}
+		
+		mv.setViewName("review_list");
+		mv.addObject("list", list);
+		return "";
+	}
+	*/
+	
+	
+	@ResponseBody
+	@RequestMapping( value = "editProfile.mp", method = RequestMethod.POST, produces = "text/html;charset=utf8")
+	public String editProfile(HttpServletRequest request, 
+			@RequestParam("nickname") String nickname, 
+			@RequestParam("member_photo") MultipartFile imgFile,
+			@RequestParam("member_web") String member_web,
+			@RequestParam("member_city") String member_city,
+			@RequestParam("member_info") String member_info){
+		
+		System.out.println("nickname : "+nickname);
+		System.out.println("여기가 들어와야지..");
+		String originalFilename = imgFile.getOriginalFilename(); // fileName.jpg
+	    String onlyFileName = originalFilename.substring(0, originalFilename.indexOf(".")); // fileName
+	    String extension = originalFilename.substring(originalFilename.indexOf(".")); // .jpg
+	     
+	    String rename = onlyFileName + "_" + getCurrentDayTime() + extension; // fileName_20150721-14-07-50.jpg
+	    String msg = "";
+	    String fullpath  = request.getServletContext().getRealPath("/")+"images\\myPage\\profile\\"+rename;
+	    System.out.println(fullpath);
+	    
+	    if (!imgFile.isEmpty()) {
+	        try {
+	            byte[] bytes = imgFile.getBytes();
+	            BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(new File(fullpath)));
+	            stream.write(bytes);
+	            stream.close();
+	            msg = "파일 업로드 성공!";
+	        } catch (Exception e) {
+	            msg = "파일을 업로드하는 데에 실패했습니다.";
+	        }
+	    } else {
+	        msg = "업로드할 파일을 선택해주시기 바랍니다.";
+	    }
+	     
+	    ProfileVo vo = new ProfileVo();
+	    vo.setMember_city(member_city);
+	    vo.setMember_info(member_info);
+	    vo.setMember_web(member_web);
+	    vo.setNickname(nickname);
+	    
+	    System.out.println(vo.toString());
+	    
+	    return msg;
+	}
+	
+	public String getCurrentDayTime(){
+	    long time = System.currentTimeMillis();
+	    SimpleDateFormat dayTime = new SimpleDateFormat("yyyyMMdd-HH-mm-ss", Locale.KOREA);
+	    return dayTime.format(new Date(time));
 	}
 	
 }

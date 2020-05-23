@@ -286,7 +286,9 @@ uri="http://java.sun.com/jsp/jstl/core" %>
       aria-hidden="true"
     >
       <div class="modal-dialog" role="document" style="max-width: 590px;">
+      <!-- 수정form -->
         <div class="modal-content">
+          <form id="mp-proModifyFrm" name="mp-proModifyFrm" enctype="multipart/form-data">
           <div class="modal-header">
             <h5 class="modal-title" id="mp-modifyModalLabel">프로필 수정하기</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -305,75 +307,79 @@ uri="http://java.sun.com/jsp/jstl/core" %>
                   <span class="text-white"><i class="fa fa-edit"></i><strong>수정</strong></span>
                 </div>
                 <div class="my-1" onclick="photoUpload();"></div>
-                <input type="file" id="pro-upload" name="pro-upload" />
+                <input type="file" name="member_photo" id="member_photo" />
               </div>
               <div class="col-md-9 col-sm-9">
-                <form id="mp-proModifyFrm" action="#">
-                  <label for="mp-name">닉네임</label>
+              
+              
+                  <label for="nickname">닉네임</label>
                   <div class="mb-10">
                     <input
                       type="text"
-                      name="mp-name"
-                      id="mp-name"
+                      name="nickname"
+                      id="nickname"
                       placeholder="닉네임을 입력해주세요."
                       onfocus="this.placeholder = ''"
                       onblur="this.placeholder = '닉네임을 입력해주세요.'"
                       class="single-input"
                     />
                   </div>
-                  <label for="mp-id">아이디</label>
+                  <label for="member_id">아이디</label>
                   <div class="input-group-icon mb-10">
                     <div class="icon"><i class="fa fa-at" aria-hidden="true"></i></div>
                     <input
                       type="text"
-                      name="mp-id"
+                      name="member_id"
                       placeholder="아이디를 입력해주세요."
                       onfocus="this.placeholder = ''"
                       onblur="this.placeholder = '아이디를 입력해주세요.'"
                       class="single-input"
                     />
                   </div>
-                  <label for="mp-address">거주도시</label>
+                  <label for="member_city">거주도시</label>
                   <div class="input-group-icon mb-10">
                     <div class="icon"><i class="fa fa-thumb-tack" aria-hidden="true"></i></div>
                     <input
                       type="text"
-                      name="mp-address"
+                      name="member_city"
                       placeholder="거주도시를 입력해주세요."
                       onfocus="this.placeholder = ''"
                       onblur="this.placeholder = '거주도시를 입력해주세요.'"
                       class="single-input"
                     />
                   </div>
-                  <label for="mp-web">웹사이트</label>
+                  <label for="member_web">웹사이트</label>
                   <div class="input-group-icon mb-10">
                     <div class="icon"><i class="fa fa-internet-explorer" aria-hidden="true"></i></div>
                     <input
                       type="text"
-                      name="mp-web"
+                      name="member_web"
                       placeholder="웹사이트를 입력해주세요."
                       onfocus="this.placeholder = ''"
                       onblur="this.placeholder = '웹사이트를 입력해주세요.'"
                       class="single-input"
                     />
                   </div>
-                  <label for="mp-detail">자기소개</label>
+                  <label for="member_info">자기소개</label>
                   <div class="mb-10">
                     <textarea
                       class="single-textarea"
+                      name="member_info"
                       placeholder="자기소개를 입력해주세요."
                       onfocus="this.placeholder = ''"
                       onblur="this.placeholder = '자기소개를 입력해주세요.'"
                     ></textarea>
                   </div>
-                </form>
+                <!-- 수정 form 끝 -->
+                
               </div>
             </div>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
-            <button type="submit" class="btn btn-primary" data-dismiss="modal" id="btnCreateTrip">수정</button>
+            <input type="button"  class="btn btn-primary" value="수정" id="btnModifyProfile">
           </div>
+           </form>
         </div>
       </div>
     </div>
