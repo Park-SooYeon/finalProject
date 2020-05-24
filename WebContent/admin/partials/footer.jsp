@@ -47,9 +47,6 @@
     <script src="../../assets/js/shared/inputmask.js"></script>
     <script src="../../assets/js/shared/data-table.js"></script>
     <script src="../../assets/js/shared/light-gallery.js"></script>
-    <script src="../../assets/js/shared/form-validation.js"></script>
-    <script src="../../assets/js/shared/bt-maxLength.js"></script>
-    <script src="../../assets/js/shared/dropify.js"></script>
  	<!-- End Custom js for page -->
  	
     <!-- inject:js -->
@@ -75,12 +72,23 @@
                 jQuery("#postcode1").val(data.postcode1);
                 jQuery("#postcode2").val(data.postcode2);
                 jQuery("#zonecode").val(data.zonecode);
-                jQuery("#address").val(data.address);
+                jQuery("#place_location").val(data.address);
                 jQuery("#address2").focus();
                 console.log(data);
             }
         }).open();
     }
+	
+    function openDaumZipAddress2() {
+        new daum.Postcode({
+            oncomplete: function (data) {
+                jQuery("#place_location").val(data.address);
+                console.log(data);
+            }
+        }).open();
+    }
+	
+	ptn.func();
 	</script>
 </body>
 
