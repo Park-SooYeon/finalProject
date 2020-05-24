@@ -41,12 +41,20 @@
                                                    </div>
                                                </div>
                                            </td>
-                                           <td>${i.state }</td>
+                                           <td>
+	                                           <c:if test='${i.state==8 }'>
+	                                           		렌트
+	                                           </c:if>
+	                                           <c:if test='${i.state==9 }'>
+	                                           		호텔
+	                                           </c:if>
+                                           </td>
                                            <td>${i.partner_name }</td>
                                            <td>234</td>
                                            <td>${i.vo.email }</td>
                                            <td>
-                                               <a class="btn btn-outline-primary" href="./?inc=partner_view.jsp">View</a>
+                                               <a class="btn btn-outline-primary" href="./?inc=partner_view.os&member_id=${i.member_id }"<%--  onclick="partner_view('${i.member_id }')" --%>>
+                                               View</a>
                                            </td>
                                        </tr>
                                      </c:forEach>

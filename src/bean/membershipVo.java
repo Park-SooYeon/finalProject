@@ -3,7 +3,13 @@ package bean;
 import java.util.Date;
 
 public class membershipVo {
-   String member_id;
+   @Override
+	public String toString() {
+		return "membershipVo [member_id=" + member_id + ", email=" + email + ", pwd=" + pwd + ", member_name="
+				+ member_name + ", mDate=" + mDate + ", state=" + state + ", delete_reason=" + delete_reason
+				+ ", member_photo=" + member_photo + ", nickName=" + nickName + ", phone=" + phone + "]";
+	}
+String member_id;
    String email;
    String pwd;
    String member_name;

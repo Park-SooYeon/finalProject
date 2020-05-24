@@ -98,6 +98,18 @@ public class AdSuperDao {
 				return list;
 			}
 		}
-
+		//파트너 view
+		public partnerVo partner_view(String member_id) {
+			System.out.println("dao아이디"+member_id);
+			partnerVo vo = null;
+			try {
+				vo = sqlSession.selectOne("admin.partner_view",member_id);
+			}catch(Exception ex) {
+				ex.printStackTrace();
+			}finally {
+				return vo;
+			}
+		}
+		
 
 }

@@ -62,10 +62,10 @@ public class AdSuperController {
 		List<partnerVo> list = dao.partner_Mselect();
 		mv.setViewName("partner_list");
 		mv.addObject("list", list);
-		for(partnerVo vo : list) {
-			System.out.println("파트너관리조회"+vo.getMember_id());
-			System.out.println("파트너관리조회"+vo.getState());
-		}
+//		for(partnerVo vo : list) {
+//			System.out.println("파트너관리조회"+vo.getMember_id());
+//			System.out.println("파트너관리조회"+vo.getState());
+//		}
 		return mv;
 	}
 	
@@ -90,11 +90,25 @@ public class AdSuperController {
 		partnerVo vo = new partnerVo();
 		String id = req.getParameter("p_id"); //jsp에 있는 폼을 js에서 여기로 보낸다.. 그걸 받아서 브이오에 담아준다..
 		int status =Integer.parseInt(req.getParameter("p_save"));
-		System.out.println("파트너컨트롤러"+id+status);		
+		//System.out.println("파트너컨트롤러"+id+status);		
 		vo.setMember_id(id);
 		vo.setState(status);
 		String msg=dao.partner_modify(vo);
 		return msg;
+	}
+	
+	//파트너 view
+	@RequestMapping(value = "/admin/super/partner_view.os", method= {RequestMethod.GET, RequestMethod.POST},produces = "text/html;charset=utf8")
+	public ModelAndView partner_view(HttpServletRequest req) {
+		String member_id = req.getParameter("member_id");
+		System.out.println("par_View_controll"+member_id);
+		mv = new ModelAndView();
+		System.out.println("partner_view컨트롤 들어오나");
+		partnerVo pv = dao.partner_view(member_id);
+		mv.setViewName("partner_view");
+		mv.addObject("pv", pv);
+
+		return mv;
 	}
 	
 	
