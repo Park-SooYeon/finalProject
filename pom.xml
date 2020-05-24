@@ -78,12 +78,21 @@
     
     	
     	<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
-<dependency>
-    <groupId>com.fasterxml.jackson.core</groupId>
-    <artifactId>jackson-databind</artifactId>
-    <version>2.10.0</version>
-</dependency>
+	     <!--json 사용하기 위한 라이브러리   --> 
+			<dependency>
+			    <groupId>com.fasterxml.jackson.core</groupId>
+			    <artifactId>jackson-databind</artifactId>
+			    <version>2.10.0</version>
+			</dependency>
     	
+    <!-- https://mvnrepository.com/artifact/javax.mail/mail -->
+    <!-- mail 발송을 위한 라이브러리  -->
+		<dependency>
+		    <groupId>javax.mail</groupId>
+		    <artifactId>mail</artifactId>
+		    <version>1.4.7</version>
+		</dependency>
+		    
     
     	
     </dependencies>

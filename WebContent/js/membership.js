@@ -96,7 +96,7 @@ ms.func = function(){
 			
 			if(email == "" ){
 				alert("이메일을 입력세요");
-				$("#phone").focus();
+				$("#email").focus();
 				return;
 				
 				
@@ -159,12 +159,23 @@ ms.func = function(){
 		
 		
 		
+		$("#btnFindPwd").onclick(function(){
+		
+			
+			if(email == "" ){
+				alert("이메일을 입력세요");
+				$("#email").focus();
+				return;
+				
+				
+			}
+			
+			
+			     document.frm_ms.action="?inc=findPwd.ms"
+				 document.frm_ms.submit();
 		
 		
-		
-		
-		
-		
+		})
 		
 		
 	}

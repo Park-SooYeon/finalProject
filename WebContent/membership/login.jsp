@@ -58,7 +58,7 @@
 					<div class="form-group col-lg-10 offset-1">
 
 						<input type="text" class="genric-btn min-width-350 link"
-							id="findPwd" onclick="location.href='./?inc=findPwd.ms'"
+							id="findPwd" onclick="location.href='./?inc=membership/findPwd.jsp'"
 							value="비밀번호 찾기"> <br /> 
 							
 							<input type="text"
