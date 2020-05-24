@@ -4,10 +4,11 @@
 let ms = {}
 
 ms.func = function(){
-		
-		
+
 		$('#btnLogin').click(function(){
 	
+			alert('성공');
+			
 		var member_id=$("#member_id").val();
 		var pwd = $("#pwd").val();
 		
@@ -123,24 +124,25 @@ ms.func = function(){
 		
 		
 		$("#member_id").blur(function(){
-			let member_id = $("#member_id").val();
-			let param = "member_id=" + member_id;
-			
-			if(mId.length >= 4){
+		
+			var member_id = $("#member_id").val()
+		
 				$.ajax({
-					type :"get",
+					type :"post",
 					url : "idCheck.ms",
-					data : param,
-					success : function(result){
-						console.log('1은 중복, 0은 사용가능!!')
+					data : {"member_id":member_id},
+
+					success : function(data){
 						
-						if(result == 1){
-							
+				 
+						if($.trim(data) == "no"){
+						     alert("아이디가 중복입니다 ! 다시 확인해주세요");
 							$("#id_check").text("아이디가 중복입니다!");
 							$("#id_check").css("color","red");
 							$("#btnMemberInsert").attr("disabled",true);
 							
 						}else{
+							 alert("사용가능한 아이디입니다!");
 							$("#id_check").text("사용가능합니다!");
 							$("#id_check").css("color","green");
 							$("#btnMemberInsert").attr("abled",true);
@@ -151,7 +153,7 @@ ms.func = function(){
 						
 					}
 				})
-			}
+			
 		})
 		
 		

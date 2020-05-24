@@ -1,13 +1,20 @@
 package membership;
 
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.http.HttpCookie;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import bean.membershipVo;
@@ -99,13 +106,25 @@ public membershipController(membershipDao dao){
     }
 
     
-
-    @RequestMapping( value ="idCheck.ms", method= {RequestMethod.GET, RequestMethod.POST})
-    public ModelAndView idCheck(HttpServletRequest req) {
-        mv = new ModelAndView();
+    @ResponseBody 
+    @RequestMapping( value ="idCheck.ms", method= { RequestMethod.POST})
+    public String idCheck(HttpServletRequest req) {
+      
+        String member_id = req.getParameter("member_id");
+        System.out.println("아이디 췤");
+    
+        String str="";
         
+        int result = dao.idCheck(member_id);
         
-        return mv;
+        if(result ==1) {
+        	str="no";
+        }else {
+        	str="yes";
+        		
+        }
+        
+       return str;
     }
 
     
@@ -144,6 +163,7 @@ public membershipController(membershipDao dao){
         
         int loginResult = dao.login(vo);
         
+        System.out.println("로그인 결과  : "+loginResult);
         if(loginResult == -1) {
         	
         	   mv.addObject("msg","noId");
@@ -154,6 +174,8 @@ public membershipController(membershipDao dao){
         	   HttpSession session = req.getSession();
         	   session.setAttribute("member_id", member_id);
         	  
+        	   System.out.println(member_id);
+        	   
         	   
         	   String nickName=dao.loginNickName(member_id);
         	   

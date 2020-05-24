@@ -40,15 +40,17 @@
 	
 	<script src="template/js/vendor/jquery-2.2.4.min.js"></script>
 	
-	
-	<!-- membership js -->
-	<script src="js/membership.js"></script>
+
 	
 	<!-- map api head로 -->
 	<script
       type="text/javascript"
       src="//dapi.kakao.com/v2/maps/sdk.js?appkey=52d0cd9eb539c564cdc52bb34a626875&libraries=services"
     ></script>
+    
+    
+    	<!-- membership js -->
+	<script src="js/membership.js"></script>
     
 </head>
 <body>
@@ -97,6 +99,7 @@
 	
 	<!-- review_detail -->
 	<script src="js/festival_detail.js"></script>
+	
 	
 
 	

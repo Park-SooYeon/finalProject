@@ -91,7 +91,7 @@
 		</div>
 	</div>
 	<script>
-
+           ms.func();
 
 	</script>
 </body>
