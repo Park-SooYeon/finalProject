@@ -33,7 +33,10 @@ public class PtnHtCompDao {
 		int result = 0;
 		int serial = 0;
 		try {
+<<<<<<< HEAD
 			System.out.println("dao member_id : " + member_id);
+=======
+>>>>>>> admin
 			
 			// 파트너 시리얼 값 세팅 
 			serial = sqlSession.selectOne("hotel.select_serial", member_id);

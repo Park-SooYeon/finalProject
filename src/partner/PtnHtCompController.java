@@ -62,7 +62,11 @@ public class PtnHtCompController {
 		
 		
 		String member_id = req.getParameter("member_id");
+<<<<<<< HEAD
 		System.out.println("mId : " + req.getParameter(member_id));
+=======
+		System.out.println("mId : " + member_id);
+>>>>>>> admin
 		
 		
 		System.out.println("insertR controller");
