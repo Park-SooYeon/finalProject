@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
             <div class="row profile-page">
                 <div class="col-12">
                     <div class="card">
@@ -20,9 +21,9 @@
                                     <div class="profile-info d-flex align-items-center justify-content-center flex-wrap mr-sm-3">
                                         <img class="rounded-circle img-lg mb-3 mb-sm-0" src="../../assets/images/faces/profile/profile.jpg" alt="profile image">
                                         <div class="wrapper pl-sm-4">
-                                            <p class="profile-user-name text-center text-sm-left">Richard V.Welsh</p>
+                                            <p class="profile-user-name text-center text-sm-left">${pv.member_id }</p>
                                             <div class="wrapper d-flex flex-wrap">
-                                                <button type="button" class="btn btn-outline-primary" id="btnAdmStateCh" onclick="showSwal('warning-message-and-cancel')">파트너 권한 박탈</button>
+                                                <button type="button" class="btn btn-outline-primary" id="btnAdmStateCh" onclick="show('deprive','${pv.member_id}')">파트너 권한 박탈</button>
                                             </div>
                                         </div>
                                     </div>
@@ -51,24 +52,30 @@
                                                 <div class="row mt-3 pl-3">
                                                     <div class="col-6">
                                                         <p>
-                                                            <strong>회사명 :</strong> Johnathan Deo
+                                                            <strong>회사명 :</strong> ${pv.partner_name }
                                                         </p>
                                                         <p>
-                                                            <strong>사업자등록번호 :</strong> staradmin.com
+                                                            <strong>사업자등록번호 :</strong> ${pv.business_number }
                                                         </p>
                                                         <p>
-                                                            <strong>연락처 :</strong> 010-0000-0000
+                                                            <strong>연락처 :</strong> ${pv.partner_phone }
                                                         </p>
                                                     </div>
                                                     <div class="col-6">
                                                         <p>
-                                                            <strong>이메일 :</strong> Richard@staradmin.com
+                                                            <strong>이메일 :</strong> ${pv.vo.email }
                                                         </p>
                                                         <p>
-                                                            <strong>파트너 분류 :</strong> 호텔
+                                                            <strong>파트너 분류 :</strong>
+                                                            <c:if test='${pv.state ==8 }'>
+                                                             	렌트
+                                                            </c:if>
+                                                            <c:if test='${pv.state ==9 }'>
+                                                            	호텔
+                                                            </c:if>
                                                         </p>
                                                         <p>
-                                                            <strong>주소 :</strong> +73646 4563
+                                                            <strong>주소 :</strong> ${pv.partner_location }
                                                         </p>
                                                     </div>
                                                 </div>
@@ -90,6 +97,7 @@
                                                                         </tr>
                                                                     </thead>
                                                                     <tbody>
+                                                                    			<!-- 어려워보임;; -->
                                                                         <tr>
                                                                             <td>1</td>
                                                                             <td>
@@ -105,127 +113,7 @@
                                                                                 <a class="btn btn-outline-primary" href="./partner_view.jsp">View</a>
                                                                             </td>
                                                                         </tr>
-                                                                        <tr>
-                                                                            <td>2</td>
-                                                                            <td>
-                                                                                <div class="d-flex align-items-center">
-                                                                                    <span class="img-xs rounded bg-warning text-white text-avatar">AV</span>
-                                                                                </div>
-                                                                            </td>
-                                                                            <td>호텔</td>
-                                                                            <td>9,552,600원</td>
-                                                                            <td>753개</td>
-                                                                            <td>2019.03.12</td>
-                                                                            <td>
-                                                                                <a class="btn btn-outline-primary" href="./partner_view.jsp">View</a>
-                                                                            </td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <td>3</td>
-                                                                            <td>
-                                                                                <div class="d-flex align-items-center">
-                                                                                    <img class="img-xs rounded" src="../../assets/images/faces/face4.jpg" alt="profile image">
-                                                                                </div>
-                                                                            </td>
-                                                                            <td>호텔</td>
-                                                                            <td>3,552,600원</td>
-                                                                            <td>253개</td>
-                                                                            <td>2019.09.12</td>
-                                                                            <td>
-                                                                                <a class="btn btn-outline-primary" href="./partner_view.jsp">View</a>
-                                                                            </td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <td>4</td>
-                                                                            <td>
-                                                                                <div class="d-flex align-items-center">
-                                                                                    <img class="img-xs rounded-circle" src="../../assets/images/faces/face5.jpg" alt="profile image">
-                                                                                </div>
-                                                                            </td>
-                                                                            <td>호텔</td>
-                                                                            <td>3,552,600원</td>
-                                                                            <td>253개</td>
-                                                                            <td>2019.09.12</td>
-                                                                            <td>
-                                                                                <a class="btn btn-outline-primary" href="./partner_view.jsp">View</a>
-                                                                            </td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <td>5</td>
-                                                                            <td>
-                                                                                <div class="d-flex align-items-center">
-                                                                                    <span class="img-xs rounded-circle bg-primary text-white text-avatar">AW</span>
-                                                                                </div>
-                                                                            </td>
-                                                                            <td>호텔</td>
-                                                                            <td>3,552,600원</td>
-                                                                            <td>253개</td>
-                                                                            <td>2019.09.12</td>
-                                                                            <td>
-                                                                                <a class="btn btn-outline-primary" href="./partner_view.jsp">View</a>
-                                                                            </td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <td>6</td>
-                                                                            <td>
-                                                                                <div class="d-flex align-items-center">
-                                                                                    <img class="img-xs rounded-circle" src="../../assets/images/faces/face7.jpg" alt="profile image">
-                                                                                </div>
-                                                                            </td>
-                                                                            <td>호텔</td>
-                                                                            <td>3,552,600원</td>
-                                                                            <td>253개</td>
-                                                                            <td>2019.09.12</td>
-                                                                            <td>
-                                                                                <a class="btn btn-outline-primary" href="./partner_view.jsp">View</a>
-                                                                            </td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <td>7</td>
-                                                                            <td>
-                                                                                <div class="d-flex align-items-center">
-                                                                                    <span class="img-xs rounded-circle bg-info text-white text-avatar">DR</span>
-                                                                                </div>
-                                                                            </td>
-                                                                            <td>호텔</td>
-                                                                            <td>3,552,600원</td>
-                                                                            <td>253개</td>
-                                                                            <td>2019.09.12</td>
-                                                                            <td>
-                                                                                <a class="btn btn-outline-primary" href="./partner_view.jsp">View</a>
-                                                                            </td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <td>8</td>
-                                                                            <td>
-                                                                                <div class="d-flex align-items-center">
-                                                                                    <img class="img-xs rounded-circle" src="../../assets/images/faces/face9.jpg" alt="profile image">
-                                                                                </div>
-                                                                            </td>
-                                                                            <td>호텔</td>
-                                                                            <td>3,552,600원</td>
-                                                                            <td>253개</td>
-                                                                            <td>2019.09.12</td>
-                                                                            <td>
-                                                                                <a class="btn btn-outline-primary" href="./partner_view.jsp">View</a>
-                                                                            </td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <td>9</td>
-                                                                            <td>
-                                                                                <div class="d-flex align-items-center">
-                                                                                    <span class="img-xs rounded-circle bg-primary text-white text-avatar">MH</span>
-                                                                                </div>
-                                                                            </td>
-                                                                            <td>호텔</td>
-                                                                            <td>3,552,600원</td>
-                                                                            <td>253개</td>
-                                                                            <td>2019.09.12</td>
-                                                                            <td>
-                                                                                <a class="btn btn-outline-primary" href="./partner_view.jsp">View</a>
-                                                                            </td>
-                                                                        </tr>
-                                                                    </tbody>
+                                                                                                                                            </tbody>
                                                                 </table>
                                                             </div>
                                                         </div>
@@ -242,3 +130,4 @@
                     </div>
                 </div>
             </div>
+            

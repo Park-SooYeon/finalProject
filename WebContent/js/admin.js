@@ -32,7 +32,14 @@ function a_partner_view(mId,p_name,b_number,phone,location,state,email){
 		$('#state2').html("호텔요청");
 	}
 }
-
+////partner_view
+//partner_view = function(member_id){ //serial 로 받는다.. 셀렉트에서 뷰의 아이값을 던졌기에
+//	alert(member_id);
+//	let param = member_id;
+//	$.post("partner_view.os" ,param, function(data, stat){ //view.brd하면 컨트롤러가 view.brd가 받는다 
+//		$('.main').html(data)	
+//	});
+//}
 
 //member view 수정
 let mm = {}

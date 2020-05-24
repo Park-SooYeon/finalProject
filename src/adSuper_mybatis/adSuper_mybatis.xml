@@ -62,4 +62,14 @@
 	on M.member_id= P.member_id
 	where P.state = 8 or P.state = 9 <!-- 파트너관리조회할때는 8 또는 9로  -->
     </select>
+    	
+    	<!-- 파트너 view -->
+    <select id="partner_view" parameterType="String" resultType="bean.partnerVo">
+   	select M.member_id, M.email, P.partner_serial,P.business_number
+   		   ,P.partner_name,P.partner_phone,P.state,P.partner_location
+	from membership M  join partner P 
+	on M.member_id= P.member_id
+    where M.member_id= #{member_id} 
+    </select>
+    
 </mapper>

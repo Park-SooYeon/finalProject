@@ -56,6 +56,8 @@
     <script src="../../assets/js/shared/off-canvas.js"></script>
     <script src="../../assets/js/shared/misc.js"></script>
     <script src="../../assets/js/shared/alert.js"></script>
+    <script src="../../assets/js/shared/Swalert.js"></script>
+    
     <!-- endinject -->
     
     <!-- Custom js for this page-->
