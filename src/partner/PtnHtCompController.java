@@ -37,7 +37,10 @@ public class PtnHtCompController {
 	public ModelAndView select(HttpServletRequest req) {
 		ModelAndView mv = new ModelAndView();
 		
-		List<PlaceVo> list = dao.select();
+		HttpSession session  = req.getSession();
+		String member_id = (String) session.getAttribute("member_id");
+		
+		List<PlaceVo> list = dao.select(member_id);
 		
 		mv.addObject("list", list);
 		mv.setViewName("hotel_comp_list");

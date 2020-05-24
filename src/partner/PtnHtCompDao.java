@@ -17,10 +17,10 @@ public class PtnHtCompDao {
 		sqlSession = Factory.getFactory().openSession();
 	}
 	
-	public List<PlaceVo> select(){
+	public List<PlaceVo> select(String mId){
 		List<PlaceVo> list = null;
 		try {
-			list = sqlSession.selectList("hotel.select");
+			list = sqlSession.selectList("hotel.select", mId);
 		}catch(Exception ex) {
 			ex.toString();
 		}finally {
