@@ -50,7 +50,7 @@ public membershipController(membershipDao dao){
         
         
         vo.setMember_id(member_id);
-          System.out.println("member_id " +vo.getMember_id());
+          System.out.println("member_id은 무엇이얌? " +vo.getMember_id());
         vo.setPwd(pwd);
         vo.setMember_name(member_name);
         vo.setPhone(phone);
