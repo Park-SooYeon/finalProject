@@ -14,5 +14,17 @@
 		ON h.place_serial = p.place_serial 
 		WHERE place_code=4
 	</select>	
-
+	
+	<!-- 파트너 시리얼 조회 -->
+	<select id="select_serial" parameterType="String" resultType="Integer">
+		SELECT partner_serial
+		FROM PARTNER
+		WHERE MEMBER_ID=#{member_id};
+	</select>
+	
+	
+	<insert id="insert" parameterType="bean.PlaceVo" >
+		INSERT INTO place (place_serial, partner_serial, place_code, place_name, place_location, LATITUDE, LONGITUDE, grade, state, BREAKFAST, WI_FI, PARKING, LOCAL_CODE, PLACE_TEL)
+		VALUES (seq_place.nextval, #{partner_serial}, 4, #{place_name}, #{place_location}, #{latitude}, #{longitude}, #{grade}, #{breakfast}, #{wifi}, #{parking}, #{local_code}, #{place_tel})
+	</insert>
 </mapper>

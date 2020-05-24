@@ -31,8 +31,7 @@
         <!-- Plugin css -->
 	    <link rel="stylesheet" href="../../assets/vendors/datatables.net-bs4/dataTables.bootstrap4.css">
 	    <link rel="stylesheet" href="../../assets/vendors/datatables.net-fixedcolumns-bs4/fixedColumns.bootstrap4.min.css">
-	    <link rel="stylesheet" href="../../assets/vendors/sweetalert/sweetalert.min.js" />
-        
+	   
     </head>
 
     <body>

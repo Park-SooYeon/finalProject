@@ -13,8 +13,24 @@
 
                             </div>
                             <form action="" name="frmAdmHtCompAdd" id="frmAdmHtCompAdd" enctype="multipart/form-data">
+                                <input type="hidden" name="member_id" id="mId" value="${member_id }" />
                                 <div class="form-group row">
-                                    <div class="col-lg-3">
+	                                <div class="col-lg-3">
+	                                    <label class="col-form-label">지역 <span class="text-danger">*</span></label>
+	                                </div>
+	                                <div class="col-lg-8">
+	                                    <select class="form-control" id="htPlaceNm">
+					                        <option value="1">서울</option>
+					                        <option value="2">제주도</option>
+					                        <option value="3">부산</option>
+					                        <option value="4">대구</option>
+					                        <option value="5">경기도</option>
+					                        <option value="6">인천</option>
+					                    </select>
+				                    </div>
+			                    </div>
+			                    <div class="form-group row">
+	                                <div class="col-lg-3">
                                         <label class="col-form-label">호텔명 <span class="text-danger">*</span></label>
                                     </div>
                                     <div class="col-lg-8">
@@ -31,13 +47,13 @@
                                 </div>
                                 <div class="form-group row">
 					                <div class="col-lg-3">
-					                    <label for="zonecode" class="col-form-label">주소 <span class="text-danger">*</span></label>
+					                    <label for="place_location" class="col-form-label">주소 <span class="text-danger">*</span></label>
 					                </div>
 					                <div class="col-lg-8">
 					                    <div class="input-group">
-					                        <input type="text" class="form-control" value="${vo.addr1 }" required="required" id="address" name="address" readonly>
+					                        <input type="text" class="form-control" value="" required="required" id="place_location" name="place_location" readonly>
 		                                    <div class="input-group-append">
-		                                        <button class="btn btn-primary btn-sm" type="button" onclick="openDaumZipAddress();">주소 검색</button>
+		                                        <button class="btn btn-primary btn-sm" type="button" onclick="openDaumZipAddress2();">주소 검색</button>
 		                                    </div>
 					                    </div>
 					                </div>
@@ -47,7 +63,7 @@
                                         <label class="col-form-label">사진</label>
                                     </div>
                                     <div class="col-lg-8">
-                                    	<div class="row">
+                                    	<div class="row" id="attList">
 	                                    	<div class="col-md-4 mb-2">
 	                                    		<input type="file" name="" class="dropify" />
 	                                    	</div>
@@ -70,30 +86,29 @@
                                     		<div class="col-sm-3 col-6">
                                     			<div class="form-check form-check-flat">
 					                              <label class="form-check-label">
-					                                <input type="checkbox" class="form-check-input"> Wi-Fi <i class="input-helper"></i></label>
+					                                <input type="checkbox" class="form-check-input" name="wifi" id="wifi"> Wi-Fi <i class="input-helper"></i></label>
 					                            </div>
                                     		</div>
                                     		<div class="col-sm-3 col-6">
                                     			<div class="form-check form-check-flat">
 					                              <label class="form-check-label">
-					                                <input type="checkbox" class="form-check-input"> 조식 <i class="input-helper"></i></label>
+					                                <input type="checkbox" class="form-check-input" name="breakfast" id="breakfast"> 조식 <i class="input-helper"></i></label>
 					                            </div>
                                     		</div>
                                     		<div class="col-sm-3 col-6">
                                     			<div class="form-check form-check-flat">
 					                              <label class="form-check-label">
-					                                <input type="checkbox" class="form-check-input"> 주차장 <i class="input-helper"></i></label>
+					                                <input type="checkbox" class="form-check-input" name="parking" id=""> 주차장 <i class="input-helper"></i></label>
 					                            </div>
                                     		</div>
-                                    		
                                     	</div>
 			                            
 			                            
 									</div>
                                 </div>
                                 <div class="form-group col-12 text-right mt-5">
-                                	<button type="submit" class="btn btn-secondary mr-2">취소</button>
-                                	<button type="submit" class="btn btn-success">등록</button>
+                                	<button type="button" class="btn btn-secondary mr-2" id="btnPtHtCancle">취소</button>
+                                	<button type="button" class="btn btn-success" id="btnPtHtRegister">등록</button>
                                 </div>
                                 <input type="text" name="nowPage" value="${param.nowPage }" />
 								<input type="text" name="findStr" value="${param.findStr }" />
@@ -103,8 +118,4 @@
                 </div>
             </div>
             
-            <script>
-			
-			ptn.func();
-			</script>
-        
+       
