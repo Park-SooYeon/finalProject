@@ -38,10 +38,8 @@ public class MyPageController {
 	@RequestMapping(value = "profile.mp", method= {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView profile(HttpServletRequest req) {
 		mv = new ModelAndView();
-		String member_id = "testjoin";
+		String member_id = "커피1";
 		ProfileVo vo = dao.selectProfile(member_id);
-		
-		System.out.println(vo.toString());
 		
 		mv.setViewName("my_social");
 		mv.addObject("vo", vo);
@@ -216,7 +214,8 @@ public class MyPageController {
 			@RequestParam("member_photo") MultipartFile imgFile,
 			@RequestParam("member_web") String member_web,
 			@RequestParam("member_city") String member_city,
-			@RequestParam("member_info") String member_info){
+			@RequestParam("member_info") String member_info,
+			@RequestParam("profile_serial") int profile_serial){
 		
 		String msg = "";
 	    ProfileVo vo = new ProfileVo();
@@ -224,8 +223,8 @@ public class MyPageController {
 	    vo.setMember_info(member_info);
 	    vo.setMember_web(member_web);
 	    vo.setNickname(nickname);
+	    vo.setProfile_serial(profile_serial);
 		
-	    
 		if (!imgFile.isEmpty()) { // 파일이 있으면
 
 		String originalFilename = imgFile.getOriginalFilename(); // 오리지널 파일명
@@ -237,10 +236,7 @@ public class MyPageController {
 	    System.out.println(fullpath);
 	    // 실제로 들어갈 파일경로 + 파일명 
 	    	vo.setMember_photo(fullpath);
-	    } else {
-	      //파일이 없으면
-	    	vo.setMember_photo(null);
-	    }
+	    } 
 	     
 	    // 파라미터로 전달받은 vo 프로퍼티 setting
 		msg = dao.modifyProfile(vo,imgFile);

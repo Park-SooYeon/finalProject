@@ -1,5 +1,7 @@
 package bean;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class ProfileVo {
 	int profile_serial;
 	String member_id;
@@ -12,7 +14,14 @@ public class ProfileVo {
 	String email;
 	String mDate;
 	
+	MultipartFile imgFile;
 	
+	public MultipartFile getImgFile() {
+		return imgFile;
+	}
+	public void setImgFile(MultipartFile imgFile) {
+		this.imgFile = imgFile;
+	}
 	public String getmDate() {
 		return mDate;
 	}

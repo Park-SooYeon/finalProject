@@ -125,29 +125,35 @@ public class MyPageDao {
 	public String modifyProfile(ProfileVo vo, MultipartFile imgFile) {
 		String msg  = "";
 		try {
-		    
-			int cnt = sqlSession.selectOne("mypage.modify_profile", vo.getProfile_serial());
+		    System.out.println("이미지파일이 뭐가 나오지 "+imgFile);
+			int cnt = sqlSession.update("mypage.modify_profile", vo);
+			System.out.println(cnt);
 			
-			if(cnt > 0 ) {
-				// 업데이트 성공
-				try {
-					byte[] bytes = imgFile.getBytes();
-					BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(new File(vo.getMember_photo())));
-					stream.write(bytes);
-					stream.close();
-				}catch (Exception e) {
-					sqlSession.rollback();
-					msg = "파일을 업로드하는 데에 실패했습니다.";
+			if(cnt > 0) {
+				// 본문 업데이트 성공
+				
+				if(!imgFile.isEmpty()) {
+					// 이미지파일이 있을때만 실행
+					try {
+						byte[] bytes = imgFile.getBytes();
+						BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(new File(vo.getMember_photo())));
+						stream.write(bytes);
+						stream.close();
+					}catch (Exception e) {
+						throw new Exception("파일업로드 중 오류 발생");
+					}
 				}
 				sqlSession.commit();
 				msg = "수정이 완료되었습니다.";
 			}else {
 				// 업데이트 실패
-				sqlSession.rollback();
+				throw new Exception("본문 업데이트 중 오류 발생");
 			}
 	        
 		}catch (Exception e) {
 			e.printStackTrace();
+			msg = e.getMessage();
+			sqlSession.rollback();
 		}
 		return msg;
 	}
