@@ -1,12 +1,18 @@
 package mypage;
 
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.web.multipart.MultipartFile;
 
 import bean.Factory;
+import bean.FollowListVo;
 import bean.LikeListVo;
+import bean.ProfileVo;
 import bean.ReviewVo;
 import bean.TripListVo;
 
@@ -107,4 +113,69 @@ public class MyPageDao {
 		return list; 
 	}
 	
+	public ProfileVo selectProfile(String member_id) {
+		ProfileVo vo = new ProfileVo();
+		try {
+			vo = sqlSession.selectOne("mypage.select_profile", member_id);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return vo;
+	}
+	
+	public String modifyProfile(ProfileVo vo, MultipartFile imgFile) {
+		String msg  = "";
+		try {
+		    System.out.println("이미지파일이 뭐가 나오지 "+imgFile);
+			int cnt = sqlSession.update("mypage.modify_profile", vo);
+			System.out.println(cnt);
+			
+			if(cnt > 0) {
+				// 본문 업데이트 성공
+				
+				if(!imgFile.isEmpty()) {
+					// 이미지파일이 있을때만 실행
+					try {
+						byte[] bytes = imgFile.getBytes();
+						BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(new File(vo.getMember_photo())));
+						stream.write(bytes);
+						stream.close();
+					}catch (Exception e) {
+						throw new Exception("파일업로드 중 오류 발생");
+					}
+				}
+				sqlSession.commit();
+				msg = "수정이 완료되었습니다.";
+			}else {
+				// 업데이트 실패
+				throw new Exception("본문 업데이트 중 오류 발생");
+			}
+	        
+		}catch (Exception e) {
+			e.printStackTrace();
+			msg = e.getMessage();
+			sqlSession.rollback();
+		}
+		return msg;
+	}
+	
+	public String addFollow(FollowListVo vo) {
+		String msg = "";
+		try {
+			int cnt = sqlSession.insert("follow", vo);
+			
+			if(cnt>0) {
+				msg = "팔로우했음";
+				sqlSession.commit();
+			}else {
+				throw new Exception("오류발생");
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+			msg = e.getMessage();
+			sqlSession.rollback();
+		}
+		
+		return msg;
+	}
 }

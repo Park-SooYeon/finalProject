@@ -1,17 +1,25 @@
 package mypage;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import bean.FollowListVo;
 import bean.LikeListVo;
+import bean.ProfileVo;
 import bean.ReviewVo;
 import bean.TripListVo;
 
@@ -25,11 +33,15 @@ public class MyPageController {
 	
 	ModelAndView mv;
 	
-	@RequestMapping(value = "profile.mp", method= {RequestMethod.GET, RequestMethod.POST})
-	public String profile(HttpServletRequest req) {
+	@GetMapping(value = "profile.mp")
+	public ModelAndView profile(@RequestParam String id) {
+		System.out.println(id);
 		mv = new ModelAndView();
-		return "my_social";
-		// mypage/my_social.jsp
+		ProfileVo vo = dao.selectProfile(id);
+		
+		mv.setViewName("my_social");
+		mv.addObject("vo", vo);
+		return mv;
 	}
 	
 	@RequestMapping( value ="mypage.mp", method= {RequestMethod.GET, RequestMethod.POST})
@@ -190,6 +202,50 @@ public class MyPageController {
 		mv.setViewName("review_list");
 		mv.addObject("list", list);
 		return mv;
+	}
+	
+	@ResponseBody
+	@RequestMapping( value = "editProfile.mp", method = RequestMethod.POST, produces = "text/html;charset=utf8")
+	public String editProfile(HttpServletRequest request, ProfileVo vo){
+		
+		String msg = "";
+		MultipartFile imgFile = vo.getImgFile();
+		
+		if (!vo.getImgFile().isEmpty()) { // 파일이 있으면
+
+		String originalFilename = imgFile.getOriginalFilename(); // 오리지널 파일명
+	    String onlyFileName = originalFilename.substring(0, originalFilename.indexOf(".")); // fileName
+	    String extension = originalFilename.substring(originalFilename.indexOf(".")); // .jpg
+	     
+	    String rename = onlyFileName + "_" + getCurrentDayTime() + extension; // fileName_20150721-14-07-50.jpg
+	    String fullpath  = request.getServletContext().getRealPath("/")+"images\\myPage\\profile\\"+rename;
+	    System.out.println(fullpath);
+	    // 실제로 들어갈 파일경로 + 파일명 
+	    	vo.setMember_photo(fullpath);
+	    } 
+	     
+	    // 파라미터로 전달받은 vo 프로퍼티 setting
+		msg = dao.modifyProfile(vo,imgFile);
+	    System.out.println(vo.toString());
+	    
+	    return msg;
+	}
+	
+	@ResponseBody
+	@RequestMapping( value = "follow.mp", method = RequestMethod.GET, produces = "text/html;charset=utf8")
+	public String addFollow(@RequestParam String target_id) {
+		FollowListVo vo = new FollowListVo();
+		vo.setTarget_id(target_id);
+		vo.setMember_id("아이디");
+		// 멤버아이디 세션 scope에서 가져오기
+		String msg = dao.addFollow(vo);
+		return msg;
+	}
+	
+	public String getCurrentDayTime(){
+	    long time = System.currentTimeMillis();
+	    SimpleDateFormat dayTime = new SimpleDateFormat("yyyyMMdd-HH-mm-ss", Locale.KOREA);
+	    return dayTime.format(new Date(time));
 	}
 	
 }

@@ -1,27 +1,28 @@
-// 프로필 정보 가져오기
-let addr = $("#pro-addr").text();
-let rDate = $("#pro-enroll").text();
-let web = $("#pro-web").text();
-let id = $("#pro-id").text();
-let nickname = $("#pro-nick").text();
-let img = $("#pro-main-img").attr("src");
-let self = $("#self-desc").text();
-
 function init() {
   //show modal
   $("#mp-modifyModal").on("show.bs.modal", function (event) {
+	  
+	// 프로필 정보 가져오기
+	  const addr = $("#pro-addr").text();
+	  const rDate = $("#pro-enroll").text();
+	  const web = $("#pro-web").text();
+	  const id = $("#pro-id").text();
+	  const nickname = $("#pro-nick").text();
+	  const img = $("#pro-main-img").attr("src");
+	  const self = $("#self-desc").text();
+	  
     const ADD_BTN = $(event.relatedTarget); // Button that triggered the modal
     const TRIP_NAME = ADD_BTN.data("whatever"); // Extract info from data-* attributes
     // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
     // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
 
     // modal에 넣어주는 작업
-    var modal = $(this);
-    modal.find("input[name=mp-id]").val(id);
-    modal.find("#mp-name").val(nickname);
-    modal.find("input[name=mp-address]").val(addr);
+    let modal = $(this);
+    modal.find("input[name=member_id]").val(id);
+    modal.find("#nickname").val(nickname);
+    modal.find("input[name=member_city]").val(addr);
     modal.find("#pro-img").attr("src", img);
-    modal.find("input[name=mp-web]").val(web);
+    modal.find("input[name=member_web]").val(web);
     modal.find("textarea").val(self);
 
     // modal.find('.modal-title').text('여행이름 ' + TRIP_NAME)
@@ -104,20 +105,26 @@ function init() {
   });
   
 	$("#mp-btnFollow").click(function(event){
+		const TARGET_ID = $(this).data("target");
+		console.log(TARGET_ID);
+		
 	    if ($("#mp-btnFollow").text() == "+ Follow"){
-	    	alert("팔로우");
-	    	//event.preventDefault();
-	      $("#mp-btnFollow").animate({ width: '-=10px' }, 100, 'easeInCubic', function () {});
-	      
-	      $("#mp-btnFollow").animate({ width: '+=20px'}, 600, 'easeInOutBack', function () { 
-	        $("#mp-btnFollow").css("color", "#fff");
-	        $("#mp-btnFollow").text("Following");
-
-	        $("#mp-btnFollow").animate({
-	          backgroundColor: "#2B96ED",
-	          borderColor: "##2B96ED"
-	        }, 1000 );
-	      });
+	    	
+			$.get("follow.mp", {"target_id" : TARGET_ID}, function(data, state) {
+				alert(data);
+				$("#mp-btnFollow").animate({ width: '-=10px' }, 100, 'easeInCubic', function () {});
+				
+				$("#mp-btnFollow").animate({ width: '+=20px'}, 600, 'easeInOutBack', function () { 
+					$("#mp-btnFollow").css("color", "#fff");
+					$("#mp-btnFollow").text("Following");
+					
+					$("#mp-btnFollow").animate({
+						backgroundColor: "#2B96ED",
+						borderColor: "##2B96ED"
+					}, 1000 );
+				});
+			});
+	    	
 	    }else{
 	      alert("언팔");
 	      // 팔로우가 되지 않은 상태로 css change
@@ -133,24 +140,42 @@ function init() {
 	$(".mp-modify-area").hover(function(){
 		$("#mp-btnModifyProfile").toggle();
 	});
+	
+	  $("#btnModifyProfile").click(function () {
+		  let fd = new FormData($('#mp-proModifyFrm')[0]);
+		  
+		  $.ajax({
+			 url : "editProfile.mp",
+			 type : "post",
+			 data : fd,
+			 contentType : false,
+			 processData : false,
+			 error : function(xhr, status, error){
+				 console.log(error);
+			 },
+			 success : function(data, xhr, status){
+				 alert(data);
+			 }
+		  })
+	  });
 }
 
 init();
 
 function photoUpload() {
-  $("#pro-upload").click();
+  $("#member_photo").click();
   imgPreview();
 }
 
 function imgPreview() {
-  $("#pro-upload").on("change", function () {
+  $("#member_photo").on("change", function () {
     readURL(this);
   });
 }
 
 function readURL(input) {
   if (input.files && input.files[0]) {
-    var reader = new FileReader();
+    let reader = new FileReader();
 
     reader.onload = function (e) {
       $("#pro-img").attr("src", e.target.result);
