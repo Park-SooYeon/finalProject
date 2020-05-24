@@ -9,14 +9,14 @@ ms.func = function(){
 	
 			alert('성공');
 			
-		var member_id=$("#member_id").val();
+		var member_id=$("#mId").val();
 		var pwd = $("#pwd").val();
 		
 		
 		if(member_id==""){
 			
 			alert("아이디 입력하세요.");
-			$("#member_id").focus();
+			$("#mId").focus();
 			return;
 			
 		}
@@ -139,13 +139,13 @@ ms.func = function(){
 						     alert("아이디가 중복입니다 ! 다시 확인해주세요");
 							$("#id_check").text("아이디가 중복입니다!");
 							$("#id_check").css("color","red");
-							$("#btnMemberInsert").attr("disabled",true);
+							$("#btnMemberInsert").prop("disabled",true);
 							
 						}else{
 							 alert("사용가능한 아이디입니다!");
 							$("#id_check").text("사용가능합니다!");
 							$("#id_check").css("color","green");
-							$("#btnMemberInsert").attr("abled",true);
+							$("#btnMemberInsert").prop("disabled",false);
 							
 							
 						}

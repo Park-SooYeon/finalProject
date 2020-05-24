@@ -31,7 +31,7 @@
 					<div class="form-group col-lg-10 offset-1">
 
 						<label>아이디</label> <input type="text" class="form-control"
-							name="member_id" id="member_id" placeholder="아이디을 입력해 주세요" maxlength="20">
+							name="mId" id="mId" placeholder="아이디을 입력해 주세요" maxlength="20">
 					</div>
 
 

@@ -151,7 +151,7 @@ public membershipController(membershipDao dao){
         
         membershipVo vo = new membershipVo();
         
-        String member_id = req.getParameter("member_id");
+        String member_id = req.getParameter("mId");
         String pwd = req.getParameter("pwd");
         
         

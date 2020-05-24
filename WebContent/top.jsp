@@ -26,32 +26,40 @@
 					
 					<c:if test="${empty member_id}">
 					<li><a href="./?inc=membership/login.jsp">로그인</a></li>
+					<li><a href="./?inc=membership/memberJoin.jsp">회원가입</a></li>
 					</c:if>
 					
 					<c:if test="${member_id != null}">
 					<li><a href="./?inc=logout.ms">로그아웃</a></li>
+					<li><a href="./?inc=membership/partnerJoin.jsp">파트너 등록하기</a></li>
 					</c:if>
 					
-					<li><a href="./?inc=membership/memberJoin.jsp">회원가입</a></li>
-					<li><a href="./?inc=membership/partnerJoin.jsp">파트너 등록하기</a></li>
 					
-					<li>
-					<div class="d-flex">
-					<div class="main-profile">
-					<img width="100%" src="https://i.ibb.co/T1FbwJ5/3x4-blue.jpg" alt="3x4-blue" border="0">
-					</div>
-					<div class="mobile-userId" style="display:none;">안주현 님</div>
-					</div>
-						<ul class="main-pro-menu">
-						<li>${sessionScope.nickName} 님</li>
-						<hr/>
-						<li><div onclick="location.href='./?inc=profile.mp'">프로필 보기</div></li>
-						<li><div onclick="location.href='./?inc=mypage.mp'">계정관리</div></li>
-						<li><div onclick="location.href='./?inc=mybooking.mp'">예약내역 확인</div></li>
-						<li><div onclick="location.href='./?inc=mypage/my_list.jsp'">My Trip</div></li>
-						<li><div onclick="location.href='#'">로그아웃</div></li>
-						</ul>
-					</li>
+						
+					
+					<c:if test="${member_id != null}">
+				
+					</c:if>
+					
+						<c:if test="${member_id != null}">
+							<li>
+							<div class="d-flex">
+							<div class="main-profile">
+							<img width="100%" src="https://i.ibb.co/T1FbwJ5/3x4-blue.jpg" alt="3x4-blue" border="0">
+							</div>
+							<div class="mobile-userId" style="display:none;">안주현 님</div>
+							</div>
+								<ul class="main-pro-menu">
+								<li>${sessionScope.nickName} 님</li>
+								<hr/>
+								<li><div onclick="location.href='./?inc=profile.mp'">프로필 보기</div></li>
+								<li><div onclick="location.href='./?inc=mypage.mp'">계정관리</div></li>
+								<li><div onclick="location.href='./?inc=mybooking.mp'">예약내역 확인</div></li>
+								<li><div onclick="location.href='./?inc=mypage/my_list.jsp'">My Trip</div></li>
+								<li><div onclick="location.href='./?inc=logout.ms'">로그아웃</div></li>
+								</ul>
+							</li>
+						</c:if>
 				</ul>
 			</nav>
 			<!-- #nav-menu-container -->
