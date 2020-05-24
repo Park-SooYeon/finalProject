@@ -306,7 +306,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
                   <span class="text-white"><i class="fa fa-edit"></i><strong>수정</strong></span>
                 </div>
                 <div class="my-1" onclick="photoUpload();"></div>
-                <input type="file" name="member_photo" id="member_photo" />
+                <input type="file" name="imgFile" id="member_photo" />
               </div>
               <div class="col-md-9 col-sm-9">
               

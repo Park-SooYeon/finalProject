@@ -1,8 +1,5 @@
 package mypage;
 
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -12,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -35,16 +32,15 @@ public class MyPageController {
 	
 	ModelAndView mv;
 	
-	@RequestMapping(value = "profile.mp", method= {RequestMethod.GET, RequestMethod.POST})
-	public ModelAndView profile(HttpServletRequest req) {
+	@GetMapping(value = "profile.mp")
+	public ModelAndView profile(@RequestParam String id) {
+		System.out.println(id);
 		mv = new ModelAndView();
-		String member_id = "커피1";
-		ProfileVo vo = dao.selectProfile(member_id);
+		ProfileVo vo = dao.selectProfile(id);
 		
 		mv.setViewName("my_social");
 		mv.addObject("vo", vo);
 		return mv;
-		// mypage/my_social.jsp
 	}
 	
 	@RequestMapping( value ="mypage.mp", method= {RequestMethod.GET, RequestMethod.POST})
@@ -209,23 +205,12 @@ public class MyPageController {
 	
 	@ResponseBody
 	@RequestMapping( value = "editProfile.mp", method = RequestMethod.POST, produces = "text/html;charset=utf8")
-	public String editProfile(HttpServletRequest request, 
-			@RequestParam("nickname") String nickname, 
-			@RequestParam("member_photo") MultipartFile imgFile,
-			@RequestParam("member_web") String member_web,
-			@RequestParam("member_city") String member_city,
-			@RequestParam("member_info") String member_info,
-			@RequestParam("profile_serial") int profile_serial){
+	public String editProfile(HttpServletRequest request, ProfileVo vo){
 		
 		String msg = "";
-	    ProfileVo vo = new ProfileVo();
-	    vo.setMember_city(member_city);
-	    vo.setMember_info(member_info);
-	    vo.setMember_web(member_web);
-	    vo.setNickname(nickname);
-	    vo.setProfile_serial(profile_serial);
+		MultipartFile imgFile = vo.getImgFile();
 		
-		if (!imgFile.isEmpty()) { // 파일이 있으면
+		if (!vo.getImgFile().isEmpty()) { // 파일이 있으면
 
 		String originalFilename = imgFile.getOriginalFilename(); // 오리지널 파일명
 	    String onlyFileName = originalFilename.substring(0, originalFilename.indexOf(".")); // fileName

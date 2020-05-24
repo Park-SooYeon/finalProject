@@ -46,6 +46,7 @@
 						<li>${sessionScope.nickName} 님</li>
 						<hr/>
 						<li><div onclick="location.href='./?inc=profile.mp?id=커피1'">프로필 보기</div></li>
+														<!-- 추후 아이디 session에서 가져오는걸로 변경 -->
 						<li><div onclick="location.href='./?inc=mypage.mp'">계정관리</div></li>
 						<li><div onclick="location.href='./?inc=mybooking.mp'">예약내역 확인</div></li>
 						<li><div onclick="location.href='./?inc=mypage/my_list.jsp'">My Trip</div></li>
