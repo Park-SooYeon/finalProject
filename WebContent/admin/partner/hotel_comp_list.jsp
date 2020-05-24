@@ -16,11 +16,12 @@
                                 </div>
 
                                 <div class="ml-auto d-flex align-items-stretch justify-content-end">
-                                    <a href="./?inc=hotel_comp_add.jsp" class="btn btn-inverse-primary no-wrap ml-4">호텔등록</a>
+                                    <a href="./?inc=hotel_comp_add.ph" id="btnPtHtInsert" class="btn btn-inverse-primary no-wrap ml-4">호텔등록</a>
                                 </div>
                             </div>
                             <div id="order-listing_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
-                                <div class="table-responsive">
+                                <form class="table-responsive" name="frmAdmHtCompList" id="frmAdmHtCompList" method="post">
+                                	<input type="text" name="mamber_id" id="mamberId" value="${member_id }">
                                     <table id="order-listing" class="table">
                                         <thead>
                                             <tr>
@@ -71,7 +72,7 @@
                                             
                                         </tbody>
                                     </table>
-                                </div>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -108,35 +109,18 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <div class="col-lg-3">
-                                    <label for="zonecode" class="col-form-label">우편번호 <span class="text-danger">*</span></label>
-                                </div>
-                                <div class="col-lg-8">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control" value="${vo.zip }" required="required" id="zonecode" name="zonecode" readonly>
-                                        <div class="input-group-append">
-                                            <button class="btn btn-primary btn-sm" type="button" onclick="openDaumZipAddress();">우편번호 찾기</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <div class="col-lg-3">
-                                    <label for="address" class="col-form-label">주소 <span class="text-danger">*</span></label>
-                                </div>
-                                <div class="col-lg-8">
-                                    <input type="text" class="form-control" value="${vo.addr1 }" required="required" id="address" name="address" readonly>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-lg-3">
-                                    <label for="address_etc" class="col-form-label">상세주소 <span class="text-danger">*</span></label>
-                                </div>
-                                <div class="col-lg-8">
-                                    <input type="text" class="form-control" value="${vo.addr2 }" required="required" id="address2" name="address2">
-                                </div>
-                            </div>
+				                <div class="col-lg-3">
+				                    <label for="place_location" class="col-form-label">주소 <span class="text-danger">*</span></label>
+				                </div>
+				                <div class="col-lg-8">
+				                    <div class="input-group">
+				                        <input type="text" class="form-control" value="" required="required" id="place_location" name="place_location" readonly>
+	                                    <div class="input-group-append">
+	                                        <button class="btn btn-primary btn-sm" type="button" onclick="openDaumZipAddress2();">주소 검색</button>
+	                                    </div>
+				                    </div>
+				                </div>
+				            </div>
                             <div class="form-group row">
                                 <div class="col-lg-3">
                                     <label class="col-form-label">사진</label>
@@ -180,24 +164,6 @@
                                                     <input type="checkbox" class="form-check-input"> 주차장 <i class="input-helper"></i></label>
                                             </div>
                                         </div>
-                                        <div class="col-6">
-                                            <div class="form-check form-check-flat">
-                                                <label class="form-check-label">
-                                                    <input type="checkbox" class="form-check-input"> 오션뷰 <i class="input-helper"></i></label>
-                                            </div>
-                                        </div>
-                                        <div class="col-6">
-                                            <div class="form-check form-check-flat">
-                                                <label class="form-check-label">
-                                                    <input type="checkbox" class="form-check-input"> 시티뷰 <i class="input-helper"></i></label>
-                                            </div>
-                                        </div>
-                                        <div class="col-6">
-                                            <div class="form-check form-check-flat">
-                                                <label class="form-check-label">
-                                                    <input type="checkbox" class="form-check-input"> 마운틴뷰 <i class="input-helper"></i></label>
-                                            </div>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -224,3 +190,6 @@
             </div>
         </div>
         <!-- end of 사용자 정보 modal -->
+        
+        
+       
