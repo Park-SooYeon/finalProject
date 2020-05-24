@@ -4,18 +4,19 @@
 let ms = {}
 
 ms.func = function(){
-		
-		
+
 		$('#btnLogin').click(function(){
 	
-		var member_id=$("#member_id").val();
+			alert('성공');
+			
+		var member_id=$("#mId").val();
 		var pwd = $("#pwd").val();
 		
 		
 		if(member_id==""){
 			
 			alert("아이디 입력하세요.");
-			$("#member_id").focus();
+			$("#mId").focus();
 			return;
 			
 		}
@@ -95,7 +96,7 @@ ms.func = function(){
 			
 			if(email == "" ){
 				alert("이메일을 입력세요");
-				$("#phone").focus();
+				$("#email").focus();
 				return;
 				
 				
@@ -123,27 +124,28 @@ ms.func = function(){
 		
 		
 		$("#member_id").blur(function(){
-			let member_id = $("#member_id").val();
-			let param = "member_id=" + member_id;
-			
-			if(mId.length >= 4){
+		
+			var member_id = $("#member_id").val()
+		
 				$.ajax({
-					type :"get",
+					type :"post",
 					url : "idCheck.ms",
-					data : param,
-					success : function(result){
-						console.log('1은 중복, 0은 사용가능!!')
+					data : {"member_id":member_id},
+
+					success : function(data){
 						
-						if(result == 1){
-							
+				 
+						if($.trim(data) == "no"){
+						     alert("아이디가 중복입니다 ! 다시 확인해주세요");
 							$("#id_check").text("아이디가 중복입니다!");
 							$("#id_check").css("color","red");
-							$("#btnMemberInsert").attr("disabled",true);
+							$("#btnMemberInsert").prop("disabled",true);
 							
 						}else{
+							 alert("사용가능한 아이디입니다!");
 							$("#id_check").text("사용가능합니다!");
 							$("#id_check").css("color","green");
-							$("#btnMemberInsert").attr("abled",true);
+							$("#btnMemberInsert").prop("disabled",false);
 							
 							
 						}
@@ -151,18 +153,29 @@ ms.func = function(){
 						
 					}
 				})
-			}
+			
 		})
 		
 		
 		
 		
+		$("#btnFindPwd").onclick(function(){
+		
+			
+			if(email == "" ){
+				alert("이메일을 입력세요");
+				$("#email").focus();
+				return;
+				
+				
+			}
+			
+			
+			     document.frm_ms.action="?inc=findPwd.ms"
+				 document.frm_ms.submit();
 		
 		
-		
-		
-		
-		
+		})
 		
 		
 	}

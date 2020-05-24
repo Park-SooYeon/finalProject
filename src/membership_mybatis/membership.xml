@@ -4,8 +4,16 @@
 
 <mapper namespace="ms">
 
+<select id='idCheck' parameterType="String"  resultType="Integer">
+ select case
+       when count(member_id)>0 then 1
+       else 0
+       end result 
+ from membership 
+ where member_id=#{member_id} and state != 3 and state !=2
 
-
+</select>
+ 
 
 <select id='loginCheck' parameterType="bean.membershipVo"  resultType="boolean">
  select case

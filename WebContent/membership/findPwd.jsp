@@ -25,7 +25,7 @@
 		<div class="col-lg-7 offset-lg-3">
 			<div class="jumbotron ms">
 				 <div style="border: 1px solid #EAEAEA; padding: 50px;">
-				<form method="post" name="frm_ms" id="frm_ms"></form>
+				<form method="post" name="frm_ms" id="frm_ms">
                    
 		
 			     <br>
@@ -35,16 +35,17 @@
 				<div class="form-group col-lg-12" id="email_syj">
 				
 					<div class="input-group">
-					  <input type="text" class="form-control" placeholder="이메일을 입력해주세요" aria-describedby="basic-addon2">
+					  <input type="text" class="form-control" 
+					  placeholder="이메일을 입력해주세요" 
+					  aria-describedby="basic-addon2" name="email" id="email">
 				 
 				
 					</div>
 				
 				
-					<div class="check_font" id="email_check" name="email_check">
-					</div>
 				
 				</div>
+				</form>
 
 
 

@@ -31,7 +31,7 @@
 					<div class="form-group col-lg-10 offset-1">
 
 						<label>아이디</label> <input type="text" class="form-control"
-							name="member_id" id="member_id" placeholder="아이디을 입력해 주세요" maxlength="20">
+							name="mId" id="mId" placeholder="아이디을 입력해 주세요" maxlength="20">
 					</div>
 
 
@@ -58,7 +58,7 @@
 					<div class="form-group col-lg-10 offset-1">
 
 						<input type="text" class="genric-btn min-width-350 link"
-							id="findPwd" onclick="location.href='./?inc=findPwd.ms'"
+							id="findPwd" onclick="location.href='./?inc=membership/findPwd.jsp'"
 							value="비밀번호 찾기"> <br /> 
 							
 							<input type="text"
@@ -91,7 +91,7 @@
 		</div>
 	</div>
 	<script>
-
+           ms.func();
 
 	</script>
 </body>

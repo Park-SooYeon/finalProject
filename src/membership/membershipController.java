@@ -1,29 +1,82 @@
 package membership;
 
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpCookie;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import bean.membershipVo;
 
+
+
+
 @Controller
 public class membershipController {
 
+	 @Autowired
+	   // private JavaMailSender mailSender;
+	
+
 membershipDao dao;
+ModelAndView mv;
 
 public membershipController(membershipDao dao){
     this.dao=dao;
 
 }
 
-     ModelAndView mv;
 
+
+     /*
+     
+     // mailForm
+     @RequestMapping(value = "/membership/mailForm")
+     public String mailForm() {
+      
+       return "/membership/mailForm";
+     }  
+     
+     // mailSending 코드
+     @RequestMapping(value = "findPwd.ms")
+     public String mailSending(HttpServletRequest request) {
+      
+       String setfrom = "아이디@gmail.com";         
+       String tomail  = request.getParameter("tomail");     // 받는 사람 이메일
+       String title   = request.getParameter("title");      // 제목
+       String content = request.getParameter("content");    // 내용
+      
+       try {
+         MimeMessage message = mailSender.createMimeMessage();
+         MimeMessageHelper messageHelper 
+                           = new MimeMessageHelper(message, true, "UTF-8");
+    
+         messageHelper.setFrom(setfrom);  // 보내는사람 생략하거나 하면 정상작동을 안함
+         messageHelper.setTo(tomail);     // 받는사람 이메일
+         messageHelper.setSubject(title); // 메일제목은 생략이 가능하다
+         messageHelper.setText(content);  // 메일 내용
+        
+         mailSender.send(message);
+       } catch(Exception e){
+         System.out.println(e);
+       }
+      
+       return "redirect:/membership/mailForm";
+     }
+     
+*/
     @RequestMapping( value ="memberJoin.ms", method= {RequestMethod.GET, RequestMethod.POST})
     public ModelAndView memberJoin(HttpServletRequest req) {
         mv = new ModelAndView();
@@ -43,7 +96,7 @@ public membershipController(membershipDao dao){
         
         
         vo.setMember_id(member_id);
-          System.out.println("member_id " +vo.getMember_id());
+          System.out.println("member_id은 무엇이얌? " +vo.getMember_id());
         vo.setPwd(pwd);
         vo.setMember_name(member_name);
         vo.setPhone(phone);
@@ -99,13 +152,25 @@ public membershipController(membershipDao dao){
     }
 
     
-
-    @RequestMapping( value ="idCheck.ms", method= {RequestMethod.GET, RequestMethod.POST})
-    public ModelAndView idCheck(HttpServletRequest req) {
-        mv = new ModelAndView();
+    @ResponseBody 
+    @RequestMapping( value ="idCheck.ms", method= { RequestMethod.POST})
+    public String idCheck(HttpServletRequest req) {
+      
+        String member_id = req.getParameter("member_id");
+        System.out.println("아이디 췤");
+    
+        String str="";
         
+        int result = dao.idCheck(member_id);
         
-        return mv;
+        if(result ==1) {
+        	str="no";
+        }else {
+        	str="yes";
+        		
+        }
+        
+       return str;
     }
 
     
@@ -132,7 +197,7 @@ public membershipController(membershipDao dao){
         
         membershipVo vo = new membershipVo();
         
-        String member_id = req.getParameter("member_id");
+        String member_id = req.getParameter("mId");
         String pwd = req.getParameter("pwd");
         
         
@@ -144,6 +209,7 @@ public membershipController(membershipDao dao){
         
         int loginResult = dao.login(vo);
         
+        System.out.println("로그인 결과  : "+loginResult);
         if(loginResult == -1) {
         	
         	   mv.addObject("msg","noId");
@@ -154,6 +220,8 @@ public membershipController(membershipDao dao){
         	   HttpSession session = req.getSession();
         	   session.setAttribute("member_id", member_id);
         	  
+        	   System.out.println(member_id);
+        	   
         	   
         	   String nickName=dao.loginNickName(member_id);
         	   
