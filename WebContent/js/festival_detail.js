@@ -129,15 +129,19 @@ function init() {
     },
   });
 
+  
+  //신고하기 버튼
   $(".testBtn").click(function (e) {
     e.preventDefault();
     $("#testModal").modal("show");
   });
-
+  
+  //접수하기 버튼
   $(".success").click(function (e) {
     alert("성공적으로 접수되었습니다.");
   });
   
+  //접수하기버튼 아이디
   $("#asd").click(function () {	  
 	  report();	  
   });
@@ -146,6 +150,7 @@ function init() {
 function report(){
 	//세션에서 아이디값 가저오기
 	var member_id = sessionStorage.getItem("member_id");
+	console.log(member_id);
 	
 	//name이 같은 체크박스의 value값 받아오기
 	var radioValues = [];
@@ -157,7 +162,7 @@ function report(){
 	var allDate = { "userId": userId, "checkArray": radioValues };
 	
 	$.ajax({
-		url:"goUrl.do",
+		url:"goUrl.do", //컨트롤 어노테이션의 주소값
 		type:'GET',
 		data:allData,
 		success:function(data){
