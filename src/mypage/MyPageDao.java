@@ -10,6 +10,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.web.multipart.MultipartFile;
 
 import bean.Factory;
+import bean.FollowListVo;
 import bean.LikeListVo;
 import bean.ProfileVo;
 import bean.ReviewVo;
@@ -158,4 +159,23 @@ public class MyPageDao {
 		return msg;
 	}
 	
+	public String addFollow(FollowListVo vo) {
+		String msg = "";
+		try {
+			int cnt = sqlSession.insert("follow", vo);
+			
+			if(cnt>0) {
+				msg = "팔로우했음";
+				sqlSession.commit();
+			}else {
+				throw new Exception("오류발생");
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+			msg = e.getMessage();
+			sqlSession.rollback();
+		}
+		
+		return msg;
+	}
 }

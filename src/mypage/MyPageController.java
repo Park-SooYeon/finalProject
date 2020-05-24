@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import bean.FollowListVo;
 import bean.LikeListVo;
 import bean.ProfileVo;
 import bean.ReviewVo;
@@ -228,6 +229,17 @@ public class MyPageController {
 	    System.out.println(vo.toString());
 	    
 	    return msg;
+	}
+	
+	@ResponseBody
+	@RequestMapping( value = "follow.mp", method = RequestMethod.GET, produces = "text/html;charset=utf8")
+	public String addFollow(@RequestParam String target_id) {
+		FollowListVo vo = new FollowListVo();
+		vo.setTarget_id(target_id);
+		vo.setMember_id("아이디");
+		// 멤버아이디 세션 scope에서 가져오기
+		String msg = dao.addFollow(vo);
+		return msg;
 	}
 	
 	public String getCurrentDayTime(){

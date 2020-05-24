@@ -150,5 +150,13 @@
    		where profile_serial = ${profile_serial}
    </update>
 	
+	<!-- 팔로우버튼 눌렀을 때 -->
+	<insert id="follow" parameterType="bean.FollowListVo">
+		insert into follow_list 
+		values(seq_follow_list.nextval, #{member_id}, #{target_id}, systimestamp)
+	</insert>
+	
+	<!-- 팔로워 -->
+	<!-- 팔로잉 -->
 	
 </mapper>

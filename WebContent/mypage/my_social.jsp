@@ -49,7 +49,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
           <i class="fa fa-edit"></i>
             프로필수정
           </a>
-          <button class="pull-right" type="button" id="mp-btnFollow">+ Follow</button>
+          <button class="pull-right" type="button" id="mp-btnFollow" data-target="${vo.member_id }">+ Follow</button>
           </div>
           <div id="pro-id"><i class="fa fa-at" aria-hidden="true"></i> ${vo.member_id }</div>
           
@@ -333,6 +333,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
                       onfocus="this.placeholder = ''"
                       onblur="this.placeholder = '아이디를 입력해주세요.'"
                       class="single-input"
+                      disabled
                     />
                   </div>
                   <label for="member_city">거주도시</label>

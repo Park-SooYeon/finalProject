@@ -105,20 +105,26 @@ function init() {
   });
   
 	$("#mp-btnFollow").click(function(event){
+		const TARGET_ID = $(this).data("target");
+		console.log(TARGET_ID);
+		
 	    if ($("#mp-btnFollow").text() == "+ Follow"){
-	    	alert("팔로우");
-	    	//event.preventDefault();
-	      $("#mp-btnFollow").animate({ width: '-=10px' }, 100, 'easeInCubic', function () {});
-	      
-	      $("#mp-btnFollow").animate({ width: '+=20px'}, 600, 'easeInOutBack', function () { 
-	        $("#mp-btnFollow").css("color", "#fff");
-	        $("#mp-btnFollow").text("Following");
-
-	        $("#mp-btnFollow").animate({
-	          backgroundColor: "#2B96ED",
-	          borderColor: "##2B96ED"
-	        }, 1000 );
-	      });
+	    	
+			$.get("follow.mp", {"target_id" : TARGET_ID}, function(data, state) {
+				alert(data);
+				$("#mp-btnFollow").animate({ width: '-=10px' }, 100, 'easeInCubic', function () {});
+				
+				$("#mp-btnFollow").animate({ width: '+=20px'}, 600, 'easeInOutBack', function () { 
+					$("#mp-btnFollow").css("color", "#fff");
+					$("#mp-btnFollow").text("Following");
+					
+					$("#mp-btnFollow").animate({
+						backgroundColor: "#2B96ED",
+						borderColor: "##2B96ED"
+					}, 1000 );
+				});
+			});
+	    	
 	    }else{
 	      alert("언팔");
 	      // 팔로우가 되지 않은 상태로 css change
