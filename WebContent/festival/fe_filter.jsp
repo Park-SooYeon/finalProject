@@ -18,27 +18,27 @@
 	    <h4 class="mb-20">지역</h4>
 	    <div class="row col-md-12 nopadding">
 	    <div class="custom-control custom-checkbox col-md-12 col-4">
-		  <input type="checkbox" class="custom-control-input" name='check_type' id='check_seoul' onclick="filter.check(this)" value='돼지고기'/>
+		  <input type="checkbox" class="custom-control-input" name='check_type' id='check_seoul' onclick="filter.check(this)" value='1'/>
 		  <label class="custom-control-label" for="check_seoul">서울</label>
 	    </div>
 		<div class="custom-control custom-checkbox col-md-12 col-4">
-		  <input type="checkbox" class="custom-control-input" name='check_type' id='check_jeju' onclick="filter.check(this)" value='소고기'/>
+		  <input type="checkbox" class="custom-control-input" name='check_type' id='check_jeju' onclick="filter.check(this)" value='39'/>
 		  <label class="custom-control-label" for="check_jeju">제주도</label>
 	    </div>
 	    <div class="custom-control custom-checkbox col-md-12 col-4">
-		  <input type="checkbox" class="custom-control-input" name='check_type' id='check_busan' onclick="filter.check(this)" value='샐러드'/>
+		  <input type="checkbox" class="custom-control-input" name='check_type' id='check_busan' onclick="filter.check(this)" value='6'/>
 		  <label class="custom-control-label" for="check_busan">부산</label>
 	    </div>
 	    <div class="custom-control custom-checkbox col-md-12 col-4">
-		  <input type="checkbox" class="custom-control-input" name='check_type' id='check_daegu' onclick="filter.check(this)" value='해산물'/>
+		  <input type="checkbox" class="custom-control-input" name='check_type' id='check_daegu' onclick="filter.check(this)" value='4'/>
 		  <label class="custom-control-label" for="check_daegu">대구</label>
 	    </div>
 	    <div class="custom-control custom-checkbox col-md-12 col-4">
-		  <input type="checkbox" class="custom-control-input" name='check_type' id='check_gyeonggi' onclick="filter.check(this)" value='면요리'/>
+		  <input type="checkbox" class="custom-control-input" name='check_type' id='check_gyeonggi' onclick="filter.check(this)" value='31'/>
 		  <label class="custom-control-label" for="check_gyeonggi">경기도</label>
 	    </div>
 	    <div class="custom-control custom-checkbox col-md-12 col-4">
-		  <input type="checkbox" class="custom-control-input" name='check_type' id='check_incheon' onclick="filter.check(this)" value='그외메뉴'/>
+		  <input type="checkbox" class="custom-control-input" name='check_type' id='check_incheon' onclick="filter.check(this)" value='2'/>
 		  <label class="custom-control-label" for="check_incheon">인천</label>
 	    </div>
 	    </div>

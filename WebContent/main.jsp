@@ -43,7 +43,7 @@
 						</div>
 					</div>
 					<div class="col">
-						<div class="single-destination relative" onclick="main.placeMove(2)">
+						<div class="single-destination relative" onclick="main.placeMove(39)">
 							<div class="thumb relative">
 								<div class="overlay overlay-bg"></div>
 							</div>
@@ -53,7 +53,7 @@
 						</div>
 					</div>
 					<div class="col">
-						<div class="single-destination relative" onclick="main.placeMove(3)">
+						<div class="single-destination relative" onclick="main.placeMove(6)">
 							<div class="thumb relative">
 								<div class="overlay overlay-bg"></div>
 							</div>
@@ -77,7 +77,7 @@
 						</div>
 					</div>
 					<div class="col">
-						<div class="single-destination relative" onclick="main.placeMove(5)">
+						<div class="single-destination relative" onclick="main.placeMove(31)">
 							<div class="thumb relative">
 								<div class="overlay overlay-bg"></div>
 							</div>
@@ -87,7 +87,7 @@
 						</div>
 					</div>
 					<div class="col">
-						<div class="single-destination relative" onclick="main.placeMove(6)">
+						<div class="single-destination relative" onclick="main.placeMove(2)">
 							<div class="thumb relative">
 								<div class="overlay overlay-bg"></div>
 							</div>

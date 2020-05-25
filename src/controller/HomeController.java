@@ -14,7 +14,7 @@ import bean.TripListVo;
 import dao.SubMainDao;
 
 @Controller
-public class MainController {
+public class HomeController {
 	
 	@GetMapping("/")
 	public String placeMain(HttpServletRequest req, Model model) {
