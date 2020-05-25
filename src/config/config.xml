@@ -37,6 +37,9 @@
 		<!-- detailView -->
 		<mapper resource="detailview_mybatis/detailview_mybatis.xml"/>
 		
+		<!-- review -->
+		<mapper resource="review_mybatis/review_mybatis.xml"/>
+		
 		<!-- amdin-partner -->
 		<mapper resource="partner_mybatis/hotel.xml"/>
 	</mappers>
