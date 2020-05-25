@@ -4,8 +4,73 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	
 <mapper namespace="rent">
-	<select id='company' parameterType="String" resultType="rent.CompanyVo">
+	<select id='company' parameterType="rent_parameter.CompanyPm" resultType="rent_parameter.CompanyVo">
+		select C.company_serial company_serial, C.company_name company_name, C.address address, C.latitude latitude, C.longitude longitude, min(A.price)*${between} price, count(A.car_serial) cars_count
+		from RENT_COMPANY C , RENT_CARS A 
+		where C.company_serial = A.company_serial 
+		and C.state ='y' and A.RESERVE_STATE='n' and  C.address like '%${placeMain}%' and C.address like '%${placeSub}%'
+		group by C.company_serial,C.company_name, C.address, C.latitude, C.longitude
+		order by price
+	</select>
 	
+	<select id='companyFillter' parameterType="rent_parameter.CompanyPm" resultType="rent_parameter.CompanyVo">
+		select C.company_serial company_serial, C.company_name company_name, C.address address, C.latitude latitude, C.longitude longitude, min(A.price)*${between} price, count(A.car_serial) cars_count
+		from RENT_COMPANY C , RENT_CARS A 
+		where C.company_serial = A.company_serial 
+		and C.state ='y' and A.RESERVE_STATE='n' and  C.address like '%${placeMain}%' and C.address like '%${placeSub}%'
+		<if test="companyCheck !=null ">
+			and C.company_name = #{companyCheck}
+		</if>
+		<if test="airconCheck !=null">
+			and A.aircon = 'y'
+		</if>
+		<if test="gearCheck !=null">
+			and A.gear = '오토'
+		</if>
+		<if test="doorCheck !=null">
+			and A.door <![CDATA[>]]>= 4
+		</if>
+		<if test='maxPeopleCheck !=null and(maxPeopleCheck eq "1".toString())'>
+				and A.max_people <![CDATA[<]]>=2 and A.max_people <![CDATA[>]]>=1
+			</if>
+			<if test='maxPeopleCheck !=null and(maxPeopleCheck eq "2".toString())'>
+				and A.max_people <![CDATA[<]]>=4 and A.max_people <![CDATA[>]]>=1
+			</if>
+			<if test='maxPeopleCheck !=null and(maxPeopleCheck eq "3".toString())'>
+				and A.max_people <![CDATA[>]]>4
+			</if>
+		
+		
+			<if test='priceCheck !=null and(priceCheck eq "1".toString())'>
+				and price*${between} <![CDATA[<]]>= 500000
+			</if>
+			<if test='priceCheck !=null and(priceCheck eq "2".toString())'>
+				and price*${between} <![CDATA[<]]>= 300000
+			</if>
+			<if test='priceCheck !=null and(priceCheck eq "3".toString())'>
+				and price*${between} <![CDATA[<]]>= 100000
+			</if>
+			<if test='kindCheck !=null and(kindCheck eq "소형 차량".toString())'>
+				and A.car_kind = '소형 차량'
+			</if>
+			<if test='kindCheck !=null and(kindCheck eq "중형 차량".toString())'>
+				and A.car_kind = '중형 차량'
+			</if>
+			<if test='kindCheck !=null and(kindCheck eq "대형 차량".toString())'>
+				and A.car_kind = '대형 차량'
+			</if>
+			<if test='kindCheck !=null and(kindCheck eq "프리미엄 차량".toString())'>
+				and A.car_kind = '프리미엄 차량'
+			</if>
+			<if test='kindCheck !=null and(kindCheck eq "미니벤".toString())'>
+				and A.car_kind = '미니벤'
+			</if>
+			<if test='kindCheck !=null and(kindCheck eq "SUV".toString())'>
+				and A.car_kind = 'SUV'
+			</if>	
+		
+		group by C.company_serial,C.company_name, C.address, C.latitude, C.longitude
+		order by price
 	</select>
 
 </mapper>

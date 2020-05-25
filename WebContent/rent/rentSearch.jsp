@@ -22,6 +22,11 @@
 
 <div id="rentSearch" style="padding-top: 70px;">
 	<form name='rent_frm' id='rent_frm' method='post'>
+	
+	<input type='hidden' name='' value='${dateVo1.now}'/>
+	<input type='hidden' name='' value='${dateVo2.now}'/>
+	<input type='hidden' name='placeMain' value='${placeMain}'/>
+	<input type='hidden' name='placeSub' value='${placeSub}'/>
 	<div class="row">
 		<div id='left' class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
 		<div id='map' class="col-lg-12 col-md-12 col-sm-12 hidden-xs"></div>
@@ -39,16 +44,17 @@
 						<hr/>
 						<label>> 차량 인수</label>
 						<div class="form-group">
-							<label>안양시</label>
-							<input type="text" id='search_rent' class="form-control datepicker-here" data-timepicker="true" data-time-format='hh:ii aa' placeholder="2014/3/20 10:00">
+							<label>${placeSub}</label>
+							<input type="text" id='search_rent' class="form-control datepicker-here" data-timepicker="true" data-language='en' value="${rentDate}"  name='rentDate'/>
+							<input type='hidden' id='search_rent_'value='${rentDate}'/>
 						</div>
 						<hr/>
 						<label>> 차량 반납</label>
 						<div class="form-group">
-							<label>안양시</label>
-							<input type="text" id='search_return' class="form-control datepicker-here" data-timepicker="true" data-time-format='hh:ii aa' placeholder="2014/3/20 10:00">
+							<label>${placeSub}</label>
+							<input type="text" id='search_return' class="form-control datepicker-here" data-timepicker="true" data-language='en' value="${returnDate}"  name='returnDate'/>
 						</div>
-						<button type="button" id='btnSearch' class="btn btn-primary">검색</button>
+						<button type="button" id='btnSearch' class="btn btn-primary" onclick='rent.fillter()'>검색</button>
 					</div>
 					
 					<div id='helpFillter' class="col-lg-12 col-md-12 col-sm-12">
@@ -82,33 +88,16 @@
 					    </div>
 					    <div id="collapse2" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading2">
 					      <div class="list-group">
-					          	<label><input type="checkbox">&nbsp;&nbsp;주식회사IC</label><br/>
-					          	<label><input type="checkbox">&nbsp;&nbsp;주식회사AC</label><br/>
+					      		<c:forEach var="vo" items="${list }" varStatus="status">
+					          		<label><input type="radio" name='companyCheck' value='${vo.company_name}' onclick='rent.fillter()'>&nbsp;&nbsp;${vo.company_name}</label><br/>
+					          	</c:forEach>
 					      </div>
 					    </div>
 					  </div>
 					 </div>
 					 </div>
 					 
-					 <div id='reviewFillter' class="col-lg-12 col-md-12 col-sm-12">
-					 	<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-					  <div class="panel panel-default">
-					    <div class="panel-heading" role="tab" id="heading3">
-					      <h4 class="panel-title">
-					        <a data-toggle="collapse" data-parent="#accordion" href="#collapse3" aria-expanded="true" aria-controls="collapse3">
-					          	공급업체 평점
-					        </a>
-					      </h4>
-					    </div>
-					    <div id="collapse3" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading3">
-					      <div class="list-group">
-					          	<label><input type="checkbox">&nbsp;&nbsp;훌륭함:8+</label><br/>
-					          	<label><input type="checkbox">&nbsp;&nbsp;만족함:7+</label><br/>
-					      </div>
-					    </div>
-					  </div>
-					 </div>
-					 </div>
+					 
 					 
 					 <div id='fuelFillter' class="col-lg-12 col-md-12 col-sm-12">
 					 	<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
@@ -122,7 +111,7 @@
 					    </div>
 					    <div id="collapse4" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading4">
 					      <div class="list-group">
-					          	<label><input type="checkbox">&nbsp;&nbsp;가득 채워 받고 가득 채워 반납</label><br/>
+					          	<label><input type="checkbox" onclick='rent.fillter()'>&nbsp;&nbsp;가득 채워 받고 가득 채워 반납</label><br/>
 					      </div>
 					    </div>
 					  </div>
@@ -141,9 +130,31 @@
 					    </div>
 					    <div id="collapse5" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading5">
 					      <div class="list-group">
-					          	<label><input type="checkbox">&nbsp;&nbsp;에어컨장착</label><br/>
-					          	<label><input type="checkbox">&nbsp;&nbsp;자동기어</label><br/>
-					          	<label><input type="checkbox">&nbsp;&nbsp;4도어 이상</label><br/>
+					      		<c:choose>
+									<c:when test="${airconCheck eq 'on'}"> 
+										<label><input type="checkbox" name='airconCheck' onclick='rent.fillter()' checked="checked">&nbsp;&nbsp;에어컨장착</label><br/>	
+									</c:when>
+									<c:otherwise> 
+										<label><input type="checkbox" name='airconCheck' onclick='rent.fillter()'>&nbsp;&nbsp;에어컨장착</label><br/>
+									 </c:otherwise>
+								</c:choose>
+								<c:choose>
+									<c:when test="${gearCheck eq 'on'}"> 
+										<label><input type="checkbox" name='gearCheck' onclick='rent.fillter()' checked="checked">&nbsp;&nbsp;자동기어</label><br/>	
+									</c:when>
+									<c:otherwise> 
+										<label><input type="checkbox" name='gearCheck' onclick='rent.fillter()'>&nbsp;&nbsp;자동기어</label><br/>
+									 </c:otherwise>
+								</c:choose>
+								<c:choose>
+									<c:when test="${doorCheck eq 'on'}"> 
+										<label><input type="checkbox" name='doorCheck' onclick='rent.fillter()' checked="checked">&nbsp;&nbsp;4도어 이상</label><br/>	
+									</c:when>
+									<c:otherwise> 
+										<label><input type="checkbox" name='doorCheck' onclick='rent.fillter()'>&nbsp;&nbsp;4도어 이상</label><br/>
+									 </c:otherwise>
+								</c:choose>
+					          	
 					      </div>
 					    </div>
 					  </div>
@@ -162,9 +173,29 @@
 					    </div>
 					    <div id="collapse6" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading6">
 					      <div class="list-group">
-					          	<label><input type="checkbox">&nbsp;&nbsp;1명 혹은 2명</label><br/>
-					          	<label><input type="checkbox">&nbsp;&nbsp;작은그룹</label><br/>
-					          	<label><input type="checkbox">&nbsp;&nbsp;큰 그룹</label><br/>
+					      		<c:choose>
+									<c:when test="${maxPeopleCheck eq '1'}"> 
+										<label><input type="radio" name='maxPeopleCheck' value='1' onclick='rent.fillter()' checked="checked">&nbsp;&nbsp;1명 혹은 2명</label><br/>
+					          			<label><input type="radio" name='maxPeopleCheck' value='2' onclick='rent.fillter()'>&nbsp;&nbsp;작은그룹</label><br/>
+					          			<label><input type="radio" name='maxPeopleCheck' value='3' onclick='rent.fillter()'>&nbsp;&nbsp;큰 그룹</label><br/>
+									 </c:when>
+									<c:when test="${maxPeopleCheck eq '2'}"> 
+										<label><input type="radio" name='maxPeopleCheck' value='1' onclick='rent.fillter()'>&nbsp;&nbsp;1명 혹은 2명</label><br/>
+					          			<label><input type="radio" name='maxPeopleCheck' value='2' onclick='rent.fillter()' checked="checked">&nbsp;&nbsp;작은그룹</label><br/>
+					          			<label><input type="radio" name='maxPeopleCheck' value='3' onclick='rent.fillter()'>&nbsp;&nbsp;큰 그룹</label><br/>
+					          	 	</c:when>
+									<c:when test="${maxPeopleCheck eq '3'}"> 
+										<label><input type="radio" name='maxPeopleCheck' value='1' onclick='rent.fillter()'>&nbsp;&nbsp;1명 혹은 2명</label><br/>
+					          			<label><input type="radio" name='maxPeopleCheck' value='2' onclick='rent.fillter()'>&nbsp;&nbsp;작은그룹</label><br/>
+					          			<label><input type="radio" name='maxPeopleCheck' value='3' onclick='rent.fillter()' checked="checked">&nbsp;&nbsp;큰 그룹</label><br/>
+					          	 	</c:when>
+					          	 	<c:otherwise>
+					          	 		<label><input type="radio" name='maxPeopleCheck' value='1' onclick='rent.fillter()'>&nbsp;&nbsp;1명 혹은 2명</label><br/>
+					          			<label><input type="radio" name='maxPeopleCheck' value='2' onclick='rent.fillter()'>&nbsp;&nbsp;작은그룹</label><br/>
+					          			<label><input type="radio" name='maxPeopleCheck' value='3' onclick='rent.fillter()'>&nbsp;&nbsp;큰 그룹</label><br/>					          	 	
+					          	 	</c:otherwise>
+									
+								</c:choose>
 					      </div>
 					    </div>
 					  </div>
@@ -183,9 +214,29 @@
 					    </div>
 					    <div id="collapse7" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading7">
 					      <div class="list-group">
-					          	<label><input type="checkbox">&nbsp;&nbsp;50만원 또는 이하</label><br/>
-					          	<label><input type="checkbox">&nbsp;&nbsp;30만원 또는 이하</label><br/>
-					          	<label><input type="checkbox">&nbsp;&nbsp;10만원 또는 이하</label><br/>
+					      	<c:choose>
+					      		<c:when test="${priceCheck eq '1'}"> 
+									<label><input type="radio" name='priceCheck' value='1' onclick='rent.fillter()' checked="checked">&nbsp;&nbsp;50만원 또는 이하</label><br/>
+					          		<label><input type="radio" name='priceCheck' value='2' onclick='rent.fillter()'>&nbsp;&nbsp;30만원 또는 이하</label><br/>
+					          		<label><input type="radio" name='priceCheck' value='3' onclick='rent.fillter()'>&nbsp;&nbsp;10만원 또는 이하</label><br/>
+					          	</c:when>
+					          	<c:when test="${priceCheck eq '2'}"> 
+									<label><input type="radio" name='priceCheck' value='1' onclick='rent.fillter()'>&nbsp;&nbsp;50만원 또는 이하</label><br/>
+					          		<label><input type="radio" name='priceCheck' value='2' onclick='rent.fillter()' checked="checked">&nbsp;&nbsp;30만원 또는 이하</label><br/>
+					          		<label><input type="radio" name='priceCheck' value='3' onclick='rent.fillter()'>&nbsp;&nbsp;10만원 또는 이하</label><br/>
+					          	</c:when>
+					          	<c:when test="${priceCheck eq '3'}"> 
+									<label><input type="radio" name='priceCheck' value='1' onclick='rent.fillter()'>&nbsp;&nbsp;50만원 또는 이하</label><br/>
+					          		<label><input type="radio" name='priceCheck' value='2' onclick='rent.fillter()'>&nbsp;&nbsp;30만원 또는 이하</label><br/>
+					          		<label><input type="radio" name='priceCheck' value='3' onclick='rent.fillter()' checked="checked">&nbsp;&nbsp;10만원 또는 이하</label><br/>
+					          	</c:when>
+					          	<c:otherwise>
+					          		<label><input type="radio" name='priceCheck' value='1' onclick='rent.fillter()'>&nbsp;&nbsp;50만원 또는 이하</label><br/>
+					          		<label><input type="radio" name='priceCheck' value='2' onclick='rent.fillter()'>&nbsp;&nbsp;30만원 또는 이하</label><br/>
+					          		<label><input type="radio" name='priceCheck' value='3' onclick='rent.fillter()'>&nbsp;&nbsp;10만원 또는 이하</label><br/>					          	
+					          	</c:otherwise>
+					        </c:choose>
+					          	
 					      </div>
 					    </div>
 					  </div>
@@ -208,10 +259,10 @@
 					<div class='row'>
 						<div id='depart_1' class='col-lg-6 col-md-6 col-sm-6 col-xs-6'>
 							<div>차량인수 ></div>
-							<span>경기도 전지역</span>
+							<span>${placeMain } ${placeSub }</span>
 						</div>
 						<div id='depart_2' class='col-lg-6 col-md-6 col-sm-6 col-xs-6   '>
-							<span> 14 <b>목</b> 10<b>:00</b></span>
+							<span> ${dateVo1.day }일 <b>${dateVo1.month }월</b> ${dateVo1.hour }<b>:${dateVo1.min }</b></span>
 						</div>
 					</div>
 				</div>
@@ -219,10 +270,10 @@
 					<div class='row'>
 						<div id='arrive_1' class='col-lg-6 col-md-6 col-sm-6 col-xs-6'>
 							<div>차량반납 ></div>
-							<span>경기도 전지역</span>
+							<span>${placeMain } ${placeSub }</span>
 						</div>
 						<div id='arrive_2' class='col-lg-6 col-md-6 col-sm-6 col-xs-6   '>
-							<span> 15 <b>금</b> 15<b>:00</b></span>
+							<span> ${dateVo2.day }일 <b>${dateVo2.month }월</b> ${dateVo2.hour }<b>:${dateVo2.min }</b></span>
 						</div>
 					</div>
 				</div>
@@ -233,48 +284,131 @@
 			<div class ='row'>
 				<div id='carPhoto' class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
 					<div class ='row'>
-						<div id='carPhoto_1' class='col-lg-2 col-md-2 col-sm-2 col-xs-2'>
+						<input type='hidden' id='kind_s' value="${empty kindCheck?'':kindCheck }" name='kindCheck' />
+						
+						<c:choose>
+							<c:when test="${kindCheck eq '소형 차량'}"> 
+								<div id='carPhoto_1' class='col-lg-2 col-md-2 col-sm-2 col-xs-2' style="border : 2px solid #2b96fe;">
 								<div id='photoTop' class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>소형 차량</div>
 								<div id='photoMid' class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
 									<img src="../images/rent/car1.png"/>
 								</div>
-								
-						</div>
-						<div id='carPhoto_2' class='col-lg-2 col-md-2 col-sm-2 col-xs-2'>
+								</div>	
+							</c:when>
+							<c:otherwise> 
+								<div id='carPhoto_1' class='col-lg-2 col-md-2 col-sm-2 col-xs-2' >
+								<div id='photoTop' class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>소형 차량</div>
+								<div id='photoMid' class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
+									<img src="../images/rent/car1.png"/>
+								</div>
+								</div>
+							</c:otherwise>
+						</c:choose>
+						
+						<c:choose>
+							<c:when test="${kindCheck eq '중형 차량'}"> 
+								<div id='carPhoto_2' class='col-lg-2 col-md-2 col-sm-2 col-xs-2' style="border : 2px solid #2b96fe;">
 								<div id='photoTop' class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>중형 차량</div>
 								<div id='photoMid' class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
 									<img src="../images/rent/car2.png"/>
 								</div>
 								
-						</div>
-						<div id='carPhoto_3' class='col-lg-2 col-md-2 col-sm-2 col-xs-2'>
+								</div>
+							</c:when>
+							<c:otherwise> 
+								<div id='carPhoto_2' class='col-lg-2 col-md-2 col-sm-2 col-xs-2' >
+								<div id='photoTop' class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>중형 차량</div>
+								<div id='photoMid' class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
+									<img src="../images/rent/car2.png"/>
+								</div>
+								
+								</div>
+							</c:otherwise>
+						</c:choose>
+						
+						<c:choose>
+							<c:when test="${kindCheck eq '대형 차량'}"> 
+								<div id='carPhoto_3' class='col-lg-2 col-md-2 col-sm-2 col-xs-2' style="border : 2px solid #2b96fe;">
 								<div id='photoTop' class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>대형 차량</div>
 								<div id='photoMid' class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
 									<img src="../images/rent/car3.png"/>
 								</div>
-								
-						</div>
-						<div id='carPhoto_4' class='col-lg-2 col-md-2 col-sm-2 col-xs-2'>
+								</div>
+							</c:when>
+							<c:otherwise> 
+								<div id='carPhoto_3' class='col-lg-2 col-md-2 col-sm-2 col-xs-2'>
+								<div id='photoTop' class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>대형 차량</div>
+								<div id='photoMid' class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
+									<img src="../images/rent/car3.png"/>
+								</div>
+								</div>
+							</c:otherwise>
+						</c:choose>
+						
+						<c:choose>
+							<c:when test="${kindCheck eq '프리미엄 차량'}"> 
+								<div id='carPhoto_4' class='col-lg-2 col-md-2 col-sm-2 col-xs-2' style="border : 2px solid #2b96fe;">
 								<div id='photoTop' class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>프리미엄 차량</div>
 								<div id='photoMid' class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
 									<img src="../images/rent/car4.png"/>
 								</div>
-								
-						</div>
-						<div id='carPhoto_5' class='col-lg-2 col-md-2 col-sm-2 col-xs-2'>
+								</div>
+							</c:when>
+							<c:otherwise> 
+								<div id='carPhoto_4' class='col-lg-2 col-md-2 col-sm-2 col-xs-2'>
+								<div id='photoTop' class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>프리미엄 차량</div>
+								<div id='photoMid' class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
+									<img src="../images/rent/car4.png"/>
+								</div>
+								</div>
+							</c:otherwise>
+						</c:choose>
+						
+						<c:choose>
+							<c:when test="${kindCheck eq '미니벤'}"> 
+								<div id='carPhoto_5' class='col-lg-2 col-md-2 col-sm-2 col-xs-2' style="border : 2px solid #2b96fe;">
 								<div id='photoTop' class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>미니벤</div>
 								<div id='photoMid' class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
 									<img src="../images/rent/car5.png"/>
 								</div>
-								
-						</div>
-						<div id='carPhoto_6' class='col-lg-2 col-md-2 col-sm-2 col-xs-2'>
+								</div>
+							</c:when>
+							<c:otherwise> 
+								<div id='carPhoto_5' class='col-lg-2 col-md-2 col-sm-2 col-xs-2' >
+								<div id='photoTop' class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>미니벤</div>
+								<div id='photoMid' class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
+									<img src="../images/rent/car5.png"/>
+								</div>
+								</div>
+							</c:otherwise>
+						</c:choose>
+						
+						<c:choose>
+							<c:when test="${kindCheck eq 'SUV'}"> 
+								<div id='carPhoto_6' class='col-lg-2 col-md-2 col-sm-2 col-xs-2' style="border : 2px solid #2b96fe;">
 								<div id='photoTop' class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>SUV</div>
 								<div id='photoMid' class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
 									<img src="../images/rent/car6.png"/>
 								</div>
-								
-						</div>
+								</div>
+							</c:when>
+							<c:otherwise> 
+								<div id='carPhoto_6' class='col-lg-2 col-md-2 col-sm-2 col-xs-2' >
+								<div id='photoTop' class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>SUV</div>
+								<div id='photoMid' class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
+									<img src="../images/rent/car6.png"/>
+								</div>
+								</div>
+							</c:otherwise>
+						</c:choose>
+						
+						
+						
+						
+						
+						
+						
+						
 					</div>
 				</div>
 			</div>
@@ -337,13 +471,11 @@
 	
 	/*------Air datepicker-----*/
 	// Create start date
-    var start = new Date(),
+    var start = $('#search_rent_').val(),
         prevDay,
         startHours = 9;
 
-    // 09:00 AM
-    start.setHours(9);
-    start.setMinutes(0);
+    
 
     // If today is Saturday or Sunday set 10:00 AM
     if ([6, 0].indexOf(start.getDay()) != -1) {
@@ -382,6 +514,7 @@
             }
         }
     });
+    
     
     
 	
