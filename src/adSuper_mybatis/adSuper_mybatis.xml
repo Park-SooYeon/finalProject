@@ -64,7 +64,7 @@
     </select>
     	
     	<!-- 파트너 view -->
-    <select id="partner_view" parameterType="String" resultType="bean.partnerVo">
+    <select id="partner_view" parameterType="String" resultMap="a_partner">
    	select M.member_id, M.email, P.partner_serial,P.business_number
    		   ,P.partner_name,P.partner_phone,P.state,P.partner_location
 	from membership M  join partner P 
@@ -72,4 +72,45 @@
     where M.member_id= #{member_id} 
     </select>
     
+    	<!-- 파트너 권한박탈 -->
+	 <delete id="p_deprive_del" parameterType="bean.partnerVo">
+      delete from partner where member_id = #{member_id}
+  	 </delete>
+     <update id="p_deprive" parameterType="bean.partnerVo">
+      update membership set state = 1
+      where member_id = #{member_id} 
+     </update>
+     
+      <!--회원탈퇴승인 관리 조회 --> 
+    <select id='m_select' resultType="bean.membershipVo">
+   
+    select member_id, email, phone,state ,member_name,mdate
+	from membership  
+	where state = 2
+    
+    </select>
+    
+    
+    <!-- 회원탈퇴승인요청 수정 -->
+	<update id="out_save" parameterType="bean.membershipVo">
+      <if test='state == 2'>
+      	 update membership set state = 3 
+      </if>
+      	where member_id = #{member_id}
+   </update>
+   <delete id="out_del" parameterType="bean.partnerVo">
+      delete from membership where member_id = #{member_id}
+  	</delete>
+   
+    <!-- 파트너승인요청 상태값변경 -->
+	<update id="p_reject" parameterType="bean.partnerVo">
+      <if test='state == 888'>
+      	 update partner set state = 1 
+      </if>
+ 	  <if test='state == 999'>
+      	 update partner set state = 1 
+      </if>
+      	where member_id = #{member_id} 
+   </update>
+   
 </mapper>

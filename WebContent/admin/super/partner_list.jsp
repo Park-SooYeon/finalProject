@@ -53,7 +53,7 @@
                                            <td>234</td>
                                            <td>${i.vo.email }</td>
                                            <td>
-                                               <a class="btn btn-outline-primary" href="./?inc=partner_view.os&member_id=${i.member_id }"<%--  onclick="partner_view('${i.member_id }')" --%>>
+                                               <a class="btn btn-outline-primary" href="./?inc=partner_view.os&member_id=${i.member_id }">
                                                View</a>
                                            </td>
                                        </tr>

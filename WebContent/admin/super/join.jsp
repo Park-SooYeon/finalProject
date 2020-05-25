@@ -118,7 +118,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="">이메일</label>
-                                    <p class='eamil'></p>   		<!-- member에서 받아야해서 대기 -->
+                                    <p class='eamil'></p>   		
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -141,7 +141,7 @@
                     </form>
                 </div> 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" onclick="showSwal('custom-html')">거절</button>
+                    <button type="button" class="btn btn-danger"  id='partner_reject'>거절</button>
 					<button type="button" class="btn btn-success" id='partner_save'>승인</button>
                     
                     

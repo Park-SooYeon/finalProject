@@ -50,7 +50,7 @@
                 <div class="collapse" id="ui-basic">
                     <ul class="nav flex-column sub-menu">
                         <li class="nav-item">
-                            <a class="nav-link" href="./?inc=out.jsp">회원탈퇴 승인</a>
+                            <a class="nav-link" href="./?inc=out.os">회원탈퇴 승인</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="./?inc=join.os">파트너 가입 승인</a>

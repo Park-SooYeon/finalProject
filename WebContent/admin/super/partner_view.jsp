@@ -16,6 +16,9 @@
                                 </div>
 
                             </div>
+                         <form class="" name="p_view" id='p_view'>
+                          <input type='hidden'  id='p_viewId' name='p_viewId' value='${pv.member_id }'>
+                           <input type='hidden'  id='p_status' name='p_status' value='${pv.state }'> 
                             <div class="">
                                 <div class="d-flex justify-content-center justify-content-md-between mx-4 mx-xl-5 px-xl-5 flex-wrap">
                                     <div class="profile-info d-flex align-items-center justify-content-center flex-wrap mr-sm-3">
@@ -23,7 +26,7 @@
                                         <div class="wrapper pl-sm-4">
                                             <p class="profile-user-name text-center text-sm-left">${pv.member_id }</p>
                                             <div class="wrapper d-flex flex-wrap">
-                                                <button type="button" class="btn btn-outline-primary" id="btnAdmStateCh" onclick="show('deprive','${pv.member_id}')">파트너 권한 박탈</button>
+                                                <button type="button" class="btn btn-outline-primary"  id="btnAdmStateCh">파트너 권한 박탈</button>
                                             </div>
                                         </div>
                                     </div>
@@ -39,6 +42,7 @@
                                     </div>
                                 </div>
                             </div>
+                         </form>
                             <div class="profile-body">
                                 <ul class="nav tab-switch" role="tablist">
                                     <li class="nav-item">
@@ -63,6 +67,7 @@
                                                     </div>
                                                     <div class="col-6">
                                                         <p>
+                                                        	
                                                             <strong>이메일 :</strong> ${pv.vo.email }
                                                         </p>
                                                         <p>
@@ -113,7 +118,7 @@
                                                                                 <a class="btn btn-outline-primary" href="./partner_view.jsp">View</a>
                                                                             </td>
                                                                         </tr>
-                                                                                                                                            </tbody>
+                                                                   </tbody>
                                                                 </table>
                                                             </div>
                                                         </div>
