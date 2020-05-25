@@ -30,7 +30,7 @@ ptn.func = function(){
 		if($("#parking").is(":checked") == true){
 			$("#parking").val(1);
 		}
-		console.log($("#mId").val());
+		console.log($("#place_location").val());
 		console.log($("#wifi").val());
 		
 		let fd = new FormData($("#frmAdmHtCompAdd")[0]);	// object형태로 데이터 만들어짐.
