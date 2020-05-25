@@ -228,9 +228,11 @@ public class MyPageController {
 	    String extension = originalFilename.substring(originalFilename.indexOf(".")); // .jpg
 	     
 	    String rename = onlyFileName + "_" + getCurrentDayTime() + extension; // fileName_20150721-14-07-50.jpg
-	    String fullpath  = request.getSession().getServletContext().getRealPath("images/myPage/profile/")+rename;
+	    String fullpath = request.getContextPath()+"/images/myPage/profile/"+rename;
+	    //	    String fullpath  = request.getSession().getServletContext().getRealPath("images/myPage/profile/")+rename;
 //	    String fullpath  = request.getSession().getServletContext().getContext("/").getRealPath("");
 	    //String testpath = request.getSession().getServletContext().getContext("/images").getRealPath("");
+	    
 	    System.out.println(fullpath);
 	    //System.out.println(testpath);
 	    // 실제로 들어갈 파일경로 + 파일명 
