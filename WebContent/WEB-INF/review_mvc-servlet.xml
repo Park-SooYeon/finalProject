@@ -15,7 +15,7 @@
 	<context:annotation-config />
 	
 	<!-- bean -->
-	<bean id="rvDao" class="review.ReviewDao"/>
+ 	<bean id="rvDao" class="review.ReviewDao"/>
 	
 	<!-- controller (servlet code) -->
 	<bean id="rv_controller" class="review.ReviewController">
