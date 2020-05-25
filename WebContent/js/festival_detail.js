@@ -148,21 +148,20 @@ function init() {
 
 }
 function report(){
-	//세션에서 아이디값 가저오기
-	var member_id = sessionStorage.getItem("member_id");
-	console.log(member_id);
-	
 	//name이 같은 체크박스의 value값 받아오기
-	var radioValues = [];
+	var report_code = [];
 	$("input[name='jb-radio']:checked").each(function(i){
-		radioValues.push($(this).val());
+		report_code.push($(this).val());
 	});
+
+	//신고내용 가저오기
+	var report_content = document.getElementByName('review_accuse').value();
 	
 	//사용자 ID(문자열)와 체크박스 값들(배열)을  name/value 형태로 담는다.
-	var allDate = { "userId": userId, "checkArray": radioValues };
+	var allDate = { "report_code": report_code, "report_content": report_content };
 	
 	$.ajax({
-		url:"goUrl.do", //컨트롤 어노테이션의 주소값
+		url:"report.dv", //컨트롤 어노테이션의 주소값
 		type:'GET',
 		data:allData,
 		success:function(data){
