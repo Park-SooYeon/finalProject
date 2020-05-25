@@ -65,16 +65,16 @@ uri="http://java.sun.com/jsp/jstl/core" %>
           <div class="row follow-status">
             <div class="col-lg-2 col-md-4 col-sm-4 col-xs-4 text-center">
               <h4>포스팅</h4>
-              <h4>10</h4>
+              <h4><c:out value="${map[('follow')]}"/></h4>
             </div>
 
             <div class="col-lg-2 col-md-4 col-sm-4 col-xs-4 text-center">
               <h4>팔로잉</h4>
-              <h4>3</h4>
+              <h4><c:out value="${map[('follow')]}"/></h4>
             </div>
             <div class="col-lg-2 col-md-4 col-sm-4 col-xs-4 text-center">
               <h4>팔로워</h4>
-              <h4>5</h4>
+              <h4><c:out value="${map[('follower')]}"/></h4>
             </div>
             <span class="col-lg-6"></span>
           </div>

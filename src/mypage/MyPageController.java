@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -47,7 +48,10 @@ public class MyPageController {
 		int cnt = dao.getFollow(fvo);
 		System.out.println(cnt);
 		
+		Map<String, Integer> map = dao.getFollowCnt(member_id);
+		
 		mv.setViewName("my_social");
+		mv.addObject("map", map);
 		mv.addObject("flag", cnt);
 		mv.addObject("vo", vo);
 		return mv;
@@ -269,6 +273,19 @@ public class MyPageController {
 		String msg = dao.deleteFollow(vo);
 		return msg;
 	}
+	
+	@ResponseBody
+	@RequestMapping( value = "follow_cnt.mp", method = RequestMethod.GET, produces = "text/html;charset=utf8")
+	public String selectFollowCnt(@RequestParam String target_id, HttpSession session) {
+		String member_id = (String)session.getAttribute("member_id");
+		FollowListVo vo = new FollowListVo();
+		vo.setTarget_id(target_id);
+		vo.setMember_id(member_id);
+		// 멤버아이디 세션 scope에서 가져오기
+		String msg = dao.deleteFollow(vo);
+		return msg;
+	}
+	
 	
 	public String getCurrentDayTime(){
 	    long time = System.currentTimeMillis();

@@ -169,7 +169,13 @@
 		and target_id = #{target_id}
 	</delete>
 	
-	<!-- 팔로워 -->
-	<!-- 팔로잉 -->
+	<!-- 팔로워 카운트 -->
+	<select id="count_follow" parameterType="String" resultType="Integer">
+		select count(follow_serial) from follow_list where member_id = #{_parameter}
+	</select>
 	
+	<!-- 팔로잉 카운트-->
+	<select id="count_follower" parameterType="String" resultType="Integer">
+		select count(follow_serial) from follow_list where target_id = #{_parameter}
+	</select>
 </mapper>
