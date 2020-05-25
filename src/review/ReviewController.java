@@ -2,7 +2,9 @@ package review;
 
 import java.util.List;
 
-import org.apache.catalina.servlet4preview.http.HttpServletRequest;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -19,8 +21,9 @@ public class ReviewController {
 		this.dao = dao;
 	}
 	
-	@RequestMapping(value = "/select.rv", method= {RequestMethod.GET})
+	@RequestMapping(value = "review_select.rv", method= {RequestMethod.GET})
 	public ModelAndView select(HttpServletRequest req) {
+		System.out.println("실행됨?");
 		ModelAndView mv = new ModelAndView();
 		Page p = new Page();
 		p.setFindStr(req.getParameter("findStr"));
@@ -30,6 +33,25 @@ public class ReviewController {
 			p.setNowPage(Integer.parseInt(req.getParameter("nowPage")));
 		}
 		List<ReviewVo> list = dao.select(p);
+		
+		
+		return mv;
+	}
+	
+	
+	@RequestMapping(value = "review_insert.rv", method= {RequestMethod.GET})
+	public ModelAndView insert() {		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("review_insert");
+		
+		return mv;
+	}
+	
+	
+	@RequestMapping(value = "review_insertR.rv", method= {RequestMethod.GET})
+	public ModelAndView insertR(HttpServletRequest req, HttpServletResponse resp) {
+		ModelAndView mv = new ModelAndView();
+		String msg = null;
 		
 		
 		return mv;
