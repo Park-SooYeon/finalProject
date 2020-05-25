@@ -25,8 +25,13 @@
 			</div>
 		</div>
 		<hr />
+		
+		
+		<form name="review_insert_frm" id="review_insert_frm" >
+		
+		
 		<h3>이 관광지의 전반적인 평가</h3>
-		<div class="review_star p-2" id="review_star">
+		<div class="review_star p-2" id="review_star" name="reputation">
 			<span class="fa fa-star fa-3x" onclick="star(1)"></span>
 			<span class="fa fa-star fa-3x" onclick="star(3)"></span>
 			<span class="fa fa-star fa-3x" onclick="star(5)"></span>
@@ -38,17 +43,19 @@
 		<input type="text" placeholder="방문 목적이나 인상 깊었던 프로모션에 대해 언급하세요"
 			onfocus="this.placeholder = ''"
 			onblur="this.placeholder = '방문 목적이나 인상 깊었던 프로모션에 대해 언급하세요'"
-			class="review-title mt-2"> <br />
+			class="review-title mt-2"
+			name="review_title"> <br />
 		<h3>리뷰 내용</h3>
 		<textarea class="review-textarea mt-2"
 			placeholder="고객님의 경험을 공유하세요. 장소 또는 액티비티, 여행자를 위한 추천 정보를 알려주세요."
 			onfocus="this.placeholder = ''"
 			onblur="this.placeholder = '고객님의 경험을 공유하세요. 장소 또는 액티비티, 여행자를 위한 추천 정보를 알려주세요.'"
-			required></textarea>
+			required
+			name="review_content"></textarea>
 		<a style="float: right;">(최소 50자 이상)</a>
 		<br />
 		<h3>언제 방문하셨나요?</h3>
-		<div class="review-select mt-2" id="default-select">
+		<div class="review-select mt-2" id="default-select" name="visit_date">
 			<select>
 				<option value="1">이번달</option>
 				<option value="1">저번달</option>
@@ -66,9 +73,13 @@
 		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalScrollable">
 		 	사진 추가
 		</button>
-		<div class="picture_area mt-2"></div>
+		<div class="picture_area mt-2" name="photo_name"></div>
 		
 		<div class="mt-2">리뷰 선택사항 목록</div>
+		
+		
+		</form>
+		
 		
 		<!-- Modal -->
 		<div class="modal fade" data-backdrop="static" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
@@ -93,7 +104,7 @@
 		</div>
 		<hr/>
 		<div class="mb-20">
-			<button class="btn btn-primary my-2 my-sm-0" type="submit">리뷰 저장</button>
+			<button class="btn btn-primary my-2 my-sm-0" type="button" id="review_insert">리뷰 저장</button>
 		</div>
 	</div>
 </section>

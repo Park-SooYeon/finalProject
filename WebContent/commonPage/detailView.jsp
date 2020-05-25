@@ -466,7 +466,7 @@
 <!-- 리뷰작성페이지 이동 -->
 <script>
   let insertMove = function() {
-  	location.href = './?inc=commonPage/review_insert.jsp';
+  	location.href = './?inc=review_insert.rv';
   }
 </script>
 <script type="text/javascript">
@@ -508,10 +508,7 @@
         }
       ]
     });
-  //]]>
-    let insertMove = function() {
-    	location.href = './?inc=commonPage/review_insert.jsp';
-    } 
+  //]]>    
 </script> 
 
 </body>

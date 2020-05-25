@@ -119,4 +119,8 @@ $(document).ready(function(){
     		else ele.classList.remove("checked");
     	}
     });
+    
+    $('#review_insert').click(function(){
+    	let review_insert = new FormData($('#review_insert_frm')[0]);
+    });
 });
