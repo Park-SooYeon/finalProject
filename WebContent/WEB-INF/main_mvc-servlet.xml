@@ -18,7 +18,7 @@
 
 	
 	<!-- controller (servlet code) -->
-	<bean id="main_controller" class="controller.MainController"/>
+	<bean id="main_controller" class="controller.HomeController"/>
 	
 	<!-- view resolver (결과 페이지)-->
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">

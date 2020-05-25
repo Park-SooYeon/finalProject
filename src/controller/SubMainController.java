@@ -47,8 +47,6 @@ public class SubMainController {
 		String id = (String) session.getAttribute("member_id");
 		System.out.println(id);
 		
-		id= "test";
-		
 		if(id != null) {
 			tripList = dao.callTripList();
 			likeList = dao.selectLike(id);
@@ -105,6 +103,8 @@ public class SubMainController {
 		
 		List<PlaceVo> list = null;
 		SubMainDao dao = new SubMainDao();
+		System.out.println("local : " + local);
+		System.out.println("menu : " + menu);
 		
 		switch(menu) {
 		case 1:
@@ -171,7 +171,7 @@ public class SubMainController {
 		
 		// 좋아요한 여행지 정보 setting
 		LikeListVo vo = new LikeListVo();
-		vo.setMember_id("test");
+		vo.setMember_id(id);
 		vo.setPlace_serial(place_serial);
 		vo.setTrip_list_serial(trip_serial);
 		
@@ -206,24 +206,58 @@ public class SubMainController {
 	
 	@ResponseBody
 	@PostMapping("restApiTest.sb")
-	public StringBuilder restApiTest() {
+	public StringBuilder restApiTest(@RequestParam("local") String local, @RequestParam("menu") String menu, @RequestParam("filter") String filter) {
 		StringBuilder sb = null;
 		
+		System.out.println("local : " + local);
+		System.out.println("menu : " + menu);
+		System.out.println("filter : " + filter);
+		
+		// 지역 필터 선택시..
+		switch(filter) {
+		case "1": // 서울
+			local = filter;
+			filter = "";
+			break;
+		case "39": // 제주도
+			local = filter;
+			filter = "";
+			break;
+		case "6": // 부산
+			local = filter;
+			filter = "";
+			break;
+		case "4": // 대구
+			local = filter;
+			filter = "";
+			break;
+		case "31": // 경기도
+			local = filter;
+			filter = "";
+			break;
+		case "2": // 인천
+			local = filter;
+			filter = "";
+			break;
+		}
+		// 1. 메뉴별 2. 지역별 3. 필터별 구분..
 		try {
-	        StringBuilder urlBuilder = new StringBuilder("http://api.visitkorea.or.kr/openapi/service/rest/KorService/areaCode"); /*URL*/
+	        StringBuilder urlBuilder = new StringBuilder("http://api.visitkorea.or.kr/openapi/service/rest/KorService/areaBasedList"); /*지역기반 관광정보조회 URL*/
 	        urlBuilder.append("?" + URLEncoder.encode("ServiceKey","UTF-8") + "=B8%2BZaRoCMImsMJtdm0WOedSaSwRCucNkcnqroJSLiK%2F%2Fg7jsBF27h0GeG9RlWHRLEgkcHYh3PDV2qzL5Vh1WYA%3D%3D"); /*Service Key*/
 	        urlBuilder.append("&" + URLEncoder.encode("MobileOS","UTF-8") + "=" + URLEncoder.encode("ETC", "UTF-8")); /*IOS (아이폰), AND (안드로이드), WIN (원도우폰), ETC*/
 	        urlBuilder.append("&" + URLEncoder.encode("MobileApp","UTF-8") + "=" + URLEncoder.encode("AppTest", "UTF-8")); /*서비스명=어플명*/
 	        urlBuilder.append("&" + URLEncoder.encode("pageNo","UTF-8") + "=" + URLEncoder.encode("1", "UTF-8")); /*현재 페이지 번호*/
-	        urlBuilder.append("&" + URLEncoder.encode("numOfRows","UTF-8") + "=" + URLEncoder.encode("10", "UTF-8")); /*한 페이지 결과수*/
+	        urlBuilder.append("&" + URLEncoder.encode("numOfRows","UTF-8") + "=" + URLEncoder.encode("12", "UTF-8")); /*한 페이지 결과수*/
 	        urlBuilder.append("&" + URLEncoder.encode("listYN","UTF-8") + "=" + URLEncoder.encode("Y", "UTF-8")); /*목록 구분*/
-	        urlBuilder.append("&" + URLEncoder.encode("arrange","UTF-8") + "=" + URLEncoder.encode("A", "UTF-8")); /*정렬 구분*/
-	        urlBuilder.append("&" + URLEncoder.encode("contentTypeId","UTF-8") + "=" + URLEncoder.encode("", "UTF-8")); /*관광지 타입 ID*/
-	        urlBuilder.append("&" + URLEncoder.encode("areaCode","UTF-8") + "=" + URLEncoder.encode("", "UTF-8")); /*지역 코드*/
+	        urlBuilder.append("&" + URLEncoder.encode("arrange","UTF-8") + "=" + URLEncoder.encode("P", "UTF-8")); /*정렬 구분 (O = 제목순, P = 조회순)*/
+	        
+	        // 가변 정보
+	        urlBuilder.append("&" + URLEncoder.encode("contentTypeId","UTF-8") + "=" + URLEncoder.encode(menu, "UTF-8")); /*관광지 타입 ID*/
+	        urlBuilder.append("&" + URLEncoder.encode("areaCode","UTF-8") + "=" + URLEncoder.encode(local, "UTF-8")); /*지역 코드*/
 	        urlBuilder.append("&" + URLEncoder.encode("sigunguCode","UTF-8") + "=" + URLEncoder.encode("", "UTF-8")); /*시군구 코드*/
-	        urlBuilder.append("&" + URLEncoder.encode("cat1","UTF-8") + "=" + URLEncoder.encode("", "UTF-8")); /*대분류*/
-	        urlBuilder.append("&" + URLEncoder.encode("cat2","UTF-8") + "=" + URLEncoder.encode("", "UTF-8")); /*중분류*/
-	        urlBuilder.append("&" + URLEncoder.encode("cat3","UTF-8") + "=" + URLEncoder.encode("", "UTF-8")); /*소분류*/
+	        urlBuilder.append("&" + URLEncoder.encode("cat1","UTF-8") + "=" + URLEncoder.encode("A05", "UTF-8")); /*대분류*/
+	        urlBuilder.append("&" + URLEncoder.encode("cat2","UTF-8") + "=" + URLEncoder.encode("A0502", "UTF-8")); /*중분류*/
+	        urlBuilder.append("&" + URLEncoder.encode("cat3","UTF-8") + "=" + URLEncoder.encode(filter, "UTF-8")); /*소분류*/
 	        urlBuilder.append("&_type=json"); // json 타입으로 반환
 	        
 	        URL url = new URL(urlBuilder.toString());

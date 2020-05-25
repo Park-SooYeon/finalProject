@@ -8,13 +8,13 @@
       
       
         <c:choose>
-        	<c:when test="${param.menu == 1 }">
+        	<c:when test="${param.menu == 12 }">
         		<%@include file="../happy/happy_filter.jsp" %>  
         	</c:when>
-        	<c:when test="${param.menu == 2 }">
+        	<c:when test="${param.menu == 39 }">
         		<%@include file="../food/food_filter.jsp" %>  
         	</c:when>
-        	<c:when test="${param.menu == 3 }">
+        	<c:when test="${param.menu == 15 }">
         		<%@include file="../festival/fe_filter.jsp" %>  
         	</c:when>
         </c:choose>

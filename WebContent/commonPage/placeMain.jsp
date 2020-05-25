@@ -18,19 +18,19 @@
 							<c:when test="${param.local == 1 }">
 								서울
 							</c:when>
-							<c:when test="${param.local == 2 }">
+							<c:when test="${param.local == 39 }">
 								제주도
 							</c:when>
-							<c:when test="${param.local == 3 }">
+							<c:when test="${param.local == 6 }">
 								부산
 							</c:when>
 							<c:when test="${param.local == 4 }">
 								대구
 							</c:when>
-							<c:when test="${param.local == 5 }">
+							<c:when test="${param.local == 31 }">
 								경기도
 							</c:when>
-							<c:when test="${param.local == 6 }">
+							<c:when test="${param.local == 2 }">
 								인천
 							</c:when>
 						</c:choose>
@@ -59,7 +59,7 @@
 						</div>
 					</div>
 					<div class="col">
-						<div class="single-menu relative" onclick="main.searchMove(1, ${param.local})">
+						<div class="single-menu relative" onclick="main.searchMove(12, ${param.local})">
 							<div class="thumb relative">
 								<div class="overlay overlay-bg"></div>
 							</div>
@@ -73,7 +73,7 @@
 			<div class="col-lg-4">
 				<div class="row">
 					<div class="col">
-						<div class="single-menu relative" onclick="main.searchMove(2, ${param.local})">
+						<div class="single-menu relative" onclick="main.searchMove(39, ${param.local})">
 							<div class="thumb relative">
 								<div class="overlay overlay-bg"></div>
 							</div>
@@ -83,7 +83,7 @@
 						</div>
 					</div>
 					<div class="col">
-						<div class="single-menu relative" onclick="main.searchMove(3, ${param.local})">
+						<div class="single-menu relative" onclick="main.searchMove(15, ${param.local})">
 							<div class="thumb relative">
 								<div class="overlay overlay-bg"></div>
 							</div>
@@ -159,7 +159,7 @@
 		<div class="row d-flex justify-content-center">
 			<div class="menu-content col-lg-12">
 				<h1 class="mb-10">추천 즐길거리</h1>
-				<a href="#" onclick="main.searchMove(1, ${param.local})">더 보기</a>
+				<a href="#" onclick="main.searchMove(12, ${param.local})">더 보기</a>
 			</div>
 		</div>
 		<div class="row">
@@ -215,7 +215,7 @@
 		<div class="row d-flex justify-content-center">
 			<div class="menu-content col-lg-12">
 				<h1 class="mb-10">추천 음식점</h1>
-				<a href="#" onclick="main.searchMove(2, ${param.local})">더 보기</a>
+				<a href="#" onclick="main.searchMove(39, ${param.local})">더 보기</a>
 			</div>
 		</div>
 		<div class="row">
@@ -271,7 +271,7 @@
 		<div class="row d-flex justify-content-center">
 			<div class="menu-content col-lg-12">
 				<h1 class="mb-10">추천 축제</h1>
-				<a href="#"  onclick="main.searchMove(3, ${param.local})">더 보기</a>
+				<a href="#"  onclick="main.searchMove(15, ${param.local})">더 보기</a>
 			</div>
 		</div>
 		<div class="row">

@@ -12,15 +12,15 @@
 				<div class="title text-center">
 					<h1 class="text-white mb-10">
 						<c:choose>
-							<c:when test="${param.menu == 1 }">
+							<c:when test="${param.menu == 12 }">
 								즐길거리
 								<c:set var="menu_name" value="happy"/>
 							</c:when>
-							<c:when test="${param.menu == 2 }">
+							<c:when test="${param.menu == 39 }">
 								음식점
 								<c:set var="menu_name" value="food"/>
 							</c:when>
-							<c:when test="${param.menu == 3 }">
+							<c:when test="${param.menu == 15 }">
 								축제
 								<c:set var="menu_name" value="festival"/>
 							</c:when>

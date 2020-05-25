@@ -70,9 +70,9 @@
 			<nav id="top-menu-container">
 				<ul class="top-menu">
 					<li><a href="./?inc=hotel/hotelMain.jsp">호텔</a></li>
-					<li><a href="#" onclick="menuMove(1)">즐길거리</a></li>
-					<li><a href="#" onclick="menuMove(2)">음식점</a></li>
-					<li><a href="#" onclick="menuMove(3)">축제</a></li>
+					<li><a href="#" onclick="menuMove(12)">즐길거리</a></li>
+					<li><a href="#" onclick="menuMove(39)">음식점</a></li>
+					<li><a href="#" onclick="menuMove(15)">축제</a></li>
 					<li><a href="#" onclick="openInNewTab('rent/rent_index.jsp')">렌트카</a></li>
 					<li><a href="#" onclick="openInNewTab('admin/super')">관리자 페이지</a></li>
 					<li><a href="#" onclick="openInNewTab('admin/partner')">파트너 페이지</a></li>

@@ -22,5 +22,9 @@
 <script src="js/food_map.js"></script>
 <script src="js/food.js"></script>
 
+<script>
+filter.local = ${param.local}
+filter.menu = ${param.menu}
+</script>
 </body>
 </html>
