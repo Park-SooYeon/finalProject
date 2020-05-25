@@ -112,7 +112,7 @@ public membershipController(membershipDao dao){
 
 
     @RequestMapping( value ="partnerHotelJoin.ms", method= {RequestMethod.GET, RequestMethod.POST})
-    public ModelAndView partnerHotelJoin(HttpServletRequest req) {
+    public ModelAndView partnerHotelJoin(HttpServletRequest req,HttpServletResponse resp) {
         mv = new ModelAndView();
         System.out.println("파트너 호텔 등록 진 입!!!!!");
 
@@ -148,11 +148,20 @@ public membershipController(membershipDao dao){
      
         
         if(result == 2 ) {
-        	
-        	
-       	   
-       	      mv.setViewName("GoIndex");
-        	   
+        	PrintWriter out;
+			try {
+				resp.setCharacterEncoding("UTF-8");
+				resp.setContentType("text/html; charset=UTF-8");
+
+				out = resp.getWriter();
+				out.println("<script>alert('파트너 가입 신청이 완료되었습니다');</script>");
+				mv.setViewName("GoIndex");
+				out.flush();
+			   } catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+	        	 
         	
         }else {
         	
@@ -178,7 +187,7 @@ public membershipController(membershipDao dao){
 
  	    
 
-        
+
         String member_id = req.getParameter("mId");
         System.out.println(req.getParameter("mId"));
        System.out.println(req.getParameter("pNumber")); 
@@ -204,7 +213,10 @@ public membershipController(membershipDao dao){
         vo.setPartner_location(partner_location);
         
         
- int result = dao.partnerRentJoin(vo);
+       
+        
+        
+       int result = dao.partnerRentJoin(vo);
         
      
         
@@ -212,10 +224,13 @@ public membershipController(membershipDao dao){
         	
         	PrintWriter out;
 			try {
+				resp.setCharacterEncoding("UTF-8");
+				resp.setContentType("text/html; charset=UTF-8");
+
 				out = resp.getWriter();
-				out.println("<script>alert('파트너 가입 신청이 완료되었습니다'); </script>");
-				out.flush();
+				out.println("<script>alert('파트너 가입 신청이 완료되었습니다');</script>");
 				mv.setViewName("GoIndex");
+				out.flush();
 				
 			} catch (IOException e) {
 				// TODO Auto-generated catch block

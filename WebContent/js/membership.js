@@ -228,26 +228,8 @@ ms.func = function(){
 
 			}else {
 
-				
-				let fd = new FormData($("#frm_ms")[0]);
-
-				$.ajax({
-					
-					url : "partnerRentJoin.ms",
-					type :"post",
-					data : fd,
-					processData : false,
-					error : function(xhr,status,error){
-						console.log(error);
-					},
-					success : function(data,xhr,status){
-						alert("파트너 신청이 완료되었습니다.");
-						$(location).attr('href','./index.jsp');
-					}
-				
-					
-					
-				})
+				  document.frm_ms.action="partnerRentJoin.ms"
+						 document.frm_ms.submit();
 						
 				
 				
