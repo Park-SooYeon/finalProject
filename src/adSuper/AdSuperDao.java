@@ -146,4 +146,27 @@ public class AdSuperDao {
 						return list;
 					}
 				}
+				
+		//회원탈퇴수정및삭제
+		public String out_modify(membershipVo vo) {
+			String msg="";
+			try {
+				int count = sqlSession.update("admin.out_save",vo);//mybatis에 vo를 보내고 받아온걸 count에
+				int count1 = sqlSession.delete("admin.out_del",vo);//mybatis에 vo를 보내고 받아온걸 count에
+				
+				System.out.println(count);
+				if(count >0) {
+					msg="성공하셨습니다!!";
+					sqlSession.commit();
+					
+				}else {
+					msg="수정실패했어요!!";
+					sqlSession.rollback();
+				}
+			}catch(Exception ex) {
+				ex.printStackTrace();
+			}finally {
+				return msg;
+			}
+		}
 }

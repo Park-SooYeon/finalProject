@@ -90,4 +90,18 @@
     
     </select>
     
+    
+    <!-- 회원탈퇴승인요청 수정 -->
+	<update id="out_save" parameterType="bean.membershipVo">
+      <if test='state == 2'>
+      	 update membership set state = 3 
+      </if>
+      	where member_id = #{member_id}
+   </update>
+   <delete id="out_del" parameterType="bean.partnerVo">
+      delete from membership where member_id = #{member_id}
+  	</delete>
+   
+   
+   
 </mapper>

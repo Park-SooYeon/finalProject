@@ -75,11 +75,11 @@
                    <div class="wrapper d-flex align-items-center py-2 mb-3">
                        <img class="img-sm rounded-circle" src="../../assets/images/faces/face5.jpg" alt="profile">
                        <div class="wrapper ml-3">
-                           <h6 class="ml-1 mb-1" id='m_id'></h6>
+                           <h6 class="ml-1 mb-1" id='idid'></h6>
                        </div>
                        <small class="time d-none d-sm-block ml-auto " id='datedate'></small>
                    </div>
-                   <form class="" name="usrInfoFrm">
+                   <form class="out_form" id="out_form" name="usrInfoFrm">
                        <div class="row">
                           <div class="col-md-6">
                                <div class="form-group">
@@ -123,11 +123,11 @@
                            </div>
                        </div>
                        <input type='hidden'  id='out_id' name='out_id'>
-		           	   <input type='hidden'  id='out_save' name='out_save'>
+		           	   <input type='hidden'  id='out_state' name='out_state'>
                    </form>
                </div>
                <div class="modal-footer">
-                   <button type="button" class="btn btn-success" onclick="out_save">승인</button>
+                   <button type="button" class="btn btn-success" id="out_save">승인</button>
                </div>
            </div>
        </div>

@@ -127,7 +127,7 @@ public class AdSuperController {
 		@RequestMapping(value = "/admin/super/out.os", method= {RequestMethod.GET, RequestMethod.POST})
 		public ModelAndView out(HttpServletRequest req) {
 			mv = new ModelAndView();
-			System.out.println("회원가입승인컨트롤 들어오나");
+//			System.out.println("회원가입승인컨트롤 들어오나");
 			List<membershipVo> list = dao.m_select();
 			mv.setViewName("out");
 			mv.addObject("list", list);
@@ -136,6 +136,21 @@ public class AdSuperController {
 //				System.out.println(vo.getState());
 //			}
 			return mv;
+		}
+		
+		//승인관리-회원탈퇴승인 수정(저장)
+		@ResponseBody 
+		@RequestMapping( value ="/admin/super/out_save.os", method= {RequestMethod.GET, RequestMethod.POST},produces = "text/html;charset=utf8")
+		public String out_save(HttpServletRequest req, HttpServletResponse resp ) {
+			System.out.println("컨트롤러 아웃세잎");
+			membershipVo vo = new membershipVo();
+			String id = req.getParameter("out_id"); //jsp에 있는 폼을 js에서 여기로 보낸다.. 그걸 받아서 브이오에 담아준다..
+			int status =Integer.parseInt(req.getParameter("out_state"));
+			System.out.println("파트너컨트롤러"+id+status);		
+			vo.setMember_id(id);
+			vo.setState(status);
+			String msg=dao.out_modify(vo);
+			return msg;
 		}
 	
 }
