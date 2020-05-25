@@ -32,7 +32,7 @@ public class membershipDao {
 
 				result = sqlSession.selectOne("ms.login", vo);
 				if (result == 1) {// 로그인 성공!!!!!!
-
+                   
 					r = 0;
 				
 				}else { // pwd 오류.......
