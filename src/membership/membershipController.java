@@ -177,7 +177,7 @@ public membershipController(membershipDao dao){
         	   mv.addObject("msg","noId");
         	
         	
-        }else if(loginResult == 1) {
+        }else if(loginResult == 0) {
         	
         	   HttpSession session = req.getSession();
         	   session.setAttribute("member_id", member_id);

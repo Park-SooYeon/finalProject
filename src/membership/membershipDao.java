@@ -20,7 +20,7 @@ public class membershipDao {
 		
 		int r = 0;
 		boolean b=true;
-		int result=0;
+		boolean lb = true;
 		try {
 			b = sqlSession.selectOne("ms.loginCheck", vo);
 
@@ -30,8 +30,8 @@ public class membershipDao {
 
 			} else { // member_id 는 존재 !
 
-				result = sqlSession.selectOne("ms.login", vo);
-				if (result == 1) {// 로그인 성공!!!!!!
+				lb = sqlSession.selectOne("ms.login", vo);
+				if (lb) {// 로그인 성공!!!!!!
                    
 					r = 0;
 				
