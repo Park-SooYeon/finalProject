@@ -2,7 +2,7 @@ package membership;
 
 import bean.Factory;
 import bean.membershipVo;
-
+import bean.partnerVo;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -20,7 +20,7 @@ public class membershipDao {
 		
 		int r = 0;
 		boolean b=true;
-		int result=0;
+		boolean lb = true;
 		try {
 			b = sqlSession.selectOne("ms.loginCheck", vo);
 
@@ -30,9 +30,9 @@ public class membershipDao {
 
 			} else { // member_id 는 존재 !
 
-				result = sqlSession.selectOne("ms.login", vo);
-				if (result == 1) {// 로그인 성공!!!!!!
-
+				lb = sqlSession.selectOne("ms.login", vo);
+				if (lb) {// 로그인 성공!!!!!!
+                   
 					r = 0;
 				
 				}else { // pwd 오류.......
@@ -94,6 +94,61 @@ public class membershipDao {
 	}
 	
 	
+	public int partnerHotelJoin(partnerVo vo) {
+		int r=2;
+		int result=0;
+		try {
+			
+			
+			result=sqlSession.insert("ms.hotelJoin",vo);
+			if (result < 1) {// 회원가입 실패!!!!!!
+
+				throw new Exception("회원 저장 중 오류 발생했다요~~!");
+			    
+			}
+			
+			sqlSession.commit();
+		}catch(Exception ex) {
+			ex.printStackTrace();
+			r=3;
+			sqlSession.rollback();
+			
+		}finally {
+
+		return r;
+		
+		}
+	}
+	
+	public int partnerRentJoin(partnerVo vo) {
+		int r=2;
+		int result=0;
+		try {
+			
+			
+			result=sqlSession.insert("ms.rentJoin",vo);
+			if (result < 1) {// 회원가입 실패!!!!!!
+
+				throw new Exception("회원 저장 중 오류 발생했다요~~!");
+			    
+			}
+			
+			sqlSession.commit();
+		}catch(Exception ex) {
+			ex.printStackTrace();
+			r=3;
+			sqlSession.rollback();
+			
+		}finally {
+
+		return r;
+		
+		}
+	}
+	
+	
+	
+	
 	public String defaultNickName() {
 		String dn ="";
 		int countmId=0;
@@ -126,6 +181,10 @@ public class membershipDao {
 		}
 		
 	}
+	
+	
+	
+	
 	
 
 }

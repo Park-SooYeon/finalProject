@@ -81,14 +81,14 @@
 	<div class="container">
 		<div class="col-lg-7 offset-lg-3">
 			<div class="jumbotron" style="padding-top: 20px; background: white">
-				<form method="post" name="frm" id="frm"></form>
-
+				<form method="post" name="frm_ms" id="frm_ms">
+             <input type="text" id="mId" name="mId" value = ${sessionScope.member_id }>
 		
 				<div class="form-group col-lg-10">
 			<div class="single-element-widget">
 									<label>회사 종류</label>
 									<div class="default-select" id="default-select">
-										<select>
+										<select id="type">
 											<option value="1">호텔</option>
 											<option value="2">렌트카</option>
 										
@@ -97,27 +97,22 @@
 									</div>
 								</div>
 			</div>
-             	<div class="form-group col-lg-10">
-					<label>회사 전화번호</label> <input type="text" class="form-control"
-						name="pPhone" id="pPhone" placeholder="회사 전화번호를 입력해주세요" maxlength="20"><br>
-				</div>
-
 				<div class="form-group col-lg-10">
 					<label>회사명</label> <input type="text" class="form-control"
 						name="pName" id="pName" placeholder="회사명을 입력해주세요" maxlength="20"><br>
 				</div>
 
 				
+             	<div class="form-group col-lg-10">
+					<label>회사 전화번호</label> <input type="text" class="form-control"
+						name="pPhone" id="pPhone" placeholder="회사 전화번호를 입력해주세요" maxlength="20"><br>
+				</div>
+
 	          <div class="form-group col-lg-10">
 					<label>사업자등록번호</label> <input type="text" class="form-control"
 						name="pNumber" id="pNumber" placeholder="사업자등록번호를 입력해주세요" maxlength="20"><br>
 				</div>
-				
-					<div class="form-group col-lg-10">
-					<label>회사 전화번호</label> <input type="text" class="form-control"
-						name="pPhone" id="pPhone" placeholder="회사 전화번호를 입력해주세요" maxlength="20"><br>
-				</div>
-				
+								
 				
 			    	<div class="form-group col-lg-12">
 					<label>회사 주소</label> 
@@ -149,6 +144,9 @@
 						</div>
 				</div>
 				
+				 
+				   
+				</form>
 		
 
 
@@ -162,10 +160,6 @@
 	</div>
 
 <script>
-$('#btnSendMail').click(function(){
- 
-	 $('#codeCheck').toggle();
-})
-
+ms.func();
 
 </script>
