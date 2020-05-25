@@ -32,13 +32,13 @@ uri="http://java.sun.com/jsp/jstl/core" %>
     <div class="container profile position-relative">
       <div class="row">
         <div class="col-lg-2 col-md-3 col-sm-3 img-container text-center">
-          <img class="rounded-circle profile-image" id="pro-main-img" src="./template/img/blog/c1.jpg" alt="" />
+          <img class="rounded-circle profile-image" id="pro-main-img" src="${vo.member_photo }" alt="${vo.nickName }_profilePhoto" />
         </div>
         <div class="col-lg-10 col-md-9 col-sm-9 profile-main-detail">
           <div class="mp-modify-area">
           <div>
           <h2 class="d-inline-block" id="pro-nick" data-toggle="modal"
-            data-target="#mp-modifyModal">${vo.nickname }&nbsp;</h2>
+            data-target="#mp-modifyModal">${vo.nickName }&nbsp;</h2>
           <a
           	href="#"
             id="mp-btnModifyProfile"
@@ -49,9 +49,14 @@ uri="http://java.sun.com/jsp/jstl/core" %>
           <i class="fa fa-edit"></i>
             프로필수정
           </a>
-          <button class="pull-right" type="button" id="mp-btnFollow" data-target="${vo.member_id }">+ Follow</button>
+          <c:if test="${sessionScope.member_id != vo.member_id}">
+          <button class="pull-right  
+          	<c:if test="${flag==0}">btn-follow</c:if>
+          	<c:if test="${flag==1}">btn-following</c:if>" 
+          		  type="button" id="mp-btnFollow" data-target="${vo.member_id }" data-follow="${sessionScope.member_id }"></button>
+          </c:if>
           </div>
-          <div id="pro-id"><i class="fa fa-at" aria-hidden="true"></i> ${vo.member_id }</div>
+          <div id="pro-id"><i class="fa fa-at" aria-hidden="true"></i>${vo.member_id }</div>
           
            
           <div class="row">
@@ -60,16 +65,16 @@ uri="http://java.sun.com/jsp/jstl/core" %>
           <div class="row follow-status">
             <div class="col-lg-2 col-md-4 col-sm-4 col-xs-4 text-center">
               <h4>포스팅</h4>
-              <h4>10</h4>
+              <h4><c:out value="${map[('follow')]}"/></h4>
             </div>
 
             <div class="col-lg-2 col-md-4 col-sm-4 col-xs-4 text-center">
               <h4>팔로잉</h4>
-              <h4>3</h4>
+              <h4><c:out value="${map[('follow')]}"/></h4>
             </div>
             <div class="col-lg-2 col-md-4 col-sm-4 col-xs-4 text-center">
               <h4>팔로워</h4>
-              <h4>5</h4>
+              <h4><c:out value="${map[('follower')]}"/></h4>
             </div>
             <span class="col-lg-6"></span>
           </div>
@@ -309,14 +314,12 @@ uri="http://java.sun.com/jsp/jstl/core" %>
                 <input type="file" name="imgFile" id="member_photo" />
               </div>
               <div class="col-md-9 col-sm-9">
-              
-              	<input type="text" name="profile_serial" value="${vo.profile_serial }"/>
-                  <label for="nickname">닉네임</label>
+                  <label for="nickName">닉네임</label>
                   <div class="mb-10">
                     <input
                       type="text"
-                      name="nickname"
-                      id="nickname"
+                      name="nickName"
+                      id="nickName"
                       placeholder="닉네임을 입력해주세요."
                       onfocus="this.placeholder = ''"
                       onblur="this.placeholder = '닉네임을 입력해주세요.'"
@@ -333,7 +336,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
                       onfocus="this.placeholder = ''"
                       onblur="this.placeholder = '아이디를 입력해주세요.'"
                       class="single-input"
-                      disabled
+                      readOnly
                     />
                   </div>
                   <label for="member_city">거주도시</label>

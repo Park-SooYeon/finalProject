@@ -131,23 +131,29 @@
    		and P.place_serial = R.place_serial
    </select>
    
-   <select id="select_profile" parameterType="String" resultType="bean.ProfileVo">
-   		select profile_serial, 
-   			   m.member_id, member_city, 
+   <select id="select_profile" parameterType="String" resultType="bean.membershipVo">
+   		select member_id, member_city, 
    			   member_web, member_info, nickname,
-   			   m.member_photo, to_char(m.mDate, 'rrrr"일" mm"월" dd"일"') mDate
-   		from profile p, membership m 
-   		where m.member_id = p.member_id
-   		and p.member_id = #{_parameter}
+   			   member_photo, mDate
+   		from membership 
+   		where member_id = #{_parameter}
+   </select>
+   
+   <select id="select_follow" parameterType="bean.FollowListVo" resultType="Integer">
+   		select count(follow_serial)  
+   		from follow_list
+   		where member_id = #{member_id} 
+   		and target_id = #{target_id}
    </select>
    
    <!-- 사진없이 프로필정보만 수정 -->
    <!-- nickname이 프로필 테이블로 넘어오면 수정해야됨 -->
-   <update id="modify_profile" parameterType="bean.ProfileVo">
-   		update profile set member_city = #{member_city},
+   <update id="modify_profile" parameterType="bean.membershipVo">
+   		update membership set member_city = #{member_city},
    						   member_web = #{member_web},
-   						   member_info = #{member_info}
-   		where profile_serial = ${profile_serial}
+   						   member_info = #{member_info}, 
+   						   nickname = #{nickName}
+   		where member_id = #{member_id}
    </update>
 	
 	<!-- 팔로우버튼 눌렀을 때 -->
@@ -156,7 +162,20 @@
 		values(seq_follow_list.nextval, #{member_id}, #{target_id}, systimestamp)
 	</insert>
 	
-	<!-- 팔로워 -->
-	<!-- 팔로잉 -->
+	<!-- 팔로우취소 -->
+	<delete id="delete_follow" parameterType="bean.FollowListVo">
+		delete from follow_list
+		where member_id = #{member_id}
+		and target_id = #{target_id}
+	</delete>
 	
+	<!-- 팔로워 카운트 -->
+	<select id="count_follow" parameterType="String" resultType="Integer">
+		select count(follow_serial) from follow_list where member_id = #{_parameter}
+	</select>
+	
+	<!-- 팔로잉 카운트-->
+	<select id="count_follower" parameterType="String" resultType="Integer">
+		select count(follow_serial) from follow_list where target_id = #{_parameter}
+	</select>
 </mapper>

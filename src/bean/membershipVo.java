@@ -2,13 +2,10 @@ package bean;
 
 import java.util.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class membershipVo {
-   @Override
-	public String toString() {
-		return "membershipVo [member_id=" + member_id + ", email=" + email + ", pwd=" + pwd + ", member_name="
-				+ member_name + ", mDate=" + mDate + ", state=" + state + ", delete_reason=" + delete_reason
-				+ ", member_photo=" + member_photo + ", nickName=" + nickName + ", phone=" + phone + "]";
-	}
+	
 String member_id;
    String email;
    String pwd;
@@ -20,8 +17,46 @@ String member_id;
    String nickName;
    String phone;
    
+   String member_city;
+   String member_info;
+   String member_web;
+
+   MultipartFile imgFile;
    
-   public membershipVo() {
+   
+   public String getMember_web() {
+	return member_web;
+}
+
+public void setMember_web(String member_web) {
+	this.member_web = member_web;
+}
+
+public String getMember_city() {
+	return member_city;
+}
+
+public void setMember_city(String member_city) {
+	this.member_city = member_city;
+}
+
+public String getMember_info() {
+	return member_info;
+}
+
+public void setMember_info(String member_info) {
+	this.member_info = member_info;
+}
+
+public MultipartFile getImgFile() {
+	return imgFile;
+}
+
+public void setImgFile(MultipartFile imgFile) {
+	this.imgFile = imgFile;
+}
+
+public membershipVo() {
 	   
    }
    
@@ -104,13 +139,14 @@ public String getNickName() {
 public void setNickName(String nickName) {
 	this.nickName = nickName;
 }
-	
-	
-	
-	
-   
-	
-	
-	
-	
+
+@Override
+public String toString() {
+	return "membershipVo [member_id=" + member_id + ", email=" + email + ", pwd=" + pwd + ", member_name=" + member_name
+			+ ", mDate=" + mDate + ", state=" + state + ", delete_reason=" + delete_reason + ", member_photo="
+			+ member_photo + ", nickName=" + nickName + ", phone=" + phone + ", member_city=" + member_city
+			+ ", member_info=" + member_info + ", member_web=" + member_web + ", imgFile=" + imgFile + "]";
+}
+
+
 }
