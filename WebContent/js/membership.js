@@ -7,7 +7,7 @@ ms.func = function(){
 
 		$('#btnLogin').click(function(){
 	
-			alert('성공');
+			
 			
 		var member_id=$("#mId").val();
 		var pwd = $("#pwd").val();
@@ -93,23 +93,7 @@ ms.func = function(){
 				
 			}
 			
-			
-			if(email == "" ){
-				alert("이메일을 입력세요");
-				$("#email").focus();
-				return;
-				
-				
-			}
-			
-			if(emailCodeCheck == "" ){
-				alert("비밀번호를 입력해주세요");
-				$("#emailCodeCheck").focus();
-				return;
-				
-				
-			}
-			
+		
 			
 		     
 			
@@ -159,11 +143,11 @@ ms.func = function(){
 		
 		
 		
-		$("#btnFindPwd").onclick(function(){
+		$("#btnFindPwd").click(function(){
 		
 			
 			if(email == "" ){
-				alert("이메일을 입력세요");
+				alert("이메일을 입력하세요");
 				$("#email").focus();
 				return;
 				
@@ -176,6 +160,103 @@ ms.func = function(){
 		
 		
 		})
+		
+       $('#btnRegPartner').click(function(){ //회원가입
+			
+			var type =$("#type option:selected").val();
+			var pName = $("#pName").val();
+			var pNumber = $("#pNumber").val();
+			var pPhone = $("#pPhone").val();
+			var address = $("#addr1").val()+$("#addr2").val()+$("#addr3").val()+$("#addr4").val();
+            var addr1 =$("#addr1").val(); 
+			
+			
+		
+			
+			if(pName==""){
+				
+				alert("회사명을 입력하세요.");
+				$("#pName").focus();
+				
+				return;
+				
+			}
+			
+			
+			if(pPhone == ""){
+				alert("회사 연락망을 입력해주세요!");
+				$("#pPhone").focus();
+				return;
+				
+			}
+			
+			if(pNumber == "" ){
+				alert("사업자 등록번호를 입력해주세요!");
+				$("#pNumber").focus();
+				return;
+				
+				
+			}
+			
+			
+			
+			
+			
+			if(pPhone == "" ){
+				alert("휴대전화번호를 입력해주세요");
+				$("#pPhone").focus();
+				return;
+				
+				
+			}
+			
+			
+			if(addr1 == "" ){
+				alert("본사 주소를 입력해주세요!!");
+				$("#addr1").focus();
+				return;
+				
+				
+			}
+		
+		     
+			if(type == 1){
+			
+						
+				     document.frm_ms.action="partnerHotelJoin.ms"
+					 document.frm_ms.submit();
+
+			}else {
+
+				
+				let fd = new FormData($("#frm_ms")[0]);
+
+				$.ajax({
+					
+					url : "partnerRentJoin.ms",
+					type :"post",
+					data : fd,
+					processData : false,
+					error : function(xhr,status,error){
+						console.log(error);
+					},
+					success : function(data,xhr,status){
+						alert("파트너 신청이 완료되었습니다.");
+						$(location).attr('href','./index.jsp');
+					}
+				
+					
+					
+				})
+						
+				
+				
+			}
+			
+			
+			});
+
+		
 		
 		
 	}

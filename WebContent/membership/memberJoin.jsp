@@ -79,9 +79,7 @@
 					  <input type="text" class="form-control"  id="email" name="email"
 					  placeholder="이메일을 입력해주세요" aria-describedby="basic-addon2" 
 					   required>
-					 
-					  <input type="button" class="genric-btn info radius input-group-append" value="인증받기"
-						id="btnSendMail">
+				
 						
 					</div>
 				
@@ -89,12 +87,7 @@
 				</div>
 
 
-					<div class="form-group col-lg-8 "  id='codeCheck'>
-					<label>인증 번호</label> 
-				     <input type="text" class="form-control" id="emailCodeCheck">
-				    </div><br>
-				 
-				
+									
 
 
 				<div class="col-lg-7 offset-lg-3">
@@ -108,11 +101,7 @@
 	</div>
 
 <script>
-$('#btnSendMail').click(function(){
-	 
-	 $('#codeCheck').toggle();
-	 
-})
+
 
 ms.func();
 

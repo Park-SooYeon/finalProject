@@ -31,6 +31,10 @@ public class partnerVo {
 	public void setMember_id(String member_id) {
 		this.member_id = member_id;
 	}
+	
+	
+	
+	
 	public int getBusiness_number() {
 		return business_number;
 	}

@@ -57,6 +57,23 @@ values(#{member_id}, #{email},#{member_name},sysdate,1,#{nickName},#{pwd},#{phon
 
 </insert>
 
+<insert id="hotelJoin" parameterType='bean.partnerVo'>
+
+
+insert into partner(partner_serial, member_id, business_number, partner_name, state,partner_phone, partner_location)
+values(seq_partner.nextval, #{member_id},#{business_number},#{partner_name},999,#{partner_phone},#{partner_location})
+
+
+</insert>
+
+<insert id="rentJoin" parameterType='bean.partnerVo'>
+
+
+insert into partner(partner_serial, member_id, business_number, partner_name, state,partner_phone, partner_location)
+values(seq_partner.nextval, #{member_id},#{business_number},#{partner_name},888,#{partner_phone},#{partner_location})
+
+
+</insert>
 
 
 </mapper>
