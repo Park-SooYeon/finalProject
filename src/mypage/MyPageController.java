@@ -7,6 +7,7 @@ import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,9 +20,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import bean.FollowListVo;
 import bean.LikeListVo;
-import bean.ProfileVo;
 import bean.ReviewVo;
 import bean.TripListVo;
+import bean.membershipVo;
 
 @Controller
 public class MyPageController {
@@ -34,12 +35,20 @@ public class MyPageController {
 	ModelAndView mv;
 	
 	@GetMapping(value = "profile.mp")
-	public ModelAndView profile(@RequestParam String id) {
+	public ModelAndView profile(@RequestParam String id, HttpSession session) {
 		System.out.println(id);
 		mv = new ModelAndView();
-		ProfileVo vo = dao.selectProfile(id);
+		membershipVo vo = dao.selectProfile(id);
+		FollowListVo fvo = new FollowListVo();
+		String member_id = (String)session.getAttribute("member_id");
+		System.out.println(member_id);
+		fvo.setMember_id(member_id);
+		fvo.setTarget_id(id);
+		int cnt = dao.getFollow(fvo);
+		System.out.println(cnt);
 		
 		mv.setViewName("my_social");
+		mv.addObject("flag", cnt);
 		mv.addObject("vo", vo);
 		return mv;
 	}
@@ -206,39 +215,56 @@ public class MyPageController {
 	
 	@ResponseBody
 	@RequestMapping( value = "editProfile.mp", method = RequestMethod.POST, produces = "text/html;charset=utf8")
-	public String editProfile(HttpServletRequest request, ProfileVo vo){
+	public String editProfile(HttpServletRequest request, membershipVo vo){
 		
 		String msg = "";
 		MultipartFile imgFile = vo.getImgFile();
 		
-		if (!vo.getImgFile().isEmpty()) { // 파일이 있으면
+		if (!imgFile.isEmpty()) { // 파일이 있으면
+			System.out.println("이미지 있다");
 
 		String originalFilename = imgFile.getOriginalFilename(); // 오리지널 파일명
 	    String onlyFileName = originalFilename.substring(0, originalFilename.indexOf(".")); // fileName
 	    String extension = originalFilename.substring(originalFilename.indexOf(".")); // .jpg
 	     
 	    String rename = onlyFileName + "_" + getCurrentDayTime() + extension; // fileName_20150721-14-07-50.jpg
-	    String fullpath  = request.getServletContext().getRealPath("/")+"images\\myPage\\profile\\"+rename;
+	    String fullpath  = request.getSession().getServletContext().getRealPath("images/myPage/profile/")+rename;
+//	    String fullpath  = request.getSession().getServletContext().getContext("/").getRealPath("");
+	    //String testpath = request.getSession().getServletContext().getContext("/images").getRealPath("");
 	    System.out.println(fullpath);
+	    //System.out.println(testpath);
 	    // 실제로 들어갈 파일경로 + 파일명 
 	    	vo.setMember_photo(fullpath);
 	    } 
 	     
 	    // 파라미터로 전달받은 vo 프로퍼티 setting
+		System.out.println(vo.toString());
 		msg = dao.modifyProfile(vo,imgFile);
-	    System.out.println(vo.toString());
 	    
 	    return msg;
 	}
 	
 	@ResponseBody
 	@RequestMapping( value = "follow.mp", method = RequestMethod.GET, produces = "text/html;charset=utf8")
-	public String addFollow(@RequestParam String target_id) {
+	public String addFollow(@RequestParam String target_id, HttpSession session) {
+		String member_id = (String)session.getAttribute("member_id");
 		FollowListVo vo = new FollowListVo();
 		vo.setTarget_id(target_id);
-		vo.setMember_id("아이디");
+		vo.setMember_id(member_id);
 		// 멤버아이디 세션 scope에서 가져오기
 		String msg = dao.addFollow(vo);
+		return msg;
+	}
+	
+	@ResponseBody
+	@RequestMapping( value = "follow_delete.mp", method = RequestMethod.GET, produces = "text/html;charset=utf8")
+	public String deleteFollow(@RequestParam String target_id, HttpSession session) {
+		String member_id = (String)session.getAttribute("member_id");
+		FollowListVo vo = new FollowListVo();
+		vo.setTarget_id(target_id);
+		vo.setMember_id(member_id);
+		// 멤버아이디 세션 scope에서 가져오기
+		String msg = dao.deleteFollow(vo);
 		return msg;
 	}
 	

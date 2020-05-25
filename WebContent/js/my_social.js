@@ -19,7 +19,7 @@ function init() {
     // modal에 넣어주는 작업
     let modal = $(this);
     modal.find("input[name=member_id]").val(id);
-    modal.find("#nickname").val(nickname);
+    modal.find("#nickName").val(nickname);
     modal.find("input[name=member_city]").val(addr);
     modal.find("#pro-img").attr("src", img);
     modal.find("input[name=member_web]").val(web);
@@ -106,35 +106,33 @@ function init() {
   
 	$("#mp-btnFollow").click(function(event){
 		const TARGET_ID = $(this).data("target");
+		const MEMBER_ID = $(this).data("follow");
 		console.log(TARGET_ID);
+		console.log(MEMBER_ID);
 		
-	    if ($("#mp-btnFollow").text() == "+ Follow"){
-	    	
-			$.get("follow.mp", {"target_id" : TARGET_ID}, function(data, state) {
-				alert(data);
-				$("#mp-btnFollow").animate({ width: '-=10px' }, 100, 'easeInCubic', function () {});
-				
-				$("#mp-btnFollow").animate({ width: '+=20px'}, 600, 'easeInOutBack', function () { 
-					$("#mp-btnFollow").css("color", "#fff");
-					$("#mp-btnFollow").text("Following");
-					
-					$("#mp-btnFollow").animate({
-						backgroundColor: "#2B96ED",
-						borderColor: "##2B96ED"
-					}, 1000 );
+		let $btn = $("#mp-btnFollow");
+		
+		$btn.toggleClass("btn-follow btn-following", function(){
+			if ($btn.hasClass("btn-following")){
+				//follow
+				$btn.animate({ width: '-=20px'}, 600, 'easeInOutBack', function () { 
+	
+						$btn.animate({ width: '+=30px'}, 600, 'easeInOutBack', function () {
+							$.get("follow.mp", {"target_id" : TARGET_ID}, function(data, state) {
+								alert(data);
+							});
+						});
 				});
-			});
-	    	
-	    }else{
-	      alert("언팔");
-	      // 팔로우가 되지 않은 상태로 css change
-	      $("#mp-btnFollow").animate({ width: '-=10px'}, 600, 'easeInOutBack', function () { 
-	        $("#mp-btnFollow").text("+ Follow");
-	        $("#mp-btnFollow").css("color", "#3399FF");
-	        $("#mp-btnFollow").css("background-color", "#ffffff");
-	        $("#mp-btnFollow").css("border-color", "#3399FF");
-	      });
-	    }
+			}else{
+				// 팔로우가 되지 않은 상태로 css change
+				$.get("follow_delete.mp", {"target_id" : TARGET_ID, "member_id" : MEMBER_ID}, function(data, state) {
+					alert(data);
+
+				});
+
+			}
+		});
+		
 	  }); 
 	
 	$(".mp-modify-area").hover(function(){
@@ -143,7 +141,7 @@ function init() {
 	
 	  $("#btnModifyProfile").click(function () {
 		  let fd = new FormData($('#mp-proModifyFrm')[0]);
-		  
+		  console.log(fd);
 		  $.ajax({
 			 url : "editProfile.mp",
 			 type : "post",

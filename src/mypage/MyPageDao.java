@@ -12,9 +12,9 @@ import org.springframework.web.multipart.MultipartFile;
 import bean.Factory;
 import bean.FollowListVo;
 import bean.LikeListVo;
-import bean.ProfileVo;
 import bean.ReviewVo;
 import bean.TripListVo;
+import bean.membershipVo;
 
 public class MyPageDao {
 // 서블릿과 BoardMybatis를 연결해주는 역할
@@ -113,8 +113,8 @@ public class MyPageDao {
 		return list; 
 	}
 	
-	public ProfileVo selectProfile(String member_id) {
-		ProfileVo vo = new ProfileVo();
+	public membershipVo selectProfile(String member_id) {
+		membershipVo vo = new membershipVo();
 		try {
 			vo = sqlSession.selectOne("mypage.select_profile", member_id);
 		}catch (Exception e) {
@@ -123,10 +123,10 @@ public class MyPageDao {
 		return vo;
 	}
 	
-	public String modifyProfile(ProfileVo vo, MultipartFile imgFile) {
+	public String modifyProfile(membershipVo vo, MultipartFile imgFile) {
 		String msg  = "";
+		System.out.println("왜 업데이트 안 돼.."+vo.getMember_id());
 		try {
-		    System.out.println("이미지파일이 뭐가 나오지 "+imgFile);
 			int cnt = sqlSession.update("mypage.modify_profile", vo);
 			System.out.println(cnt);
 			
@@ -148,7 +148,7 @@ public class MyPageDao {
 				msg = "수정이 완료되었습니다.";
 			}else {
 				// 업데이트 실패
-				throw new Exception("본문 업데이트 중 오류 발생");
+				throw new Exception("본문 수정 중 오류 발생");
 			}
 	        
 		}catch (Exception e) {
@@ -177,5 +177,36 @@ public class MyPageDao {
 		}
 		
 		return msg;
+	}
+	
+	public String deleteFollow(FollowListVo vo) {
+		String msg = "";
+		try {
+			int cnt = sqlSession.delete("delete_follow", vo);
+			
+			if(cnt>0) {
+				msg = "팔로우취소";
+				sqlSession.commit();
+			}else {
+				throw new Exception("오류발생");
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+			msg = e.getMessage();
+			sqlSession.rollback();
+		}
+		
+		return msg;
+	}
+	
+	public int getFollow(FollowListVo vo) {
+		int cnt = 0;
+		try {
+			cnt = sqlSession.selectOne("select_follow", vo);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return cnt;
 	}
 }
