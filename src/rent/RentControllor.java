@@ -2,6 +2,8 @@ package rent;
 
 
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -44,7 +46,9 @@ public class RentControllor {
 		mainPage = "rentSearch.jsp";
 		String placeMain = req.getParameter("placeMain");
 		String placeSub = req.getParameter("placeSub");
-		System.out.println(placeMain + placeSub + "---------------------");
+		String rentDate = req.getParameter("rentDate");
+		String returnDate = req.getParameter("returnDate");
+		List<CompanyVo> list = rentDao.companySearch(placeMain, placeSub, rentDate, returnDate);
 		
 		mv.addObject("contentPage",contentPage);
 		mv.addObject("mainPage",mainPage);
