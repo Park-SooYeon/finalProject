@@ -102,6 +102,15 @@
       delete from membership where member_id = #{member_id}
   	</delete>
    
-   
+    <!-- 파트너승인요청 상태값변경 -->
+	<update id="p_reject" parameterType="bean.partnerVo">
+      <if test='state == 888'>
+      	 update partner set state = 1 
+      </if>
+ 	  <if test='state == 999'>
+      	 update partner set state = 1 
+      </if>
+      	where member_id = #{member_id} 
+   </update>
    
 </mapper>

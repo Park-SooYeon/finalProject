@@ -65,7 +65,7 @@ public class AdSuperDao {
 			return list;
 		}
 	}
-	//파트너승인요청수정
+	//파트너승인요청수락 수정
 		public String partner_modify(partnerVo vo) {
 			String msg="";
 			try {
@@ -169,4 +169,26 @@ public class AdSuperDao {
 				return msg;
 			}
 		}
+		
+		//파트너 승인요청 거절 수정
+				public String partner_reject(partnerVo vo) {
+					String msg="";
+					try {
+						int count = sqlSession.update("admin.p_reject",vo);//mybatis에 vo를 보내고 받아온걸 count에
+						System.out.println(count);
+						if(count >0) {
+							msg="성공하셨습니다!!";
+							sqlSession.commit();
+							
+						}else {
+							msg="수정실패했어요!!";
+							sqlSession.rollback();
+						}
+					}catch(Exception ex) {
+						ex.printStackTrace();
+					}finally {
+						
+						return msg;
+					}
+				}
 }

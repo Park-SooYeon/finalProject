@@ -141,7 +141,7 @@
                     </form>
                 </div> 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" onclick="showSwal('custom-html')">거절</button>
+                    <button type="button" class="btn btn-danger"  id='partner_reject'>거절</button>
 					<button type="button" class="btn btn-success" id='partner_save'>승인</button>
                     
                     
