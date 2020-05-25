@@ -3,6 +3,7 @@ package detailview;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -40,11 +41,20 @@ public class DetailViewController {
 	}
 	
 	//리뷰 신고하기
-	@RequestMapping(value = "detailView.dv", method = {RequestMethod.GET, RequestMethod.POST})
-	public ModelAndView report(@RequestParam(value = "radioValues[]") List<String> arrayParams, @RequestParam(value="userId") String userId) {
+	@RequestMapping(value = "report.dv", method = {RequestMethod.GET, RequestMethod.POST})
+	public ModelAndView report(HttpServletRequest req, 
+							   @RequestParam(value = "report_code[]") List<String> report_code, 
+							   @RequestParam(value="report_content") String report_content) {
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("arrayParams", arrayParams);
-		mv.addObject("userId", userId);
+		HttpSession session = req.getSession();
+		String report_id = (String)session.getAttribute("member_id");
+		
+		
+		
+		mv.addObject("report_id", report_id);
+		mv.addObject("report_code", report_code);
+		mv.addObject("report_content", report_content);
+		mv.setViewName("report");
 		
 		return mv;
 	}
