@@ -41,6 +41,42 @@ rent.func = function(){
 		});
 	}
 	
+	
+	//렌트 kind radio값 변경
+	$('#carPhoto_1').click(function(){
+		$('#kind_s').val('소형 차량'); 
+		$('#rent_frm').attr('action','./fillter.rent').submit();
+	});
+	$('#carPhoto_2').click(function(){
+		$('#kind_s').val('중형 차량'); 
+		$('#rent_frm').attr('action','./fillter.rent').submit();
+		
+	});
+	$('#carPhoto_3').click(function(){
+		$('#kind_s').val('대형 차량'); 
+		$('#rent_frm').attr('action','./fillter.rent').submit();
+		
+	});
+	$('#carPhoto_4').click(function(){
+		$('#kind_s').val('프리미엄 차량'); 
+		$('#rent_frm').attr('action','./fillter.rent').submit();
+		
+	});
+	$('#carPhoto_5').click(function(){
+		$('#kind_s').val('미니벤'); 
+		$('#rent_frm').attr('action','./fillter.rent').submit();
+		
+	});
+	$('#carPhoto_6').click(function(){
+		$('#kind_s').val('SUV'); 
+		$('#rent_frm').attr('action','./fillter.rent').submit();
+		
+	});
+	
+	
+	
+	
+	
 }
 rent.goMain = function(){
 	$('#rent_frm').attr('action','./rentMain.rent').submit();
@@ -63,4 +99,8 @@ rent.carSearch = function(companySerial){
 //rentSearch(rentViewSub2) >> rentView(rentViewSub1)
 rent.carView = function(carSerial){
 	$('#rent_frm').attr('action','./carView.rent').submit();
+}
+rent.fillter = function(){
+	$('#rent_frm').attr('action','./fillter.rent').submit();
+	
 }
