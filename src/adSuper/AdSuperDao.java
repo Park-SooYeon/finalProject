@@ -111,5 +111,39 @@ public class AdSuperDao {
 			}
 		}
 		
-
+		//파트너 권한박탈
+		public String partner_deprive(partnerVo vo) {
+			String msg="";
+			try {
+				int count1 = sqlSession.delete("admin.p_deprive_del",vo);//mybatis에 vo를 보내고 받아온걸 count에
+				int count = sqlSession.update("admin.p_deprive",vo);//mybatis에 vo를 보내고 받아온걸 count에
+				System.out.println("daoz카운트1"+count1);
+				System.out.println("dao카운트"+count);
+				if(count >0) {
+					msg="성공하셨습니다!!";
+					sqlSession.commit();
+					
+				}else {
+					msg="수정실패했어요!!";
+					sqlSession.rollback();
+				}
+			}catch(Exception ex) {
+				ex.printStackTrace();
+			}finally {
+				
+				return msg;
+			}
+		}
+		
+		//파트너관리-조회
+				public List<membershipVo> m_select() {
+					List<membershipVo> list = new ArrayList<membershipVo>();
+					try {
+						list = sqlSession.selectList("admin.m_select");
+					}catch(Exception ex) {
+						ex.printStackTrace();
+					}finally {
+						return list;
+					}
+				}
 }

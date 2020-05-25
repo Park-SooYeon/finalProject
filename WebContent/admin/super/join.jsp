@@ -118,7 +118,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="">이메일</label>
-                                    <p class='eamil'></p>   		<!-- member에서 받아야해서 대기 -->
+                                    <p class='eamil'></p>   		
                                 </div>
                             </div>
                             <div class="col-md-6">

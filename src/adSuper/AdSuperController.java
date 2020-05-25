@@ -101,15 +101,41 @@ public class AdSuperController {
 	@RequestMapping(value = "/admin/super/partner_view.os", method= {RequestMethod.GET, RequestMethod.POST},produces = "text/html;charset=utf8")
 	public ModelAndView partner_view(HttpServletRequest req) {
 		String member_id = req.getParameter("member_id");
-		System.out.println("par_View_controll"+member_id);
+		//System.out.println("par_View_controll"+member_id);
 		mv = new ModelAndView();
-		System.out.println("partner_view컨트롤 들어오나");
+		//System.out.println("partner_view컨트롤 들어오나");
 		partnerVo pv = dao.partner_view(member_id);
 		mv.setViewName("partner_view");
 		mv.addObject("pv", pv);
-
 		return mv;
 	}
+	//파트너 권한박탈
+	@ResponseBody 
+	@RequestMapping( value ="/admin/super/partner_deprive.os", method= {RequestMethod.GET, RequestMethod.POST},produces = "text/html;charset=utf8")
+	public String partner_deprive(HttpServletRequest req, HttpServletResponse resp ) {
+		partnerVo vo = new partnerVo();
+		String id = req.getParameter("p_viewId"); //jsp에 있는 폼을 js에서 여기로 보낸다.. 그걸 받아서 브이오에 담아준다..
+		int p_status =Integer.parseInt(req.getParameter("p_status"));
+		//System.out.println("권한박탈컨트롤러"+id+"~"+p_status);		
+		vo.setMember_id(id);
+		vo.setState(p_status);
+		String msg=dao.partner_deprive(vo);
+		return msg;
+	}
 	
+	//승인관리-회원가입승인 조회
+		@RequestMapping(value = "/admin/super/out.os", method= {RequestMethod.GET, RequestMethod.POST})
+		public ModelAndView out(HttpServletRequest req) {
+			mv = new ModelAndView();
+			System.out.println("회원가입승인컨트롤 들어오나");
+			List<membershipVo> list = dao.m_select();
+			mv.setViewName("out");
+			mv.addObject("list", list);
+//			for(partnerVo vo : list) {
+//				System.out.println(vo.getMember_id());
+//				System.out.println(vo.getState());
+//			}
+			return mv;
+		}
 	
 }
