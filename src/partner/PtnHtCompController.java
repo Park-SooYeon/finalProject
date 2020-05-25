@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,7 +37,10 @@ public class PtnHtCompController {
 	public ModelAndView select(HttpServletRequest req) {
 		ModelAndView mv = new ModelAndView();
 		
-		List<PlaceVo> list = dao.select();
+		HttpSession session  = req.getSession();
+		String member_id = (String) session.getAttribute("member_id");
+		
+		List<PlaceVo> list = dao.select(member_id);
 		
 		mv.addObject("list", list);
 		mv.setViewName("hotel_comp_list");
@@ -59,19 +63,17 @@ public class PtnHtCompController {
 		ModelAndView mv = new ModelAndView();
 		int result = 1;
 		
+		HttpSession session  = req.getSession();
+		String member_id = (String) session.getAttribute("member_id");
+		System.out.println("member_id : " + member_id);
 		
-		
-		String member_id = req.getParameter("member_id");
-		System.out.println("mId : " + req.getParameter(member_id));
-		
-		
-		System.out.println("insertR controller");
 		FileUpload upload = new FileUpload(req, resp);
 		HttpServletRequest newReq = upload.uploading(); //  encType이 없는 req
 		
 		PlaceVo vo = (PlaceVo) newReq.getAttribute("vo");
 		List<AttVo> attList = (List<AttVo>) newReq.getAttribute("attList");
 		
+	
 		if(req.getParameter("latitude") == null) {
 			vo.setLatitude(0);
 		}else {
@@ -90,9 +92,8 @@ public class PtnHtCompController {
 		System.out.println("vo getLatitude : " + vo.getLatitude());
 		System.out.println("vo getPlace_location : " + vo.getPlace_location());
 		System.out.println("vo getLocal_code : " + vo.getLocal_code());
-		System.out.println("vo getLocal_code : " + vo.getPartner_serial());
-		System.out.println("vo getPlace_name : " + vo.getPlace_name());
 		System.out.println("vo getPartner_serial : " + vo.getPartner_serial());
+		System.out.println("vo getPlace_name : " + vo.getPlace_name());
 		System.out.println("vo getPlace_tel : " + vo.getPlace_tel());
 		
 		

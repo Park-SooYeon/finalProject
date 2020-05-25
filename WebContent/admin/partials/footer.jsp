@@ -74,7 +74,7 @@
                 jQuery("#postcode1").val(data.postcode1);
                 jQuery("#postcode2").val(data.postcode2);
                 jQuery("#zonecode").val(data.zonecode);
-                jQuery("#place_location").val(data.address);
+                jQuery("#address").val(data.address);
                 jQuery("#address2").focus();
                 console.log(data);
             }
