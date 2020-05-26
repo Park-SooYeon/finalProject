@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -52,6 +53,9 @@ public class ReviewController {
 	public ModelAndView insertR(HttpServletRequest req, HttpServletResponse resp) {
 		ModelAndView mv = new ModelAndView();
 		String msg = null;
+		HttpSession session = req.getSession();
+		String member_id = (String)session.getAttribute("member_id");
+		//방문일 뉴데이트에서 먼스 마이너스 연산 처리 후 입력
 		
 		
 		return mv;

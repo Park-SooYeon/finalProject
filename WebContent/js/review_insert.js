@@ -17,8 +17,14 @@ let star = function(starNum) {
 			ele.classList.add("checked");
 		else
 			ele.classList.remove("checked");
-	}
+	}	
 }
+function getCookie(place_serial) {
+	  var value = document.cookie.match('(^|;) ?' + place_serial + '=([^;]*)(;|$)');
+	  return value? value[2] : null;
+	}
+
+var place_serial = getCookie('place_serial');
 
 /* 사진 drag and drop 이벤트에 사용되는 함수들 */
 $(document).ready(function(){
@@ -120,7 +126,40 @@ $(document).ready(function(){
     	}
     });
     
+    $('#star_1').click(function(){
+    	$('#star_input').val(1);
+    });
+    $('#star_2').click(function(){
+    	$('#star_input').val(2);
+    });
+    $('#star_3').click(function(){
+    	$('#star_input').val(3);
+    });
+    $('#star_4').click(function(){
+    	$('#star_input').val(4);
+    });
+    $('#star_5').click(function(){
+    	$('#star_input').val(5);
+    });
+    
     $('#review_insert').click(function(){
     	let review_insert = new FormData($('#review_insert_frm')[0]);
+    	review_insert.append("place_serial", place_serial);
+    	
+    	//폼데이터 안에 값 확인
+    	for (var key of review_insert.keys()) {
+
+    		  alert(key);
+
+    		}
+
+    		for (var value of review_insert.values()) {
+
+    		  alert(value);
+
+    		}
+    		
+    	//document.review_insert_frm.action="?inc=review_insertR.rv"
+    	//document.review_insert_frm.submit();
     });
 });
