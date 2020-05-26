@@ -12,8 +12,10 @@
                                 </div>
 
                             </div>
-                            <form action="" name="frmAdmHtCompAdd" id="frmAdmHtCompAdd" enctype="multipart/form-data">
+                            <form action="" name="frmAdmHtCompAdd" id="frmAdmHtCompAdd" enctype="multipart/form-data" method="post">
                                 <input type="hidden" name="member_id" id="mId" value="${member_id }" />
+                                <input type="hidden" name="htPlaceCode" id="htPlaceCode" value="" />
+                                <input type="hidden" name="PtnHtStatus" id="PtnHtStatus" value="" />
                                 <div class="form-group row">
 	                                <div class="col-lg-3">
 	                                    <label class="col-form-label">지역 <span class="text-danger">*</span></label>
@@ -47,11 +49,11 @@
                                 </div>
                                 <div class="form-group row">
 					                <div class="col-lg-3">
-					                    <label for="place_location" class="col-form-label">주소 <span class="text-danger">*</span></label>
+					                    <label for="placeLocation" class="col-form-label">주소 <span class="text-danger">*</span></label>
 					                </div>
 					                <div class="col-lg-8">
 					                    <div class="input-group">
-					                        <input type="text" class="form-control" value="" required="required" id="place_location" name="place_location" readonly>
+					                        <input type="text" class="form-control" value="" required="required" id="placeLocation" name="placeLocation" readonly>
 		                                    <div class="input-group-append">
 		                                        <button class="btn btn-primary btn-sm" type="button" onclick="openDaumZipAddress2();">주소 검색</button>
 		                                    </div>
@@ -65,13 +67,13 @@
                                     <div class="col-lg-8">
                                     	<div class="row" id="attList">
 	                                    	<div class="col-md-4 mb-2">
-	                                    		<input type="file" name="" class="dropify" />
+	                                    		<input type="file" name="fileName1" class="dropify" />
 	                                    	</div>
                                     		<div class="col-md-4 mb-2">
-	                                    		<input type="file" class="dropify" />
+	                                    		<input type="file" name="fileName2" class="dropify" />
 	                                    	</div>
 	                                    	<div class="col-md-4 mb-2">
-	                                    		<input type="file" class="dropify" />
+	                                    		<input type="file" name="fileName3" class="dropify" />
 	                                    	</div>
                                     	</div>
                                         
@@ -98,7 +100,7 @@
                                     		<div class="col-sm-3 col-6">
                                     			<div class="form-check form-check-flat">
 					                              <label class="form-check-label">
-					                                <input type="checkbox" class="form-check-input" name="parking" id=""> 주차장 <i class="input-helper"></i></label>
+					                                <input type="checkbox" class="form-check-input" name="parking" id="parking"> 주차장 <i class="input-helper"></i></label>
 					                            </div>
                                     		</div>
                                     	</div>
@@ -106,6 +108,17 @@
 			                            
 									</div>
                                 </div>
+                                <div class="form-group row">
+	                                <div class="col-lg-3">
+	                                    <label class="col-form-label">판매상태 <span class="text-danger">*</span></label>
+	                                </div>
+	                                <div class="col-lg-8">
+	                                    <select class="form-control" id="PtnhtState">
+					                        <option value="1">활성화</option>
+					                        <option value="2">비활성화</option>
+					                    </select>
+				                    </div>
+			                    </div>
                                 <div class="form-group col-12 text-right mt-5">
                                 	<button type="button" class="btn btn-secondary mr-2" id="btnPtHtCancle">취소</button>
                                 	<button type="button" class="btn btn-success" id="btnPtHtRegister">등록</button>

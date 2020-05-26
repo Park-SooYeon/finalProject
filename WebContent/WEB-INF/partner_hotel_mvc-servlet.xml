@@ -16,6 +16,8 @@
 	<bean id="compDao" class="partner.PtnHtCompDao" />
 	<bean id="roomDao" class="partner.PtnHtRoomDao" />
 	<bean id="orderDao" class="partner.PtnHtOrderDao" />
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"></bean>
+	
 				
 	<!-- Controller (servlet code) -->
 	<bean id="comp_controller" class="partner.PtnHtCompController">

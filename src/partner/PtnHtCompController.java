@@ -71,23 +71,25 @@ public class PtnHtCompController {
 		return mv;
 	}
 	
-	@RequestMapping(value="/admin/partner/insertR.ph", method= {RequestMethod.GET, RequestMethod.POST}) 
-	public ModelAndView insertR( HttpServletRequest req, PlaceVo vo) throws IOException {
+	@RequestMapping(value="/admin/partner/insertR.ph", method= {RequestMethod.GET, RequestMethod.POST}, produces="application/text;charset=utf-8") 
+	public ModelAndView insertR(HttpServletRequest req, PlaceVo vo) throws IOException {
 		ModelAndView mv = new ModelAndView();
 		int result = 1;
-		
+		System.out.println("req : " + req.getParameter("admHCompTel"));
 		System.out.println("dksdksalkjsalk");
 		
-		vo.setPlace_code(Integer.parseInt(req.getParameter("htPlaceCode")));
+		System.out.println(req.getParameter("PtnHtStatus"));
+		
 		vo.setPlace_name(req.getParameter("admHCompNm"));
 		vo.setPlace_tel(req.getParameter("admHCompTel"));
 		vo.setPlace_location(req.getParameter("placeLocation"));
 		
+		vo.setPlace_code(Integer.parseInt(req.getParameter("htPlaceCode")));
+		vo.setState(Integer.parseInt(req.getParameter("PtnHtStatus")));
+		
 		System.out.println("req : " + req.getParameter("wifi"));
 		System.out.println("req : " + req.getParameter("breakfast"));
 		System.out.println("req : " + req.getParameter("parking"));
-		
-		vo.setState(Integer.parseInt(req.getParameter("PtnHtStatus")));
 		
 		if(req.getParameter("wifi") == null) {
 			vo.setWifi(0);
