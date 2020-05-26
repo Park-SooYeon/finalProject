@@ -31,12 +31,13 @@
 		
 		
 		<h3>이 관광지의 전반적인 평가</h3>
+		<input type="hidden" name="star_input" id="star_input">
 		<div class="review_star p-2" id="review_star" name="reputation">
-			<span class="fa fa-star fa-3x" onclick="star(1)"></span>
-			<span class="fa fa-star fa-3x" onclick="star(3)"></span>
-			<span class="fa fa-star fa-3x" onclick="star(5)"></span>
-			<span class="fa fa-star fa-3x" onclick="star(7)"></span>
-			<span class="fa fa-star fa-3x checked" onclick="star(9)"></span>
+			<span class="fa fa-star fa-3x" onclick="star(1)" id="star_5"></span>
+			<span class="fa fa-star fa-3x" onclick="star(3)" id="star_4"></span>
+			<span class="fa fa-star fa-3x" onclick="star(5)" id="star_3"></span>
+			<span class="fa fa-star fa-3x" onclick="star(7)" id="star_2"></span>
+			<span class="fa fa-star fa-3x checked" onclick="star(9)" id="star_1"></span>
 		</div>
 		<br />
 		<h3>리뷰 제목</h3>
@@ -55,13 +56,14 @@
 		<a style="float: right;">(최소 50자 이상)</a>
 		<br />
 		<h3>언제 방문하셨나요?</h3>
-		<div class="review-select mt-2" id="default-select" name="visit_date">
-			<select>
-				<option value="1">이번달</option>
-				<option value="1">저번달</option>
-				<option value="1">저저번달</option>
-				<option value="1">저저저번달</option>
-				<option value="1">저저저저번달</option>
+		<div class="review-select mt-2" id="default-select">
+			<select name="visit_date">
+				<option value="0">1개월 이내</option>
+				<option value="1">2개월 이내</option>
+				<option value="2">3개월 이내</option>
+				<option value="3">4개월 이내</option>
+				<option value="4">5개월 이내</option>
+				<option value="5">6개월 이내</option>
 			</select>
 		</div>
 		<hr/>
