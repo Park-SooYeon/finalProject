@@ -1,5 +1,5 @@
 //place_serial 값 저장
-var place_serial = document.getElementById("place_serial").value;
+//var place_serial = document.getElementById("place_serial").value;
 
 //쿠키에 place_serial 저장
 function setCookie(place_serial, value, exp){

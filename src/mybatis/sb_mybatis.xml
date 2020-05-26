@@ -80,6 +80,13 @@
 		where member_id = #{member_id}
 		and place_serial = #{place_serial}
 	</delete>
+	
+	<!-- 관광지별 평균 별점, 총 리뷰 개수 가져오기 -->
+	<select id="select_reputation" resultType="vo.ReputationVo">
+		select place_serial, avg(reputation) reputation, count(review_serial) review_cnt
+		from review
+		group by place_serial
+	</select>
 	<!--
 	<resultMap id="my_map"/>
 	<update/>
