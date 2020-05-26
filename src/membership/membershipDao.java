@@ -146,17 +146,33 @@ public class membershipDao {
 		}
 	}
 	
+
+	public static String randomN() { //문자열과 특수문자, 숫자 섞인 랜덤한 값을 만들어주는 함수 
+		char pwCollection[] = new char[] { '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', 'A', 'B', 'C', 'D', 'E',
+				'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
+				'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u',
+				'v', 'w', 'x', 'y', 'z'};
+		String ranN = "";
+
+		for (int i = 0; i < 4; i++) {
+			int selectRandomPw = (int) (Math.random() * (pwCollection.length));
+																				
+			ranN += pwCollection[selectRandomPw];
+		}
+		return ranN;
+	}
+
 	
 	
 	
 	public String defaultNickName() {
 		String dn ="";
-		int countmId=0;
-		       
-		countmId =sqlSession.selectOne("ms.defaultNickName");
+		
+		String ranN = randomN();       
+
 		
 		
-		dn="travelista"+"-"+"#"+Integer.toString(countmId);
+		dn="travelista"+"-"+"#"+ranN;
 		System.out.println(dn);
 		
 		
