@@ -1,8 +1,12 @@
 package hotel;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 
 import bean.Factory;
+import bean.Page;
+import bean.PlaceVo;
 
 public class hotelDao {
 
@@ -14,6 +18,26 @@ public class hotelDao {
 	}
 	
 	
+public List<PlaceVo> select() {
+	List<PlaceVo> list = null;
+	
+	try {
+	
+		
+	    list = sqlSession.selectList("board.select");
+		
+	}catch(Exception ex) {
+	
+		ex.printStackTrace();
+	
+	}finally {
+		//sqlSession.close();
+		return list;
+		
+	}
+	
+	
+}
 	
 	
 }
