@@ -10,6 +10,7 @@ import bean.LikeListVo;
 import bean.PlaceVo;
 import bean.TripListVo;
 import vo.MainVo;
+import vo.ReputationVo;
 
 public class SubMainDao { 
 	
@@ -146,6 +147,16 @@ public class SubMainDao {
 		List<Integer> list = null;
 		try {
 			list = sqlSession.selectList("sub_main.select_like", member_id);
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		}
+		return list; 
+	}
+
+	public List<ReputationVo> reputationSelect() {
+		List<ReputationVo> list = null;
+		try {
+			list = sqlSession.selectList("sub_main.select_reputation");
 		}catch(Exception ex) {
 			ex.printStackTrace();
 		}

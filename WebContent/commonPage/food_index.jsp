@@ -20,11 +20,26 @@
 <!-- script -->
 <script src="js/filter.js"></script>
 <script src="js/food_map.js"></script>
-<script src="js/food.js"></script>
 
 <script>
-filter.local = ${param.local}
-filter.menu = ${param.menu}
+filter.local.push(${param.local}+"");
+
+
+switch(${param.menu}) {
+case 12:
+	$('#check_happy').click();
+	break;
+case 14:
+	$('#check_culture').click();
+	break;
+case 39:
+	$('#check_food').click();
+	break;
+case 15:
+	$('#check_festival').click();
+	break;
+}
+
 </script>
 </body>
 </html>
