@@ -32,6 +32,9 @@ function a_partner_view(mId,p_name,b_number,phone,location,state,email){
 		$('#state2').html("호텔요청");
 	}
 }
+
+
+
 //회원탈퇴요청 
 function member_out_view(m_name,m_phone,m_email,m_state,m_date,m_id){
 	$('#idid').html(m_id);
@@ -62,8 +65,6 @@ let mm = {}
 mm.func =function(){
 $('#member_save').click(function(){ //jquery는 널인지  아닌지 표시를 안해줘도 되는 편리함이 이씅ㅁ
 	let param = $('#hidden_form').serialize();
-	console.log(param);
-	alert(param);
 	//이렇게 유알엘을 넘기면 boardCotroller가 받음 ./board/insert.jsp를 넘기면 data로 받고 main에 뿌림. 
 	$.post("status_save.os" ,param, function(data, stat){ //post를가지고 페이지를 넘길것이다.	 //insert가 data로 들어와서 메인으로 가서 뿌린다
 		alert(data);
@@ -95,10 +96,7 @@ $('#btnAdmStateCh').click(function(){ //jquery는 널인지  아닌지 표시를
 	console.log(param);
 	$.post("partner_deprive.os" ,param, function(data, stat){ //post를가지고 페이지를 넘길것이다.	 //insert가 data로 들어와서 메인으로 가서 뿌린다
 		alert(data);
-		//여기수정해라!~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-		
-		window.history.back();
-		location.reload();
+		location.href="./?inc=partner_list.os"
 }); 
 });
 
@@ -114,6 +112,11 @@ $('#out_save').click(function(){ //jquery는 널인지  아닌지 표시를 안�
 
 
 }
+
+// 리뷰........
+$('#contain').load("review_all.os"); 
+
+
 mm.func();
 
 

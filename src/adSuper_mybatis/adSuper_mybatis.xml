@@ -12,12 +12,29 @@
 	      <result column="partner_phone" property="partner_phone"/>
 	      <result column="state" property="state"/>
 	      <result column="partner_location" property="partner_location"/>
-	      <collection property="vo" 
-	               javaType="bean.membershipVo">
+	      <collection property="vo"  javaType="bean.membershipVo">
 	         <result column="member_id" property="member_id"/>
 	         <result column="email" property="email"/>
+	    		<!-- 옆집테이블에 가져올게 많으면 vo를 통째로 가져와서 쓸때 주로 사용 -->
+	    		<!-- 내 브이오에 사용할 브이오를 만들어줘야함 -->
 	      </collection>
 	   </resultMap>
+	   
+	   <resultMap id="review_Vo" type="bean.ReviewVo">
+	      <result column="review_date" property="review_date"/>
+	      <result column="member_id" property="member_id"/>
+	      <result column="review_title" property="review_title"/>
+	      <result column="review_content" property="review_content"/>
+	      <collection property="p"  javaType="bean.PlaceVo">
+	         <result column="place_serial" property="place_serial"/>
+	         <result column="place_code" property="place_code"/>
+	    		<!-- 옆집테이블에 가져올게 많으면 vo를 통째로 가져와서 쓸때 주로 사용 -->
+	    		<!-- 내 브이오에 사용할 브이오를 만들어줘야함 -->
+	      </collection>
+	   </resultMap>
+	   
+	   
+	   
 	<!-- 회원조회 -->
 	<select id="select_member" resultType="bean.membershipVo">
 		select 	member_name,
@@ -63,7 +80,7 @@
 	where P.state = 8 or P.state = 9 <!-- 파트너관리조회할때는 8 또는 9로  -->
     </select>
     	
-    	<!-- 파트너 view -->
+    	<!-- 파트너 view  join -->
     <select id="partner_view" parameterType="String" resultMap="a_partner">
    	select M.member_id, M.email, P.partner_serial,P.business_number
    		   ,P.partner_name,P.partner_phone,P.state,P.partner_location
@@ -113,4 +130,13 @@
       	where member_id = #{member_id} 
    </update>
    
+   
+   	<!-- 전체리뷰조회 view join -->
+    <select id="review_all" resultMap="review_Vo">
+    select R.member_id ,R.review_date, R.review_content,R.review_title,P.place_code
+	from  review R, place P
+    where R.place_serial = P.place_serial
+  
+     
+    </select>
 </mapper>
