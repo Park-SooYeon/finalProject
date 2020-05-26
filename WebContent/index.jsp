@@ -97,12 +97,5 @@
 	<script src="js/trip_list.js"></script>
 	<script src="js/my_page.js"></script>
 	
-	<!-- review_detail -->
-	<script src="js/festival_detail.js"></script>
-	
-	
-
-	
-	
 </body>
 </html>
