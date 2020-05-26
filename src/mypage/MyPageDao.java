@@ -1,19 +1,32 @@
 package mypage;
 
 import java.io.BufferedOutputStream;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+
 import bean.Factory;
 import bean.FollowListVo;
 import bean.LikeListVo;
+import bean.PlaceVo;
 import bean.ReviewVo;
 import bean.TripListVo;
 import bean.membershipVo;
@@ -97,8 +110,37 @@ public class MyPageDao {
 	
 	public List<LikeListVo> selectLike(String member_id) {
 		List<LikeListVo> list = new ArrayList<LikeListVo>();
+		List<PlaceVo> list2 = new ArrayList<PlaceVo>();
+		ObjectMapper objectMapper = new ObjectMapper();
 		try {
 			list = sqlSession.selectList("mypage.select_like", member_id);
+			
+			list2 = sqlSession.selectList("select_places", member_id);
+			// contentid만 반환
+			
+			for(PlaceVo vo : list2) {
+				System.out.println(vo.getPlace_serial());
+			}
+			
+			// 호텔만 가져옴
+			String hotelJson = objectMapper.writeValueAsString(list);
+            System.out.println(hotelJson);
+            
+            String json = getApi();
+            System.out.println(json);
+            JsonObject jobj = new Gson().fromJson(json, JsonObject.class);
+            
+            //String result = jobj.get("contentid").toString();
+            //System.out.println("contentid만 "+result);
+            	
+            	
+            Set<Map.Entry<String, JsonElement>> entries = jobj.entrySet();//will return members of your object
+            for (Map.Entry<String, JsonElement> entry: entries) {
+        	    System.out.println(entry.getKey());
+        	    System.out.println(entry.getValue());
+           	}
+           
+			
 		}catch(Exception ex) {
 			ex.printStackTrace();
 		}
@@ -231,5 +273,40 @@ public class MyPageDao {
 		}
 		
 		return map;
+	}
+	
+	public String getApi() throws IOException {
+		
+		StringBuilder urlBuilder = new StringBuilder("http://api.visitkorea.or.kr/openapi/service/rest/KorService/areaBasedList"); /*URL*/
+        urlBuilder.append("?" + URLEncoder.encode("ServiceKey","UTF-8") + "=RGRZ7ZbtIrL2U4P0qfnA3puuV5UrzrqEFmf0aLwaZitXLcUQrOTbyRoZHRCpdViHuU1cTZ7jXX4GDbOMb%2Fc1gg%3D%3D"); /*Service Key*/
+        urlBuilder.append("&" + URLEncoder.encode("numOfRows","UTF-8") + "=" + URLEncoder.encode("10", "UTF-8")); /*한 페이지 결과수*/
+        urlBuilder.append("&" + URLEncoder.encode("pageNo","UTF-8") + "=" + URLEncoder.encode("1", "UTF-8")); /*현재 페이지 번호*/
+        urlBuilder.append("&" + URLEncoder.encode("MobileOS","UTF-8") + "=" + URLEncoder.encode("ETC", "UTF-8")); /*IOS (아이폰), AND (안드로이드), WIN (원도우폰), ETC*/
+        urlBuilder.append("&" + URLEncoder.encode("MobileApp","UTF-8") + "=" + URLEncoder.encode("AppTest", "UTF-8")); /*서비스명=어플명*/
+        urlBuilder.append("&" + URLEncoder.encode("areaCode","UTF-8") + "=" + URLEncoder.encode("1", "UTF-8")); /*지역코드, 시군구코드*/
+        urlBuilder.append("&" + URLEncoder.encode("listYN","UTF-8") + "=" + URLEncoder.encode("Y", "UTF-8")); /*지역코드, 시군구코드*/
+        urlBuilder.append("&_type=json"); // json 타입으로 반환
+        
+        URL url = new URL(urlBuilder.toString());
+        System.out.println(url);
+        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+        conn.setRequestMethod("GET");
+        conn.setRequestProperty("Content-type", "application/json");
+        System.out.println("Response code: " + conn.getResponseCode());
+        BufferedReader rd;
+        if(conn.getResponseCode() >= 200 && conn.getResponseCode() <= 300) {
+            rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+        } else {
+            rd = new BufferedReader(new InputStreamReader(conn.getErrorStream()));
+        }
+        StringBuilder sb = new StringBuilder();
+        String line;
+        while ((line = rd.readLine()) != null) {
+            sb.append(line);
+        }
+        rd.close();
+        conn.disconnect();
+        return sb.toString();
+		
 	}
 }
