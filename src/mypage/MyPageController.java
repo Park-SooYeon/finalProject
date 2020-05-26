@@ -80,6 +80,8 @@ public class MyPageController {
 		// mypage/my_list.jsp
 	}
 	
+	
+	// 새로운 여행 만들었을 때
 	@ResponseBody
 	@RequestMapping( value = "newtrip.mp", method = {RequestMethod.GET, RequestMethod.POST}, produces = "text/html;charset=utf8")
 	public String insert(HttpServletRequest req) {
@@ -125,7 +127,7 @@ public class MyPageController {
 		
 		return msg;
 	}
-	
+	                                                                                             
 	@ResponseBody
 	@RequestMapping( value = "modify_trip.mp", method = {RequestMethod.POST}, produces = "text/html;charset=utf8")
 	public String modifyR(HttpServletRequest req, HttpServletResponse resp) {
@@ -187,10 +189,12 @@ public class MyPageController {
 	}
 	
 	@RequestMapping( value = "likeList.mp", method = {RequestMethod.GET, RequestMethod.POST})
-	public ModelAndView selectLike() {
+	public ModelAndView selectLike(HttpSession session) {
 		mv = new ModelAndView();
-		String member_id = "세왕";
+		String member_id = (String)session.getAttribute("member_id");
 		// 추후 session으로 값 받아와서 id에 넣어주기
+		
+		System.out.println(member_id);
 		List<LikeListVo> list = dao.selectLike(member_id);
 		
 		for(LikeListVo vo : list) {

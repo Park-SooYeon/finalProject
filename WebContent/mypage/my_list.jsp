@@ -47,8 +47,8 @@
 		                    
 		                    <button class="btn btn-page" id="mpTripAll" onclick="load();"><i class="fa fa-folder-open"></i> 여행 리스트</button>
 		                    
-		                    <button class="btn btn-page" id="mpLikeAll" data-page="like_list"><i class="fa fa-heart"></i> 전체보기</button>
-		                    <button class="btn btn-page" id="mpLikeRev" data-page="review_list"><i class="fa fa-thumbs-o-up"></i> 추천한 리뷰</button>
+		                    <button class="btn btn-page" id="mpLikeAll"><i class="fa fa-heart"></i> 전체보기</button>
+		                    <button class="btn btn-page" id="mpLikeRev"><i class="fa fa-thumbs-o-up"></i> 추천한 리뷰</button>
 		                    <button class="btn add-new-trip" data-toggle="modal" data-target="#newTripModal" style="display:none;" id="addTripBtn">여행 추가</button>
 		                </div>
 		            </div>
