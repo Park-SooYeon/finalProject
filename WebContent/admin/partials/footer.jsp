@@ -84,8 +84,9 @@
     function openDaumZipAddress2() {
         new daum.Postcode({
             oncomplete: function (data) {
-                jQuery("#place_location").val(data.address);
+                jQuery("#placeLocation").val(data.address);
                 console.log(data);
+                console.log("placeLocation" + $("#placeLocation").val());
             }
         }).open();
     }

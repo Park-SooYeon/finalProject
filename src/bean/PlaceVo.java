@@ -39,6 +39,24 @@ public class PlaceVo {
 	MultipartFile fileName3;
 	
 	
+	public MultipartFile getFileName1() {
+		return fileName1;
+	}
+	public void setFileName1(MultipartFile fileName1) {
+		this.fileName1 = fileName1;
+	}
+	public MultipartFile getFileName2() {
+		return fileName2;
+	}
+	public void setFileName2(MultipartFile fileName2) {
+		this.fileName2 = fileName2;
+	}
+	public MultipartFile getFileName3() {
+		return fileName3;
+	}
+	public void setFileName3(MultipartFile fileName3) {
+		this.fileName3 = fileName3;
+	}
 	public int getPlace_serial() {
 		return place_serial;
 	}

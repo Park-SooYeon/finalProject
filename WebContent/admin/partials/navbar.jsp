@@ -16,7 +16,7 @@
             </form> -->
             <ul class="navbar-nav ml-auto">
             	<li class="nav-item">
-            		<a href="/" class="nav-link count-indicator" id="" >
+            		<a href="../../" class="nav-link count-indicator" id="" target="_blank" >
             			<i class="mdi mdi-home-outline"></i>
             		</a>
             	</li>
