@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,7 +31,7 @@
 	<input type='hidden' name='placeSub' value='${placeSub}'/>
 	<div class="row">
 		<div id='left' class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-		<div id='map' class="col-lg-12 col-md-12 col-sm-12 hidden-xs"></div>
+		<div id='map' class="col-lg-4 col-md-4 col-sm-4 hidden-xs"></div>
 			<div class="row">
 				<div id='fillter' class="col-lg-4 col-md-5 col-sm-6 col-xs-4 col-lg-offset-8 col-md-offset-7 col-sm-offset-6 col-xs-offset-8">
 					<button type="button" id='btnFillter' class="btn btn-primary">필터 & 검색</button>
@@ -426,7 +428,24 @@
 			
 			
 			
+		<!-- <div class='my_kakao'>
+				<div>
+					괌 - 퍼시픽 스타 리조트 앤 스파 (Guam - Pacific Star Resort and Spa)
+				</div>
+				<hr/>
+				<div>
+					가격대<br/> <span>₩106,275</span>  
+				</div>
+			</div> -->
 			
+			<input type='text' name='' value='${fn:length(list)}' id='positionListSize'/>
+			<c:forEach var="vo" items="${list }" varStatus="status">
+				<input type='text' name='' value='${vo.latitude}' id='mapPosition_${status.count}_1'/>
+				<input type='text' name='' value='${vo.longitude}' id='mapPosition_${status.count}_2'/>
+				<input type='text' name='' value='${vo.company_name}' id='mapPosition_${status.count}_3'/>
+				<input type='text' name='' value='${vo.price}' id='mapPosition_${status.count}_4'/>
+				<input type='text' name='' value='${vo.address}' id='mapPosition_${status.count}_5'/>
+			</c:forEach>
 		</div>
 	</div>
 	</form>
@@ -435,14 +454,115 @@
 <script>
 
 		rent.func()
-
+		let centerlat;
+		let cnterlong;
+		if(Number($("#positionListSize").val())>0){
+			centerlat = 		Number($("#mapPosition_1_1").val());
+			centerlong = 		Number($("#mapPosition_1_2").val());	
+		}else{
+			centerlat =33.45070;
+			centerlong=126.570667;
+		}
 		
 		var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
 		var options = { //지도를 생성할 때 필요한 기본 옵션
-			center: new kakao.maps.LatLng(33.450701, 126.570667), //지도의 중심좌표.
-			level: 3 //지도의 레벨(확대, 축소 정도)
+			center: new kakao.maps.LatLng(centerlat, centerlong), //지도의 중심좌표.
+			level: 10 //지도의 레벨(확대, 축소 정도)
 		};
 		var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
+		
+		// 일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성합니다
+		var mapTypeControl = new kakao.maps.MapTypeControl();
+
+		// 지도에 컨트롤을 추가해야 지도위에 표시됩니다
+		// kakao.maps.ControlPosition은 컨트롤이 표시될 위치를 정의하는데 TOPRIGHT는 오른쪽 위를 의미합니다
+		map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
+
+		// 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
+		var zoomControl = new kakao.maps.ZoomControl();
+		map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+		
+		
+		// 마커를 표시할 위치와 내용을 가지고 있는 객체 배열입니다 
+		var positions = [
+			
+		];
+		
+		let length = Number($('#positionListSize').val());
+		for(var i=1;i<length+1;i++){
+			let latitude = 		$("#mapPosition_"+i+"_1").val();
+			let longitude = 	$("#mapPosition_"+i+"_2").val();
+			let company_name =	$("#mapPosition_"+i+"_3").val();
+			let price = 		$("#mapPosition_"+i+"_4").val();
+			let address =		$("#mapPosition_"+i+"_5").val();
+			positions.push({
+		        content: "<div class='my_kakao'><div>"+company_name +"</br><span>" + address+ "</span></div><hr/><div>가격대<br/><span>"+price+"</span></div></div>", 
+		        latlng: new kakao.maps.LatLng(latitude, longitude)
+		    });
+			
+			
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
+
+		for (var i = 0; i < positions.length; i ++) {
+			// 마커 이미지의 이미지 크기 입니다
+		    var imageSize = new kakao.maps.Size(24, 35); 
+		    
+		    // 마커 이미지를 생성합니다    
+		    var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize); 
+			
+		    // 마커를 생성합니다
+		    var marker = new kakao.maps.Marker({
+		        map: map, // 마커를 표시할 지도
+		        position: positions[i].latlng, // 마커의 위치
+		        image : markerImage // 마커 이미지 
+		    });
+
+		    // 마커에 표시할 인포윈도우를 생성합니다 
+		    var infowindow = new kakao.maps.InfoWindow({
+		        content: positions[i].content // 인포윈도우에 표시할 내용
+		    });
+		    
+		    
+		    	
+		    
+
+		    // 마커에 mouseover 이벤트와 mouseout 이벤트를 등록합니다
+		    // 이벤트 리스너로는 클로저를 만들어 등록합니다 
+		    // for문에서 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다
+		   (function(marker, infowindow) {
+		        // 마커에 mouseover 이벤트를 등록하고 마우스 오버 시 인포윈도우를 표시합니다 
+		        kakao.maps.event.addListener(marker, 'mouseover', function() {
+		            infowindow.open(map, marker);
+		        });
+
+		        // 마커에 mouseout 이벤트를 등록하고 마우스 아웃 시 인포윈도우를 닫습니다
+		        kakao.maps.event.addListener(marker, 'mouseout', function() {
+		            infowindow.close();
+		        });
+		        
+		    })(marker, infowindow);
+		    
+		}
+		
+		
+		
+		
+		
+		
+		
+		
 			
 	  $('input').iCheck({
 	    checkboxClass: 'icheckbox_square-blue',

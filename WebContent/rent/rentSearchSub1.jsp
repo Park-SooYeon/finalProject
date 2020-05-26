@@ -9,7 +9,7 @@
 			<c:forEach var="vo" items="${list }" varStatus="status">
 			
 			<div class='row'>
-				<div id='company' class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
+				<div id='company_${status.count}' class='col-lg-12 col-md-12 col-sm-12 col-xs-12 company'>
 					<div class="row">
 						<div id='companyLeft'  class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
 							<div class='row'>

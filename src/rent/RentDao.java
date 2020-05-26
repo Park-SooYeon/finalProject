@@ -115,7 +115,6 @@ public class RentDao {
 	}
 	
 	public int DateBettweenDay(String date1,String date2) {
-		System.out.println(date1 +"--" + date2);
 		String year1 = date1.substring(6,10);
 		String day1 = date1.substring(3,5);
 		String month1 = date1.substring(0,2);
