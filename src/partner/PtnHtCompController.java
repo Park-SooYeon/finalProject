@@ -116,7 +116,7 @@ public class PtnHtCompController {
 		
 		HttpSession session  = req.getSession();
 		String member_id = (String) session.getAttribute("member_id");
-		member_id = "ioi";
+		member_id = "jieun";
 		
 		MultipartFile multiFile1 = vo.getFileName1();
 		MultipartFile multiFile2 = vo.getFileName2();
