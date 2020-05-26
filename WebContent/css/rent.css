@@ -236,6 +236,7 @@
 #rentSearch #right{
 	background-color:#eee;
 	padding: 20px 40px 20px 40px;
+	border-radius: 10px 10px 10px 10px;
 }
 #rentSearch #right #depart{
 	height: auto;
@@ -355,7 +356,7 @@
 
 
 /*---------rentSearchsub1------------------------------------------------*/
-#rentSearch #right #company{
+#rentSearch #right .company{
 	margin-top:20px;
 	background-color: #fff;
 	padding-top: 10px;
@@ -364,70 +365,70 @@
 	border-radius: 5px 5px 5px 5px;
 	box-shadow: 1px 1px 5px 1px rgba(143,143,143,0.2);
 }
-#rentSearch #right #company:hover{
+#rentSearch #right .company:hover{
 	border: 1px solid #2b96ed;
 	cursor: pointer;
 }
-#rentSearch #right #company>div{
+#rentSearch #right .company>div{
 }
-#rentSearch #right #company #companyLeft{
+#rentSearch #right .company #companyLeft{
 }
-#rentSearch #right #company #companyLeft #leftImage{
+#rentSearch #right .company #companyLeft #leftImage{
 	padding: 0px;
 }
-#rentSearch #right #company #companyLeft #leftImage img{
+#rentSearch #right .company #companyLeft #leftImage img{
 	max-width: 100%;
 	height: auto;
 }
-#rentSearch #right #company #companyLeft #rightInfo{
+#rentSearch #right .company #companyLeft #rightInfo{
 	font-size: 1.4em;
 	font-weight: 800;
 	padding-top: 15px;
 	padding-bottom: 15px;
 	color:#222;
 }
-#rentSearch #right #company #companyLeft #rightInfo span{
+#rentSearch #right .company #companyLeft #rightInfo span{
 	font-size: 0.7em;
 	font-weight: 600;
 	color:#666;
 }
-#rentSearch #right #company #companyMid1{
+#rentSearch #right .company #companyMid1{
 	text-align: center;
 	padding-top:10px;
 }
-#rentSearch #right #company #companyMid1 span{
+#rentSearch #right .company #companyMid1 span{
 	font-size: 0.3em;
 	color:#333;
 	
 }
-#rentSearch #right #company #companyMid1 div{
+#rentSearch #right .company #companyMid1 div{
 	font-size:1.4em;
 	font-weight:800;
 	color:#222;
 }
-#rentSearch #right #company #companyMid2{
+#rentSearch #right .company #companyMid2{
 	text-align: center;
 	padding-top:20px;
 }
-#rentSearch #right #company #companyMid2 span{
+#rentSearch #right .company #companyMid2 span{
 	font-size:1.4em;
 	font-weight:800;
 	color:#222;
 }
-#rentSearch #right #company #companyMid2 div{
+#rentSearch #right .company #companyMid2 div{
 	font-size: 0.3em;
 	color:#333;
 }
-#rentSearch #right #company #companyRight{
+#rentSearch #right .company #companyRight{
 	text-align: center;
 }
-#rentSearch #right #company #companyRight button{
+#rentSearch #right .company #companyRight button{
 	width: 100%;
 	margin-top:25px;
 	background-color:#2b96ed;
 	font-weight: 800;
 }
-#rentSearch #right #company #companyRight span{
+#rentSearch #right .company #companyRight span{
 	font-size: 0.3em;
 	color:green;
 	font-weight: 700;
@@ -1424,7 +1425,32 @@
 
 
 
+.my_kakao{
+	width:150px;
+	height: 200px;
+	box-sizing: border-box;
+	box-shadow: 1px 1px 1px 1px #aaa;
+	border-radius: 5px 5px 5px 5px;
+	padding:20px 10px 10px 10px;
+	text-align: center;
+	background-color: #fff;
 
+}
+.my_kakao>div:nth-child(1){
+	font-weight: bold;
+	margin-bottom: 5px;
+}
+.my_kakao>div:nth-child(1)>span{
+	font-size: 0.6em;
+}
+.my_kakao>div:nth-child(3){
+	font-size:0.8em;
+	margin-top: 20px;
+}
+.my_kakao>div:nth-child(3)>span{
+	font-size: 1.8em;
+	font-weight: bold;
+}
 
 
 
