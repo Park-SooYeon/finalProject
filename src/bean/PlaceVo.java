@@ -3,6 +3,8 @@ package bean;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class PlaceVo {
 	int place_serial;
 	int partner_serial;
@@ -31,6 +33,10 @@ public class PlaceVo {
 	String place_tel;
 	int room_serial;
 	int room_cnt; // 보유객실 수 
+	
+	MultipartFile fileName1;
+	MultipartFile fileName2;
+	MultipartFile fileName3;
 	
 	
 	public int getPlace_serial() {
@@ -210,6 +216,8 @@ public class PlaceVo {
 				+ ", review_cnt=" + review_cnt + ", photo_serial=" + photo_serial + ", photo_name=" + photo_name
 				+ ", place_tel=" + place_tel + ", room_serial=" + room_serial + ", room_cnt=" + room_cnt + "]";
 	}
+	
+	
 	
 	
 	
