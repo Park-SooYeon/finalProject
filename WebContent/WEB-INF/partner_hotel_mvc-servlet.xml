@@ -30,7 +30,7 @@
 		<constructor-arg ref="orderDao"></constructor-arg>
 	</bean>
 	
-	
+	 
 	
 	<!-- view resolverss (결과 페이지) -->	
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">

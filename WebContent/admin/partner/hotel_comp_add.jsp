@@ -66,14 +66,8 @@
                                     </div>
                                     <div class="col-lg-8">
                                     	<div class="row" id="attList">
-	                                    	<div class="col-md-4 mb-2">
-	                                    		<input type="file" name="fileName1" class="dropify" />
-	                                    	</div>
-                                    		<div class="col-md-4 mb-2">
-	                                    		<input type="file" name="fileName2" class="dropify" />
-	                                    	</div>
-	                                    	<div class="col-md-4 mb-2">
-	                                    		<input type="file" name="fileName3" class="dropify" />
+	                                    	<div class="col-md-12 mb-2">
+	                                    		<input type="file" name="fileName1" class="dropify" multiple="multiple" />
 	                                    	</div>
                                     	</div>
                                         

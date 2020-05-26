@@ -3,6 +3,7 @@ package partner;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 import java.util.logging.Logger;
@@ -52,7 +53,7 @@ public class PtnHtCompController {
 		
 		HttpSession session  = req.getSession();
 		String member_id = (String) session.getAttribute("member_id");
-		
+		System.out.println("member_id : " + member_id);
 		List<PlaceVo> list = dao.select(member_id);
 		
 		mv.addObject("list", list);
@@ -71,20 +72,18 @@ public class PtnHtCompController {
 		return mv;
 	}
 	
-	@RequestMapping(value="/admin/partner/insertR.ph", method= {RequestMethod.GET, RequestMethod.POST}, produces="application/text;charset=utf-8") 
-	public ModelAndView insertR(HttpServletRequest req, PlaceVo vo) throws IOException {
+	@RequestMapping(value="/admin/partner/insertR.ph", method= {RequestMethod.GET, RequestMethod.POST}) 
+	public ModelAndView insertR(MultipartHttpServletRequest req) throws IOException {
 		ModelAndView mv = new ModelAndView();
 		int result = 1;
-		System.out.println("req : " + req.getParameter("admHCompTel"));
-		System.out.println("dksdksalkjsalk");
 		
-		System.out.println(req.getParameter("PtnHtStatus"));
+		PlaceVo vo = new PlaceVo();
 		
 		vo.setPlace_name(req.getParameter("admHCompNm"));
 		vo.setPlace_tel(req.getParameter("admHCompTel"));
 		vo.setPlace_location(req.getParameter("placeLocation"));
 		
-		vo.setPlace_code(Integer.parseInt(req.getParameter("htPlaceCode")));
+		vo.setPlace_code(Integer.parseInt(req.getParameter("htPlaceCode"))+1);
 		vo.setState(Integer.parseInt(req.getParameter("PtnHtStatus")));
 		
 		System.out.println("req : " + req.getParameter("wifi"));
@@ -116,46 +115,73 @@ public class PtnHtCompController {
 		
 		HttpSession session  = req.getSession();
 		String member_id = (String) session.getAttribute("member_id");
-		member_id = "jieun";
+		//member_id = "jieun";
+		System.out.println("member id : " + member_id);
 		
-		MultipartFile multiFile1 = vo.getFileName1();
-		MultipartFile multiFile2 = vo.getFileName2();
-		MultipartFile multiFile3 = vo.getFileName3();
+		//FileUpload
+    	//ServletContext c;
+    	// c.getRealPath("상대경로") 를 통해 파일을 저장할 절대 경로를 구해온다.
+	    // 운영체제 및 프로젝트가 위치할 환경에 따라 경로가 다르기 때문에 아래처럼 구해오는게 좋음
+    	
+	    String uploadPath = req.getSession().getServletContext().getRealPath("/assets/images/");
+	     //String uploadPath = "C:\\Users\\silve\\eclipse-workspace\\final_twitch\\WebContent\\store\\reviewimages";
+	    System.out.println(uploadPath);
+	    
+	    File dir = new File(filePath);
+        if (!dir.isDirectory()) {
+            dir.mkdirs();
+        }
+
+	    /*
+		 * uploadFile : 경로 maxSize : 크기 제한 설정 encoding: 인코딩 타입 설정 new
+		 * DefaultFileRenamePolicy(); 동일한 이름일 경우 자동으로 (1),(2) 붙게 해줌
+		 */ 
+	    
+	    //int maxSize =1024 *1024 *10;// 한번에 올릴 수 있는 파일 용량 : 10M로 제한
+	    
+	    String mId = "";
+	    int pId;
+	    String rContent ="";
+	    String rSubject ="";
+	    Double rLike;
+	         
+	    String image1 ="";// 중복처리된 이름
+	    String image2 ="";// 중복 처리전 실제 원본 이름
+	    long fileSize =0;// 파일 사이즈
+	   // String fileType ="";// 파일 타입
+	    //String encoding = "utf-8";
+	  
+	    UploadVo upVo;
+	    List<UploadVo> list = new ArrayList<UploadVo>();
+	    
+		List<MultipartFile> mf = req.getFiles("fileName1");
+
+        if (mf.size() == 1 && mf.get(0).getOriginalFilename().equals("")) {
+             System.out.println("getOriginalFilename ()");
+        } else {
+            for (int i = 0; i < mf.size(); i++) {
+            	 // 파일 중복명 처리
+				String nnName = UUID.randomUUID().toString();
+				    // 본래 파일명
+				image2 = mf.get(i).getOriginalFilename();
+				 //중복처리된 이름
+				image1 = nnName + "." + getExtension(image2);
+				
+				fileSize = mf.get(i).getSize(); // 파일 사이즈
+				
+				String savePath = filePath + image1; // 저장 될 파일 경로
+				 
+                mf.get(i).transferTo(new File(savePath)); // 파일 저장
+                
+                upVo = new UploadVo(image1, image2);
+                
+                System.out.println("list vo getOriFile : " + upVo.getOriFile());
+ 
+                list.add(upVo);
+            }
+        }
 		
-		String fileNm1 = multiFile1.getOriginalFilename();
-		String fileNm2 = multiFile2.getOriginalFilename();
-		String fileNm3 = multiFile3.getOriginalFilename();
-		
-		System.out.println(fileNm1);
-		System.out.println(fileNm2);
-		System.out.println(fileNm3);
-		
-		File f1 = new File(filePath + fileNm1);
-		File f2 = new File(filePath + fileNm2);
-		File f3 = new File(filePath + fileNm3);
-		
-		multiFile1.transferTo(f1);
-		multiFile1.transferTo(f2);
-		multiFile1.transferTo(f3);
-		
-		
-		vo.setFileName1(multiFile1);
-		vo.setFileName2(multiFile2);
-		vo.setFileName3(multiFile3);
-		
-		List<MultipartFile> list = new ArrayList<MultipartFile>();
-		list.add(multiFile1);
-		list.add(multiFile2);
-		list.add(multiFile3);
-		
-		System.out.println("vo file1 : " + vo.getFileName1());
-		
-		
-//		FileUpload upload = new FileUpload(req, resp);
-//		HttpServletRequest newReq = upload.uploading(); //  encType이 없는 req
-		
-	
-		
+
 		System.out.println("vo getBreakfast : " + vo.getBreakfast());
 		System.out.println("vo getLatitude : " + vo.getLatitude());
 		System.out.println("vo getPlace_location : " + vo.getPlace_location());
@@ -163,8 +189,7 @@ public class PtnHtCompController {
 		System.out.println("vo getPartner_serial : " + vo.getPartner_serial());
 		System.out.println("vo getPlace_name : " + vo.getPlace_name());
 		System.out.println("vo getPlace_tel : " + vo.getPlace_tel());
-		
-		
+        
 		
 		result = dao.insert(member_id, vo, list);
 		
@@ -178,8 +203,9 @@ public class PtnHtCompController {
 	
 	
 	private String getExtension(String image2) {
-		// TODO Auto-generated method stub
-		return null;
+		String mm = "jpg";
+		
+		return mm;
 	}
 
 	@RequestMapping(value="/admin/partner/hotel_comp_view.ph", method= {RequestMethod.GET, RequestMethod.POST}) 

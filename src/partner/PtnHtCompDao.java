@@ -20,8 +20,11 @@ public class PtnHtCompDao {
 	
 	public List<PlaceVo> select(String mId){
 		List<PlaceVo> list = null;
+		int serial = 0;
 		try {
-			list = sqlSession.selectList("hotel.select", mId);
+			serial = sqlSession.selectOne("hotel.select_serial", mId);
+			
+			list = sqlSession.selectList("hotel.select", serial);
 		}catch(Exception ex) {
 			ex.toString();
 		}finally {
@@ -30,12 +33,13 @@ public class PtnHtCompDao {
 		}
 	}
 	
-	public int insert(String member_id, PlaceVo vo, List<MultipartFile> attList) {
+	public int insert(String member_id, PlaceVo vo, List<UploadVo> attList) {
 		int result = 0;
 		int serial = 0;
 		try {
 			System.out.println("dao start");
 			
+			System.out.println("member_id" + member_id);
 			// 파트너 시리얼 값 세팅 
 			serial = sqlSession.selectOne("hotel.select_serial", member_id);
 			vo.setPartner_serial(serial);
@@ -58,25 +62,35 @@ public class PtnHtCompDao {
 			
 			int cnt = sqlSession.insert("hotel.insert", vo);
 			System.out.println("cnt : " + cnt);
-		
+			
+			System.out.println("serial : " + vo.getPlace_serial());
+			
 			if(cnt<1) {
 				System.out.println("본문 저장중 오류 발생");
 				throw new Exception("본문 저장중 오류 발생");
 			}
 			
-			for(MultipartFile attVo : attList) {
-				cnt = sqlSession.insert("hotel.att_insert", attVo);
+			
+			//uploadVo.setPlace_serial(vo.getPlace_serial());
+			
+			for(UploadVo upVo : attList) {
+				
+				cnt = sqlSession.insert("hotel.att_insert", upVo);
+				System.out.println("cnt2 : " + cnt);
+				
 				if(cnt<1) {
 					System.out.println("첨부 데이터 저장중 오류 발생");
 					throw new Exception("첨부 데이터 저장중 오류 발생");
 				}
+				
 			}
 			
 			sqlSession.commit();
 			result = 1;
 			
 		}catch(Exception ex) {
-			ex.toString();
+			sqlSession.rollback();
+			ex.printStackTrace();
 			result = 0;
 			
 		}finally {
