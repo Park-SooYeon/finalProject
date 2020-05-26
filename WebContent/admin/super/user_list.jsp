@@ -56,6 +56,9 @@
 												<c:if test='${i.state==99 }'>
                                                 	<label class="badge badge-inverse-danger">admin</label>
 												</c:if>
+												<c:if test='${i.state==2 }'>
+                                                	<label class="badge badge-inverse-warning">회원탈요청</label>
+												</c:if>
 												
                                             </td>
                                             <td>

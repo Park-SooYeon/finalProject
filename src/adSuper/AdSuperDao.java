@@ -1,13 +1,12 @@
 package adSuper;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.fileupload.FileUpload;
 import org.apache.ibatis.session.SqlSession;
 
 import bean.Factory;
+import bean.ReviewVo;
 import bean.membershipVo;
 import bean.partnerVo;
 
@@ -191,4 +190,18 @@ public class AdSuperDao {
 						return msg;
 					}
 				}
+				
+				//리뷰전체조회 (전체리뷰조회 view join)
+				public List<ReviewVo> review_all() {
+					System.out.println("dao 리뷰젆체조회");
+					List<ReviewVo> list = new ArrayList<ReviewVo>();
+					try {
+						list = sqlSession.selectList("admin.review_all");
+					}catch(Exception ex) {
+						ex.printStackTrace();
+					}finally {
+						return list;
+					}
+				}	
+				
 }

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import bean.ReviewVo;
 import bean.membershipVo;
 import bean.partnerVo;
 
@@ -166,5 +167,20 @@ public class AdSuperController {
 			String msg=dao.out_modify(vo);
 			return msg;
 		}
-	
+		
+		//리뷰전체입니다
+		@RequestMapping(value = "/admin/super/review_all.os", method= {RequestMethod.GET, RequestMethod.POST},produces = "text/html;charset=utf8")
+		public ModelAndView review_all(HttpServletRequest req) {
+			//System.out.println("par_View_controll"+member_id);
+			mv = new ModelAndView();
+			//System.out.println("partner_view컨트롤 들어오나");
+			List<ReviewVo> list = dao.review_all();
+			for(ReviewVo vo : list) {
+				System.out.println(vo.toString());
+			}
+			
+			mv.setViewName("review_all");
+			mv.addObject("list", list);
+			return mv;
+		}
 }
