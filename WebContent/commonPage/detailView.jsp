@@ -510,6 +510,6 @@
     });
   //]]>    
 </script> 
-
+<script src="js/festival_detail.js"></script>
 </body>
 </html>
