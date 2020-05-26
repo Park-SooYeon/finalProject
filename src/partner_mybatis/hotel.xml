@@ -4,28 +4,34 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd"
 >
 <mapper namespace="hotel">
-	<select id="select" parameterType="String" resultType="bean.PlaceVo">
-		SELECT p.photo_name ,h.place_name, h.place_location, h.place_tel, (
+	<select id="select" parameterType="Integer" resultType="bean.PlaceVo">
+		SELECT p.oriFile ,h.place_name, h.place_location, h.place_tel, (
 			SELECT count(r.rooms_serial) cnt
 			FROM ROOMS r JOIN PLACE p
 			ON r.PLACE_SERIAL = p.PLACE_SERIAL
 		) room_cnt, h.state
-		FROM PLACE h LEFT OUTER JOIN PLACE_PHOTO p 
-		ON h.place_serial = p.place_serial 
-		WHERE place_code=4
-		and member_id=#{member_id}
+		FROM PLACE h 
+			LEFT OUTER JOIN PLACE_PHOTO p ON h.place_serial = p.place_serial 
+			LEFT OUTER JOIN partner pt ON h.partner_serial = pt.partner_serial 
+		WHERE h.place_code=4
+		and h.PARTNER_SERIAL=#{partner_serial}
 	</select>	
 	
 	<!-- 파트너 시리얼 조회 -->
 	<select id="select_serial" parameterType="String" resultType="Integer">
 		SELECT partner_serial
 		FROM PARTNER
-		WHERE MEMBER_ID=#{member_id};
+		WHERE MEMBER_ID=#{member_id}
 	</select>
 	
 	
 	<insert id="insert" parameterType="bean.PlaceVo" >
 		INSERT INTO place (place_serial, partner_serial, place_code, place_name, place_location, LATITUDE, LONGITUDE, grade, state, BREAKFAST, WI_FI, PARKING, LOCAL_CODE, PLACE_TEL)
-		VALUES (seq_place.nextval, #{partner_serial}, 4, #{place_name}, #{place_location}, #{latitude}, #{longitude}, #{grade}, #{breakfast}, #{wifi}, #{parking}, #{local_code}, #{place_tel})
+		VALUES (seq_place.nextval, #{partner_serial}, 4, #{place_name}, #{place_location}, #{latitude}, #{longitude}, #{grade}, #{state}, #{breakfast}, #{wifi}, #{parking}, #{local_code}, #{place_tel})
+	</insert>
+	
+	<insert id="att_insert" parameterType="partner.UploadVo">
+		insert into place_photo (photo_serial, place_serial , oriFile, sysFile)
+		values (seq_place_photo.nextval, seq_place.currval, #{oriFile}, #{sysFile})
 	</insert>
 </mapper>
