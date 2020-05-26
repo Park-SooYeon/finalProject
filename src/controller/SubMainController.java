@@ -105,36 +105,14 @@ public class SubMainController {
 	
 	// 더보기로 관광지 검색 페이지로 이동
 	@GetMapping("mainMore.sb")
-	public String ViewMore(@RequestParam(required = false) int local, @RequestParam int menu, Model model) {
+	public String ViewMore(@RequestParam("menu") int menu, @RequestParam(required = false) int local, Model model) {
 		
-		List<PlaceVo> list = null;
-		SubMainDao dao = new SubMainDao();
-		System.out.println("local : " + local);
-		System.out.println("menu : " + menu);
+		List<RestDataVo> list = null;
 		
-		switch(menu) {
-		case 1:
-			list = dao.happyMenuSelect(local);
-			break;
-		case 2:
-			list = dao.foodMenuSelect(local);
-			break;
-		case 3:
-			list = dao.festivalMenuSelect(local);
-			break;
-		}
 		
 		model.addAttribute("list", list);
 		return "food_index";
-	}
-	
-	// 관광지 상세보기로 이동
-	@GetMapping("detailView.sb")
-	public String detailView(@RequestParam("code") int place_code) {
-		
-		return "detailView";
-	}
-	
+	}	
 	
 	// 여행 폴더 추가하기
 	@ResponseBody
@@ -210,15 +188,14 @@ public class SubMainController {
 		return null;
 	}
 	
+	// 검색어 필터 선택 시, 조회되는 관광지 정보들
 	@ResponseBody
 	@PostMapping("searchList.sb")
-	public StringBuilder restApiTest(@RequestParam("menu") String menu, @RequestParam(required = false, value="local[]") List<String> local, @RequestParam(required = false, value="filter[]") List<String> filter) {
+	public StringBuilder searchList(@RequestParam("menu") String menu, @RequestParam(required = false, value="local[]") List<String> local, @RequestParam(required = false, value="filter[]") List<String> filter) {
 		StringBuilder sb = new StringBuilder();
 		sb.append('[');
 		
-		System.out.println("local : " + local);
-		System.out.println("menu : " + menu);
-		System.out.println("filter : " + filter);
+		// local, filter 값이 없을 경우, NullPointException 방지를 위하여 공백 값 설정
 		if(local == null) {
 			local = new ArrayList<>();
 			local.add("");
@@ -227,8 +204,8 @@ public class SubMainController {
 			filter = new ArrayList<>();
 			filter.add("");
 		}
-		System.out.println("fawefaew" + filter);
 		
+		// 지역 필터와 검색어 필터가 적용된 관광지 리스트만 가져오기
 		for(int i = 0 ; i < local.size() ; i++) {
 			for(int j = 0 ; j < filter.size() ; j++) {
 				try {
