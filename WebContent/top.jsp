@@ -69,7 +69,7 @@
 		<div class="row align-items-center justify-content-between d-flex">
 			<nav id="top-menu-container">
 				<ul class="top-menu">
-					<li><a href="./?inc=hotel/hotelMain.jsp">호텔</a></li>
+					<li><a href="./?inc=hotelMain.ht">호텔</a></li>
 					<li><a href="#" onclick="menuMove(12)">즐길거리</a></li>
 					<li><a href="#" onclick="menuMove(39)">음식점</a></li>
 					<li><a href="#" onclick="menuMove(15)">축제</a></li>
@@ -91,6 +91,11 @@ function openInNewTab(url) {
 
 let menuMove = function(menu) {
 	location.href = './?inc=menuMain.sb&menu=' + menu;
+}
+
+let hetelMainGo = function() {
+	location.href = "./?inc=hotelMain.ht";
+	
 }
 
 </script>

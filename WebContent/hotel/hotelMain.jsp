@@ -41,6 +41,12 @@
 let hotelSearchMove = function() {
 	location.href = './?inc=hotel/hotel_body.jsp';
 }
+
+let locationMove = function(){
+	
+	location.href='./?inc=hotel/hotelPlaceMain.jsp'
+}
+
 </script>
 
 <!-- Swiper -->
@@ -53,97 +59,18 @@ let hotelSearchMove = function() {
 			</div>
 		</div>
 		<div class="row">
-			<div class="swiper-container m-2">
-				<div class="swiper-wrapper pl-50 pr-50">
-					<div class="swiper-slide">
-						<div class="p-1 heart" onclick="main.like(this)">
-							<i class="fa fa-heart-o" style="vertical-align: middle;"></i>
-						</div>
-						<div class="single-destinations" onclick="hotelDetailMove()">
-							<div class="thumb">
-								<img src="template/img/packages/d1.jpg" alt="">
-							</div>
+			      	<div class="single-destinations" onclick="locationMove()">
+							
 							<div class="details p-2">
-								<div class="tags">
-									<ul>
-										<li><a href="#">태그1</a></li>
-										<li><a href="#">태그2</a></li>
-									</ul>
-								</div>
-								<h4>Holiday Sea beach Blue Ocean</h4>
-								<p>United staes of America</p>
-								<h6 class="date">위치</h6>
+							
+								<h4>부산</h4>
+								<p>2020/05/26~2020/06/28, 4명</p>
+								
 							</div>
 						</div>
-					</div>
-					<div class="swiper-slide">
-						<div class="single-destinations">
-							<div class="thumb">
-								<img src="template/img/packages/d2.jpg" alt="">
-							</div>
-							<div class="details p-2">
-								<div class="tags">
-									<ul>
-										<li><a href="#">태그1</a></li>
-										<li><a href="#">태그2</a></li>
-									</ul>
-								</div>
-								<h4>Holiday Sea beach Blue Ocean</h4>
-								<p>United staes of America</p>
-								<h6 class="date">위치</h6>
-							</div>
-						</div>
-					</div>
-					<div class="swiper-slide">
-						<div class="single-destinations">
-							<div class="thumb">
-								<img src="template/img/packages/d3.jpg" alt="">
-							</div>
-							<div class="details p-2">
-								<div class="tags">
-									<ul>
-										<li><a href="#">태그1</a></li>
-										<li><a href="#">태그2</a></li>
-									</ul>
-								</div>
-								<h4>Holiday Sea beach Blue Ocean</h4>
-								<p>United staes of America</p>
-								<h6 class="date">위치</h6>
-							</div>
-						</div>
-					</div>
-					<div class="swiper-slide">
-						<div class="single-destinations">
-							<div class="thumb">
-								<img src="template/img/packages/d4.jpg" alt="">
-							</div>
-							<div class="details p-2">
-								<div class="tags">
-									<ul>
-										<li><a href="#">태그1</a></li>
-										<li><a href="#">태그2</a></li>
-									</ul>
-								</div>
-								<h4>Holiday Sea beach Blue Ocean</h4>
-								<p>United staes of America</p>
-								<h6 class="date">위치</h6>
-							</div>
-						</div>
-					</div>
-					<div class="swiper-slide">Slide 5</div>
-					<div class="swiper-slide">Slide 6</div>
-					<div class="swiper-slide">Slide 7</div>
-					<div class="swiper-slide">Slide 8</div>
-					<div class="swiper-slide">Slide 9</div>
-					<div class="swiper-slide">Slide 10</div>
-				</div>
-
-				<!-- Add Arrows -->
-				<div class="swiper-button-next"></div>
-				<div class="swiper-button-prev"></div>
 			</div>
 		</div>
-	</div>
+
 </section>
 
 <!-- Swiper -->
@@ -158,6 +85,9 @@ let hotelSearchMove = function() {
 		<div class="row">
 			<div class="swiper-container m-2">
 				<div class="swiper-wrapper pl-50 pr-50">
+					
+					
+					
 					<div class="swiper-slide">
 						<div class="p-1 heart" onclick="main.like(this)">
 							<i class="fa fa-heart-o" style="vertical-align: middle;"></i>
@@ -174,80 +104,22 @@ let hotelSearchMove = function() {
 									</ul>
 								</div>
 								<h4>Holiday Sea beach Blue Ocean</h4>
-								<p>United staes of America</p>
+								<p>지역</p>
 								<h6 class="date">위치</h6>
 							</div>
 						</div>
 					</div>
-					<div class="swiper-slide">
-						<div class="single-destinations">
-							<div class="thumb">
-								<img src="template/img/packages/d2.jpg" alt="">
-							</div>
-							<div class="details p-2">
-								<div class="tags">
-									<ul>
-										<li><a href="#">태그1</a></li>
-										<li><a href="#">태그2</a></li>
-									</ul>
-								</div>
-								<h4>Holiday Sea beach Blue Ocean</h4>
-								<p>United staes of America</p>
-								<h6 class="date">위치</h6>
-							</div>
-						</div>
-					</div>
-					<div class="swiper-slide">
-						<div class="single-destinations">
-							<div class="thumb">
-								<img src="template/img/packages/d3.jpg" alt="">
-							</div>
-							<div class="details p-2">
-								<div class="tags">
-									<ul>
-										<li><a href="#">태그1</a></li>
-										<li><a href="#">태그2</a></li>
-									</ul>
-								</div>
-								<h4>Holiday Sea beach Blue Ocean</h4>
-								<p>United staes of America</p>
-								<h6 class="date">위치</h6>
-							</div>
-						</div>
-					</div>
-					<div class="swiper-slide">
-						<div class="single-destinations">
-							<div class="thumb">
-								<img src="template/img/packages/d4.jpg" alt="">
-							</div>
-							<div class="details p-2">
-								<div class="tags">
-									<ul>
-										<li><a href="#">태그1</a></li>
-										<li><a href="#">태그2</a></li>
-									</ul>
-								</div>
-								<h4>Holiday Sea beach Blue Ocean</h4>
-								<p>United staes of America</p>
-								<h6 class="date">위치</h6>
-							</div>
-						</div>
-					</div>
-					<div class="swiper-slide">Slide 5</div>
-					<div class="swiper-slide">Slide 6</div>
-					<div class="swiper-slide">Slide 7</div>
-					<div class="swiper-slide">Slide 8</div>
-					<div class="swiper-slide">Slide 9</div>
-					<div class="swiper-slide">Slide 10</div>
-				</div>
-
+				
 				<!-- Add Arrows -->
 				<div class="swiper-button-next"></div>
 				<div class="swiper-button-prev"></div>
 			</div>
 		</div>
 	</div>
+</div>
 </section>
+
+
 
 <!-- Swiper -->
 <section class="destinations-area pb-60">
@@ -261,6 +133,9 @@ let hotelSearchMove = function() {
 		<div class="row">
 			<div class="swiper-container m-2">
 				<div class="swiper-wrapper pl-50 pr-50">
+					
+					
+					
 					<div class="swiper-slide">
 						<div class="p-1 heart" onclick="main.like(this)">
 							<i class="fa fa-heart-o" style="vertical-align: middle;"></i>
@@ -277,72 +152,12 @@ let hotelSearchMove = function() {
 									</ul>
 								</div>
 								<h4>Holiday Sea beach Blue Ocean</h4>
-								<p>United staes of America</p>
+								<p>지역</p>
 								<h6 class="date">위치</h6>
 							</div>
 						</div>
 					</div>
-					<div class="swiper-slide">
-						<div class="single-destinations">
-							<div class="thumb">
-								<img src="template/img/packages/d2.jpg" alt="">
-							</div>
-							<div class="details p-2">
-								<div class="tags">
-									<ul>
-										<li><a href="#">태그1</a></li>
-										<li><a href="#">태그2</a></li>
-									</ul>
-								</div>
-								<h4>Holiday Sea beach Blue Ocean</h4>
-								<p>United staes of America</p>
-								<h6 class="date">위치</h6>
-							</div>
-						</div>
-					</div>
-					<div class="swiper-slide">
-						<div class="single-destinations">
-							<div class="thumb">
-								<img src="template/img/packages/d3.jpg" alt="">
-							</div>
-							<div class="details p-2">
-								<div class="tags">
-									<ul>
-										<li><a href="#">태그1</a></li>
-										<li><a href="#">태그2</a></li>
-									</ul>
-								</div>
-								<h4>Holiday Sea beach Blue Ocean</h4>
-								<p>United staes of America</p>
-								<h6 class="date">위치</h6>
-							</div>
-						</div>
-					</div>
-					<div class="swiper-slide">
-						<div class="single-destinations">
-							<div class="thumb">
-								<img src="template/img/packages/d4.jpg" alt="">
-							</div>
-							<div class="details p-2">
-								<div class="tags">
-									<ul>
-										<li><a href="#">태그1</a></li>
-										<li><a href="#">태그2</a></li>
-									</ul>
-								</div>
-								<h4>Holiday Sea beach Blue Ocean</h4>
-								<p>United staes of America</p>
-								<h6 class="date">위치</h6>
-							</div>
-						</div>
-					</div>
-					<div class="swiper-slide">Slide 5</div>
-					<div class="swiper-slide">Slide 6</div>
-					<div class="swiper-slide">Slide 7</div>
-					<div class="swiper-slide">Slide 8</div>
-					<div class="swiper-slide">Slide 9</div>
-					<div class="swiper-slide">Slide 10</div>
-				</div>
+					
 
 				<!-- Add Arrows -->
 				<div class="swiper-button-next"></div>
@@ -350,6 +165,7 @@ let hotelSearchMove = function() {
 			</div>
 		</div>
 	</div>
+</div>	
 </section>
     
 <!-- Modal -->

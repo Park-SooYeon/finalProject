@@ -44,11 +44,6 @@
    where member_id = #{member_id} 
 </select>
 
-<select id = "defaultNickName"   resultType="Integer">
-
-   select count(member_id)+1 from membership
-
-</select>
 
 
 <insert id="join" parameterType='bean.membershipVo'>
