@@ -90,12 +90,11 @@
 	</delete>
 	
 	<insert id="insert_like" parameterType="bean.LikeListVo">
-      insert into like_list(like_serial, member_id, trip_list_serial, place_serial, partner_serial) 
+      insert into like_list(like_serial, member_id, trip_list_serial, place_serial) 
                values(seq_like_list.nextval, 
                		#{member_id}, 
                		${trip_list_serial}, 
-               		${place_serial}, 
-               		${partner_serial,jdbcType=NUMERIC} )
+               		${place_serial} 
    </insert>
    
    
