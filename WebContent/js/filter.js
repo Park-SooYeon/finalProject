@@ -1,3 +1,8 @@
+//detailView로 이동
+detailMove = function(code) {
+	location.href = './?inc=detailView.dv&code=' + code;
+}
+
 // 카드 형식 or 리스트 형식으로 보이기
 $('#cardsort').on("click", function() {
 	$('#cardsort_list').css("display", '');
@@ -308,10 +313,6 @@ filter.makeElement = function() {
 	
 	// 별 그리기
 	filter.makeStar();
-}
-
-filter.detailMove = function(code) {
-	
 }
 
 filter.makeStar = function() {

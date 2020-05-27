@@ -552,10 +552,9 @@ public class SubMainController {
 			        }
 			        //sb = new StringBuilder();
 			        String line;
-			        String daoResult = "\"contentid\":2561766,\"reputation\":3,\"review_cnt\":5,";
 			        List<ReputationVo> serial = new ArrayList<>();
-			        //SubMainDao dao = new SubMainDao();
-			        //serial = dao.reputationSelect();
+			        SubMainDao dao = new SubMainDao();
+			        serial = dao.reputationSelect();
 			        String result = "";
 			        while ((line = rd.readLine()) != null) {
 			        	// 필요한 데이터만 반환받기 위해 적용
@@ -566,6 +565,12 @@ public class SubMainController {
 			        	if(beginIndex != -1 || endIndex != -1) {
 				        	result = line.substring(beginIndex + 1, endIndex);
 				        	System.out.println("result : " + result);
+				        	
+				        	// 리뷰와 별점이 존재하면 리뷰와 별점 정보도 json에 저장
+				        	for(int k = 0 ; k < serial.size() ; k++) {
+				        		System.out.println(serial.get(k).getPlace_serial() + "," + serial.get(k).getReputation() + "," + serial.get(k).getReview_cnt());
+				        		result = result.replace("\"contentid\":" + serial.get(k).getPlace_serial() +",", "\"contentid\":" + serial.get(k).getPlace_serial() + ",\"reputation\":" + serial.get(k).getReputation() + ",\"review_cnt\":" + serial.get(k).getReview_cnt() + ",");
+				        	}
 				        	
 				        	sb.append(result);
 				        	sb.append(',');
