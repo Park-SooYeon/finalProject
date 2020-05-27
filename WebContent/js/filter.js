@@ -77,9 +77,8 @@ filter.local = [] // 지역 코드를 담을 변수
 filter.filter = [] // filter 요소를 담을 변수
 filter.allItems = [] // 모든 검색된 요소들을 담을 변수
 
-
+// parameter 값에 따라 초기 검색 조건 세팅
 filter.init = function(menu, local) {
-	alert(local);
 	if(local != undefined) {
 		let chk_obj = document.getElementsByName("local_type");
 		
@@ -189,7 +188,6 @@ filter.removeAll = function() {
 
 // 검색 요소에 따라 데이터 검색하기
 filter.ajax = function() {
-	alert("데이터 가져오기!");
 	$.ajax({
 		url : "searchList.sb",
 		method : "post",
@@ -200,19 +198,18 @@ filter.ajax = function() {
 		},
 		dataType : "json",
 		success : function(data) {
-			alert("성공!");
 			filter.allItems = data;
+			
+			// 검색된 요소들의 개수 출력
+			$('#search_cnt').text(filter.allItems.length);
 
-			// 검색 조건 contentID별 정렬
+			// 검색된 요소들 contentID별 정렬
 			filter.allItems.sort(function(a,b) {
 				return a.contentid - b.contentid;
 			})
 			
 			// 검색 요소로 검색된 items 다시 그리기
 			filter.makeElement();
-		},
-		error : function(err) {
-			alert("실패!");
 		}
 	});
 
@@ -240,7 +237,7 @@ filter.searchRemove = function(eleName, check_val) {
 		break;
 	case "local_type":
 		let idy = filter.local.findIndex(a => a == check_val)
-		if(idy !== -1) filter.local.splice(idx, 1);
+		if(idy !== -1) filter.local.splice(idy, 1);
 		break;
 	}
 }
@@ -267,19 +264,16 @@ filter.makeElement = function() {
 			+ `<div class="col-md-9 mt-sm-20 left-align-p" style="background-color:white;">`
 			+ `<span>${i['title']}</span></br>`
 			+ `<div style="width: 30px; float: left;">별점</div>`
-			+ `<div class="rating" data-rate="${i['reputation']}" style="float: left;">`
+			+ `<div class="rating" data-rate="${i['reputation'] === undefined? 0:i['reputation']}" style="float: left;">`
 			+ `<i class="fa fa-star"></i>`
 			+ `<i class="fa fa-star"></i>`
 			+ `<i class="fa fa-star"></i>`
 			+ `<i class="fa fa-star"></i>`
 			+ `<i class="fa fa-star"></i>`
-			+ `<span>  ${i['review_cnt']} 건의 리뷰</span>`
+			+ `<span>  ${i['review_cnt'] === undefined? 0:i['review_cnt']} 건의 리뷰</span>`
 			+ `</div>`
 			+ `<br/>`
 			+ `<span>${i['addr1'] }</span>`
-			+ `<hr/>`
-			+ `<span>간단설명 (타입 , 세계 , 메뉴 , 지역 가격)</span></br>`
-			+ `<span>한줄평</span></br>	   ` 
 			+ `</div>`
 			+ `</div>`
 			+ `</div>`
@@ -288,13 +282,13 @@ filter.makeElement = function() {
 			= `<div class="col-md-3 col-6 p-1 cardsort_list" onclick="detailMove(${i['contentid']})">`
 			+ `<div class="row">`
 			+ `<div class="col-md-12">`
-			+ `<img src="${i['firstimage'] === undefined? "images/food/map.png":i['firstimage']}" alt="no-image" class="img-fluid">`
+			+ `<img src="${i['firstimage']}" alt="no-image" class="img-fluid">`
 			+ `</div>`
 			+ `<div class="col-md-12 mt-sm-20 left-align-p">`
 			+ `<div style="background-color: white; padding: 10px;">`
 			+ `<div style="height: 10px;">&nbsp</div>`
 			+ `<span>${i['title'] }</span>`
-			+ `<div class="rating" data-rate="${i['reputation'] === undefined? 1:i['reputation']}">`
+			+ `<div class="rating" data-rate="${i['reputation'] === undefined? 0:i['reputation']}">`
 			+ `<i class="fa fa-star checked"></i>`
 			+ `<i class="fa fa-star"></i>`
 			+ `<i class="fa fa-star"></i>`
@@ -323,10 +317,8 @@ filter.detailMove = function(code) {
 filter.makeStar = function() {
 	var rating = $(".rating");
 
-	rating.each(function () {
-	  var targetScore = $(this).attr("data-rate");
-	  $(this)
-	    .find("i:nth-child(-n+" + targetScore + ")")
-	    .css({ color: "#ffc107" });
+	rating.each(function(){
+		var targetScore = $(this).attr('data-rate');
+		$(this).find('i:nth-child(-n+' + targetScore +')').css({color:'#ffc107'});
 	});
 }

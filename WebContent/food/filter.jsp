@@ -48,7 +48,7 @@
 			  <label class="custom-control-label" for="check_his">역사관광지</label>
 		    </div>
 		    <div class="custom-control custom-checkbox col-md-12 col-5" >
-			  <input type="checkbox" class="custom-control-input" name='happfilter_typey_type' id='check_rec' onclick="filter.check(this)" value='A0202'/>
+			  <input type="checkbox" class="custom-control-input" name='filter_type' id='check_rec' onclick="filter.check(this)" value='A0202'/>
 			  <label class="custom-control-label" for="check_rec">휴양관광지</label>
 		    </div>
 		    <div class="custom-control custom-checkbox col-md-12 col-4">
