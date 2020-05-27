@@ -1,6 +1,7 @@
+var code = document.getElementById("place_serial").value;
+
 //place_serial 값 저장
 //var place_serial = document.getElementById("place_serial").value;
-
 //쿠키에 place_serial 저장
 function setCookie(place_serial, value, exp){
 	var date = new Date();
@@ -8,7 +9,7 @@ function setCookie(place_serial, value, exp){
 	document.cookie = place_serial + '=' + value + ';expires=' + date.toUTCString() + ';path=/';	
 };
 //setCookie(변수이름, 변수값, 기간);
-setCookie("place_serial", place_serial, 1);
+setCookie("place_serial", code, 1);
 
 //쿠키추가
 function addCookie(id){

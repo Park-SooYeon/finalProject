@@ -36,7 +36,7 @@
 	</div>
 	</section>
 <form name='frm_review' id='frm_review' method='post' class='frm_review'>
-<input type="hidden" id="place_serial" name="place_serial" value="${vo.place_serial }" />
+<input type="hidden" id="place_serial" name="place_serial" value="${param.code }" />
 	<br/>
 	<br/>
 	<br/>
@@ -509,7 +509,7 @@
       ]
     });
   //]]>    
-</script> 
+</script>
 <script src="js/festival_detail.js"></script>
 </body>
 </html>
