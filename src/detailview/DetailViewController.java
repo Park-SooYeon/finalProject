@@ -28,13 +28,14 @@ public class DetailViewController {
 		ModelAndView mv = new ModelAndView();
 		DetailViewVo vo = null;		
 		int place_serial = Integer.parseInt(req.getParameter("code"));		
-		vo = dao.view(place_serial);
+		//vo = dao.view(place_serial);
 		
-		List<PlaceVo> list = dao.photoView(place_serial);
+		List<PlaceVo> list = null;
+		//List<PlaceVo> list = dao.photoView(place_serial);
 		
 		mv.addObject("vo", vo);
 		mv.addObject("list", list);
-		System.out.println(list.get(0).getPhoto_name());
+		//System.out.println(list.get(0).getPhoto_name());
 		mv.setViewName("detailView");
 		
 		return mv;

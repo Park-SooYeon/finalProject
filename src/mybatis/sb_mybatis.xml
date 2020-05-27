@@ -75,6 +75,7 @@
 		where member_id = #{_parameter}
 	</select>
 	
+	<!-- 관심 리스트로 추가한 목록 삭제 -->
 	<delete id="delete_like" parameterType="bean.LikeListVo">
 		delete from like_list
 		where member_id = #{member_id}

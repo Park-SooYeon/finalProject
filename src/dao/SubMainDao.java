@@ -130,7 +130,7 @@ public class SubMainDao {
 		try {
 			int cnt = sqlSession.insert("sub_main.delete_like", vo);
 			if(cnt<1) {
-				throw new Exception("본문 삭제 중 오류발생");
+				throw new Exception("관심리스트 삭제 중 오류발생");
 			}
 			
 			sqlSession.commit();

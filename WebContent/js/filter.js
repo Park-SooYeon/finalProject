@@ -50,7 +50,7 @@ filter.check = function(ele) {
 	let eleName = ele.getAttribute("name"); // 요소의 name 값
 	let val = $("label[for='" + eleId + "']").text(); // for로 연결된 라벨의 text 값을 가져옴
 	let check_val = ele.value;
-	alert(check_val);
+	alert("?? : " + check_val);
 	alert(eleName);
 	
 	if(ele.checked == true) {

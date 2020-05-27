@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true) // 모든 필드의 데이터를 받아오지 않아도 될 때 사용
 public class RestDataVo {
-	String arr1;
+	String addr1;
 	int areacode;
 	String cat1;
 	String cat2;
@@ -24,17 +24,17 @@ public class RestDataVo {
 	@JsonIgnore
 	int review_cnt;
 	
-	public String getArr1() {
-		return arr1;
-	}
 	public String getFirstimage() {
 		return firstimage;
 	}
 	public void setFirstimage(String firstimage) {
 		this.firstimage = firstimage;
 	}
-	public void setArr1(String arr1) {
-		this.arr1 = arr1;
+	public String getAddr1() {
+		return addr1;
+	}
+	public void setAddr1(String addr1) {
+		this.addr1 = addr1;
 	}
 	public int getAreacode() {
 		return areacode;
