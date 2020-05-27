@@ -26,6 +26,8 @@ function getCookie(place_serial) {
 
 var place_serial = getCookie('place_serial');
 
+var sel_files = [];//이미지 정보들을 담을 배열
+
 /* 사진 drag and drop 이벤트에 사용되는 함수들 */
 $(document).ready(function(){
     var objDragAndDrop = $(".dragAndDropDiv");
@@ -65,10 +67,10 @@ $(document).ready(function(){
     objDragAndDrop.on('click',function (e){
         $('input[type=file]').trigger('click');        
     });
-var sel_files = [];
+
     $('input[type=file]').on('change', function(e) {
         var files = e.originalEvent.target.files;
-        
+        /*
         var filesArr = Array.prototype.slice.call(files);        
         $("#fileUpload").empty();
         var index = 0;
@@ -89,20 +91,12 @@ var sel_files = [];
         	}
         	reader.readAsDataURL(f);
         });
-        
+        */
         handleFileUpload(files,objDragAndDrop);        
     });
     
-    //선택파일 삭제
-    function deleteImageAction(index){ 
-    	sel_files.splice(index, 1);
-    	
-    	var img_id = "#img_id_"+index;
-    	$(img_id).remove();
-    }
-    
     function handleFileUpload(files,obj)
-    {  alert(files.originalEvent.target.files);
+    {
        for (var i = 0; i < files.length; i++) 
        {
             var fd = new FormData();
@@ -263,4 +257,68 @@ var sel_files = [];
     	//document.review_insert_frm.action="?inc=review_insertR.rv"
     	//document.review_insert_frm.submit();
     });
+    
+    
+    $('#input_imgs').on("change", handleImgFileSelect);    
 });
+    
+
+function fileUploadAction(){
+	$('#input_imgs').trigger('click');
+}
+
+function handleImgFileSelect(e){
+	
+	// 이미지 정보들을 초기화
+	sel_files = [];
+	$(".imgs_wrap").empty();
+	
+	var files = e.target.files;
+	var filesArr = Array.prototype.slice.call(files);        
+	
+	var index = 0;
+	filesArr.forEach(function(f){
+		if(!f.type.match("image.*")){
+			alert("확장자는 이미지 확장자만 가능합니다.");
+			return;
+		}
+		
+		sel_files.push(f);
+		
+		var reader = new FileReader();
+		reader.onload = function(e){
+			var html = "<a href=\"javascript:void(0);\" onclick=\"deleteImageAction("+index+")\" id=\"img_id_"+index+"\"><img src=\""+e.target.result+"\" data-file='"+f.name+"' class='selProductFile' title='Click to remove' style='width: 10%; height: 10%;'></a>";
+			$(".imgs_wrap").append(html);        		
+			index++;
+		}
+		reader.readAsDataURL(f);
+	});
+}
+//선택파일 삭제
+function deleteImageAction(index){ 
+	sel_files.splice(index, 1);
+	
+	var img_id = "#img_id_"+index;
+	$(img_id).remove();
+}
+
+function submitAction(){
+	var data = new FormData();
+	
+	for(var i=0, len=sel_files.length; i<len; i++){
+		var name = "image_"+i;
+		data.append(name, sel_files[i]);		
+	}
+	data.append("image_count", sel_files.length);
+	
+	var xhr = new XMLHttpRequest();
+	xhr.open("POST","./study01_af.php");
+	xhr.onload = function(e){
+		if(this.status == 200){
+			console.log("Result : "+e.currentTarget.responseText);
+		}
+	}
+	
+	xhr.send(data);
+}
+	
