@@ -3,12 +3,10 @@ package detailview;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import bean.DetailViewVo;
@@ -41,8 +39,8 @@ public class DetailViewController {
 	}
 	
 	//리뷰 신고하기
-	@RequestMapping(value = "report.dv", method = {RequestMethod.GET, RequestMethod.POST})
-	public ModelAndView report(HttpServletRequest req, 
+	/*@RequestMapping(value = "report.dv", method = {RequestMethod.GET, RequestMethod.POST})
+	public ModelAndView report(HttpServletRequest req,
 							   @RequestParam(value = "report_code[]") List<String> report_code, 
 							   @RequestParam(value="report_content") String report_content) {
 		ModelAndView mv = new ModelAndView();
@@ -57,6 +55,6 @@ public class DetailViewController {
 		mv.setViewName("report");
 		
 		return mv;
-	}
+	}*/
 
 }
