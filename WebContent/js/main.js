@@ -118,7 +118,7 @@ main.placeMove = function(local) {
 }
 
 // 관광지 검색 페이지로 이동
-main.searchMove = function(menu, local = 0) {
+main.searchMove = function(menu, local = "") {
 	location.href = './?inc=mainMore.sb&local=' + local + '&menu=' + menu;
 }
 

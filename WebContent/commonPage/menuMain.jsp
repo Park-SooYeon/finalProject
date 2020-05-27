@@ -14,15 +14,12 @@
 						<c:choose>
 							<c:when test="${param.menu == 12 }">
 								즐길거리
-								<c:set var="menu_name" value="happy"/>
 							</c:when>
 							<c:when test="${param.menu == 39 }">
 								음식점
-								<c:set var="menu_name" value="food"/>
 							</c:when>
 							<c:when test="${param.menu == 15 }">
 								축제
-								<c:set var="menu_name" value="festival"/>
 							</c:when>
 						</c:choose>
 					</h1>
@@ -96,8 +93,8 @@
 
 					<c:forEach var="i" items="${starList }" begin="0" end="9">
 						<div class="swiper-slide">
-							<div class="p-1 heart" onclick="main.like(this, ${i.place_serial})">
-								<c:set var = "temp_serial" value = "${i.place_serial }"/>
+							<div class="p-1 heart" onclick="main.like(this, ${i.contentid})">
+								<c:set var = "temp_serial" value = "${i.contentid }"/>
 								<c:choose>
 									<c:when test="${fn:contains(likeList, temp_serial ) }">
 										<i class="fa fa-heart" style="vertical-align: middle;"></i>
@@ -107,12 +104,12 @@
 									</c:otherwise>
 								</c:choose>
 							</div>
-							<div class="single-destinations" onclick="main.detailMove(${i.place_serial})">
+							<div class="single-destinations" onclick="main.detailMove(${i.contentid})">
 								<div class="thumb">
-									<img src="images/${menu_name }/${i.local_name }/${i.photo_name }1.jpg" alt="no-image">
+									<img src="${i.firstimage }" alt="no-image">
 								</div>
 								<div class="details p-2">
-									<h4>${i.place_name }</h4>
+									<h4>${i.title }</h4>
 									<p class="rating" data-rate="${i.reputation }">
 										<i class="fa fa-star"></i>
 										<i class="fa fa-star"></i>
@@ -121,12 +118,12 @@
 										<i class="fa fa-star"></i>
 									 ${i.review_cnt } 건의 리뷰
 									</p>
-									<h6 class="date">${i.place_location }</h6>
+									<h6 class="date">${i.addr1 }</h6>
 								</div>
 							</div>
 						</div>
 					</c:forEach>
-
+					
 				</div>
 
 				<!-- Add Arrows -->
@@ -149,11 +146,11 @@
 		<div class="row">
 			<div class="swiper-container m-2">
 				<div class="swiper-wrapper pl-50 pr-50">
-
-					<c:forEach var="i" items="${reviewList }" begin="0" end="9">
+				
+	 				<c:forEach var="i" items="${reviewList }" begin="0" end="9">
 						<div class="swiper-slide">
-							<div class="p-1 heart" onclick="main.like(this, ${i.place_serial})">
-								<c:set var = "temp_serial" value = "${i.place_serial }"/>
+							<div class="p-1 heart" onclick="main.like(this, ${i.contentid})">
+								<c:set var = "temp_serial" value = "${i.contentid }"/>
 								<c:choose>
 									<c:when test="${fn:contains(likeList, temp_serial ) }">
 										<i class="fa fa-heart" style="vertical-align: middle;"></i>
@@ -163,12 +160,12 @@
 									</c:otherwise>
 								</c:choose>
 							</div>
-							<div class="single-destinations" onclick="main.detailMove(${i.place_serial})">
+							<div class="single-destinations" onclick="main.detailMove(${i.contentid})">
 								<div class="thumb">
-									<img src="images/${menu_name }/${i.local_name }/${i.photo_name }1.jpg" alt="no-image">
+									<img src="${i.firstimage }" alt="no-image">
 								</div>
 								<div class="details p-2">
-									<h4>${i.place_name }</h4>
+									<h4>${i.title }</h4>
 									<p class="rating" data-rate="${i.reputation }">
 										<i class="fa fa-star"></i>
 										<i class="fa fa-star"></i>
@@ -177,7 +174,7 @@
 										<i class="fa fa-star"></i>
 									 ${i.review_cnt } 건의 리뷰
 									</p>
-									<h6 class="date">${i.place_location }</h6>
+									<h6 class="date">${i.addr1 }</h6>
 								</div>
 							</div>
 						</div>
@@ -204,7 +201,7 @@
 			</div>
 			<div class="modal-body" id="modal-body">
 				<c:forEach var="i" items="${tripList }">
-					<div class='folder p-2' onclick='main.selectFolder(this)'><i class='fa fa-folder pr-2'></i>${i.trip_name }</div>
+					<div class='folder p-2' onclick='main.selectFolder(this, ${i.trip_list_serial})'><i class='fa fa-folder pr-2'></i>${i.trip_name }</div>
 				</c:forEach>
 				<div class="folder p-2" id="folderInsert" onclick="main.insertFolder()">
 					<i class="fa fa-plus pr-2"></i>여행 추가

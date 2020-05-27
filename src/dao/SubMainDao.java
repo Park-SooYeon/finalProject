@@ -53,8 +53,8 @@ public class SubMainDao {
 		}
 	}
 	
-	public List<PlaceVo> highStarsSelect(int menu) {
-		List<PlaceVo> list = null;
+	public List<ReputationVo> highStarsSelect(String menu) {
+		List<ReputationVo> list = null;
 		try {
 			list = sqlSession.selectList("sub_main.select_high_stars", menu);
 		}catch(Exception ex) {
@@ -64,8 +64,8 @@ public class SubMainDao {
 		}
 	}
 	
-	public List<PlaceVo> manyReviewSelect(int menu) {
-		List<PlaceVo> list = null;
+	public List<ReputationVo> manyReviewSelect(String menu) {
+		List<ReputationVo> list = null;
 		try {
 			list = sqlSession.selectList("sub_main.select_many_review", menu);
 		}catch(Exception ex) {
@@ -93,7 +93,7 @@ public class SubMainDao {
 		try {
 			int cnt = sqlSession.insert("mypage.insert_trip", vo);
 			if(cnt<1) {
-				throw new Exception("본문 저장 중 오류발생");
+				throw new Exception("여행 폴더 생성 중 오류발생");
 			}
 			
 			result = vo.getTrip_list_serial();
@@ -130,7 +130,7 @@ public class SubMainDao {
 		try {
 			int cnt = sqlSession.insert("sub_main.delete_like", vo);
 			if(cnt<1) {
-				throw new Exception("본문 삭제 중 오류발생");
+				throw new Exception("관심리스트 삭제 중 오류발생");
 			}
 			
 			sqlSession.commit();

@@ -22,24 +22,7 @@
 <script src="js/food_map.js"></script>
 
 <script>
-filter.local.push(${param.local}+"");
-
-
-switch(${param.menu}) {
-case 12:
-	$('#check_happy').click();
-	break;
-case 14:
-	$('#check_culture').click();
-	break;
-case 39:
-	$('#check_food').click();
-	break;
-case 15:
-	$('#check_festival').click();
-	break;
-}
-
+filter.init(${param.menu}, ${param.local});
 </script>
 </body>
 </html>
