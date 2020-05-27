@@ -1,20 +1,20 @@
 package mypage;
 
+import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 
-import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-
-import java.io.BufferedReader;
-import java.io.IOException;
+import com.google.gson.JsonParser;
 
 public class ApiTest {
     public static void main(String[] args) throws IOException {
     	
-        StringBuilder urlBuilder = new StringBuilder("http://api.visitkorea.or.kr/openapi/service/rest/KorService/areaBasedList"); /*URL*/
+        StringBuilder urlBuilder = new StringBuilder("http://api.visitkorea.or.kr/openapi/service/rest/KorService/detailCommon"); /*URL*/
         urlBuilder.append("?" + URLEncoder.encode("ServiceKey","UTF-8") + "=RGRZ7ZbtIrL2U4P0qfnA3puuV5UrzrqEFmf0aLwaZitXLcUQrOTbyRoZHRCpdViHuU1cTZ7jXX4GDbOMb%2Fc1gg%3D%3D"); /*Service Key*/
         urlBuilder.append("&" + URLEncoder.encode("numOfRows","UTF-8") + "=" + URLEncoder.encode("10", "UTF-8")); /*한 페이지 결과수*/
         urlBuilder.append("&" + URLEncoder.encode("pageNo","UTF-8") + "=" + URLEncoder.encode("1", "UTF-8")); /*현재 페이지 번호*/
@@ -22,6 +22,7 @@ public class ApiTest {
         urlBuilder.append("&" + URLEncoder.encode("MobileApp","UTF-8") + "=" + URLEncoder.encode("AppTest", "UTF-8")); /*서비스명=어플명*/
         urlBuilder.append("&" + URLEncoder.encode("areaCode","UTF-8") + "=" + URLEncoder.encode("1", "UTF-8")); /*지역코드, 시군구코드*/
         urlBuilder.append("&" + URLEncoder.encode("listYN","UTF-8") + "=" + URLEncoder.encode("Y", "UTF-8")); /*지역코드, 시군구코드*/
+        urlBuilder.append("&" + URLEncoder.encode("contentId","UTF-8") + "=" + URLEncoder.encode("126508", "UTF-8")); /*지역코드, 시군구코드*/
         urlBuilder.append("&_type=json"); // json 타입으로 반환
         
         URL url = new URL(urlBuilder.toString());
@@ -44,28 +45,37 @@ public class ApiTest {
         rd.close();
         conn.disconnect();
         String result = sb.toString();
-        System.out.println(result);
+        
+        JsonParser jParser = new JsonParser();
+
+        JsonObject jObject1 = (JsonObject)jParser.parse(result); //json 전체 파싱
+        //jObejct1는 json 전체가 파싱됨
+        //System.out.println(jObject1.get("response")); //return "test1"
+
+        String str = jObject1.get("response").toString();
+        //System.out.println(str);
+        JsonObject jObject2 = (JsonObject)jParser.parse(str);
+        
+        String str2 = jObject2.get("body").toString();
+        //System.out.println(str2);
+        JsonObject jObject3 = (JsonObject)jParser.parse(str2);
+        
+        String str3 = jObject3.get("items").toString();
+        System.out.println(str3);
+        JsonArray jObject4 = (JsonArray)jParser.parse(str3);
         
         /*
-        JsonObject jobj = new Gson().fromJson(result, JsonObject.class);
-        
-        String result2 = jobj.get("response").toString();
-        
-        jobj = new Gson().fromJson(result2, JsonObject.class);
-        String result3 = jobj.get("body").toString();
-        		
-        System.out.println(result3);
-        jobj = new Gson().fromJson(result3, JsonObject.class);
-        String result4 = jobj.get("items").toString();
-        System.out.println(result4);
-        
-        jobj = new Gson().fromJson(result4, JsonObject.class);
-        String result5 = jobj.get("item").toString();
-        System.out.println(result5);
-        jobj = new Gson().fromJson(result5, JsonObject.class);
-        String result6= jobj.get("contentid").toString();
-        System.out.println(result6);
+        String str4 = jObject4.get("item").toString();
+        System.out.println(str4);
+        JsonArray jObject5 = (JsonArray) jParser.parse(str4);
         */
+        System.out.println(jObject4.size());
+        
+        for (int i = 0; i < jObject4.size(); i++) {
+        	 System.out.println("place"+ i +" : " +jObject4.get(i));            
+             JsonObject objectInArray = (JsonObject) jObject4.get(i);
+            System.out.println("contentid : "+objectInArray.get("contentid"));
+		}
         
     }
 }
