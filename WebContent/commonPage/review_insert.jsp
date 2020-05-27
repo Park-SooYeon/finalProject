@@ -74,8 +74,24 @@
 		<!-- Button trigger modal -->
 		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalScrollable">
 		 	사진 추가
-		</button>
+		</button>	
+		
 		<div class="picture_area mt-2" name="photo_name"></div>
+		
+		<!-- 모달없이 파일업로드 -->
+		<h2><b>이미지 미리보기</b></h2>
+		<div class="input_wrap">
+		  <a href="javascript:" onclick="fileUploadAction();" class="my_button">파일 업로드</a>
+		  <input type="file" id="input_imgs" multiple/>
+		</div>
+		
+		<div>
+		  <div class="imgs_wrap">
+		    <img id="img" />
+		  </div>
+		</div>
+		
+		<a href="javascript:" class="my_button" onclick="submitAction();">업로드</a>
 		
 		<div class="mt-2">리뷰 선택사항 목록</div>
 		
