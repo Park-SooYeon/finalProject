@@ -29,6 +29,8 @@
 	<input type='hidden' name='' value='${dateVo2.now}'/>
 	<input type='hidden' name='placeMain' value='${placeMain}'/>
 	<input type='hidden' name='placeSub' value='${placeSub}'/>
+	
+	<input type='hidden' name='company_serial' id='company_serial'/>
 	<div class="row">
 		<div id='left' class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
 		<div id='map' class="col-lg-4 col-md-4 col-sm-4 hidden-xs"></div>
@@ -438,13 +440,13 @@
 				</div>
 			</div> -->
 			
-			<input type='text' name='' value='${fn:length(list)}' id='positionListSize'/>
+			<input type='hidden' name='' value='${fn:length(list)}' id='positionListSize'/>
 			<c:forEach var="vo" items="${list }" varStatus="status">
-				<input type='text' name='' value='${vo.latitude}' id='mapPosition_${status.count}_1'/>
-				<input type='text' name='' value='${vo.longitude}' id='mapPosition_${status.count}_2'/>
-				<input type='text' name='' value='${vo.company_name}' id='mapPosition_${status.count}_3'/>
-				<input type='text' name='' value='${vo.price}' id='mapPosition_${status.count}_4'/>
-				<input type='text' name='' value='${vo.address}' id='mapPosition_${status.count}_5'/>
+				<input type='hidden' name='' value='${vo.latitude}' id='mapPosition_${status.count}_1'/>
+				<input type='hidden' name='' value='${vo.longitude}' id='mapPosition_${status.count}_2'/>
+				<input type='hidden' name='' value='${vo.company_name}' id='mapPosition_${status.count}_3'/>
+				<input type='hidden' name='' value='${vo.price}' id='mapPosition_${status.count}_4'/>
+				<input type='hidden' name='' value='${vo.address}' id='mapPosition_${status.count}_5'/>
 			</c:forEach>
 		</div>
 	</div>
@@ -454,6 +456,14 @@
 <script>
 
 		rent.func()
+		
+		//가격에 , 찍기
+		function numberWithCommas(x) {
+    		return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+		}
+
+		
+		
 		let centerlat;
 		let cnterlong;
 		if(Number($("#positionListSize").val())>0){
@@ -496,7 +506,7 @@
 			let price = 		$("#mapPosition_"+i+"_4").val();
 			let address =		$("#mapPosition_"+i+"_5").val();
 			positions.push({
-		        content: "<div class='my_kakao'><div>"+company_name +"</br><span>" + address+ "</span></div><hr/><div>가격대<br/><span>"+price+"</span></div></div>", 
+		        content: "<div id='content_'"+Number(i)+" class='my_kakao'><div>"+company_name +"</br><span>" + address+ "</span></div><hr/><div>가격대<br/><span>"+numberWithCommas(price)+"원</span></div></div>", 
 		        latlng: new kakao.maps.LatLng(latitude, longitude)
 		    });
 			
@@ -556,7 +566,28 @@
 		    
 		}
 		
-		
+		for(let i=1;i<length+1;i++){
+			$('#map>div>div>div>div:nth-child('+Number(i)+')>img').hover(function() {
+				  $('#company_'+Number(i)).css("border", "1px solid #2b96ed");
+				  $('#company_'+Number(i)+' img').attr('src','../images/rent/companyhover.png');
+				  $('#map>div>div>div>div:nth-child('+Number(i)+')>img').attr('src','../images/rent/markerStar.png');
+			}, function(){
+				$('#company_'+Number(i)).css("border", "none");
+				$('#company_'+Number(i)+' img').attr('src','../images/rent/company.png');
+				$('#map>div>div>div>div:nth-child('+Number(i)+')>img').attr('src','https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png');
+			});
+			
+			
+			$('#company_'+Number(i)).hover(function(){
+				$(this).css("border", "1px solid #2b96ed");
+				$('#company_'+Number(i)+' img').attr('src','../images/rent/companyhover.png');
+				$('#map>div>div>div>div:nth-child('+Number(i)+')>img').attr('src','../images/rent/markerStar.png');
+			},function(){
+				$(this).css("border", "none");
+				$('#company_'+Number(i)+' img').attr('src','../images/rent/company.png');
+				$('#map>div>div>div>div:nth-child('+Number(i)+')>img').attr('src','https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png');
+			});
+		}
 		
 		
 		
