@@ -278,78 +278,8 @@ public class SubMainController {
 	
 	// 더보기로 관광지 검색 페이지로 이동
 	@GetMapping("mainMore.sb")
-	public String ViewMore(@RequestParam("menu") String menu, @RequestParam(required = false) String local, Model model) {
+	public String ViewMore() {
 		
-		List<RestDataVo> list = null;
-		
-		StringBuilder sb = new StringBuilder();
-		
-		// 지역 필터가 적용된 관광지 리스트만 가져오기
-		try {
-	        StringBuilder urlBuilder = new StringBuilder("http://api.visitkorea.or.kr/openapi/service/rest/KorService/areaBasedList"); //지역기반 관광정보조회 URL
-	        urlBuilder.append("?" + URLEncoder.encode("ServiceKey","UTF-8") + "=B8%2BZaRoCMImsMJtdm0WOedSaSwRCucNkcnqroJSLiK%2F%2Fg7jsBF27h0GeG9RlWHRLEgkcHYh3PDV2qzL5Vh1WYA%3D%3D"); //Service Key
-	        urlBuilder.append("&" + URLEncoder.encode("MobileOS","UTF-8") + "=" + URLEncoder.encode("ETC", "UTF-8")); //IOS (아이폰), AND (안드로이드), WIN (원도우폰), ETC
-	        urlBuilder.append("&" + URLEncoder.encode("MobileApp","UTF-8") + "=" + URLEncoder.encode("AppTest", "UTF-8")); //서비스명=어플명
-	        urlBuilder.append("&" + URLEncoder.encode("pageNo","UTF-8") + "=" + URLEncoder.encode("1", "UTF-8")); //현재 페이지 번호
-	        urlBuilder.append("&" + URLEncoder.encode("numOfRows","UTF-8") + "=" + URLEncoder.encode("12", "UTF-8")); //한 페이지 결과수
-	        urlBuilder.append("&" + URLEncoder.encode("listYN","UTF-8") + "=" + URLEncoder.encode("Y", "UTF-8")); //목록 구분
-	        urlBuilder.append("&" + URLEncoder.encode("arrange","UTF-8") + "=" + URLEncoder.encode("P", "UTF-8")); //정렬 구분 (O = 제목순, P = 조회순)
-	        
-	        // 가변 정보
-	        urlBuilder.append("&" + URLEncoder.encode("contentTypeId","UTF-8") + "=" + URLEncoder.encode(menu, "UTF-8")); //관광지 타입 ID
-	        urlBuilder.append("&" + URLEncoder.encode("areaCode","UTF-8") + "=" + URLEncoder.encode(local, "UTF-8")); //지역 코드
-	        urlBuilder.append("&" + URLEncoder.encode("sigunguCode","UTF-8") + "=" + URLEncoder.encode("", "UTF-8")); //시군구 코드
-	        urlBuilder.append("&_type=json"); // json 타입으로 반환
-	        
-	        URL url = new URL(urlBuilder.toString());
-	        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-	        conn.setRequestMethod("GET");
-	        conn.setRequestProperty("Content-type", "application/json");
-	        System.out.println("Response code: " + conn.getResponseCode());
-	        BufferedReader rd;
-	        if(conn.getResponseCode() >= 200 && conn.getResponseCode() <= 300) {
-	            rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-	        } else {
-	            rd = new BufferedReader(new InputStreamReader(conn.getErrorStream()));
-	        }
-	        //sb = new StringBuilder();
-	        String line;
-	        String result = "";
-	        while ((line = rd.readLine()) != null) {
-	        	// 필요한 데이터만 반환받기 위해 적용
-	        	int beginIndex = line.indexOf('[');
-	        	int endIndex = line.indexOf("]}");
-	        	System.out.println(beginIndex + "," + endIndex);
-	        	
-	        	if(beginIndex != -1 || endIndex != -1) {
-		        	result = line.substring(beginIndex, endIndex + 1);
-		        	System.out.println("result : " + result);
-		        	
-		        	sb.append(result);
-		        	System.out.println("sb : " + sb.toString());
-	        	}
-	        }
-	        
-	        // Jackson 객체 생성
-	        ObjectMapper mapper = new ObjectMapper();
-	        TypeFactory typeFactory = mapper.getTypeFactory();
-	        
-	        // JSONString을 객체 리스트로 변환
-	        list = mapper.readValue(result, typeFactory.constructCollectionType(List.class, RestDataVo.class));
-	        System.out.println("listVo : " + list.get(0).getContentid());
-	        System.out.println("length : " + list.size());
-	        
-	        rd.close();
-	        conn.disconnect();
-	        System.out.println(sb.toString());
-		} catch (Exception ex) {
-			System.out.println("rest api 오류");
-			ex.printStackTrace();
-		}
-		
-		System.out.println(sb.toString());
-		
-		model.addAttribute("list", list);
 		return "food_index";
 	}	
 	
@@ -467,7 +397,11 @@ public class SubMainController {
 			        	System.out.println(filter.get(j));
 			        	urlBuilder.append("&" + URLEncoder.encode("cat1","UTF-8") + "=" + URLEncoder.encode(filter.get(j).substring(0, 3), "UTF-8")); //대분류
 			        	urlBuilder.append("&" + URLEncoder.encode("cat2","UTF-8") + "=" + URLEncoder.encode(filter.get(j).substring(0, 5), "UTF-8")); //중분류
-			        	urlBuilder.append("&" + URLEncoder.encode("cat3","UTF-8") + "=" + URLEncoder.encode(filter.get(j), "UTF-8")); //소분류			        	
+			        	
+			        	// 관광지는 cat3이 없음
+			        	if(!menu.equals("12")) {
+			        		urlBuilder.append("&" + URLEncoder.encode("cat3","UTF-8") + "=" + URLEncoder.encode(filter.get(j), "UTF-8")); //소분류			        	
+			        	}
 			        }
 			        urlBuilder.append("&_type=json"); // json 타입으로 반환
 			        
