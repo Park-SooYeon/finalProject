@@ -94,6 +94,7 @@ rent.importantInfo = function(){
 }
 //renstSearch(rentViewSub1) >> rentSearch(rentViewSub2)
 rent.carSearch = function(companySerial){
+	$('#company_serial').val(companySerial);
 	$('#rent_frm').attr('action','./carSearch.rent').submit();
 }
 //rentSearch(rentViewSub2) >> rentView(rentViewSub1)

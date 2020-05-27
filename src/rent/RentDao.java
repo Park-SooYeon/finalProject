@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 
 import bean.Factory;
+import rent_parameter.CarPm;
 import rent_parameter.CompanyPm;
 import rent_parameter.DateVo;
 
@@ -37,6 +38,18 @@ public class RentDao {
 			Timestamp tDate = TimeMaker(returnDate);
 			CompanyPm pm = new CompanyPm(placeMain,placeSub,rDate,tDate,between,companyCheck,airconCheck,gearCheck,doorCheck,maxPeopleCheck,priceCheck,kindCheck);
 			list = sqlSession.selectList("rent.companyFillter",pm);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			return list;			
+		}
+	}
+	
+	public List<rent_parameter.CarVo> carSearch(int company_serial,long between){
+		List<rent_parameter.CarVo> list = null;
+		try {
+			CarPm pm = new CarPm(company_serial,between);
+			//list = sqlSession.selectList("rent.carSearch",pm);
 		}catch(Exception e) {
 			e.printStackTrace();
 		}finally {

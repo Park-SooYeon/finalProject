@@ -125,7 +125,48 @@ public class RentControllor {
 		mv = new ModelAndView();
 		contentPage = "rentSearchSub2.jsp";
 		mainPage = "rentSearch.jsp";
+		String placeMain = req.getParameter("placeMain");
+		String placeSub = req.getParameter("placeSub");
+		String rentDate = req.getParameter("rentDate");
+		String returnDate = req.getParameter("returnDate");
+		String companyCheck =req.getParameter("companyCheck");
+		String airconCheck = req.getParameter("airconCheck");
+		String gearCheck = req.getParameter("gearCheck");
+		String doorCheck =  req.getParameter("doorCheck");
+		String maxPeopleCheck = req.getParameter("maxPeopleCheck");
+		String priceCheck = req.getParameter("priceCheck");
+		String kindCheck = req.getParameter("kindCheck");
 		
+		
+		
+		int betweenDay = rentDao.DateBettweenDay(rentDate, returnDate);
+		long between = rentDao.DateBettween(rentDate, returnDate);
+		List<rent_parameter.CompanyVo> list = rentDao.companyFillter(placeMain, placeSub, rentDate, returnDate ,between ,companyCheck,airconCheck,gearCheck,doorCheck,maxPeopleCheck,priceCheck,kindCheck);
+		DateVo dateVo1 = rentDao.paramTime(rentDate);
+		DateVo dateVo2 = rentDao.paramTime(returnDate);
+		
+		
+		int company_serial = Integer.parseInt(req.getParameter("company_serial"));
+		List<rent_parameter.CarVo> car_list = rentDao.carSearch(company_serial,between);
+		mv.addObject("car_list", car_list);
+		
+		
+		mv.addObject("companyCheck",companyCheck);
+		mv.addObject("airconCheck", airconCheck);
+		mv.addObject("gearCheck",gearCheck);
+		mv.addObject("doorCheck",doorCheck);
+		mv.addObject("maxPeopleCheck",maxPeopleCheck);
+		mv.addObject("priceCheck",priceCheck);
+		mv.addObject("kindCheck",kindCheck);
+		
+		mv.addObject("placeMain",placeMain);
+		mv.addObject("placeSub",placeSub);
+		mv.addObject("rentDate",rentDate);
+		mv.addObject("returnDate",returnDate);
+		mv.addObject("betweenDay", betweenDay);
+		mv.addObject("dateVo1",dateVo1);
+		mv.addObject("dateVo2", dateVo2);		
+		mv.addObject("list", list);	
 		
 		mv.addObject("contentPage",contentPage);
 		mv.addObject("mainPage",mainPage);
