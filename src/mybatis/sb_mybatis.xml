@@ -47,26 +47,32 @@
 		order by place_serial
 	</select>
 
-	<!-- 관광지별 메인에서 별점 높은 순으로 가져오기 -->
-	<select id="select_high_stars" parameterType="Integer" resultType="bean.PlaceVo">
-		select local_code, a.place_serial, place_name, place_location, avg(reputation) reputation, count(review_serial) review_cnt, place_name photo_name
-		from place a 
-		join review b
-		on a.place_serial = b.place_serial
-		where place_code = #{_parameter}
-		group by local_code, a.place_serial, place_name, place_location
-		order by reputation DESC
+	<!-- 관광지별 메인에서 별점 높은 순으로 10개 가져오기 -->
+	<select id="select_high_stars" parameterType="String" resultType="vo.ReputationVo">
+		 select * from (
+    		select a.*, ROW_NUMBER() OVER (order by reputation DESC) r
+    		from (
+        		select place_serial, avg(reputation) reputation, count(review_serial) review_cnt
+        		from review
+        		where review_type = #{_parameter}
+        		group by place_serial
+    		) a
+		)
+		where r between 1 and 10
 	</select>
 	
-	<!-- 관광지별 메인에서 리뷰 많은 순으로 가져오기 -->
-	<select id="select_many_review" parameterType="Integer" resultType="bean.PlaceVo">
-		select local_code, a.place_serial, place_name, place_location, avg(reputation) reputation, count(review_serial) review_cnt, place_name photo_name
-		from place a 
-		join review b
-		on a.place_serial = b.place_serial
-		where place_code = #{_parameter}
-		group by local_code, a.place_serial, place_name, place_location
-		order by review_cnt DESC
+	<!-- 관광지별 메인에서 리뷰 많은 순으로 10개 가져오기 -->
+	<select id="select_many_review" parameterType="String" resultType="vo.ReputationVo">
+		select * from (
+    		select a.*, ROW_NUMBER() OVER (order by review_cnt DESC) r
+    		from (
+        		select place_serial, avg(reputation) reputation, count(review_serial) review_cnt
+        		from review
+        		where review_type = #{_parameter}
+        		group by place_serial
+    		) a
+		)
+		where r between 1 and 10
 	</select>
 	
 	<!-- 아이디별 관심리스트에 추가한 내역들 가져오기 -->

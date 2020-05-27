@@ -22,6 +22,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.TypeFactory;
 
@@ -246,10 +248,10 @@ public class SubMainController {
 	
 	// 지역 상관 없는 메인으로 이동
 	@GetMapping("menuMain.sb")
-	public String menuMain(@RequestParam int menu, HttpServletRequest req, Model model) {
+	public String menuMain(@RequestParam String menu, HttpServletRequest req, Model model) {
 		
-		List<PlaceVo> starList = null;
-		List<PlaceVo> reviewList = null;
+		List<ReputationVo> starList = null;
+		List<ReputationVo> reviewList = null;
 		List<TripListVo> tripList = null;
 		List<Integer> likeList = null;
 		
@@ -268,8 +270,140 @@ public class SubMainController {
 		starList = dao.highStarsSelect(menu);
 		reviewList = dao.manyReviewSelect(menu);
 		
-		model.addAttribute("starList", starList);
-		model.addAttribute("reviewList", reviewList);
+		// 별점순으로 api로 데이터 가져오기
+		List<RestDataVo> starListVo = new ArrayList<>();
+		for(int i = 0 ; i < starList.size() ; i++) {
+			StringBuilder sb = new StringBuilder();
+			try {
+		        StringBuilder urlBuilder = new StringBuilder("http://api.visitkorea.or.kr/openapi/service/rest/KorService/detailCommon"); // contentid 기반 관광정보조회 URL
+		        urlBuilder.append("?" + URLEncoder.encode("ServiceKey","UTF-8") + "=B8%2BZaRoCMImsMJtdm0WOedSaSwRCucNkcnqroJSLiK%2F%2Fg7jsBF27h0GeG9RlWHRLEgkcHYh3PDV2qzL5Vh1WYA%3D%3D"); //Service Key
+		        urlBuilder.append("&" + URLEncoder.encode("MobileOS","UTF-8") + "=" + URLEncoder.encode("ETC", "UTF-8")); //IOS (아이폰), AND (안드로이드), WIN (원도우폰), ETC
+		        urlBuilder.append("&" + URLEncoder.encode("MobileApp","UTF-8") + "=" + URLEncoder.encode("AppTest", "UTF-8")); //서비스명=어플명
+		        urlBuilder.append("&" + URLEncoder.encode("pageNo","UTF-8") + "=" + URLEncoder.encode("1", "UTF-8")); //현재 페이지 번호
+		        urlBuilder.append("&" + URLEncoder.encode("numOfRows","UTF-8") + "=" + URLEncoder.encode("1", "UTF-8")); //한 페이지 결과수
+		        urlBuilder.append("&" + URLEncoder.encode("defaultYN","UTF-8") + "=" + URLEncoder.encode("Y", "UTF-8")); //기본정보 조회 여부
+		        urlBuilder.append("&" + URLEncoder.encode("addrinfoYN","UTF-8") + "=" + URLEncoder.encode("Y", "UTF-8")); //주소, 상세주소 조회 여부
+		        urlBuilder.append("&" + URLEncoder.encode("firstImageYN","UTF-8") + "=" + URLEncoder.encode("Y", "UTF-8")); //썸네일 대표 이미지 조회 여부
+		        
+		        // 가변 정보
+		        System.out.println("serial : " + starList.get(i).getPlace_serial());
+		        urlBuilder.append("&" + URLEncoder.encode("contentTypeId","UTF-8") + "=" + URLEncoder.encode(menu, "UTF-8")); //관광지 타입 ID
+		        urlBuilder.append("&" + URLEncoder.encode("contentId","UTF-8") + "=" + URLEncoder.encode(starList.get(i).getPlace_serial() + "", "UTF-8")); //콘텐츠 ID
+		        urlBuilder.append("&_type=json"); // json 타입으로 반환
+		        
+		        URL url = new URL(urlBuilder.toString());
+		        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+		        conn.setRequestMethod("GET");
+		        conn.setRequestProperty("Content-type", "application/json");
+		        System.out.println("Response code: " + conn.getResponseCode());
+		        BufferedReader rd;
+		        if(conn.getResponseCode() >= 200 && conn.getResponseCode() <= 300) {
+		            rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+		        } else {
+		            rd = new BufferedReader(new InputStreamReader(conn.getErrorStream()));
+		        }
+		        //sb = new StringBuilder();
+		        String line;
+		        String result = "";
+		        while ((line = rd.readLine()) != null) {
+		        	// 필요한 데이터만 반환받기 위해 적용
+		        	int beginIndex = line.indexOf("{\"addr1");
+		        	int endIndex = line.indexOf("}},");
+		        	System.out.println(beginIndex + "," + endIndex);
+		        	
+		        	if(beginIndex != -1 || endIndex != -1) {
+			        	result = line.substring(beginIndex, endIndex + 1);
+			        	System.out.println("result : " + result);
+			        	
+			        	sb.append(result);
+			        	//sb.append(line);
+		        	//sb.append("{\"reputation\":" + starList.get(i).getReputation() + ",\"review_cnt\":" + starList.get(i).getReview_cnt() + "}");
+			        	sb.insert(sb.length() - 1, ",\"reputation\":" + starList.get(i).getReputation() + ",\"review_cnt\":" + starList.get(i).getReview_cnt());
+			        	System.out.println("sb : " + sb.toString());
+		        	}
+		        }
+		        
+		        ObjectMapper mapper = new ObjectMapper();
+		        
+		        RestDataVo vo = mapper.readValue(sb.toString(), RestDataVo.class);
+		        starListVo.add(vo);
+		        
+		        rd.close();
+		        conn.disconnect();
+			} catch (Exception ex) {
+				System.out.println("rest api 오류");
+				ex.printStackTrace();
+			}
+		}
+		
+		// 리뷰 많은 순으로 api로 데이터 가져오기
+		List<RestDataVo> reviewListVo = new ArrayList<>();
+		for(int i = 0 ; i < reviewList.size() ; i++) {
+			StringBuilder sb = new StringBuilder();
+			try {
+		        StringBuilder urlBuilder = new StringBuilder("http://api.visitkorea.or.kr/openapi/service/rest/KorService/detailCommon"); // contentid 기반 관광정보조회 URL
+		        urlBuilder.append("?" + URLEncoder.encode("ServiceKey","UTF-8") + "=B8%2BZaRoCMImsMJtdm0WOedSaSwRCucNkcnqroJSLiK%2F%2Fg7jsBF27h0GeG9RlWHRLEgkcHYh3PDV2qzL5Vh1WYA%3D%3D"); //Service Key
+		        urlBuilder.append("&" + URLEncoder.encode("MobileOS","UTF-8") + "=" + URLEncoder.encode("ETC", "UTF-8")); //IOS (아이폰), AND (안드로이드), WIN (원도우폰), ETC
+		        urlBuilder.append("&" + URLEncoder.encode("MobileApp","UTF-8") + "=" + URLEncoder.encode("AppTest", "UTF-8")); //서비스명=어플명
+		        urlBuilder.append("&" + URLEncoder.encode("pageNo","UTF-8") + "=" + URLEncoder.encode("1", "UTF-8")); //현재 페이지 번호
+		        urlBuilder.append("&" + URLEncoder.encode("numOfRows","UTF-8") + "=" + URLEncoder.encode("1", "UTF-8")); //한 페이지 결과수
+		        urlBuilder.append("&" + URLEncoder.encode("defaultYN","UTF-8") + "=" + URLEncoder.encode("Y", "UTF-8")); //기본정보 조회 여부
+		        urlBuilder.append("&" + URLEncoder.encode("addrinfoYN","UTF-8") + "=" + URLEncoder.encode("Y", "UTF-8")); //주소, 상세주소 조회 여부
+		        urlBuilder.append("&" + URLEncoder.encode("firstImageYN","UTF-8") + "=" + URLEncoder.encode("Y", "UTF-8")); //썸네일 대표 이미지 조회 여부
+		        
+		        // 가변 정보
+		        System.out.println("serial : " + starList.get(i).getPlace_serial());
+		        urlBuilder.append("&" + URLEncoder.encode("contentTypeId","UTF-8") + "=" + URLEncoder.encode(menu, "UTF-8")); //관광지 타입 ID
+		        urlBuilder.append("&" + URLEncoder.encode("contentId","UTF-8") + "=" + URLEncoder.encode(reviewList.get(i).getPlace_serial() + "", "UTF-8")); //콘텐츠 ID
+		        urlBuilder.append("&_type=json"); // json 타입으로 반환
+		        
+		        URL url = new URL(urlBuilder.toString());
+		        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+		        conn.setRequestMethod("GET");
+		        conn.setRequestProperty("Content-type", "application/json");
+		        System.out.println("Response code: " + conn.getResponseCode());
+		        BufferedReader rd;
+		        if(conn.getResponseCode() >= 200 && conn.getResponseCode() <= 300) {
+		            rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+		        } else {
+		            rd = new BufferedReader(new InputStreamReader(conn.getErrorStream()));
+		        }
+		        //sb = new StringBuilder();
+		        String line;
+		        String result = "";
+		        while ((line = rd.readLine()) != null) {
+		        	// 필요한 데이터만 반환받기 위해 적용
+		        	int beginIndex = line.indexOf("{\"addr1");
+		        	int endIndex = line.indexOf("}},");
+		        	System.out.println(beginIndex + "," + endIndex);
+		        	
+		        	if(beginIndex != -1 || endIndex != -1) {
+			        	result = line.substring(beginIndex, endIndex + 1);
+			        	System.out.println("result : " + result);
+			        	
+			        	sb.append(result);
+			        	//sb.append(line);
+		        	//sb.append("{\"reputation\":" + starList.get(i).getReputation() + ",\"review_cnt\":" + starList.get(i).getReview_cnt() + "}");
+			        	sb.insert(sb.length() - 1, ",\"reputation\":" + reviewList.get(i).getReputation() + ",\"review_cnt\":" + reviewList.get(i).getReview_cnt());
+			        	System.out.println("sb : " + sb.toString());
+		        	}
+		        }
+		        
+		        ObjectMapper mapper = new ObjectMapper();
+		        
+		        RestDataVo vo = mapper.readValue(sb.toString(), RestDataVo.class);
+		        reviewListVo.add(vo);
+		        
+		        rd.close();
+		        conn.disconnect();
+			} catch (Exception ex) {
+				System.out.println("rest api 오류");
+				ex.printStackTrace();
+			}
+		}
+		
+		model.addAttribute("starList", starListVo);
+		model.addAttribute("reviewList", reviewListVo);			
 		model.addAttribute("tripList", tripList);
 		model.addAttribute("likeList", likeList);
 		
