@@ -32,7 +32,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
     <div class="container profile position-relative">
       <div class="row">
         <div class="col-lg-2 col-md-3 col-sm-3 img-container text-center">
-          <img class="rounded-circle profile-image" id="pro-main-img" src="./images/myPage/profile/springbook_20200527-15-01-49.jpg" alt="${vo.nickName }_profilePhoto" />
+          <img class="rounded-circle profile-image" id="pro-main-img" src="images\myPage\profile\3_20200527-16-44-00.jpg" alt="${vo.nickName }_profilePhoto" />
         </div>
         <div class="col-lg-10 col-md-9 col-sm-9 profile-main-detail">
           <div class="mp-modify-area">

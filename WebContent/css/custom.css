@@ -19,7 +19,7 @@ mypage css
   border-radius: 2px 2px 2px 2px;
   border: 1px solid #eee;
   padding-bottom: 0;
-  height: 22vh;
+  height: 27vh;
 }
 body {
   background: #f9f9ff;
@@ -1403,7 +1403,7 @@ input[name="searchPlace"]::placeholder {
     height: 16rem;
   }
   .profile {
-    height: 25.5vh;
+    height: 43.5vh;
   }
 
   .follow-status div {

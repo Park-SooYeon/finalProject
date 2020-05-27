@@ -8,8 +8,12 @@ import java.net.URL;
 import java.net.URLEncoder;
 
 import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+
+import bean.LikeListVo;
+import bean.PlaceVo;
 
 public class ApiTest {
     public static void main(String[] args) throws IOException {
@@ -20,9 +24,10 @@ public class ApiTest {
         urlBuilder.append("&" + URLEncoder.encode("pageNo","UTF-8") + "=" + URLEncoder.encode("1", "UTF-8")); /*현재 페이지 번호*/
         urlBuilder.append("&" + URLEncoder.encode("MobileOS","UTF-8") + "=" + URLEncoder.encode("ETC", "UTF-8")); /*IOS (아이폰), AND (안드로이드), WIN (원도우폰), ETC*/
         urlBuilder.append("&" + URLEncoder.encode("MobileApp","UTF-8") + "=" + URLEncoder.encode("AppTest", "UTF-8")); /*서비스명=어플명*/
-        urlBuilder.append("&" + URLEncoder.encode("areaCode","UTF-8") + "=" + URLEncoder.encode("1", "UTF-8")); /*지역코드, 시군구코드*/
-        urlBuilder.append("&" + URLEncoder.encode("listYN","UTF-8") + "=" + URLEncoder.encode("Y", "UTF-8")); /*지역코드, 시군구코드*/
+        urlBuilder.append("&" + URLEncoder.encode("areacodeYN","UTF-8") + "=" + URLEncoder.encode("Y", "UTF-8")); /*지역코드, 시군구코드*/
+        urlBuilder.append("&" + URLEncoder.encode("defaultYN","UTF-8") + "=" + URLEncoder.encode("Y", "UTF-8")); /* 기본정보조회 */
         urlBuilder.append("&" + URLEncoder.encode("contentId","UTF-8") + "=" + URLEncoder.encode("126508", "UTF-8")); /*지역코드, 시군구코드*/
+        urlBuilder.append("&" + URLEncoder.encode("firstImageYN","UTF-8") + "=" + URLEncoder.encode("Y", "UTF-8")); /*대표이미지 조회*/
         urlBuilder.append("&_type=json"); // json 타입으로 반환
         
         URL url = new URL(urlBuilder.toString());
@@ -62,20 +67,43 @@ public class ApiTest {
         
         String str3 = jObject3.get("items").toString();
         System.out.println(str3);
-        JsonArray jObject4 = (JsonArray)jParser.parse(str3);
+        JsonObject jObject4 = (JsonObject)jParser.parse(str3);
         
-        /*
         String str4 = jObject4.get("item").toString();
         System.out.println(str4);
-        JsonArray jObject5 = (JsonArray) jParser.parse(str4);
-        */
-        System.out.println(jObject4.size());
+        JsonObject jObject5 = (JsonObject)jParser.parse(str4);
+        System.out.println(jObject5.get("contentid"));
+        System.out.println(jObject5.size());
         
-        for (int i = 0; i < jObject4.size(); i++) {
-        	 System.out.println("place"+ i +" : " +jObject4.get(i));            
-             JsonObject objectInArray = (JsonObject) jObject4.get(i);
+        int serial = jObject5.get("contentid").getAsInt();
+        String image = jObject5.get("firstimage").getAsString();
+        String title = jObject5.get("title").getAsString();
+        int areacode = jObject5.get("areacode").getAsInt();
+        
+        LikeListVo vo = new LikeListVo();
+        vo.setPlace_serial(serial);
+
+        PlaceVo pv = new PlaceVo();
+        
+        pv.setPlace_code(areacode);
+        pv.setPhoto_name(image);
+        pv.setPlace_name(title);
+
+        vo.setP(pv);
+        
+        System.out.println("serial : "+vo.getPlace_serial());
+        System.out.println("area code : "+vo.getP().getPlace_code());
+        System.out.println("photo name : "+vo.getP().getPhoto_name());
+        System.out.println("place name : "+vo.getP().getPlace_name());
+        
+        
+        /*
+        for (int i = 0; i < jObject5.size(); i++) {
+        	 System.out.println("place"+ i +" : " +jObject5.get(i)); 
+             JsonObject objectInArray = jObject5.getAsJsonObject();
             System.out.println("contentid : "+objectInArray.get("contentid"));
 		}
+		*/
         
     }
 }

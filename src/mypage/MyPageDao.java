@@ -22,6 +22,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 import bean.Factory;
 import bean.FollowListVo;
@@ -111,7 +112,6 @@ public class MyPageDao {
 	public List<LikeListVo> selectLike(String member_id) {
 		List<LikeListVo> list = new ArrayList<LikeListVo>();
 		List<PlaceVo> list2 = new ArrayList<PlaceVo>();
-		ObjectMapper objectMapper = new ObjectMapper();
 		try {
 			list = sqlSession.selectList("mypage.select_like", member_id);
 			
@@ -120,25 +120,21 @@ public class MyPageDao {
 			
 			for(PlaceVo vo : list2) {
 				System.out.println(vo.getPlace_serial());
+				LikeListVo like = getApi(vo.getPlace_serial()+"");
+				list.add(like);
 			}
-			
-			// 호텔만 가져옴
-			String hotelJson = objectMapper.writeValueAsString(list);
-            System.out.println(hotelJson);
-            
-            String json = getApi();
-            System.out.println(json);
-            JsonObject jobj = new Gson().fromJson(json, JsonObject.class);
             
             //String result = jobj.get("contentid").toString();
             //System.out.println("contentid만 "+result);
             	
             	
+			/*
             Set<Map.Entry<String, JsonElement>> entries = jobj.entrySet();//will return members of your object
             for (Map.Entry<String, JsonElement> entry: entries) {
         	    System.out.println(entry.getKey());
         	    System.out.println(entry.getValue());
            	}
+           	*/
            
 			
 		}catch(Exception ex) {
@@ -275,16 +271,18 @@ public class MyPageDao {
 		return map;
 	}
 	
-	public String getApi() throws IOException {
+	public LikeListVo getApi(String contentid) throws IOException {
 		
-		StringBuilder urlBuilder = new StringBuilder("http://api.visitkorea.or.kr/openapi/service/rest/KorService/areaBasedList"); /*URL*/
+		StringBuilder urlBuilder = new StringBuilder("http://api.visitkorea.or.kr/openapi/service/rest/KorService/detailCommon"); /*URL*/
         urlBuilder.append("?" + URLEncoder.encode("ServiceKey","UTF-8") + "=RGRZ7ZbtIrL2U4P0qfnA3puuV5UrzrqEFmf0aLwaZitXLcUQrOTbyRoZHRCpdViHuU1cTZ7jXX4GDbOMb%2Fc1gg%3D%3D"); /*Service Key*/
         urlBuilder.append("&" + URLEncoder.encode("numOfRows","UTF-8") + "=" + URLEncoder.encode("10", "UTF-8")); /*한 페이지 결과수*/
         urlBuilder.append("&" + URLEncoder.encode("pageNo","UTF-8") + "=" + URLEncoder.encode("1", "UTF-8")); /*현재 페이지 번호*/
         urlBuilder.append("&" + URLEncoder.encode("MobileOS","UTF-8") + "=" + URLEncoder.encode("ETC", "UTF-8")); /*IOS (아이폰), AND (안드로이드), WIN (원도우폰), ETC*/
         urlBuilder.append("&" + URLEncoder.encode("MobileApp","UTF-8") + "=" + URLEncoder.encode("AppTest", "UTF-8")); /*서비스명=어플명*/
-        urlBuilder.append("&" + URLEncoder.encode("areaCode","UTF-8") + "=" + URLEncoder.encode("1", "UTF-8")); /*지역코드, 시군구코드*/
-        urlBuilder.append("&" + URLEncoder.encode("listYN","UTF-8") + "=" + URLEncoder.encode("Y", "UTF-8")); /*지역코드, 시군구코드*/
+        urlBuilder.append("&" + URLEncoder.encode("areacodeYN","UTF-8") + "=" + URLEncoder.encode("Y", "UTF-8")); /*지역코드, 시군구코드*/
+        urlBuilder.append("&" + URLEncoder.encode("defaultYN","UTF-8") + "=" + URLEncoder.encode("Y", "UTF-8")); /* 기본정보조회 */
+        urlBuilder.append("&" + URLEncoder.encode("contentId","UTF-8") + "=" + URLEncoder.encode(contentid, "UTF-8")); /*지역코드, 시군구코드*/
+        urlBuilder.append("&" + URLEncoder.encode("firstImageYN","UTF-8") + "=" + URLEncoder.encode("Y", "UTF-8")); /*대표이미지 조회*/
         urlBuilder.append("&_type=json"); // json 타입으로 반환
         
         URL url = new URL(urlBuilder.toString());
@@ -306,7 +304,53 @@ public class MyPageDao {
         }
         rd.close();
         conn.disconnect();
-        return sb.toString();
+        String result = sb.toString();
+        
+        JsonParser jParser = new JsonParser();
+
+        JsonObject jObject1 = (JsonObject)jParser.parse(result); //json 전체 파싱
+        //jObejct1는 json 전체가 파싱됨
+        //System.out.println(jObject1.get("response")); //return "test1"
+
+        String str = jObject1.get("response").toString();
+        //System.out.println(str);
+        JsonObject jObject2 = (JsonObject)jParser.parse(str);
+        
+        String str2 = jObject2.get("body").toString();
+        //System.out.println(str2);
+        JsonObject jObject3 = (JsonObject)jParser.parse(str2);
+        
+        String str3 = jObject3.get("items").toString();
+        System.out.println(str3);
+        JsonObject jObject4 = (JsonObject)jParser.parse(str3);
+        
+        String str4 = jObject4.get("item").toString();
+        System.out.println(str4);
+        JsonObject jObject5 = (JsonObject)jParser.parse(str4);
+        System.out.println(jObject5.get("contentid"));
+        System.out.println(jObject5.size());
+        
+        int serial = jObject5.get("contentid").getAsInt();
+        String image = jObject5.get("firstimage").getAsString();
+        String title = jObject5.get("title").getAsString();
+        int areacode = jObject5.get("areacode").getAsInt();
+        
+        LikeListVo vo = new LikeListVo();
+        vo.setPlace_serial(serial);
+
+        PlaceVo pv = new PlaceVo();
+        
+        pv.setPlace_code(areacode);
+        pv.setPhoto_name(image);
+        pv.setPlace_name(title);
+
+        vo.setP(pv);
+        
+        System.out.println("serial : "+vo.getPlace_serial());
+        System.out.println("area code : "+vo.getP().getPlace_code());
+        System.out.println("photo name : "+vo.getP().getPhoto_name());
+        System.out.println("place name : "+vo.getP().getPlace_name());
 		
+        return vo;
 	}
 }
