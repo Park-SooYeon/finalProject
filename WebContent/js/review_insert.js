@@ -82,8 +82,9 @@ var sel_files = [];
         	
         	var reader = new FileReader();
         	reader.onload = function(e){
-        		var html = "<a href=\"javascript:void(0);\" onclick=\"deleteImageAction("+index+")\" id=\"img_id_"+index+"\"><img src=\""+e.target.result+"\" data-file='"+f.name+"' class='selProductFile' title='Click to remove' style='width: 100%; height: 100%;'></a>";
+        		var html = "<a href=\"javascript:void(0);\" onclick=\"deleteImageAction("+index+")\" id=\"img_id_"+index+"\"><img src=\""+e.target.result+"\" data-file='"+f.name+"' class='selProductFile' title='Click to remove' style='width: 10%; height: 10%;'></a>";
         		$("#fileUpload").append(html);
+        		$(".picture_area").append(html);
         		index++
         	}
         	reader.readAsDataURL(f);
@@ -93,7 +94,7 @@ var sel_files = [];
     });
     
     //선택파일 삭제
-    function deleteImageAction(index){
+    function deleteImageAction(index){ 
     	sel_files.splice(index, 1);
     	
     	var img_id = "#img_id_"+index;
@@ -101,7 +102,7 @@ var sel_files = [];
     }
     
     function handleFileUpload(files,obj)
-    {
+    {  alert(files.originalEvent.target.files);
        for (var i = 0; i < files.length; i++) 
        {
             var fd = new FormData();
