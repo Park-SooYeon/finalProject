@@ -94,7 +94,7 @@
 		        </button>
 		      </div>
 		      <div class="modal-body" id="modal-body">
-		        <div id="fileUpload" class="dragAndDropDiv">Drag & Drop Files Here<br/><br/>or Browse Files</div>
+		        <div id="fileUpload" class="dragAndDropDiv">Drag & Drop Files Here<br/><br/>or Browse Files</div>		        
         		<input type="file" name="fileUpload" id="fileUpload" style="display:none;" multiple/>
 		      </div>
 		      <div class="modal-footer">
