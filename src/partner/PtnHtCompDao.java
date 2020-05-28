@@ -18,11 +18,22 @@ public class PtnHtCompDao {
 		sqlSession = Factory.getFactory().openSession();
 	}
 	
-	public List<PlaceVo> select(String mId){
-		List<PlaceVo> list = null;
+	// 파트너 아이디로 파트너 시리얼 가져오기
+	public int getSerial(String mId) {
 		int serial = 0;
 		try {
 			serial = sqlSession.selectOne("hotel.select_serial", mId);
+		}catch(Exception ex) {
+			ex.toString();
+		}finally {
+			
+			return serial;
+		}
+	}
+	
+	public List<PlaceVo> select(int serial){
+		List<PlaceVo> list = null;
+		try {
 			
 			list = sqlSession.selectList("hotel.select", serial);
 		}catch(Exception ex) {
@@ -33,18 +44,12 @@ public class PtnHtCompDao {
 		}
 	}
 	
-	public int insert(String member_id, PlaceVo vo, List<UploadVo> attList) {
+	public int insert(int serial, PlaceVo vo, List<UploadVo> attList) {
 		int result = 0;
-		int serial = 0;
 		try {
-			System.out.println("dao start");
 			
-			System.out.println("member_id" + member_id);
-			// 파트너 시리얼 값 세팅 
-			serial = sqlSession.selectOne("hotel.select_serial", member_id);
 			vo.setPartner_serial(serial);
 			
-			System.out.println(serial);
 			
 			
 			System.out.println("dao partner_serial : " + vo.getPartner_serial());
@@ -62,8 +67,6 @@ public class PtnHtCompDao {
 			
 			int cnt = sqlSession.insert("hotel.insert", vo);
 			System.out.println("cnt : " + cnt);
-			
-			System.out.println("serial : " + vo.getPlace_serial());
 			
 			if(cnt<1) {
 				System.out.println("본문 저장중 오류 발생");
@@ -96,6 +99,32 @@ public class PtnHtCompDao {
 		}finally {
 			System.out.println("dao result : " + result);
 			return result;
+		}
+	}
+	
+	
+	public PlaceVo view(int serial) {
+		PlaceVo vo = null;
+		try {
+			sqlSession.selectOne("hotel.view", serial);
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		}finally {
+			return vo;
+		}
+	}
+	
+	public List<UploadVo> getAttList(int serial){
+		List<UploadVo> attList = null;
+		
+		try {
+			attList = sqlSession.selectList("hotel.att_list", serial);
+	
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		}finally {
+			//sqlSession.close();
+			return attList;
 		}
 	}
 } 

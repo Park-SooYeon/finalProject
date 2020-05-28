@@ -10,6 +10,7 @@ ptn.init = function(){
 
 ptn.func = function(){
 	
+	// 호텔등록 버튼 클릭 시, 페이지 이동 
 	$("#btnPtHtInsert").click(function(){
 		//frm_brd.enctype = '';
 		let param = $("#frmAdmHtCompList").serialize();	// 	직렬화 
@@ -30,6 +31,7 @@ ptn.func = function(){
 		$("#PtnHtStatus").val(value);
 	});
 	
+	// 호텔 등록 버튼 클릭 시, 데이터 입력
 	$("#btnPtHtRegister").click(function(){
 		
 		var value = $("#htPlaceNm option:selected").val();
@@ -71,22 +73,48 @@ ptn.func = function(){
 			error : function(xhr, status, error){
 				console.log(error);
 			},
-			success : function(data, xhr, status){
-				$("#main").html(data);
-			}
-		});
+			success : function(result){
+				if(result == 1){
+					Swal.fire({
+		            	icon: 'success',
+		            	title: '호텔 정보가 등록되었습니다.',
+		            	showConfirmButton: false,
+		            	timer: 1500
+		            });
+					$("#main").html(data);
+				}else{
+					Swal.fire({
+		            	icon: 'danger',
+		            	title: '등록중 오류가 발생했습니다.',
+		            	showConfirmButton: false,
+		            	timer: 1500
+		            });
+				}
+				
+			} // end of success
+		}); // end of ajax
 		
+	}); // end of click event 
+	
+	/*
+	$("#btnPtnHtView").click(function(i){
+		let param = $("#frmAdmHtCompList").serialize();	// 	직렬화
+		console.log(param);
+		console.log(i);
+		$.get("hotel_comp_view.ph", param, function(data, state){
+			$("#main").html(data);
+		});
 	});
+	*/
 	
 }
 
-ptn.go = function(nowPage){
-	frm_brd.nowPage.value = nowPage;
-	let param = $("#frm_adm").serialize();	// 	직렬화 
+ptn.go = function(i){
+	// place_serial 값 세팅
+	$("#pserial").val(i);
 	
-	console.log(param);
-	
-	$.post("select.adm", param, function(data, state){
+	let param = $("#frmAdmHtCompList").serialize();	// 	직렬화
+	$.post("hotel_comp_view.ph", param, function(data, state){
 		$("#main").html(data);
 	});
 }

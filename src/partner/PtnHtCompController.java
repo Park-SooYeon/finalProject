@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 import java.util.logging.Logger;
 
@@ -51,11 +52,26 @@ public class PtnHtCompController {
 	public ModelAndView select(HttpServletRequest req) {
 		ModelAndView mv = new ModelAndView();
 		
+		// 세션 id 가져오기
 		HttpSession session  = req.getSession();
 		String member_id = (String) session.getAttribute("member_id");
-		System.out.println("member_id : " + member_id);
-		List<PlaceVo> list = dao.select(member_id);
 		
+		int serial = dao.getSerial(member_id);
+		List<PlaceVo> list = dao.select(serial);
+		List<UploadVo> photoList = null;
+		
+		for(PlaceVo vo : list) {
+			// place serial 가져오기 
+			int pserial = vo.getPlace_serial();
+			
+			// place_serial에 해당하는 사진정보 가져오기 
+			photoList = dao.getAttList(pserial);
+			
+			vo.setPhotos(photoList);
+			
+		}
+		
+		mv.addObject("photoList", photoList);
 		mv.addObject("list", list);
 		mv.setViewName("hotel_comp_list");
 		return mv;
@@ -153,16 +169,15 @@ public class PtnHtCompController {
 	  
 	    UploadVo upVo;
 	    List<UploadVo> list = new ArrayList<UploadVo>();
-	    
-		List<MultipartFile> mf = req.getFiles("fileName1");
-
+		List<MultipartFile> mf = req.getFiles("fileName1"); 
+		
         if (mf.size() == 1 && mf.get(0).getOriginalFilename().equals("")) {
              System.out.println("getOriginalFilename ()");
         } else {
             for (int i = 0; i < mf.size(); i++) {
             	 // 파일 중복명 처리
 				String nnName = UUID.randomUUID().toString();
-				    // 본래 파일명
+				 // 본래 파일명
 				image2 = mf.get(i).getOriginalFilename();
 				 //중복처리된 이름
 				image1 = nnName + "." + getExtension(image2);
@@ -191,13 +206,14 @@ public class PtnHtCompController {
 		System.out.println("vo getPlace_tel : " + vo.getPlace_tel());
         
 		
-		result = dao.insert(member_id, vo, list);
+		int serial = dao.getSerial(member_id);
+		result = dao.insert(serial, vo, list);
 		
 		System.out.println("result : " + result);
 		
 		mv.addObject("vo", vo);
 		mv.addObject("result", result);
-		mv.setViewName("hotel_comp_list");
+		//mv.setViewName("hotel_comp_list");
 		return mv;
 	}
 	
@@ -211,10 +227,16 @@ public class PtnHtCompController {
 	@RequestMapping(value="/admin/partner/hotel_comp_view.ph", method= {RequestMethod.GET, RequestMethod.POST}) 
 	public ModelAndView view(HttpServletRequest req) {
 		ModelAndView mv = new ModelAndView();
-		Object vo = null; 
+		PlaceVo vo = null; 
+		List<UploadVo> photoList = null;
+		
+		// place_serial 
+		int serial = Integer.parseInt(req.getParameter("pserial"));
+		vo = dao.view(serial);
+		photoList = dao.getAttList(serial);
 		
 		mv.addObject("vo", vo);
-		mv.setViewName("hotel_comp_list");
+		mv.setViewName("hotel_comp_view");
 		return mv;
 	}
 	
@@ -237,6 +259,8 @@ public class PtnHtCompController {
 		mv.setViewName("hotel_comp_list");
 		return mv;
 	}
+	
+	
 	
 	
 }
