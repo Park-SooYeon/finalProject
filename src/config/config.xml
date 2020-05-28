@@ -6,7 +6,9 @@
 <configuration>
 	
 	<properties resource="config/config.properties"/>
-	
+		<settings>
+     	 <setting name="localCacheScope" value="STATEMENT" /> <!-- STATEMENT / SESSION -->
+ 	   </settings>
 	<!-- JDBC 설정 -->
 	<environments default="development">
 		<environment id="development">

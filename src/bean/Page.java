@@ -95,7 +95,13 @@ public class Page {
 	public void setFindStr(String findStr) {
 		this.findStr = findStr;
 	}
+	@Override
+	public String toString() {
+		return "Page [listSize=" + listSize + ", blockSize=" + blockSize + ", totListSize=" + totListSize + ", nowPage="
+				+ nowPage + ", totPage=" + totPage + ", startNo=" + startNo + ", endNo=" + endNo + ", startPage="
+				+ startPage + ", endPage=" + endPage + ", findStr=" + findStr + "]";
+	}
 	
 	
-
+	
 }

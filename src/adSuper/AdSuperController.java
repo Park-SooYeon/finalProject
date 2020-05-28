@@ -5,12 +5,14 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.catalina.ant.ListTask;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import bean.Page;
 import bean.ReviewVo;
 import bean.membershipVo;
 import bean.partnerVo;
@@ -172,15 +174,31 @@ public class AdSuperController {
 		@RequestMapping(value = "/admin/super/review_all.os", method= {RequestMethod.GET, RequestMethod.POST},produces = "text/html;charset=utf8")
 		public ModelAndView review_all(HttpServletRequest req) {
 			//System.out.println("par_View_controll"+member_id);
-			mv = new ModelAndView();
-			//System.out.println("partner_view컨트롤 들어오나");
-			List<ReviewVo> list = dao.review_all();
-			for(ReviewVo vo : list) {
-				System.out.println(vo.toString());
+			Page p =  new Page();
+			p.setFindStr(req.getParameter("findStr"));
+			if(req.getParameter("nowPage") == null || req.getParameter("nowPage").equals("")==true) {
+				p.setNowPage(1);
+			}else {
+				p.setNowPage(Integer.parseInt(req.getParameter("nowPage")));
 			}
 			
-			mv.setViewName("review_all");
+			List<ReviewVo> list = dao.review_all(p);
+			System.out.println("컨트롤러페이지"+p.toString());
+			
+//			System.out.println(list.size() +"Tㄲ싸이즈");
+//			for(ReviewVo vo : list) {
+//				System.out.println(vo.toString());
+//			}
+				
+			mv = new ModelAndView();
+			//System.out.println("partner_view컨트롤 들어오나");
+			
+			mv.addObject("p",p);
 			mv.addObject("list", list);
+			for(int i=0; i<list.size();  i++) {
+				System.out.println(list.get(i));
+			}
+			mv.setViewName("review_all");
 			return mv;
 		}
 }

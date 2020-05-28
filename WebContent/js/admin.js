@@ -1,7 +1,7 @@
 /**
  * 
  */
-
+let  brd ={ }
 //member view의 js
 function member_view(mId,mName,phone,email,state,mDate){
 	
@@ -114,9 +114,39 @@ $('#out_save').click(function(){ //jquery는 널인지  아닌지 표시를 안�
 }
 
 // 리뷰........
-$('#contain').load("review_all.os"); 
+$('#contain').load("review_all.os");  //ajax 콘테인안에 리뷰올을 넣음.
 
 
 mm.func();
 
 
+
+brd.go = function(nowPage){
+	frm_list.nowPage.value = nowPage;
+	let param = $('#frm_list').serialize();
+	console.log(param);
+	$.post("review_all.os" ,param, function(data, stat){ //view.brd하면 컨트롤러가 view.brd가 받는다 
+	$('#contain').html(data)	
+});
+}
+brd.func = function(){
+	$('#btnFind').click(function(){ //jquery는 널인지  아닌지 표시를 안해줘도 되는 편리함이 이씅ㅁ
+		alert("aszxd");
+		frm_list.nowPage.value = 1;
+		let param = $('#frm_list').serialize(); //frm_brd라는 폼 을 가지고~
+		$.post("review_all.os" ,param, function(data, stat){ //post를가지고 페이지를 넘길것이다.	 //insert가 data로 들어와서 메인으로 가서 뿌린다
+			$('#contain').html(data)	
+		}); 
+	})
+}
+
+$(document).ready(function(){
+    brd.func();
+    })
+    
+$('#frm_list').submit(function(){
+	$('#btnFind').click();
+	return false;
+	
+});
+//brd.go();
