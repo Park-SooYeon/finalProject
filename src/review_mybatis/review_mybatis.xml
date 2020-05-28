@@ -9,7 +9,7 @@
 		review_title, review_content, visit_date, review_date, service, cleanliness, accessibility,
 		price, scale, food)
 		values(seq_review.nextval, #{member_id}, #{place_serial}, #{review_type}, #{reputation},
-		#{review_title}, #{review_content}, #{visit_date}, sysdate, #{service}, #{cleanliness},
+		#{review_title}, #{review_content}, sysdate-${visit_date}, sysdate, #{service}, #{cleanliness},
 		#{accessibility}, #{price}, #{scale}, #{food})
 	</insert>
 	

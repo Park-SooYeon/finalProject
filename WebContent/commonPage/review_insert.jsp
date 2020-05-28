@@ -27,12 +27,12 @@
 		<hr />
 		
 		
-		<form name="review_insert_frm" id="review_insert_frm" >
-		
+		<form name="review_insert_frm" id="review_insert_frm" method="post" enctype='multipart/form-data'>
+		<input type="text" name="place_serial" id="place_serial" >
 		
 		<h3>이 관광지의 전반적인 평가</h3>
-		<input type="hidden" name="star_input" id="star_input">
-		<div class="review_star p-2" id="review_star" name="reputation">
+		<input type="hidden" name="reputation" id="reputation">
+		<div class="review_star p-2" id="review_star" name="review_star">
 			<span class="fa fa-star fa-3x" onclick="star(1)" id="star_5"></span>
 			<span class="fa fa-star fa-3x" onclick="star(3)" id="star_4"></span>
 			<span class="fa fa-star fa-3x" onclick="star(5)" id="star_3"></span>
@@ -71,14 +71,20 @@
 			<h3 style="float:left">사진을 첨부하시겠어요?</h3><a>(선택사항)</a>
 		</div>
 		<br/>
-		<!-- Button trigger modal -->
-		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalScrollable">
+		<!-- Button trigger modal 
+		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalScrollable" >		 	
 		 	사진 추가
-		</button>	
+		</button>
+		-->
+		
+		<div id="fileUpload" class="dragAndDropDiv">Drag & Drop Files Here<br/><br/>or Browse Files</div>		        
+        <input type="file" name="fileUpload" id="fileUpload" style="display:none;" multiple/>
+		</br>
+		<h4><b>이미지 미리보기</b></h4>
 		
 		<div class="picture_area mt-2" name="photo_name"></div>
 		
-		<!-- 모달없이 파일업로드 -->
+		<!-- 모달없이 파일업로드 
 		<h2><b>이미지 미리보기</b></h2>
 		<div class="input_wrap">
 		  <a href="javascript:" onclick="fileUploadAction();" class="my_button">파일 업로드</a>
@@ -94,12 +100,12 @@
 		<a href="javascript:" class="my_button" onclick="submitAction();">업로드</a>
 		
 		<div class="mt-2">리뷰 선택사항 목록</div>
+		-->
+		<button type="button" class="btn btn-primary" onclick='delete_photo();' >		 	
+		 	사진 전체 삭제
+		</button>
 		
-		
-		</form>
-		
-		
-		<!-- Modal -->
+		<!-- Modal 
 		<div class="modal fade" data-backdrop="static" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
 		  <div class="modal-dialog modal-dialog-scrollable" role="document">
 		    <div class="modal-content">
@@ -120,10 +126,13 @@
 		    </div>
 		  </div>
 		</div>
+		-->
+		
 		<hr/>
 		<div class="mb-20">
-			<button class="btn btn-primary my-2 my-sm-0" type="button" id="review_insert">리뷰 저장</button>
+			<input type="button" class="btn btn-primary my-2 my-sm-0" id="review_insert">리뷰 저장</button>
 		</div>
+		</form>		
 	</div>
 </section>
 <!-- End about-info Area -->
