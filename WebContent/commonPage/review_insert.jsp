@@ -31,8 +31,8 @@
 		<input type="text" name="place_serial" id="place_serial" >
 		
 		<h3>이 관광지의 전반적인 평가</h3>
-		<input type="hidden" name="star_input" id="star_input">
-		<div class="review_star p-2" id="review_star" name="reputation">
+		<input type="hidden" name="reputation" id="reputation">
+		<div class="review_star p-2" id="review_star" name="review_star">
 			<span class="fa fa-star fa-3x" onclick="star(1)" id="star_5"></span>
 			<span class="fa fa-star fa-3x" onclick="star(3)" id="star_4"></span>
 			<span class="fa fa-star fa-3x" onclick="star(5)" id="star_3"></span>
