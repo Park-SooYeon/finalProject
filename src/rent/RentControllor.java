@@ -2,6 +2,7 @@ package rent;
 
 
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,9 +13,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-
+import rent_parameter.CarViewVo;
 import rent_parameter.CompanyPm;
 import rent_parameter.DateVo;
+import rent_parameter.rentReviewTotVo;
+import rent_parameter.rentReviewVo;
 
 @Controller
 @RequestMapping("/rent")
@@ -147,9 +150,8 @@ public class RentControllor {
 		
 		
 		int company_serial = Integer.parseInt(req.getParameter("company_serial"));
-		List<rent_parameter.CarVo> car_list = rentDao.carSearch(company_serial,between);
+		List<rent_parameter.CarVo> car_list = rentDao.carSearch(company_serial,between,kindCheck,airconCheck,gearCheck,doorCheck,maxPeopleCheck,priceCheck);
 		mv.addObject("car_list", car_list);
-		
 		
 		mv.addObject("companyCheck",companyCheck);
 		mv.addObject("airconCheck", airconCheck);
@@ -180,6 +182,31 @@ public class RentControllor {
 		contentPage = "rentViewSub1.jsp";
 		mainPage = "rentView.jsp";
 		
+		int car_serial = Integer.parseInt(req.getParameter("car_serial"));
+		String rentDate = req.getParameter("rentDate");
+		String returnDate = req.getParameter("returnDate");
+		String placeMain = req.getParameter("placeMain");
+		String placeSub = req.getParameter("placeSub");
+		
+		int betweenDay = rentDao.DateBettweenDay(rentDate, returnDate);
+		long between = rentDao.DateBettween(rentDate, returnDate);
+		DateVo dateVo1 = rentDao.paramTime(rentDate);
+		DateVo dateVo2 = rentDao.paramTime(returnDate);
+		CarViewVo vo= rentDao.carView(car_serial,rentDate,returnDate,between);
+		
+		Timestamp rentD = rentDao.TimeMaker(rentDate);
+		mv.addObject("car_serial", car_serial);
+		mv.addObject("vo", vo);
+		
+		mv.addObject("rentD",rentD);
+		
+		mv.addObject("rentDate",rentDate);
+		mv.addObject("returnDate",returnDate);
+		mv.addObject("placeMain",placeMain);
+		mv.addObject("placeSub",placeSub);
+		mv.addObject("betweenDay", betweenDay);
+		mv.addObject("dateVo1",dateVo1);
+		mv.addObject("dateVo2", dateVo2);
 		
 		mv.addObject("contentPage",contentPage);
 		mv.addObject("mainPage",mainPage);
@@ -193,6 +220,36 @@ public class RentControllor {
 		contentPage = "rentViewSub2.jsp";
 		mainPage = "rentView.jsp";
 		
+		int car_serial = Integer.parseInt(req.getParameter("car_serial"));
+		String rentDate = req.getParameter("rentDate");
+		String returnDate = req.getParameter("returnDate");
+		String placeMain = req.getParameter("placeMain");
+		String placeSub = req.getParameter("placeSub");
+		
+		int betweenDay = rentDao.DateBettweenDay(rentDate, returnDate);
+		long between = rentDao.DateBettween(rentDate, returnDate);
+		DateVo dateVo1 = rentDao.paramTime(rentDate);
+		DateVo dateVo2 = rentDao.paramTime(returnDate);
+		
+		Timestamp rentD = rentDao.TimeMaker(rentDate);
+		
+		List<rent_parameter.rentReviewVo> review_list = rentDao.rentReview(car_serial);
+		rentReviewTotVo review_tot = rentDao.rentReviewTot(car_serial);
+		mv.addObject("review_tot", review_tot);
+		mv.addObject("review_list",review_list);
+		
+		mv.addObject("car_serial", car_serial);
+		
+		
+		mv.addObject("rentD",rentD);
+		
+		mv.addObject("rentDate",rentDate);
+		mv.addObject("returnDate",returnDate);
+		mv.addObject("placeMain",placeMain);
+		mv.addObject("placeSub",placeSub);
+		mv.addObject("betweenDay", betweenDay);
+		mv.addObject("dateVo1",dateVo1);
+		mv.addObject("dateVo2", dateVo2);
 		
 		mv.addObject("contentPage",contentPage);
 		mv.addObject("mainPage",mainPage);
@@ -206,6 +263,31 @@ public class RentControllor {
 		contentPage = "rentViewSub3.jsp";
 		mainPage = "rentView.jsp";
 		
+		int car_serial = Integer.parseInt(req.getParameter("car_serial"));
+		String rentDate = req.getParameter("rentDate");
+		String returnDate = req.getParameter("returnDate");
+		String placeMain = req.getParameter("placeMain");
+		String placeSub = req.getParameter("placeSub");
+		
+		int betweenDay = rentDao.DateBettweenDay(rentDate, returnDate);
+		long between = rentDao.DateBettween(rentDate, returnDate);
+		DateVo dateVo1 = rentDao.paramTime(rentDate);
+		DateVo dateVo2 = rentDao.paramTime(returnDate);
+		
+		
+		Timestamp rentD = rentDao.TimeMaker(rentDate);
+		mv.addObject("car_serial", car_serial);
+		
+		
+		mv.addObject("rentD",rentD);
+		
+		mv.addObject("rentDate",rentDate);
+		mv.addObject("returnDate",returnDate);
+		mv.addObject("placeMain",placeMain);
+		mv.addObject("placeSub",placeSub);
+		mv.addObject("betweenDay", betweenDay);
+		mv.addObject("dateVo1",dateVo1);
+		mv.addObject("dateVo2", dateVo2);
 		
 		mv.addObject("contentPage",contentPage);
 		mv.addObject("mainPage",mainPage);

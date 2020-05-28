@@ -31,6 +31,7 @@
 	<input type='hidden' name='placeSub' value='${placeSub}'/>
 	
 	<input type='hidden' name='company_serial' id='company_serial'/>
+	<input type='hidden' name='car_serial' id='car_serial'/>
 	<div class="row">
 		<div id='left' class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
 		<div id='map' class="col-lg-4 col-md-4 col-sm-4 hidden-xs"></div>

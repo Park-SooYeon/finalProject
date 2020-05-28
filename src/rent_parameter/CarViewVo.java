@@ -1,8 +1,6 @@
 package rent_parameter;
 
-public class CarVo {
-	String company_name;
-	String address;
+public class CarViewVo {
 	int car_serial;
 	String car_name;
 	int price;
@@ -19,53 +17,8 @@ public class CarVo {
 	double review;
 	String car_kind;
 	int review_count;
-	String product;
 	
-	CarVo(){
-		
-	}
-
-	public String getProduct() {
-		return product;
-	}
-
-	public void setProduct(String product) {
-		this.product = product;
-	}
-
-	public int getReview_count() {
-		return review_count;
-	}
-
-	public void setReview_count(int review_count) {
-		this.review_count = review_count;
-	}
-
-	public String getAddress() {
-		return address;
-	}
-
-	public void setAddress(String address) {
-		this.address = address;
-	}
-
-	public String getCar_kind() {
-		return car_kind;
-	}
-
-	public void setCar_kind(String car_kind) {
-		this.car_kind = car_kind;
-	}
-
-	public String getCompany_name() {
-		return company_name;
-	}
-
-	public void setCompany_name(String company_name) {
-		this.company_name = company_name;
-	}
-
-	
+	public CarViewVo() {}
 
 	public int getCar_serial() {
 		return car_serial;
@@ -177,6 +130,22 @@ public class CarVo {
 
 	public void setReview(double review) {
 		this.review = review;
+	}
+
+	public String getCar_kind() {
+		return car_kind;
+	}
+
+	public void setCar_kind(String car_kind) {
+		this.car_kind = car_kind;
+	}
+
+	public int getReview_count() {
+		return review_count;
+	}
+
+	public void setReview_count(int review_count) {
+		this.review_count = review_count;
 	}
 	
 }

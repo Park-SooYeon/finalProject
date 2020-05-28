@@ -7,8 +7,12 @@ import org.apache.ibatis.session.SqlSession;
 
 import bean.Factory;
 import rent_parameter.CarPm;
+import rent_parameter.CarViewPm;
+import rent_parameter.CarViewVo;
 import rent_parameter.CompanyPm;
 import rent_parameter.DateVo;
+import rent_parameter.rentReviewTotVo;
+import rent_parameter.rentReviewVo;
 
 
 
@@ -45,15 +49,50 @@ public class RentDao {
 		}
 	}
 	
-	public List<rent_parameter.CarVo> carSearch(int company_serial,long between){
+	public List<rent_parameter.CarVo> carSearch(int company_serial,long between,String kindCheck,String airconCheck,String gearCheck,String doorCheck,String maxPeopleCheck,String priceCheck){
 		List<rent_parameter.CarVo> list = null;
 		try {
-			CarPm pm = new CarPm(company_serial,between);
-			//list = sqlSession.selectList("rent.carSearch",pm);
+			CarPm pm = new CarPm(company_serial,between,kindCheck,airconCheck,gearCheck,doorCheck,maxPeopleCheck,priceCheck);
+			list = sqlSession.selectList("rent.carSearch",pm);
 		}catch(Exception e) {
 			e.printStackTrace();
 		}finally {
 			return list;			
+		}
+	}
+	public CarViewVo carView(int car_serial,String rentDate,String returnDate,long between){
+		rent_parameter.CarViewVo vo = new rent_parameter.CarViewVo();
+		try {
+			Timestamp rDate = TimeMaker(rentDate);
+			Timestamp tDate = TimeMaker(returnDate);
+			CarViewPm cm = new CarViewPm(car_serial,rDate,tDate,between);
+			vo = sqlSession.selectOne("rent.carView",cm);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			return vo;			
+		}
+		
+	}
+	
+	public List<rentReviewVo> rentReview(int car_serial){
+		List<rentReviewVo> list = null;
+		try {
+			list = sqlSession.selectList("rent.reviewSearch",car_serial);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			return list;			
+		}
+	}
+	public rentReviewTotVo rentReviewTot(int car_serial) {
+		rentReviewTotVo vo = null;
+		try {
+			vo = sqlSession.selectOne("rent.reviewTotSearch",car_serial);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			return vo;			
 		}
 	}
 	
