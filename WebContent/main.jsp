@@ -177,7 +177,7 @@
 		<div class="row d-flex justify-content-center">
 			<div class="menu-content col-lg-12">
 				<h1 class="mb-10">추천 즐길거리</h1>
-				<a href="?inc=commonPage/food_index.jsp">더 보기</a>
+				<a href="#" onclick="main.searchMove(12, ${param.local})">더 보기</a>
 			</div>
 		</div>
 		<div class="row">
