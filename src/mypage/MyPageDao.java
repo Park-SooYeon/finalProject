@@ -110,33 +110,22 @@ public class MyPageDao {
 	}
 	
 	public List<LikeListVo> selectLike(String member_id) {
-		List<LikeListVo> list = new ArrayList<LikeListVo>();
-		List<LikeListVo> list2 = new ArrayList<LikeListVo>();
+		System.out.println("dao가 실행되었다..");
+		List<LikeListVo> list = null;
+		List<LikeListVo> list2 = null;
+		
 		try {
 			// 호텔정보만 반환
 			list = sqlSession.selectList("mypage.select_like", member_id);
 			
-			// api contentid만 반환
-			list2 = sqlSession.selectList("select_places", member_id);
+			// api로 가져오는 place
+			list2 = sqlSession.selectList("mypage.select_places", member_id);
 			
 			for(LikeListVo vo : list2) {
-				System.out.println(vo.getPlace_serial());
-				LikeListVo vo2 = getApi(vo.getPlace_serial()+"");
-				list.add(vo2);
+				//vo에 api 응답정보를 담아서 재가공
+				vo = getApi(vo);
+				list.add(vo);
 			}
-            
-            //String result = jobj.get("contentid").toString();
-            //System.out.println("contentid만 "+result);
-            	
-            	
-			/*
-            Set<Map.Entry<String, JsonElement>> entries = jobj.entrySet();//will return members of your object
-            for (Map.Entry<String, JsonElement> entry: entries) {
-        	    System.out.println(entry.getKey());
-        	    System.out.println(entry.getValue());
-           	}
-           	*/
-           
 			
 		}catch(Exception ex) {
 			ex.printStackTrace();
@@ -272,17 +261,15 @@ public class MyPageDao {
 		return map;
 	}
 	
-	public LikeListVo getApi(String contentid) throws IOException {
+	public LikeListVo getApi(LikeListVo vo) throws IOException {
 		
 		StringBuilder urlBuilder = new StringBuilder("http://api.visitkorea.or.kr/openapi/service/rest/KorService/detailCommon"); /*URL*/
         urlBuilder.append("?" + URLEncoder.encode("ServiceKey","UTF-8") + "=RGRZ7ZbtIrL2U4P0qfnA3puuV5UrzrqEFmf0aLwaZitXLcUQrOTbyRoZHRCpdViHuU1cTZ7jXX4GDbOMb%2Fc1gg%3D%3D"); /*Service Key*/
-        urlBuilder.append("&" + URLEncoder.encode("numOfRows","UTF-8") + "=" + URLEncoder.encode("10", "UTF-8")); /*한 페이지 결과수*/
-        urlBuilder.append("&" + URLEncoder.encode("pageNo","UTF-8") + "=" + URLEncoder.encode("1", "UTF-8")); /*현재 페이지 번호*/
         urlBuilder.append("&" + URLEncoder.encode("MobileOS","UTF-8") + "=" + URLEncoder.encode("ETC", "UTF-8")); /*IOS (아이폰), AND (안드로이드), WIN (원도우폰), ETC*/
         urlBuilder.append("&" + URLEncoder.encode("MobileApp","UTF-8") + "=" + URLEncoder.encode("AppTest", "UTF-8")); /*서비스명=어플명*/
         urlBuilder.append("&" + URLEncoder.encode("areacodeYN","UTF-8") + "=" + URLEncoder.encode("Y", "UTF-8")); /*지역코드, 시군구코드*/
         urlBuilder.append("&" + URLEncoder.encode("defaultYN","UTF-8") + "=" + URLEncoder.encode("Y", "UTF-8")); /* 기본정보조회 */
-        urlBuilder.append("&" + URLEncoder.encode("contentId","UTF-8") + "=" + URLEncoder.encode(contentid, "UTF-8")); /*지역코드, 시군구코드*/
+        urlBuilder.append("&" + URLEncoder.encode("contentId","UTF-8") + "=" + URLEncoder.encode(vo.getPlace_serial()+"", "UTF-8")); /*지역코드, 시군구코드*/
         urlBuilder.append("&" + URLEncoder.encode("firstImageYN","UTF-8") + "=" + URLEncoder.encode("Y", "UTF-8")); /*대표이미지 조회*/
         urlBuilder.append("&_type=json"); // json 타입으로 반환
         
@@ -336,17 +323,11 @@ public class MyPageDao {
         String title = jObject5.get("title").getAsString();
         int areacode = jObject5.get("areacode").getAsInt();
         
-        LikeListVo vo = new LikeListVo();
         vo.setPlace_serial(serial);
+        vo.getP().setPlace_code(areacode);
+        vo.getP().setPhoto_name(image);
+        vo.getP().setPlace_name(title);
 
-        PlaceVo pv = new PlaceVo();
-        
-        pv.setPlace_code(areacode);
-        pv.setPhoto_name(image);
-        pv.setPlace_name(title);
-
-        vo.setP(pv);
-        
         System.out.println("serial : "+vo.getPlace_serial());
         System.out.println("area code : "+vo.getP().getPlace_code());
         System.out.println("photo name : "+vo.getP().getPhoto_name());

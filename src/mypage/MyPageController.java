@@ -198,6 +198,7 @@ public class MyPageController {
 		List<LikeListVo> list = dao.selectLike(member_id);
 		
 		for(LikeListVo vo : list) {
+			System.out.println("갑자기 리스트 폭발증가 "+list.size());
 			System.out.println(vo.toString());
 		}
 		
