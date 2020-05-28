@@ -41,12 +41,16 @@
 	                                                <td>${i.count }</td>
 	                                                <td>
 	                                                    <div class="d-flex align-items-center">
-	                                                    	<c:if test="${vo.photo_name }">
-	                                                        	<img class="img-xs rounded" src="../../assets/images/upload/hotel/${vo.photo_name }" alt="profile image">
+	                                                    	<c:if test="${!empty vo.photos}">
+	                                                    		<c:forEach var="photo" items="${vo.photos}" begin="0" end="0" varStatus="status">
+																    <img class="img-xs rounded" src="../../assets/images/upload/${photo.oriFile }" alt="${photo.oriFile } image">
+																</c:forEach>
+
+                                                    				
 	                                                        </c:if>
 	                                                        
-	                                                        <c:if test="${vo.photo_name == null}">
-	                                                        	<img class="img-xs rounded" src="https://via.placeholder.com/150" alt="${vo.place_name } image">
+	                                                        <c:if test="${empty vo.photos}">
+	                                                        	<img class="img-xs rounded" src="https://via.placeholder.com/150" alt="이미지 없음">
 	                                                        </c:if>
 	                                                    </div>
 	                                                </td>

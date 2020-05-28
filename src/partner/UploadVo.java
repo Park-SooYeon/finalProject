@@ -11,9 +11,9 @@ public class UploadVo {
 	
 	public UploadVo() {}
 	
-	public UploadVo(String oriFile, String sysFile) {
-		this.oriFile = oriFile;
+	public UploadVo(String sysFile, String oriFile) {
 		this.sysFile = sysFile;
+		this.oriFile = oriFile;
 	}
 	
 	public int getPlace_serial() {
@@ -41,7 +41,10 @@ public class UploadVo {
 		this.sysFile = sysFile;
 	}
 	
-	
+	@Override
+	public String toString() {
+		return "UploadVo [place_serial=" + place_serial + ", photo_serial=" + photo_serial + ", oriFile=" + oriFile + ", sysFile=" + sysFile + "]";
+	}
 	
 	
 }

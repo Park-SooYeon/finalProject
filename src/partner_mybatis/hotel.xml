@@ -15,8 +15,16 @@
 			LEFT OUTER JOIN PLACE_PHOTO p ON h.place_serial = p.place_serial 
 		where h.place_code=4
 		and h.PARTNER_SERIAL=#{partner_serial}
-		GROUP BY h.place_Serial, h.place_name, h.place_location, h.place_tel, h.state, h.place_serial
+		GROUP BY h.place_Serial, h.place_name, h.place_location, h.place_tel, h.state
+		ORDER BY h.PLACE_SERIAL DESC
 	</select>	
+	
+	<!-- 첨부파일 조회 -->
+	<select id="att_list" parameterType="Integer" resultType="partner.UploadVo">
+		select photo_serial, PLACE_SERIAL, oriFile, sysFile
+		from PLACE_PHOTO
+		where place_Serial=#{partner_serial}
+	</select>
 	
 	<!-- 파트너 시리얼 조회 -->
 	<select id="select_serial" parameterType="String" resultType="Integer">

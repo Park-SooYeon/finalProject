@@ -2,8 +2,11 @@ package bean;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
+
+import partner.UploadVo;
 
 public class PlaceVo {
 	int place_serial;
@@ -34,11 +37,30 @@ public class PlaceVo {
 	int room_serial;
 	int room_cnt; // 보유객실 수 
 	
+	
 	MultipartFile fileName1;
 	MultipartFile fileName2;
 	MultipartFile fileName3;
 	
+	List<UploadVo> photos;
 	
+	String oriFile;
+	
+	
+	
+	
+	public String getOriFile() {
+		return oriFile;
+	}
+	public void setOriFile(String oriFile) {
+		this.oriFile = oriFile;
+	}
+	public List<UploadVo> getPhotos() {
+		return photos;
+	}
+	public void setPhotos(List<UploadVo> photos) {
+		this.photos = photos;
+	}
 	public MultipartFile getFileName1() {
 		return fileName1;
 	}
@@ -232,7 +254,8 @@ public class PlaceVo {
 				+ ", state=" + state + ", breakfast=" + breakfast + ", wifi=" + wifi + ", parking=" + parking
 				+ ", local_code=" + local_code + ", local_name=" + local_name + ", reputation=" + reputation
 				+ ", review_cnt=" + review_cnt + ", photo_serial=" + photo_serial + ", photo_name=" + photo_name
-				+ ", place_tel=" + place_tel + ", room_serial=" + room_serial + ", room_cnt=" + room_cnt + "]";
+				+ ", place_tel=" + place_tel + ", room_serial=" + room_serial + ", room_cnt=" + room_cnt 
+				+ ", fileName1=" + fileName1 + ", fileName2=" + fileName2 + ", fileName3=" + fileName3 + ", photos=" + photos + ", oriFile=" + oriFile + "]";
 	}
 	
 	
