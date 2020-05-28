@@ -114,7 +114,7 @@ ptn.go = function(i){
 	$("#pserial").val(i);
 	
 	let param = $("#frmAdmHtCompList").serialize();	// 	직렬화
-	$.get("hotel_comp_view.ph", param, function(data, state){
+	$.post("hotel_comp_view.ph", param, function(data, state){
 		$("#main").html(data);
 	});
 }

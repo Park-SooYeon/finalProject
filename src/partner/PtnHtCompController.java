@@ -227,7 +227,13 @@ public class PtnHtCompController {
 	@RequestMapping(value="/admin/partner/hotel_comp_view.ph", method= {RequestMethod.GET, RequestMethod.POST}) 
 	public ModelAndView view(HttpServletRequest req) {
 		ModelAndView mv = new ModelAndView();
-		Object vo = null; 
+		PlaceVo vo = null; 
+		List<UploadVo> photoList = null;
+		
+		// place_serial 
+		int serial = Integer.parseInt(req.getParameter("pserial"));
+		vo = dao.view(serial);
+		photoList = dao.getAttList(serial);
 		
 		mv.addObject("vo", vo);
 		mv.setViewName("hotel_comp_view");

@@ -69,7 +69,7 @@
 		                                                </c:if>
 	                                                </td>
 	                                                <td>
-	                                                    <button type="button" class="btn btn-outline-primary" id="btnPtnHtView_${place_serial }" onclick="ptn.go(${vo.place_serial})">View</button>
+	                                                    <button type="button" class="btn btn-outline-primary" id="btnPtnHtView_${vo.place_serial }" onclick="ptn.go(${vo.place_serial})">View</button>
 	                                                </td>
 	                                            </tr>
                                         	

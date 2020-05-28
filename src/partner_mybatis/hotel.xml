@@ -4,6 +4,7 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd"
 >
 <mapper namespace="hotel">
+	<!-- 목록 조회 -->
 	<select id="select" parameterType="Integer" resultType="bean.PlaceVo">
 		SELECT h.place_Serial, max(p.oriFile) ,h.place_name, h.place_location, h.place_tel, (
 			SELECT count(r.rooms_serial) cnt
@@ -14,10 +15,24 @@
 			LEFT OUTER JOIN partner pt ON h.partner_serial = pt.partner_serial 
 			LEFT OUTER JOIN PLACE_PHOTO p ON h.place_serial = p.place_serial 
 		where h.place_code=4
-		and h.PARTNER_SERIAL=#{partner_serial}
+		and h.PARTNER_SERIAL=#partner_serial}
 		GROUP BY h.place_Serial, h.place_name, h.place_location, h.place_tel, h.state
 		ORDER BY h.PLACE_SERIAL DESC
 	</select>	
+	
+	<!-- 상세조회 -->
+	<select id="view" parameterType="Integer" resultType="bean.PlaceVo">
+		SELECT p.oriFile , h.place_code, h.place_name, h.place_location, h.place_tel, (
+			SELECT count(r.rooms_serial) cnt
+			FROM ROOMS r JOIN PLACE p
+			ON r.PLACE_SERIAL = p.PLACE_SERIAL
+		) room_cnt, h.state, h.BREAKFAST, h.WI_FI, h.PARKING
+		FROM PLACE h 
+			LEFT OUTER JOIN partner pt ON h.partner_serial = pt.partner_serial 
+			LEFT OUTER JOIN PLACE_PHOTO p ON h.place_serial = p.place_serial 
+		where h.place_code=4
+		and h.place_Serial=#{place_serial}
+	</select>
 	
 	<!-- 첨부파일 조회 -->
 	<select id="att_list" parameterType="Integer" resultType="partner.UploadVo">
