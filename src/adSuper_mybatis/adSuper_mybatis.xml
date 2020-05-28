@@ -25,6 +25,7 @@
 	      <result column="member_id" property="member_id"/>
 	      <result column="review_title" property="review_title"/>
 	      <result column="review_content" property="review_content"/>
+	      <result column="review_serial" property="review_serial"/>
 	      <collection property="p"  javaType="bean.PlaceVo">
 	         <result column="place_serial" property="place_serial"/>
 	         <result column="place_code" property="place_code"/>
@@ -132,11 +133,36 @@
    
    
    	<!-- 전체리뷰조회 view join -->
-    <select id="review_all" resultMap="review_Vo">
+  <!--   <select id="review_all" resultMap="review_Vo">
     select R.member_id ,R.review_date, R.review_content,R.review_title,P.place_code
 	from  review R, place P
     where R.place_serial = P.place_serial
-  
-     
-    </select>
+    </select> -->
+    
+    <!-- 리뷰전체조회 페이징  -->
+       <select id="count" parameterType="bean.Page" resultType="Integer">
+   			select count(R.review_serial)
+            from  review R, place P
+            where R.place_serial = P.place_serial
+            and (R.review_serial like '%${findStr}%'
+            or R.member_id like '%${findStr}%')
+      
+   </select> 
+    
+    
+    
+    <select id="review_all" parameterType="bean.Page" resultMap="review_Vo">
+        select * from(
+         select rownum rno, M.* from(
+            select R.member_id,R.review_date ,R.review_serial, R.review_content , R.review_title,P.place_code
+            from  review R, place P
+            where R.place_serial = P.place_serial
+            and (R.review_serial like '%${findStr}%'
+            or R.member_id like '%${findStr}%')
+            )M
+         ) 
+      where rno BETWEEN ${startNo} and ${endNo}
+      
+   </select>
+   
 </mapper>

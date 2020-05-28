@@ -1,10 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
  <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+ 
     	<div id='wrapper'>
+    		 <%-- <form name='frm_list' id= 'frm_list' method='post' >
+				<input type='button' value='검색' id='btnFind'/>
+				<input type='text' name='findStr' 	id='findStr' value='${p.findStr }'/>
+				<input type='text' id = 'nowPage' name='nowPage' value='${p.nowPage }'/>
+				<input type='text' name='serial' value='${param.serial }'/>
+			</form>  --%>
             <div class="tab-content tab-content-basic">
                 <div class="tab-pane fade active show" id="open-tickets" role="tabpanel" aria-labelledby="open-tickets">
-                    <a href="#" class="tickets-card row" data-toggle="modal" data-target="#modalReviewDt">
+                    <!-- <a href="#" class="tickets-card row" data-toggle="modal" data-target="#modalReviewDt">
                         <div class="tickets-details col-md-8">
                             <div class="wrapper">
                                 <h5><span id="admReviewNum">#39033</span> - <span id="admReviewSuj">Design Admin Dashboard</span></h5>
@@ -47,13 +54,13 @@
                             <i class="category-icon mdi mdi-folder-outline"></i>
                             <span class="text-muted">Wireframe</span>
                         </div>
-                    </a>
+                    </a> -->
                     <!-- 데이터넣깅... -->
                     <c:forEach var='i' items='${list }'>
                     <a href="#" class="tickets-card row" data-toggle="modal" data-target="#modalReviewDt">
                         <div class="tickets-details col-md-8">
                             <div class="wrapper">
-                                <h5>#${i.review_serial } - ${i.review_title }</h5>
+                                <h5>${i.review_serial } - ${i.review_title }</h5>
 
                             </div>
                             <div class="wrapper text-muted">
@@ -75,34 +82,63 @@
 	       		</c:forEach>            
 	              </div>
 	            
-            
-            <nav class="mt-4">
-                <ul class="pagination">
-                    <li class="page-item">
-                        <a class="page-link" href="#">
-                            <i class="mdi mdi-chevron-left"></i>
-                        </a>
-                    </li>
-                    <li class="page-item active">
-                        <a class="page-link" href="#">1</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">2</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">3</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">4</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">
-                            <i class="mdi mdi-chevron-right"></i>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
+           
+           
+         
+        <%--    <div id='paging' class="text-center mt-3">
+	<c:if test='${p.startPage>p.blockSize }'>
+		<input type='button' value='이전' onclick='brd.go(${p.startPage-1}) '/>
+	</c:if>
+		
+			<c:forEach var='i' begin='${p.startPage}' end='${p.endPage}'>
+				<input type='button' value='${i }' class="${(i==p.nowPage)?  'active' : ''}" onclick='brd.go(${i})'/>
+			</c:forEach>
+			
+	<c:if test='${p.endPage<p.totPage }'>
+				<input type='button' value='다음' onclick='brd.go(${p.endPage+1 })'/>
+	</c:if>
+	</div> --%>
+	   <div class="col-md-6">
+      <ul class="pagination justify-content-center mt-5">
+        <li class="page-item ${(p.startPage>p.blockSize)? '' : 'disabled' }disabled">
+         <a
+           class="page-link"
+           href="#"
+           tabindex="-1"
+           aria-disabled="true"
+           onclick="brd.go(${p.startPage-1})"
+           >이전</a
+         >
+        </li>
+        <c:forEach var="i" begin="${p.startPage }" end="${p.endPage }">
+         <li class="page-item ${(i==p.nowPage)? 'active' : '' }">
+           <a class="page-link" href="#" onclick="brd.go(${i})">${i}</a>
+         </li>
+        </c:forEach>
+        <li class="page-item ${(p.endPage<p.totPage? '' : 'disabled' )}">
+         <a class="page-link" href="#" onclick="brd.go(${p.endPage+1})">다음</a>
+        </li>
+      </ul>
+     </div>
+     
+     
+	
+	<%-- 
+	<div id='paging' class='text-center mt-1'>
+			<c:if test="${p.startPage>p.blockSize}">
+				<input type='button' value='이전' onclick='brd.go(${p.startPage-1})' class='btn-sm btn-ok' />
+			</c:if>
+
+			<c:forEach var="i" begin="${p.startPage }" end="${p.endPage }">
+				<input type='button' value='${i }' class='${ (i== p.nowPage)? "btn-sm btn-sw" : "btn-sm btn-ok" }' onclick='brd.go(${i})' />
+			</c:forEach>
+
+			<c:if test="${p.nowPage<page.totPage }">
+				<input type='button' value='다음' onclick='brd.go(${p.endPage+1 })' class='btn-sm btn-ok' />
+			</c:if>
+		</div>
+	
+        </div> --%>
 
 
     <!-- 리뷰 상세조회 modal -->
@@ -239,3 +275,5 @@
         </div>
     </div>
  </div>
+ 
+

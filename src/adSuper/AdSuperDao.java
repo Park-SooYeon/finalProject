@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 
 import bean.Factory;
+import bean.Page;
 import bean.ReviewVo;
 import bean.membershipVo;
 import bean.partnerVo;
@@ -192,11 +193,18 @@ public class AdSuperDao {
 				}
 				
 				//리뷰전체조회 (전체리뷰조회 view join)
-				public List<ReviewVo> review_all() {
-					System.out.println("dao 리뷰젆체조회");
+				public List<ReviewVo> review_all(Page p) {		
+					System.out.println("검색"+p.getFindStr());
 					List<ReviewVo> list = new ArrayList<ReviewVo>();
 					try {
-						list = sqlSession.selectList("admin.review_all");
+						int totList = sqlSession.selectOne("admin.count",p);
+						p.setTotListSize(totList);
+						p.pageCompute();
+						list = sqlSession.selectList("admin.review_all", p);
+//						for(ReviewVo vo : list) {
+//							System.out.println(vo.toString());
+//							
+//						}
 					}catch(Exception ex) {
 						ex.printStackTrace();
 					}finally {

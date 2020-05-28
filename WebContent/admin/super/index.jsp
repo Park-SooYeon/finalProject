@@ -17,3 +17,5 @@
 	
 	<!-- partial:partials/_footer.html -->
 	<%@include file="../partials/footer.jsp" %>
+
+	
