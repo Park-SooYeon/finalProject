@@ -13,6 +13,10 @@ $('#widthsort').on("click", function() {
 	$('#cardsort_list').css("display", 'none');
 });
 
+var cnt = 0; // 나타난 검색 요소 개수
+let widthsort_list_div = $('#widthsort_list'); // 라인형 검색된 요소를 담을 div
+let cardsort_list_div = $('#cardsort_list'); // 카드형 검색된 요소를 담을 div
+let scrollCnt = 12; // 무한 스크롤 한번에 추가되는 요소의 개수
 
 // 관광지, 음식점, 축제 중 한가지 filter 조건만 보이기
 $('#check_happy').on("click", function() {
@@ -50,6 +54,9 @@ $('#check_festival').on("click", function() {
 
 // 관광 타입 radio 버튼 클릭시 작동하는 함수
 menuSelect = function(menu) {
+	// 기존에 그려진 요소들 제거
+	filter.removeElement();
+	
 	// 관광 타입 설정 및 filter 검색 조건 초기화
 	// local 검색 조건은 유지
 	filter.menu = menu;
@@ -119,6 +126,7 @@ filter.init = function(menu, local) {
 }
 
 filter.check = function(ele) {
+	filter.removeElement();
 	let eleId = ele.getAttribute("id"); // 요소의 id 값
 	let eleName = ele.getAttribute("name"); // 요소의 name 값
 	let check_val = ele.value; // 요소의 value 값
@@ -247,72 +255,77 @@ filter.searchRemove = function(eleName, check_val) {
 	}
 }
 
+// 검색 조건이 변경될 때 기존에 있던 검색 요소 지우기 및 나타난 요소 개수 초기화
+filter.removeElement = function() {
+	cnt = 0;
+	widthsort_list_div.empty();
+	cardsort_list_div.empty();
+}
 
 // 검색 조건에 추가된 요소 만들기
 filter.makeElement = function() {
-	let widthsort_list_div = $('#widthsort_list');
-	let cardsort_list_div = $('#cardsort_list');
-	
-	// 이전에 검색된 요소들 지우기
-	widthsort_list_div.empty();
-	cardsort_list_div.empty();
 	
 	// 검색된 요소들 만들고 추가하기
-	for(let i of filter.allItems) {
+	for(let i = cnt ; i < cnt + scrollCnt ; i++) {
+		if(i >= filter.allItems.length) break; // 더 나타낼 요소가 없으면 break;
+		let item = filter.allItems[i];
 		let widthsort_ele
 			= `<div class="row col-0">`
-			+ `<div class="col-md-12 widthsort_list" onclick="detailMove(${i['contentid']})">`
+			+ `<div class="col-md-12 widthsort_list" onclick="detailMove(${item['contentid']})">`
 			+ `<div class="row mb-10">`
 			+ `<div class="col-md-3 nopadding">`
-			+ `<img src="${i['firstimage']}" alt="no-image" class="img-fluid">`
+			+ `<img src="${item['firstimage']}" alt="no-image" class="img-fluid">`
 			+ `</div>`
 			+ `<div class="col-md-9 mt-sm-20 left-align-p" style="background-color:white;">`
-			+ `<span>${i['title']}</span></br>`
+			+ `<span>${item['title']}</span></br>`
 			+ `<div style="width: 30px; float: left;">별점</div>`
-			+ `<div class="rating" data-rate="${i['reputation'] === undefined? 0:i['reputation']}" style="float: left;">`
+			+ `<div class="rating" data-rate="${item['reputation'] === undefined? 0:item['reputation']}" style="float: left;">`
 			+ `<i class="fa fa-star"></i>`
 			+ `<i class="fa fa-star"></i>`
 			+ `<i class="fa fa-star"></i>`
 			+ `<i class="fa fa-star"></i>`
 			+ `<i class="fa fa-star"></i>`
-			+ `<span>  ${i['review_cnt'] === undefined? 0:i['review_cnt']} 건의 리뷰</span>`
+			+ `<span>  ${item['review_cnt'] === undefined? 0:item['review_cnt']} 건의 리뷰</span>`
 			+ `</div>`
 			+ `<br/>`
-			+ `<span>${i['addr1'] }</span>`
+			+ `<span>${item['addr1'] }</span>`
 			+ `</div>`
 			+ `</div>`
 			+ `</div>`
 			+ `</div>`;
 		let cardsort_ele 
-			= `<div class="col-md-3 col-6 p-1 cardsort_list" onclick="detailMove(${i['contentid']})">`
+			= `<div class="col-md-3 col-6 p-1 cardsort_list" onclick="detailMove(${item['contentid']})">`
 			+ `<div class="row">`
 			+ `<div class="col-md-12">`
-			+ `<img src="${i['firstimage']}" alt="no-image" class="img-fluid">`
+			+ `<img src="${item['firstimage']}" alt="no-image" class="img-fluid">`
 			+ `</div>`
 			+ `<div class="col-md-12 mt-sm-20 left-align-p">`
 			+ `<div style="background-color: white; padding: 10px;">`
 			+ `<div style="height: 10px;">&nbsp</div>`
-			+ `<span>${i['title'] }</span>`
-			+ `<div class="rating" data-rate="${i['reputation'] === undefined? 0:i['reputation']}">`
+			+ `<span>${item['title'] }</span>`
+			+ `<div class="rating" data-rate="${item['reputation'] === undefined? 0:item['reputation']}">`
 			+ `<i class="fa fa-star checked"></i>`
 			+ `<i class="fa fa-star"></i>`
 			+ `<i class="fa fa-star"></i>`
 			+ `<i class="fa fa-star"></i>`
 			+ `<i class="fa fa-star"></i>`
-			+ `<span>  ${i['review_cnt'] === undefined? 0:i['review_cnt']} 건의 리뷰</span>`
+			+ `<span>  ${item['review_cnt'] === undefined? 0:item['review_cnt']} 건의 리뷰</span>`
 			+ `</div>`
-			+ `<span>${i['addr1'] }</span>`
+			+ `<span>${item['addr1'] }</span>`
 			+ `</div>`
 			+ `</div>`
 			+ `</div>`
 			+ `</div>`;
 		widthsort_list_div.append(widthsort_ele);
 		cardsort_list_div.append(cardsort_ele);	
-
+		
+		// 지도에 마커 그리기
+		makePosition(item);
 	}
 	
 	// 별 그리기
 	filter.makeStar();
+	
 }
 
 filter.makeStar = function() {
@@ -323,3 +336,17 @@ filter.makeStar = function() {
 		$(this).find('i:nth-child(-n+' + targetScore +')').css({color:'#ffc107'});
 	});
 }
+
+//스크롤 바닥 감지
+window.onscroll = function(e) {
+    //추가되는 임시 콘텐츠
+    //window height + window scrollY 값이 document height보다 클 경우,
+    if((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+    	//실행할 로직 (콘텐츠 추가)
+    	cnt += scrollCnt;
+        
+        // 12개 요소 추가로 나타내기
+    	filter.makeElement();
+        
+    }
+};
