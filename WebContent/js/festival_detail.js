@@ -33,11 +33,12 @@ function addCookie(id){
 	}else{
 		//신규 id rkqt wjwkdgkrl
 		setCookie('place_serial', id, expire);
-	}	
+	}
 	
 	
 }
 
+addCookie(code);
 
 //쿠키 가저오기
 var getCookie = function(place_serial){
