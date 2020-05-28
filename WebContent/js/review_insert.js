@@ -221,19 +221,19 @@ $(document).ready(function(){
     });
     
     $('#star_1').click(function(){
-    	$('#star_input').val(1);
+    	$('#reputation').val(1);
     });
     $('#star_2').click(function(){
-    	$('#star_input').val(2);
+    	$('#reputation').val(2);
     });
     $('#star_3').click(function(){
-    	$('#star_input').val(3);
+    	$('#reputation').val(3);
     });
     $('#star_4').click(function(){
-    	$('#star_input').val(4);
+    	$('#reputation').val(4);
     });
     $('#star_5').click(function(){
-    	$('#star_input').val(5);
+    	$('#reputation').val(5);
     });
     
     $('#review_insert').click(function(){
