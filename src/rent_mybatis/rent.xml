@@ -144,10 +144,25 @@
 		
 	</select>
 	
-	<select id='reviewSearch' parameterType="Integer" resultType="rent_parameter.rentReviewVo">
+	<select id='reviewSearch' parameterType="rent_parameter.rentReviewPm" resultType="rent_parameter.rentReviewVo">
 		select review_serial , car_serial , reserve_serial , scale , take_overtime , good_news , bad_news , writed_date , round((review_1+review_2+review_3+review_4+review_5+review_6+review_7)/7,1) score
 		from RENT_REVIEW
-		where CAR_SERIAL = ${_parameter}
+		where CAR_SERIAL = ${car_serial}
+		<if test='scale_kind !=null and(scale_kind eq "가족".toString())'>
+				and scale = '가족'
+		</if>
+		<if test='scale_kind !=null and(scale_kind eq "그룹".toString())'>
+				and scale = '그룹'
+		</if>
+		<if test='scale_kind !=null and(scale_kind eq "커플".toString())'>
+				and scale = '커플'
+		</if>
+		<if test='scale_kind !=null and(scale_kind eq "개인".toString())'>
+				and scale = '개인'
+		</if>
+		<if test='scale_kind !=null and(scale_kind eq "a".toString())'>
+				and scale = '개인' and scale = '그룹' and scale = '커플' and scale = '가족'
+		</if>
 	</select>
 	
 	<select id='reviewTotSearch' parameterType="Integer" resultType="rent_parameter.rentReviewTotVo">

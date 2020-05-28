@@ -11,6 +11,7 @@ import rent_parameter.CarViewPm;
 import rent_parameter.CarViewVo;
 import rent_parameter.CompanyPm;
 import rent_parameter.DateVo;
+import rent_parameter.rentReviewPm;
 import rent_parameter.rentReviewTotVo;
 import rent_parameter.rentReviewVo;
 
@@ -75,10 +76,11 @@ public class RentDao {
 		
 	}
 	
-	public List<rentReviewVo> rentReview(int car_serial){
+	public List<rentReviewVo> rentReview(int car_serial,String scale_kind){
 		List<rentReviewVo> list = null;
 		try {
-			list = sqlSession.selectList("rent.reviewSearch",car_serial);
+			rentReviewPm pm = new rentReviewPm(car_serial,scale_kind);
+			list = sqlSession.selectList("rent.reviewSearch",pm);
 		}catch(Exception e) {
 			e.printStackTrace();
 		}finally {

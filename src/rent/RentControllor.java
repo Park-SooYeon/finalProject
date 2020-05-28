@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import rent_parameter.CarViewVo;
 import rent_parameter.CompanyPm;
 import rent_parameter.DateVo;
+import rent_parameter.rentReviewPm;
 import rent_parameter.rentReviewTotVo;
 import rent_parameter.rentReviewVo;
 
@@ -226,6 +227,8 @@ public class RentControllor {
 		String placeMain = req.getParameter("placeMain");
 		String placeSub = req.getParameter("placeSub");
 		
+		String scale_kind = req.getParameter("scale_kind");
+		
 		int betweenDay = rentDao.DateBettweenDay(rentDate, returnDate);
 		long between = rentDao.DateBettween(rentDate, returnDate);
 		DateVo dateVo1 = rentDao.paramTime(rentDate);
@@ -233,13 +236,14 @@ public class RentControllor {
 		
 		Timestamp rentD = rentDao.TimeMaker(rentDate);
 		
-		List<rent_parameter.rentReviewVo> review_list = rentDao.rentReview(car_serial);
+		
+		List<rent_parameter.rentReviewVo> review_list = rentDao.rentReview(car_serial,scale_kind);
 		rentReviewTotVo review_tot = rentDao.rentReviewTot(car_serial);
 		mv.addObject("review_tot", review_tot);
 		mv.addObject("review_list",review_list);
 		
 		mv.addObject("car_serial", car_serial);
-		
+		mv.addObject("scale_kind", scale_kind);
 		
 		mv.addObject("rentD",rentD);
 		

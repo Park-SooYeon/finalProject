@@ -100,13 +100,64 @@
 		<div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
 			<div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
 				고객 유형에따른 필터 : 
-				<select id='scale_kind' class="form-control" name='scale_kind'>
-				  <option value=''>모든 고객들</option>
-				  <option value='가족'>가족</option>
-				  <option value='커플'>커플</option>
-				  <option value='그룹'>그룹</option>
-				  <option value='개인'>개인</option>
-				</select>
+				<c:choose>
+								<c:when test="${scale_kind eq 'a'}"> 
+									<select id='scale_kind' class="form-control" name='scale_kind'>
+									  <option value='a' selected="selected">모든 고객들</option>
+									  <option value='가족'>가족</option>
+									  <option value='커플'>커플</option>
+									  <option value='그룹'>그룹</option>
+									  <option value='개인'>개인</option>
+									</select>
+								</c:when>
+								<c:when test="${scale_kind eq '가족'}"> 
+									<select id='scale_kind' class="form-control" name='scale_kind'>
+									  <option value='a'>모든 고객들</option>
+									  <option value='가족' selected="selected">가족</option>
+									  <option value='커플'>커플</option>
+									  <option value='그룹'>그룹</option>
+									  <option value='개인'>개인</option>
+									</select>
+								</c:when>
+								<c:when test="${scale_kind eq '커플'}"> 
+									<select id='scale_kind' class="form-control" name='scale_kind'>
+									  <option value='a'>모든 고객들</option>
+									  <option value='가족'>가족</option>
+									  <option value='커플' selected="selected">커플</option>
+									  <option value='그룹'>그룹</option>
+									  <option value='개인'>개인</option>
+									</select>
+								</c:when>
+								<c:when test="${scale_kind eq '그룹'}"> 
+									<select id='scale_kind' class="form-control" name='scale_kind'>
+									  <option value='a'>모든 고객들</option>
+									  <option value='가족'>가족</option>
+									  <option value='커플'>커플</option>
+									  <option value='그룹' selected="selected">그룹</option>
+									  <option value='개인'>개인</option>
+									</select>
+								</c:when>
+								<c:when test="${scale_kind eq '개인'}"> 
+									<select id='scale_kind' class="form-control" name='scale_kind'>
+									  <option value='a'>모든 고객들</option>
+									  <option value='가족'>가족</option>
+									  <option value='커플'>커플</option>
+									  <option value='그룹'>그룹</option>
+									  <option value='개인' selected="selected">개인</option>
+									</select>
+								</c:when>
+								<c:otherwise>
+									<select id='scale_kind' class="form-control" name='scale_kind'>
+									  <option value='a'>모든 고객들</option>
+									  <option value='가족'>가족</option>
+									  <option value='커플'>커플</option>
+									  <option value='그룹'>그룹</option>
+									  <option value='개인'>개인</option>
+									</select>
+								</c:otherwise>
+								
+							</c:choose>	
+				
 			</div>
 			<div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
 				<c:if test="${fn:length(review_list) > 0}">
