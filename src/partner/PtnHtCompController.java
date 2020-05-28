@@ -58,22 +58,19 @@ public class PtnHtCompController {
 		
 		int serial = dao.getSerial(member_id);
 		List<PlaceVo> list = dao.select(serial);
-		
 		List<UploadVo> photoList = null;
 		
 		for(PlaceVo vo : list) {
+			// place serial 가져오기 
 			int pserial = vo.getPlace_serial();
-			System.out.println("pserial : " + pserial);
-			// place serial
+			
+			// place_serial에 해당하는 사진정보 가져오기 
 			photoList = dao.getAttList(pserial);
+			
 			vo.setPhotos(photoList);
-			System.out.println("vo getphotos : " + vo.getPhotos());
-			System.out.println(photoList);
+			
 		}
 		
-		
-		System.out.println("list.get" + list);
-		System.out.println("uploadvo : " + photoList);
 		mv.addObject("photoList", photoList);
 		mv.addObject("list", list);
 		mv.setViewName("hotel_comp_list");
@@ -216,7 +213,7 @@ public class PtnHtCompController {
 		
 		mv.addObject("vo", vo);
 		mv.addObject("result", result);
-		mv.setViewName("hotel_comp_list");
+		//mv.setViewName("hotel_comp_list");
 		return mv;
 	}
 	
@@ -233,7 +230,7 @@ public class PtnHtCompController {
 		Object vo = null; 
 		
 		mv.addObject("vo", vo);
-		mv.setViewName("hotel_comp_list");
+		mv.setViewName("hotel_comp_view");
 		return mv;
 	}
 	

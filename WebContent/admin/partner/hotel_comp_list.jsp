@@ -21,7 +21,8 @@
                             </div>
                             <div id="order-listing_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
                                 <form class="table-responsive" name="frmAdmHtCompList" id="frmAdmHtCompList" method="post">
-                                	<input type="text" name="mamber_id" id="mamberId" value="${member_id }">
+                                    <input type="hidden" name="mamber_id" id="mamberId" value="${member_id }">
+                                    <input type="hidden" name="pserial" id="pserial" value="" />
                                     <table id="order-listing" class="table">
                                         <thead>
                                             <tr>
@@ -40,6 +41,7 @@
                                         		<tr>
 	                                                <td>${i.count }</td>
 	                                                <td>
+	                                                	<input type="hidden"  id="place_serial_${vo.place_serial}" value="${vo.place_serial }" />
 	                                                    <div class="d-flex align-items-center">
 	                                                    	<c:if test="${!empty vo.photos}">
 	                                                    		<c:forEach var="photo" items="${vo.photos}" begin="0" end="0" varStatus="status">
@@ -67,7 +69,7 @@
 		                                                </c:if>
 	                                                </td>
 	                                                <td>
-	                                                    <button class="btn btn-outline-primary" data-toggle="modal" data-target="#ModalHotelInfo">View</button>
+	                                                    <button type="button" class="btn btn-outline-primary" id="btnPtnHtView_${place_serial }" onclick="ptn.go(${vo.place_serial})">View</button>
 	                                                </td>
 	                                            </tr>
                                         	
@@ -96,6 +98,22 @@
                     <div class="modal-body pt-2">
 
                         <form action="" name="frmAdmHtCompAdd" id="frmAdmHtCompAdd" class="pt-2">
+                            <div class="form-group row">
+                                <div class="col-lg-3">
+                                    <label class="col-form-label">지역 <span class="text-danger">*</span></label>
+                                </div>
+                                <div class="col-lg-8">
+                                    <select class="form-control" id="htPlaceNm" required>
+				                        <option value="">선택해주세요.</option>
+				                        <option value="1">서울</option>
+				                        <option value="2">제주도</option>
+				                        <option value="3">부산</option>
+				                        <option value="4">대구</option>
+				                        <option value="5">경기도</option>
+				                        <option value="6">인천</option>
+				                    </select>
+			                    </div>
+		                    </div>
                             <div class="form-group row">
                                 <div class="col-lg-3">
                                     <label class="col-form-label">호텔명 <span class="text-danger">*</span></label>
@@ -130,19 +148,12 @@
                                     <label class="col-form-label">사진</label>
                                 </div>
                                 <div class="col-lg-8">
-                                    <div class="row">
-                                        <div class="col-md-6 mb-2">
-                                            <input type="file" class="dropify" />
-                                        </div>
-                                        <div class="col-md-6 mb-2">
-                                            <input type="file" class="dropify" />
-                                        </div>
-                                        <div class="col-md-6 mb-2">
-                                            <input type="file" class="dropify" />
-                                        </div>
-                                    </div>
-
-                                </div>
+                                   	<div class="row" id="attList">
+                                    	<div class="col-md-12 mb-2">
+                                    		<input type="file" name="fileName1" class="dropify" multiple="multiple" />
+                                    	</div>
+                                   	</div>
+								</div>
                             </div>
                             <div class="form-group row">
                                 <div class="col-lg-3">
@@ -150,25 +161,25 @@
                                 </div>
                                 <div class="col-lg-8">
                                     <div class="row">
-                                        <div class="col-6">
-                                            <div class="form-check form-check-flat">
-                                                <label class="form-check-label">
-                                                    <input type="checkbox" class="form-check-input"> Wi-Fi <i class="input-helper"></i></label>
-                                            </div>
-                                        </div>
-                                        <div class="col-6">
-                                            <div class="form-check form-check-flat">
-                                                <label class="form-check-label">
-                                                    <input type="checkbox" class="form-check-input"> 금연 <i class="input-helper"></i></label>
-                                            </div>
-                                        </div>
-                                        <div class="col-6">
-                                            <div class="form-check form-check-flat">
-                                                <label class="form-check-label">
-                                                    <input type="checkbox" class="form-check-input"> 주차장 <i class="input-helper"></i></label>
-                                            </div>
-                                        </div>
-                                    </div>
+                                   		<div class="col-sm-3 col-6">
+                                   			<div class="form-check form-check-flat">
+				                              <label class="form-check-label">
+				                                <input type="checkbox" class="form-check-input" name="wifi" id="wifi"> Wi-Fi <i class="input-helper"></i></label>
+				                            </div>
+                                   		</div>
+                                   		<div class="col-sm-3 col-6">
+                                   			<div class="form-check form-check-flat">
+				                              <label class="form-check-label">
+				                                <input type="checkbox" class="form-check-input" name="breakfast" id="breakfast"> 조식 <i class="input-helper"></i></label>
+				                            </div>
+                                   		</div>
+                                   		<div class="col-sm-3 col-6">
+                                   			<div class="form-check form-check-flat">
+				                              <label class="form-check-label">
+				                                <input type="checkbox" class="form-check-input" name="parking" id="parking"> 주차장 <i class="input-helper"></i></label>
+				                            </div>
+                                   		</div>
+                                   	</div>
                                 </div>
                             </div>
                             

@@ -21,7 +21,8 @@
 	                                    <label class="col-form-label">지역 <span class="text-danger">*</span></label>
 	                                </div>
 	                                <div class="col-lg-8">
-	                                    <select class="form-control" id="htPlaceNm">
+	                                    <select class="form-control" id="htPlaceNm" required>
+					                        <option value="">선택해주세요.</option>
 					                        <option value="1">서울</option>
 					                        <option value="2">제주도</option>
 					                        <option value="3">부산</option>
@@ -36,7 +37,7 @@
                                         <label class="col-form-label">호텔명 <span class="text-danger">*</span></label>
                                     </div>
                                     <div class="col-lg-8">
-                                        <input class="form-control" maxlength="50" name="admHCompNm" id="admHCompNm" type="text"> 
+                                        <input class="form-control" maxlength="50" required="required" name="admHCompNm" id="admHCompNm" type="text"> 
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -44,7 +45,7 @@
                                         <label class="col-form-label">연락처 <span class="text-danger">*</span></label>
                                     </div>
                                     <div class="col-lg-8">
-                                        <input class="form-control form-phone" name="admHCompTel" id="admHCompTel" data-inputmask-alias="(+99) 9999-9999" im-insert="true">
+                                        <input class="form-control form-phone" required="required" name="admHCompTel" id="admHCompTel" data-inputmask-alias="(+99) 9999-9999" im-insert="true">
 									</div>
                                 </div>
                                 <div class="form-group row">
@@ -107,15 +108,16 @@
 	                                    <label class="col-form-label">판매상태 <span class="text-danger">*</span></label>
 	                                </div>
 	                                <div class="col-lg-8">
-	                                    <select class="form-control" id="PtnhtState">
+	                                    <select class="form-control" id="PtnhtState" required>
+	                                    	<option value="">선택해주세요.</option>
 					                        <option value="1">활성화</option>
-					                        <option value="2">비활성화</option>
+					                        <option value="0">비활성화</option>
 					                    </select>
 				                    </div>
 			                    </div>
                                 <div class="form-group col-12 text-right mt-5">
                                 	<button type="button" class="btn btn-secondary mr-2" id="btnPtHtCancle">취소</button>
-                                	<button type="button" class="btn btn-success" id="btnPtHtRegister">등록</button>
+                                	<button type="button" class="btn btn-success" id="btnPtHtRegister" >등록</button>
                                 </div>
                                 <input type="text" name="nowPage" value="${param.nowPage }" />
 								<input type="text" name="findStr" value="${param.findStr }" />
