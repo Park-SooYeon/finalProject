@@ -30,6 +30,7 @@ var sel_files = [];//이미지 정보들을 담을 배열
 
 /* 사진 drag and drop 이벤트에 사용되는 함수들 */
 $(document).ready(function(){
+	
     var objDragAndDrop = $(".dragAndDropDiv");
     
     $(document).on("dragenter",".dragAndDropDiv",function(e){
@@ -70,9 +71,9 @@ $(document).ready(function(){
 
     $('input[type=file]').on('change', function(e) {
         var files = e.originalEvent.target.files;
-        /*
+        
         var filesArr = Array.prototype.slice.call(files);        
-        $("#fileUpload").empty();
+        $(".picture_area").empty();
         var index = 0;
         filesArr.forEach(function(f){
         	if(!f.type.match("image.*")){
@@ -85,13 +86,12 @@ $(document).ready(function(){
         	var reader = new FileReader();
         	reader.onload = function(e){
         		var html = "<a href=\"javascript:void(0);\" onclick=\"deleteImageAction("+index+")\" id=\"img_id_"+index+"\"><img src=\""+e.target.result+"\" data-file='"+f.name+"' class='selProductFile' title='Click to remove' style='width: 10%; height: 10%;'></a>";
-        		$("#fileUpload").append(html);
         		$(".picture_area").append(html);
-        		index++
-        	}
+        		index++;
+        	}        	
         	reader.readAsDataURL(f);
         });
-        */
+        
         handleFileUpload(files,objDragAndDrop);        
     });
     
@@ -110,7 +110,7 @@ $(document).ready(function(){
     }
     
     var rowCount=0;
-    function createImage(obj){            
+    function createImage(obj){    	
         rowCount++;
         var row="odd";
         if(rowCount %2 ==0) row ="even";        
@@ -118,7 +118,7 @@ $(document).ready(function(){
         this.filename = $("<div class='filename'></div>").appendTo(this.statusbar);
         this.size = $("<div class='filesize'></div>").appendTo(this.statusbar);
         this.progressBar = $("<div class='progressBar'><div></div></div>").appendTo(this.statusbar);
-        this.abort = $("<div class='abort'>삭제</div>").appendTo(this.statusbar);
+        this.abort = $("<div class='abort'>중지</div>").appendTo(this.statusbar);
         
         obj.after(this.statusbar);
         
@@ -178,7 +178,7 @@ $(document).ready(function(){
                 return xhrobj;
             },
             url: uploadURL,
-            type: "GET",
+            type: "POST",
             contentType:false,
             processData: false,
             cache: false,
@@ -191,8 +191,7 @@ $(document).ready(function(){
         }); 
      
         status.setAbort(jqXHR);
-    }
-    
+    }   
    
     $("#btnImgInsert").on("click", function() {
     	var ele = document.getElementById("modal-body");//$("#fileUpload");
@@ -200,8 +199,8 @@ $(document).ready(function(){
     	for(var i = 0 ; i < ele.childElementCount - 2 ; i++) {
     		$(".picture_area").append("<img src='" + name + "' style='width: 25%; height: 25%'/>");
     	}
-    });
-	
+    });   
+    
     // 별점 hover시 클릭될 별점으로 보이는 이벤트 처리
     $('#review_star').hover(function() {
     	let starArea = document.getElementById('review_star');
@@ -238,8 +237,9 @@ $(document).ready(function(){
     });
     
     $('#review_insert').click(function(){
-    	let review_insert = new FormData($('#review_insert_frm')[0]);
-    	review_insert.append("place_serial", place_serial);
+    	$("input[name=place_serial]").prop("disabled", false);
+    	$('#place_serial').val(place_serial);
+/*    	let review_insert = new FormData($('#review_insert_frm')[0]);
     	
     	//폼데이터 안에 값 확인
     	for (var key of review_insert.keys()) {
@@ -251,18 +251,23 @@ $(document).ready(function(){
     		for (var value of review_insert.values()) {
 
     		  alert(value);
-
-    		}
+	
+    		}*/
     		
-    	//document.review_insert_frm.action="?inc=review_insertR.rv"
-    	//document.review_insert_frm.submit();
+    	document.review_insert_frm.action="?inc=review_insertR.rv";    	
+    	document.review_insert_frm.submit();
     });
-    
-    
-    $('#input_imgs').on("change", handleImgFileSelect);    
 });
     
 
+/*function delete_photo(){
+	$('.image').remove();
+	$('.picture_area').empty();
+	location.reload();
+};*/
+    
+/*
+$('#input_imgs').on("change", handleImgFileSelect);    
 function fileUploadAction(){
 	$('#input_imgs').trigger('click');
 }
@@ -321,4 +326,5 @@ function submitAction(){
 	
 	xhr.send(data);
 }
+*/
 	
