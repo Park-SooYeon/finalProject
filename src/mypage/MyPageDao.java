@@ -111,17 +111,18 @@ public class MyPageDao {
 	
 	public List<LikeListVo> selectLike(String member_id) {
 		List<LikeListVo> list = new ArrayList<LikeListVo>();
-		List<PlaceVo> list2 = new ArrayList<PlaceVo>();
+		List<LikeListVo> list2 = new ArrayList<LikeListVo>();
 		try {
+			// 호텔정보만 반환
 			list = sqlSession.selectList("mypage.select_like", member_id);
 			
+			// api contentid만 반환
 			list2 = sqlSession.selectList("select_places", member_id);
-			// contentid만 반환
 			
-			for(PlaceVo vo : list2) {
+			for(LikeListVo vo : list2) {
 				System.out.println(vo.getPlace_serial());
-				LikeListVo like = getApi(vo.getPlace_serial()+"");
-				list.add(like);
+				LikeListVo vo2 = getApi(vo.getPlace_serial()+"");
+				list.add(vo2);
 			}
             
             //String result = jobj.get("contentid").toString();
