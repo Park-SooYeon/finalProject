@@ -556,6 +556,7 @@
 	padding-bottom:5px;
 	border-right: 0.5px solid #bbb;
 	border-bottom: 0.5px solid #bbb;
+	font-size: 0.7em;
 }
 #rentSearch #right #underInfo div #carSubInfo2 #carSubInfo2_1 span{
 	color:green;
@@ -572,6 +573,10 @@
 }
 #rentSearch #right #underInfo div #carSubInfo3,#carSubInfo2 .info_f2{
 	cursor: pointer;
+}
+#rentSearch #right #underInfo div #carSubInfo3,#carSubInfo2 .info_f2>b{
+	font-size: 0.7em;
+	
 }
 #rentSearch #right #underInfo div #carSubInfo3 {
 	padding-top:5px;
@@ -1455,7 +1460,24 @@
 
 
 
-
+.carPriceView_info1{
+	text-align:right;
+	margin-top: 40px;
+	font-size: 0.8em;
+	color:#444;
+}
+.carPriceView_info2{
+	text-align:right;
+	font-size: 1.7em;
+	font-weight: 800;
+	color:#333;
+}
+.carPriceView_info3{
+	text-align:right;
+	color: green;
+	font-size:0.5em;
+	font-weight: 600;
+}
 
 
 

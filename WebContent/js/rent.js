@@ -77,19 +77,24 @@ rent.func = function(){
 	
 	
 	
+	
 }
 rent.goMain = function(){
 	$('#rent_frm').attr('action','./rentMain.rent').submit();
 }
 
 
-rent.carInfo = function(){
+rent.carInfo = function(car_serial){
+	$('#car_serial').val(car_serial);
 	$('#rent_frm').attr('action','./carView.rent').submit();
 }
-rent.review = function(){
+rent.review = function(car_serial){
+	$('#car_serial').val(car_serial);
 	$('#rent_frm').attr('action','./carView2.rent').submit();
 }
-rent.importantInfo = function(){
+
+rent.importantInfo = function(car_serial){
+	$('#car_serial').val(car_serial);
 	$('#rent_frm').attr('action','./carView3.rent').submit();
 }
 //renstSearch(rentViewSub1) >> rentSearch(rentViewSub2)
@@ -99,6 +104,7 @@ rent.carSearch = function(companySerial){
 }
 //rentSearch(rentViewSub2) >> rentView(rentViewSub1)
 rent.carView = function(carSerial){
+	$('#car_serial').val(carSerial);
 	$('#rent_frm').attr('action','./carView.rent').submit();
 }
 rent.fillter = function(){

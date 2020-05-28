@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,6 +11,20 @@
 </head>
 <body>
 	<form name='rent_frm' id='rent_frm' method='post'>
+	
+	<input type='hidden' value='${dateVo1.year }' id='dt1'/>	
+	<input type='hidden' value='${dateVo1.month }'id='dt2'/>
+	<input type='hidden' value='${dateVo1.day }'id='dt3'/>
+	<input type='hidden' value='${dateVo1.hour }'id='dt4'/>
+	<input type='hidden' value='${dateVo1.min }'id='dt5'/>
+	
+	<input type='hidden' name='placeMain' value='${placeMain}'/>
+	<input type='hidden' name='placeSub' value='${placeSub}'/>
+	<input type='hidden' name='rentDate' value='${rentDate}'/>
+	<input type='hidden' name='returnDate' value='${returnDate}'/>
+	<input type='hidden' value='' name='car_serial' id='car_serial'/>
+	<input type='hidden' value='${car_serial}' id='pppp1'/>
+	
 	<div id='rentView' style="padding-top: 110px;">
 		<div class='row'>
 			<div class='col-lg-2 col-md-2 col-sm-1 hidden-xs'>
@@ -32,12 +48,12 @@
 							</div>
 							<div class='tripTime0'>
 								<div class='tripTime1'>여행까지 남은 시간 :</div>
-								<div class='tripTime2'> 2 : 8 : 9 : 6</div>
+								<div id='tripTime2' class='tripTime2'></div>
 								<div class='tripTime3'> 일 &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;시간  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;분 &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;초</div>
 							</div>
 						</div>
 						
-						<div class='rentInfo' onclick='rent.importantInfo()'>
+						<div class='rentInfo' onclick='rent.importantInfo(${car_serial})'>
 							<div class='row'>
 									<div class='col-lg-3 col-md-3 col-sm-3 col-xs-3' >
 										<img src='../images/rent/rentInfo.png'/>
@@ -66,9 +82,9 @@
 								    <!-- Brand and toggle get grouped for better mobile display -->
 								    <div class="navbar-header">
 								    	<p id='viewNav' class="navbar-text navbar-right">
-									    	<a href="javascript:void(0);" onclick="rent.carInfo()" class="navbar-link"><img src="../images/rent/icon_view1.png"/>&nbsp;차량정보</a>
-									    	<a href="javascript:void(0);" onclick="rent.review()" class="navbar-link"><img src="../images/rent/icon_view2.png"/>&nbsp;고객평가</a>
-									    	<a href="javascript:void(0);" onclick="rent.importantInfo()" class="navbar-link"><img src="../images/rent/icon_view3.png"/>&nbsp;중요안내사항</a>
+									    	<a href="javascript:void(0);" onclick="rent.carInfo(${car_serial})" class="navbar-link"><img src="../images/rent/icon_view1.png"/>&nbsp;차량정보</a>
+									    	<a href="javascript:void(0);" onclick="rent.review(${car_serial})" class="navbar-link"><img src="../images/rent/icon_view2.png"/>&nbsp;고객평가</a>
+									    	<a href="javascript:void(0);" onclick="rent.importantInfo(${car_serial})" class="navbar-link"><img src="../images/rent/icon_view3.png"/>&nbsp;중요안내사항</a>
 								    	</p>
 								    </div>
 								    </div>
@@ -158,13 +174,15 @@
 							<div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
 								<button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#reserveModal">
 									<div>예약하러가기</div>
-									<span>풀커버 보호상품 미포함</span>
+									<span>풀커버 보호상품 미포함</span><br/>
+									<strong><fmt:formatNumber value="${vo.price }" pattern="#,###"></fmt:formatNumber> 원</strong>
 								</button>
 							</div>
 							<div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
 								<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#reserveModal">
 									<div>예약하러가기</div>
-									<span>풀커버 보호상품 포함</span>
+									<span>풀커버 보호상품 포함</span><br/>
+									<strong><fmt:formatNumber value="${vo.price+(30000*betweenDay) }" pattern="#,###"></fmt:formatNumber> 원</strong>
 								</button>
 							</div>
 						</div>
@@ -241,7 +259,62 @@
 	<script>
 	rent.func();
 	
+	const countDownTimer = function (id, date) { 
+		var _vDate = new Date(date); // 전달 받은 일자 
+		var _second = 1000; 
+		var _minute = _second * 60; 
+		var _hour = _minute * 60; 
+		var _day = _hour * 24; 
+		var timer; 
+		
+		function showRemaining() { 
+			var now = new Date(); 
+			var distDt = _vDate - now; 
+			
+			if (distDt < 0) { 
+				clearInterval(timer); 
+				document.getElementById(id).textContent = '날짜 잘못선택';
+				return; 
+			} 
+			
+			var days = Math.floor(distDt / _day); 
+			var hours = Math.floor((distDt % _day) / _hour); 
+			var minutes = Math.floor((distDt % _hour) / _minute); 
+			var seconds = Math.floor((distDt % _minute) / _second); 
+			
+			//document.getElementById(id).textContent = date.toLocaleString() + "까지 : "; 
+			document.getElementById(id).innerHTML = days + ' : ' + hours + ' : ' + minutes + ' : ' +seconds; 
+		} 
+		
+		timer = setInterval(showRemaining, 1000);
+		
+	}
 	
+	let dt1 = $('#dt1').val();//year
+	let dt2 = $('#dt2').val();//month
+	let dt3 = $('#dt3').val();//day
+	let dt4 = $('#dt4').val();//hour
+	let dt5 = $('#dt5').val();//min
+	let ampm;
+	
+	if(Number(dt4)>12){
+		dt4 = Number(dt4)-12;
+		ampm = 'pm';
+	}else{
+		ampm = 'am';
+	}
+	countDownTimer('tripTime2',dt2+'/'+dt3+'/'+dt1+' '+dt4+":"+dt5+' '+ampm); //
+	
+
+	
+	
+	
+	
+	$('#scale_kind').on('change',function(){
+		$('#car_serial').val($('#pppp1').val());
+		$('#rent_frm').attr('action','./carView2.rent').submit();
+		
+	});
 	
 	</script>
 
