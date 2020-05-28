@@ -65,18 +65,24 @@ public class ReviewController {
 		String msg = null;
 		HttpSession session = req.getSession();
 		String member_id = (String)session.getAttribute("member_id");		
+		int place_serial = Integer.parseInt(req.getParameter("place_serial"));
+		System.out.println("시리얼값" + place_serial);
+		int reputation = Integer.parseInt(req.getParameter("reputation"));
+		String review_title = req.getParameter("review_title");
+		String review_content = req.getParameter("review_content");
 		
 		//방문일 뉴데이트에서 먼스 마이너스 연산 처리 후 입력
 		//Date 를 Calendar 맵핑
-		int visit_date = Integer.parseInt(req.getParameter("visit_date"));
+		int date = Integer.parseInt(req.getParameter("visit_date"));
 		Calendar cal = Calendar.getInstance();
         cal.setTime(new Date());
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd");        
-        cal.add(Calendar.MONTH, -visit_date);
+        cal.add(Calendar.MONTH, -date);
         System.out.println("after: " + df.format(cal.getTime()));
+        String visit_date = df.format(cal.getTime());
         
-        int place_serial = Integer.parseInt(req.getParameter("place_serial"));
-		System.out.println("시리얼값" + place_serial);
+		
+		
 		
 		mv.setViewName("detailView");
 		return mv;
