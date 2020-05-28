@@ -172,15 +172,7 @@ public class PlaceVo {
 		return photo_name;
 	}
 	public void setPhoto_name(String photo_name) {
-		try {
-			String fileName = URLEncoder.encode(photo_name, "UTF-8");
-			fileName = fileName.replaceAll("\\+", "%20");
-			this.photo_name = fileName;
-					
-		} catch (UnsupportedEncodingException e) {
-			System.out.println("파일명 인코딩 중 오류 발생");
-			e.printStackTrace();
-		}
+		this.photo_name = photo_name;
 	}
 	public int getReputation() {
 		return reputation;

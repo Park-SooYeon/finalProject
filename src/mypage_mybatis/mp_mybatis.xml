@@ -98,7 +98,7 @@
    </insert>
    
    
-   <!-- 관심여행지 조회 -->
+   <!-- 관심여행지 조회 (호텔만)-->
    <select id="select_like" parameterType="String" resultMap="mp_map_like">
   	select like_serial, 
    		   L.member_id, 
@@ -115,6 +115,7 @@
    		   where P.place_serial = L.place_serial 
    		   and T.trip_list_serial = L.trip_list_serial 
    		   and L.member_id = #{_parameter}
+   		   and P.place_code = 4
    </select>
    
    <select id="select_review" parameterType="String" resultMap="mp_map_review">
@@ -134,9 +135,15 @@
    		and P.place_serial = R.place_serial
    </select>
    
-   <!-- like list에서 place serial만 가져오기 -->
-   <select id="select_places" parameterType="String" resultType="bean.PlaceVo">
-   		select place_serial from like_list where member_id = #{_parameter}
+   <!-- like list에서 place serial만 가져오기 (api contentid) -->
+   <select id="select_places" parameterType="String" resultMap="mp_map_like">
+   		select trip_list_serial, 
+   			   l.place_serial, 
+   			   getrevCnt(l.place_serial) review_cnt,
+   			   getReputation(l.place_serial) reputation
+   		from place p right outer join like_list l 
+   		on p.place_serial = l.place_serial 
+   		where p.place_serial is null and member_id = #{_parameter}   		
    </select>
    
    <select id="select_profile" parameterType="String" resultType="bean.membershipVo">
