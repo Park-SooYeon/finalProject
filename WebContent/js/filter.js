@@ -54,8 +54,6 @@ $('#check_festival').on("click", function() {
 
 // 관광 타입 radio 버튼 클릭시 작동하는 함수
 menuSelect = function(menu) {
-	// 기존에 그려진 요소들 제거
-	filter.removeElement();
 	
 	// 관광 타입 설정 및 filter 검색 조건 초기화
 	// local 검색 조건은 유지
@@ -126,7 +124,6 @@ filter.init = function(menu, local) {
 }
 
 filter.check = function(ele) {
-	filter.removeElement();
 	let eleId = ele.getAttribute("id"); // 요소의 id 값
 	let eleName = ele.getAttribute("name"); // 요소의 name 값
 	let check_val = ele.value; // 요소의 value 값
@@ -201,16 +198,22 @@ filter.removeAll = function() {
 
 // 검색 요소에 따라 데이터 검색하기
 filter.ajax = function() {
+	let findStr = document.getElementById('filterFindStr').value;
+	console.log(findStr);
 	$.ajax({
 		url : "searchList.sb",
 		method : "post",
 		data : {
 			"menu" : filter.menu,
 			"local" : filter.local,
-			"filter" : filter.filter
+			"filter" : filter.filter,
+			"findStr" : findStr
 		},
 		dataType : "json",
 		success : function(data) {
+			// 기존에 그려진 요소들 제거
+			filter.removeElement();
+			
 			filter.allItems = data;
 			
 			// 검색된 요소들의 개수 출력

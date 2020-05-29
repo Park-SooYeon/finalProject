@@ -23,14 +23,14 @@
 							</c:when>
 						</c:choose>
 					</h1>
-					<form class="" style="display:flex;">
-						<input type="text" placeholder="지역 또는 검색어를 입력해주세요!"
+					<div class="ui-widget" style="display: flex;">
+						<input id="mainFindStr" type="text" placeholder="지역 또는 검색어를 입력해주세요!"
 						onfocus="this.placeholder = ''"
 						onblur="this.placeholder = '지역 또는 검색어를 입력해주세요!'"
 						class="single-input">
-						<button class="btn btn-primary" style="width: 15%; height: 40px;"
-									type="submit"><i class="fa fa-search"></i></button>
-					</form>
+						<button id="mainSearch" class="btn btn-primary" style="width: 15%; height: 40px;">
+						<i class="fa fa-search"></i></button>
+					</div>
 				</div>
 			</div>
 		</div>

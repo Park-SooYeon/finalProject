@@ -12,15 +12,14 @@
 				<div class="title text-center">
 					<h1 class="text-white mb-10">어디로 떠나세요?</h1>
 				</div>
-				<form class="" style="display: flex;">
-					<input type="text" placeholder="지역을 검색해주세요!"
+				<div class="ui-widget" style="display: flex;">
+					<input id="mainFindStr" type="text" placeholder="지역을 검색해주세요!"
 						onfocus="this.placeholder = ''"
 						onblur="this.placeholder = '지역을 검색해주세요!'" class="single-input">
-					<button class="btn btn-primary" style="width: 15%; height: 40px;"
-						type="submit">
+					<button id="mainSearch" class="btn btn-primary" style="width: 15%; height: 40px;">
 						<i class="fa fa-search"></i>
 					</button>
-				</form>
+				</div>
 			</div>
 		</div>
 	</div>

@@ -63,7 +63,7 @@ public class SubMainController {
 		// 관광지 검색
 		try {
 	        StringBuilder urlBuilder = new StringBuilder("http://api.visitkorea.or.kr/openapi/service/rest/KorService/areaBasedList"); //지역기반 관광정보조회 URL
-	        urlBuilder.append("?" + URLEncoder.encode("ServiceKey","UTF-8") + "=B8%2BZaRoCMImsMJtdm0WOedSaSwRCucNkcnqroJSLiK%2F%2Fg7jsBF27h0GeG9RlWHRLEgkcHYh3PDV2qzL5Vh1WYA%3D%3D"); //Service Key
+	        urlBuilder.append("?" + URLEncoder.encode("ServiceKey","UTF-8") + "=%2FL4mnuLP6k1JiEz28Z86MlqufwpG49Q%2FhOqk53jtJr3H9fz%2FrNt5DoGHgSHGaprmYQOT6VXfCJcydUXrFUo%2FOA%3D%3D"); //Service Key
 	        urlBuilder.append("&" + URLEncoder.encode("MobileOS","UTF-8") + "=" + URLEncoder.encode("ETC", "UTF-8")); //IOS (아이폰), AND (안드로이드), WIN (원도우폰), ETC
 	        urlBuilder.append("&" + URLEncoder.encode("MobileApp","UTF-8") + "=" + URLEncoder.encode("AppTest", "UTF-8")); //서비스명=어플명
 	        urlBuilder.append("&" + URLEncoder.encode("pageNo","UTF-8") + "=" + URLEncoder.encode("1", "UTF-8")); //현재 페이지 번호
@@ -122,7 +122,7 @@ public class SubMainController {
 		// 음식점 검색
 		try {
 	        StringBuilder urlBuilder = new StringBuilder("http://api.visitkorea.or.kr/openapi/service/rest/KorService/areaBasedList"); //지역기반 관광정보조회 URL
-	        urlBuilder.append("?" + URLEncoder.encode("ServiceKey","UTF-8") + "=B8%2BZaRoCMImsMJtdm0WOedSaSwRCucNkcnqroJSLiK%2F%2Fg7jsBF27h0GeG9RlWHRLEgkcHYh3PDV2qzL5Vh1WYA%3D%3D"); //Service Key
+	        urlBuilder.append("?" + URLEncoder.encode("ServiceKey","UTF-8") + "=%2FL4mnuLP6k1JiEz28Z86MlqufwpG49Q%2FhOqk53jtJr3H9fz%2FrNt5DoGHgSHGaprmYQOT6VXfCJcydUXrFUo%2FOA%3D%3D"); //Service Key
 	        urlBuilder.append("&" + URLEncoder.encode("MobileOS","UTF-8") + "=" + URLEncoder.encode("ETC", "UTF-8")); //IOS (아이폰), AND (안드로이드), WIN (원도우폰), ETC
 	        urlBuilder.append("&" + URLEncoder.encode("MobileApp","UTF-8") + "=" + URLEncoder.encode("AppTest", "UTF-8")); //서비스명=어플명
 	        urlBuilder.append("&" + URLEncoder.encode("pageNo","UTF-8") + "=" + URLEncoder.encode("1", "UTF-8")); //현재 페이지 번호
@@ -181,7 +181,7 @@ public class SubMainController {
 		// 축제 검색
 		try {
 	        StringBuilder urlBuilder = new StringBuilder("http://api.visitkorea.or.kr/openapi/service/rest/KorService/areaBasedList"); //지역기반 관광정보조회 URL
-	        urlBuilder.append("?" + URLEncoder.encode("ServiceKey","UTF-8") + "=B8%2BZaRoCMImsMJtdm0WOedSaSwRCucNkcnqroJSLiK%2F%2Fg7jsBF27h0GeG9RlWHRLEgkcHYh3PDV2qzL5Vh1WYA%3D%3D"); //Service Key
+	        urlBuilder.append("?" + URLEncoder.encode("ServiceKey","UTF-8") + "=%2FL4mnuLP6k1JiEz28Z86MlqufwpG49Q%2FhOqk53jtJr3H9fz%2FrNt5DoGHgSHGaprmYQOT6VXfCJcydUXrFUo%2FOA%3D%3D"); //Service Key
 	        urlBuilder.append("&" + URLEncoder.encode("MobileOS","UTF-8") + "=" + URLEncoder.encode("ETC", "UTF-8")); //IOS (아이폰), AND (안드로이드), WIN (원도우폰), ETC
 	        urlBuilder.append("&" + URLEncoder.encode("MobileApp","UTF-8") + "=" + URLEncoder.encode("AppTest", "UTF-8")); //서비스명=어플명
 	        urlBuilder.append("&" + URLEncoder.encode("pageNo","UTF-8") + "=" + URLEncoder.encode("1", "UTF-8")); //현재 페이지 번호
@@ -276,7 +276,7 @@ public class SubMainController {
 			StringBuilder sb = new StringBuilder();
 			try {
 		        StringBuilder urlBuilder = new StringBuilder("http://api.visitkorea.or.kr/openapi/service/rest/KorService/detailCommon"); // contentid 기반 관광정보조회 URL
-		        urlBuilder.append("?" + URLEncoder.encode("ServiceKey","UTF-8") + "=B8%2BZaRoCMImsMJtdm0WOedSaSwRCucNkcnqroJSLiK%2F%2Fg7jsBF27h0GeG9RlWHRLEgkcHYh3PDV2qzL5Vh1WYA%3D%3D"); //Service Key
+		        urlBuilder.append("?" + URLEncoder.encode("ServiceKey","UTF-8") + "=%2FL4mnuLP6k1JiEz28Z86MlqufwpG49Q%2FhOqk53jtJr3H9fz%2FrNt5DoGHgSHGaprmYQOT6VXfCJcydUXrFUo%2FOA%3D%3D"); //Service Key
 		        urlBuilder.append("&" + URLEncoder.encode("MobileOS","UTF-8") + "=" + URLEncoder.encode("ETC", "UTF-8")); //IOS (아이폰), AND (안드로이드), WIN (원도우폰), ETC
 		        urlBuilder.append("&" + URLEncoder.encode("MobileApp","UTF-8") + "=" + URLEncoder.encode("AppTest", "UTF-8")); //서비스명=어플명
 		        urlBuilder.append("&" + URLEncoder.encode("pageNo","UTF-8") + "=" + URLEncoder.encode("1", "UTF-8")); //현재 페이지 번호
@@ -342,7 +342,7 @@ public class SubMainController {
 			StringBuilder sb = new StringBuilder();
 			try {
 		        StringBuilder urlBuilder = new StringBuilder("http://api.visitkorea.or.kr/openapi/service/rest/KorService/detailCommon"); // contentid 기반 관광정보조회 URL
-		        urlBuilder.append("?" + URLEncoder.encode("ServiceKey","UTF-8") + "=B8%2BZaRoCMImsMJtdm0WOedSaSwRCucNkcnqroJSLiK%2F%2Fg7jsBF27h0GeG9RlWHRLEgkcHYh3PDV2qzL5Vh1WYA%3D%3D"); //Service Key
+		        urlBuilder.append("?" + URLEncoder.encode("ServiceKey","UTF-8") + "=%2FL4mnuLP6k1JiEz28Z86MlqufwpG49Q%2FhOqk53jtJr3H9fz%2FrNt5DoGHgSHGaprmYQOT6VXfCJcydUXrFUo%2FOA%3D%3D"); //Service Key
 		        urlBuilder.append("&" + URLEncoder.encode("MobileOS","UTF-8") + "=" + URLEncoder.encode("ETC", "UTF-8")); //IOS (아이폰), AND (안드로이드), WIN (원도우폰), ETC
 		        urlBuilder.append("&" + URLEncoder.encode("MobileApp","UTF-8") + "=" + URLEncoder.encode("AppTest", "UTF-8")); //서비스명=어플명
 		        urlBuilder.append("&" + URLEncoder.encode("pageNo","UTF-8") + "=" + URLEncoder.encode("1", "UTF-8")); //현재 페이지 번호
@@ -494,10 +494,12 @@ public class SubMainController {
 	// 검색어 필터 선택 시, 조회되는 관광지 정보들
 	@ResponseBody
 	@PostMapping("searchList.sb")
-	public StringBuilder searchList(@RequestParam("menu") String menu, @RequestParam(required = false, value="local[]") List<String> local, @RequestParam(required = false, value="filter[]") List<String> filter) {
+	public StringBuilder searchList(@RequestParam("menu") String menu, @RequestParam(required = false, value="local[]") List<String> local,
+									@RequestParam(required = false, value="filter[]") List<String> filter, @RequestParam(required = false, value = "findStr") String findStr) {
 		StringBuilder sb = new StringBuilder();
 		sb.append('[');
 		
+		System.out.println("str : " + findStr);
 		// local, filter 값이 없을 경우, NullPointException 방지를 위하여 공백 값 설정
 		if(local == null) {
 			local = new ArrayList<>();
@@ -508,12 +510,22 @@ public class SubMainController {
 			filter.add("");
 		}
 		
+		String reqURL = null;
+		// 키워드가 들어오면 키워드 검색 URL로 요청
+		if(findStr == null || findStr.equals("")) {
+			System.out.println("list 검색");
+			reqURL = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/areaBasedList";
+		} else {
+			System.out.println("키워드 검색");
+			reqURL = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/searchKeyword";
+		}
+			
 		// 지역 필터와 검색어 필터가 적용된 관광지 리스트만 가져오기
 		for(int i = 0 ; i < local.size() ; i++) {
 			for(int j = 0 ; j < filter.size() ; j++) {
 				try {
-			        StringBuilder urlBuilder = new StringBuilder("http://api.visitkorea.or.kr/openapi/service/rest/KorService/areaBasedList"); //지역기반 관광정보조회 URL
-			        urlBuilder.append("?" + URLEncoder.encode("ServiceKey","UTF-8") + "=B8%2BZaRoCMImsMJtdm0WOedSaSwRCucNkcnqroJSLiK%2F%2Fg7jsBF27h0GeG9RlWHRLEgkcHYh3PDV2qzL5Vh1WYA%3D%3D"); //Service Key
+			        StringBuilder urlBuilder = new StringBuilder(reqURL); //요청 URL
+			        urlBuilder.append("?" + URLEncoder.encode("ServiceKey","UTF-8") + "=%2FL4mnuLP6k1JiEz28Z86MlqufwpG49Q%2FhOqk53jtJr3H9fz%2FrNt5DoGHgSHGaprmYQOT6VXfCJcydUXrFUo%2FOA%3D%3D"); //Service Key
 			        urlBuilder.append("&" + URLEncoder.encode("MobileOS","UTF-8") + "=" + URLEncoder.encode("ETC", "UTF-8")); //IOS (아이폰), AND (안드로이드), WIN (원도우폰), ETC
 			        urlBuilder.append("&" + URLEncoder.encode("MobileApp","UTF-8") + "=" + URLEncoder.encode("AppTest", "UTF-8")); //서비스명=어플명
 			        urlBuilder.append("&" + URLEncoder.encode("pageNo","UTF-8") + "=" + URLEncoder.encode("1", "UTF-8")); //현재 페이지 번호
@@ -522,6 +534,7 @@ public class SubMainController {
 			        urlBuilder.append("&" + URLEncoder.encode("arrange","UTF-8") + "=" + URLEncoder.encode("P", "UTF-8")); //정렬 구분 (O = 제목순, P = 조회순)
 			        
 			        // 가변 정보
+			        urlBuilder.append("&" + URLEncoder.encode("keyword","UTF-8") + "=" + URLEncoder.encode(findStr, "UTF-8")); //검색 키워드
 			        urlBuilder.append("&" + URLEncoder.encode("contentTypeId","UTF-8") + "=" + URLEncoder.encode(menu, "UTF-8")); //관광지 타입 ID
 			        urlBuilder.append("&" + URLEncoder.encode("areaCode","UTF-8") + "=" + URLEncoder.encode(local.get(i), "UTF-8")); //지역 코드
 			        urlBuilder.append("&" + URLEncoder.encode("sigunguCode","UTF-8") + "=" + URLEncoder.encode("", "UTF-8")); //시군구 코드
@@ -597,6 +610,14 @@ public class SubMainController {
 		
 		System.out.println(sb.toString());
 		return sb;
+	}
+	
+	
+	@GetMapping(value="searchPlace.sb")
+	public String searchPlace() {
+		
+		
+		return "food_index";
 	}
 	
 }
