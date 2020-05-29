@@ -56,10 +56,9 @@ public class PtnHtCompController {
 		HttpSession session  = req.getSession();
 		String member_id = (String) session.getAttribute("member_id");
 		
+		
 		int serial = dao.getSerial(member_id);
 		List<PlaceVo> list = dao.select(serial);
-		System.out.println(serial);
-		System.out.println("list : " + list);
 		List<UploadVo> photoList = null;
 		
 		for(PlaceVo vo : list) {
@@ -100,13 +99,8 @@ public class PtnHtCompController {
 		vo.setPlace_name(req.getParameter("admHCompNm"));
 		vo.setPlace_tel(req.getParameter("admHCompTel"));
 		vo.setPlace_location(req.getParameter("placeLocation"));
-		
 		vo.setLocal_code(Integer.parseInt(req.getParameter("htPlaceCode"))+1);
 		vo.setState(Integer.parseInt(req.getParameter("PtnHtStatus")));
-		
-		System.out.println("req : " + req.getParameter("wifi"));
-		System.out.println("req : " + req.getParameter("breakfast"));
-		System.out.println("req : " + req.getParameter("parking"));
 		
 		if(req.getParameter("wifi") == null) {
 			vo.setWifi(0);
@@ -128,9 +122,6 @@ public class PtnHtCompController {
 		
 		
 
-		
-		System.out.println("vo : " + vo.getPlace_name());
-		
 		HttpSession session  = req.getSession();
 		String member_id = (String) session.getAttribute("member_id");
 		//member_id = "jieun";
@@ -174,7 +165,7 @@ public class PtnHtCompController {
 		List<MultipartFile> mf = req.getFiles("fileName1"); 
 		
         if (mf.size() == 1 && mf.get(0).getOriginalFilename().equals("")) {
-             System.out.println("getOriginalFilename ()");
+            
         } else {
             for (int i = 0; i < mf.size(); i++) {
             	 // 파일 중복명 처리
@@ -191,23 +182,11 @@ public class PtnHtCompController {
                 mf.get(i).transferTo(new File(savePath)); // 파일 저장
                 
                 upVo = new UploadVo(image1, image2);
-                
-                System.out.println("list vo getOriFile : " + upVo.getOriFile());
- 
+               
                 list.add(upVo);
             }
         }
-		
-
-		System.out.println("vo getBreakfast : " + vo.getBreakfast());
-		System.out.println("vo getLatitude : " + vo.getLatitude());
-		System.out.println("vo getPlace_location : " + vo.getPlace_location());
-		System.out.println("vo getLocal_code : " + vo.getLocal_code());
-		System.out.println("vo getPartner_serial : " + vo.getPartner_serial());
-		System.out.println("vo getPlace_name : " + vo.getPlace_name());
-		System.out.println("vo getPlace_tel : " + vo.getPlace_tel());
         
-		
 		int serial = dao.getSerial(member_id);
 		result = dao.insert(serial, vo, list);
 		
