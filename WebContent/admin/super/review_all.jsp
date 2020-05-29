@@ -60,13 +60,11 @@
                     <a href="#" class="tickets-card row" data-toggle="modal" data-target="#modalReviewDt">
                         <div class="tickets-details col-md-8">
                             <div class="wrapper">
-                                <h5>${i.review_serial } - ${i.review_title }</h5>
+                                <h5>${i.review_serial }  -  ${i.review_title }</h5>
 
                             </div>
                             <div class="wrapper text-muted">
-                                <span>Assigned to</span>
-                                <img class="assignee-avatar" src="../../assets/images/faces/face11.jpg" alt="profile image">
-                                <span>zzzzzzzzz</span>
+                                <span>review_date</span>
                                 <span><i class="mdi mdi-clock-outline"></i>${i.review_date }</span>
                             </div>
                         </div>
@@ -76,7 +74,25 @@
                         </div>
                         <div class="ticket-float col-md-2 col-6">
                             <i class="category-icon mdi mdi-folder-outline"></i>
-                            <span class="text-muted">${i.p.place_code }</span>
+	                          
+	                            <c:if test='${i.p.place_code == 0 }'>
+	                            	<span class="text-muted" >즐길거리(문화시설)</span>
+	                            </c:if>
+                        		<c:if test='${i.p.place_code == 1 }'>
+	                            	<span class="text-muted">즐길거리(관광지)</span>
+	                            </c:if>
+	                            <c:if test='${i.p.place_code == 2 }'>
+	                            	<span class="text-muted">음식점</span>
+	                            </c:if>
+	                            <c:if test='${i.p.place_code == 3 }'>
+	                            	<span class="text-muted">축제</span>
+	                            </c:if>
+	                            <c:if test='${i.p.place_code == 4 }'>
+	                            	<span class="text-muted">호텔</span>
+	                            </c:if>
+                        	
+                        
+                        
                         </div>
                     </a>
 	       		</c:forEach>            
@@ -98,7 +114,7 @@
 				<input type='button' value='다음' onclick='brd.go(${p.endPage+1 })'/>
 	</c:if>
 	</div> --%>
-	   <div class="col-md-6">
+	   <div class="col-md-12" style='margin-top:-20px'>
       <ul class="pagination justify-content-center mt-5">
         <li class="page-item ${(p.startPage>p.blockSize)? '' : 'disabled' }disabled">
          <a
