@@ -61,7 +61,6 @@ ptn.func = function(){
 		console.log("지역코드 : " + $("#htPlaceCode").val());
 		console.log("판매상태 : " + $("#PtnHtStatus").val());
 		
-		$("#htPlaceCode").val(3);
 		let fd = new FormData($("#frmAdmHtCompAdd")[0]);	// object형태로 데이터 만들어짐.
 		
 		$.ajax({
@@ -72,19 +71,25 @@ ptn.func = function(){
 			processData : false,
 			error : function(xhr, status, error){
 				console.log(error);
+				Swal.fire({
+	            	icon: 'error',
+	            	title: status + "--" + error + "--" + xhr.responseText,
+	            	showConfirmButton: true
+	            	//timer: 1500
+	            });
 			},
-			success : function(result){
-				if(result == 1){
+			success : function(data){
+				if(data == "success"){
 					Swal.fire({
 		            	icon: 'success',
 		            	title: '호텔 정보가 등록되었습니다.',
 		            	showConfirmButton: false,
 		            	timer: 1500
 		            });
-					$("#main").html(data);
+					location.href="?inc=hotel_comp_list.ph"
 				}else{
 					Swal.fire({
-		            	icon: 'danger',
+		            	icon: 'error',
 		            	title: '등록중 오류가 발생했습니다.',
 		            	showConfirmButton: false,
 		            	timer: 1500
@@ -112,9 +117,9 @@ ptn.func = function(){
 ptn.go = function(i){
 	// place_serial 값 세팅
 	$("#pserial").val(i);
-	
+	console.log($("#pserial").val());
 	let param = $("#frmAdmHtCompList").serialize();	// 	직렬화
 	$.post("hotel_comp_view.ph", param, function(data, state){
 		$("#main").html(data);
-	});
+	}); 
 }

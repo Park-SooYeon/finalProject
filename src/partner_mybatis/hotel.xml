@@ -15,7 +15,7 @@
 			LEFT OUTER JOIN partner pt ON h.partner_serial = pt.partner_serial 
 			LEFT OUTER JOIN PLACE_PHOTO p ON h.place_serial = p.place_serial 
 		where h.place_code=4
-		and h.PARTNER_SERIAL=#partner_serial}
+		and h.PARTNER_SERIAL=#{partner_serial}
 		GROUP BY h.place_Serial, h.place_name, h.place_location, h.place_tel, h.state
 		ORDER BY h.PLACE_SERIAL DESC
 	</select>	
