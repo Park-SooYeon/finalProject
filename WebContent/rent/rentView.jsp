@@ -12,12 +12,19 @@
 <body>
 	<form name='rent_frm' id='rent_frm' method='post'>
 	
+	
 	<input type='hidden' value='${dateVo1.year }' id='dt1'/>	
 	<input type='hidden' value='${dateVo1.month }'id='dt2'/>
 	<input type='hidden' value='${dateVo1.day }'id='dt3'/>
 	<input type='hidden' value='${dateVo1.hour }'id='dt4'/>
 	<input type='hidden' value='${dateVo1.min }'id='dt5'/>
+	<input type='hidden' value='${vo.price}' id='pr1'/>
+	<input type='hidden' value='${betweenDay}' id='pr2'/>
+	<input type='hidden' value='${sessionScope.member_id}' name='member_id' id='member_id'/>
 	
+	<input type='hidden' name='payment' id='payment'/>
+	<input type='hidden' name='price' id='price'/>
+	<input type='hidden' name='fullcover' id='fullcover'/>
 	<input type='hidden' name='placeMain' value='${placeMain}'/>
 	<input type='hidden' name='placeSub' value='${placeSub}'/>
 	<input type='hidden' name='rentDate' value='${rentDate}'/>
@@ -172,14 +179,14 @@
 						<!-- modal btn-->
 							<div class="col-lg-4 col-md-4 col-sm-4"></div>
 							<div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
-								<button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#reserveModal">
+								<button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#reserveModal" onclick="rent.fullcover('n')">
 									<div>예약하러가기</div>
 									<span>풀커버 보호상품 미포함</span><br/>
 									<strong><fmt:formatNumber value="${vo.price }" pattern="#,###"></fmt:formatNumber> 원</strong>
 								</button>
 							</div>
 							<div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
-								<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#reserveModal">
+								<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#reserveModal" onclick="rent.fullcover('y')">
 									<div>예약하러가기</div>
 									<span>풀커버 보호상품 포함</span><br/>
 									<strong><fmt:formatNumber value="${vo.price+(30000*betweenDay) }" pattern="#,###"></fmt:formatNumber> 원</strong>
@@ -214,46 +221,27 @@
 	      
 	        <div class="form-group">
 			    <label for="exampleInputName1">이름</label>
-			    <input type="text" class="form-control" id="exampleInputName1" placeholder="이름을 입력하세요">
+			    <input type="text" class="form-control" id="exampleInputName1" placeholder="이름을 입력하세요" id='rName'>
 			</div>
 	       	<div class="form-group">
 			    <label for="exampleInputEmail1">이메일 주소</label>
-			    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="이메일을 입력하세요">
+			    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="이메일을 입력하세요" name='email' id='email'>
 			</div>
 			<div class="form-group">
 			    <label for="exampleInputPhone1">전화번호</label>
-			    <input type="text" class="form-control" id="exampleInputPhone1" placeholder="전화번호를 - 없이 입력하세요">
+			    <input type="text" class="form-control" id="exampleInputPhone1" placeholder="전화번호를 - 없이 입력하세요" name='phone' id='phone'>
 			</div>
 			
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-	        <button type="button" class="btn btn-primary  btn-lg" data-toggle="modal" data-target="#paymentModal">지금예약</button>
+	        <button type="button" class="btn btn-primary  btn-lg" data-toggle="modal" data-target="#paymentModal" id='btnReserve'>지금예약</button>
 	      </div>
 	    </div>
 	  </div>
 	</div>
 	
-	<!-- Modal2 -->
-	<div class="modal fade" id="paymentModal" tabindex="-1" role="dialog" aria-labelledby="paymentModalLabel" aria-hidden="true">
-	  <div class="modal-dialog">
-	    <div class="modal-content">
-	      <div class="modal-header">
-	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	        <h4 class="modal-title" id="paymentModalLabel">결제하기</h4>
-	      </div>
-	      <div class="modal-body">
-	      
-	        샬라샬라
-			
-	      </div>
-	      <div class="modal-footer">
-	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-	        <button type="button" id='btnReserveResult' class="btn btn-primary" >지금 결제</button>
-	      </div>
-	    </div>
-	  </div>
-	</div>
+	
 	  </form>
 
 	<script>
@@ -315,6 +303,48 @@
 		$('#rent_frm').attr('action','./carView2.rent').submit();
 		
 	});
+	
+	
+	
+	$('#btnReserve').click(function(){
+		if($('#member_id').val() == null){
+			alert('로그인을 해주세요')
+		}else{
+		
+		IMP.request_pay({
+		    pg : 'html5_inicis', // version 1.1.0부터 지원.
+		    pay_method : 'card',
+		    merchant_uid : 'merchant_' + new Date().getTime(),
+		    name : '주문명:마이리얼트립 렌터카',
+		    amount : $('#price').val(),
+		    buyer_email : $('#email').val(),
+		    buyer_name : $('#rName').val(),
+		    buyer_tel : $('#phone').val(),
+		    buyer_addr : '서울특별시 강남구 삼성동',
+		    buyer_postcode : '123-456'
+		}, function(rsp) {
+		    if ( rsp.success ) {
+		        var msg = '결제가 완료되었습니다.';
+		        msg += '고유ID : ' + rsp.imp_uid;
+		        msg += '상점 거래ID : ' + rsp.merchant_uid;
+		        msg += '결제 금액 : ' + rsp.paid_amount;
+		        msg += '카드 승인번호 : ' + rsp.apply_num;
+		        let payment =rsp.pg_provider;
+		        $('#payment').val(payment);
+		        $('#rent_frm').attr('action','./reserveResult.rent').submit();
+		    } else {
+		        var msg = '결제에 실패하였습니다.';
+		        msg += '에러내용 : ' + rsp.error_msg;
+		        $('#rent_frm').attr('action','./reserveResult.rent').submit();
+		    }
+		    alert(msg);
+		});
+		
+		
+		}
+	})
+	
+	
 	
 	</script>
 

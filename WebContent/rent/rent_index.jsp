@@ -54,6 +54,9 @@
     <!-- 내전용  -->
     <link rel="stylesheet" href="../css/rent.css"/>
     <script src="../js/rent.js"></script>
+    
+    <!-- 아임포트 -->
+	<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
  </head>
   
   
@@ -83,6 +86,11 @@
  	<script>
  	rent.func();
  
+ 	//아임포트
+	var IMP = window.IMP; // 생략가능
+	IMP.init('imp95137503');
+	
+	
  	
  	</script>
  </body>

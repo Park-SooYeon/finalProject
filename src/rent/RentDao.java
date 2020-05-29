@@ -11,6 +11,7 @@ import rent_parameter.CarViewPm;
 import rent_parameter.CarViewVo;
 import rent_parameter.CompanyPm;
 import rent_parameter.DateVo;
+import rent_parameter.ReservePm;
 import rent_parameter.rentReviewPm;
 import rent_parameter.rentReviewTotVo;
 import rent_parameter.rentReviewVo;
@@ -98,6 +99,39 @@ public class RentDao {
 		}
 	}
 	
+	public String reserveInsert(ReservePm pm) {
+		String msg = null;
+		try {
+			int cnt = sqlSession.insert("rent.reserveInsert",pm);
+			if(cnt<1) {
+				throw new Exception("예약중 오류발생");
+			}else {
+				msg = "예약이 완료 되었습니다";
+			}
+			sqlSession.commit();
+		}catch(Exception e) {
+			e.printStackTrace();
+			msg = e.getMessage();
+			sqlSession.rollback();
+		}finally {
+			return msg;
+		}
+	}
+	
+	public int reserveSerial() {
+		int reserve_serial =0;
+		try {
+			reserve_serial = sqlSession.selectOne("rent.reserveSerial");
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			return reserve_serial;
+		}
+	}
+	
+	
+	
+	
 	public Timestamp TimeMaker(String date) {
 		String year = date.substring(6,10);
 		String day = date.substring(3,5);
@@ -113,6 +147,22 @@ public class RentDao {
 		String now = year+"-"+month+"-"+day+" "+hour+":"+min+":00.0";
 		Timestamp t = Timestamp.valueOf(now);
 		return t;
+	}
+	
+	public String oracleTimeMaker(String date) {
+		String year = date.substring(6,10);
+		String day = date.substring(3,5);
+		String month = date.substring(0,2);
+		String hour = date.substring(11,13);
+		String min = date.substring(14,16);
+		String a = date.substring(17,19);
+		if(a.equals("pm")) {
+			int h = Integer.parseInt(hour)+12;
+			hour = String.valueOf(h);
+		}
+		String oracleTime = year+month+day+hour+min+"00";
+		
+		return oracleTime;
 	}
 	
 	public DateVo paramTime(String date) {

@@ -161,8 +161,9 @@
 				and scale = '개인'
 		</if>
 		<if test='scale_kind !=null and(scale_kind eq "a".toString())'>
-				and scale = '개인' and scale = '그룹' and scale = '커플' and scale = '가족'
+				
 		</if>
+		ORDER by WRITED_DATE desc
 	</select>
 	
 	<select id='reviewTotSearch' parameterType="Integer" resultType="rent_parameter.rentReviewTotVo">
@@ -171,6 +172,18 @@
 	FROM RENT_REVIEW
 	where CAR_SERIAL = ${_parameter}
 	</select>
+	
+	<insert id="reserveInsert" parameterType="rent_parameter.ReservePm">
+		insert into rent_reserve(reserve_serial , car_serial , member_id , email ,phone , rent_date , return_date , state , fullcover , payment ,price ,reserved_date)
+				values ( seq_rent_reserve.nextval , ${car_serial} , '${member_id}' ,'${email}' , '${phone}' , TO_TIMESTAMP('${rentDate}','YYYYMMDDHH24MISS') ,TO_TIMESTAMP('${returnDate}','YYYYMMDDHH24MISS')  , 'y' , '${fullcover}' , '${payment}' , ${price} , systimestamp)
+			
+	</insert>
+	
+	<select id="reserveSerial" resultType="Integer">
+		SELECT seq_rent_reserve.currval FROM dual
+	</select>
+	
+	
 </mapper>
 
 

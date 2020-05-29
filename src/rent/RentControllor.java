@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.websocket.Session;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import rent_parameter.CarViewVo;
 import rent_parameter.CompanyPm;
 import rent_parameter.DateVo;
+import rent_parameter.ReservePm;
 import rent_parameter.rentReviewPm;
 import rent_parameter.rentReviewTotVo;
 import rent_parameter.rentReviewVo;
@@ -305,6 +307,51 @@ public class RentControllor {
 		contentPage = "";
 		mainPage = "rentReserveResult.jsp";
 		
+		String placeMain = req.getParameter("placeMain");
+		String placeSub = req.getParameter("placeSub");
+		
+		int car_serial		=Integer.parseInt(req.getParameter("car_serial"));
+		String member_id	=req.getParameter("member_id");
+		String email 		=req.getParameter("email");
+		String phone 		=req.getParameter("phone"); 
+		String fullcover 	=req.getParameter("fullcover");
+		String rentDate 	=req.getParameter("rentDate");
+			String rentD = rentDao.oracleTimeMaker(rentDate);
+		String returnDate 	=req.getParameter("returnDate");
+			String returnD = rentDao.oracleTimeMaker(returnDate);
+		String payment ="카카오페이";
+//		if(req.getParameter("payment")==null) {
+//			payment		="카카오페이";
+//		}else {
+//			payment		=req.getParameter("payment");
+//		}
+		int price			=Integer.parseInt(req.getParameter("price"));
+		ReservePm pm = new ReservePm(car_serial, member_id, email, phone, rentD, returnD, fullcover, payment, price);
+		String msg = rentDao.reserveInsert(pm);
+		int reserve_serial =rentDao.reserveSerial();
+		int betweenDay = rentDao.DateBettweenDay(rentDate, returnDate);
+		long between = rentDao.DateBettween(rentDate, returnDate);
+		CarViewVo vo= rentDao.carView(car_serial,rentDate,returnDate,between);
+		
+		DateVo dateVo1 = rentDao.paramTime(rentDate);
+		DateVo dateVo2 = rentDao.paramTime(returnDate);
+		
+		mv.addObject("car_serial", car_serial);
+		mv.addObject("vo", vo);
+		mv.addObject("reserve_serial",reserve_serial);
+		
+		mv.addObject("email", email);
+		mv.addObject("phone",phone);
+		mv.addObject("fullcover",fullcover);
+		mv.addObject("payment",payment);
+		mv.addObject("price",price);
+		mv.addObject("rentDate",rentDate);
+		mv.addObject("returnDate",returnDate);
+		mv.addObject("placeMain",placeMain);
+		mv.addObject("placeSub",placeSub);
+		mv.addObject("betweenDay", betweenDay);
+		mv.addObject("dateVo1",dateVo1);
+		mv.addObject("dateVo2", dateVo2);
 		
 		mv.addObject("contentPage",contentPage);
 		mv.addObject("mainPage",mainPage);
