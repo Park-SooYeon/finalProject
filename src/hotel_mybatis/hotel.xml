@@ -5,14 +5,14 @@
 <mapper namespace="ht">
 
 <!-- 호텔 탑메뉴 진입시 예약가능한 호텔을 평점순으로 보여줌니당 -->
-<select id='mainSeoulRevOK' parameterType="String"  resultType="Integer">
+<select id='mainNo'  resultType="bean.PlaceVo">
 select 
-		p.PLACE_SERIAL PLACE_SERIAL, p.PARTNER_SERIAL PARTNER_SERIAL, p.PLACE_CODE PLACE_CODE, p.PLACE_NAME PLACE_NAME, 
-		p.PLACE_LOCATION PLACE_LOCATION, p.LATITUDE LATITUDE, p.LONGITUDE LONGITUDE, p.GRADE GRADE, p.STATE STATE,
-	    r.reputation, p.LOCAL_CODE LOCAL_CODE 
-from place p, review r
-where p.place_serial = r.place_serial and p.place_code = 4 and p.PARTNER_SERIAL is not null
-order by r.PLACE_SERIAL
+		PLACE_SERIAL,PARTNER_SERIAL, PLACE_CODE, PLACE_NAME, 
+		PLACE_LOCATION, LATITUDE, LONGITUDE, GRADE,  STATE,
+	    LOCAL_CODE 
+from place 
+where place_code = 4 and local_code=1
+
 
 
 

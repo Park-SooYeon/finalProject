@@ -134,6 +134,7 @@ let move = function() {
 		<div class="row">
 			<div class="swiper-container m-2">
 				<div class="swiper-wrapper pl-50 pr-50">
+					
 					<div class="swiper-slide">
 						<div class="p-1 heart" onclick="main.like(this)">
 							<i class="fa fa-heart-o" style="vertical-align: middle;"></i>
@@ -155,6 +156,8 @@ let move = function() {
 							</div>
 						</div>
 					</div>
+					
+					
 					<div class="swiper-slide">
 						<div class="single-destinations">
 							<div class="thumb">

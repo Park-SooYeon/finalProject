@@ -49,7 +49,7 @@
 		<mapper resource="rent_mybatis/rent.xml"/>
 		
 		<!-- hotel-->
-<!-- 		<mapper resource="hotel_mybatis/hotel.xml"/> -->
+ 		<mapper resource="hotel_mybatis/hotel.xml"/> 
 		
 	</mappers>
 

@@ -93,9 +93,5 @@ let menuMove = function(menu) {
 	location.href = './?inc=menuMain.sb&menu=' + menu;
 }
 
-let hetelMainGo = function() {
-	location.href = "./?inc=hotelMain.ht";
-	
-}
 
 </script>
