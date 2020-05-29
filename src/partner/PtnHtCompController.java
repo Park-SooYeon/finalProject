@@ -83,7 +83,6 @@ public class PtnHtCompController {
 		ModelAndView mv = new ModelAndView();
 		PlaceVo vo = null; 
 		
-		System.out.println("controller");
 		//mv.addObject("vo", vo);
 		mv.setViewName("hotel_comp_add");
 		return mv;
@@ -124,8 +123,6 @@ public class PtnHtCompController {
 
 		HttpSession session  = req.getSession();
 		String member_id = (String) session.getAttribute("member_id");
-		//member_id = "jieun";
-		System.out.println("member id : " + member_id);
 		
 		//FileUpload
     	//ServletContext c;
@@ -136,7 +133,7 @@ public class PtnHtCompController {
 	     //String uploadPath = "C:\\Users\\silve\\eclipse-workspace\\final_twitch\\WebContent\\store\\reviewimages";
 	    System.out.println(uploadPath);
 	    
-	    File dir = new File(filePath);
+	    File dir = new File(uploadPath);
         if (!dir.isDirectory()) {
             dir.mkdirs();
         }
@@ -177,7 +174,7 @@ public class PtnHtCompController {
 				
 				fileSize = mf.get(i).getSize(); // 파일 사이즈
 				
-				String savePath = filePath + image1; // 저장 될 파일 경로
+				String savePath = uploadPath + image1; // 저장 될 파일 경로
 				 
                 mf.get(i).transferTo(new File(savePath)); // 파일 저장
                 
