@@ -193,22 +193,22 @@ public class PlaceVo {
 		this.local_code = local_code;
 		switch(local_code) {
 		case 1:
-			this.local_name = "seoul";
+			this.local_name = "서울";
 			break;
 		case 2:
-			this.local_name = "jeju";
+			this.local_name = "인천";
 			break;
 		case 3:
-			this.local_name = "busan";
+			this.local_name = "제주";
 			break;
 		case 4:
-			this.local_name = "daegu";
-			break;
-		case 5:
-			this.local_name = "gyeonggi";
+			this.local_name = "대구";
 			break;
 		case 6:
-			this.local_name = "incheon";
+			this.local_name = "부산";
+			break;
+		case 31:
+			this.local_name = "경기도";
 			break;
 		}
 	}
