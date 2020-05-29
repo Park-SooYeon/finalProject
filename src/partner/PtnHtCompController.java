@@ -235,6 +235,7 @@ public class PtnHtCompController {
 		vo = dao.view(serial);
 		photoList = dao.getAttList(serial);
 		
+		mv.addObject("photoList", photoList);
 		mv.addObject("vo", vo);
 		mv.setViewName("hotel_comp_view");
 		return mv;
