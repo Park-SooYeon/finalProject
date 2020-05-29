@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <link rel="stylesheet" href="css/main.css">
-
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>	
 
 
 <!-- start banner Area -->
@@ -73,12 +73,14 @@ let locationMove = function(){
 
 </section>
 
+					
+	<%--				
 <!-- Swiper -->
 <section class="destinations-area pb-60">
 	<div class="container">
 		<div class="row d-flex justify-content-center">
 			<div class="menu-content col-lg-12">
-				<h1 class="mb-10">추천 호텔(별점순)</h1>
+				<h1 class="mb-10">예약 가능한 호텔 ! (별점순)</h1>
 				<a href="./?inc=hotel/hotel_body.jsp">더 많은 호텔 검색하기</a>
 			</div>
 		</div>
@@ -87,7 +89,7 @@ let locationMove = function(){
 				<div class="swiper-wrapper pl-50 pr-50">
 					
 					
-					
+		<c:foreach items='${list}' var='i'>		
 					<div class="swiper-slide">
 						<div class="p-1 heart" onclick="main.like(this)">
 							<i class="fa fa-heart-o" style="vertical-align: middle;"></i>
@@ -98,17 +100,19 @@ let locationMove = function(){
 							</div>
 							<div class="details p-2">
 								<div class="tags">
-									<ul>
-										<li><a href="#">태그1</a></li>
-										<li><a href="#">태그2</a></li>
+								     <ul>
+										<li>태그1</li>
+										<li>태그2</li>
 									</ul>
+									
 								</div>
-								<h4>Holiday Sea beach Blue Ocean</h4>
-								<p>지역</p>
-								<h6 class="date">위치</h6>
+								<h4>{i.place_name}</h4>
+								<p>{i.place}</p>
+								<h6 class="date">{i.location}</h6>
 							</div>
 						</div>
 					</div>
+			</c:foreach>	
 				
 				<!-- Add Arrows -->
 				<div class="swiper-button-next"></div>
@@ -126,16 +130,14 @@ let locationMove = function(){
 	<div class="container">
 		<div class="row d-flex justify-content-center">
 			<div class="menu-content col-lg-12">
-				<h1 class="mb-10">추천 호텔(리뷰 많은 순)</h1>
+				<h1 class="mb-10">인기 호텔(리뷰 많은 순)</h1>
 				<a href="./?inc=hotel/hotel_body.jsp">더 많은 호텔 검색하기</a>
 			</div>
 		</div>
 		<div class="row">
 			<div class="swiper-container m-2">
 				<div class="swiper-wrapper pl-50 pr-50">
-					
-					
-					
+		  <c:foreach items=${list } var="list">		
 					<div class="swiper-slide">
 						<div class="p-1 heart" onclick="main.like(this)">
 							<i class="fa fa-heart-o" style="vertical-align: middle;"></i>
@@ -157,8 +159,8 @@ let locationMove = function(){
 							</div>
 						</div>
 					</div>
-					
-
+			</c:foreach>		
+*/
 				<!-- Add Arrows -->
 				<div class="swiper-button-next"></div>
 				<div class="swiper-button-prev"></div>
@@ -167,7 +169,7 @@ let locationMove = function(){
 	</div>
 </div>	
 </section>
-    
+   --%> 
 <!-- Modal -->
 <div class="modal fade" data-backdrop="static"
 	id="exampleModalScrollable" tabindex="-1" role="dialog"

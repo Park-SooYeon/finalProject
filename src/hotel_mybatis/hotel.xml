@@ -1,1 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ht">
+
+<!-- 호텔 탑메뉴 진입시 예약가능한 호텔을 평점순으로 보여줌니당 -->
+<select id='mainSeoulRevOK' parameterType="String"  resultType="Integer">
+select 
+		p.PLACE_SERIAL PLACE_SERIAL, p.PARTNER_SERIAL PARTNER_SERIAL, p.PLACE_CODE PLACE_CODE, p.PLACE_NAME PLACE_NAME, 
+		p.PLACE_LOCATION PLACE_LOCATION, p.LATITUDE LATITUDE, p.LONGITUDE LONGITUDE, p.GRADE GRADE, p.STATE STATE,
+	    r.reputation, p.LOCAL_CODE LOCAL_CODE 
+from place p, review r
+where p.place_serial = r.place_serial and p.place_code = 4 and p.PARTNER_SERIAL is not null
+order by r.PLACE_SERIAL
+
+
+
+</select>
+
+
+<!-- 
+<select id='mainReview' parameterType="String"  resultType="Integer">
+ select case
+       when count(member_id)>0 then 1
+       else 0
+       end result 
+ from membership 
+ where member_id=#{member_id} and state != 3 and state !=2
+
+</select>
+ -->
+ 
+ </mapper>

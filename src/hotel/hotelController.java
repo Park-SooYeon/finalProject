@@ -5,12 +5,13 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 
-import bean.Page;
+
 import bean.PlaceVo;
 
 @Controller
@@ -22,21 +23,18 @@ public class hotelController {
 	}
 	
 	
-	@RequestMapping(value = "hotelMain.ht", method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value = "hotelMain.ht", method = { RequestMethod.GET })
 	public ModelAndView select(HttpServletRequest req) { //HttpServletRequest req  autowire 로 DI 그래서  스프링이 req 타입으로 반환시켜준다
 		ModelAndView mv = new ModelAndView();
-
+		
+		System.out.println("메인 진입");
 		
 
-		   System.out.println("야호");
-	
+		List<PlaceVo> list =dao.select();
+	     
 		       
-		
-		/* 여기에 담긴 데이터는 request 영역에 담긴다! 따라서 jstl 을 {list} 이렇게 다이렉트로 써줘도 돼 */
-
-		//mv.addObject("list", list);
-
-		mv.setViewName("hotelMain");
+	
+ 		
 		return mv;
 	}
 

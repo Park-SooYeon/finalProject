@@ -24,7 +24,7 @@ public List<PlaceVo> select() {
 	try {
 	
 		
-	    list = sqlSession.selectList("board.select");
+	    list = sqlSession.selectList("ht.mainGood");
 		
 	}catch(Exception ex) {
 	
