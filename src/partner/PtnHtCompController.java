@@ -58,6 +58,8 @@ public class PtnHtCompController {
 		
 		int serial = dao.getSerial(member_id);
 		List<PlaceVo> list = dao.select(serial);
+		System.out.println(serial);
+		System.out.println("list : " + list);
 		List<UploadVo> photoList = null;
 		
 		for(PlaceVo vo : list) {
@@ -99,7 +101,7 @@ public class PtnHtCompController {
 		vo.setPlace_tel(req.getParameter("admHCompTel"));
 		vo.setPlace_location(req.getParameter("placeLocation"));
 		
-		vo.setPlace_code(Integer.parseInt(req.getParameter("htPlaceCode"))+1);
+		vo.setLocal_code(Integer.parseInt(req.getParameter("htPlaceCode"))+1);
 		vo.setState(Integer.parseInt(req.getParameter("PtnHtStatus")));
 		
 		System.out.println("req : " + req.getParameter("wifi"));
@@ -213,7 +215,7 @@ public class PtnHtCompController {
 		
 		mv.addObject("vo", vo);
 		mv.addObject("result", result);
-		//mv.setViewName("hotel_comp_list");
+		mv.setViewName("hotel_comp_list");
 		return mv;
 	}
 	
@@ -232,8 +234,13 @@ public class PtnHtCompController {
 		
 		// place_serial 
 		int serial = Integer.parseInt(req.getParameter("pserial"));
+		System.out.println("pserial : " + req.getParameter("pserial"));
+		
 		vo = dao.view(serial);
 		photoList = dao.getAttList(serial);
+		
+		System.out.println("vo : " + vo);
+		//System.out.println("vo get : " + vo.getPlace_name());
 		
 		mv.addObject("photoList", photoList);
 		mv.addObject("vo", vo);

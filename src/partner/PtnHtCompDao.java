@@ -106,7 +106,7 @@ public class PtnHtCompDao {
 	public PlaceVo view(int serial) {
 		PlaceVo vo = null;
 		try {
-			sqlSession.selectOne("hotel.view", serial);
+			vo = sqlSession.selectOne("hotel.view", serial);
 		}catch(Exception ex) {
 			ex.printStackTrace();
 		}finally {

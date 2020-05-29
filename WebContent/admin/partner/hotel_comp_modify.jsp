@@ -23,13 +23,14 @@
                             <div class="d-flex justify-content-center justify-content-md-between mr-4 mr-xl-5 pr-xl-5 flex-wrap">
                                 <div class="profile-info d-flex align-items-center justify-content-center flex-wrap mr-sm-3">
                                 	<c:if test="${!empty vo.photos}">
-                                   		<c:forEach var="photo" items="${vo.photos}" begin="0" end="0" varStatus="status">
+                                   		<%-- <c:forEach var="photo" items="${vo.photos}" begin="0" end="0" varStatus="status">
 										    <img class="img-xl rounded" src="../../assets/images/upload/${photo.oriFile }" alt="${photo.oriFile } image">
-										</c:forEach>
+										</c:forEach> --%>
                                     </c:if>           
                                     <c:if test="${empty vo.photos}">
                                     	<img class="img-xl rounded" src="https://via.placeholder.com/150" alt="이미지 없음">
                                     </c:if>
+                                    <img class="rounded img-xl mb-3 mb-sm-0 mx-1" src="../../assets/images/faces/profile/${photoList.oriFile }" alt="profile image">
                                 </div>
                                 <div class="details mt-2 mt-md-0">
                                     <div class="detail-col pr-3 mr-3">
@@ -86,10 +87,10 @@
                                                 <p>
                                                     <strong>판매상태 :</strong> 
                                                     <c:if test="${vo.state == 0}">
-	                                                	<span class="badge badge-secondary text-muted">비활성화</span>
+	                                                	<div class="badge badge-secondary text-muted">비활성화</div>
 	                                                </c:if>
 	                                                <c:if test="${vo.state == 1}">
-	                                                	<span class="badge badge-primary">활성화</span>
+	                                                	<div class="badge badge-primary">활성화</div>
 	                                                </c:if>
                                                 </p>
                                             </div>
