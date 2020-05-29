@@ -18,14 +18,20 @@
                         </div>
                     </div>
                     <form class="" name="frmAdmHtCompView" id='frmAdmHtCompView'>
-                        <input type='hidden' id='p_viewId' name='p_viewId' value='${pv.member_id }'>
-                        <input type='hidden' id='p_status' name='p_status' value='${pv.state }'>
+                        <input type='hidden' id='p_viewId' name='p_viewId' value='${vo.member_id }'>
+                        <input type='hidden' id='p_status' name='p_status' value='${vo.state }'>
                         <div class="">
                             <div class="d-flex justify-content-center justify-content-md-between mr-4 mr-xl-5 pr-xl-5 flex-wrap">
                                 <div class="profile-info d-flex align-items-center justify-content-center flex-wrap mr-sm-3">
-                                    <img class="rounded img-xl mb-3 mb-sm-0 mx-1" src="../../assets/images/faces/profile/profile.jpg" alt="profile image">
-                                    <img class="rounded img-xl mb-3 mb-sm-0 mx-1" src="../../assets/images/faces/profile/profile.jpg" alt="profile image">
-                                    <img class="rounded img-xl mb-3 mb-sm-0 mx-1" src="../../assets/images/faces/profile/profile.jpg" alt="profile image">
+                                	<c:if test="${!empty vo.photos}">
+                                   		<c:forEach var="photo" items="${vo.photos}" begin="0" end="0" varStatus="status">
+										    <img class="img-xl rounded" src="../../assets/images/upload/${photo.oriFile }" alt="${photo.oriFile } image">
+										</c:forEach>
+                                    </c:if>           
+                                    <c:if test="${empty vo.photos}">
+                                    	<img class="img-xl rounded" src="https://via.placeholder.com/150" alt="이미지 없음">
+                                    </c:if>
+                                    <img class="rounded img-xl mb-3 mb-sm-0 mx-1" src="../../assets/images/faces/profile/${photoList.oriFile }" alt="profile image">
                                 </div>
                                 <div class="details mt-2 mt-md-0">
                                     <div class="detail-col pr-3 mr-3">
