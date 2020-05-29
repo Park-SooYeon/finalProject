@@ -291,6 +291,20 @@ public class MyPageController {
 		return msg;
 	}
 	
+	@RequestMapping( value = "selectPosts.mp", method = {RequestMethod.GET, RequestMethod.POST})
+	public ModelAndView selectPosts(HttpServletRequest req, HttpSession session) {
+		mv = new ModelAndView();
+		String member_id = (String)session.getAttribute("member_id");
+		List<ReviewVo> list = dao.selectReview(member_id);
+		
+		for(ReviewVo vo : list) {
+			System.out.println(vo.toString());
+		}
+		
+		mv.setViewName("my_social_posts");
+		mv.addObject("list", list);
+		return mv;
+	}
 	
 	public String getCurrentDayTime(){
 	    long time = System.currentTimeMillis();

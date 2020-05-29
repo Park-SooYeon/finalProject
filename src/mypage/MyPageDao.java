@@ -152,7 +152,8 @@ public class MyPageDao {
 			list2 = sqlSession.selectList("mypage.select_apiReview", member_id);
 			
 			for(ReviewVo vo : list2) {
-				//vo에 api 응답정보를 담아서 재가공
+				
+				// getApi 메소드를 통해 전달받은 JsonObject 하나씩 꺼내서 vo에 set
 				JsonObject contentResult = getApi(vo.getPlace_serial());
 				int place_serial = contentResult.get("contentid").getAsInt();
 		        String photo_name = contentResult.get("firstimage").getAsString();

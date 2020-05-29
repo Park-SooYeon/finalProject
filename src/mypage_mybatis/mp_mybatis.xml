@@ -118,25 +118,6 @@
    		   and P.place_code = 4
    </select>
    
-   <!-- 좋아요 누른 리뷰 조회 -->
-   <select id="select_review" parameterType="String" resultMap="mp_map_review">
-   		select like_serial,
-   			   R.review_serial, 
-   			   member_id, 
-   			   (select place_name from place where place_serial = R.place_serial) place_name,  
-   			   reputation, 
-   			   review_title, 
-   			   review_content,
-			   P.local_code,
-			   P.place_code,
-			   P.place_name photo_name 			   
-   		from review R, review_like L, place P
-   		where R.review_serial = L.review_serial
-   		and like_id = #{_parameter}
-   		and P.place_serial = R.place_serial
-   		and P.place_code = 4
-   </select>
-   
 	<!-- 관심여행 중 api 요청 -->
    <select id="select_places" parameterType="String" resultMap="mp_map_like">
    		select t.trip_list_serial, t.trip_name,
@@ -153,11 +134,36 @@
 		select l.like_id, r.review_serial, 
 			   r.member_id, r.place_serial, 
 			   r.reputation, r.review_title, 
-			   r.review_content, r.visit_date 
-		from review r left outer join review_like l 
+			   r.review_content, r.visit_date,
+			   getRevCnt(r.place_serial) review_cnt
+		from review r join review_like l 
 		on l.review_serial = r.review_serial 
+		left outer join place p
+		on p.place_serial = r.place_serial
 		where l.like_id = #{_parameter}
+        and p.place_serial is null
 	</select>
+   
+   <!-- 좋아요 누른 리뷰 조회 (호텔)-->
+   <select id="select_review" parameterType="String" resultMap="mp_map_review">
+   		select like_serial,
+   			   R.review_serial, 
+   			   member_id, 
+   			   (select place_name from place where place_serial = R.place_serial) place_name,  
+   			   reputation, 
+   			   review_title, 
+   			   review_content,
+			   P.local_code,
+			   P.place_code,
+			   P.place_name photo_name, 	
+			   visit_date,
+			   getRevCnt(R.place_serial) review_cnt		   
+   		from review R, review_like L, place P
+   		where R.review_serial = L.review_serial
+   		and like_id = #{_parameter}
+   		and P.place_serial = R.place_serial
+   		and P.place_code = 4
+   </select>
    
    <select id="select_profile" parameterType="String" resultType="bean.membershipVo">
    		select member_id, member_city, 
