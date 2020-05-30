@@ -53,9 +53,6 @@ $("#mapModal").on('shown.bs.modal', function() { // modal 이벤트 발생 시 �
 	    var infowindow = new kakao.maps.InfoWindow({
 	        content: positions[i].content // 인포윈도우에 표시할 내용
 	    });
-		
-	    console.log(positions[i].latlng);
-	    console.log(positions[i].content);
 	    
 		// 마커를 생성하고 지도위에 표시합니다
 		addMarker(positions[i].latlng, infowindow);
@@ -130,7 +127,7 @@ function addMarker(position, infowindow) {
 // content를 만들어 반환하는 함수
 function makeContent(title, mapy, mapx) {
 	let makeContent = '<div style="padding:5px;">' + title + ' <br>'
-				+ '<a href="https://map.kakao.com/link/map/' + title + ',' + mapy + ',' + mapx + '" style="color:blue" target="_blank">큰지도보기</a>'
+				+ '<a href="https://map.kakao.com/link/map/' + title + ',' + mapy + ',' + mapx + '" style="color:blue" target="_blank">큰지도보기</a>   '
 				+ '<a href="https://map.kakao.com/link/to/' + title + ',' + mapy + ',' + mapx + '" style="color:blue" target="_blank">길찾기</a>';
 				+ '</div>';
 				

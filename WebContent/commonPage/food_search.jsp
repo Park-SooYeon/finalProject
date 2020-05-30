@@ -5,7 +5,7 @@
   <div class="input-group-icon" style="display:flex;">
 	<div class="icon"><i class="fa fa-search" aria-hidden="true"></i></div>
 	<input type="text" id="filterFindStr" value="${param.findStr }" name="Search" placeholder="Search" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Search'" required="" class="single-input">
-  	<button id="filterSearch" onclick="filter.ajax()" class="btn btn-primary ml-3" style="width: 10%; height: 40px;" type="submit"><i class="fa fa-search"></i></button>
+  	<button id="filterSearch" onclick="filter.search()" class="btn btn-primary ml-3" style="width: 10%; height: 40px;" type="submit"><i class="fa fa-search"></i></button>
   </div>
 <br/>
 <div class="row">
