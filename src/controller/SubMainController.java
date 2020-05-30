@@ -495,11 +495,13 @@ public class SubMainController {
 	@ResponseBody
 	@PostMapping("searchList.sb")
 	public StringBuilder searchList(@RequestParam("menu") String menu, @RequestParam(required = false, value="local[]") List<String> local,
-									@RequestParam(required = false, value="filter[]") List<String> filter, @RequestParam(required = false, value = "findStr") String findStr) {
+									@RequestParam(required = false, value="filter[]") List<String> filter, @RequestParam(required = false, value = "findStr") String findStr,
+									@RequestParam("pageNum") String pageNum) {
 		StringBuilder sb = new StringBuilder();
 		sb.append('[');
 		
 		System.out.println("str : " + findStr);
+		System.out.println(findStr.length());
 		// local, filter 값이 없을 경우, NullPointException 방지를 위하여 공백 값 설정
 		if(local == null) {
 			local = new ArrayList<>();
@@ -528,7 +530,7 @@ public class SubMainController {
 			        urlBuilder.append("?" + URLEncoder.encode("ServiceKey","UTF-8") + "=%2FL4mnuLP6k1JiEz28Z86MlqufwpG49Q%2FhOqk53jtJr3H9fz%2FrNt5DoGHgSHGaprmYQOT6VXfCJcydUXrFUo%2FOA%3D%3D"); //Service Key
 			        urlBuilder.append("&" + URLEncoder.encode("MobileOS","UTF-8") + "=" + URLEncoder.encode("ETC", "UTF-8")); //IOS (아이폰), AND (안드로이드), WIN (원도우폰), ETC
 			        urlBuilder.append("&" + URLEncoder.encode("MobileApp","UTF-8") + "=" + URLEncoder.encode("AppTest", "UTF-8")); //서비스명=어플명
-			        urlBuilder.append("&" + URLEncoder.encode("pageNo","UTF-8") + "=" + URLEncoder.encode("1", "UTF-8")); //현재 페이지 번호
+			        urlBuilder.append("&" + URLEncoder.encode("pageNo","UTF-8") + "=" + URLEncoder.encode(pageNum, "UTF-8")); //현재 페이지 번호
 			        urlBuilder.append("&" + URLEncoder.encode("numOfRows","UTF-8") + "=" + URLEncoder.encode("12", "UTF-8")); //한 페이지 결과수
 			        urlBuilder.append("&" + URLEncoder.encode("listYN","UTF-8") + "=" + URLEncoder.encode("Y", "UTF-8")); //목록 구분
 			        urlBuilder.append("&" + URLEncoder.encode("arrange","UTF-8") + "=" + URLEncoder.encode("P", "UTF-8")); //정렬 구분 (O = 제목순, P = 조회순)
@@ -570,6 +572,7 @@ public class SubMainController {
 			        serial = dao.reputationSelect();
 			        String result = "";
 			        while ((line = rd.readLine()) != null) {
+/*			        	System.out.println("line:" + line);
 			        	// 필요한 데이터만 반환받기 위해 적용
 			        	int beginIndex = line.indexOf('[');
 			        	int endIndex = line.indexOf("]}");
@@ -583,13 +586,27 @@ public class SubMainController {
 				        	for(int k = 0 ; k < serial.size() ; k++) {
 				        		System.out.println(serial.get(k).getPlace_serial() + "," + serial.get(k).getReputation() + "," + serial.get(k).getReview_cnt());
 				        		result = result.replace("\"contentid\":" + serial.get(k).getPlace_serial() +",", "\"contentid\":" + serial.get(k).getPlace_serial() + ",\"reputation\":" + serial.get(k).getReputation() + ",\"review_cnt\":" + serial.get(k).getReview_cnt() + ",");
+				        		line = line.replace("\"contentid\":" + serial.get(k).getPlace_serial() +",", "\"contentid\":" + serial.get(k).getPlace_serial() + ",\"reputation\":" + serial.get(k).getReputation() + ",\"review_cnt\":" + serial.get(k).getReview_cnt() + ",");
 				        	}
 				        	
 				        	sb.append(result);
 				        	sb.append(',');
 				        	System.out.println("sb : " + sb.toString());
+			        	}*/
+			        	
+			        	// 요청 결과 가져오기
+			        	// 리뷰와 별점이 존재하면 리뷰와 별점 정보도 json에 저장
+			        	for(int k = 0 ; k < serial.size() ; k++) {
+			        		System.out.println(serial.get(k).getPlace_serial() + "," + serial.get(k).getReputation() + "," + serial.get(k).getReview_cnt());
+			        		line = line.replace("\"contentid\":" + serial.get(k).getPlace_serial() +",", "\"contentid\":" + serial.get(k).getPlace_serial() + ",\"reputation\":" + serial.get(k).getReputation() + ",\"review_cnt\":" + serial.get(k).getReview_cnt() + ",");
 			        	}
+			        	
+			        	System.out.println(line);
+			        	
+			        	sb.append(line);
+			        	sb.append(",");
 			        }
+			        
 			        rd.close();
 			        conn.disconnect();
 			        System.out.println(sb.toString());
@@ -600,13 +617,15 @@ public class SubMainController {
 			}
 		}
 		
-
 		
-		if(sb.length() == 1) { // 데이터가 없을 경우
+		// 맨 마지막에 ,를 ]로 변환
+		sb.replace(sb.length() - 1, sb.length(), "]");
+		
+/*		if(sb.length() == 1) { // 데이터가 없을 경우
 			sb.append(']');			
 		} else { // 데이터가 하나라도 있을 경우
 			sb.replace(sb.length() - 1, sb.length(), "]");			
-		}
+		}*/
 		
 		System.out.println(sb.toString());
 		return sb;
