@@ -22,6 +22,8 @@ public class PlaceVo {
 	int breakfast;
 	int wifi;
 	int parking;
+
+	
 	
 	int local_code;
 	String local_name;

@@ -18,6 +18,22 @@ where place_code = 4 and local_code=1
 
 </select>
 
+<select id='mainYes'  resultType="bean.PlaceVo">
+select 
+		p.PLACE_SERIAL ,p.PARTNER_SERIAL, p.PLACE_CODE,p.PLACE_NAME, 
+		p.PLACE_LOCATION, p.LATITUDE, p.LONGITUDE, p.GRADE,  p.STATE,
+	    p.LOCAL_CODE,p.place_tel,max(ph.orifile) oriFile
+from place p, place_photo ph
+
+where p.PLACE_SERIAL = ph.PLACE_SERIAL and place_code = 4  and partner_serial is not null 
+
+group by p.PLACE_SERIAL,p.PARTNER_SERIAL, p.PLACE_CODE,p.PLACE_NAME, 
+		p.PLACE_LOCATION, p.LATITUDE, p.LONGITUDE, p.GRADE,  p.STATE,
+	    p.LOCAL_CODE,p.place_tel
+
+
+
+</select>
 
 <!-- 
 <select id='mainReview' parameterType="String"  resultType="Integer">

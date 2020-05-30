@@ -46,8 +46,10 @@ public class hotelController {
 		
 		System.out.println("메인 진입");
 		
-		List<PlaceVo> hotelList = null;
-
+		List<PlaceVo> hotelnoRevList = null;
+        List<PlaceVo> hotelyesRevList = null; 
+		
+		
 		List<TripListVo> tripList = null;
 		List<Integer> likeList = null;
 		
@@ -64,10 +66,15 @@ public class hotelController {
 			likeList = dao.selectLike(id);
 		}		
 		
-		hotelList = hdao.select();
+		hotelnoRevList = hdao.MainSelectNoRev();
+		hotelyesRevList = hdao.MainSelectYesRev();
 		
 		
-		mv.addObject("hotelList", hotelList);
+		
+		mv.addObject("hotelList", hotelnoRevList);
+		mv.addObject("hotelList2", hotelyesRevList);
+		
+		
 		mv.addObject("tripList",tripList);
 		mv.addObject("likeList",likeList);
 		mv.setViewName("hotelMain");       

@@ -11,18 +11,18 @@
 <section class="banner-area relative" id="hotel_top">
 	<div class="container pt-50 mb-30">
 		<div class="row d-flex justify-content-center align-items-center"
-			style="height: 300px">
-			<div class="menu-content col-lg-12">
+			style="height: 250px">
+			<div class="menu-content col-lg-8">
 				<div class="title text-center">
 					<h1 class="text-white mb-10">호텔 메인</h1>
-					<form  method="post" name="frm_ht" id="frm_ht" class="row">
-	                             <input type="text" placeholder="지역 또는 검색어를 입력해주세요!"
+					<form  method="post" name="frm_ht" id="frm_ht" class="row" style="display:flex;">
+	                    <input type="text" placeholder="지역 또는 검색어를 입력해주세요!"
 						onfocus="this.placeholder = ''"
 						onblur="this.placeholder = '호텔이름을 입력해주세요!'"
 						name="findStr"
 						class="single-input">
 								
-										<button class="btn btn-primary" style="width: 15%; height: 40px;"
+								<button class="btn btn-primary" style="width: 15%; height: 40px;"
 									type="submit"><i class="fa fa-search"></i></button>
 													
 								</form>		
@@ -71,6 +71,58 @@
 </section>
 
 
+<!-- Swiper -->
+<section class="destinations-area pb-60">
+	<div class="container">
+		<div class="row d-flex justify-content-center">
+			<div class="menu-content col-lg-12">
+				<h1 class="mb-10">예약 가능 호텔 ! </h1>
+				<a href="./?inc=hotel/hotel_body.jsp">더 많은 호텔 검색하기</a>
+			</div>
+		</div>
+		<div class="row">
+			<div class="swiper-container m-2">
+				<div class="swiper-wrapper pl-50 pr-50">
+					
+	
+			<c:forEach var='i' items='${hotelList2 }' >
+					<div class="swiper-slide">
+						<div class="p-1 heart" onclick="main.like(this)">
+							<i class="fa fa-heart-o" style="vertical-align: middle;"></i>
+						</div>
+						<div class="single-destinations" >
+							<div class="thumb">
+								<img src="assets/images/upload/${i.oriFile}" 
+								 style ="height:200px;">
+							</div>
+							<div class="tags"> 
+								       <div>
+									 &nbsp;&nbsp;<span class="badge badge photel"
+									    style="font-size:15px;">예약 가능</span>
+								    	
+							 </div>
+							</div>
+							<div class="details p-2">
+						
+								<h4>${i.place_name}</h4>
+							    <p>${i.place_tel}</p>
+								<h6 class="date">${i.place_location}</h6>
+							</div>
+						</div>
+					</div>
+				</c:forEach>
+			
+				<!-- Add Arrows -->
+				<div class="swiper-button-next"></div>
+				<div class="swiper-button-prev"></div>
+			</div>
+		</div>
+	</div>
+</div>
+</section>
+
+
+
 			
 <!-- Swiper -->
 <section class="destinations-area pb-60">
@@ -86,7 +138,7 @@
 				<div class="swiper-wrapper pl-50 pr-50">
 					
 	
-			<c:forEach var='i' items='${hotelList }' begin='1' end='50'>
+			<c:forEach var='i' items='${hotelList }' begin='1' end='20'>
 					<div class="swiper-slide">
 						<div class="p-1 heart" onclick="main.like(this)">
 							<i class="fa fa-heart-o" style="vertical-align: middle;"></i>
@@ -98,7 +150,7 @@
 							</div>
 							<div class="tags"> 
 								       <div>
-									    <span class="badge badge-warning" 
+									     &nbsp;&nbsp;<span class="badge badge-warning" 
 									    style="font-size:15px;margin:2px;">제휴준비중</span>
 								    	
 							 </div>
