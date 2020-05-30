@@ -58,7 +58,7 @@
             		data-start="${i.start_date}"
             		data-end="${i.end_date }"
             		data-serial="${i.trip_list_serial }"
-            		>수정</span>
+            		>보기</span>
 	              <span> | </span>
 	              <span class="mp-trip-delete" id="btnDeleteTrip" onclick="deleteTrip(${i.trip_list_serial})">삭제</span>
               	</div>
@@ -93,7 +93,7 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="modal-body" style="color: #000; padding: 2rem 5rem;">
+        <div class="modal-body" style="color: #000;">
             <div class="form-group">
               <input
                 type="text"
@@ -156,13 +156,15 @@
                 name="start_date"
               />
             </div>
-        </div>
+            
         <div class="modal-footer">
           <input type="button" class="btn btn-secondary" data-dismiss="modal" value="닫기">
           <input type="button" class="btn btn-primary" id="btnCreateTrip" value="저장">
         </div>
       </div>
+      </div>
          </form>
+         
     </div>
   </div>
   <!-- model end -->
@@ -178,17 +180,19 @@
     aria-labelledby="mp-modifyTripModalLabel"
     aria-hidden="true"
   >
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog" role="document" style="max-width: 800px;">
      <form id="mpModifyTripFrm">
      <input type="text" id="trip_serial" name="trip_serial"/>
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="mp-modifyTripLabel">여행 수정하기</h5>
+          <h5 class="modal-title" id="mp-modifyTripLabel">여행편집</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="modal-body" style="color: #000; padding: 2rem 5rem;">
+        <div class="modal-body" style="color: #000; padding: 2rem 2rem;">
+        <div class="row">
+        <div class="col-md-6" style="border-right:1px solid #eee;">
             <div class="form-group">
               <input
                 type="text"
@@ -250,10 +254,101 @@
                 data-multiple-dates-separator=" - "
               />
             </div>
+            </div>
+            <div class="col-md-6">
+            <h4 class="text-center mb-3">포함된 여행</h4>
+            <div class="list-box connectedSortable">
+          <div
+            class="day-spot-item ui-draggable"
+            data="0"
+            data-set_day="0"
+            data-rel_srl="845972"
+            data-pl_type="0"
+            data-no="0"
+            data-pl_cat="301"
+            data-ci="10907"
+          >
+            <div class="img-box fl">
+              <img src="./images/myPage/place2.jpg" />
+            </div>
+            <div class="info-box">
+              <div class="info-title">우리집</div>
+              <div class="small info-small">자연경관</div>
+              <div class="like-cnt-info">
+                <i class="fab fa-gratipay" style="color: rgb(253, 123, 145);"></i> 13 |
+                <i class="far fa-thumbs-up" style="color: #1a7ad9;"></i> 15
+              </div>
+              <!-- <div class="small info-small include_pn_day" style="color: #1a7ad9;">DAY1</div>  -->
+            </div>
+            <div class="spot-to-inspot">
+              <img class="add-icon" src="./images/myPage/interface.png"></img>
+            </div>
+          </div>
+
+          <div
+            class="day-spot-item ui-draggable"
+            data="0"
+            data-set_day="0"
+            data-rel_srl="845972"
+            data-pl_type="0"
+            data-no="0"
+            data-pl_cat="301"
+            data-ci="10907"
+          >
+            <div class="img-box fl">
+              <img src="./images/myPage/place3.jpg" />
+            </div>
+            <div class="info-box">
+              <div class="info-title">우리집앞</div>
+              <div class="small info-small">랜드마크</div>
+              <div class="like-cnt-info">
+                <i class="fab fa-gratipay" style="color: rgb(253, 123, 145);"></i> 13 |
+                <i class="far fa-thumbs-up" style="color: #1a7ad9;"></i> 15
+              </div>
+              <!-- <div class="small info-small include_pn_day" style="color: #1a7ad9;">DAY1</div>  -->
+            </div>
+            <div class="spot-to-inspot">
+              <img class="add-icon" src="./images/myPage/interface.png"/>
+            </div>
+          </div>
+
+          <div
+            class="day-spot-item ui-draggable"
+            data="0"
+            data-set_day="0"
+            data-rel_srl="845972"
+            data-pl_type="0"
+            data-no="0"
+            data-pl_cat="301"
+            data-ci="10907"
+          >
+            <div class="img-box fl">
+              <img src="./images/myPage/place1.jpg" />
+            </div>
+            <div class="info-box">
+              <div class="info-title">한강공원</div>
+              <div class="small info-small">공원/정원</div>
+              <div class="like-cnt-info">
+                <i class="fab fa-gratipay" style="color: rgb(253, 123, 145);"></i> 13 |
+                <i class="far fa-thumbs-up" style="color: #1a7ad9;"></i> 15
+              </div>
+              <!-- <div class="small info-small include_pn_day" style="color: #1a7ad9;">DAY1</div>  -->
+            </div>
+            <div class="spot-to-inspot">
+              <img class="add-icon" src="./images/myPage/interface.png"/>
+            </div>
+          </div>
+        </div>
+            
+            
+            </div>
+            </div>
         </div>
         <div class="modal-footer">
           <input type="button" class="btn btn-secondary" data-dismiss="modal" value="닫기">
           <input type="button" class="btn btn-primary" id="btnModifyTrip" value="수정">
+          <input type="button" class="btn btn-primary" id="btnGoTrip" 
+          onclick="location.href='editTrip.mp'" value="여행일정 짜기">
         </div>
       </div>
        </form>

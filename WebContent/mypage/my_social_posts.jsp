@@ -4,7 +4,7 @@
 <!--posting wrapper-->
           
           <!-- 리뷰 시작 -->
-            <c:forEach var="i" items="list">
+            <c:forEach var="i" items="${list }">
               <div class="posts-review">
                 <div class="posting-title row">
                   <span class="col-xl-1 col-lg-1 col-md-1 text-center p-0">
@@ -44,7 +44,7 @@
                       <div class="item-list-wrapper" style="width: 92%;">
                         <div class="travel-item-list">
                           <span class="travel-box my-2" style="width: 250px;">
-                            <img src="./template/img/blog/pp1.jpg" />
+                            <img src="${i.p.photo_name }" />
                             <div class="m-2">
                               <h5>${i.p.place_name }</h5>
                               <div>
@@ -53,7 +53,7 @@
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star"></i>
-                                <small>(${i.review_cnt }건)</small>
+                                <small>(${i.p.review_cnt }건)</small>
                               </div>
                               <div>${i.p.local_name }, 대한민국</div>
                             </div>

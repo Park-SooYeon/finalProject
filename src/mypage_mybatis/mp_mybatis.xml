@@ -131,17 +131,17 @@
    
    <!-- 좋아요 누른 리뷰 중 api 요청 -->
    <select id="select_apiReview" parameterType="String" resultMap="mp_map_review">
-		select l.like_id, r.review_serial, 
+		select r.review_serial, 
 			   r.member_id, r.place_serial, 
 			   r.reputation, r.review_title, 
 			   r.review_content, r.visit_date,
 			   getRevCnt(r.place_serial) review_cnt
 		from review r join review_like l 
-		on l.review_serial = r.review_serial 
+		on l.review_serial = r.review_serial
 		left outer join place p
 		on p.place_serial = r.place_serial
 		where l.like_id = #{_parameter}
-        and p.place_serial is null
+		and p.place_serial is null
 	</select>
    
    <!-- 좋아요 누른 리뷰 조회 (호텔)-->
@@ -213,7 +213,27 @@
 		select count(follow_serial) from follow_list where target_id = #{_parameter}
 	</select>
 	
-	
+	<!-- 팔로우하는 사람들의 리뷰 게시물 (api)-->
+	<select id="select_follow_review" parameterType="hashMap" resultMap="mp_map_review">
+		select r.review_serial, 
+			   r.member_id, r.place_serial, 
+			   r.reputation, r.review_title, 
+			   r.review_content, 
+			   to_char(r.visit_date, 'rrrr"년" mm"월" dd"일"') visit_date, 
+			   r.review_date,
+			   getRevCnt(r.place_serial) review_cnt
+		from review r join follow_list f 
+		on r.member_id = f.target_id 
+		left outer join place p
+		on p.place_serial = r.place_serial
+		where f.member_id = #{member_id}
+		<if test='flag.equals("api")'>
+		and p.place_serial is null
+		</if>
+		<if test='flag.equals("hotel")'>
+		and p.place_serial is not null
+		</if>
+	</select>
 	
 
 </mapper>

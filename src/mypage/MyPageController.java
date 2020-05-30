@@ -295,7 +295,7 @@ public class MyPageController {
 	public ModelAndView selectPosts(HttpServletRequest req, HttpSession session) {
 		mv = new ModelAndView();
 		String member_id = (String)session.getAttribute("member_id");
-		List<ReviewVo> list = dao.selectReview(member_id);
+		List<ReviewVo> list = dao.selectFollowReview(member_id);
 		
 		for(ReviewVo vo : list) {
 			System.out.println(vo.toString());
@@ -304,6 +304,11 @@ public class MyPageController {
 		mv.setViewName("my_social_posts");
 		mv.addObject("list", list);
 		return mv;
+	}
+	
+	@RequestMapping( value = "editTrip.mp", method = {RequestMethod.GET, RequestMethod.POST})
+	public String editTrip() {
+		return "edit_trip";
 	}
 	
 	public String getCurrentDayTime(){

@@ -291,6 +291,53 @@ public class MyPageDao {
 		return map;
 	}
 	
+	public List<ReviewVo> selectFollowReview(String member_id) {
+		List<ReviewVo> list = null;
+		List<ReviewVo> list2 = null;
+		Map<String, String> map = new HashMap<String, String>();
+		
+		map.put("member_id", member_id);
+		
+		// flag가 hotel이면 호텔정보만, api면 api에 요청정보
+		
+		try {
+			// 호텔정보만 반환
+			map.put("flag", "hotel");
+			list = sqlSession.selectList("mypage.select_follow_review", map);
+			
+			for(ReviewVo vo : list) {
+				System.out.println("호텔만 담았을때 "+vo.toString());
+			}
+			
+			// api로 가져오는 place
+			map.put("flag", "api");
+			list2 = sqlSession.selectList("mypage.select_follow_review", map);
+			
+			for(ReviewVo vo : list2) {
+				System.out.println("api만 담았을때 "+vo.toString());
+			}
+			
+			for(ReviewVo vo : list2) {
+				//vo에 api 응답정보를 담아서 재가공
+				JsonObject contentResult = getApi(vo.getPlace_serial());
+				int place_serial = contentResult.get("contentid").getAsInt();
+		        String photo_name = contentResult.get("firstimage").getAsString();
+		        String place_name = contentResult.get("title").getAsString();
+		        int local_code = contentResult.get("areacode").getAsInt();
+		        
+		        vo.setPlace_serial(place_serial);
+		        vo.getP().setLocal_code(local_code);
+		        vo.getP().setPhoto_name(photo_name);
+		        vo.getP().setPlace_name(place_name);
+				list.add(vo);
+			}
+			
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		}
+		return list; 
+	}
+	
 	public JsonObject getApi(int contentId) throws IOException {
 		
 		StringBuilder urlBuilder = new StringBuilder("http://api.visitkorea.or.kr/openapi/service/rest/KorService/detailCommon"); /*URL*/
