@@ -10,6 +10,13 @@ ptn.init = function(){
 
 ptn.func = function(){
 	
+	// 호텔 수정버튼 클릭 시, 페이지 이동
+	$("#btnPtHtModify").click(function(){
+		var serial = Number($('#pserial').val());
+		$('#frmAdmHtCompView').attr('action', "./?inc=hotel_comp_modify.ph").submit(); 
+	});
+	
+	
 	// 호텔등록 버튼 클릭 시, 페이지 이동 
 	$("#btnPtHtInsert").click(function(){
 		//frm_brd.enctype = '';
@@ -73,9 +80,9 @@ ptn.func = function(){
 				console.log(error);
 				Swal.fire({
 	            	icon: 'error',
-	            	title: status + "--" + error + "--" + xhr.responseText,
+	            	//title: status + "--" + error + "--" + xhr.responseText,
+	            	title: "오류가 발생했습니다.",
 	            	showConfirmButton: true
-	            	//timer: 1500
 	            });
 			},
 			success : function(data, status, xhr){
@@ -113,13 +120,15 @@ ptn.func = function(){
 	*/
 	
 }
-
+/*
 ptn.go = function(i){
-	// place_serial 값 세팅
-	$("#pserial").val(i);
+	var serial = Number($('#pserial').val(i));
 	console.log($("#pserial").val());
-	let param = $("#frmAdmHtCompList").serialize();	// 	직렬화
-	$.post("hotel_comp_view.ph", param, function(data, state){
-		$("#main").html(data);
-	}); 
+	//frmAdmHtCompList.method = 'post';
+	$('#frmAdmHtCompList').attr('action', "hotel_comp_view.ph?place_serial=" + serial).submit();   
+}*/
+ 
+ptn.go = function(i){
+	var serial = Number($('#pserial').val(i));
+	$('#frmAdmHtCompList').attr('action', "./?inc=hotel_comp_view.ph").submit(); 
 }

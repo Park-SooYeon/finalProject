@@ -16,10 +16,14 @@
                                 <span class="breadcrumb-item active" aria-current="page">호텔 정보 상세조회</span>
                             </h5>
                         </div>
-                    </div>
-                    <form class="" name="frmAdmHtCompView" id='frmAdmHtCompView'>
-                        
-                        <div class="">
+                        <div class="ml-auto d-flex align-items-stretch justify-content-end">
+                            <button type="button" id="btnPtHtModify" class="btn btn-inverse-success no-wrap ml-4">수정</button>
+                            <a href="#" id="btnPtHtDelete" class="btn btn-inverse-danger no-wrap ml-2">삭제</a>
+                        </div>
+                    </div> 
+                    <form class="" name="frmAdmHtCompView" id='frmAdmHtCompView' method="post"> 
+                        <input type="text" name="pserial" id="pserial" value="${serial }" /> 
+                        <div class=""> 
                             <div class="d-flex justify-content-center justify-content-md-between mr-4 mr-xl-5 pr-xl-5 flex-wrap">
                                 <div class="profile-info d-flex align-items-center justify-content-center flex-wrap mr-sm-3">
                                 	<c:if test="${!empty vo.photos}">
