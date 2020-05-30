@@ -78,8 +78,8 @@ ptn.func = function(){
 	            	//timer: 1500
 	            });
 			},
-			success : function(data){
-				if(data == "success"){
+			success : function(data, status, xhr){
+				if(status == "success"){
 					Swal.fire({
 		            	icon: 'success',
 		            	title: '호텔 정보가 등록되었습니다.',
