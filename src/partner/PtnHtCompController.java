@@ -210,6 +210,27 @@ public class PtnHtCompController {
 		
 		// place_serial 
 		int serial = Integer.parseInt(req.getParameter("pserial"));
+		System.out.println("serial" + serial);
+		vo = dao.view(serial);
+		photoList = dao.getAttList(serial);
+		
+		mv.addObject("serial", serial);
+		mv.addObject("photoList", photoList);
+		mv.addObject("vo", vo);
+		mv.setViewName("hotel_comp_view");
+		return mv;
+	}
+	
+	@RequestMapping(value="/admin/partner/hotel_comp_modify.ph", method= {RequestMethod.GET, RequestMethod.POST}) 
+	public ModelAndView modify(HttpServletRequest req) {
+		ModelAndView mv = new ModelAndView();
+		PlaceVo vo = null; 
+		List<UploadVo> photoList = null;
+		
+		System.out.println("dsadsadas");
+		
+		// place_serial 
+		int serial = Integer.parseInt(req.getParameter("pserial"));
 		System.out.println("pserial : " + req.getParameter("pserial"));
 		
 		vo = dao.view(serial);
@@ -220,17 +241,7 @@ public class PtnHtCompController {
 		
 		mv.addObject("photoList", photoList);
 		mv.addObject("vo", vo);
-		mv.setViewName("hotel_comp_view");
-		return mv;
-	}
-	
-	@RequestMapping(value="/admin/partner/hotel_comp_modify.ph", method= {RequestMethod.GET, RequestMethod.POST}) 
-	public ModelAndView modify(HttpServletRequest req) {
-		ModelAndView mv = new ModelAndView();
-		Object vo = null; 
-		
-		mv.addObject("vo", vo);
-		mv.setViewName("hotel_comp_list");
+		mv.setViewName("hotel_comp_modify"); 
 		return mv;
 	}
 	
