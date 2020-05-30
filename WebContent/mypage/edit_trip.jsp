@@ -6,7 +6,7 @@
     <!-- Mobile Specific Meta -->
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <!-- Favicon-->
-    <link rel="shortcut icon" href="./img/fav.png" />
+    <link rel="shortcut icon" href="./template/img/fav.png" />
     <!-- Author Meta -->
     <meta name="author" content="colorlib" />
     <!-- Meta Description -->
@@ -22,22 +22,37 @@
     <!--
 			CSS
 			============================================= -->
-    <link rel="stylesheet" href="../template/css/linearicons.css" />
-    <link rel="stylesheet" href="../template/css/font-awesome.min.css" />
-    <link rel="stylesheet" href="../template/css/bootstrap.css" />
-    <link rel="stylesheet" href="../template/css/magnific-popup.css" />
-    <link rel="stylesheet" href="../template/css/jquery-ui.css" />
-    <link rel="stylesheet" href="../template/css/nice-select.css" />
-    <link rel="stylesheet" href="../template/css/animate.min.css" />
-    <link rel="stylesheet" href="../template/css/owl.carousel.css" />
-    <link rel="stylesheet" href="../template/css/main.css" />
-    <link rel="stylesheet" href="../css/custom.css" />
+    <link rel="stylesheet" href="./template/css/linearicons.css" />
+    <link rel="stylesheet" href="./template/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="./template/css/bootstrap.css" />
+    <link rel="stylesheet" href="./template/css/magnific-popup.css" />
+    <link rel="stylesheet" href="./template/css/jquery-ui.css" />
+    <link rel="stylesheet" href="./template/css/nice-select.css" />
+    <link rel="stylesheet" href="./template/css/animate.min.css" />
+    <link rel="stylesheet" href="./template/css/owl.carousel.css" />
+    <link rel="stylesheet" href="./template/css/main.css" />
+    <link rel="stylesheet" href="./css/custom.css" />
 
     <!--datepicker css-->
-    <link rel="stylesheet" href="../plugin/air-datepicker/css/datepicker.min.css">
+    <link rel="stylesheet" href="./plugin/air-datepicker/css/datepicker.min.css">
+    
+    <script
+      type="text/javascript"
+      src="//dapi.kakao.com/v2/maps/sdk.js?appkey=52d0cd9eb539c564cdc52bb34a626875&libraries=services"
+    ></script>
     
     <title>Insert title here</title>
     <style>
+    
+    .dot {overflow:hidden;float:left;width:12px;height:12px;background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/mini_circle.png');}    
+.dotOverlay {position:relative;bottom:10px;border-radius:6px;border: 1px solid #ccc;border-bottom:2px solid #ddd;float:left;font-size:12px;padding:5px;background:#fff;}
+.dotOverlay:nth-of-type(n) {border:0; box-shadow:0px 1px 2px #888;}    
+.number {font-weight:bold;color:#ee6152;}
+.dotOverlay:after {content:'';position:absolute;margin-left:-6px;left:50%;bottom:-8px;width:11px;height:8px;background:url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white_small.png')}
+.distanceInfo {position:relative;top:5px;left:5px;list-style:none;margin:0;}
+.distanceInfo .label {display:inline-block;width:50px;}
+.distanceInfo:after {content:none;}
+    
     </style>
   </head>
 
@@ -47,15 +62,15 @@
       <div class="main-menu">
         <div class="row align-items-center justify-content-between d-flex">
           <div id="logo">
-            <a href="../index.jsp"><img src="../template/img/logo.png" alt="" title="" /></a>
+            <a href="./index.jsp"><img src="./template/img/logo.png" alt="" title="" /></a>
           </div>
           <nav id="nav-menu-container">
             <ul class="nav-menu" style="position:absolute; left:11rem;">
-              <li><a href="../index.jsp">호텔</a></li>
-              <li><a href="../index.jsp">즐길거리</a></li>
-              <li><a href="../index.jsp">음식점</a></li>
-              <li><a href="../index.jsp">축제</a></li>
-              <li><a href="../index.jsp">리뷰</a></li>
+              <li><a href="./index.jsp">호텔</a></li>
+              <li><a href="./index.jsp">즐길거리</a></li>
+              <li><a href="./index.jsp">음식점</a></li>
+              <li><a href="./index.jsp">축제</a></li>
+              <li><a href="./index.jsp">리뷰</a></li>
             </ul>
                         <ul class="nav-menu pull-left">
               <li>
@@ -241,7 +256,7 @@
           >
              <div class="item-ctrl-box" style="display: none;">
                 <div class="btn-del" title="삭제">
-				<img class="add-icon" src="../images/myPage/sign.png"></img>
+				<img class="add-icon" src="./images/myPage/sign.png"></img>
                 </div>
               </div>
 
@@ -271,7 +286,7 @@
             >
                <div class="item-ctrl-box" style="display: none;">
                 <div class="btn-del" title="삭제">
-				<img class="add-icon" src="../images/myPage/sign.png"></img>
+				<img class="add-icon" src="./images/myPage/sign.png"></img>
                 </div>
               </div>
 
@@ -322,7 +337,7 @@
             >
                <div class="item-ctrl-box" style="display: none;">
                 <div class="btn-del" title="삭제">
-				<img class="add-icon" src="../images/myPage/sign.png"></img>
+				<img class="add-icon" src="./images/myPage/sign.png"></img>
                 </div>
               </div>
 
@@ -351,7 +366,7 @@
             >
                <div class="item-ctrl-box" style="display: none;">
                 <div class="btn-del" title="삭제">
-				<img class="add-icon" src="../images/myPage/sign.png"></img>
+				<img class="add-icon" src="./images/myPage/sign.png"></img>
                 </div>
               </div>
 
@@ -456,7 +471,7 @@
             data-ci="10907"
           >
             <div class="img-box fl">
-              <img src="../images/myPage/place2.jpg" />
+              <img src="./images/myPage/place2.jpg" />
             </div>
             <div class="info-box">
               <div class="info-title">우리집</div>
@@ -468,7 +483,7 @@
               <!-- <div class="small info-small include_pn_day" style="color: #1a7ad9;">DAY1</div>  -->
             </div>
             <div class="spot-to-inspot">
-              <img class="add-icon" src="../images/myPage/interface.png"></img>
+              <img class="add-icon" src="./images/myPage/interface.png"></img>
             </div>
           </div>
 
@@ -483,7 +498,7 @@
             data-ci="10907"
           >
             <div class="img-box fl">
-              <img src="../images/myPage/place3.jpg" />
+              <img src="./images/myPage/place3.jpg" />
             </div>
             <div class="info-box">
               <div class="info-title">우리집앞</div>
@@ -495,7 +510,7 @@
               <!-- <div class="small info-small include_pn_day" style="color: #1a7ad9;">DAY1</div>  -->
             </div>
             <div class="spot-to-inspot">
-              <img class="add-icon" src="../images/myPage/interface.png"/>
+              <img class="add-icon" src="./images/myPage/interface.png"/>
             </div>
           </div>
 
@@ -510,7 +525,7 @@
             data-ci="10907"
           >
             <div class="img-box fl">
-              <img src="../images/myPage/place1.jpg" />
+              <img src="./images/myPage/place1.jpg" />
             </div>
             <div class="info-box">
               <div class="info-title">한강공원</div>
@@ -522,7 +537,7 @@
               <!-- <div class="small info-small include_pn_day" style="color: #1a7ad9;">DAY1</div>  -->
             </div>
             <div class="spot-to-inspot">
-              <img class="add-icon" src="../images/myPage/interface.png"/>
+              <img class="add-icon" src="./images/myPage/interface.png"/>
             </div>
           </div>
         </div>
@@ -561,25 +576,25 @@
     </div>
     <!-- 전체 wrapper -->
 
-    <script src="../template/js/vendor/jquery-2.2.4.min.js"></script>
-    <script src="../template/js/popper.min.js"></script>
-    <script src="../template/js/vendor/bootstrap.min.js"></script>
-    <script src="../template/js/jquery-ui.js"></script>
-    <script src="../template/js/easing.min.js"></script>
-    <script src="../template/js/hoverIntent.js"></script>
-    <script src="../template/js/superfish.min.js"></script>
-    <script src="../template/js/jquery.ajaxchimp.min.js"></script>
-    <script src="../template/js/jquery.magnific-popup.min.js"></script>
-    <script src="../template/js/jquery.nice-select.min.js"></script>
-    <script src="../template/js/owl.carousel.min.js"></script>
-    <script src="../template/js/mail-script.js"></script>
-    <script src="../template/js/main.js"></script>
-    <script src="../js/custom_trip.js"></script>
-    <script src="../js/custom_map.js"></script>
+    <script src="./template/js/vendor/jquery-2.2.4.min.js"></script>
+    <script src="./template/js/popper.min.js"></script>
+    <script src="./template/js/vendor/bootstrap.min.js"></script>
+    <script src="./template/js/jquery-ui.js"></script>
+    <script src="./template/js/easing.min.js"></script>
+    <script src="./template/js/hoverIntent.js"></script>
+    <script src="./template/js/superfish.min.js"></script>
+    <script src="./template/js/jquery.ajaxchimp.min.js"></script>
+    <script src="./template/js/jquery.magnific-popup.min.js"></script>
+    <script src="./template/js/jquery.nice-select.min.js"></script>
+    <script src="./template/js/owl.carousel.min.js"></script>
+    <script src="./template/js/mail-script.js"></script>
+    <script src="./template/js/main.js"></script>
+    <script src="./js/custom_trip.js"></script>
+    <script src="./js/custom_map.js"></script>
     <!-- fontawesome -->
     <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
     
     <!-- datepicker -->
-    <script src="../plugin/air-datepicker/js/datepicker.min.js"></script>
+    <script src="./plugin/air-datepicker/js/datepicker.min.js"></script>
   </body>
 </html>

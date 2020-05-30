@@ -348,7 +348,7 @@
           <input type="button" class="btn btn-secondary" data-dismiss="modal" value="닫기">
           <input type="button" class="btn btn-primary" id="btnModifyTrip" value="수정">
           <input type="button" class="btn btn-primary" id="btnGoTrip" 
-          onclick="location.href='editTrip.mp'" value="여행일정 짜기">
+          onclick="goTrip();" value="여행일정 짜기">
         </div>
       </div>
        </form>

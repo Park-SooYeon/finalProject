@@ -37,39 +37,43 @@ public class MyPageController {
 	
 	@GetMapping(value = "profile.mp")
 	public ModelAndView profile(@RequestParam String id, HttpSession session) {
-		System.out.println(id);
+		// get타입으로 아이디 전달받음 (프로필주인)
 		mv = new ModelAndView();
 		membershipVo vo = dao.selectProfile(id);
 		FollowListVo fvo = new FollowListVo();
+		
+		// 현재 접속해있는 아이디
 		String member_id = (String)session.getAttribute("member_id");
-		System.out.println(member_id);
 		fvo.setMember_id(member_id);
 		fvo.setTarget_id(id);
-		int cnt = dao.getFollow(fvo);
-		System.out.println(cnt);
 		
+		// 해당 아이디 팔로우하고 있는지 여부 판단
+		int flag = dao.getFollow(fvo);
+		
+		// 팔로우 수, 팔로워 수 반환 <follow, n> <follower, n> 형태
 		Map<String, Integer> map = dao.getFollowCnt(member_id);
 		
 		mv.setViewName("my_social");
 		mv.addObject("map", map);
-		mv.addObject("flag", cnt);
+		mv.addObject("flag", flag);
 		mv.addObject("vo", vo);
 		return mv;
 	}
 	
+	// 회원정보 수정
 	@RequestMapping( value ="mypage.mp", method= {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView mypage(HttpServletRequest req) {
 		mv = new ModelAndView();
 		return mv;
 	}
 	
+	// 예약내역 확인
 	@RequestMapping( value = "mybooking.mp", method = {RequestMethod.GET, RequestMethod.POST})
-	public ModelAndView mybooking() {
-		mv = new ModelAndView();
-		mv.setViewName("my_page");
-		return mv;
+	public String mybooking() {
+		return "my_page";
 	}
 
+	// 여행리스트, 관심리스트, 좋아요한 리뷰 보기 페이지
 	@RequestMapping( value = "mytrip.mp", method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView select(HttpServletRequest req, HttpServletResponse resp) {
 		mv = new ModelAndView();
@@ -84,12 +88,12 @@ public class MyPageController {
 	// 새로운 여행 만들었을 때
 	@ResponseBody
 	@RequestMapping( value = "newtrip.mp", method = {RequestMethod.GET, RequestMethod.POST}, produces = "text/html;charset=utf8")
-	public String insert(HttpServletRequest req) {
+	public String insert(HttpServletRequest req, HttpSession session) {
 		System.out.println("여기 들어오는지");
 		TripListVo vo = new TripListVo(); 
 		
 		String trip_name = "";
-		String member_id = "testId";
+		String member_id = (String)session.getAttribute("member_id");
 		int days_count = 0;
 		String start_date = "";
 		String end_date = "";
@@ -130,11 +134,11 @@ public class MyPageController {
 	                                                                                             
 	@ResponseBody
 	@RequestMapping( value = "modify_trip.mp", method = {RequestMethod.POST}, produces = "text/html;charset=utf8")
-	public String modifyR(HttpServletRequest req, HttpServletResponse resp) {
+	public String modifyR(HttpServletRequest req, HttpSession session) {
 		TripListVo vo = new TripListVo();
 		
 		String trip_name = "";
-		String member_id = "testId"; //추후 세션 아이디로 수정
+		String member_id = (String)session.getAttribute("member_id"); //추후 세션 아이디로 수정
 		int days_count = 0;
 		String start_date = null;
 		String end_date = null;
@@ -180,6 +184,8 @@ public class MyPageController {
 		return msg;
 	}
 	
+	
+	// triplist 삭제시에
 	@ResponseBody
 	@RequestMapping( value = "deleteTrip.mp", method = {RequestMethod.GET, RequestMethod.POST}, produces = "text/html;charset=utf8")
 	public String deleteR(HttpServletRequest req, HttpServletResponse resp) {
@@ -308,9 +314,12 @@ public class MyPageController {
 	
 	@RequestMapping( value = "editTrip.mp", method = {RequestMethod.GET, RequestMethod.POST})
 	public String editTrip() {
+		mv = new ModelAndView();
 		return "edit_trip";
 	}
 	
+	
+	// 파일명 만들어줄때 필요한 날짜변환 함수
 	public String getCurrentDayTime(){
 	    long time = System.currentTimeMillis();
 	    SimpleDateFormat dayTime = new SimpleDateFormat("yyyyMMdd-HH-mm-ss", Locale.KOREA);

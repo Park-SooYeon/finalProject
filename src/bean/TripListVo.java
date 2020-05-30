@@ -11,6 +11,11 @@ public class TripListVo {
 	int trip_auth;
 	String trip_date;
 	
+	// 해당 place가 호텔인지 api인지 알아보기 위한 flag (mybatis에서 parameter로 전달)
+	String flag;
+	
+	PlaceVo vo;
+	
 	
 	public int getTrip_list_serial() {
 		return trip_list_serial;

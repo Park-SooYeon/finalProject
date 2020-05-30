@@ -260,14 +260,15 @@ public class MyPageDao {
 	}
 	
 	public int getFollow(FollowListVo vo) {
-		int cnt = 0;
+		int flag = 0;
 		try {
-			cnt = sqlSession.selectOne("select_follow", vo);
+			flag = sqlSession.selectOne("select_follow", vo);
+			// flag가 0이면 해당 아이디를 팔로우하고 있지 않음, 1이면 팔로우하고 있음
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		return cnt;
+		return flag;
 	}
 	
 	public Map<String, Integer> getFollowCnt(String member_id) {
