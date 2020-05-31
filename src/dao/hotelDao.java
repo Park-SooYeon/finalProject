@@ -1,6 +1,8 @@
 package dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -62,5 +64,33 @@ public List<PlaceVo> MainSelectYesRev() {
 	
 }
 	
+
+
+public List<PlaceVo> searchList(List<String> local,List<String> filter) {
+	List<PlaceVo> list = null;
+	System.out.println("진입");
+	try {
+	
+		Map<String,Object> map= new HashMap<String,Object>();
+		
+		map.put("local", local);
+		map.put("filter", filter);
+	    list = sqlSession.selectList("ht.placeSelect",map);
+
+	    
+	    
+	}catch(Exception ex) {
+	
+		ex.printStackTrace();
+	
+	}finally {
+		//sqlSession.close();
+		return list;
+		
+	}
+	
+	
+}
+
 	
 }

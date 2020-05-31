@@ -42,13 +42,63 @@ public class hotelController {
 	@RequestMapping(value = "hotel_index.ht", method = { RequestMethod.GET})
    public String searchMenu(@RequestParam String local, HttpServletRequest req, Model model) {
 	
+		List<PlaceVo> hotelnoRevList = null; 
+		hotelDao hdao = new hotelDao();
 	
 	
 		return "hotel_index";
 	}
 	
 	
-	
+	// 검색어 필터 선택 시, 조회되는 관광지 정보들
+		@ResponseBody
+		@RequestMapping("searchList.ht")
+		public ModelAndView searchList(@RequestParam(required = false, value="local[]") List<String> local,
+										@RequestParam(required = false, value="filter[]") List<String> filter,
+										@RequestParam(required = false, value = "findStr") String findStr
+										) {
+		
+			ModelAndView mv = new ModelAndView();
+			
+			List<PlaceVo> searchList = null;
+			hotelDao hDao = new hotelDao();
+			
+			
+			
+			System.out.println("ajax 성공적");
+			// local, filter 값이 없을 경우, NullPointException 방지를 위하여 공백 값 설정
+			if(local == null) {
+				local = new ArrayList<>();
+				local.add("");
+			}
+			if(filter == null) {
+				filter = new ArrayList<>();
+				filter.add("");
+			}
+			
+			
+			// 키워드가 들어왔을때.
+			if(findStr == null || findStr.equals("")) {
+				System.out.println("list 검색");
+		
+				
+				searchList = hDao.searchList(local,filter);
+				
+				System.out.println(searchList.toString());
+				
+				
+			} else {
+				System.out.println("키워드 검색");
+				
+			}
+				
+			
+		
+			mv.addObject("list", searchList);
+			
+			mv.setViewName("hotel_center"); 
+			return mv;
+		}
 	
 	
 	

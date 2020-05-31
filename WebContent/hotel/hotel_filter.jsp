@@ -12,7 +12,7 @@
 		  <label class="custom-control-label" for="check_seoul">서울</label>
 	    </div>
 		<div class="custom-control custom-checkbox col-md-12 col-4">
-		  <input type="checkbox" class="custom-control-input" name='local_type' id='check_jeju' onclick="filter.check(this)" value='39'/>
+		  <input type="checkbox" class="custom-control-input" name='local_type' id='check_jeju' onclick="filter.check(this)" value='3'/>
 		  <label class="custom-control-label" for="check_jeju">제주도</label>
 	    </div>
 	    <div class="custom-control custom-checkbox col-md-12 col-4">
@@ -34,22 +34,19 @@
 	    </div>
 	</div>
 	
-<div class="single-element-widget">
+<div class="single-element-widget" id="hotel">
     <h4 class="mb-20">부대 시설</h4>
     <div class="custom-control custom-checkbox">
-     <input type="checkbox" class="custom-control-input" name='filter_type' id='chk_wifi' value='1'/>
+     <input type="checkbox" class="custom-control-input" name='filter_type' id='chk_wifi' onclick="filter.check(this)" value='wi_fi'/>
      <label class="custom-control-label" for='chk_wifi'>와이파이</label>
     </div>
-   <div class="custom-control custom-checkbox">
-     <input type="checkbox" class="custom-control-input" name='filter_type' id='chk_noSmoking' value='1'/>
-     <label class="custom-control-label" for='chk_noSmoking' >금연</label>
-    </div>
+
     <div class="custom-control custom-checkbox">
-     <input type="checkbox" class="custom-control-input" name='filter_type' id='chk_parking' value='1'/>
+     <input type="checkbox" class="custom-control-input" name='filter_type' id='chk_parking' onclick="filter.check(this)" value='parking'/>
      <label class="custom-control-label" for='chk_parking'>주차장</label>
     </div>
        <div class="custom-control custom-checkbox">
-     <input type="checkbox" class="custom-control-input" name='filter_type' id='chk_meal' value='1'/>
+     <input type="checkbox" class="custom-control-input" name='filter_type' id='chk_meal' onclick="filter.check(this)" value='breakfast'/>
      <label class="custom-control-label" for='chk_meal'>조식</label>
     </div>
     

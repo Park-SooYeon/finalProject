@@ -132,18 +132,18 @@ filter.removeAll = function() {
 }
 
 // 검색 요소에 따라 데이터 검색하기
-filter.ajax = function(pageNum = 1) {
+filter.ajax = function() {
 	let findStr = document.getElementById('filterFindStr').value;
 
 	$.ajax({
-		url : "searchList.sb",
+		url : "searchList.ht",
 		method : "post",
 		data : {
-			"menu" : filter.menu,
+		
 			"local" : filter.local,
 			"filter" : filter.filter,
 			"findStr" : findStr,
-			"pageNum" : pageNum
+		
 		},
 		dataType : "json",
 		success : function(data) {
