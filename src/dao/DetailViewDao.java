@@ -1,12 +1,8 @@
 package dao;
 
-import java.util.List;
-
 import org.apache.ibatis.session.SqlSession;
 
-import bean.DetailViewVo;
 import bean.Factory;
-import bean.PlaceVo;
 
 public class DetailViewDao {
 	SqlSession sqlSession;
@@ -15,7 +11,7 @@ public class DetailViewDao {
 		sqlSession = Factory.getFactory().openSession();		
 	}
 	
-	public DetailViewVo view(int place_serial) {		
+	/*public DetailViewVo view(int place_serial) {		
 		DetailViewVo vo = null;		
 		try {
 			vo = sqlSession.selectOne("detailView.view", place_serial);			
@@ -27,6 +23,7 @@ public class DetailViewDao {
 		return vo;
 		
 	}
+	
 	public List<PlaceVo> photoView(int place_serial) {
 		List<PlaceVo> list = null;
 		try {
@@ -37,5 +34,6 @@ public class DetailViewDao {
 		}
 		return list;
 	}
+	*/
 
 }

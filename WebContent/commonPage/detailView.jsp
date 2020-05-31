@@ -42,7 +42,7 @@
 	<br/>
 	<div class='container'>
 		<div class="title1" style="margin-bottom:10px">
-		<%-- <h2>${vo.place_name }</h2> --%>
+		<h2>${item.title}</h2>
 		</div>
 		<div class="float-right" style="display:flex">
   			<div class="p-1 heart" onclick="main.like(this)">
