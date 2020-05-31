@@ -56,6 +56,7 @@ public class PtnHtCompController {
 		HttpSession session  = req.getSession();
 		String member_id = (String) session.getAttribute("member_id");
 		
+		
 		int serial = dao.getSerial(member_id);
 		List<PlaceVo> list = dao.select(serial);
 		List<UploadVo> photoList = null;
@@ -82,7 +83,6 @@ public class PtnHtCompController {
 		ModelAndView mv = new ModelAndView();
 		PlaceVo vo = null; 
 		
-		System.out.println("controller");
 		//mv.addObject("vo", vo);
 		mv.setViewName("hotel_comp_add");
 		return mv;
@@ -98,13 +98,8 @@ public class PtnHtCompController {
 		vo.setPlace_name(req.getParameter("admHCompNm"));
 		vo.setPlace_tel(req.getParameter("admHCompTel"));
 		vo.setPlace_location(req.getParameter("placeLocation"));
-		
-		vo.setPlace_code(Integer.parseInt(req.getParameter("htPlaceCode"))+1);
+		vo.setLocal_code(Integer.parseInt(req.getParameter("htPlaceCode"))+1);
 		vo.setState(Integer.parseInt(req.getParameter("PtnHtStatus")));
-		
-		System.out.println("req : " + req.getParameter("wifi"));
-		System.out.println("req : " + req.getParameter("breakfast"));
-		System.out.println("req : " + req.getParameter("parking"));
 		
 		if(req.getParameter("wifi") == null) {
 			vo.setWifi(0);
@@ -126,13 +121,8 @@ public class PtnHtCompController {
 		
 		
 
-		
-		System.out.println("vo : " + vo.getPlace_name());
-		
 		HttpSession session  = req.getSession();
 		String member_id = (String) session.getAttribute("member_id");
-		//member_id = "jieun";
-		System.out.println("member id : " + member_id);
 		
 		//FileUpload
     	//ServletContext c;
@@ -143,7 +133,7 @@ public class PtnHtCompController {
 	     //String uploadPath = "C:\\Users\\silve\\eclipse-workspace\\final_twitch\\WebContent\\store\\reviewimages";
 	    System.out.println(uploadPath);
 	    
-	    File dir = new File(filePath);
+	    File dir = new File(uploadPath);
         if (!dir.isDirectory()) {
             dir.mkdirs();
         }
@@ -172,7 +162,7 @@ public class PtnHtCompController {
 		List<MultipartFile> mf = req.getFiles("fileName1"); 
 		
         if (mf.size() == 1 && mf.get(0).getOriginalFilename().equals("")) {
-             System.out.println("getOriginalFilename ()");
+            
         } else {
             for (int i = 0; i < mf.size(); i++) {
             	 // 파일 중복명 처리
@@ -184,28 +174,16 @@ public class PtnHtCompController {
 				
 				fileSize = mf.get(i).getSize(); // 파일 사이즈
 				
-				String savePath = filePath + image1; // 저장 될 파일 경로
+				String savePath = uploadPath + image1; // 저장 될 파일 경로
 				 
                 mf.get(i).transferTo(new File(savePath)); // 파일 저장
                 
                 upVo = new UploadVo(image1, image2);
-                
-                System.out.println("list vo getOriFile : " + upVo.getOriFile());
- 
+               
                 list.add(upVo);
             }
         }
-		
-
-		System.out.println("vo getBreakfast : " + vo.getBreakfast());
-		System.out.println("vo getLatitude : " + vo.getLatitude());
-		System.out.println("vo getPlace_location : " + vo.getPlace_location());
-		System.out.println("vo getLocal_code : " + vo.getLocal_code());
-		System.out.println("vo getPartner_serial : " + vo.getPartner_serial());
-		System.out.println("vo getPlace_name : " + vo.getPlace_name());
-		System.out.println("vo getPlace_tel : " + vo.getPlace_tel());
         
-		
 		int serial = dao.getSerial(member_id);
 		result = dao.insert(serial, vo, list);
 		
@@ -213,7 +191,7 @@ public class PtnHtCompController {
 		
 		mv.addObject("vo", vo);
 		mv.addObject("result", result);
-		//mv.setViewName("hotel_comp_list");
+		mv.setViewName("hotel_comp_list");
 		return mv;
 	}
 	
@@ -232,9 +210,12 @@ public class PtnHtCompController {
 		
 		// place_serial 
 		int serial = Integer.parseInt(req.getParameter("pserial"));
+		System.out.println("serial" + serial);
 		vo = dao.view(serial);
 		photoList = dao.getAttList(serial);
 		
+		mv.addObject("serial", serial);
+		mv.addObject("photoList", photoList);
 		mv.addObject("vo", vo);
 		mv.setViewName("hotel_comp_view");
 		return mv;
@@ -243,10 +224,24 @@ public class PtnHtCompController {
 	@RequestMapping(value="/admin/partner/hotel_comp_modify.ph", method= {RequestMethod.GET, RequestMethod.POST}) 
 	public ModelAndView modify(HttpServletRequest req) {
 		ModelAndView mv = new ModelAndView();
-		Object vo = null; 
+		PlaceVo vo = null; 
+		List<UploadVo> photoList = null;
 		
+		System.out.println("dsadsadas");
+		
+		// place_serial 
+		int serial = Integer.parseInt(req.getParameter("pserial"));
+		System.out.println("pserial : " + req.getParameter("pserial"));
+		
+		vo = dao.view(serial);
+		photoList = dao.getAttList(serial);
+		
+		System.out.println("vo : " + vo);
+		//System.out.println("vo get : " + vo.getPlace_name());
+		
+		mv.addObject("photoList", photoList);
 		mv.addObject("vo", vo);
-		mv.setViewName("hotel_comp_list");
+		mv.setViewName("hotel_comp_modify"); 
 		return mv;
 	}
 	

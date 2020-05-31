@@ -16,16 +16,24 @@
                                 <span class="breadcrumb-item active" aria-current="page">호텔 정보 상세조회</span>
                             </h5>
                         </div>
-                    </div>
-                    <form class="" name="frmAdmHtCompView" id='frmAdmHtCompView'>
-                        <input type='hidden' id='p_viewId' name='p_viewId' value='${pv.member_id }'>
-                        <input type='hidden' id='p_status' name='p_status' value='${pv.state }'>
-                        <div class="">
+                        <div class="ml-auto d-flex align-items-stretch justify-content-end">
+                            <button type="button" id="btnPtHtModify" class="btn btn-inverse-success no-wrap ml-4">수정</button>
+                            <a href="#" id="btnPtHtDelete" class="btn btn-inverse-danger no-wrap ml-2">삭제</a>
+                        </div>
+                    </div> 
+                    <form class="" name="frmAdmHtCompView" id='frmAdmHtCompView' method="post"> 
+                        <input type="text" name="pserial" id="pserial" value="${serial }" /> 
+                        <div class=""> 
                             <div class="d-flex justify-content-center justify-content-md-between mr-4 mr-xl-5 pr-xl-5 flex-wrap">
                                 <div class="profile-info d-flex align-items-center justify-content-center flex-wrap mr-sm-3">
-                                    <img class="rounded img-xl mb-3 mb-sm-0 mx-1" src="../../assets/images/faces/profile/profile.jpg" alt="profile image">
-                                    <img class="rounded img-xl mb-3 mb-sm-0 mx-1" src="../../assets/images/faces/profile/profile.jpg" alt="profile image">
-                                    <img class="rounded img-xl mb-3 mb-sm-0 mx-1" src="../../assets/images/faces/profile/profile.jpg" alt="profile image">
+                                	<c:if test="${!empty vo.photos}">
+                                   		<c:forEach var="photo" items="${vo.photos}" begin="0" end="0" varStatus="status">
+										    <img class="img-xl rounded" src="../../assets/images/upload/${photo.oriFile }" alt="${photo.oriFile } image">
+										</c:forEach>
+                                    </c:if>           
+                                    <c:if test="${empty vo.photos}">
+                                    	<img class="img-xl rounded" src="https://via.placeholder.com/150" alt="이미지 없음">
+                                    </c:if>
                                 </div>
                                 <div class="details mt-2 mt-md-0">
                                     <div class="detail-col pr-3 mr-3">
@@ -53,31 +61,40 @@
                                         <div class="row mt-3 pl-3">
                                             <div class="col-6">
                                                 <p>
-                                                    <strong>지역 :</strong> ${pv.partner_name }
+                                                    <strong>지역 :</strong> ${vo.local_name }
                                                 </p>
                                                 <p>
-                                                    <strong>호텔명 :</strong> ${pv.business_number }
+                                                    <strong>호텔명 :</strong> ${vo.place_name }
                                                 </p>
                                                 <p>
-                                                    <strong>연락처 :</strong> ${pv.partner_phone }
+                                                    <strong>연락처 :</strong> ${vo.place_tel }
                                                 </p>
                                             </div>
                                             <div class="col-6">
                                                 <p>
 
-                                                    <strong>주소 :</strong> ${pv.vo.email }
+                                                    <strong>주소 :</strong> ${vo.place_location }
                                                 </p>
                                                 <p>
                                                     <strong>옵션 :</strong>
-                                                    <c:if test='${pv.state ==8 }'>
-                                                        렌트
+                                                    <c:if test='${vo.breakfast == 1 }'>
+                                                        조식
                                                     </c:if>
-                                                    <c:if test='${pv.state ==9 }'>
-                                                        호텔
+                                                    <c:if test='${vo.wifi == 1 }'>
+                                                        wifi
+                                                    </c:if>
+                                                    <c:if test='${vo.parking == 1 }'>
+                                                        주차장
                                                     </c:if>
                                                 </p>
                                                 <p>
-                                                    <strong>판매상태 :</strong> ${pv.partner_location }
+                                                    <strong>판매상태 :</strong> 
+                                                    <c:if test="${vo.state == 0}">
+	                                                	<span class="badge badge-secondary text-muted">비활성화</span>
+	                                                </c:if>
+	                                                <c:if test="${vo.state == 1}">
+	                                                	<span class="badge badge-primary">활성화</span>
+	                                                </c:if>
                                                 </p>
                                             </div>
                                         </div>
