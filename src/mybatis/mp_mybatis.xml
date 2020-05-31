@@ -16,7 +16,6 @@
 						javaType="bean.PlaceVo">
 				<result column="place_serial" property="place_serial"/>
 				<result column="place_name" property="place_name"/>
-				<result column="place_code" property="place_code"/>
 				<result column="place_type" property="place_type"/>
 				<result column="place_location" property="place_location"/>
 				<result column="reputation" property="reputation"/>
@@ -41,7 +40,6 @@
 						javaType="bean.PlaceVo">
 				<result column="place_serial" property="place_serial"/>
 				<result column="place_name" property="place_name"/>
-				<result column="place_code" property="place_code"/>
 				<result column="place_type" property="place_type"/>
 				<result column="place_location" property="place_location"/>
 				<result column="reputation" property="reputation"/>
@@ -67,7 +65,6 @@
 						javaType="bean.PlaceVo">
 				<result column="place_serial" property="place_serial"/>
 				<result column="place_name" property="place_name"/>
-				<result column="place_code" property="place_code"/>
 				<result column="place_type" property="place_type"/>
 				<result column="place_location" property="place_location"/>
 				<result column="reputation" property="reputation"/>
@@ -134,14 +131,12 @@
    		   place_name photo_name, 
    		   T.trip_list_serial, 
    		   P.local_code, 
-   		   P.place_code, 
    		   getRevCnt(P.place_serial) review_cnt, 
 		   getReputation(P.place_serial) reputation   		   
    		   from trip_list T, place P, like_list L 
    		   where P.place_serial = L.place_serial 
    		   and T.trip_list_serial = L.trip_list_serial 
    		   and L.member_id = #{_parameter}
-   		   and P.place_code = 4
    </select>
    
 	<!-- 관심여행 중 api 요청 -->
@@ -172,7 +167,7 @@
    
    <!-- 좋아요 누른 리뷰 조회 (호텔)-->
    <select id="select_review" parameterType="String" resultMap="mp_map_review">
-   		select like_serial,
+   		select review_like_serial,
    			   R.review_serial, 
    			   member_id, 
    			   (select place_name from place where place_serial = R.place_serial) place_name,  
@@ -180,7 +175,6 @@
    			   review_title, 
    			   review_content,
 			   P.local_code,
-			   P.place_code,
 			   P.place_name photo_name, 	
 			   visit_date,
 			   getRevCnt(R.place_serial) review_cnt		   
@@ -188,7 +182,6 @@
    		where R.review_serial = L.review_serial
    		and like_id = #{_parameter}
    		and P.place_serial = R.place_serial
-   		and P.place_code = 4
    </select>
    
    <select id="select_profile" parameterType="String" resultType="bean.membershipVo">
