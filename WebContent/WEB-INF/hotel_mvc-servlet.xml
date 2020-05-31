@@ -16,6 +16,7 @@
 	
 	<!-- bean -->
 	<bean id="htDao" class="hotel.hotelDao"/>
+
 	
 	<!-- controller (servlet code) -->
 	<bean id="ht_controller" class="hotel.hotelController">

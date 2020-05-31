@@ -1,1 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ht">
+
+<!-- 호텔 탑메뉴 진입시 예약가능한 호텔을 평점순으로 보여줌니당 -->
+<select id='mainNo'  resultType="bean.PlaceVo">
+select 
+		PLACE_SERIAL,PARTNER_SERIAL, PLACE_CODE, PLACE_NAME, 
+		PLACE_LOCATION, LATITUDE, LONGITUDE, GRADE,  STATE,
+	    LOCAL_CODE 
+from place 
+where place_code = 4 and local_code=1
+
+
+
+
+</select>
+
+<select id='mainYes'  resultType="bean.PlaceVo">
+select 
+		p.PLACE_SERIAL ,p.PARTNER_SERIAL, p.PLACE_CODE,p.PLACE_NAME, 
+		p.PLACE_LOCATION, p.LATITUDE, p.LONGITUDE, p.GRADE,  p.STATE,
+	    p.LOCAL_CODE,p.place_tel,max(ph.orifile) oriFile
+from place p, place_photo ph
+
+where p.PLACE_SERIAL = ph.PLACE_SERIAL and place_code = 4  and partner_serial is not null 
+
+group by p.PLACE_SERIAL,p.PARTNER_SERIAL, p.PLACE_CODE,p.PLACE_NAME, 
+		p.PLACE_LOCATION, p.LATITUDE, p.LONGITUDE, p.GRADE,  p.STATE,
+	    p.LOCAL_CODE,p.place_tel
+
+
+
+</select>
+
+<!-- 
+<select id='mainReview' parameterType="String"  resultType="Integer">
+ select case
+       when count(member_id)>0 then 1
+       else 0
+       end result 
+ from membership 
+ where member_id=#{member_id} and state != 3 and state !=2
+
+</select>
+ -->
+ 
+ </mapper>

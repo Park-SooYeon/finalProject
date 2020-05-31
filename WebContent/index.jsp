@@ -51,6 +51,7 @@
     
     	<!-- membership js -->
 	<script src="js/membership.js"></script>
+	<script src="js/hotel.js"></script>
     
 </head>
 <body>

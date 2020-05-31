@@ -7,7 +7,7 @@
 <section class="banner-area relative" id="hotel_top">
 	<div class="container pt-50 mb-30">
 		<div class="row d-flex justify-content-center align-items-center"
-			style="height: 400px">
+			style="height: 300px">
 			<div class="menu-content col-lg-12">
 				<div class="title text-center">
 					<h1 class="text-white mb-10">호텔 메인</h1>

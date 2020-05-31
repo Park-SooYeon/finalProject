@@ -18,14 +18,37 @@ public class hotelDao {
 	}
 	
 	
-public List<PlaceVo> select() {
+public List<PlaceVo> MainSelectNoRev() {
 	List<PlaceVo> list = null;
 	
 	try {
 	
 		
-	    list = sqlSession.selectList("board.select");
+	    list = sqlSession.selectList("ht.mainNo");
 		
+	}catch(Exception ex) {
+	
+		ex.printStackTrace();
+	
+	}finally {
+		//sqlSession.close();
+		return list;
+		
+	}
+	
+	
+}
+
+public List<PlaceVo> MainSelectYesRev() {
+	List<PlaceVo> list = null;
+	System.out.println("진입");
+	try {
+	
+		
+	    list = sqlSession.selectList("ht.mainYes");
+
+	    
+	    
 	}catch(Exception ex) {
 	
 		ex.printStackTrace();
