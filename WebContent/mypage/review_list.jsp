@@ -9,7 +9,7 @@
     <div class="col-lg-4">
       <div class="single-destinations">
         <div class="thumb-review">
-          <img src="images/${i.p.place_type}/${i.p.local_name }/${i.p.photo_name }${status.count }.jpg" alt="no-image"/>
+          <img src="${i.p.photo_name }" alt="no-image"/>
         </div>
         <div class="details">
           <h4 class="d-flex justify-content-between">

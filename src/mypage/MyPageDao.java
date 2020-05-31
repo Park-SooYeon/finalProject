@@ -110,7 +110,6 @@ public class MyPageDao {
 	}
 	
 	public List<LikeListVo> selectLike(String member_id) {
-		System.out.println("dao가 실행되었다..");
 		List<LikeListVo> list = null;
 		List<LikeListVo> list2 = null;
 		
@@ -123,7 +122,16 @@ public class MyPageDao {
 			
 			for(LikeListVo vo : list2) {
 				//vo에 api 응답정보를 담아서 재가공
-				vo = getApi(vo);
+				JsonObject contentResult = getApi(vo.getPlace_serial());
+				int place_serial = contentResult.get("contentid").getAsInt();
+		        String photo_name = contentResult.get("firstimage").getAsString();
+		        String place_name = contentResult.get("title").getAsString();
+		        int local_code = contentResult.get("areacode").getAsInt();
+		        
+		        vo.setPlace_serial(place_serial);
+		        vo.getP().setLocal_code(local_code);
+		        vo.getP().setPhoto_name(photo_name);
+		        vo.getP().setPlace_name(place_name);
 				list.add(vo);
 			}
 			
@@ -133,10 +141,32 @@ public class MyPageDao {
 		return list; 
 	}
 	
+	
+	// 좋아요 누른 review 조회
 	public List<ReviewVo> selectReview(String member_id) {
-		List<ReviewVo> list = new ArrayList<ReviewVo>();
+		List<ReviewVo> list = null;
+		List<ReviewVo> list2 = null;
 		try {
+			// 호텔리뷰만 조회
 			list = sqlSession.selectList("mypage.select_review", member_id);
+			list2 = sqlSession.selectList("mypage.select_apiReview", member_id);
+			
+			for(ReviewVo vo : list2) {
+				//vo에 api 응답정보를 담아서 재가공
+				JsonObject contentResult = getApi(vo.getPlace_serial());
+				int place_serial = contentResult.get("contentid").getAsInt();
+		        String photo_name = contentResult.get("firstimage").getAsString();
+		        String place_name = contentResult.get("title").getAsString();
+		        int local_code = contentResult.get("areacode").getAsInt();
+		        
+		        vo.setPlace_serial(place_serial);
+		        vo.getP().setLocal_code(local_code);
+		        vo.getP().setPhoto_name(photo_name);
+		        vo.getP().setPlace_name(place_name);
+		        
+		        System.out.println(vo.toString());
+				list.add(vo);
+			}
 		}catch(Exception ex) {
 			ex.printStackTrace();
 		}
@@ -159,7 +189,6 @@ public class MyPageDao {
 		try {
 			int cnt = sqlSession.update("mypage.modify_profile", vo);
 			System.out.println(cnt);
-			
 			if(cnt > 0) {
 				// 본문 업데이트 성공
 				
@@ -261,7 +290,7 @@ public class MyPageDao {
 		return map;
 	}
 	
-	public LikeListVo getApi(LikeListVo vo) throws IOException {
+	public JsonObject getApi(int contentId) throws IOException {
 		
 		StringBuilder urlBuilder = new StringBuilder("http://api.visitkorea.or.kr/openapi/service/rest/KorService/detailCommon"); /*URL*/
         urlBuilder.append("?" + URLEncoder.encode("ServiceKey","UTF-8") + "=RGRZ7ZbtIrL2U4P0qfnA3puuV5UrzrqEFmf0aLwaZitXLcUQrOTbyRoZHRCpdViHuU1cTZ7jXX4GDbOMb%2Fc1gg%3D%3D"); /*Service Key*/
@@ -269,7 +298,7 @@ public class MyPageDao {
         urlBuilder.append("&" + URLEncoder.encode("MobileApp","UTF-8") + "=" + URLEncoder.encode("AppTest", "UTF-8")); /*서비스명=어플명*/
         urlBuilder.append("&" + URLEncoder.encode("areacodeYN","UTF-8") + "=" + URLEncoder.encode("Y", "UTF-8")); /*지역코드, 시군구코드*/
         urlBuilder.append("&" + URLEncoder.encode("defaultYN","UTF-8") + "=" + URLEncoder.encode("Y", "UTF-8")); /* 기본정보조회 */
-        urlBuilder.append("&" + URLEncoder.encode("contentId","UTF-8") + "=" + URLEncoder.encode(vo.getPlace_serial()+"", "UTF-8")); /*지역코드, 시군구코드*/
+        urlBuilder.append("&" + URLEncoder.encode("contentId","UTF-8") + "=" + URLEncoder.encode(contentId+"", "UTF-8")); /*지역코드, 시군구코드*/
         urlBuilder.append("&" + URLEncoder.encode("firstImageYN","UTF-8") + "=" + URLEncoder.encode("Y", "UTF-8")); /*대표이미지 조회*/
         urlBuilder.append("&_type=json"); // json 타입으로 반환
         
@@ -309,30 +338,11 @@ public class MyPageDao {
         JsonObject jObject3 = (JsonObject)jParser.parse(str2);
         
         String str3 = jObject3.get("items").toString();
-        System.out.println(str3);
         JsonObject jObject4 = (JsonObject)jParser.parse(str3);
         
         String str4 = jObject4.get("item").toString();
-        System.out.println(str4);
-        JsonObject jObject5 = (JsonObject)jParser.parse(str4);
-        System.out.println(jObject5.get("contentid"));
-        System.out.println(jObject5.size());
-        
-        int serial = jObject5.get("contentid").getAsInt();
-        String image = jObject5.get("firstimage").getAsString();
-        String title = jObject5.get("title").getAsString();
-        int areacode = jObject5.get("areacode").getAsInt();
-        
-        vo.setPlace_serial(serial);
-        vo.getP().setPlace_code(areacode);
-        vo.getP().setPhoto_name(image);
-        vo.getP().setPlace_name(title);
+        JsonObject contentResult = (JsonObject)jParser.parse(str4);
 
-        System.out.println("serial : "+vo.getPlace_serial());
-        System.out.println("area code : "+vo.getP().getPlace_code());
-        System.out.println("photo name : "+vo.getP().getPhoto_name());
-        System.out.println("place name : "+vo.getP().getPlace_name());
-		
-        return vo;
+        return contentResult;
 	}
 }

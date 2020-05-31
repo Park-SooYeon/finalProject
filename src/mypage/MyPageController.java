@@ -208,9 +208,9 @@ public class MyPageController {
 	}
 	
 	@RequestMapping( value = "likeReview.mp", method = {RequestMethod.GET, RequestMethod.POST})
-	public ModelAndView selectReview(HttpServletRequest req, HttpServletResponse resp) {
+	public ModelAndView selectReview(HttpServletRequest req, HttpSession session) {
 		mv = new ModelAndView();
-		String member_id = "test";
+		String member_id = (String)session.getAttribute("member_id");
 		List<ReviewVo> list = dao.selectReview(member_id);
 		
 		for(ReviewVo vo : list) {

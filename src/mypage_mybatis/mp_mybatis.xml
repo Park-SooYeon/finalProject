@@ -118,6 +118,7 @@
    		   and P.place_code = 4
    </select>
    
+   <!-- 좋아요 누른 리뷰 조회 -->
    <select id="select_review" parameterType="String" resultMap="mp_map_review">
    		select like_serial,
    			   R.review_serial, 
@@ -133,18 +134,30 @@
    		where R.review_serial = L.review_serial
    		and like_id = #{_parameter}
    		and P.place_serial = R.place_serial
+   		and P.place_code = 4
    </select>
    
-   <!-- like list에서 place serial만 가져오기 (api contentid) -->
+	<!-- 관심여행 중 api 요청 -->
    <select id="select_places" parameterType="String" resultMap="mp_map_like">
-   		select trip_list_serial, 
+   		select t.trip_list_serial, t.trip_name,
    			   l.place_serial, 
    			   getrevCnt(l.place_serial) review_cnt,
    			   getReputation(l.place_serial) reputation
-   		from place p right outer join like_list l 
-   		on p.place_serial = l.place_serial 
-   		where p.place_serial is null and member_id = #{_parameter}   		
+   		from place p right outer join like_list l on p.place_serial = l.place_serial 
+        join trip_list t on t.trip_list_serial = l.trip_list_serial
+        where p.place_serial is null and l.member_id = #{_parameter}   		
    </select>
+   
+   <!-- 좋아요 누른 리뷰 중 api 요청 -->
+   <select id="select_apiReview" parameterType="String" resultMap="mp_map_review">
+		select l.like_id, r.review_serial, 
+			   r.member_id, r.place_serial, 
+			   r.reputation, r.review_title, 
+			   r.review_content, r.visit_date 
+		from review r left outer join review_like l 
+		on l.review_serial = r.review_serial 
+		where l.like_id = #{_parameter}
+	</select>
    
    <select id="select_profile" parameterType="String" resultType="bean.membershipVo">
    		select member_id, member_city, 
@@ -193,6 +206,8 @@
 	<select id="count_follower" parameterType="String" resultType="Integer">
 		select count(follow_serial) from follow_list where target_id = #{_parameter}
 	</select>
+	
+	
 	
 
 </mapper>

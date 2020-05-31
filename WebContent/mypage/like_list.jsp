@@ -23,7 +23,7 @@
             </div>
           </h4>
           <p>
-            ${i.p.local_name }, Korea | ${i.p.review_cnt} Reviews
+            ${i.p.local_name }, 대한민국 | ${i.p.review_cnt} Reviews
           </p>
           <div class="trip-list-box text-center">${i.trip_name }</div>
         </div>
