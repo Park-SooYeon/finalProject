@@ -14,10 +14,10 @@
 	<context:annotation-config />
 	
 	<!-- bean -->
-	   <bean id="msDao" class="membership.membershipDao"/>
+	   <bean id="msDao" class="dao.membershipDao"/>
 			
 	<!-- controller (servlet code) -->
-	<bean id="ms_controller" class="membership.membershipController">
+	<bean id="ms_controller" class="controller.membershipController">
 		<constructor-arg ref="msDao"/>
 	
 	</bean>	

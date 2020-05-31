@@ -8,7 +8,7 @@
       
       
 
-       <%@include file="../food/filter.jsp" %>  
+       <%@include file="filter.jsp" %>  
 	          
           
         <div class="col-lg-9 col-md-9">         

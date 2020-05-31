@@ -30,9 +30,8 @@ import com.fasterxml.jackson.databind.type.TypeFactory;
 import bean.LikeListVo;
 import bean.PlaceVo;
 import bean.TripListVo;
+import dao.MyPageDao;
 import dao.SubMainDao;
-import mypage.MyPageDao;
-import vo.MainVo;
 import vo.ReputationVo;
 import vo.RestDataVo;
 

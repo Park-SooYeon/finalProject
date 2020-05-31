@@ -15,11 +15,11 @@
 	<context:annotation-config />
 	
 	<!-- bean -->
-	<bean id="htDao" class="hotel.hotelDao"/>
+	<bean id="htDao" class="dao.hotelDao"/>
 
 	
 	<!-- controller (servlet code) -->
-	<bean id="ht_controller" class="hotel.hotelController">
+	<bean id="ht_controller" class="controller.hotelController">
 		<constructor-arg ref="htDao"/>
 	</bean>
 	
