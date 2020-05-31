@@ -39,10 +39,21 @@ public class hotelController {
 	public hotelController(hotelDao dao) {
 		this.dao = dao;
 	}
+	@RequestMapping(value = "hotel_index.ht", method = { RequestMethod.GET})
+   public String searchMenu(@RequestParam String local, HttpServletRequest req, Model model) {
+	
+	
+	
+		return "hotel_index";
+	}
+	
+	
+	
+	
 	
 	
 	@RequestMapping(value = "hotelMain.ht", method = { RequestMethod.GET,RequestMethod.POST})
-	public ModelAndView select(HttpServletRequest req) { 
+	public ModelAndView hotelMain(HttpServletRequest req) { 
 		ModelAndView mv = new ModelAndView();
 		
 		System.out.println("메인 진입");

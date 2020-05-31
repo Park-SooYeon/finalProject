@@ -1,276 +1,308 @@
-var food_filter={}
+//detailView로 이동
+detailMove = function(code) {
+	location.href = './?inc=detailView.dv&code=' + code;
+}
 
-food_filter.func = function(){
-//필터옵션 전체해제
-	$('#check_release').click(function(){
-		$("#check_five").prop("checked", false);
-		$("#check_four").prop("checked", false);
-		$("#check_three").prop("checked", false);
-		$("#check_two").prop("checked", false);
-		$("#check_one").prop("checked", false);
-		$("#check_deluxe").prop("checked", false);
-		$("#check_family").prop("checked", false);
-		$("#check_sweet").prop("checked", false);
-		$("#check_wifi").prop("checked", false);
-		$("#check_noSmoking").prop("checked", false);
-		$("#check_parking").prop("checked", false);
-		$("#check_view_mt").prop("checked", false);
-		$("#check_view_city").prop("checked", false);
-		$("#check_view_sea").prop("checked", false);
-	
-		$('#filter').empty();
-	});	
 
-//체크박스 체크여부시 필터버튼 추가 삭제
-	$('#check_five').click(function(){
-		var val = $('#check_five').val();
-		if($('#check_five').prop("checked")==true){
-			$('#filter').append('<button onclick="func_five(this)" id="hotel_filter_five" class="genric-btn info-border radius">'+val+'&nbsp&nbsp'+'<i class="fa fa-times"></i></button>');
+
+var cnt = 0; // 나타난 검색 요소 개수
+let widthsort_list_div = $('#widthsort_list'); // 라인형 검색된 요소를 담을 div
+let cardsort_list_div = $('#cardsort_list'); // 카드형 검색된 요소를 담을 div
+let scrollCnt = 12; // 무한 스크롤 한번에 추가되는 요소의 개수
+
+
+// filter 조건에 따라 작동하는 method를 저장하는 모듈
+let filter = {}
+
+filter.menu // 관광 타입을 담을 변수
+filter.local = [] // 지역 코드를 담을 변수
+filter.filter = [] // filter 요소를 담을 변수
+filter.allItems = [] // 모든 검색된 요소들을 담을 변수
+filter.tot_cnt = 0; // 검색된 모든 요소들의 개수
+
+// parameter 값에 따라 초기 검색 조건 세팅
+filter.init = function(local) {
+	if(local != undefined) {
+		let chk_obj = document.getElementsByName("local_type");
+		
+		// 지역 검색 조건 추가
+		for(i of chk_obj) {
+			if(local == i.value) {
+				i.checked = true;
+				filter.local.push(i.value);
+				let val = $("label[for='" + i.id + "']").text();
+				
+				// 필터 요소 추가
+				$('#filter').append('<button onclick="filter.remove(this)" id="' + i.id + '" class="genric-btn info-border radius">'+ val +'<i class="fa fa-times pl-2"></i></button>');
+				break;
+			}
 		}
-		if($('#check_five').prop("checked")==false){
-			$('#hotel_filter_five').remove();
-		}		
-	});	
+	}
+	// 관광 타입별 선택
+
+}
+
+filter.check = function(ele) {
+	let eleId = ele.getAttribute("id"); // 요소의 id 값
+	let eleName = ele.getAttribute("name"); // 요소의 name 값
+	let check_val = ele.value; // 요소의 value 값
+	let val = $("label[for='" + eleId + "']").text(); // for로 연결된 라벨의 text 값을 가져옴
 	
-	$('#check_four').click(function(){
-		var val = $('#check_four').val();
-		if($('#check_four').prop("checked")==true){
-			$('#filter').append('<button onclick="func_bar(this)" id="food_filter_bar" class="genric-btn info-border radius">'+val+'&nbsp&nbsp'+'<i class="fa fa-times"></i></button>');
-		}
-		if($('#check_four').prop("checked")==false){
-			$('#food_filter_bar').remove();
-		}		
-	});	
-	$('#check_rest').click(function(){
-		var val = $('#check_rest').val();
-		if($('#check_rest').prop("checked")==true){
-			$('#filter').append('<button onclick="func_rest(this)" id="food_filter_rest" class="genric-btn info-border radius">'+val+'&nbsp&nbsp'+'<i class="fa fa-times"></i></button>');
-		}
-		if($('#check_rest').prop("checked")==false){
-			$('#food_filter_rest').remove();
-		}		
-	});
-	$('#check_dining').click(function(){
-		var val = $('#check_dining').val();
-		if($('#check_dining').prop("checked")==true){
-			$('#filter').append('<button onclick="func_dining(this)" id="food_filter_dining" class="genric-btn info-border radius">'+val+'&nbsp&nbsp'+'<i class="fa fa-times"></i></button>');
-		}
-		if($('#check_dining').prop("checked")==false){
-			$('#food_filter_dining').remove();
-		}		
-	});
-	$('#check_kor').click(function(){
-		var val = $('#check_kor').val();
-		if($('#check_kor').prop("checked")==true){
-			$('#filter').append('<button onclick="func_kor(this)" id="food_filter_kor" class="genric-btn info-border radius">'+val+'&nbsp&nbsp'+'<i class="fa fa-times"></i></button>');
-		}
-		if($('#check_kor').prop("checked")==false){
-			$('#food_filter_kor').remove();
-		}		
-	});
-	$('#check_west').click(function(){
-		var val = $('#check_west').val();
-		if($('#check_west').prop("checked")==true){
-			$('#filter').append('<button onclick="func_west(this)" id="food_filter_west" class="genric-btn info-border radius">'+val+'&nbsp&nbsp'+'<i class="fa fa-times"></i></button>');
-		}
-		if($('#check_west').prop("checked")==false){
-			$('#food_filter_west').remove();
-		}		
-	});
-	$('#check_jap').click(function(){
-		var val = $('#check_jap').val();
-		if($('#check_jap').prop("checked")==true){
-			$('#filter').append('<button onclick="func_jap(this)" id="food_filter_jap" class="genric-btn info-border radius">'+val+'&nbsp&nbsp'+'<i class="fa fa-times"></i></button>');
-		}
-		if($('#check_jap').prop("checked")==false){
-			$('#food_filter_jap').remove();
-		}		
-	});
-	$('#check_chin').click(function(){
-		var val = $('#check_chin').val();
-		if($('#check_chin').prop("checked")==true){
-			$('#filter').append('<button onclick="func_chin(this)" id="food_filter_chin" class="genric-btn info-border radius">'+val+'&nbsp&nbsp'+'<i class="fa fa-times"></i></button>');
-		}
-		if($('#check_chin').prop("checked")==false){
-			$('#food_filter_chin').remove();
-		}		
-	});
-	$('#check_w_etc').click(function(){
-		var val = $('#check_w_etc').val();
-		if($('#check_w_etc').prop("checked")==true){
-			$('#filter').append('<button onclick="func_w_etc(this)" id="food_filter_w_etc" class="genric-btn info-border radius">'+val+'&nbsp&nbsp'+'<i class="fa fa-times"></i></button>');
-		}
-		if($('#check_w_etc').prop("checked")==false){
-			$('#food_filter_w_etc').remove();
-		}		
-	});
-	$('#check_pork').click(function(){
-		var val = $('#check_pork').val();
-		if($('#check_pork').prop("checked")==true){
-			$('#filter').append('<button onclick="func_pork(this)" id="food_filter_pork" class="genric-btn info-border radius">'+val+'&nbsp&nbsp'+'<i class="fa fa-times"></i></button>');
-		}
-		if($('#check_pork').prop("checked")==false){
-			$('#food_filter_pork').remove();
-		}		
-	});
-	$('#check_beef').click(function(){
-		var val = $('#check_beef').val();
-		if($('#check_beef').prop("checked")==true){
-			$('#filter').append('<button onclick="func_beef(this)" id="food_filter_beef" class="genric-btn info-border radius">'+val+'&nbsp&nbsp'+'<i class="fa fa-times"></i></button>');
-		}
-		if($('#check_beef').prop("checked")==false){
-			$('#food_filter_beef').remove();
-		}		
-	});
-	$('#check_salad').click(function(){
-		var val = $('#check_salad').val();
-		if($('#check_salad').prop("checked")==true){
-			$('#filter').append('<button onclick="func_salad(this)" id="food_filter_salad" class="genric-btn info-border radius">'+val+'&nbsp&nbsp'+'<i class="fa fa-times"></i></button>');
-		}
-		if($('#check_salad').prop("checked")==false){
-			$('#food_filter_salad').remove();
-		}		
-	});
-	$('#check_sea').click(function(){
-		var val = $('#check_sea').val();
-		if($('#check_sea').prop("checked")==true){
-			$('#filter').append('<button onclick="func_sea(this)" id="food_filter_sea" class="genric-btn info-border radius">'+val+'&nbsp&nbsp'+'<i class="fa fa-times"></i></button>');
-		}
-		if($('#check_sea').prop("checked")==false){
-			$('#food_filter_sea').remove();
-		}		
-	});
-	$('#check_noodles').click(function(){
-		var val = $('#check_noodles').val();
-		if($('#check_noodles').prop("checked")==true){
-			$('#filter').append('<button onclick="func_noodles(this)" id="food_filter_noodles" class="genric-btn info-border radius">'+val+'&nbsp&nbsp'+'<i class="fa fa-times"></i></button>');
-		}
-		if($('#check_noodles').prop("checked")==false){
-			$('#food_filter_noodles').remove();
-		}		
-	});
-	$('#check_m_etc').click(function(){
-		var val = $('#check_m_etc').val();
-		if($('#check_m_etc').prop("checked")==true){
-			$('#filter').append('<button onclick="func_m_etc(this)" id="food_filter_m_etc" class="genric-btn info-border radius">'+val+'&nbsp&nbsp'+'<i class="fa fa-times"></i></button>');
-		}
-		if($('#check_m_etc').prop("checked")==false){
-			$('#food_filter_m_etc').remove();
-		}		
-	});
-	$('#check_cheap').click(function(){
-		var val = $('#check_cheap').val();
-		if($('#check_cheap').prop("checked")==true){
-			$('#filter').append('<button onclick="func_cheap(this)" id="food_filter_cheap" class="genric-btn info-border radius">'+val+'&nbsp&nbsp'+'<i class="fa fa-times"></i></button>');
-		}
-		if($('#check_cheap').prop("checked")==false){
-			$('#food_filter_cheap').remove();
-		}		
-	});
-	$('#check_middle').click(function(){
-		var val = $('#check_middle').val();
-		if($('#check_middle').prop("checked")==true){
-			$('#filter').append('<button onclick="func_middle(this)" id="food_filter_middle" class="genric-btn info-border radius">'+val+'&nbsp&nbsp'+'<i class="fa fa-times"></i></button>');
-		}
-		if($('#check_middle').prop("checked")==false){
-			$('#food_filter_middle').remove();
-		}		
-	});
-	$('#check_dinner').click(function(){
-		var val = $('#check_dinner').val();
-		if($('#check_dinner').prop("checked")==true){
-			$('#filter').append('<button onclick="func_dinner(this)" id="food_filter_dinner" class="genric-btn info-border radius">'+val+'&nbsp&nbsp'+'<i class="fa fa-times"></i></button>');
-		}
-		if($('#check_dinner').prop("checked")==false){
-			$('#food_filter_dinner').remove();
-		}
-	});
+	// 체크박스 체크 여부에 따라 view 필터 요소 추가 및 제거
+	// 체크박스 체크 여부에 따라 검색요소 추가 및 제거
+	if(ele.checked == true) { // 체크박스가 체크 되어있으면
+		// view에 필터 요소 추가
+		$('#filter').append('<button onclick="filter.remove(this)" id="' + eleId + '" class="genric-btn info-border radius">'+val+'<i class="fa fa-times pl-2"></i></button>');
+
+		// local 타입인지 filter 타입인지 구분하여 각 검색 요소에 추가
+		filter.searchAdd(eleName, check_val);
+		
+	} else {
+		// view에 필터 요소 제거
+		let btnId = $("button[id='" + eleId + "']"); // id가 같은 필터 요소 가져오기
+		btnId.remove();
+		
+		// local, filter 배열에서 체크 해제된 검색 요소 제거
+		filter.searchRemove(eleName, check_val);
+		
+	}
 	
-	//카드형, 리스트형 정렬방법 버튼
-	$('#cardsort').click(function(){
-		$('#widthsort_list').hide();
-		$('#cardsort_list').show();
-	});
-	$('#widthsort').click(function(){
-		$('#widthsort_list').show();
-		$('#cardsort_list').hide();
-	});
+	// 기존에 그려진 요소들 제거 및 초기화
+	filter.removeElement();
+	
+	// ajax로 데이터 가져오기
+	filter.ajax();
 	
 }
 
-
-//필터버튼 클릭시 버튼삭제, 박스 체크해제
-var func_five = function(cafe){	
-	$("#check_five").prop("checked", false);
-	cafe.remove();
-}
-var func_four = function(bar){	
-	$("#check_four").prop("checked", false);
-	bar.remove();	
-}
-var func_rest = function(rest){	
-	$("#check_rest").prop("checked", false);
-	rest.remove();	
-}
-var func_dining = function(dining){	
-	$("#check_dining").prop("checked", false);
-	dining.remove();	
-}
-var func_kor = function(kor){	
-	$("#check_kor").prop("checked", false);
-	kor.remove();	
-}
-var func_west = function(west){	
-	$("#check_west").prop("checked", false);
-	west.remove();	
-}
-var func_jap = function(jap){	
-	$("#check_jap").prop("checked", false);
-	jap.remove();	
-}
-var func_chin = function(chin){	
-	$("#check_chin").prop("checked", false);
-	chin.remove();	
-}
-var func_w_etc = function(w_etc){	
-	$("#check_w_etc").prop("checked", false);
-	w_etc.remove();	
-}
-var func_pork = function(pork){	
-	$("#check_pork").prop("checked", false);
-	pork.remove();	
-}
-var func_beef = function(beef){	
-	$("#check_beef").prop("checked", false);
-	beef.remove();	
-}
-var func_salad = function(salad){	
-	$("#check_salad").prop("checked", false);
-	salad.remove();	
-}
-var func_sea = function(sea){	
-	$("#check_sea").prop("checked", false);
-	sea.remove();	
-}
-var func_noodles = function(noodles){	
-	$("#check_noodles").prop("checked", false);
-	noodles.remove();	
-}
-var func_m_etc = function(m_etc){	
-	$("#check_m_etc").prop("checked", false);
-	m_etc.remove();	
-}
-var func_cheap = function(cheap){	
-	$("#check_cheap").prop("checked", false);
-	cheap.remove();	
-}
-var func_middle = function(middle){	
-	$("#check_middle").prop("checked", false);
-	middle.remove();	
-}
-var func_dinner = function(dinner){	
-	$("#check_dinner").prop("checked", false);
-	dinner.remove();	
+filter.search = function() {
+	// 기존에 그려진 요소들 제거 및 초기화
+	filter.removeElement();
+	
+	filter.ajax();
 }
 
+filter.remove = function(ele) {
+	let eleId = ele.getAttribute("id"); // 현재 요소의 id값
+	ele.remove(); // 현재 버튼 요소 제거
+	
+	// id가 동일한 체크박스가 체크되어 있으면 체크 해제
+	let eleCheck = $("input:checkbox[id='" + eleId + "']");
+	eleCheck.prop("checked", false);
+	
+	// 체크가 해제된 체크박스의 name과 value 가져오기
+	let check_val = eleCheck.val();
+	let eleName = eleCheck.attr("name");
+	
+	// local, filter 배열에서 체크 해제된 검색 요소 제거
+	filter.searchRemove(eleName, check_val);
+	
+	// 기존에 그려진 요소들 제거 및 초기화
+	filter.removeElement();
+	
+	// ajax로 데이터 가져오기
+	filter.ajax();
+	
+}
 
+filter.removeAll = function() {
+	// 체크박스의 모든 체크 해제
+	let checkArr1 = document.getElementsByName("filter_type");
+	for(let i of checkArr1) {
+		i.checked = false;
+	}
+	let checkArr2 = document.getElementsByName("local_type");
+	for(let i of checkArr2) {
+		i.checked = false;
+	}
+	
+	// view의 모든 필터 요소 지우기
+	$('#filter').empty();
+	
+	// local, filter 배열 비우기
+	filter.local = [];
+	filter.filter = [];
+	
+	// 기존에 그려진 요소들 제거 및 초기화
+	filter.removeElement();
+	
+	// ajax로 데이터 가져오기
+	filter.ajax();
+	
+}
+
+// 검색 요소에 따라 데이터 검색하기
+filter.ajax = function(pageNum = 1) {
+	let findStr = document.getElementById('filterFindStr').value;
+
+	$.ajax({
+		url : "searchList.sb",
+		method : "post",
+		data : {
+			"menu" : filter.menu,
+			"local" : filter.local,
+			"filter" : filter.filter,
+			"findStr" : findStr,
+			"pageNum" : pageNum
+		},
+		dataType : "json",
+		success : function(data) {
+			//filter.tot_cnt = 0;
+			let arr = [];
+			let ele_cnt = 0;
+			
+			for(let i = 0 ; i < data.length ; i++) {
+				arr = arr.concat(data[i]['response']['body']['items']['item']); // 검색된 요소들의 정보
+				ele_cnt += data[i]['response']['body']['totalCount']; // 검색된 요소들의 개수
+			}
+			
+			// 검색된 요소들 contentID별 정렬
+			arr.sort(function(a,b) {
+				return a.contentid - b.contentid;
+			});
+			
+			filter.allItems = filter.allItems.concat(arr);
+			filter.tot_cnt = ele_cnt;
+			
+			$('#search_cnt').text(filter.tot_cnt);
+			
+			// 검색 요소로 검색된 items 다시 그리기
+			filter.makeElement();
+		}
+	});
+
+}
+
+
+// 검색 요소를 저장하는 배열에 추가한 검색 요소 추가
+filter.searchAdd = function(eleName, check_val) {
+	switch(eleName) {
+	case "filter_type":
+		filter.filter.push(check_val);
+		break;
+	case "local_type":
+		filter.local.push(check_val);
+		break;
+	}
+}
+
+// 검색 요소를 저장하는 배열에서 제거한 검색 요소 제거
+filter.searchRemove = function(eleName, check_val) {
+	switch(eleName) {
+	case "filter_type":
+		let idx = filter.filter.findIndex(a => a === check_val)
+		if(idx !== -1) filter.filter.splice(idx, 1);
+		break;
+	case "local_type":
+		let idy = filter.local.findIndex(a => a == check_val)
+		if(idy !== -1) filter.local.splice(idy, 1);
+		break;
+	}
+}
+
+// 검색 조건이 변경될 때 기존에 있던 검색 요소 지우기 및 나타난 요소 개수 초기화
+filter.removeElement = function() {
+	positions = [];
+	filter.allItems = [];
+	cnt = 0;
+	widthsort_list_div.empty();
+	cardsort_list_div.empty();
+	
+}
+
+// 검색 조건에 추가된 요소 만들기
+filter.makeElement = function() {
+	
+	// 검색된 요소들 만들고 추가하기
+	for(let i = cnt ; i < cnt + scrollCnt ; i++) {
+		// 더 나타낼 요소가 없으면 ajax로 데이터를 더 불러올지 아닐지 판단
+		if(i >= filter.allItems.length) {
+			if(filter.tot_cnt > filter.allItems.length) {
+				let pageNum = (filter.allItems.length / scrollCnt) + 1;
+				
+				filter.ajax(pageNum);
+			}
+			break; // 더 나타낼 요소가 없으면 break;				
+		}
+		let item = filter.allItems[i];
+		let widthsort_ele
+			= `<div class="row col-0">`
+			+ `<div class="col-md-12 widthsort_list" onclick="detailMove(${item['contentid']})">`
+			+ `<div class="row mb-10">`
+			+ `<div class="col-md-3 nopadding">`
+			+ `<img src="${item['firstimage']}" alt="no-image" class="img-fluid">`
+			+ `</div>`
+			+ `<div class="col-md-9 mt-sm-20 left-align-p" style="background-color:white;">`
+			+ `<span>${item['title']}</span></br>`
+			+ `<div style="width: 30px; float: left;">별점</div>`
+			+ `<div class="rating" data-rate="${item['reputation'] === undefined? 0:item['reputation']}" style="float: left;">`
+			+ `<i class="fa fa-star"></i>`
+			+ `<i class="fa fa-star"></i>`
+			+ `<i class="fa fa-star"></i>`
+			+ `<i class="fa fa-star"></i>`
+			+ `<i class="fa fa-star"></i>`
+			+ `<span>  ${item['review_cnt'] === undefined? 0:item['review_cnt']} 건의 리뷰</span>`
+			+ `</div>`
+			+ `<br/>`
+			+ `<span>${item['addr1'] }</span>`
+			+ `</div>`
+			+ `</div>`
+			+ `</div>`
+			+ `</div>`;
+		let cardsort_ele 
+			= `<div class="col-md-3 col-6 p-1 cardsort_list" onclick="detailMove(${item['contentid']})">`
+			+ `<div class="row">`
+			+ `<div class="col-md-12">`
+			+ `<img src="${item['firstimage']}" alt="no-image" class="img-fluid">`
+			+ `</div>`
+			+ `<div class="col-md-12 mt-sm-20 left-align-p">`
+			+ `<div style="background-color: white; padding: 10px;">`
+			+ `<div style="height: 10px;">&nbsp</div>`
+			+ `<span>${item['title'] }</span>`
+			+ `<div class="rating" data-rate="${item['reputation'] === undefined? 0:item['reputation']}">`
+			+ `<i class="fa fa-star checked"></i>`
+			+ `<i class="fa fa-star"></i>`
+			+ `<i class="fa fa-star"></i>`
+			+ `<i class="fa fa-star"></i>`
+			+ `<i class="fa fa-star"></i>`
+			+ `<span>  ${item['review_cnt'] === undefined? 0:item['review_cnt']} 건의 리뷰</span>`
+			+ `</div>`
+			+ `<span>${item['addr1'] }</span>`
+			+ `</div>`
+			+ `</div>`
+			+ `</div>`
+			+ `</div>`;
+		widthsort_list_div.append(widthsort_ele);
+		cardsort_list_div.append(cardsort_ele);	
+		
+		// 지도에 마커 그리기
+		makePosition(item);
+	}
+	
+	// 별 그리기
+	filter.makeStar();
+	
+}
+
+filter.makeStar = function() {
+	var rating = $(".rating");
+
+	rating.each(function(){
+		var targetScore = $(this).attr('data-rate');
+		$(this).find('i:nth-child(-n+' + targetScore +')').css({color:'#ffc107'});
+	});
+}
+
+//스크롤 바닥 감지
+window.onscroll = function(e) {
+    //추가되는 임시 콘텐츠
+    //window height + window scrollY 값이 document height보다 클 경우,
+    if((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+    	//실행할 로직 (콘텐츠 추가)
+    	cnt += scrollCnt;
+        
+        // 12개 요소 추가로 나타내기
+    	filter.makeElement();
+        
+    }
+};
