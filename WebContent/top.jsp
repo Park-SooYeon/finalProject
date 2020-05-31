@@ -1,25 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>	
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <header id="header">
 	<div class="container main-menu">
 		<div class="row align-items-center justify-content-between d-flex">
 			<div id="logo">
 				<a href="index.jsp"><img src="template/img/logo.png" alt="" title="" /></a>
 			</div>
-
+			<script src="https://unpkg.com/hangul-js" type="text/javascript"></script>
+			
 			<nav id="nav-menu-container">
 				<ul class="nav-menu" style="line-height: 43px;">
 					<li class="mt-2">
-						<form class="form-inline my-2 my-lg-0">
-						
-						
-							<input class="form-control mr-sm-2" type="search" style="width: 80%;"
+						<div class="form-inline my-2 my-lg-0 ui-widget">
+							<input class="form-control mr-sm-2 p-1" type="search" style="width: 80%;"
 								placeholder="지역, 관광지 검색" onfocus="this.placeholder = ''"
-									onblur="this.placeholder = '지역, 관광지 검색'" aria-label="Search">
-							<button class="btn btn-primary my-2 my-sm-0" style="width: 15%;"
-								type="submit"><i class="fa fa-search"></i></button>
-						</form>
+									onblur="this.placeholder = '지역, 관광지 검색'" aria-label="Search"
+									id="topFindStr">
+							<button id="topSearch" class="btn btn-primary my-2 my-sm-0 p-1" style="width: 15%;">
+							<i class="fa fa-search"></i></button>
+						</div>
 
 					</li>
 					<!-- 로그인했을 떄 보이기  -->

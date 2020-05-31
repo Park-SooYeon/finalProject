@@ -97,5 +97,8 @@
 	<script src="js/trip_list.js"></script>
 	<script src="js/my_page.js"></script>
 	
+	<!-- search -->
+	<script src="js/search.js"></script>
+	
 </body>
 </html>

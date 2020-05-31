@@ -54,13 +54,13 @@ $('#check_festival').on("click", function() {
 
 // 관광 타입 radio 버튼 클릭시 작동하는 함수
 menuSelect = function(menu) {
-	// 기존에 그려진 요소들 제거
-	filter.removeElement();
 	
 	// 관광 타입 설정 및 filter 검색 조건 초기화
 	// local 검색 조건은 유지
 	filter.menu = menu;
 	filter.filter = [];
+	// 기존에 그려진 요소들 제거 및 초기화
+	filter.removeElement();
 	
 	// filter 검색 조건 제거
 	let chk_arr = document.getElementsByName("filter_type");
@@ -88,6 +88,7 @@ filter.menu // 관광 타입을 담을 변수
 filter.local = [] // 지역 코드를 담을 변수
 filter.filter = [] // filter 요소를 담을 변수
 filter.allItems = [] // 모든 검색된 요소들을 담을 변수
+filter.tot_cnt = 0; // 검색된 모든 요소들의 개수
 
 // parameter 값에 따라 초기 검색 조건 세팅
 filter.init = function(menu, local) {
@@ -126,7 +127,6 @@ filter.init = function(menu, local) {
 }
 
 filter.check = function(ele) {
-	filter.removeElement();
 	let eleId = ele.getAttribute("id"); // 요소의 id 값
 	let eleName = ele.getAttribute("name"); // 요소의 name 값
 	let check_val = ele.value; // 요소의 value 값
@@ -151,9 +151,19 @@ filter.check = function(ele) {
 		
 	}
 	
+	// 기존에 그려진 요소들 제거 및 초기화
+	filter.removeElement();
+	
 	// ajax로 데이터 가져오기
 	filter.ajax();
 	
+}
+
+filter.search = function() {
+	// 기존에 그려진 요소들 제거 및 초기화
+	filter.removeElement();
+	
+	filter.ajax();
 }
 
 filter.remove = function(ele) {
@@ -170,6 +180,9 @@ filter.remove = function(ele) {
 	
 	// local, filter 배열에서 체크 해제된 검색 요소 제거
 	filter.searchRemove(eleName, check_val);
+	
+	// 기존에 그려진 요소들 제거 및 초기화
+	filter.removeElement();
 	
 	// ajax로 데이터 가져오기
 	filter.ajax();
@@ -194,32 +207,48 @@ filter.removeAll = function() {
 	filter.local = [];
 	filter.filter = [];
 	
+	// 기존에 그려진 요소들 제거 및 초기화
+	filter.removeElement();
+	
 	// ajax로 데이터 가져오기
 	filter.ajax();
 	
 }
 
 // 검색 요소에 따라 데이터 검색하기
-filter.ajax = function() {
+filter.ajax = function(pageNum = 1) {
+	let findStr = document.getElementById('filterFindStr').value;
+
 	$.ajax({
 		url : "searchList.sb",
 		method : "post",
 		data : {
 			"menu" : filter.menu,
 			"local" : filter.local,
-			"filter" : filter.filter
+			"filter" : filter.filter,
+			"findStr" : findStr,
+			"pageNum" : pageNum
 		},
 		dataType : "json",
 		success : function(data) {
-			filter.allItems = data;
+			//filter.tot_cnt = 0;
+			let arr = [];
+			let ele_cnt = 0;
 			
-			// 검색된 요소들의 개수 출력
-			$('#search_cnt').text(filter.allItems.length);
-
+			for(let i = 0 ; i < data.length ; i++) {
+				arr = arr.concat(data[i]['response']['body']['items']['item']); // 검색된 요소들의 정보
+				ele_cnt += data[i]['response']['body']['totalCount']; // 검색된 요소들의 개수
+			}
+			
 			// 검색된 요소들 contentID별 정렬
-			filter.allItems.sort(function(a,b) {
+			arr.sort(function(a,b) {
 				return a.contentid - b.contentid;
-			})
+			});
+			
+			filter.allItems = filter.allItems.concat(arr);
+			filter.tot_cnt = ele_cnt;
+			
+			$('#search_cnt').text(filter.tot_cnt);
 			
 			// 검색 요소로 검색된 items 다시 그리기
 			filter.makeElement();
@@ -257,9 +286,12 @@ filter.searchRemove = function(eleName, check_val) {
 
 // 검색 조건이 변경될 때 기존에 있던 검색 요소 지우기 및 나타난 요소 개수 초기화
 filter.removeElement = function() {
+	positions = [];
+	filter.allItems = [];
 	cnt = 0;
 	widthsort_list_div.empty();
 	cardsort_list_div.empty();
+	
 }
 
 // 검색 조건에 추가된 요소 만들기
@@ -267,7 +299,15 @@ filter.makeElement = function() {
 	
 	// 검색된 요소들 만들고 추가하기
 	for(let i = cnt ; i < cnt + scrollCnt ; i++) {
-		if(i >= filter.allItems.length) break; // 더 나타낼 요소가 없으면 break;
+		// 더 나타낼 요소가 없으면 ajax로 데이터를 더 불러올지 아닐지 판단
+		if(i >= filter.allItems.length) {
+			if(filter.tot_cnt > filter.allItems.length) {
+				let pageNum = (filter.allItems.length / scrollCnt) + 1;
+				
+				filter.ajax(pageNum);
+			}
+			break; // 더 나타낼 요소가 없으면 break;				
+		}
 		let item = filter.allItems[i];
 		let widthsort_ele
 			= `<div class="row col-0">`

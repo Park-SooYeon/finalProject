@@ -12,15 +12,14 @@
 				<div class="title text-center">
 					<h1 class="text-white mb-10">어디로 떠나세요?</h1>
 				</div>
-				<form class="" style="display: flex;">
-					<input type="text" placeholder="지역을 검색해주세요!"
+				<div class="ui-widget" style="display: flex;">
+					<input id="mainFindStr" type="text" placeholder="지역을 검색해주세요!"
 						onfocus="this.placeholder = ''"
 						onblur="this.placeholder = '지역을 검색해주세요!'" class="single-input">
-					<button class="btn btn-primary" style="width: 15%; height: 40px;"
-						type="submit">
+					<button id="mainSearch" class="btn btn-primary" style="width: 15%; height: 40px;">
 						<i class="fa fa-search"></i>
 					</button>
-				</form>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -177,7 +176,7 @@
 		<div class="row d-flex justify-content-center">
 			<div class="menu-content col-lg-12">
 				<h1 class="mb-10">추천 즐길거리</h1>
-				<a href="?inc=commonPage/food_index.jsp">더 보기</a>
+				<a href="#" onclick="main.searchMove(12, ${param.local})">더 보기</a>
 			</div>
 		</div>
 		<div class="row">
