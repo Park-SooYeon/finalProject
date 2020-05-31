@@ -1,4 +1,7 @@
 function init() {
+	
+	$("#posts-here").load("selectPosts.mp");
+	
   //show modal
   $("#mp-modifyModal").on("show.bs.modal", function (event) {
 	  
@@ -182,6 +185,8 @@ function readURL(input) {
     reader.readAsDataURL(input.files[0]);
   }
 }
+
+
 
 
 	  

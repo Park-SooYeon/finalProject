@@ -1,19 +1,22 @@
 function init() {
 
+  // 장소검색 디테일 바 숨기기
   $("#on-city-close-btn").click(function () {
     $("#right-full-box").toggle({ direction: "left" });
   });
 
+  // 장소검색 디테일 바 숨기기
   $("#on-city-open-btn").click(function () {
     $("#right-full-box").toggle("fade", { direction: "left" });
   });
 
-  $(".plan-category li").click(function () {
-    $(".schedule-detail-box").show("fade", { direction: "left" });
-    $(".plan-category li").not(this).removeClass("on");
-    $(".show-all-day").removeClass("on");
-    $(this).addClass("on");
-  });
+  // Day 누르면 detail box 나타나고 on class toggle
+  $(document).on("click", ".plan-category li", function(){
+	  $(".schedule-detail-box").show("fade", { direction: "left" });
+	    $(".plan-category li").not(this).removeClass("on");
+	    $(".show-all-day").removeClass("on");
+	    $(this).addClass("on");
+  })
 
   $(".show-all-day").click(function () {
     $(".schedule-detail-box, #right-full-box").hide();

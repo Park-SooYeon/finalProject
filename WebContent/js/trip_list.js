@@ -1,6 +1,8 @@
 const TRIP_CAL = ".trip-cal-input";
 const TRIP_DAY = ".trip-day-input";
 let fullDate = "";
+let member = "";
+let serial = "";
 
 function load(){
 	// 첫화면에 모든 여행리스트 조회
@@ -17,11 +19,13 @@ load();
 		
 		let name = ADD_BTN.data("name");
 		let auth = ADD_BTN.data("auth");
-		let member = ADD_BTN.data("member");
 		let days = ADD_BTN.data("days");
 		let start = ADD_BTN.data("start");
 		let end = ADD_BTN.data("end");
-		let serial = ADD_BTN.data("serial");
+
+		// 추후 사용하기 위해서 전역변수로
+		member = ADD_BTN.data("member");
+		serial = ADD_BTN.data("serial");
 		
 		if(days==0 || days==null){
 			//입력한 여행일수 값이 없으면 CAL를 SHOW
@@ -123,6 +127,10 @@ function deleteTrip(serial){
 		alert(data);
 		location.reload();
 	});
+}
+
+function goTrip(){
+	location.href="editTrip.mp?id="+member+"&se="+serial;
 }
 
 function init(){

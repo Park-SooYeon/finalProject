@@ -53,6 +53,32 @@
 			</collection>
 	</resultMap>
 	
+	<resultMap id="mp_map_trip" type="bean.TripListVo">
+		<result column="trip_list_serial" property="trip_list_serial"/>
+		<result column="member_id" property="member_id"/>
+		<result column="trip_name" property="trip_name"/>
+		<result column="days_count" property="days_count"/>
+		<result column="start_date" property="start_date"/>
+		<result column="end_date" property="end_date"/>
+		<result column="trip_auth" property="trip_auth"/>
+		<result column="trip_date" property="trip_date"/>
+		<result column="flag" property="flag"/>
+			<collection property="p" 
+						javaType="bean.PlaceVo">
+				<result column="place_serial" property="place_serial"/>
+				<result column="place_name" property="place_name"/>
+				<result column="place_code" property="place_code"/>
+				<result column="place_type" property="place_type"/>
+				<result column="place_location" property="place_location"/>
+				<result column="reputation" property="reputation"/>
+				<result column="review_cnt" property="review_cnt"/>
+				<result column="local_code" property="local_code"/>
+				<result column="local_name" property="local_name"/>
+				<result column="photo_serial" property="photo_serial"/>
+				<result column="photo_name" property="photo_name"/>
+			</collection>
+	</resultMap>
+	
    <insert id="insert_trip" parameterType="bean.TripListVo">
       <selectKey keyProperty="trip_list_serial" resultType="int" order="BEFORE">
          select seq_trip_list_serial.nextval
@@ -118,25 +144,6 @@
    		   and P.place_code = 4
    </select>
    
-   <!-- 좋아요 누른 리뷰 조회 -->
-   <select id="select_review" parameterType="String" resultMap="mp_map_review">
-   		select like_serial,
-   			   R.review_serial, 
-   			   member_id, 
-   			   (select place_name from place where place_serial = R.place_serial) place_name,  
-   			   reputation, 
-   			   review_title, 
-   			   review_content,
-			   P.local_code,
-			   P.place_code,
-			   P.place_name photo_name 			   
-   		from review R, review_like L, place P
-   		where R.review_serial = L.review_serial
-   		and like_id = #{_parameter}
-   		and P.place_serial = R.place_serial
-   		and P.place_code = 4
-   </select>
-   
 	<!-- 관심여행 중 api 요청 -->
    <select id="select_places" parameterType="String" resultMap="mp_map_like">
    		select t.trip_list_serial, t.trip_name,
@@ -150,14 +157,39 @@
    
    <!-- 좋아요 누른 리뷰 중 api 요청 -->
    <select id="select_apiReview" parameterType="String" resultMap="mp_map_review">
-		select l.like_id, r.review_serial, 
+		select r.review_serial, 
 			   r.member_id, r.place_serial, 
 			   r.reputation, r.review_title, 
-			   r.review_content, r.visit_date 
-		from review r left outer join review_like l 
-		on l.review_serial = r.review_serial 
+			   r.review_content, r.visit_date,
+			   getRevCnt(r.place_serial) review_cnt
+		from review r join review_like l 
+		on l.review_serial = r.review_serial
+		left outer join place p
+		on p.place_serial = r.place_serial
 		where l.like_id = #{_parameter}
+		and p.place_serial is null
 	</select>
+   
+   <!-- 좋아요 누른 리뷰 조회 (호텔)-->
+   <select id="select_review" parameterType="String" resultMap="mp_map_review">
+   		select like_serial,
+   			   R.review_serial, 
+   			   member_id, 
+   			   (select place_name from place where place_serial = R.place_serial) place_name,  
+   			   reputation, 
+   			   review_title, 
+   			   review_content,
+			   P.local_code,
+			   P.place_code,
+			   P.place_name photo_name, 	
+			   visit_date,
+			   getRevCnt(R.place_serial) review_cnt		   
+   		from review R, review_like L, place P
+   		where R.review_serial = L.review_serial
+   		and like_id = #{_parameter}
+   		and P.place_serial = R.place_serial
+   		and P.place_code = 4
+   </select>
    
    <select id="select_profile" parameterType="String" resultType="bean.membershipVo">
    		select member_id, member_city, 
@@ -167,6 +199,7 @@
    		where member_id = #{_parameter}
    </select>
    
+   <!-- member_id가 대상 target_id를 팔로우하고 있는지 알아보는 sql (0 : false, 1: true)-->
    <select id="select_follow" parameterType="bean.FollowListVo" resultType="Integer">
    		select count(follow_serial)  
    		from follow_list
@@ -207,7 +240,38 @@
 		select count(follow_serial) from follow_list where target_id = #{_parameter}
 	</select>
 	
+	<!-- 팔로우하는 사람들의 리뷰 게시물 (api)-->
+	<select id="select_follow_review" parameterType="hashMap" resultMap="mp_map_review">
+		select r.review_serial, 
+			   r.member_id, r.place_serial, 
+			   r.reputation, r.review_title, 
+			   r.review_content, 
+			   to_char(r.visit_date, 'rrrr"년" mm"월" dd"일"') visit_date, 
+			   r.review_date,
+			   getRevCnt(r.place_serial) review_cnt
+		from review r join follow_list f 
+		on r.member_id = f.target_id 
+		left outer join place p
+		on p.place_serial = r.place_serial
+		where f.member_id = #{member_id}
+		<if test='flag.equals("api")'>
+		and p.place_serial is null
+		</if>
+		<if test='flag.equals("hotel")'>
+		and p.place_serial is not null
+		</if>
+	</select>
 	
-	
+	<!-- 아이디에 해당하는 trip list와 해당  trip list에 속하는 관심리스트 장소들 모두 조회하기-->
+	<select id="select_custom" parameterType="bean.TripListVo" resultMap="mp_map_trip">
+		select t.trip_list_serial, t.member_id, t.trip_name, t.days_count, t.start_date, t.end_date, l.place_serial
+        from trip_list t join like_list l
+        on l.trip_list_serial = t.trip_list_serial
+        left outer join place p
+        on p.place_serial = l.place_serial
+        where t.member_id = #{member_id}
+        and t.trip_list_serial = ${trip_list_serial}
+        and p.place_serial is null
+	</select>
 
 </mapper>
