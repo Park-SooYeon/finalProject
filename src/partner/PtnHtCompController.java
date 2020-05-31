@@ -94,7 +94,7 @@ public class PtnHtCompController {
 		int result = 1;
 		
 		PlaceVo vo = new PlaceVo();
-		
+		// name값 필드값 일치 
 		vo.setPlace_name(req.getParameter("admHCompNm"));
 		vo.setPlace_tel(req.getParameter("admHCompTel"));
 		vo.setPlace_location(req.getParameter("placeLocation"));
@@ -129,8 +129,10 @@ public class PtnHtCompController {
     	// c.getRealPath("상대경로") 를 통해 파일을 저장할 절대 경로를 구해온다.
 	    // 운영체제 및 프로젝트가 위치할 환경에 따라 경로가 다르기 때문에 아래처럼 구해오는게 좋음
     	
-	    String uploadPath = req.getSession().getServletContext().getRealPath("/assets/images/");
-	     //String uploadPath = "C:\\Users\\silve\\eclipse-workspace\\final_twitch\\WebContent\\store\\reviewimages";
+	    String uploadPath = req.getSession().getServletContext().getRealPath("/assets/images/upload");
+	    //String uploadPath = req.getSession().getServletContext().getContext("/assets/images/upload").getRealPath("");
+		   
+	    //String uploadPath = "C:\\Users\\silve\\eclipse-workspace\\final_twitch\\WebContent\\store\\reviewimages";
 	    System.out.println(uploadPath);
 	    
 	    File dir = new File(uploadPath);
