@@ -57,7 +57,7 @@
                     </a> -->
                     <!-- 데이터넣깅... -->
                     <c:forEach var='i' items='${list }'>
-                    <a href="#" class="tickets-card row" data-toggle="modal" data-target="#modalReviewDt">
+                    <a href="#" class="tickets-card row" data-toggle="modal" data-target="#modalReviewDt" onclick="review_all('${i.review_serial }')">
                         <div class="tickets-details col-md-8">
                             <div class="wrapper">
                                 <h5>${i.review_serial }  -  ${i.review_title }</h5>
@@ -73,47 +73,31 @@
                             <span class="text-muted">${i.member_id }</span>
                         </div>
                         <div class="ticket-float col-md-2 col-6">
-                            <i class="category-icon mdi mdi-folder-outline"></i>
 	                          
 	                            <c:if test='${i.p.place_code == 0 }'>
-	                            	<span class="text-muted" >즐길거리(문화시설)</span>
+	                            	<i class="category-icon mdi mdi-theater"></i><span  class="text-muted" >즐길거리(문화시설)</span>
 	                            </c:if>
                         		<c:if test='${i.p.place_code == 1 }'>
-	                            	<span class="text-muted">즐길거리(관광지)</span>
+	                            	<i class="category-icon mdi  mdi-camera"></i><span class="text-muted">즐길거리(관광지)</span>
 	                            </c:if>
 	                            <c:if test='${i.p.place_code == 2 }'>
-	                            	<span class="text-muted">음식점</span>
+	                            	<i class="category-icon mdi mdi-food"></i><span class="text-muted">음식점</span>
 	                            </c:if>
 	                            <c:if test='${i.p.place_code == 3 }'>
-	                            	<span class="text-muted">축제</span>
+	                            	<i class="category-icon mdi  mdi-human-male-female"></i><span class="text-muted">축제</span>
 	                            </c:if>
 	                            <c:if test='${i.p.place_code == 4 }'>
-	                            	<span class="text-muted">호텔</span>
+	                            	<i class="category-icon mdi mdi-hotel"></i><span class="text-muted">호텔</span>
 	                            </c:if>
                         	
                         
-                        
+                      		
                         </div>
                     </a>
 	       		</c:forEach>            
 	              </div>
 	            
-           
-           
          
-        <%--    <div id='paging' class="text-center mt-3">
-	<c:if test='${p.startPage>p.blockSize }'>
-		<input type='button' value='이전' onclick='brd.go(${p.startPage-1}) '/>
-	</c:if>
-		
-			<c:forEach var='i' begin='${p.startPage}' end='${p.endPage}'>
-				<input type='button' value='${i }' class="${(i==p.nowPage)?  'active' : ''}" onclick='brd.go(${i})'/>
-			</c:forEach>
-			
-	<c:if test='${p.endPage<p.totPage }'>
-				<input type='button' value='다음' onclick='brd.go(${p.endPage+1 })'/>
-	</c:if>
-	</div> --%>
 	   <div class="col-md-12" style='margin-top:-20px'>
       <ul class="pagination justify-content-center mt-5">
         <li class="page-item ${(p.startPage>p.blockSize)? '' : 'disabled' }disabled">
@@ -139,22 +123,6 @@
      
      
 	
-	<%-- 
-	<div id='paging' class='text-center mt-1'>
-			<c:if test="${p.startPage>p.blockSize}">
-				<input type='button' value='이전' onclick='brd.go(${p.startPage-1})' class='btn-sm btn-ok' />
-			</c:if>
-
-			<c:forEach var="i" begin="${p.startPage }" end="${p.endPage }">
-				<input type='button' value='${i }' class='${ (i== p.nowPage)? "btn-sm btn-sw" : "btn-sm btn-ok" }' onclick='brd.go(${i})' />
-			</c:forEach>
-
-			<c:if test="${p.nowPage<page.totPage }">
-				<input type='button' value='다음' onclick='brd.go(${p.endPage+1 })' class='btn-sm btn-ok' />
-			</c:if>
-		</div>
-	
-        </div> --%>
 
 
     <!-- 리뷰 상세조회 modal -->
