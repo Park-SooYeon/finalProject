@@ -15,10 +15,10 @@
 	<context:annotation-config />
 	
 	<!-- bean -->
- 	<bean id="rvDao" class="review.ReviewDao"/>
+ 	<bean id="rvDao" class="dao.ReviewDao"/>
 	
 	<!-- controller (servlet code) -->
-	<bean id="rv_controller" class="review.ReviewController">
+	<bean id="rv_controller" class="controller.ReviewController">
 		<constructor-arg ref="rvDao"/>
 	</bean>
 	

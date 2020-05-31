@@ -9,7 +9,6 @@ import bean.Factory;
 import bean.LikeListVo;
 import bean.PlaceVo;
 import bean.TripListVo;
-import vo.MainVo;
 import vo.ReputationVo;
 
 public class SubMainDao { 

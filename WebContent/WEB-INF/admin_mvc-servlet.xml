@@ -15,10 +15,10 @@
 	<context:annotation-config />
 	
 	<!-- bean -->
-	<bean id="asDao" class="adSuper.AdSuperDao"/>
+	<bean id="asDao" class="dao.AdSuperDao"/>
 	
 	<!-- controller (servlet code) -->
-	<bean id="as_controller" class="adSuper.AdSuperController">
+	<bean id="as_controller" class="controller.AdSuperController">
 		<constructor-arg ref="asDao"/>
 	</bean>
 	

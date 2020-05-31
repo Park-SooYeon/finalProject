@@ -15,10 +15,10 @@
 	<context:annotation-config/>
 	
 	<!-- bean -->
-	<bean id='rentDao' class='rent.RentDao'/>
+	<bean id='rentDao' class='dao.RentDao'/>
 	
 	<!-- controller -->
-	<bean id='rent_controller' class='rent.RentControllor'>
+	<bean id='rent_controller' class='controller.RentControllor'>
 		<constructor-arg ref='rentDao'/>
 	</bean>
 	

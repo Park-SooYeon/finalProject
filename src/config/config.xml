@@ -28,28 +28,28 @@
 		<!--  main -->
 		<mapper resource= "./mybatis/sb_mybatis.xml"/>
 		<!-- membership -->
-		   <mapper resource="./membership_mybatis/membership.xml"/>
+		   <mapper resource="./mybatis/membership.xml"/>
 		
 		<!-- mypage -->
-		<mapper resource="mypage_mybatis/mp_mybatis.xml"/>
+		<mapper resource="./mybatis/mp_mybatis.xml"/>
 		
 		<!-- admin -->
-		<mapper resource="adSuper_mybatis/adSuper_mybatis.xml"/>
+		<mapper resource="./mybatis/adSuper_mybatis.xml"/>
 		
 		<!-- detailView -->
-		<mapper resource="detailview_mybatis/detailview_mybatis.xml"/>
+		<mapper resource="./mybatis/detailview_mybatis.xml"/>
 		
 		<!-- review -->
-		<mapper resource="review_mybatis/review_mybatis.xml"/>
+		<mapper resource="./mybatis/review_mybatis.xml"/>
 		
 		<!-- amdin-partner -->
-		<mapper resource="partner_mybatis/hotel.xml"/>
+		<mapper resource="./mybatis/partner_hotel.xml"/>
 		
 		<!-- rent -->
-		<mapper resource="rent_mybatis/rent.xml"/>
+		<mapper resource="./mybatis/rent.xml"/>
 		
 		<!-- hotel-->
- 		<mapper resource="hotel_mybatis/hotel.xml"/> 
+ 		<mapper resource="./mybatis/hotel.xml"/> 
 		
 	</mappers>
 

@@ -15,10 +15,10 @@
 	<context:annotation-config />
 	
 	<!-- bean -->
-	<bean id="mpDao" class="mypage.MyPageDao"/>
+	<bean id="mpDao" class="dao.MyPageDao"/>
 	
 	<!-- controller (servlet code) -->
-	<bean id="mp_controller" class="mypage.MyPageController">
+	<bean id="mp_controller" class="controller.MyPageController">
 		<constructor-arg ref="mpDao"/>
 	</bean>
 	

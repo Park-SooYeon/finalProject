@@ -13,18 +13,18 @@
 	<context:annotation-config></context:annotation-config>
 	
 	<!-- bean -->
-	<bean id="compDao" class="partner.PtnRtCompDao" />
-	<bean id="carDao" class="partner.PtnRtCarDao" />
-	<bean id="orderDao" class="partner.PtnRtOrderDao" />
+	<bean id="compDao" class="dao.PtnRtCompDao" />
+	<bean id="carDao" class="dao.PtnRtCarDao" />
+	<bean id="orderDao" class="dao.PtnRtOrderDao" />
 				
 	<!-- Controller (servlet code) -->
-	<bean id="comp_controller" class="partner.PtnRtCompController">
+	<bean id="comp_controller" class="controller.PtnRtCompController">
 		<constructor-arg ref="compDao"></constructor-arg>
 	</bean>
-	<bean id="car_controller" class="partner.PtnRtCarController">
+	<bean id="car_controller" class="controller.PtnRtCarController">
 		<constructor-arg ref="carDao"></constructor-arg>
 	</bean>
-	<bean id="order_controller" class="partner.PtnRtOrderController">
+	<bean id="order_controller" class="controller.PtnRtOrderController">
 		<constructor-arg ref="orderDao"></constructor-arg>
 	</bean>
 	
