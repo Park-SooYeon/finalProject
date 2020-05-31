@@ -4,14 +4,23 @@
 <mapper namespace="review">
 
 	<!-- 본문글 -->
-	<insert id='insertR' parameterType='Integer' >
+<!-- 	<insert id='insert' parameterType='bean.ReviewVo' >
 		insert into review(review_serial, member_id, place_serial, review_type, reputation, 
 		review_title, review_content, visit_date, review_date, service, cleanliness, accessibility,
 		price, scale, food)
 		values(seq_review.nextval, #{member_id}, #{place_serial}, #{review_type}, #{reputation},
-		#{review_title}, #{review_content}, sysdate-${visit_date}, sysdate, #{service}, #{cleanliness},
+		#{review_title}, #{review_content}, #{visit_date}, sysdate, #{service}, #{cleanliness},
 		#{accessibility}, #{price}, #{scale}, #{food})
-	</insert>
+	</insert> -->
+	
+<!-- 	<insert id='att_insert' parameterType='review.ReviewAttVo' >
+	  <selectKey keyProperty="review_serial" resultType="java.lang.Integer" order="BEFORE">
+	        select review_serial FROM review
+	      </selectKey>
+		insert into review_photo(photo_serial, review_serial, photo_name)
+		values(seq_review_photo.nextval, , #{review_serial}, #{photo_name})
+	</insert> -->
+	
 	
 	<!--
 	<select id='count' parameterType="bean.RivewVo">

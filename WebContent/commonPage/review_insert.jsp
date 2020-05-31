@@ -28,7 +28,7 @@
 		
 		
 		<form name="review_insert_frm" id="review_insert_frm" method="post" enctype='multipart/form-data'>
-		<input type="text" name="place_serial" id="place_serial" >
+		<input type="hidden" name="place_serial" id="place_serial" >
 		
 		<h3>이 관광지의 전반적인 평가</h3>
 		<input type="hidden" name="reputation" id="reputation">

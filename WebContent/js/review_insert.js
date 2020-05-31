@@ -220,6 +220,8 @@ $(document).ready(function(){
     	}
     });
     
+    
+    //별점 총점 평균
     $('#star_1').click(function(){
     	$('#reputation').val(1);
     });
@@ -236,12 +238,119 @@ $(document).ready(function(){
     	$('#reputation').val(5);
     });
     
+    //서비스 점수
+    $('#service_star_1').click(function(){
+    	$('#service').val(1);
+    });
+    $('#service_star_2').click(function(){
+    	$('#service').val(2);
+    });
+    $('#service_star_3').click(function(){
+    	$('#service').val(3);
+    });
+    $('#service_star_4').click(function(){
+    	$('#service').val(4);
+    });
+    $('#service_star_5').click(function(){
+    	$('#service').val(5);
+    });
+    
+    //청결도 점수
+    $('#cleanliness_star_1').click(function(){
+    	$('#cleanliness').val(1);
+    });
+    $('#cleanliness_star_2').click(function(){
+    	$('#cleanliness').val(2);
+    });
+    $('#cleanliness_star_3').click(function(){
+    	$('#cleanliness').val(3);
+    });
+    $('#cleanliness_star_4').click(function(){
+    	$('#cleanliness').val(4);
+    });
+    $('#cleanliness_star_5').click(function(){
+    	$('#cleanliness').val(5);
+    });
+    
+    
+    //접근성 점수
+    $('#accessibility_star_1').click(function(){
+    	$('#accessibility').val(1);
+    });
+    $('#accessibility_star_2').click(function(){
+    	$('#accessibility').val(2);
+    });
+    $('#accessibility_star_3').click(function(){
+    	$('#accessibility').val(3);
+    });
+    $('#accessibility_star_4').click(function(){
+    	$('#accessibility').val(4);
+    });
+    $('#accessibility_star_5').click(function(){
+    	$('#accessibility').val(5);
+    });
+    
+    //가격점수
+    $('#price_star_1').click(function(){
+    	$('#price').val(1);
+    });
+    $('#price_star_2').click(function(){
+    	$('#price').val(2);
+    });
+    $('#price_star_3').click(function(){
+    	$('#price').val(3);
+    });
+    $('#price_star_4').click(function(){
+    	$('#price').val(4);
+    });
+    $('#price_star_5').click(function(){
+    	$('#price').val(5);
+    });
+    
+    //규모점수
+    $('#scale_star_1').click(function(){
+    	$('#scale').val(1);
+    });
+    $('#scale_star_2').click(function(){
+    	$('#scale').val(2);
+    });
+    $('#scale_star_3').click(function(){
+    	$('#scale').val(3);
+    });
+    $('#scale_star_4').click(function(){
+    	$('#scale').val(4);
+    });
+    $('#scale_star_5').click(function(){
+    	$('#scale').val(5);
+    });
+    
+    //음식점수
+    $('#food_star_1').click(function(){
+    	$('#food_star').val(1);
+    });
+    $('#food_star_2').click(function(){
+    	$('#food_star').val(2);
+    });
+    $('#food_star_3').click(function(){
+    	$('#food_star').val(3);
+    });
+    $('#food_star_4').click(function(){
+    	$('#food_star').val(4);
+    });
+    $('#food_star_5').click(function(){
+    	$('#food_star').val(5);
+    });
+    
+    
+    
+    
+    
     $('#review_insert').click(function(){
     	$("input[name=place_serial]").prop("disabled", false);
     	$('#place_serial').val(place_serial);
-/*    	let review_insert = new FormData($('#review_insert_frm')[0]);
+    	let review_insert = new FormData($('#review_insert_frm')[0]);
     	
-    	//폼데이터 안에 값 확인
+/*    	//폼데이터 안에 값 확인
     	for (var key of review_insert.keys()) {
 
     		  alert(key);
