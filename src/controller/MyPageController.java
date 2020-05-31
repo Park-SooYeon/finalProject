@@ -76,9 +76,10 @@ public class MyPageController {
 
 	// 여행리스트, 관심리스트, 좋아요한 리뷰 보기 페이지
 	@RequestMapping( value = "mytrip.mp", method = {RequestMethod.GET, RequestMethod.POST})
-	public ModelAndView select(HttpServletRequest req, HttpServletResponse resp) {
+	public ModelAndView select(HttpSession session) {
 		mv = new ModelAndView();
-		List<TripListVo> list = dao.select();
+		String member_id = (String)session.getAttribute("member_id");
+		List<TripListVo> list = dao.select(member_id);
 		mv.setViewName("trip_list");
 		mv.addObject("list", list);
 		return mv;
@@ -312,11 +313,22 @@ public class MyPageController {
 		mv.addObject("list", list);
 		return mv;
 	}
-	
-	@RequestMapping( value = "editTrip.mp", method = {RequestMethod.GET, RequestMethod.POST})
-	public String editTrip() {
+
+	// 여행 커스터마이징 
+	@RequestMapping( value = "editTrip.mp", method = {RequestMethod.GET})
+	public ModelAndView editTrip(HttpServletRequest req, HttpSession session) {
 		mv = new ModelAndView();
-		return "edit_trip";
+		
+		// serial을 get타입으로 넘겨받음
+		int serial = Integer.parseInt(req.getParameter("se"));
+		String member_id = (String)session.getAttribute("member_id");
+		
+		TripListVo vo = dao.viewTrip(serial,member_id);
+		System.out.println("뭐징");
+		System.out.println(vo.toString());
+		mv.addObject("vo", vo);
+		mv.setViewName("edit_trip");
+		return mv;
 	}
 	
 	

@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
   <head>
@@ -97,10 +98,21 @@
     <div class="my-main-wrapper">
       <div class="my-main-side">
         <div class="date-box">
-            <div id="edit-day"><i class="far fa-calendar-alt"></i> 05.6 ~ 05.13</div>
+            <div id="edit-day"><i class="far fa-calendar-alt"></i> 
+            <c:if test="${empty vo.start_date }">
+            	총 여행 일수 : ${vo.days_count} 일
+            </c:if>
+            
+            <c:if test="${vo.days_count == 0 }">
+            ${vo.start_date } ~ ${vo.end_date}
+            </c:if>
+            
+            </div>
           <div class="show-all-day text-center">전체 일정 보기</div>
         </div>
         <ul class="plan-category">
+        
+        <c:forEach var="i" begin="1" end="${vo.another_days }">
           <li
             data="1"
             data-date="05.06"
@@ -111,8 +123,8 @@
             original-title="서울"
           >
             <div class="cat-date-left-box">
-              <div class="cat-left-day">DAY1</div>
-              <div class="cat-left-date">05.06</div>
+              <div class="cat-left-day">DAY${i }</div>
+              <div class="cat-left-date">${vo.start_date }</div>
             </div>
             <div class="cat-date-right-box">
               <div class="cat-right-weekday">수요일</div>
@@ -120,100 +132,9 @@
             </div>
           </li>
 
-          <li
-            data="1"
-            data-date="05.06"
-            data-day_week="3"
-            data-f_ci="310"
-            data-f_lat="37.56653500"
-            data-f_lng="126.97796920"
-            original-title="서울"
-          >
-            <div class="cat-date-left-box">
-              <div class="cat-left-day">DAY2</div>
-              <div class="cat-left-date">05.07</div>
-            </div>
-            <div class="cat-date-right-box">
-              <div class="cat-right-weekday">목요일</div>
-              <div class="cat-right-city">서울</div>
-            </div>
-          </li>
+         </c:forEach>
 
-          <li
-            data="1"
-            data-date="05.06"
-            data-day_week="3"
-            data-f_ci="310"
-            data-f_lat="37.56653500"
-            data-f_lng="126.97796920"
-            original-title="서울"
-          >
-            <div class="cat-date-left-box">
-              <div class="cat-left-day">DAY3</div>
-              <div class="cat-left-date">05.08</div>
-            </div>
-            <div class="cat-date-right-box">
-              <div class="cat-right-weekday">금요일</div>
-              <div class="cat-right-city">서울</div>
-            </div>
-          </li>
 
-          <li
-            data="1"
-            data-date="05.06"
-            data-day_week="3"
-            data-f_ci="310"
-            data-f_lat="37.56653500"
-            data-f_lng="126.97796920"
-            original-title="서울"
-          >
-            <div class="cat-date-left-box">
-              <div class="cat-left-day">DAY4</div>
-              <div class="cat-left-date">05.09</div>
-            </div>
-            <div class="cat-date-right-box">
-              <div class="cat-right-weekday">토요일</div>
-              <div class="cat-right-city">서울</div>
-            </div>
-          </li>
-
-          <li
-            data="1"
-            data-date="05.06"
-            data-day_week="3"
-            data-f_ci="310"
-            data-f_lat="37.56653500"
-            data-f_lng="126.97796920"
-            original-title="서울"
-          >
-            <div class="cat-date-left-box">
-              <div class="cat-left-day">DAY5</div>
-              <div class="cat-left-date">05.10</div>
-            </div>
-            <div class="cat-date-right-box">
-              <div class="cat-right-weekday">일요일</div>
-              <div class="cat-right-city">서울</div>
-            </div>
-          </li>
-
-          <li
-            data="1"
-            data-date="05.06"
-            data-day_week="3"
-            data-f_ci="310"
-            data-f_lat="37.56653500"
-            data-f_lng="126.97796920"
-            original-title="서울"
-          >
-            <div class="cat-date-left-box">
-              <div class="cat-left-day">DAY6</div>
-              <div class="cat-left-date">05.11</div>
-            </div>
-            <div class="cat-date-right-box">
-              <div class="cat-right-weekday">월요일</div>
-              <div class="cat-right-city">서울</div>
-            </div>
-          </li>
         </ul>
         <div class="cat-add-box">
           <div onclick="add_plan_day()">DAY 추가</div>

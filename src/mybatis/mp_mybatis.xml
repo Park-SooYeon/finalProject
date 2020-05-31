@@ -86,7 +86,7 @@
    </insert>
 	
 	<!-- 전체 여행 리스트 -->
-	<select id="select_trip" resultType="bean.TripListVo">
+	<select id="select_trip" parameterType = "String" resultType="bean.TripListVo">
 		select 	trip_list_serial, 
 				member_id, 
 				trip_name, 
@@ -96,7 +96,24 @@
 				trip_auth, 
 				trip_date 
 				from trip_list
+				where member_id = #{_parameter}
 				order by trip_date desc
+	</select>
+	
+	<!-- 하나의 여행 리스트 (view)-->
+	<select id="view_trip" parameterType = "bean.TripListVo" resultType="bean.TripListVo">
+		select 	trip_list_serial, 
+				member_id, 
+				trip_name, 
+				days_count, 
+				to_char(start_date,'mm-dd') start_date, 
+				to_char(end_date,'mm-dd') end_date, 
+				(end_date - start_date) another_days,
+				trip_auth, 
+				trip_date 
+				from trip_list
+				where member_id = #{member_id}
+				and trip_list_serial = ${trip_list_serial}
 	</select>
 	
 	<update id="modify_trip" parameterType="bean.TripListVo">
@@ -255,9 +272,13 @@
 		</if>
 	</select>
 	
+	
 	<!-- 아이디에 해당하는 trip list와 해당  trip list에 속하는 관심리스트 장소들 모두 조회하기-->
+	    <!-- api : place_serial is null -->
+	    <!-- hotel : place_serial is not null  -->
 	<select id="select_custom" parameterType="bean.TripListVo" resultMap="mp_map_trip">
-		select t.trip_list_serial, t.member_id, t.trip_name, t.days_count, t.start_date, t.end_date, l.place_serial
+		select t.trip_list_serial, t.member_id, t.trip_name, 
+		t.days_count, t.start_date, t.end_date, l.place_serial
         from trip_list t join like_list l
         on l.trip_list_serial = t.trip_list_serial
         left outer join place p

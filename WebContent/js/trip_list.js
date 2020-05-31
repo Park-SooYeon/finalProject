@@ -7,8 +7,8 @@ let serial = "";
 function load(){
 	// 첫화면에 모든 여행리스트 조회
 	$("#list-here").load("mytrip.mp");
-	
 }
+
 load();
 
 	//수정 모달창이 켜졌을때
@@ -130,7 +130,7 @@ function deleteTrip(serial){
 }
 
 function goTrip(){
-	location.href="editTrip.mp?id="+member+"&se="+serial;
+	location.href="editTrip.mp?se="+serial;
 }
 
 function init(){

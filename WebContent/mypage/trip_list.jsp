@@ -351,7 +351,7 @@
           onclick="goTrip();" value="여행일정 짜기">
         </div>
       </div>
-       </form>
-    </div>
+    </form>
+   </div>
   </div>
 </section>

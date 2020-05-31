@@ -80,6 +80,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
           </div>
         </div>
       </div>
+      <!-- 
       <nav class="navbar navbar-expand-sm profile-menu position-absolute" style="bottom:-9px;">
         <ul class="navbar-nav">
           <li class="nav-item">
@@ -93,6 +94,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
           </li>
         </ul>
       </nav>
+       -->
     </div>
     </div>
 

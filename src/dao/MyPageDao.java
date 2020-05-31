@@ -62,10 +62,11 @@ public class MyPageDao {
 		}
 	}
 	
-	public List<TripListVo> select() {
+	// 여행리스트 기본 정보 가져오기
+	public List<TripListVo> select(String member_id) {
 		List<TripListVo> list = new ArrayList<TripListVo>();
 		try {
-			list = sqlSession.selectList("mypage.select_trip");
+			list = sqlSession.selectList("mypage.select_trip", member_id);
 		}catch(Exception ex) {
 			ex.printStackTrace();
 		}finally {
@@ -338,6 +339,60 @@ public class MyPageDao {
 		}
 		return list; 
 	}
+	
+	public TripListVo viewTrip(int serial, String member_id) {
+		TripListVo vo = new TripListVo();
+		vo.setTrip_list_serial(serial);
+		vo.setMember_id(member_id);
+		try {
+			vo = sqlSession.selectOne("mypage.view_trip", vo);
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		}
+		return vo;
+	}
+	
+	
+	/*
+	public List<TripListVo> selectTrip(int serial, String member_id){
+		List<TripListVo> list = null;
+		List<TripListVo> list2 = null;
+		TripListVo vo = new TripListVo();
+		vo.setTrip_list_serial(serial);
+		vo.setMember_id(member_id);
+		
+		try {
+			//1) hotel
+			vo.setFlag("hotel");
+			list = sqlSession.selectList("mypage.select_custom", vo);
+			//System.out.println("flag1"+list.get(0).getFlag());
+			//2) api
+			vo.setFlag("api");
+			list2 = sqlSession.selectList("mypage.select_custom", vo);
+			//System.out.println("flag2"+list2.get(0).getFlag());
+			
+			for(TripListVo v : list2) {
+				JsonObject contentResult = getApi(v.getP().getPlace_serial());
+				int place_serial = contentResult.get("contentid").getAsInt();
+		        String photo_name = contentResult.get("firstimage").getAsString();
+		        String place_name = contentResult.get("title").getAsString();
+		        int local_code = contentResult.get("areacode").getAsInt();
+		        
+		        v.getP().setPlace_serial(place_serial);
+		        v.getP().setLocal_code(local_code);
+		        v.getP().setPhoto_name(photo_name);
+		        v.getP().setPlace_name(place_name);
+				list.add(v);
+				list.add(v);
+			}
+			
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		}
+		
+		return list;
+	}
+	*/
 	
 	public JsonObject getApi(int contentId) throws IOException {
 		

@@ -9,8 +9,8 @@ mypage css
 }
 
 .profile {
-  padding-bottom: 20px;
-  padding-top: 20px;
+  padding-bottom: 30px;
+  padding-top: 30px;
   padding-left: 15px;
   padding-right: 15px;
   border: none;
@@ -18,8 +18,6 @@ mypage css
   margin-top: -100px;
   border-radius: 2px 2px 2px 2px;
   border: 1px solid #eee;
-  padding-bottom: 0;
-  height: 27vh;
 }
 body {
   background: #f9f9ff;
