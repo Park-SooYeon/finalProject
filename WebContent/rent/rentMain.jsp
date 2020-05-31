@@ -52,7 +52,6 @@
 				</div>
 				
 				<div class="main">
-
 					<div class="form-left-w3l">
 						<select class="form-control" name='placeMain' id="place" >
 							<option value="지역">지역</option>

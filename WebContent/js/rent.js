@@ -111,3 +111,14 @@ rent.fillter = function(){
 	$('#rent_frm').attr('action','./fillter.rent').submit();
 	
 }
+rent.fullcover = function(a){
+	if(a=='y'){
+		$('#car_serial').val($('#pppp1').val());
+		$('#price').val(Number($('#pr1').val()) + (Number($('#pr2').val()))*30000);
+		$('#fullcover').val(a);		
+	}else if(a=='n'){
+		$('#car_serial').val($('#pppp1').val());
+		$('#price').val($('#pr1').val());
+		$('#fullcover').val(a);	
+	}
+}

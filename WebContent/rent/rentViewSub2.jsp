@@ -70,7 +70,7 @@
 					</div>
 				</div>
 				<div id='viewReviewMidRight' class='col-lg-3 col-md-3 col-sm-3 col-xs-3'>
-					<div>" 
+					<div>"
 							<c:choose>
 								<c:when test="${review_tot.totRe >= 9.0}"> 
 								매우만족 <br/> 
@@ -89,7 +89,7 @@
 								</c:when>
 								
 							</c:choose>	
-							 "</div>
+					"</div>
 					<span>${review_tot.totRe} <b> / 10</b></span>
 					<p>리뷰 ${review_tot.review_count} 건 </p>
 				</div>
@@ -159,7 +159,7 @@
 							</c:choose>	
 				
 			</div>
-			<div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
+			<div class='col-lg-12 col-md-12 col-sm-12 col-xs-12' style="max-height: 700px; overflow: auto;">
 				<c:if test="${fn:length(review_list) > 0}">
 				<c:forEach var="rvo" items="${review_list}" varStatus="status">
 				<div class='row'>
