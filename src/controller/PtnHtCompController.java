@@ -1,4 +1,4 @@
-package partner;
+package controller;
 
 import java.io.File;
 import java.io.IOException;
@@ -24,6 +24,8 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import bean.PlaceVo;
+import dao.PtnHtCompDao;
+import partner.UploadVo;
 
 
 @Controller

@@ -1,4 +1,4 @@
-package review;
+package dao;
 
 import java.io.File;
 import java.util.List;
@@ -8,6 +8,8 @@ import org.apache.ibatis.session.SqlSession;
 import bean.Factory;
 import bean.Page;
 import bean.ReviewVo;
+import review.ReviewAttVo;
+import review.ReviewFileUpload;
 
 public class ReviewDao {
 	SqlSession sqlSession;

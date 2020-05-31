@@ -1,4 +1,4 @@
-package adSuper;
+package controller;
 
 import java.util.List;
 
@@ -16,6 +16,7 @@ import bean.Page;
 import bean.ReviewVo;
 import bean.membershipVo;
 import bean.partnerVo;
+import dao.AdSuperDao;
 
 @Controller
 public class AdSuperController {

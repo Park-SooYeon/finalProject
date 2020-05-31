@@ -1,4 +1,4 @@
-package membership;
+package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -23,6 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import bean.membershipVo;
 import bean.partnerVo;
+import dao.membershipDao;
 
 @Controller
 public class membershipController {

@@ -1,4 +1,4 @@
-package mypage;
+package controller;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -24,6 +24,7 @@ import bean.LikeListVo;
 import bean.ReviewVo;
 import bean.TripListVo;
 import bean.membershipVo;
+import dao.MyPageDao;
 
 @Controller
 public class MyPageController {

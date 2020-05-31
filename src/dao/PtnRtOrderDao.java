@@ -1,4 +1,4 @@
-package partner;
+package dao;
 
 public class PtnRtOrderDao {
 

@@ -1,4 +1,4 @@
-package detailview;
+package dao;
 
 import java.util.List;
 

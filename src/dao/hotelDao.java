@@ -1,4 +1,4 @@
-package hotel;
+package dao;
 
 import java.util.List;
 

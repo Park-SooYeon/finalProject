@@ -1,4 +1,4 @@
-package rent;
+package controller;
 
 
 
@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import dao.RentDao;
 import rent_parameter.CarViewVo;
 import rent_parameter.CompanyPm;
 import rent_parameter.DateVo;

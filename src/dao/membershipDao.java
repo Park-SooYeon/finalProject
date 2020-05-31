@@ -1,4 +1,4 @@
-package membership;
+package dao;
 
 import bean.Factory;
 import bean.membershipVo;

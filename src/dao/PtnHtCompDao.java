@@ -1,4 +1,4 @@
-package partner;
+package dao;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,6 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import bean.Factory;
 import bean.PlaceVo;
+import partner.UploadVo;
 
 public class PtnHtCompDao {
 	SqlSession sqlSession;

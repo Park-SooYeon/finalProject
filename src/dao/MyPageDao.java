@@ -1,4 +1,4 @@
-package mypage;
+package dao;
 
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;

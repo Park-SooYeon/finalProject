@@ -1,4 +1,4 @@
-package review;
+package controller;
 
 import java.util.List;
 
@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import bean.Page;
 import bean.ReviewVo;
+import dao.ReviewDao;
 
 @Controller
 public class ReviewController {

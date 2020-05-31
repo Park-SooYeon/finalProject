@@ -1,4 +1,4 @@
-package partner;
+package dao;
 
 import org.apache.ibatis.session.SqlSession;
 

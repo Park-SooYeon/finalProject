@@ -1,4 +1,4 @@
-package detailview;
+package controller;
 
 import java.util.List;
 
@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import bean.DetailViewVo;
 import bean.PlaceVo;
+import dao.DetailViewDao;
 
 @Controller
 public class DetailViewController {

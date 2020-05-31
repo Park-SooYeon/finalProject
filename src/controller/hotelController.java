@@ -1,4 +1,4 @@
-package hotel;
+package controller;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -28,6 +28,7 @@ import bean.LikeListVo;
 import bean.PlaceVo;
 import bean.TripListVo;
 import dao.SubMainDao;
+import dao.hotelDao;
 import vo.ReputationVo;
 import vo.RestDataVo;
 
