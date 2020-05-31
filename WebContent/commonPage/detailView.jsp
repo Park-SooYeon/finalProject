@@ -42,7 +42,7 @@
 	<br/>
 	<div class='container'>
 		<div class="title1" style="margin-bottom:10px">
-		<h2>${vo.place_name }</h2>
+		<%-- <h2>${vo.place_name }</h2> --%>
 		</div>
 		<div class="float-right" style="display:flex">
   			<div class="p-1 heart" onclick="main.like(this)">
@@ -69,7 +69,7 @@
   			</div>
 		</div>
 
-		<div class='preinfo'>
+<%-- 		<div class='preinfo'>
 			<div class='rating' data-rate='${vo.avg_repu }' style='font-size: 23px; margin-bottom: 10px;'> <!-- data-rate에 별점을입력(평균별점입력5를넘기지않아야함) -->
 				<i class="fa fa-star"></i>
 				<i class="fa fa-star"></i>
@@ -81,10 +81,10 @@
 			</div> 
 
 			
-		</div>
+		</div> --%>
 		
 		<div class='preinfo' style='font-size:18px'>
-			<span><i class="fa fa-location-arrow" style="margin-right: 3px; margin-bottom:10px"aria-hidden="true"></i>주소: ${vo.place_location }</span>
+			<%-- <span><i class="fa fa-location-arrow" style="margin-right: 3px; margin-bottom:10px"aria-hidden="true"></i>주소: ${vo.place_location }</span> --%>
 			<span><i class="fa fa-mobile"style="margin-right: 3px" aria-hidden="true"></i>연락처: 02-222-2222</span><br/>
 			<div class="clearfix"><i class="fa fa-desktop"style="margin-right: 3px" aria-hidden="true"></i>홈페이지 
 				<a href='http://localhost:8888/review/review.jsp' style="margin-right:5px">http://localhost:8888/review/review.jsp</a>
@@ -95,7 +95,7 @@
 				<div class="info row justify-content-center mb-5">
 					<div class='col-lg-8 col-md-12'><!-- 큰사이즈에서 8 스몰에서 12 -->
 						  <!-- Swiper -->
-				    <c:forEach var="i" items="${list }" varStatus="status">
+				    <%-- <c:forEach var="i" items="${list }" varStatus="status">
 				 		<div class="swiper-container gallery-top">
 				    		<div class="swiper-wrapper">
 						    	<img class="swiper-slide" src="./images/${i.place_type }/${i.local_name }/${i.photo_name }${status.index+1 }.png"style="background-image;cursor:pointer;" />
@@ -109,10 +109,10 @@
 							<img class="swiper-slide" src="./images/${i.place_type }/${i.local_name }/${i.photo_name }${status.index+1 }.png"style="background-image;cursor:pointer;" />
 					    </div>
 					  </div>
-					  </c:forEach>
+					  </c:forEach> --%>
 				<div>
 								
-				<c:if test="${1 == vo.place_code }"><!-- 테스트 후 1를 2로 변경 -->
+				<%-- <c:if test="${1 == vo.place_code }"><!-- 테스트 후 1를 2로 변경 -->
 					<h3>평가</h3>
 					<div class="clearfix" style='margin-top:5px'>
 						<ul class='float-left' >
@@ -213,7 +213,7 @@
 							일반음식점<br/>
 						</c:if>
 						</div>
-					</div>
+					</div> --%>
 				
 				</div><br/>
 				<div id="sw-map" style="width:100%;height:400px;"></div>	

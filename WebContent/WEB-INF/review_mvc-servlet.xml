@@ -27,6 +27,7 @@
 		<property name="prefix" value="./commonPage/"/>
 		<property name="suffix" value=".jsp"/>
 	</bean>
+	
 	<!-- 리뷰 사진추가 -->
 	<bean id="multipartResolver"
         class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
