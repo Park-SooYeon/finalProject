@@ -24,11 +24,11 @@
 	                                    <select class="form-control" id="htPlaceNm" required>
 					                        <option value="">선택해주세요.</option>
 					                        <option value="1">서울</option>
-					                        <option value="2">제주도</option>
-					                        <option value="3">부산</option>
+					                        <option value="2">인천</option>
+					                        <option value="3">제주</option>
 					                        <option value="4">대구</option>
-					                        <option value="5">경기도</option>
-					                        <option value="6">인천</option>
+					                        <option value="5">부산</option>
+					                        <option value="6">경기도</option>
 					                    </select>
 				                    </div>
 			                    </div>
@@ -67,8 +67,14 @@
                                     </div>
                                     <div class="col-lg-8">
                                     	<div class="row" id="attList">
-	                                    	<div class="col-md-12 mb-2">
-	                                    		<input type="file" name="fileName1" class="dropify" multiple="multiple" />
+	                                    	<div class="col-md-4 mb-2">
+	                                    		<input type="file" name="fileName1" class="dropify" />
+	                                    	</div>
+	                                    	<div class="col-md-4 mb-2">
+	                                    		<input type="file" name="fileName2" class="dropify" />
+	                                    	</div>
+	                                    	<div class="col-md-4 mb-2">
+	                                    		<input type="file" name="fileName3" class="dropify" />
 	                                    	</div>
                                     	</div>
                                         
@@ -119,8 +125,7 @@
                                 	<button type="button" class="btn btn-secondary mr-2" id="btnPtHtCancle">취소</button>
                                 	<button type="button" class="btn btn-success" id="btnPtHtRegister" >등록</button>
                                 </div>
-                                <input type="text" name="nowPage" value="${param.nowPage }" />
-								<input type="text" name="findStr" value="${param.findStr }" />
+                                
                             </form>
                         </div>
                     </div>
