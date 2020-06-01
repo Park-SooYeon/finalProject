@@ -45,6 +45,43 @@ load();
 		}else if(auth==0){
 			$("#lock").prop("checked", true);
 		}
+		
+		 /* get타입으로 시리얼 보내서 json 타입으로 가지고 올거임*/
+		$.getJSON("selectTrip.mp?serial="+serial, function(json, state) {
+			let str = "";
+			
+			
+			// place_code가 2면 (호텔이면) 이미지 경로 수정
+			if(json.place_code == 2){
+				json.photo_name = "./images/hotel/"+json.photo_name;
+			}
+			
+			for(d of json){
+				str += `<div class='day-spot-item ui-draggable' data='0'
+					data-set_day='0' data-rel_srl='845972' data-pl_type='0'
+					data-no='0' data-pl_cat='301' data-ci='10907'>
+					<div class='img-box fl'>
+						<img src='${d.photo_name}' />
+					</div>
+					<div class='info-box'>
+						<div class='info-title'>${d.place_name}</div>
+						<div class='small info-small'>${d.local_name}</div>
+						<div class='like-cnt-info'>
+							<i class='fa fa-gratipay'
+								style='color: rgb(253, 123, 145);'></i> 13 
+						</div>
+					</div>
+					<div class='spot-to-inspot'>
+						<img class='add-icon' src='./images/myPage/sign.png'></img>
+					</div>
+				</div>`;	
+			}
+			$("#json-here").html(str);
+			
+			
+		
+		});
+		
 	})
 	
 		// 일수 or 날짜 선택 가능

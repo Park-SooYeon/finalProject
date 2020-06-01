@@ -387,7 +387,6 @@ public class MyPageDao {
 		        v.getP().setPhoto_name(photo_name);
 		        v.getP().setPlace_name(place_name);
 				list.add(v);
-				list.add(v);
 			}
 			
 		}catch(Exception ex) {
@@ -397,6 +396,50 @@ public class MyPageDao {
 		return list;
 	}
 	*/
+	
+	
+	// 시리얼을 전달받아 해당 여행리스트 내 관심여행 정보들 가져오기
+	public List<PlaceVo> selectOneLike(int serial, String member_id) {
+		List<PlaceVo> list = null;
+		List<PlaceVo> list2 = null;
+		
+		int place_serial = 0;
+		
+		//member_id와 trip_list_serial 담기 위한 vo
+		TripListVo vo = new TripListVo();
+		vo.setMember_id(member_id);
+		vo.setTrip_list_serial(serial);
+		
+		try {
+			list = sqlSession.selectList("select_oneLike", vo);
+			
+			// place_code hotel로 설정해줌
+			for(PlaceVo p : list) {
+				p.setPlace_code(2);
+			}
+			
+			list2 = sqlSession.selectList("select_oneLike_api", vo);
+			
+			for(PlaceVo p : list2) {
+				place_serial = p.getPlace_serial();
+				JsonObject contentResult = getApi(place_serial);
+		        String photo_name = contentResult.get("firstimage").getAsString();
+		        String place_name = contentResult.get("title").getAsString();
+		        int local_code = contentResult.get("areacode").getAsInt();
+		        
+		        p.setPlace_serial(place_serial);
+		        p.setLocal_code(local_code);
+		        p.setPhoto_name(photo_name);
+		        p.setPlace_name(place_name);
+				p.setPlace_code(1); // place_code api로 설정해줌
+				
+				list.add(p);
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
 	
 	public JsonObject getApi(int contentId) throws IOException {
 		

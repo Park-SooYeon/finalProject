@@ -20,6 +20,7 @@ public class TripListVo {
 	PlaceVo p;
 	
 	
+	
 	public int getAnother_days() {
 		return another_days;
 	}

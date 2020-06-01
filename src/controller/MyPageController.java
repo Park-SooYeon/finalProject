@@ -19,8 +19,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import bean.FollowListVo;
 import bean.LikeListVo;
+import bean.PlaceVo;
 import bean.ReviewVo;
 import bean.TripListVo;
 import bean.membershipVo;
@@ -332,6 +335,32 @@ public class MyPageController {
 	}
 	
 	
+		@ResponseBody
+		@RequestMapping( value = "selectTrip.mp", method = {RequestMethod.GET}, produces = "text/html;charset=utf8")
+		public String selectTrip(HttpServletRequest req, HttpSession session) {
+
+			System.out.println("들어옴");
+			// serial을 get타입으로 넘겨받음
+			int serial = Integer.parseInt(req.getParameter("serial"));
+			String member_id = (String)session.getAttribute("member_id");
+			
+			List<PlaceVo> list = dao.selectOneLike(serial,member_id);
+			System.out.println("뭐징");
+			System.out.println(list.toString());
+			String jsonVo = "";
+			
+			try {
+			ObjectMapper mapper = new ObjectMapper();
+			jsonVo = mapper.writeValueAsString(list);
+			System.out.println(jsonVo);
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+			return jsonVo;
+		}
+		
+		
 	// 파일명 만들어줄때 필요한 날짜변환 함수
 	public String getCurrentDayTime(){
 	    long time = System.currentTimeMillis();

@@ -20,13 +20,20 @@ function init() {
 	  let day_cnt = $this.find(".cat-left-day").html();
 	  let trip_date = $this.find(".trip-date").html();
 	  let trip_day = $this.find(".trip-day").html();
-	  let result = day_cnt + " | " +trip_date+" ("+trip_day+")";
+	  let result = " | " +trip_date+" ("+trip_day+")";
 
 	  $(".schedule-detail-box").show("fade", { direction: "left" });
 	    $(".plan-category li").not(this).removeClass("on");
 	    $(".show-all-day").removeClass("on");
 	    $this.addClass("on");
-	    $("#result-date").html(result);
+	    
+	    if((trip_date)!=""){
+	    // 날짜가 있으면
+	    	$("#result-date").html(day_cnt+result);
+	    }else{
+	    // 날짜 없으면 DAY만
+	    	$("#result-date").html(day_cnt);
+	    }
 	    
   })
 
