@@ -158,6 +158,7 @@ function init(){
 	    .find("i:nth-child(-n+" + targetScore + ")")
 	    .css({ color: "#ffc107" });
 	});
+	
 }
 
 init();

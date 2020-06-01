@@ -160,7 +160,6 @@ public class MyPageDao {
 		        String photo_name = contentResult.get("firstimage").getAsString();
 		        String place_name = contentResult.get("title").getAsString();
 		        int local_code = contentResult.get("areacode").getAsInt();
-		        
 		        vo.setPlace_serial(place_serial);
 		        vo.getP().setLocal_code(local_code);
 		        vo.getP().setPhoto_name(photo_name);
@@ -346,6 +345,11 @@ public class MyPageDao {
 		vo.setMember_id(member_id);
 		try {
 			vo = sqlSession.selectOne("mypage.view_trip", vo);
+			
+			// 시작날짜 - 끝날짜가 0이면 days count를 another days에 넣어준다
+			if(vo.getAnother_days()==0) {
+				vo.setAnother_days(vo.getDays_count()-1);
+			}
 		}catch(Exception ex) {
 			ex.printStackTrace();
 		}

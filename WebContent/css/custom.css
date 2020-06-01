@@ -621,16 +621,13 @@ p {
 
 .plan-category li {
   width: 100%;
-  height: 75px;
   color: #fff;
   text-align: center;
   border-bottom: solid 1px #374854;
   font-size: 12px;
   cursor: pointer;
-  display: flex;
   padding-top: 15px;
   justify-content: center;
-  http: ; //localhost:8888/1907-spring/mypage/custom-image/sign.png
 }
 
 .plan-category li.on,
@@ -653,25 +650,21 @@ p {
   padding-right: 10px;
 }
 
+.cat-date-right-box{
+	padding-bottom: 10px;
+  text-align: left !important;
+  display:flex;
+  justify-content:center;
+}
+
+.cat-date-right-box{
+  font-size: 13px;
+}
+
 .cat-left-day {
-  color: #fff;
-  font-size: 17px;
+  font-size: 20px;
   font-weight: bold;
-  margin-bottom: 5px;
-}
-
-.cat-left-date {
-  color: #49b2e9;
-  font-size: 11px;
-}
-
-.cat-right-weekday {
-  padding-bottom: 4px;
-  text-align: left !important;
-}
-.cat-right-city {
-  color: #b3b3b3;
-  text-align: left !important;
+  margin-bottom: 11px;
 }
 
 .cat-add-box {
@@ -1333,9 +1326,6 @@ input[name="searchPlace"]::placeholder {
     padding-right: 0;
   }
 
-  .posts-list {
-    /*eight: 88.5vh;*/
-  }
 }
 
 /* ipad 크기 */

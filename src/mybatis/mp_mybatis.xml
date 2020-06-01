@@ -106,8 +106,8 @@
 				member_id, 
 				trip_name, 
 				days_count, 
-				to_char(start_date,'mm-dd') start_date, 
-				to_char(end_date,'mm-dd') end_date, 
+				to_char(start_date,'yyyy-mm-dd') start_date, 
+				to_char(end_date,'yyyy-mm-dd') end_date, 
 				(end_date - start_date) another_days,
 				trip_auth, 
 				trip_date 

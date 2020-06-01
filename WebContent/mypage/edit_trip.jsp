@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
   <head>
@@ -95,9 +96,21 @@
     </header>
     <!-- #header -->
 
+<!-- 
+	<fmt:parseDate var="start_date" value="${vo.start_date }" pattern="yyyy-MM-dd"/>
+	<fmt:parseDate var="end_date" value="${vo.end_date }" pattern="yyyy-MM-dd"/>
+	<fmt:parseNumber var="start_date_N" value="${vo.start_date }" integerOnly="true"/>
+	<fmt:parseNumber var="end_date_N" value="${vo.end_date }" integerOnly="true"/>
+	 -->
+	
     <div class="my-main-wrapper">
       <div class="my-main-side">
         <div class="date-box">
+        
+        	<input type="hidden" id="start_hidden" value="${vo.start_date }">
+        	<input type="hidden" id="end_hidden" value="${vo.end_date }">
+        	<input type="hidden" id="cnt_hidden" value="${vo.another_days}">
+        
             <div id="edit-day"><i class="far fa-calendar-alt"></i> 
             <c:if test="${empty vo.start_date }">
             	총 여행 일수 : ${vo.days_count} 일
@@ -113,25 +126,15 @@
         <ul class="plan-category">
         
         <c:forEach var="i" begin="1" end="${vo.another_days }">
-          <li
-            data="1"
-            data-date="05.06"
-            data-day_week="3"
-            data-f_ci="310"
-            data-f_lat="37.56653500"
-            data-f_lng="126.97796920"
-            original-title="서울"
-          >
+          <li>
             <div class="cat-date-left-box">
-              <div class="cat-left-day">DAY${i }</div>
-              <div class="cat-left-date">${vo.start_date }</div>
+              <div class="cat-left-day">DAY ${i }</div>
             </div>
             <div class="cat-date-right-box">
-              <div class="cat-right-weekday">수요일</div>
-              <div class="cat-right-city">서울</div>
+              <div class="cat-left-date-${i } pr-2 trip-date" style="color: #49b2e9;"></div>
+              <div class="cat-right-weekday-${i } trip-day"></div>
             </div>
           </li>
-
          </c:forEach>
 
 
@@ -148,7 +151,7 @@
         <div class="title-box">
           <div id="schedule_detail_title" data-date="05-06" style="display: block;">
             <div class="schedule_detail_title_text">
-              DAY1 <span style="color: #999999;"> | </span> 05.06(수요일)
+              <span id="result-date" style="color: #fff;"></span>
               <button type="button" class="toggle-on"><h4><i class="fas fa-caret-down"></i></h4></button>
             </div>
             <div style="position: relative;">
