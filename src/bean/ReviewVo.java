@@ -17,6 +17,10 @@ public class ReviewVo {
 	int scale;
 	int food;
 	
+	ReportVo report;
+	Review_PhotoVo r_photo;
+
+	
 	int photo_serial;
 	String photo_name;
 	
@@ -146,7 +150,18 @@ public class ReviewVo {
 	public void setLike_id(String like_id) {
 		this.like_id = like_id;
 	}
-	
+	public ReportVo getReport() {
+		return report;
+	}
+	public void setReport(ReportVo report) {
+		this.report = report;
+	}
+	public Review_PhotoVo getR_photo() {
+		return r_photo;
+	}
+	public void setR_photo(Review_PhotoVo r_photo) {
+		this.r_photo = r_photo;
+	}
 	@Override
 	public String toString() {
 		return "ReviewVo [review_serial=" + review_serial + ", member_id=" + member_id + ", place_serial="

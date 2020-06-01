@@ -3,12 +3,6 @@
  <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
  
     	<div id='wrapper'>
-    		 <%-- <form name='frm_list' id= 'frm_list' method='post' >
-				<input type='button' value='검색' id='btnFind'/>
-				<input type='text' name='findStr' 	id='findStr' value='${p.findStr }'/>
-				<input type='text' id = 'nowPage' name='nowPage' value='${p.nowPage }'/>
-				<input type='text' name='serial' value='${param.serial }'/>
-			</form>  --%>
             <div class="tab-content tab-content-basic">
                 <div class="tab-pane fade active show" id="open-tickets" role="tabpanel" aria-labelledby="open-tickets">
                     <!-- <a href="#" class="tickets-card row" data-toggle="modal" data-target="#modalReviewDt">
@@ -54,10 +48,16 @@
                             <i class="category-icon mdi mdi-folder-outline"></i>
                             <span class="text-muted">Wireframe</span>
                         </div>
-                    </a> -->
+                    </a> --> 
                     <!-- 데이터넣깅... -->
                     <c:forEach var='i' items='${list }'>
-                    <a href="#" class="tickets-card row" data-toggle="modal" data-target="#modalReviewDt" onclick="review_all('${i.review_serial }')">
+                    <a href="#"  id='review_view' class="tickets-card row" data-toggle="modal" data-target="#modalReviewDt"
+                    	onclick="review_view('${i.review_serial }', '${i.review_date }' , '${i.member_id }', '${i.review_content }' ,'${i.review_title }'
+                    			,'${i.r_photo.photo_serial }','${i.r_photo.sysfile }'
+                    			,'${i.report.report_serial }','${i.report.report_code }','${i.report.report_content }','${i.report.report_date }','${i.report.report_id }'
+                    	)">
+
+                        
                         <div class="tickets-details col-md-8">
                             <div class="wrapper">
                                 <h5>${i.review_serial }  -  ${i.review_title }</h5>
@@ -74,19 +74,19 @@
                         </div>
                         <div class="ticket-float col-md-2 col-6">
 	                          
-	                            <c:if test='${i.p.place_code == 0 }'>
+	                            <c:if test='${i.review_type == 0 }'>
 	                            	<i class="category-icon mdi mdi-theater"></i><span  class="text-muted" >즐길거리(문화시설)</span>
 	                            </c:if>
-                        		<c:if test='${i.p.place_code == 1 }'>
+                        		<c:if test='${i.review_type == 1 }'>
 	                            	<i class="category-icon mdi  mdi-camera"></i><span class="text-muted">즐길거리(관광지)</span>
 	                            </c:if>
-	                            <c:if test='${i.p.place_code == 2 }'>
+	                            <c:if test='${i.review_type == 2 }'>
 	                            	<i class="category-icon mdi mdi-food"></i><span class="text-muted">음식점</span>
 	                            </c:if>
-	                            <c:if test='${i.p.place_code == 3 }'>
+	                            <c:if test='${i.review_type == 3 }'>
 	                            	<i class="category-icon mdi  mdi-human-male-female"></i><span class="text-muted">축제</span>
 	                            </c:if>
-	                            <c:if test='${i.p.place_code == 4 }'>
+	                            <c:if test='${i.review_type == 4 }'>
 	                            	<i class="category-icon mdi mdi-hotel"></i><span class="text-muted">호텔</span>
 	                            </c:if>
                         	
@@ -139,23 +139,23 @@
                     <div class="wrapper d-flex align-items-center py-2 mb-3">
                         <img class="img-sm rounded-circle" src="../../assets/images/faces/face5.jpg" alt="profile">
                         <div class="wrapper ml-3">
-                            <h6 class="ml-1 mb-1">Stella Davidson</h6>
+                            <h6 class="ml-1 mb-1" id='m_id'></h6>
                         </div>
-                        <small class="time d-none d-sm-block ml-auto " id="ReviewRegDt">2018.02.05 작성됨</small>
+                        <small class="time d-none d-sm-block ml-auto " id="ReviewRegDt"></small>
                     </div>
                     <form class="row" name="usrInfoFrm">
                         <div class="col-12">
                             <div class="form-group">
-                                <label class="">제목</label>
-                                <p id="ReviewSbj" class="">너무 좋아요~!</p>
+                                <label>title</label><br/>
+                                <label class="r_title"></label>
                             </div>
 
 
                         </div>
                         <div class="col-12">
                             <div class="form-group">
-                                <label class="">내용</label>
-                                <p id="ReviewContent" class="">좋아요</p>
+                                <label class="">content</label>
+                                <p id="r_content" class="r_content"></p>
                             </div>
                         </div>
                         <div class="col-12">
@@ -179,7 +179,7 @@
                         </div>
                         <div class="col-12">
                             <div class="wrapper d-flex align-items-center py-2">
-                                <label class="mb-0">신고</label>
+                                <label class="report_content">신고</label>
                                 <small id="reportTot" class="ml-auto">총 20건</small>
                             </div>
                             <div class="wrapper">

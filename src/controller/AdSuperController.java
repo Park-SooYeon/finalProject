@@ -1,5 +1,6 @@
 package controller;
 
+import java.awt.font.GlyphJustificationInfo;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.google.gson.Gson;
 
 import bean.Page;
 import bean.ReviewVo;
@@ -201,5 +204,15 @@ public class AdSuperController {
 			}
 			mv.setViewName("review_all");
 			return mv;
+		}
+		
+		//파트너 view
+		@RequestMapping(value = "/admin/super/review_view.os", method= {RequestMethod.GET, RequestMethod.POST},produces = "text/html;charset=utf8")
+		@ResponseBody   //모델뷰 말고 데이터 보내는법..
+		public String review_view(HttpServletRequest req) {
+			String result = "dqwjdhqk";
+			System.out.println("리뷰시리얼"+req.getParameter("review_serial"));
+			ReviewVo vo = dao.review_view(Integer.parseInt(req.getParameter("review_serial")));
+			return result;
 		}
 }

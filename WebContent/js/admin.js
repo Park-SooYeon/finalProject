@@ -22,7 +22,7 @@ function a_partner_view(mId,p_name,b_number,phone,location,state,email){
 	$('.partner_phone').html(phone);
 	$('.partner_location').html(location);
 	$('.eamil').html(email);
-	
+
 	$('#p_id').val(mId);
 	$('#p_save').val(state);
 	
@@ -49,15 +49,6 @@ function member_out_view(m_name,m_phone,m_email,m_state,m_date,m_id){
 	
 }
 
-
-////partner_view
-//partner_view = function(member_id){ //serial 로 받는다.. 셀렉트에서 뷰의 아이값을 던졌기에
-//	alert(member_id);
-//	let param = member_id;
-//	$.post("partner_view.os" ,param, function(data, stat){ //view.brd하면 컨트롤러가 view.brd가 받는다 
-//		$('.main').html(data)	
-//	});
-//}
 
 
 //member view 수정
@@ -113,11 +104,11 @@ $('#out_save').click(function(){ //jquery는 널인지  아닌지 표시를 안�
 
 }
 
+mm.func();
 // 리뷰........
 $('#contain').load("review_all.os");  //ajax 콘테인안에 리뷰올을 넣음.
 
 
-mm.func();
 
 
 
@@ -149,4 +140,30 @@ $('#frm_list').submit(function(){
 	return false;
 	
 });
+
+//review상세보기
+function review_view(
+		r_serial,r_date,r_id,r_content,r_title, 
+		p_serial, p_sys , 
+		report_serial, report_code , report_content,
+		report_date,report_id){
+	alert(report_content);
+	$('#r_serial').html(r_serial);
+	$('#ReviewRegDt').html(r_date);
+	$('#m_id').html(r_id);
+	$('.r_content').html(r_content);
+	$('.r_title').html(r_title);
+	$('#usrInfoState').html(p_serial);
+	$('#usrInfoState').html(p_sys);
+	$('#usrInfoState').html(report_serial);
+	$('.report_code').html(report_code);
+	$('.report_content').html(report_content);
+	$('#usrInfoState').html(report_date);
+	$('.report_id').html(report_id);
+	
+	//$('#hidden_id').val(mId);
+}
+
+
+
 //brd.go();
