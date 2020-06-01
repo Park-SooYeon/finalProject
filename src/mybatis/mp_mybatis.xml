@@ -291,7 +291,7 @@
 	
 	<!-- 특정 여행리스트 시리얼 파라미터값으로 hotel 관심여행만 가져오기 -->
 	<select id = "select_oneLike" parameterType="bean.TripListVo" resultType="bean.PlaceVo">
-		select p.place_serial, p.place_name, p.local_code, sysfile photo_name
+		select p.place_serial, p.place_name, p.local_code, sysfile photo_name, getLikeCnt(p.place_serial) like_cnt
         from place p, place_photo h, like_list l
         where p.place_serial = h.place_serial
         and l.place_serial = p.place_serial
@@ -302,7 +302,7 @@
     
     <!-- 특정 여행리스트 시리얼 파라미터값으로 api 관심여행만 가져오기 -->
     <select id = "select_oneLike_api" parameterType="bean.TripListVo" resultType="bean.PlaceVo">
-        select l.place_serial
+        select l.place_serial, getLikeCnt(l.place_serial) like_cnt
         from like_list l left outer join place p
         on l.place_serial = p.place_serial
         where p.place_serial is null

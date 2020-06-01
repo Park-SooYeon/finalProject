@@ -234,32 +234,12 @@
 										data-multiple-dates-separator=" - " />
 								</div>
 							</div>
-							<div class="col-md-6">
+							<div class="col-md-6" style="height:330px;">
 								<h4 class="text-center mb-3">포함된 여행</h4>
 								
 								
 								<div class="list-box connectedSortable" id="json-here">
 								
-								<!-- 
-									<div class="day-spot-item ui-draggable" data="0"
-										data-set_day="0" data-rel_srl="845972" data-pl_type="0"
-										data-no="0" data-pl_cat="301" data-ci="10907">
-										<div class="img-box fl">
-											<img src="./images/myPage/place2.jpg" />
-										</div>
-										<div class="info-box">
-											<div class="info-title">우리집</div>
-											<div class="small info-small">자연경관</div>
-											<div class="like-cnt-info">
-												<i class="fa fa-gratipay"
-													style="color: rgb(253, 123, 145);"></i> 13 
-											</div>
-										</div>
-										<div class="spot-to-inspot">
-											<img class="add-icon" src="./images/myPage/sign.png"></img>
-										</div>
-									</div>
-									-->
 								</div>
 								
 

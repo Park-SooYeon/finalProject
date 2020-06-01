@@ -57,24 +57,25 @@ load();
 			}
 			
 			for(d of json){
+				console.log(d.like_cnt);
 				str += `<div class='day-spot-item ui-draggable' data='0'
 					data-set_day='0' data-rel_srl='845972' data-pl_type='0'
 					data-no='0' data-pl_cat='301' data-ci='10907'>
 					<div class='img-box fl'>
 						<img src='${d.photo_name}' />
 					</div>
-					<div class='info-box'>
+					<div class='info-box' style='width:210px;'>
 						<div class='info-title'>${d.place_name}</div>
 						<div class='small info-small'>${d.local_name}</div>
 						<div class='like-cnt-info'>
 							<i class='fa fa-gratipay'
-								style='color: rgb(253, 123, 145);'></i> 13 
+								style='color: rgb(253, 123, 145);'></i> ${d.like_cnt}
 						</div>
 					</div>
 					<div class='spot-to-inspot'>
 						<img class='add-icon' src='./images/myPage/sign.png'></img>
 					</div>
-				</div>`;	
+				</div>`;
 			}
 			$("#json-here").html(str);
 			

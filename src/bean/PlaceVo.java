@@ -48,9 +48,17 @@ public class PlaceVo {
 	
 	String oriFile;
 	
+
+	int like_cnt;
 	
 	
 	
+	public int getLike_cnt() {
+		return like_cnt;
+	}
+	public void setLike_cnt(int like_cnt) {
+		this.like_cnt = like_cnt;
+	}
 	public String getOriFile() {
 		return oriFile;
 	}
