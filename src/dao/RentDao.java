@@ -2,6 +2,15 @@ package dao;
 
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.Properties;
+
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -130,6 +139,29 @@ public class RentDao {
 	}
 	
 	
+	public int reserveSerialSearch(ReservePm pm) {
+		int reserve_serial =0;
+		try {
+			
+			reserve_serial = sqlSession.selectOne("rent.reserveSerialSearch",pm);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			return reserve_serial;
+		}
+	}
+	
+	public List<ReservePm> reserveSearch1(String member_id){
+		List<ReservePm> list = null;
+		try {
+			//list = sqlSession.selectList("rent.reserveSearch1",member_id);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			return list;
+		}
+	}
+	
 	
 	
 	public Timestamp TimeMaker(String date) {
@@ -253,4 +285,54 @@ public class RentDao {
 		return between;
 		
 	}
+	
+	public void MailSend(int reserve_serial,String email) {
+	    
+	    String host = "smtp.naver.com";
+	    String user = "ehrud129";
+	    String password = "Qyqwyweye123";
+	    
+	    
+	    // SMTP 서버 정보 설정
+	    Properties prop = new Properties();
+	    prop.put("mail.smtp.host", host);
+	    prop.put("mail.smtp.port", 587);
+	    prop.put("mail.smtp.auth", "true");
+	    prop.put("mail.smtp.ssl.enable", "true");
+	    prop.put("mail.smtp.ssl.trust", "smtp.naver.com");
+	    
+	    Session session = Session.getDefaultInstance(prop, new javax.mail.Authenticator() {
+	       protected PasswordAuthentication getPasswordAuthentication() {
+	          return new PasswordAuthentication(user,password);
+	       }
+	    });
+	    
+	    
+	    try {
+	       MimeMessage message = new MimeMessage(session);
+	       message.setFrom(new InternetAddress(user));
+	       //수신자 메일 주소 ( 예약할 때 넣은 이메일 주소입니다 )
+	       message.addRecipient(Message.RecipientType.TO, new InternetAddress(email));
+	       
+	     
+	     
+	    
+	          //제목
+	          message.setSubject("[Travelista > rent] 예약번호 조회 결과 안내 메일입니다.");
+	          
+	          //내용
+	          message.setContent(
+	                "<h1>회원님의 예약 번호</h1><br>"
+	                + " <p>예약번호 : <b> "+ reserve_serial + "</b> 입니다.</p><br>"
+	                , "text/html; charset=utf-8");
+	          
+	          Transport.send(message); // 전송
+	        
+	          System.out.println("message sent successfully...");
+	    
+	    }catch (MessagingException e) {
+	       e.printStackTrace();
+	    }
+	 }
+	   
 }
