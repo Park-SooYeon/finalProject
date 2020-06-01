@@ -1,5 +1,5 @@
 /**
- * travel 관리자 페이지 js
+ * travelista 파트너 페이지 - 호텔관리 관련 js
  * 작성자 : lje
  * 작성일자 : 2020.05
  */
@@ -33,7 +33,6 @@ ptn.func = function(){
 				console.log(error);
 				Swal.fire({
 	            	icon: 'error',
-	            	//title: status + "--" + error + "--" + xhr.responseText,
 	            	title: "오류가 발생했습니다.",
 	            	showConfirmButton: true
 	            });
@@ -174,31 +173,18 @@ ptn.func = function(){
 		
 	}); // end of click event 
 	
-	/*
-	$("#btnPtnHtView").click(function(i){
-		let param = $("#frmAdmHtCompList").serialize();	// 	직렬화
-		console.log(param);
-		console.log(i);
-		$.get("hotel_comp_view.ph", param, function(data, state){
-			$("#main").html(data);
-		});
-	});
-	*/
+	
 	
 }
-/*
-ptn.go = function(i){
-	var serial = Number($('#pserial').val(i));
-	console.log($("#pserial").val());
-	//frmAdmHtCompList.method = 'post';
-	$('#frmAdmHtCompList').attr('action', "hotel_comp_view.ph?place_serial=" + serial).submit();   
-}*/
+
  
 ptn.go = function(i){
 	var serial = Number($('#pserial').val(i));
 	$('#frmAdmHtCompList').attr('action', "./?inc=hotel_comp_view.ph").submit(); 
 }
 
+
+// 호텔 옵션 체크
 ptn.chk = function(){
 	var value = $("#htPlaceNm option:selected").val();
 	$("#htPlaceCode").val(value);
@@ -206,7 +192,7 @@ ptn.chk = function(){
 	var value = $("#PtnhtState option:selected").val();
 	$("#PtnHtStatus").val(value);
 	
-	// 객실옵션 선택여부 체크 
+	// 호텔옵션 선택여부 체크 
 	if($("#wifi").is(":checked") == true){
 		$("#wifi").val("1");
 	}else{

@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+
             <div class="row">
                 <div class="col-lg-12 grid-margin stretch-card">
                     <div class="card">
@@ -13,7 +16,7 @@
                                 </div>
 
                                 <div class="ml-auto d-flex align-items-stretch justify-content-end">
-                                    <a href="./?inc=hotel_room_add.jsp" class="btn btn-inverse-primary no-wrap ml-4">객실등록</a>
+                                    <a href="./?inc=hotel_room_add.ph" class="btn btn-inverse-primary no-wrap ml-4">객실등록</a>
                                 </div>
                             </div>
                             <div id="order-listing_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
@@ -31,61 +34,35 @@
                                             </tr>
                                         </thead>
                                         <tbody> 
-                                            <tr>
-                                                <td>1</td>
-                                                <td>Derrick</td>
-                                                <td>스위트</td>
-                                                <td>183,000원</td>
-                                                <td>금연/주차장/오션뷰</td>
-                                                <td><div class="badge badge-secondary text-muted">비활성화</div></td>
-                                                <td>
-                                                    <button class="btn btn-outline-primary" data-toggle="modal" data-target="#ModalHotelInfo">View</button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td>Derrick</td>
-                                                <td>디럭스</td>
-                                                <td>183,000원</td>
-                                                <td>금연/주차장/오션뷰</td>
-                                                <td><div class="badge badge-primary">활성화</div></td>
-                                                <td>
-                                                    <button class="btn btn-outline-primary" data-toggle="modal" data-target="#ModalHotelInfo">View</button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>3</td>
-                                                <td>Derrick</td>
-                                                <td>디럭스</td>
-                                                <td>183,000원</td>
-                                                <td>금연/주차장/오션뷰</td>
-                                                <td><div class="badge badge-primary">활성화</div></td>
-                                                <td>
-                                                    <button class="btn btn-outline-primary" data-toggle="modal" data-target="#ModalHotelInfo">View</button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>4</td>
-                                                <td>Derrick</td>
-                                                <td>디럭스</td>
-                                                <td>183,000원</td>
-                                                <td>금연/주차장/오션뷰</td>
-                                                <td><div class="badge badge-primary">활성화</div></td>
-                                                <td>
-                                                    <button class="btn btn-outline-primary" data-toggle="modal" data-target="#ModalHotelInfo">View</button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>5</td>
-                                                <td>Derrick</td>
-                                                <td>디럭스</td>
-                                                <td>183,000원</td>
-                                                <td>금연/주차장/오션뷰</td>
-                                                <td><div class="badge badge-primary">활성화</div></td>
-                                                <td>
-                                                    <button class="btn btn-outline-primary" data-toggle="modal" data-target="#ModalHotelInfo">View</button>
-                                                </td>
-                                            </tr>
+                                        	<c:forEach var="vo" items="${list }" varStatus="i">
+	                                            <tr>
+	                                                <td>${vo.rooms_serial }</td>
+	                                                <td>${vo.place_name }</td>
+	                                                <td>
+	                                                	<c:if test="${vo.rooms_name == 1}">디럭스</c:if>
+	                                                	<c:if test="${vo.rooms_name == 2}">패밀리</c:if>
+	                                                	<c:if test="${vo.rooms_name == 3}">스위트</c:if>
+	                                                </td>
+	                                                <td>${vo.price } 원</td>
+	                                                <td>
+	                                                	<c:if test="${vo.no_smoking == 1}">금연</c:if>
+	                                                	<c:if test="${vo.mt_view == 1}">마운틴뷰</c:if>
+	                                                	<c:if test="${vo.ocean_view == 1}">오션뷰</c:if>
+	                                                	<c:if test="${vo.city_view == 1}">시티뷰</c:if>
+													</td>
+	                                                <td>
+		                                                <c:if test="${vo.state == 0}">
+		                                                	<div class="badge badge-secondary text-muted">비활성화</div>
+		                                                </c:if>
+		                                                <c:if test="${vo.state == 1}">
+		                                                	<div class="badge badge-primary">활성화</div>
+		                                                </c:if>
+	                                                </td>
+	                                                <td>
+	                                                    <button class="btn btn-outline-primary" data-toggle="modal" data-target="#ModalHotelInfo">View</button>
+	                                                </td>
+	                                            </tr>
+                                            </c:forEach>
                                         </tbody>
                                     </table>
                                 </div>
@@ -198,3 +175,4 @@
             </div>
         </div>
         <!-- end of 사용자 정보 modal -->
+	

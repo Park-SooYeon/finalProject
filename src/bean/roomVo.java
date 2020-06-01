@@ -12,6 +12,7 @@ public class roomVo {
    int city_view;
    
    String place_name;
+   String room_type;
    int state;
 public int getRooms_serial() {
 	return rooms_serial;
@@ -30,6 +31,19 @@ public int getRooms_name() {
 }
 public void setRooms_name(int rooms_name) {
 	this.rooms_name = rooms_name;
+	switch(rooms_name) {
+	case 1:
+		this.room_type = "디럭스";
+		break;
+	case 2:
+		this.room_type = "패밀리";
+		break;
+	case 3:
+		this.room_type = "스위트";
+		break;
+	}
+	
+	
 }
 public int getPrice() {
 	return price;

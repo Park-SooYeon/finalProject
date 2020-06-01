@@ -184,7 +184,7 @@ public class PtnHtCompDao {
 	// insert, modify에서 sql 오류가 발생할 때, 삭제할 때 공통 사용  	
 	public void delFile(List<UploadVo> delList) {
 		if(delList != null) {
-			
+			System.out.println("delLIst : " + delList);
 			for(UploadVo upVo : delList) {
 				System.out.println("delete!");
 				File f = new File(controller.PtnHtCompController.filePath + upVo.getSysFile());

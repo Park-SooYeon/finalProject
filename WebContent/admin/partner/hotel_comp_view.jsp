@@ -75,10 +75,10 @@
 													<c:if test="${vo.local_code == 4 }">
 														대구 
 													</c:if>
-													<c:if test="${vo.local_code == 5 }">
+													<c:if test="${vo.local_code == 6 }">
 														부산 
 													</c:if>
-													<c:if test="${vo.local_code == 6 }">
+													<c:if test="${vo.local_code == 31 }">
 														경기도 
 													</c:if>
                                                 </p>

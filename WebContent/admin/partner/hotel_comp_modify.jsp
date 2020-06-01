@@ -85,8 +85,8 @@
 										                        <option value="2">인천</option>
 										                        <option value="3">제주</option>
 										                        <option value="4">대구</option>
-										                        <option value="5">부산</option>
-										                        <option value="6">경기도</option>
+										                        <option value="6">부산</option>
+										                        <option value="31">경기도</option>
 										                    </select>
 									                    </div>
 								                    </div>

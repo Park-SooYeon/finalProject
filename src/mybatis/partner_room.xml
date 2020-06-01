@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd"
+>
+<mapper namespace="room">
+	<select id="select" parameterType="Integer" resultType="bean.roomVo">
+		SELECT r.rooms_serial, p.place_name, r.rooms_name, r.price, r.no_smoke, r.ocean_view, r.city_view, r.mt_view, p.state, p.PARTNER_SERIAL
+		FROM PLACE p JOIN ROOMS r ON p.place_serial = r.place_serial
+					 JOIN PARTNER m ON p.partner_serial = m.partner_serial
+		WHERE p.partner_serial=#{partner_serial}
+	</select>
+	
+	<insert id="insert" parameterType="bean.roomVo" >
+		INSERT INTO rooms (ROOMS_SERIAL, PLACE_SERIAL, ROOMS_NAME, PRICE, PEOPLE, NO_SMOKE, OCEAN_VIEW, CITY_VIEW, MT_VIEW)
+		VALUES (seq_rooms.nextval, #{place_serial}, #{rooms_name}, #{price}, #{people}, #{no_smoking}, #{ocean_view}, #{city_view}, #{mt_view})
+	</insert>
+	
+	<insert id="att_insert" parameterType="bean.roomPhotoVo">
+		insert into ROOOMS_PHOTO (PHOTO_SERIAL, ROOMS_SERIAL , ORIFILE, SYSFILE)
+		values (seq_rooms_photo.nextval, seq_rooms.currval, #{oriFile}, #{sysFile})
+	</insert>
+</mapper>
