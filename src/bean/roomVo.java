@@ -10,6 +10,54 @@ public class roomVo {
    int mt_view;
    int ocean_view;
    int city_view;
+
+   String place_name;
+   String place_location;
+   
+   
+   int state;
+   String place_tel;
+   int local_code;
+   
+   
+   
+   
+   
+   public int getState() {
+	return state;
+}
+public void setState(int state) {
+	this.state = state;
+}
+public String getPlace_tel() {
+	return place_tel;
+}
+public void setPlace_tel(String place_tel) {
+	this.place_tel = place_tel;
+}
+public int getLocal_code() {
+	return local_code;
+}
+public void setLocal_code(int local_code) {
+	this.local_code = local_code;
+	
+}
+public String getPlace_name() {
+		return place_name;
+	}
+	public void setPlace_name(String place_name) {
+		this.place_name = place_name;
+	}
+	public String getPlace_location() {
+		return place_location;
+	}
+	public void setPlace_location(String place_location) {
+		this.place_location = place_location;
+	}
+	
+	
+	
+	
 public int getRooms_serial() {
 	return rooms_serial;
 }
@@ -27,6 +75,11 @@ public int getRooms_name() {
 }
 public void setRooms_name(int rooms_name) {
 	this.rooms_name = rooms_name;
+	
+	
+	
+	
+	
 }
 public int getPrice() {
 	return price;
