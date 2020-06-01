@@ -1,5 +1,9 @@
 package bean;
 
+import java.util.List;
+
+import org.springframework.web.multipart.MultipartFile;
+
 public class ReviewVo {
 	int review_serial;
 	String member_id;
@@ -25,6 +29,15 @@ public class ReviewVo {
 	
 	PlaceVo p;
 	
+	List<MultipartFile> fileUpload;	
+	
+	
+	public List<MultipartFile> getFileUpload() {
+		return fileUpload;
+	}
+	public void setFileUpload(List<MultipartFile> fileUpload) {
+		this.fileUpload = fileUpload;
+	}
 	public PlaceVo getP() {
 		return p;
 	}

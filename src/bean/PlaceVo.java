@@ -1,7 +1,5 @@
 package bean;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
 import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
@@ -48,9 +46,16 @@ public class PlaceVo {
 	
 	String oriFile;
 	
+	String homepage;
 	
 	
 	
+	public String getHomepage() {
+		return homepage;
+	}
+	public void setHomepage(String homepage) {
+		this.homepage = homepage;
+	}
 	public String getOriFile() {
 		return oriFile;
 	}
