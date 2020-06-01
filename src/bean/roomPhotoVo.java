@@ -5,11 +5,27 @@ public class roomPhotoVo {
   int rooms_serial;
   String photo; // 객실 사진명
 
+  String sysFile;
+  String oreFile;
   
   
   
   
-  public int getPhoto_serial() {
+  
+  
+  public String getSysFile() {
+	return sysFile;
+}
+public void setSysFile(String sysFile) {
+	this.sysFile = sysFile;
+}
+public String getOreFile() {
+	return oreFile;
+}
+public void setOreFile(String oreFile) {
+	this.oreFile = oreFile;
+}
+public int getPhoto_serial() {
 	return photo_serial;
 }
 public void setPhoto_serial(int photo_serial) {

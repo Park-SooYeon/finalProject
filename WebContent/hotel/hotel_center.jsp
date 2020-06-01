@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <script>
 	let hotelDetailMove = function() {
@@ -9,9 +9,9 @@
 </script>
 
 
-<div class="col-md-12" id="hotel_list" style="padding-top: 10px;">
+<div class="col-md-12" style="padding-top: 10px;">
 	
-<c:forEach var='i' items='${list}'>	
+<c:forEach var='i' items='${searchOK}'>	
 	<div class="row">
 
 		<div class="col-md-6">

@@ -25,10 +25,14 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.TypeFactory;
 
 import bean.LikeListVo;
+import bean.Page;
 import bean.PlaceVo;
 import bean.TripListVo;
+import bean.roomPhotoVo;
+import bean.roomVo;
 import dao.SubMainDao;
 import dao.hotelDao;
+
 import vo.ReputationVo;
 import vo.RestDataVo;
 
@@ -39,15 +43,67 @@ public class hotelController {
 	public hotelController(hotelDao dao) {
 		this.dao = dao;
 	}
+
+	
 	@RequestMapping(value = "hotel_index.ht", method = { RequestMethod.GET})
-   public String searchMenu(@RequestParam String local, HttpServletRequest req, Model model) {
+   public ModelAndView searchMenu(@RequestParam String local, HttpServletRequest req) {
 	
-		List<PlaceVo> hotelnoRevList = null; 
+		
+		ModelAndView  mv = new ModelAndView();
+		List<PlaceVo> searchMainListOK = null;
+		List<PlaceVo> searchMainListNo = null;
 		hotelDao hdao = new hotelDao();
+		
+
+		int local_code=Integer.parseInt(local);
+		
+		
+		
+		searchMainListOK = hdao.searchMainListOK(local_code);
+		searchMainListNo = hdao.searchMainListNo(local_code);
+		
+		
+		mv.addObject("searchOK",searchMainListOK);
+		mv.addObject("searchNo",searchMainListNo);
+		 
+		
+		return mv;
 	
-	
-		return "hotel_index";
+		
 	}
+	
+	@RequestMapping(value = "hotelDetailView.ht", method = { RequestMethod.GET})
+	   public ModelAndView hotelDetailView(@RequestParam int place_serial, HttpServletRequest req) {
+		
+			ModelAndView  mv = new ModelAndView();
+			System.out.println("디테일뷰 진입!!!!");
+			System.out.println(place_serial); 
+			
+			List<roomVo> list = null;
+	        PlaceVo vo =null;
+			hotelDao hdao = new hotelDao();
+			
+			
+	        
+	        list = hdao.detailView(place_serial);
+	        vo = hdao.detailViewHotel(place_serial);
+	        List<roomPhotoVo> photoList = null;
+	        photoList  = hdao.getPhotoList(place_serial);
+	        
+	      
+			
+			
+	        mv.addObject("photoList",photoList);
+			
+			mv.addObject("list", list);
+			mv.addObject("vo", vo);
+			mv.setViewName("hotelDetailView");
+			return mv;
+		
+			
+		}
+		
+
 	
 	
 	// 검색어 필터 선택 시, 조회되는 관광지 정보들
@@ -70,10 +126,13 @@ public class hotelController {
 			if(local == null) {
 				local = new ArrayList<>();
 				local.add("");
+			
 			}
 			if(filter == null) {
 				filter = new ArrayList<>();
 				filter.add("");
+				
+				
 			}
 			
 			
@@ -84,8 +143,7 @@ public class hotelController {
 				
 				searchList = hDao.searchList(local,filter);
 				
-				System.out.println(searchList.toString());
-				
+			
 				
 			} else {
 				System.out.println("키워드 검색");
@@ -94,9 +152,9 @@ public class hotelController {
 				
 			
 		
-			mv.addObject("list", searchList);
+			mv.addObject("searchList", searchList);
+			mv.setViewName("hotel_index");       
 			
-			mv.setViewName("hotel_center"); 
 			return mv;
 		}
 	
@@ -121,8 +179,7 @@ public class hotelController {
 		// session에서 로그인 된 아이디 가져오기
 		HttpSession session = req.getSession();
 		String id = (String) session.getAttribute("member_id");
-		System.out.println(id);
-		
+
 		if(id != null) {
 			tripList = dao.callTripList();
 			likeList = dao.selectLike(id);

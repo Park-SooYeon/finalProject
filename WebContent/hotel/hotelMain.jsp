@@ -150,12 +150,12 @@
 										&nbsp;&nbsp;<span class="badge badge-warning"
 											style="font-size: 15px; margin: 2px;">제휴준비중</span>
 
-									</div>
+								</div>
 								</div>
 								<div class="details p-2">
 
 									<h4>${i.place_name}</h4>
-
+                                    <p>${i.place_tel}</p>
 									<h6 class="date">${i.place_location}</h6>
 								</div>
 							</div>
@@ -175,34 +175,9 @@
 <!-- Swiper -->
 
 
-<!-- Modal -->
-<div class="modal fade" data-backdrop="static"
-	id="exampleModalScrollable" tabindex="-1" role="dialog"
-	aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
-	<div class="modal-dialog modal-dialog-scrollable" role="document">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalScrollableTitle">여행 목록에
-					추가</h5>
-				<button type="button" class="close" data-dismiss="modal"
-					aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-			</div>
-			<div class="modal-body" id="modal-body">
-				<div class="folder p-2" id="folderInsert"
-					onclick="main.insertFolder(this)">
-					<i class="fa fa-plus pr-2"></i>여행 추가
-				</div>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
-				<button type="button" class="btn btn-primary" id="btnLikeInsert"
-					onclick="main.makeHeart()">추가</button>
-			</div>
-		</div>
-	</div>
-</div>
+
+
+
 
 <script src="./swiper-5.3.8/package/js/swiper.min.js"></script>
 <script src="js/main.js"></script>

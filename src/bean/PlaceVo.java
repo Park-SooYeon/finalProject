@@ -22,12 +22,13 @@ public class PlaceVo {
 	int breakfast;
 	int wifi;
 	int parking;
-
+    
 	
 	
 	int local_code;
 	String local_name;
 	
+	String local_eng;
 	int reputation;
 	int review_cnt;
 	
@@ -47,10 +48,25 @@ public class PlaceVo {
 	List<UploadVo> photos;
 	
 	String oriFile;
+	String sysFile;
 	
 	
 	
 	
+	
+	
+	public String getLocal_eng() {
+		return local_eng;
+	}
+	
+	
+	
+	public String getSysFile() {
+		return sysFile;
+	}
+	public void setSysFile(String sysFile) {
+		this.sysFile = sysFile;
+	}
 	public String getOriFile() {
 		return oriFile;
 	}
@@ -196,21 +212,27 @@ public class PlaceVo {
 		switch(local_code) {
 		case 1:
 			this.local_name = "서울";
+			
 			break;
 		case 2:
 			this.local_name = "인천";
+			
 			break;
 		case 3:
 			this.local_name = "제주";
+		
 			break;
 		case 4:
 			this.local_name = "대구";
+		
 			break;
 		case 6:
 			this.local_name = "부산";
+		
 			break;
 		case 31:
 			this.local_name = "경기도";
+			
 			break;
 		}
 	}
@@ -249,7 +271,7 @@ public class PlaceVo {
 				+ ", local_code=" + local_code + ", local_name=" + local_name + ", reputation=" + reputation
 				+ ", review_cnt=" + review_cnt + ", photo_serial=" + photo_serial + ", photo_name=" + photo_name
 				+ ", place_tel=" + place_tel + ", room_serial=" + room_serial + ", room_cnt=" + room_cnt 
-				+ ", fileName1=" + fileName1 + ", fileName2=" + fileName2 + ", fileName3=" + fileName3 + ", photos=" + photos + ", oriFile=" + oriFile + "]";
+				+ ", fileName1=" + fileName1 + ", fileName2=" + fileName2 + ", fileName3=" + fileName3 + ", photos=" + photos + ", sysFile=" + sysFile +"]";
 	}
 	
 	
