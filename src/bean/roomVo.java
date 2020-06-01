@@ -10,6 +10,9 @@ public class roomVo {
    int mt_view;
    int ocean_view;
    int city_view;
+   
+   String place_name;
+   int state;
 public int getRooms_serial() {
 	return rooms_serial;
 }
@@ -63,6 +66,18 @@ public int getCity_view() {
 }
 public void setCity_view(int city_view) {
 	this.city_view = city_view;
+}
+public String getPlace_name() {
+	return place_name;
+}
+public void setPlace_name(String place_name) {
+	this.place_name = place_name;
+}
+public int getState() {
+	return state;
+}
+public void setState(int state) {
+	this.state = state;
 }
 
 	
