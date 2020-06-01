@@ -66,4 +66,13 @@
 		update place_photo set oriFile=#{oriFile}, sysFile=#{sysFile} 
 		where photo_serial=#{photo_serial}
 	</update>
+	
+	
+	<delete id="delete" parameterType="bean.PlaceVo">
+		delete from place where place_serial=#{place_serial} and partner_serial=#{partner_serial}
+	</delete>
+	
+	<delete id="att_delete" parameterType="Integer">
+		delete from place_photo where place_serial=#{place_serial} 
+	</delete>
 </mapper>

@@ -23,6 +23,7 @@
                     </div> 
                     <form class="" name="frmAdmHtCompView" id='frmAdmHtCompView' method="post"> 
                         <input type="hidden" name="pserial" id="pserial" value="${serial }" /> 
+					
                         <div class=""> 
                             <div class="d-flex justify-content-center justify-content-md-between mr-4 mr-xl-5 pr-xl-5 flex-wrap">
                                 <div class="profile-info d-flex align-items-center justify-content-center flex-wrap mr-sm-3">

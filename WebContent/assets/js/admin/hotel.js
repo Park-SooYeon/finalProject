@@ -73,17 +73,16 @@ ptn.func = function(){
 	    }).then((result) => {
 	    	if (result.value) {
 	    		let param = $("#frmAdmHtCompView").serialize();
+	    		console.log("param : " + param);
 	    		$.ajax({
 	    			url : "deleteR.ph",
 	    			type : "post",
 	    			data : param , 
-	    			contentType : false,
-	    			processData : false,
 	    			error : function(xhr, status, error){
 	    				console.log(error);
 	    				Swal.fire({
 	    	            	icon: 'error',
-	    	            	//title: status + "--" + error + "--" + xhr.responseText,
+	    	            	title: status + "--" + error + "--" + xhr.responseText,
 	    	            	title: "오류가 발생했습니다.",
 	    	            	showConfirmButton: true
 	    	            });

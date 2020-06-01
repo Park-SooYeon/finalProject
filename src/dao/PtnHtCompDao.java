@@ -138,16 +138,26 @@ public class PtnHtCompDao {
 		}
 	}
 	
-	public int delete(int serial) {
+	public int delete(PlaceVo vo, List<UploadVo> delList) {
 		int result = 0;
 		int cnt = 0;
 		try {
-			cnt = sqlSession.selectOne("hotel.delete", serial);
+			System.out.println("vo place_serial : " + vo.getPlace_serial());
+			System.out.println("vo getPartner_serial : " + vo.getPartner_serial());
+			
+			cnt = sqlSession.delete("hotel.delete", vo);
+			System.out.println("cnt : " + cnt);
 			if(cnt<1) throw new Exception("삭제중 오류 발생");
 			
-			// 첨부된 파일 목록
-			List<UploadVo> delList = sqlSession.selectList("board.att_list", serial);
-						
+			// 첨부된 파일 삭제
+			for(UploadVo upVo : delList) {
+				cnt = sqlSession.delete("hotel.delete", upVo);
+				System.out.println("cnt2 : " + cnt);
+				if(cnt<1) throw new Exception("첨부파일 삭제중 오류 발생"); 
+			}
+			
+			// 파일 삭제
+			delFile(delList);
 			sqlSession.commit();
 		}catch(Exception ex) {
 			ex.printStackTrace();

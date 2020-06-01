@@ -341,14 +341,25 @@ public class PtnHtCompController {
 	}
 	
 	
-	@RequestMapping(value="/admin/partner/deleteR.ph", method= {RequestMethod.GET, RequestMethod.POST}) 
+	@RequestMapping(value="/admin/partner/deleteR.ph", method= {RequestMethod.POST}) 
 	public ModelAndView deleteR(HttpServletRequest req) {
 		ModelAndView mv = new ModelAndView();
 		PlaceVo vo = new PlaceVo(); 
-		// place_serial 
-		int serial = Integer.parseInt(req.getParameter("pserial"));
+		// partner_serial 구하기 
+	
 		
-		int result = dao.delete(serial);
+		HttpSession session  = req.getSession();
+		String member_id = (String) session.getAttribute("member_id");
+		int serial = dao.getSerial(member_id);
+		System.out.println("partner serial : " + serial);
+		System.out.println("place_serial : " + req.getParameter("pserial"));
+		int place_serial = Integer.parseInt(req.getParameter("pserial"));
+		
+		vo.setPartner_serial(serial);
+		vo.setPlace_serial(place_serial);
+		
+		List<UploadVo> delList = dao.getAttList(place_serial);
+		int result = dao.delete(vo, delList);
 		
 		mv.addObject("vo", vo);
 		mv.setViewName("hotel_comp_list");
