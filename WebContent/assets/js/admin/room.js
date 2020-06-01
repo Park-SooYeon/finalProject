@@ -13,6 +13,12 @@ room.func = function(){
 		console.log("place_serial chg : " + $("#place_serial").val());
 	});
 	
+	// 객실 등록 시, rooms_name 값 세팅
+	$("#htRommType").change(function(){
+		var value2 = $("#htRommType option:selected").val();
+		$("#rooms_name").val(value2);
+	});
+	
 	
 	$("#btnPtRmRegister").click(function(){
 		// select, checkbox 값 세팅
@@ -21,7 +27,8 @@ room.func = function(){
 		var value = $("#htCompNm option:selected").val();
 		$("#place_serial").val(value);
 		
-		console.log("place_serial : " + $("#place_serial").val());
+		var value2 = $("#htRommType option:selected").val();
+		$("#rooms_name").val(value2);
 		
 		let fd = new FormData($("#frmAdmHtRoomAdd")[0]);	// object형태로 데이터 만들어짐.
 		
@@ -92,4 +99,35 @@ room.chk = function(){
 	
 	console.log("val" + $("#no_smoking").val());
 	
+}
+
+// 객실 상세정보 조회 (rooms_serial 매개변수로 받아옴.)
+roomDetialView = function(serial){
+	$("#rooms_serial").val(serial);
+	
+	let param = $("#frmAdmHtRmList").serialize();
+	console.log($("#rooms_serial").val());
+	
+	$.ajax({
+		url : "roomInfo.ph",// data를 던질 곳  
+		type : "post",
+		data : param,	// data가 json타입으로 넘어감.
+		error : function(xhr, status, error){
+			console.log(error);
+			Swal.fire({
+            	icon: 'error',
+            	title: "오류가 발생했습니다.",
+            	showConfirmButton: true
+            });
+		},
+		success : function(data, status, xhr){
+			if(status == "success"){
+				$('#ModalHotelInfo').modal('show');
+			}else{
+				
+			}
+			
+		} // end of success
+	}); // end of ajax 
+	$('#ModalHotelInfo').modal('show');
 }

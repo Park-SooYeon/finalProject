@@ -230,7 +230,6 @@
 	const code = '${vo.local_code}';
 	var sel = document.getElementById("htPlaceNm");
 	
-	console.log(code);
 	switch (code) {
 		case '1':
 			sel.options[1].selected = true;

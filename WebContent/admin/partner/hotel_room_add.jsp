@@ -15,7 +15,8 @@
                                 </div>
                             </div>
                             <form action="" name="frmAdmHtRoomAdd" id="frmAdmHtRoomAdd" method="post" enctype="multipart/form-data">
-                                <input type="text" name="place_serial" id="place_serial" value="" />
+                                <input type="hidden" name="place_serial" id="place_serial" value="" />
+                                <input type="hidden" name="rooms_name" id="rooms_name" />
                                 <div class="form-group row">
                                     <div class="col-lg-3">
                                         <label class="col-form-label">호텔 <span class="text-danger">*</span></label>
@@ -35,6 +36,7 @@
                                     </div>
                                     <div class="col-lg-8">
                                         <select class="form-control" id="htRommType">
+                                        	<option value="">선택하세요.</option>
 					                        <option value="1">디럭스</option>
 					                        <option value="2">패밀리</option>
 					                        <option value="3">스위트</option>

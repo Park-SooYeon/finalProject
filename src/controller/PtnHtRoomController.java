@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
@@ -53,10 +54,21 @@ public class PtnHtRoomController {
 		
 		System.out.println("serial : " + serial);
 		List<roomVo> list = dao.select(serial);
+		List<roomPhotoVo> photoList = null;
+
+		for(roomVo vo : list) {
+			// room serial 가져오기 
+			int rserial = vo.getRooms_serial();
+			int pserial = vo.getPlace_serial();
+			
+			System.out.println("place serial : " + pserial);
+			// room serial에 해당하는 사진정보 가져오기 
+			photoList = dao.getAttList(rserial);
+			
+			vo.setPhotos(photoList);
+			
+		}
 		
-		
-		System.out.println("list size : " + list.size());
-		System.out.println("list : " + list);
 		
 		mv.addObject("list", list);
 		mv.setViewName("hotel_room_list");
@@ -193,13 +205,25 @@ public class PtnHtRoomController {
 		
 		return mm;
 	}
-	@RequestMapping(value="/admin/partner/hotel_room_view.ph", method= {RequestMethod.GET, RequestMethod.POST}) 
+	@RequestMapping(value="/admin/partner/roomInfo.ph", method= {RequestMethod.GET, RequestMethod.POST}) 
 	public ModelAndView view(HttpServletRequest req) {
 		ModelAndView mv = new ModelAndView();
-		Object vo = null; 
+		roomVo vo = new roomVo();
+		List<roomPhotoVo> photoList = null;
 		
+		// room_serial 
+		int serial = Integer.parseInt(req.getParameter("rooms_serial"));
+		vo = dao.view(serial);
+		photoList = dao.getAttList(serial);
+		 
+		System.out.println("photoList : " + photoList);
+		
+		System.out.println("vo photos : " + vo.getPhotos());
+		
+		mv.addObject("serial", serial);
+		mv.addObject("photoList", photoList);
 		mv.addObject("vo", vo);
-		mv.setViewName("hotel_room_list");
+		//mv.setViewName("hotel_room_list");
 		return mv;
 	}
 	

@@ -10,7 +10,7 @@ public class roomPhotoVo {
   
   public roomPhotoVo() {}
   
-  public roomPhotoVo(String oriFile, String sysFile) {
+  public roomPhotoVo(String sysFile, String oriFile) {
 	  this.oriFile = oriFile;
 	  this.sysFile = sysFile;
   }

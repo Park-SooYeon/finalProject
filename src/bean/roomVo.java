@@ -1,5 +1,7 @@
 package bean;
 
+import java.util.List;
+
 public class roomVo {
    int rooms_serial;
    int place_serial;
@@ -14,6 +16,9 @@ public class roomVo {
    String place_name;
    String room_type;
    int state;
+   
+   List<roomPhotoVo> photos;
+   
 public int getRooms_serial() {
 	return rooms_serial;
 }
@@ -92,6 +97,18 @@ public int getState() {
 }
 public void setState(int state) {
 	this.state = state;
+}
+public List<roomPhotoVo> getPhotos() {
+	return photos;
+}
+public void setPhotos(List<roomPhotoVo> photos) {
+	this.photos = photos;
+}
+public String getRoom_type() {
+	return room_type;
+}
+public void setRoom_type(String room_type) {
+	this.room_type = room_type;
 }
 
 	

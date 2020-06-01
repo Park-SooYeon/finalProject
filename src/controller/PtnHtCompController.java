@@ -89,7 +89,6 @@ public class PtnHtCompController {
 		ModelAndView mv = new ModelAndView();
 		PlaceVo vo = null; 
 		
-		//mv.addObject("vo", vo);
 		mv.setViewName("hotel_comp_add");
 		return mv;
 	}

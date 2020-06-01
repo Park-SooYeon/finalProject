@@ -4,12 +4,32 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd"
 >
 <mapper namespace="room">
+	<!-- 객실 목록 조회 -->
 	<select id="select" parameterType="Integer" resultType="bean.roomVo">
-		SELECT r.rooms_serial, p.place_name, r.rooms_name, r.price, r.no_smoke, r.ocean_view, r.city_view, r.mt_view, p.state, p.PARTNER_SERIAL
-		FROM PLACE p JOIN ROOMS r ON p.place_serial = r.place_serial
-					 JOIN PARTNER m ON p.partner_serial = m.partner_serial
-		WHERE p.partner_serial=#{partner_serial}
+		SELECT p.place_serial, r.rooms_serial, max(ph.sysFile), p.place_name, r.rooms_name, r.price, r.no_smoke, r.ocean_view, r.city_view, r.mt_view, p.state, p.PARTNER_SERIAL
+		FROM ROOMS r JOIN PLACE p ON p.place_serial = r.place_serial
+					 LEFT OUTER JOIN ROOOMS_PHOTO ph on r.rooms_serial = ph.ROOMS_SERIAL 
+		WHERE p.PARTNER_SERIAL=#{parameter}
+		GROUP BY p.place_serial, r.ROOMS_SERIAL, p.place_name, r.rooms_name, r.price, r.no_smoke, r.ocean_view, r.city_view, r.mt_view, p.state, p.PARTNER_SERIAL
+		ORDER BY r.rooms_serial DESC
 	</select>
+	
+	<!-- 상세조회 -->
+	<select id="view" parameterType="Integer" resultType="bean.roomVo">
+		SELECT place_serial, rooms_serial, rooms_name, price, no_smoke, ocean_view, city_view, mt_view
+		FROM ROOMS
+		WHERE rooms_SERIAL=#{parameter}
+	</select>
+	
+	<!-- 첨부파일 조회 -->
+	<select id="att_list" parameterType="Integer" resultType="bean.roomPhotoVo">
+		select photo_serial, ROOMS_SERIAL, oriFile, sysFile
+		from ROOOMS_PHOTO
+		where ROOMS_SERIAL=#{rooms_serial}
+	</select>
+	
+	
+	
 	
 	<insert id="insert" parameterType="bean.roomVo" >
 		INSERT INTO rooms (ROOMS_SERIAL, PLACE_SERIAL, ROOMS_NAME, PRICE, PEOPLE, NO_SMOKE, OCEAN_VIEW, CITY_VIEW, MT_VIEW)

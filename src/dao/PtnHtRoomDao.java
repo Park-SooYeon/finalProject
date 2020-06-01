@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 
 import bean.Factory;
+import bean.PlaceVo;
 import bean.roomPhotoVo;
 import bean.roomVo;
 
@@ -38,6 +39,17 @@ public class PtnHtRoomDao {
 		}finally {
 			
 			return list;
+		}
+	}
+	
+	public roomVo view(int serial) {
+		roomVo vo = null;
+		try {
+			vo = sqlSession.selectOne("room.view", serial);
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		}finally {
+			return vo;
 		}
 	}
 	
@@ -84,7 +96,7 @@ public class PtnHtRoomDao {
 	
 	public List<roomPhotoVo> getAttList(int serial){
 		List<roomPhotoVo> attList = null;
-		
+		System.out.println("room serial : " + serial);
 		try {
 			attList = sqlSession.selectList("room.att_list", serial);
 			
