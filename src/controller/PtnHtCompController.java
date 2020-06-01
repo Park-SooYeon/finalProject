@@ -65,7 +65,7 @@ public class PtnHtCompController {
 		
 		int serial = dao.getSerial(member_id);
 		List<PlaceVo> list = dao.select(serial);
-		System.out.println("");
+		
 		List<UploadVo> photoList = null;
 
 		for(PlaceVo vo : list) {

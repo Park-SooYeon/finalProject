@@ -19,17 +19,19 @@ public class PtnHtOrderDao {
 	
 	public Map<String, Integer> selectInfo(int serial) {
 		Map<String, Integer> info = new HashMap<>(); 
-		int result = 0;
+		int result1 = 0;
+		int result2 = 0;
+		int result3 = 0;
 		try {
 			System.out.println("serial : " + serial);
-			result = sqlSession.selectOne("hotel_order.sales", serial);
-			info.put("sales", result);
+			result1 = sqlSession.selectOne("hotel_order.sales", serial);
+			info.put("sales", result1);
 			
-			result = sqlSession.selectOne("hotel_order.cancleCnt", serial);
-			info.put("cancleCnt", result);
+			result2 = sqlSession.selectOne("hotel_order.cancleCnt", serial);
+			info.put("cancleCnt", result2);
 			
-			result = sqlSession.selectOne("hotel_order.orderCnt", serial);
-			info.put("orderCnt", result);
+			result3 = sqlSession.selectOne("hotel_order.orderCnt", serial);
+			info.put("orderCnt", result3);
 			
 			Collection<Integer> values = info.values();
 			System.out.println("map : " + values);
