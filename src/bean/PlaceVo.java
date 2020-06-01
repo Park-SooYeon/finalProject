@@ -47,6 +47,7 @@ public class PlaceVo {
 	String oriFile;
 	
 	String homepage;
+	int like_cnt;
 	
 	
 	
@@ -55,6 +56,12 @@ public class PlaceVo {
 	}
 	public void setHomepage(String homepage) {
 		this.homepage = homepage;
+	}
+	public int getLike_cnt() {
+		return like_cnt;
+	}
+	public void setLike_cnt(int like_cnt) {
+		this.like_cnt = like_cnt;
 	}
 	public String getOriFile() {
 		return oriFile;
@@ -105,13 +112,10 @@ public class PlaceVo {
 		this.place_code = place_code;
 		switch(place_code) {
 		case 1:
-			this.place_type = "happy";
+			this.place_type = "api";
 			break;
 		case 2:
-			this.place_type = "food";
-			break;
-		case 3:
-			this.place_type = "festival";
+			this.place_type = "hotel";
 			break;
 		}
 	}

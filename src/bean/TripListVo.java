@@ -12,11 +12,34 @@ public class TripListVo {
 	String trip_date;
 	
 	// 해당 place가 호텔인지 api인지 알아보기 위한 flag (mybatis에서 parameter로 전달)
+	// hotel or api
 	String flag;
 	
-	PlaceVo vo;
+	// 날짜만 입력했을 경우, 일수 계산하기 위한 필드
+	int another_days;
+	PlaceVo p;
 	
 	
+	
+	public int getAnother_days() {
+		return another_days;
+	}
+	public void setAnother_days(int another_days) {
+		this.another_days = another_days+1;
+		// 끝 날짜 - 시작날짜 + 1 => 일수
+	}
+	public String getFlag() {
+		return flag;
+	}
+	public void setFlag(String flag) {
+		this.flag = flag;
+	}
+	public PlaceVo getP() {
+		return p;
+	}
+	public void setP(PlaceVo p) {
+		this.p = p;
+	}
 	public int getTrip_list_serial() {
 		return trip_list_serial;
 	}
