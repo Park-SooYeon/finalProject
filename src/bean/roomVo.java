@@ -111,7 +111,15 @@ public void setRoom_type(String room_type) {
 	this.room_type = room_type;
 }
 
-	
+@Override
+public String toString() {
+	return "roomVo [place_serial=" + place_serial + ", rooms_serial=" + rooms_serial + ", price="
+			+ price + ", people=" + people + ", no_smoking=" + no_smoking + ", rooms_name="
+			+ rooms_name + ", ocean_view=" + ocean_view + ", city_view=" + city_view + ", room_type=" + room_type
+			+ ", state=" + state + ", mt_view=" + mt_view + ", place_name=" + place_name 
+			+ ", photos=" + photos + "]";
+}
+
 	
 	
 	

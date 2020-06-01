@@ -86,8 +86,12 @@ ptn.func = function(){
 	    	            	showConfirmButton: true
 	    	            });
 	    			},
-	    			success : function(result){
-	    				if(result == 1){
+	    			success : function(result, xhr, data){
+	    				console.log("result" + result);
+	    				console.log("xhr" + xhr);
+	    				console.log("data" + data);
+	    				
+	    				if(xhr == "success"){
 	    					Swal.fire({
 	    						icon: 'success',
 	    		            	title: '호텔 정보가 삭제되었습니다.',

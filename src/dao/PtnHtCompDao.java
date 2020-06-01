@@ -150,11 +150,15 @@ public class PtnHtCompDao {
 			if(cnt<1) throw new Exception("삭제중 오류 발생");
 			
 			// 첨부된 파일 삭제
-			for(UploadVo upVo : delList) {
-				cnt = sqlSession.delete("hotel.delete", upVo);
+			//for(UploadVo upVo : delList) { 
+				// 	place 시리얼 값 세팅 
+			UploadVo upVo = new UploadVo();
+			upVo.setPlace_serial(vo.getPlace_serial());
+				System.out.println("dellist : " + upVo.getPlace_serial());
+				cnt = sqlSession.delete("hotel.att_delete", upVo);
 				System.out.println("cnt2 : " + cnt);
 				if(cnt<1) throw new Exception("첨부파일 삭제중 오류 발생"); 
-			}
+			//}
 			
 			// 파일 삭제
 			delFile(delList);

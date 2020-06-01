@@ -25,6 +25,7 @@ import dao.PtnHtCompDao;
 import dao.PtnHtRoomDao;
 import partner.UploadVo;
 
+
 @Controller
 public class PtnHtRoomController {
 	
@@ -48,11 +49,10 @@ public class PtnHtRoomController {
 		// 세션 id 가져오기
 		HttpSession session  = req.getSession();
 		String member_id = (String) session.getAttribute("member_id");
-		System.out.println("Select");
+		
 		// 파트너 시리얼 가져오기
 		int serial = dao.getSerial(member_id);
 		
-		System.out.println("serial : " + serial);
 		List<roomVo> list = dao.select(serial);
 		List<roomPhotoVo> photoList = null;
 
@@ -61,7 +61,6 @@ public class PtnHtRoomController {
 			int rserial = vo.getRooms_serial();
 			int pserial = vo.getPlace_serial();
 			
-			System.out.println("place serial : " + pserial);
 			// room serial에 해당하는 사진정보 가져오기 
 			photoList = dao.getAttList(rserial);
 			
@@ -82,11 +81,11 @@ public class PtnHtRoomController {
 		// 세션 id 가져오기
 		HttpSession session  = req.getSession();
 		String member_id = (String) session.getAttribute("member_id");
-		System.out.println("saddsaasd");
+	
 		// 등록된 호텔 목록 가져오기
 		int serial = hotelDao.getSerial(member_id);
 		List<PlaceVo> list = hotelDao.select(serial);
-		System.out.println("list : " + list);
+		
 		mv.addObject("list", list);
 		mv.setViewName("hotel_room_add");
 		return mv;
@@ -99,10 +98,11 @@ public class PtnHtRoomController {
 		
 		roomVo vo = new roomVo();
 		// place_serial
-		System.out.println("place serial  : " + req.getParameter("place_serial"));
-		//req.getParameter("place_serial");
 		vo.setPlace_serial(Integer.parseInt(req.getParameter("place_serial")));
-
+		vo.setRooms_name(Integer.parseInt(req.getParameter("rooms_name")));
+		vo.setPrice(Integer.parseInt(req.getParameter("price"))); 
+		vo.setPeople(Integer.parseInt(req.getParameter("people"))); 
+		
 		if(req.getParameter("no_smoking") == null) {
 			vo.setNo_smoking(0);
 		}else {
@@ -129,13 +129,7 @@ public class PtnHtRoomController {
 		
 		
 		//FileUpload
-    	//ServletContext c;
-    	// c.getRealPath("상대경로") 를 통해 파일을 저장할 절대 경로를 구해온다.
-	    // 운영체제 및 프로젝트가 위치할 환경에 따라 경로가 다르기 때문에 아래처럼 구해오는게 좋음
-    	
 	    String uploadPath = req.getSession().getServletContext().getRealPath("/assets/images/");
-	     //String uploadPath = "C:\\Users\\silve\\eclipse-workspace\\final_twitch\\WebContent\\store\\reviewimages";
-	    System.out.println(uploadPath);
 	    
 	    File dir = new File(filePath);
         if (!dir.isDirectory()) {
@@ -191,8 +185,6 @@ public class PtnHtRoomController {
         
 		result = dao.insert(vo, list);
 		
-		System.out.println("result : " + result);
-		
 		mv.addObject("vo", vo);
 		mv.addObject("result", result);
 		mv.setViewName("hotel_comp_list");
@@ -205,34 +197,112 @@ public class PtnHtRoomController {
 		
 		return mm;
 	}
-	@RequestMapping(value="/admin/partner/roomInfo.ph", method= {RequestMethod.GET, RequestMethod.POST}) 
+	@RequestMapping(value="/admin/partner/hotel_room_view.ph", method= {RequestMethod.GET, RequestMethod.POST}) 
 	public ModelAndView view(HttpServletRequest req) {
 		ModelAndView mv = new ModelAndView();
 		roomVo vo = new roomVo();
 		List<roomPhotoVo> photoList = null;
 		
+		
+		// 세션 id 가져오기
+		HttpSession session  = req.getSession();
+		String member_id = (String) session.getAttribute("member_id");
+		
+		// 파트너 시리얼 가져오기
+		int pserial = dao.getSerial(member_id);
+		// 호텔 목록 가져오기
+		List<PlaceVo> list = null; 
+		list = dao.selectHotel(pserial);
+		
 		// room_serial 
 		int serial = Integer.parseInt(req.getParameter("rooms_serial"));
 		vo = dao.view(serial);
 		photoList = dao.getAttList(serial);
-		 
-		System.out.println("photoList : " + photoList);
-		
-		System.out.println("vo photos : " + vo.getPhotos());
-		
+		vo.setPhotos(photoList);
+
 		mv.addObject("serial", serial);
+		mv.addObject("list", list);
 		mv.addObject("photoList", photoList);
 		mv.addObject("vo", vo);
-		//mv.setViewName("hotel_room_list");
+		mv.setViewName("hotel_room_modify");
 		return mv;
 	}
 	
-	@RequestMapping(value="/admin/partner/hotel_room_modify.ph", method= {RequestMethod.GET, RequestMethod.POST}) 
-	public ModelAndView modify(HttpServletRequest req) {
+	@RequestMapping(value="/admin/partner/hotel_room_modifyR.ph", method= {RequestMethod.GET, RequestMethod.POST}) 
+	public ModelAndView modifyR(MultipartHttpServletRequest req, roomVo vo) throws IOException {
 		ModelAndView mv = new ModelAndView();
-		Object vo = null; 
+		// photo_serial 값 세팅 
+		String[] photoNum = new String[3];
+		photoNum[0] = req.getParameter("photo_serial_1");
+		photoNum[1] = req.getParameter("photo_serial_2");
+		photoNum[2] = req.getParameter("photo_serial_3");
 		
-		mv.addObject("vo", vo);
+		//FileUpload
+    	//ServletContext c;
+    	// c.getRealPath("상대경로") 를 통해 파일을 저장할 절대 경로를 구해온다.
+	    // 운영체제 및 프로젝트가 위치할 환경에 따라 경로가 다르기 때문에 아래처럼 구해오는게 좋음
+    	
+	    String uploadPath = req.getSession().getServletContext().getRealPath("/assets/images/");
+	    
+	    File dir = new File(filePath);
+        if (!dir.isDirectory()) {
+            dir.mkdirs();
+        }
+	  
+	    roomPhotoVo rpVo;
+	    List<roomPhotoVo> list = new ArrayList<roomPhotoVo>();
+		List<MultipartFile> mf = new ArrayList<MultipartFile>();
+		List<roomPhotoVo> delList = (List<roomPhotoVo>) req.getAttribute("photoList");
+		
+		MultipartFile file1 = req.getFile("fileName1");
+		MultipartFile file2 = req.getFile("fileName2");
+		MultipartFile file3 = req.getFile("fileName3");
+		
+		mf.add(file1);
+		mf.add(file2);
+		mf.add(file3);
+		
+        if (mf.size() == 1 && mf.get(0).getOriginalFilename().equals("")) {
+            
+        } else{
+            for (int i = 0; i < mf.size(); i++) {
+            	 // 파일 중복명 처리
+				String nnName = UUID.randomUUID().toString();
+				 // 본래 파일명
+				
+				if(mf.get(i).getOriginalFilename() == null) {
+					break;
+				}else {
+					image2 = mf.get(i).getOriginalFilename();
+
+				}
+			
+				image2 = Normalizer.normalize(image2, Normalizer.Form.NFC); // 맥(MAC)에서 한글 자모 분리되는 현상 막기 (정규)
+				 //중복처리된 이름
+				image1 = nnName + "." + getExtension(image2);
+				
+				fileSize = mf.get(i).getSize(); // 파일 사이즈
+				
+				String savePath = filePath + image1; // 저장 될 파일 경로
+				 
+                mf.get(i).transferTo(new File(savePath)); // 파일 저장
+                
+                rpVo = new roomPhotoVo(image1, image2);
+                list.add(rpVo);
+            }
+        }
+        
+        
+        vo.setRooms_serial(Integer.parseInt(req.getParameter("rooms_name")));
+       
+		
+		int result = dao.modify(vo, list, delList, photoNum);
+		
+		
+		// 업로드 파일 삭제 해주어야함
+		// getAttLIst 에서 filePath에 있는 파일 delete
+		//mv.addObject("serial", serial);
+		mv.addObject("result", result);
 		mv.setViewName("hotel_room_list");
 		return mv;
 	}
@@ -240,8 +310,19 @@ public class PtnHtRoomController {
 	@RequestMapping(value="/admin/partner/hotel_room_delete.ph", method= {RequestMethod.GET, RequestMethod.POST}) 
 	public ModelAndView delete(HttpServletRequest req) {
 		ModelAndView mv = new ModelAndView();
-		Object vo = null; 
+		roomVo vo = new roomVo(); 
+		// partner_serial 구하기 
 		
+		
+		int place_serial = Integer.parseInt(req.getParameter("place_serial"));
+		
+		vo.setPlace_serial(place_serial);
+		vo.setRooms_serial(Integer.parseInt(req.getParameter("rooms_name")));
+		
+		List<roomPhotoVo> delList = dao.getAttList(place_serial);
+		int result = dao.delete(vo, delList);
+		
+		mv.addObject("result", result);
 		mv.addObject("vo", vo);
 		mv.setViewName("hotel_room_list");
 		return mv;

@@ -65,6 +65,7 @@ public class PtnHtCompController {
 		
 		int serial = dao.getSerial(member_id);
 		List<PlaceVo> list = dao.select(serial);
+		System.out.println("");
 		List<UploadVo> photoList = null;
 
 		for(PlaceVo vo : list) {
@@ -360,6 +361,7 @@ public class PtnHtCompController {
 		List<UploadVo> delList = dao.getAttList(place_serial);
 		int result = dao.delete(vo, delList);
 		
+		mv.addObject("result", result);
 		mv.addObject("vo", vo);
 		mv.setViewName("hotel_comp_list");
 		return mv;
