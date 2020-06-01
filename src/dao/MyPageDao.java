@@ -184,7 +184,7 @@ public class MyPageDao {
 		return vo;
 	}
 	
-	public String modifyProfile(membershipVo vo, MultipartFile imgFile) {
+	public String modifyProfile(membershipVo vo, MultipartFile imgFile, String fullpath) {
 		String msg  = "";
 		System.out.println("왜 업데이트 안 돼.."+vo.getMember_id());
 		try {
@@ -197,7 +197,7 @@ public class MyPageDao {
 					// 이미지파일이 있을때만 실행
 					try {
 						byte[] bytes = imgFile.getBytes();
-						BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(new File(vo.getMember_photo())));
+						BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(new File(fullpath)));
 						stream.write(bytes);
 						stream.close();
 					}catch (Exception e) {

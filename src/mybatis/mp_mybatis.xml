@@ -223,7 +223,8 @@
    		update membership set member_city = #{member_city},
    						   member_web = #{member_web},
    						   member_info = #{member_info}, 
-   						   nickname = #{nickName}
+   						   nickname = #{nickName},
+   						   member_photo = #{member_photo}
    		where member_id = #{member_id}
    </update>
 	

@@ -348,22 +348,6 @@
               </div>
             </div>
 
-            <div class="form-check-inline" style="margin-bottom: 7px;">
-              <div class="d-flex" style="padding: 0 15px;">
-                <div class="primary-radio">
-                  <input type="radio" id="primary-radio" />
-                  <label class="custom-radio" for="primary-radio"></label>
-                </div>
-                <span class="radio-trip-option">&nbsp;도시 내 검색&nbsp;</span>
-              </div>
-              <div class="d-flex" style="padding: 0 15px;">
-                <div class="primary-radio">
-                  <input type="radio" id="primary-radio" checked />
-                  <label class="custom-radio" for="primary-radio"></label>
-                </div>
-                <span class="radio-trip-option">&nbsp;전체 검색&nbsp;</span>
-              </div>
-            </div>
           </div>
           <div class="list-category-wrapper">
             <div class="list-category-box pt-2">
@@ -384,59 +368,7 @@
         </div>
 
         <div class="list-box connectedSortable">
-          <div
-            class="day-spot-item ui-draggable"
-            data="0"
-            data-set_day="0"
-            data-rel_srl="845972"
-            data-pl_type="0"
-            data-no="0"
-            data-pl_cat="301"
-            data-ci="10907"
-          >
-            <div class="img-box fl">
-              <img src="./images/myPage/place2.jpg" />
-            </div>
-            <div class="info-box">
-              <div class="info-title">우리집</div>
-              <div class="small info-small">자연경관</div>
-              <div class="like-cnt-info">
-                <i class="fab fa-gratipay" style="color: rgb(253, 123, 145);"></i> 13 |
-                <i class="far fa-thumbs-up" style="color: #1a7ad9;"></i> 15
-              </div>
-              <!-- <div class="small info-small include_pn_day" style="color: #1a7ad9;">DAY1</div>  -->
-            </div>
-            <div class="spot-to-inspot">
-              <img class="add-icon" src="./images/myPage/interface.png"></img>
-            </div>
-          </div>
 
-          <div
-            class="day-spot-item ui-draggable"
-            data="0"
-            data-set_day="0"
-            data-rel_srl="845972"
-            data-pl_type="0"
-            data-no="0"
-            data-pl_cat="301"
-            data-ci="10907"
-          >
-            <div class="img-box fl">
-              <img src="./images/myPage/place3.jpg" />
-            </div>
-            <div class="info-box">
-              <div class="info-title">우리집앞</div>
-              <div class="small info-small">랜드마크</div>
-              <div class="like-cnt-info">
-                <i class="fab fa-gratipay" style="color: rgb(253, 123, 145);"></i> 13 |
-                <i class="far fa-thumbs-up" style="color: #1a7ad9;"></i> 15
-              </div>
-              <!-- <div class="small info-small include_pn_day" style="color: #1a7ad9;">DAY1</div>  -->
-            </div>
-            <div class="spot-to-inspot">
-              <img class="add-icon" src="./images/myPage/interface.png"/>
-            </div>
-          </div>
 
           <div
             class="day-spot-item ui-draggable"
@@ -455,8 +387,7 @@
               <div class="info-title">한강공원</div>
               <div class="small info-small">공원/정원</div>
               <div class="like-cnt-info">
-                <i class="fab fa-gratipay" style="color: rgb(253, 123, 145);"></i> 13 |
-                <i class="far fa-thumbs-up" style="color: #1a7ad9;"></i> 15
+                <i class="fab fa-gratipay" style="color: rgb(253, 123, 145);"></i> 13
               </div>
               <!-- <div class="small info-small include_pn_day" style="color: #1a7ad9;">DAY1</div>  -->
             </div>
@@ -478,22 +409,6 @@
           </div>
         </div>
 
-        <div class="form-check-inline" style="margin-bottom: 7px;">
-          <div class="d-flex" style="padding: 0 15px;">
-            <div class="primary-radio">
-              <input type="radio" id="primary-radio" />
-              <label class="custom-radio" for="primary-radio"></label>
-            </div>
-            <span class="radio-trip-option">&nbsp;도시 내 검색&nbsp;</span>
-          </div>
-          <div class="d-flex" style="padding: 0 15px;">
-            <div class="primary-radio">
-              <input type="radio" id="primary-radio" checked />
-              <label class="custom-radio" for="primary-radio"></label>
-            </div>
-            <span class="radio-trip-option">&nbsp;전체 검색&nbsp;</span>
-          </div>
-        </div>
       </div>
 
       <div id="mp-map" class="my-main-map" style="width: 100%; height: 100%;"></div>

@@ -238,6 +238,7 @@ public class MyPageController {
 	public String editProfile(HttpServletRequest request, membershipVo vo){
 		
 		String msg = "";
+		String fullpath = "";
 		MultipartFile imgFile = vo.getImgFile();
 		
 		if (!imgFile.isEmpty()) { // 파일이 있으면
@@ -249,19 +250,19 @@ public class MyPageController {
 	     
 	    String rename = onlyFileName + "_" + getCurrentDayTime() + extension; // fileName_20150721-14-07-50.jpg
 //	    String fullpath = request.getContextPath()+"/images/myPage/profile/"+rename;
-	    String fullpath  = request.getSession().getServletContext().getRealPath("images/myPage/profile/")+rename;
+	    fullpath  = request.getSession().getServletContext().getRealPath("images/myPage/")+rename;
 //	    String fullpath  = request.getSession().getServletContext().getContext("/").getRealPath("");
 	    //String testpath = request.getSession().getServletContext().getContext("/images").getRealPath("");
 	    
 	    System.out.println(fullpath);
 	    //System.out.println(testpath);
 	    // 실제로 들어갈 파일경로 + 파일명 
-	    	vo.setMember_photo(fullpath);
+	    	vo.setMember_photo(rename);
 	    } 
 	     
 	    // 파라미터로 전달받은 vo 프로퍼티 setting
 		System.out.println(vo.toString());
-		msg = dao.modifyProfile(vo,imgFile);
+		msg = dao.modifyProfile(vo,imgFile,fullpath);
 	    
 	    return msg;
 	}
