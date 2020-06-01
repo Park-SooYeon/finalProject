@@ -2,6 +2,7 @@ package controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -32,8 +33,11 @@ import partner.UploadVo;
 public class PtnHtCompController {
 	
 	PtnHtCompDao dao;
-	
-	private static final String filePath = "/Users/jieun/eclipse-workspace/finalProject/WebContent/assets/images/upload/";
+	String image1 ="";// 중복처리된 이름
+    String image2 ="";// 중복 처리전 실제 원본 이름
+    long fileSize =0;// 파일 사이즈
+    
+	public static final String filePath = "/Users/jieun/eclipse-workspace/finalProject/WebContent/assets/images/upload/";
 
 	
 	public PtnHtCompController(PtnHtCompDao dao) {
@@ -61,8 +65,9 @@ public class PtnHtCompController {
 		
 		int serial = dao.getSerial(member_id);
 		List<PlaceVo> list = dao.select(serial);
-		List<UploadVo> photoList = null;
 		
+		List<UploadVo> photoList = null;
+
 		for(PlaceVo vo : list) {
 			// place serial 가져오기 
 			int pserial = vo.getPlace_serial();
@@ -85,7 +90,6 @@ public class PtnHtCompController {
 		ModelAndView mv = new ModelAndView();
 		PlaceVo vo = null; 
 		
-		//mv.addObject("vo", vo);
 		mv.setViewName("hotel_comp_add");
 		return mv;
 	}
@@ -106,13 +110,13 @@ public class PtnHtCompController {
 		if(req.getParameter("wifi") == null) {
 			vo.setWifi(0);
 		}else {
-			vo.setBreakfast(Integer.parseInt(req.getParameter("wifi")));
+			vo.setWifi(Integer.parseInt(req.getParameter("wifi")));
 		}
 		
 		if(req.getParameter("breakfast") == null) {
 			vo.setBreakfast(0);
 		}else {
-			vo.setWifi(Integer.parseInt(req.getParameter("breakfast")));
+			vo.setBreakfast(Integer.parseInt(req.getParameter("breakfast")));
 		}
 		
 		if(req.getParameter("parking") == null || req.getParameter("parking") == "") {
@@ -135,7 +139,7 @@ public class PtnHtCompController {
 	     //String uploadPath = "C:\\Users\\silve\\eclipse-workspace\\final_twitch\\WebContent\\store\\reviewimages";
 	    System.out.println(uploadPath);
 	    
-	    File dir = new File(uploadPath);
+	    File dir = new File(filePath);
         if (!dir.isDirectory()) {
             dir.mkdirs();
         }
@@ -146,22 +150,23 @@ public class PtnHtCompController {
 		 */ 
 	    
 	    //int maxSize =1024 *1024 *10;// 한번에 올릴 수 있는 파일 용량 : 10M로 제한
-	    
-	    String mId = "";
-	    int pId;
-	    String rContent ="";
-	    String rSubject ="";
-	    Double rLike;
 	         
-	    String image1 ="";// 중복처리된 이름
-	    String image2 ="";// 중복 처리전 실제 원본 이름
-	    long fileSize =0;// 파일 사이즈
+	    
 	   // String fileType ="";// 파일 타입
 	    //String encoding = "utf-8";
 	  
 	    UploadVo upVo;
 	    List<UploadVo> list = new ArrayList<UploadVo>();
-		List<MultipartFile> mf = req.getFiles("fileName1"); 
+		//List<MultipartFile> mf = req.getFiles("fileName1");
+		List<MultipartFile> mf = new ArrayList<MultipartFile>();
+		
+		MultipartFile file1 = req.getFile("fileName1");
+		MultipartFile file2 = req.getFile("fileName2");
+		MultipartFile file3 = req.getFile("fileName3");
+		
+		mf.add(file1);
+		mf.add(file2);
+		mf.add(file3);
 		
         if (mf.size() == 1 && mf.get(0).getOriginalFilename().equals("")) {
             
@@ -171,17 +176,17 @@ public class PtnHtCompController {
 				String nnName = UUID.randomUUID().toString();
 				 // 본래 파일명
 				image2 = mf.get(i).getOriginalFilename();
+				image2 = Normalizer.normalize(image2, Normalizer.Form.NFC); // 맥(MAC)에서 한글 자모 분리되는 현상 막기 (정규)
 				 //중복처리된 이름
 				image1 = nnName + "." + getExtension(image2);
 				
 				fileSize = mf.get(i).getSize(); // 파일 사이즈
 				
-				String savePath = uploadPath + image1; // 저장 될 파일 경로
+				String savePath = filePath + image1; // 저장 될 파일 경로
 				 
                 mf.get(i).transferTo(new File(savePath)); // 파일 저장
                 
                 upVo = new UploadVo(image1, image2);
-               
                 list.add(upVo);
             }
         }
@@ -212,9 +217,14 @@ public class PtnHtCompController {
 		
 		// place_serial 
 		int serial = Integer.parseInt(req.getParameter("pserial"));
-		System.out.println("serial" + serial);
 		vo = dao.view(serial);
 		photoList = dao.getAttList(serial);
+		
+		System.out.println("photoList : " + photoList);
+		
+		vo.setPhotos(photoList);
+		
+		System.out.println("vo photos : " + vo.getPhotos());
 		
 		mv.addObject("serial", serial);
 		mv.addObject("photoList", photoList);
@@ -223,35 +233,135 @@ public class PtnHtCompController {
 		return mv;
 	}
 	
-	@RequestMapping(value="/admin/partner/hotel_comp_modify.ph", method= {RequestMethod.GET, RequestMethod.POST}) 
+	@RequestMapping(value="/admin/partner/hotel_comp_modify.ph", method= {RequestMethod.POST}) 
 	public ModelAndView modify(HttpServletRequest req) {
 		ModelAndView mv = new ModelAndView();
 		PlaceVo vo = null; 
 		List<UploadVo> photoList = null;
 		
-		System.out.println("dsadsadas");
-		
 		// place_serial 
+		System.out.println("serial 1 : " + req.getParameter("pserial"));
 		int serial = Integer.parseInt(req.getParameter("pserial"));
-		System.out.println("pserial : " + req.getParameter("pserial"));
+		System.out.println("modify serial : " + serial);
+		
 		
 		vo = dao.view(serial);
 		photoList = dao.getAttList(serial);
 		
-		System.out.println("vo : " + vo);
-		//System.out.println("vo get : " + vo.getPlace_name());
-		
+		vo.setPhotos(photoList);
+		mv.addObject("serial", serial);
 		mv.addObject("photoList", photoList);
+		mv.addObject("delList", photoList);
 		mv.addObject("vo", vo);
 		mv.setViewName("hotel_comp_modify"); 
 		return mv;
 	}
 	
-	@RequestMapping(value="/admin/partner/hotel_comp_delete.ph", method= {RequestMethod.GET, RequestMethod.POST}) 
-	public ModelAndView delete(HttpServletRequest req) {
+	@RequestMapping(value="/admin/partner/modifyR.ph", method= {RequestMethod.POST}) 
+	public ModelAndView modifyR(MultipartHttpServletRequest req, PlaceVo vo) throws IOException {
 		ModelAndView mv = new ModelAndView();
-		Object vo = null; 
 		
+		// photo_serial 값 세팅 
+		String[] photoNum = new String[3];
+		photoNum[0] = req.getParameter("photo_serial_1");
+		photoNum[1] = req.getParameter("photo_serial_2");
+		photoNum[2] = req.getParameter("photo_serial_3");
+		
+		//FileUpload
+    	//ServletContext c;
+    	// c.getRealPath("상대경로") 를 통해 파일을 저장할 절대 경로를 구해온다.
+	    // 운영체제 및 프로젝트가 위치할 환경에 따라 경로가 다르기 때문에 아래처럼 구해오는게 좋음
+    	
+	    String uploadPath = req.getSession().getServletContext().getRealPath("/assets/images/");
+	    
+	    File dir = new File(filePath);
+        if (!dir.isDirectory()) {
+            dir.mkdirs();
+        }
+	  
+	    UploadVo upVo;
+	    List<UploadVo> list = new ArrayList<UploadVo>();
+		List<MultipartFile> mf = new ArrayList<MultipartFile>();
+		List<UploadVo> delList = (List<UploadVo>) req.getAttribute("photoList");
+		
+		MultipartFile file1 = req.getFile("fileName1");
+		MultipartFile file2 = req.getFile("fileName2");
+		MultipartFile file3 = req.getFile("fileName3");
+		
+		mf.add(file1);
+		mf.add(file2);
+		mf.add(file3);
+		
+        if (mf.size() == 1 && mf.get(0).getOriginalFilename().equals("")) {
+            
+        } else{
+            for (int i = 0; i < mf.size(); i++) {
+            	 // 파일 중복명 처리
+				String nnName = UUID.randomUUID().toString();
+				 // 본래 파일명
+				
+				if(mf.get(i).getOriginalFilename() == null) {
+					break;
+				}else {
+					image2 = mf.get(i).getOriginalFilename();
+
+				}
+			
+				image2 = Normalizer.normalize(image2, Normalizer.Form.NFC); // 맥(MAC)에서 한글 자모 분리되는 현상 막기 (정규)
+				 //중복처리된 이름
+				image1 = nnName + "." + getExtension(image2);
+				
+				fileSize = mf.get(i).getSize(); // 파일 사이즈
+				
+				String savePath = filePath + image1; // 저장 될 파일 경로
+				 
+                mf.get(i).transferTo(new File(savePath)); // 파일 저장
+                
+                upVo = new UploadVo(image1, image2);
+                list.add(upVo);
+            }
+        }
+
+		// 파트너 시리얼 값 세팅
+		HttpSession session  = req.getSession();
+		String member_id = (String) session.getAttribute("member_id");
+		
+		int serial = dao.getSerial(member_id);
+		vo.setPartner_serial(serial);
+		
+		int result = dao.modify(vo, list, delList, photoNum);
+		
+		
+		// 업로드 파일 삭제 해주어야함
+		// getAttLIst 에서 filePath에 있는 파일 delete
+		mv.addObject("serial", serial);
+		mv.addObject("result", result);
+		mv.setViewName("hotel_comp_list"); 
+		return mv;
+	}
+	
+	
+	@RequestMapping(value="/admin/partner/deleteR.ph", method= {RequestMethod.POST}) 
+	public ModelAndView deleteR(HttpServletRequest req) {
+		ModelAndView mv = new ModelAndView();
+		PlaceVo vo = new PlaceVo(); 
+		// partner_serial 구하기 
+	
+		
+		HttpSession session  = req.getSession();
+		String member_id = (String) session.getAttribute("member_id");
+		int serial = dao.getSerial(member_id);
+		System.out.println("partner serial : " + serial);
+		System.out.println("place_serial : " + req.getParameter("pserial"));
+		int place_serial = Integer.parseInt(req.getParameter("pserial"));
+		
+		vo.setPartner_serial(serial);
+		vo.setPlace_serial(place_serial);
+		
+		List<UploadVo> delList = dao.getAttList(place_serial);
+		int result = dao.delete(vo, delList);
+		
+		mv.addObject("result", result);
 		mv.addObject("vo", vo);
 		mv.setViewName("hotel_comp_list");
 		return mv;

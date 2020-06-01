@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+    
             <div class="row">
                 <div class="col-lg-12 grid-margin stretch-card">
                     <div class="card">
@@ -30,102 +33,24 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>Derrick</td>
-                                                <td>경기 성남시 분당구 판교역로 235 (에이치스퀘어 엔동)</td>
-                                                <td>924대</td>
-                                                <td><div class="badge badge-secondary text-muted">비활성화</div></td>
-                                                <td>
-                                                    <button class="btn btn-outline-primary" data-toggle="modal" data-target="#ModalRentCompInfo">View</button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td>Derrick</td>
-                                                <td>경기 성남시 분당구 판교역로 235 (에이치스퀘어 엔동)</td>
-                                                <td>924대</td>
-                                                <td><div class="badge badge-primary">활성화</div></td>
-                                                <td>
-                                                    <button class="btn btn-outline-primary" data-toggle="modal" data-target="#ModalRentCompInfo">View</button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>3</td>
-                                                <td>Derrick</td>
-                                                <td>경기 성남시 분당구 판교역로 235 (에이치스퀘어 엔동)</td>
-
-                                                <td>924대</td>
-                                                <td><div class="badge badge-primary">활성화</div></td>
-                                                <td>
-                                                    <button class="btn btn-outline-primary" data-toggle="modal" data-target="#ModalRentCompInfo">View</button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>4</td>
-                                                <td>Derrick</td>
-                                                <td>경기 성남시 분당구 판교역로 235 (에이치스퀘어 엔동)</td>
-
-                                                <td>924대</td>
-                                                <td><div class="badge badge-primary">활성화</div></td>
-                                                <td>
-                                                    <button class="btn btn-outline-primary" data-toggle="modal" data-target="#ModalRentCompInfo">View</button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>5</td>
-                                                <td>Derrick</td>
-                                                <td>경기 성남시 분당구 판교역로 235 (에이치스퀘어 엔동)</td>
-
-                                                <td>924대</td>
-                                                <td><div class="badge badge-primary">활성화</div></td>
-                                                <td>
-                                                    <button class="btn btn-outline-primary" data-toggle="modal" data-target="#ModalRentCompInfo">View</button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>6</td>
-                                                <td>Derrick</td>
-                                                <td>경기 성남시 분당구 판교역로 235 (에이치스퀘어 엔동)</td>
-
-                                                <td>924대</td>
-                                                <td><div class="badge badge-primary">활성화</div></td>
-                                                <td>
-                                                    <button class="btn btn-outline-primary" data-toggle="modal" data-target="#ModalRentCompInfo">View</button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>7</td>
-                                                <td>Derrick</td>
-                                                <td>경기 성남시 분당구 판교역로 235 (에이치스퀘어 엔동)</td>
-
-                                                <td>924대</td>
-                                                <td><div class="badge badge-primary">활성화</div></td>
-                                                <td>
-                                                    <button class="btn btn-outline-primary" data-toggle="modal" data-target="#ModalRentCompInfo">View</button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>8</td>
-                                                <td>Derrick</td>
-                                                <td>경기 성남시 분당구 판교역로 235 (에이치스퀘어 엔동)</td>
-
-                                                <td>924대</td>
-                                                <td><div class="badge badge-primary">활성화</div></td>
-                                                <td>
-                                                    <button class="btn btn-outline-primary" data-toggle="modal" data-target="#ModalRentCompInfo">View</button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>9</td>
-                                                <td>Derrick</td>
-                                                <td>경기 성남시 분당구 판교역로 235 (에이치스퀘어 엔동)</td>
-                                                <td>924대</td>
-                                                <td><div class="badge badge-primary">활성화</div></td>
-                                                <td>
-                                                    <button class="btn btn-outline-primary" data-toggle="modal" data-target="#ModalRentCompInfo">View</button>
-                                                </td>
-                                            </tr>
+                                        	<c:forEach var="vo" items="${list }" varStatus="i">
+	                                            <tr>
+	                                                <td>${i.count }</td>
+	                                                <td>${vo.company_name }</td>
+	                                                <td>${vo.address }</td>
+	                                                <td>${vo.car_cnt }대</td>
+	                                                <td>
+	                                                	<c:if test="${vo.state == 0}">
+		                                                	<div class="badge badge-secondary text-muted">비활성화</div>
+		                                                </c:if>
+		                                                <c:if test="${vo.state == 1}">
+		                                                	<div class="badge badge-primary">활성화</div>
+		                                                </c:if>
+	                                                <td>
+	                                                    <button class="btn btn-outline-primary" data-toggle="modal" data-target="#ModalRentCompInfo">View</button>
+	                                                </td>
+	                                            </tr>
+                                            </c:forEach>
                                         </tbody>
                                     </table>
                                 </div>

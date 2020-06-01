@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
     <div class="row">
         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 grid-margin stretch-card">
             <div class="card card-statistics">
@@ -84,81 +86,28 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>20200428051</td>
-                                        <td>A Hotel</td>
-                                        <td>디럭스</td>
-                                        <td>183,000원</td>
-                                        <td>Derrick</td>
-                                        <td>2020/04/24</td>
-                                        <td>2020/04/25</td>
-                                        <td>
-                                            <div class="badge badge-inverse-secondary text-muted font-weight-bold">예약취소</div>
-                                        </td>
-                                        <td>
-                                            <button class="btn btn-outline-primary" data-toggle="modal" data-target="#ModalHotelInfo">View</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>20200428051</td>
-                                        <td>A Hotel</td>
-                                        <td>디럭스</td>
-                                        <td>183,000원</td>
-                                        <td>Derrick</td>
-                                        <td>2020/04/24</td>
-                                        <td>2020/04/25</td>
-                                        <td>
-                                            <div class="badge badge-inverse-primary font-weight-bold">예약완료</div>
-                                        </td>
-                                        <td>
-                                            <button class="btn btn-outline-primary" data-toggle="modal" data-target="#ModalHotelInfo">View</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>20200428051</td>
-                                        <td>A Hotel</td>
-                                        <td>디럭스</td>
-                                        <td>183,000원</td>
-                                        <td>Derrick</td>
-                                        <td>2020/04/24</td>
-                                        <td>2020/04/25</td>
-                                        <td>
-                                            <div class="badge badge-inverse-warning font-weight-bold">투숙완료</div>
-                                        </td>
-                                        <td>
-                                            <button class="btn btn-outline-primary" data-toggle="modal" data-target="#ModalHotelInfo">View</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>20200428051</td>
-                                        <td>A Hotel</td>
-                                        <td>디럭스</td>
-                                        <td>183,000원</td>
-                                        <td>Derrick</td>
-                                        <td>2020/04/24</td>
-                                        <td>2020/04/25</td>
-                                        <td>
-                                            <div class="badge badge-inverse-primary font-weight-bold">예약완료</div>
-                                        </td>
-                                        <td>
-                                            <button class="btn btn-outline-primary" data-toggle="modal" data-target="#ModalHotelInfo">View</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>20200428051</td>
-                                        <td>A Hotel</td>
-                                        <td>디럭스</td>
-                                        <td>183,000원</td>
-                                        <td>Derrick</td>
-                                        <td>2020/04/24</td>
-                                        <td>2020/04/25</td>
-                                        <td>
-                                            <div class="badge badge-inverse-primary font-weight-bold">예약완료</div>
-                                        </td>
-                                        <td>
-                                            <button class="btn btn-outline-primary" data-toggle="modal" data-target="#ModalHotelInfo">View</button>
-                                        </td>
-                                    </tr>
+                                	<c:forEach var="vo" items="${list }" varStatus="i">
+	                                    <tr>
+	                                        <td>${vo.booking_serial }</td>
+	                                        <td>${vo.place_name }</td>
+	                                        <td>${vo.rooms_name }</td>
+	                                        <td>${vo.price }원</td>
+	                                        <td>${vo.member_id }</td>
+	                                        <td>${vo.checkin_date }</td>
+	                                        <td>${vo.checkout_date }</td>
+	                                        <td>
+	                                        	<c:if test="${vo.state == 1 }">                                        	
+		                                            <div class="badge badge-inverse-primary text-muted font-weight-bold">예약완료</div>
+	                                        	</c:if>
+	                                        	<c:if test="${vo.state == 2 }">                                        	
+		                                            <div class="badge badge-inverse-secondary text-muted font-weight-bold">예약취소</div>
+	                                        	</c:if>
+	                                        </td>
+	                                        <td>
+	                                            <button class="btn btn-outline-primary" data-toggle="modal" data-target="#ModalHotelInfo">View</button>
+	                                        </td>
+	                                    </tr>
+                                    </c:forEach>
                                 </tbody>
                             </table>
                         </div>

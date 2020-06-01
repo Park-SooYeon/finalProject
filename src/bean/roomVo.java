@@ -1,5 +1,7 @@
 package bean;
 
+import java.util.List;
+
 public class roomVo {
    int rooms_serial;
    int place_serial;
@@ -10,6 +12,8 @@ public class roomVo {
    int mt_view;
    int ocean_view;
    int city_view;
+   String room_type;
+   List<roomPhotoVo> photos;
 
    String place_name;
    String place_location;
@@ -75,9 +79,17 @@ public int getRooms_name() {
 }
 public void setRooms_name(int rooms_name) {
 	this.rooms_name = rooms_name;
-	
-	
-	
+	switch(rooms_name) {
+	case 1:
+		this.room_type = "디럭스";
+		break;
+	case 2:
+		this.room_type = "패밀리";
+		break;
+	case 3:
+		this.room_type = "스위트";
+		break;
+	}
 	
 	
 }
@@ -117,8 +129,40 @@ public int getCity_view() {
 public void setCity_view(int city_view) {
 	this.city_view = city_view;
 }
+public String getPlace_name() {
+	return place_name;
+}
+public void setPlace_name(String place_name) {
+	this.place_name = place_name;
+}
+public int getState() {
+	return state;
+}
+public void setState(int state) {
+	this.state = state;
+}
+public List<roomPhotoVo> getPhotos() {
+	return photos;
+}
+public void setPhotos(List<roomPhotoVo> photos) {
+	this.photos = photos;
+}
+public String getRoom_type() {
+	return room_type;
+}
+public void setRoom_type(String room_type) {
+	this.room_type = room_type;
+}
 
-	
+@Override
+public String toString() {
+	return "roomVo [place_serial=" + place_serial + ", rooms_serial=" + rooms_serial + ", price="
+			+ price + ", people=" + people + ", no_smoking=" + no_smoking + ", rooms_name="
+			+ rooms_name + ", ocean_view=" + ocean_view + ", city_view=" + city_view + ", room_type=" + room_type
+			+ ", state=" + state + ", mt_view=" + mt_view + ", place_name=" + place_name 
+			+ ", photos=" + photos + "]";
+}
+
 	
 	
 	
