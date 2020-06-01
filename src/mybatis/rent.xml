@@ -174,8 +174,8 @@
 	</select>
 	
 	<insert id="reserveInsert" parameterType="rent_parameter.ReservePm">
-		insert into rent_reserve(reserve_serial , car_serial , member_id , email ,phone , rent_date , return_date , state , fullcover , payment ,price ,reserved_date)
-				values ( seq_rent_reserve.nextval , ${car_serial} , '${member_id}' ,'${email}' , '${phone}' , TO_TIMESTAMP('${rentDate}','YYYYMMDDHH24MISS') ,TO_TIMESTAMP('${returnDate}','YYYYMMDDHH24MISS')  , 'y' , '${fullcover}' , '${payment}' , ${price} , systimestamp)
+		insert into rent_reserve(reserve_serial , car_serial , member_id , email ,phone , rent_date , return_date , state , fullcover , payment ,price ,reserved_date ,place_main ,place_sub)
+				values ( seq_rent_reserve.nextval , ${car_serial} , '${member_id}' ,'${email}' , '${phone}' , TO_TIMESTAMP('${rentDate}','YYYYMMDDHH24MISS') ,TO_TIMESTAMP('${returnDate}','YYYYMMDDHH24MISS')  , 'y' , '${fullcover}' , '${payment}' , ${price} , systimestamp , '${place_main}' , '${place_sub}')
 			
 	</insert>
 	
@@ -183,7 +183,14 @@
 		SELECT seq_rent_reserve.currval FROM dual
 	</select>
 	
+	<select id="reserveSerialSearch" parameterType="rent_parameter.ReservePm" resultType="Integer">
+		SELECT reserve_serial from rent_reserve where email = '${email}' and member_id='${member_id}'
+	</select>
 	
+	<select id="reserveSearch1" parameterType="String" resultType="rent_parameter.ReservePm">
+		select reserve_serial , car_serial , email , rent_date , return_date , fullcover , payment ,price ,RESERVED_DATE , place_main , place_sub from RENT_RESERVE where member_id='${_parameter}' and return_date <![CDATA[<]]>sysdate and CANCLE_DATE is null and review_check='n'
+			
+	</select>
 </mapper>
 
 

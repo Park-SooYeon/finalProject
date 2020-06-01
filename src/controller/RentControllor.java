@@ -327,7 +327,7 @@ public class RentControllor {
 //			payment		=req.getParameter("payment");
 //		}
 		int price			=Integer.parseInt(req.getParameter("price"));
-		ReservePm pm = new ReservePm(car_serial, member_id, email, phone, rentD, returnD, fullcover, payment, price);
+		ReservePm pm = new ReservePm(car_serial, member_id, email, phone, rentD, returnD, fullcover, payment, price ,placeMain , placeSub);
 		String msg = rentDao.reserveInsert(pm);
 		int reserve_serial =rentDao.reserveSerial();
 		int betweenDay = rentDao.DateBettweenDay(rentDate, returnDate);
@@ -360,11 +360,18 @@ public class RentControllor {
 		return mv;
 	}
 	
+	
+	
+	
 	@RequestMapping(value="/reserveSearch.rent",method= {RequestMethod.POST,RequestMethod.GET})
 	public ModelAndView reserveSearch(HttpServletRequest req,HttpServletResponse resp) {
 		mv = new ModelAndView();
 		contentPage = "";
 		mainPage = "rentReserveSearch.jsp";
+		
+		String member_id = req.getParameter("member_id");
+		List<ReservePm> list = rentDao.reserveSearch1(member_id);
+		
 		
 		
 		mv.addObject("contentPage",contentPage);
@@ -373,3 +380,30 @@ public class RentControllor {
 		return mv;
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
