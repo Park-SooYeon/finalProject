@@ -45,6 +45,7 @@
 		<!-- amdin-partner -->
 		<mapper resource="./mybatis/partner_hotel.xml"/>
 		<mapper resource="./mybatis/partner_room.xml"/>
+		<mapper resource="./mybatis/hotel_order.xml"/>
 		
 		<!-- rent -->
 		<mapper resource="./mybatis/rent.xml"/>

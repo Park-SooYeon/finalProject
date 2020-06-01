@@ -1,12 +1,19 @@
 package controller;
 
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import bean.PlaceVo;
+import bean.hotelBookingVo;
+import dao.PtnHtCompDao;
 import dao.PtnHtOrderDao;
 
 @Controller
@@ -21,9 +28,18 @@ public class PtnHtOrderController {
 	@RequestMapping(value="/admin/partner/hotel_order_list.ph", method= {RequestMethod.GET, RequestMethod.POST}) 
 	public ModelAndView select(HttpServletRequest req) {
 		ModelAndView mv = new ModelAndView();
-		Object vo = null; 
+		// 세션 id 가져오기
+		HttpSession session  = req.getSession();
+		String member_id = (String) session.getAttribute("member_id");
+		// 세션 아이디로 파트너 시리얼 가져오기
+		PtnHtCompDao compDao = new PtnHtCompDao();
+		int serial = compDao.getSerial(member_id);
 		
-		mv.addObject("vo", vo);
+		Map<String, Integer> info = dao.selectInfo(serial);
+		
+		List<hotelBookingVo> list = dao.select(serial);
+		
+		mv.addObject("list", list);
 		mv.setViewName("hotel_order_list");
 		return mv;
 	}
