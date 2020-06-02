@@ -36,7 +36,7 @@
                                             <td>${status.count }</td>
                                             <td>
                                                 <div class="d-flex align-items-center">
-                                                    <img class="img-xs rounded-circle" src="../../assets/images/faces/face2.jpg" alt="profile image">
+                                                    <img class="img-xs rounded-circle" src="../../images/myPage/${ empty i.member_photo? 'queen.png' : i.member_photo }" alt="profile image">
                                                     <div class="wrapper pl-2">
                                                         <p class="mb-0 text-gray">${i.member_name }</p>
                                                     </div>
@@ -64,7 +64,7 @@
                                             <td>
                                                 <button class="btn btn-outline-primary" data-toggle="modal" data-target="#ModalUserInfo" 
                                                 	onclick="member_view('${i.member_id }','${i.member_name }','${i.phone }','${i.email }',
-                                                		'${i.state}','<fmt:formatDate value="${i.mDate}" pattern="yyyy-MM-dd"/>' )">View
+                                                		'${i.state}','<fmt:formatDate value="${i.mDate}" pattern="yyyy-MM-dd"/>' ,'${i.member_photo }') ">View
                                                 </button>
                                             </td>
                                         </tr>
@@ -93,7 +93,7 @@
                 </div>
                 <div class="modal-body pt-2">
                     <div class="wrapper d-flex align-items-center py-2 mb-3">
-                        <img class="img-sm rounded-circle" src="../../assets/images/faces/face5.jpg" alt="profile">
+ 	                      <img class="img-sm rounded-circle member_photo" alt="profile">
                         <div class="wrapper ml-3">
                             <h6 class="ml-1 mb-1" id='member_id'></h6>
                         </div>
