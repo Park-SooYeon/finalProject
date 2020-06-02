@@ -43,7 +43,7 @@
 	      <result column="review_content" property="review_content"/>
 	      <result column="review_serial" property="review_serial"/>
 	      <result column="review_type" property="review_type"/>
-	      <collection property="photo"  javaType="bean.Review_PhotoVo">
+	      <collection property="r_photo"  javaType="bean.Review_PhotoVo">
 	         <result column="photo_name" property="photo_name"/>
 	         <result column="place_code" property="place_code"/>
 	      </collection>
@@ -214,4 +214,7 @@
 	      and  R.review_serial = ${_parameter}
 	    </select>
  	  
+ 	  
+      
+      
 </mapper>

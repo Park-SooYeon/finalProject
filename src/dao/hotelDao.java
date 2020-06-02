@@ -10,6 +10,7 @@ import org.apache.ibatis.session.SqlSession;
 import bean.Factory;
 import bean.Page;
 import bean.PlaceVo;
+import bean.ReviewVo;
 import bean.roomPhotoVo;
 import bean.roomVo;
 
@@ -43,6 +44,26 @@ public List<roomPhotoVo> getPhotoList(int place_serial){
 }
 
 
+public List<ReviewVo> reviewList(int place_serial) {
+	List<ReviewVo> reviewList = null;
+	
+	try {
+	
+		
+		reviewList = sqlSession.selectList("ht.reviewList",place_serial);
+		
+	}catch(Exception ex) {
+	
+		ex.printStackTrace();
+	
+	}finally {
+		//sqlSession.close();
+		return reviewList;
+		
+	}
+	
+	
+}
 
 public List<roomVo> detailView(int place_serial) {
 	List<roomVo> list = null;

@@ -28,5 +28,11 @@
 		SELECT * FROM hotel_order_view
 		WHERE partner_serial=#{partner_serial}
 	</select>
-
+	
+	<!-- 예약내역 상세 조회 -->
+	<select id="view" parameterType="Integer" resultType="bean.hotelBookingVo">
+		SELECT member_photo, member_id, reserve_date, member_name, BOOKING_SERIAL, place_name, ROOMS_NAME, CHECKIN_DATE, CHECKOUT_DATE, STATE
+		FROM hotel_order_view
+		where booking_serial=#{booking_serial}
+	</select>
 </mapper>

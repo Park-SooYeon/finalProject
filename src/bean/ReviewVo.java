@@ -38,12 +38,33 @@ public class ReviewVo {
 	// 리뷰 포스팅 가져올때 필요한 프로필 사진
 	String member_photo;
 	
+	String member_photo;
+	String nickName;
+	int likecount;
+	
+	
+	
+	
+	
+	
 	
 	public String getMember_photo() {
 		return member_photo;
 	}
 	public void setMember_photo(String member_photo) {
 		this.member_photo = member_photo;
+	}
+	public String getNickName() {
+		return nickName;
+	}
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
+	}
+	public int getLikecount() {
+		return likecount;
+	}
+	public void setLikecount(int likecount) {
+		this.likecount = likecount;
 	}
 	public List<MultipartFile> getFileUpload() {
 		return fileUpload;

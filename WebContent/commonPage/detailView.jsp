@@ -4,7 +4,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script src="js/festival_detail.js"></script>
 
 <script src="js/main.js"></script>
 <script src='./lib/jquery-3.4.1.js'></script>
@@ -511,5 +510,6 @@
   //]]>    
 </script>
 <script src="js/festival_detail.js"></script>
+<script src="js/cookie.js"></script>
 </body>
 </html>

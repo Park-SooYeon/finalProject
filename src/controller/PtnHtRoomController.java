@@ -34,7 +34,7 @@ public class PtnHtRoomController {
     String image2 ="";// 중복 처리전 실제 원본 이름
     long fileSize =0;// 파일 사이즈
     
-    public static final String filePath = "/Users/jieun/eclipse-workspace/finalProject/WebContent/assets/images/upload/";
+    
 
 	public PtnHtRoomController(PtnHtRoomDao dao) {
 		this.dao = dao;
@@ -129,9 +129,9 @@ public class PtnHtRoomController {
 		
 		
 		//FileUpload
-	    String uploadPath = req.getSession().getServletContext().getRealPath("/assets/images/");
+	    String uploadPath = req.getSession().getServletContext().getRealPath("/assets/images/upload/");
 	    
-	    File dir = new File(filePath);
+	    File dir = new File(uploadPath);
         if (!dir.isDirectory()) {
             dir.mkdirs();
         }
@@ -174,7 +174,7 @@ public class PtnHtRoomController {
 				
 				fileSize = mf.get(i).getSize(); // 파일 사이즈
 				
-				String savePath = filePath + image1; // 저장 될 파일 경로
+				String savePath = uploadPath + image1; // 저장 될 파일 경로
 				 
                 mf.get(i).transferTo(new File(savePath)); // 파일 저장
                 
@@ -242,9 +242,9 @@ public class PtnHtRoomController {
     	// c.getRealPath("상대경로") 를 통해 파일을 저장할 절대 경로를 구해온다.
 	    // 운영체제 및 프로젝트가 위치할 환경에 따라 경로가 다르기 때문에 아래처럼 구해오는게 좋음
     	
-	    String uploadPath = req.getSession().getServletContext().getRealPath("/assets/images/");
+	    String uploadPath = req.getSession().getServletContext().getRealPath("/assets/images/upload/");
 	    
-	    File dir = new File(filePath);
+	    File dir = new File(uploadPath);
         if (!dir.isDirectory()) {
             dir.mkdirs();
         }
@@ -283,7 +283,7 @@ public class PtnHtRoomController {
 				
 				fileSize = mf.get(i).getSize(); // 파일 사이즈
 				
-				String savePath = filePath + image1; // 저장 될 파일 경로
+				String savePath = uploadPath + image1; // 저장 될 파일 경로
 				 
                 mf.get(i).transferTo(new File(savePath)); // 파일 저장
                 

@@ -70,26 +70,26 @@
 					</div>
 				</div>
 				<div id='viewReviewMidRight' class='col-lg-3 col-md-3 col-sm-3 col-xs-3'>
-					<div>"
+					<div>
 							<c:choose>
 								<c:when test="${review_tot.totRe >= 9.0}"> 
-								매우만족 <br/> 
+								"매우만족"<br/> 
 								</c:when>
 								<c:when test="${review_tot.totRe >= 8.0}"> 
-								만족<br/>
+								"만족"<br/>
 								</c:when>
 								<c:when test="${review_tot.totRe >= 7.0}"> 
-								보통<br/>
+								"보통"<br/>
 								</c:when>
 								<c:when test="${review_tot.totRe <= 7.0 and vo.review > 0.0}"> 
-								보통이하<br/>
+								"보통이하"<br/>
 								</c:when>
 								<c:when test="${review_tot.totRe == 0.0}"> 
-								리뷰없음<br/>
+								"리뷰없음"<br/>
 								</c:when>
 								
 							</c:choose>	
-					"</div>
+					</div>
 					<span>${review_tot.totRe} <b> / 10</b></span>
 					<p>리뷰 ${review_tot.review_count} 건 </p>
 				</div>

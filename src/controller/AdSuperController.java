@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 
 import bean.Page;
@@ -187,7 +188,7 @@ public class AdSuperController {
 			}
 			
 			List<ReviewVo> list = dao.review_all(p);
-			System.out.println("컨트롤러페이지"+p.toString());
+			//System.out.println("컨트롤러페이지"+p.toString());
 			
 //			System.out.println(list.size() +"Tㄲ싸이즈");
 //			for(ReviewVo vo : list) {
@@ -199,9 +200,9 @@ public class AdSuperController {
 			
 			mv.addObject("p",p);
 			mv.addObject("list", list);
-			for(int i=0; i<list.size();  i++) {
-				System.out.println(list.get(i));
-			}
+//			for(int i=0; i<list.size();  i++) {
+//				System.out.println(list.get(i));
+//			}
 			mv.setViewName("review_all");
 			return mv;
 		}
@@ -211,8 +212,15 @@ public class AdSuperController {
 		@ResponseBody   //모델뷰 말고 데이터 보내는법..
 		public String review_view(HttpServletRequest req) {
 			String result = "dqwjdhqk";
-			System.out.println("리뷰시리얼"+req.getParameter("review_serial"));
-			ReviewVo vo = dao.review_view(Integer.parseInt(req.getParameter("review_serial")));
+			System.out.println("리뷰시리얼"+req.getParameter("serial"));
+			ReviewVo vo = dao.review_view(Integer.parseInt(req.getParameter("serial")));
+			try {
+				ObjectMapper mapper = new ObjectMapper();
+				result = mapper.writeValueAsString(vo);
+				System.out.println(result);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
 			return result;
 		}
 }

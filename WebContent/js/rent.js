@@ -127,3 +127,8 @@ rent.fullcover = function(a){
 		$('#fullcover').val(a);	
 	}
 }
+
+rent.reserveCancle= function(reserve_serial){
+	$('#reserve_serial').val(reserve_serial);
+	$('#rent_frm').attr('action','./reserveCancle.rent').submit();
+}
