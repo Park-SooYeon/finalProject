@@ -59,7 +59,7 @@ public class SubMainController {
 		if(cookies != null) {
 			for(int i = 0 ; i < cookies.length ; i++) {
 				Cookie c = cookies[i];
-				
+				System.out.println(c.getName());
 				// 쿠키 값이 존재할 때만 최근 본 관광지 정보를 가져옴
 				if(c.getName().equals("place_serial")) {
 					String value = c.getValue();
