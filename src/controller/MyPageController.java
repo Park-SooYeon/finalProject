@@ -55,7 +55,7 @@ public class MyPageController {
 		int flag = dao.getFollow(fvo);
 		
 		// 팔로우 수, 팔로워 수 반환 <follow, n> <follower, n> 형태
-		Map<String, Integer> map = dao.getFollowCnt(member_id);
+		Map<String, Integer> map = dao.getFollowCnt(id);
 		
 		mv.setViewName("my_social");
 		mv.addObject("map", map);
@@ -304,10 +304,9 @@ public class MyPageController {
 	}
 	
 	@RequestMapping( value = "selectPosts.mp", method = {RequestMethod.GET, RequestMethod.POST})
-	public ModelAndView selectPosts(HttpServletRequest req, HttpSession session) {
+	public ModelAndView selectPosts(@RequestParam String mid, HttpServletRequest req, HttpSession session) {
 		mv = new ModelAndView();
-		String member_id = (String)session.getAttribute("member_id");
-		List<ReviewVo> list = dao.selectFollowReview(member_id);
+		List<ReviewVo> list = dao.selectFollowReview(mid);
 		
 		for(ReviewVo vo : list) {
 			System.out.println(vo.toString());

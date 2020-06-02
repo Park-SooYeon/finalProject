@@ -35,7 +35,16 @@ public class ReviewVo {
 	
 	List<MultipartFile> fileUpload;	
 	
+	// 리뷰 포스팅 가져올때 필요한 프로필 사진
+	String member_photo;
 	
+	
+	public String getMember_photo() {
+		return member_photo;
+	}
+	public void setMember_photo(String member_photo) {
+		this.member_photo = member_photo;
+	}
 	public List<MultipartFile> getFileUpload() {
 		return fileUpload;
 	}

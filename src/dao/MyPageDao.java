@@ -307,6 +307,7 @@ public class MyPageDao {
 			list = sqlSession.selectList("mypage.select_follow_review", map);
 			
 			for(ReviewVo vo : list) {
+				System.out.println("사진 : "+vo.getMember_photo());
 				System.out.println("호텔만 담았을때 "+vo.toString());
 			}
 			
@@ -315,6 +316,7 @@ public class MyPageDao {
 			list2 = sqlSession.selectList("mypage.select_follow_review", map);
 			
 			for(ReviewVo vo : list2) {
+				System.out.println("사진2 : "+vo.getMember_photo());
 				System.out.println("api만 담았을때 "+vo.toString());
 			}
 			

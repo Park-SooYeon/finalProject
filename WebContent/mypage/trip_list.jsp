@@ -10,6 +10,7 @@
 <!-- Author Meta -->
 <meta name="author" content="colorlib" />
 <!-- Meta Description -->
+
 <meta name="description" content="" />
 <!-- Meta Keyword -->
 <meta name="keywords" content="" />
@@ -69,7 +70,7 @@
 								</div>
 							</div>
 							<p>
-								작성자 : <b class="mp-authorName">${i.member_id }</b>
+								포함 여행 : <b class="mp-authorName">${i.trip_cnt } 개</b>
 							</p>
 							<small>만든 날짜 : ${i.trip_date }</small>
 						</div>

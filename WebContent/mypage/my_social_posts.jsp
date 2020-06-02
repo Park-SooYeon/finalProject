@@ -8,11 +8,13 @@
               <div class="posts-review">
                 <div class="posting-title row">
                   <span class="col-xl-1 col-lg-1 col-md-1 text-center p-0">
-                    <img class="rounded-circle posting-profile" src="./template/img/blog/s-img.jpg" />
+                    <img class="rounded-circle posting-profile" 
+                    src = "./images/myPage/${ empty i.member_photo? 'queen.png' : i.member_photo }" 
+                    />
                   </span>
                   <div class="col-xl-11 col-lg-11 col-md-11 mt-1" style="position: relative;">
                     <div>
-                      <b>${i.member_id }</b>
+                      <b style="cursor:pointer;" onclick="location.href='./?inc=profile.mp?id=${i.member_id}'">${i.member_id }</b>
                       님이 새 <strong>리뷰</strong>를 추가했습니다.
                       <div class="ellipsis-btn">
                         <img width="17px" src="./images/myPage/ellipsis-h-solid.svg" /><span class="ellipsis-menu"

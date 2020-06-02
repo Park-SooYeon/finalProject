@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> <%@ taglib prefix="c"
 uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
   <head>
@@ -32,8 +33,9 @@ uri="http://java.sun.com/jsp/jstl/core" %>
     <div class="container profile position-relative">
       <div class="row">
         <div class="col-lg-2 col-md-3 col-sm-3 img-container text-center">
-          <img class="rounded-circle profile-image" id="pro-main-img" src="./images/myPage/${vo.member_photo}" 
-          alt="${vo.nickName }_profilePhoto" />
+          <img class="rounded-circle profile-image" id="pro-main-img" 
+         	src = "./images/myPage/${ empty vo.member_photo? 'queen.png' : vo.member_photo }"
+          	alt="${vo.nickName }_profilePhoto" />
         </div>
         <div class="col-lg-10 col-md-9 col-sm-9 profile-main-detail">
           <div class="mp-modify-area">
@@ -127,12 +129,12 @@ uri="http://java.sun.com/jsp/jstl/core" %>
                   <li>
                     <i class="fa fa-thumb-tack" aria-hidden="true"></i> <span id="pro-addr">${vo.member_city }</span>
                   </li>
-                  <li><i class="fa fa-calendar"></i> <span id="pro-enroll">${vo.mDate }</span></li>
+                  <li><i class="fa fa-calendar"></i> <span id="pro-enroll">
+                  <fmt:formatDate value="${vo.mDate}" pattern="yyyy년 MM월 dd일 "/> 가입
+                  </span></li>
                   <li><i class="fa fa-internet-explorer"></i> <span id="pro-web">${vo.member_web }</span></li>
                 </ul>
-                <p id="self-desc">
-                 ${vo.member_info }
-                </p>
+                <p id="self-desc">${vo.member_info }</p>
               </div>
               <div class="single-sidebar-widget user-info-widget profile-detail">
                 <a href="./?inc=mypage/my_write_review.jsp"><h4 class="my-3">여행경험을 공유하세요!</h4></a>

@@ -19,8 +19,18 @@ public class TripListVo {
 	int another_days;
 	PlaceVo p;
 	
+	// 여행리스트 내 몇 개의 여행이 포함되어 있는지
+	int trip_cnt;
 	
 	
+	
+	
+	public int getTrip_cnt() {
+		return trip_cnt;
+	}
+	public void setTrip_cnt(int trip_cnt) {
+		this.trip_cnt = trip_cnt;
+	}
 	public int getAnother_days() {
 		return another_days;
 	}
