@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
             <div class="row">
                 <div class="col-lg-12 grid-margin stretch-card">
                     <div class="card">
@@ -33,72 +34,28 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>A 렌터카</td>
-                                                <td>산타페</td>
-                                                <td>SUV</td>
-                                                <td>auto</td>
-                                                <td>5인</td>
-                                                <td>20,000원</td>
-                                                <td><div class="badge badge-primary">활성화</div></td>
-                                                <td>
-                                                    <button class="btn btn-outline-primary" data-toggle="modal" data-target="#ModalRtCarInfo">View</button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td>A 렌터카</td>
-                                                <td>산타페</td>
-                                                <td>SUV</td>
-                                                <td>auto</td>
-                                                <td>5인</td>
-                                                <td>20,000원</td>
-                                                <td><div class="badge badge-primary">활성화</div></td>
-                                                <td>
-                                                    <button class="btn btn-outline-primary" data-toggle="modal" data-target="#ModalRtCarInfo">View</button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>3</td>
-                                                <td>A 렌터카</td>
-                                                <td>산타페</td>
-                                                <td>SUV</td>
-                                                <td>auto</td>
-                                                <td>5인</td>
-                                                <td>20,000원</td>
-                                                <td><div class="badge badge-primary">활성화</div></td>
-                                                <td>
-                                                    <button class="btn btn-outline-primary" data-toggle="modal" data-target="#ModalRtCarInfo">View</button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>4</td>
-                                                <td>A 렌터카</td>
-                                                <td>산타페</td>
-                                                <td>SUV</td>
-                                                <td>auto</td>
-                                                <td>5인</td>
-                                                <td>20,000원</td>
-                                                
-                                                <td><div class="badge badge-secondary text-muted">비활성화</div></td>
-                                                <td>
-                                                    <button class="btn btn-outline-primary" data-toggle="modal" data-target="#ModalRtCarInfo">View</button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>5</td>
-                                                <td>A 렌터카</td>
-                                                <td>산타페</td>
-                                                <td>SUV</td>
-                                                <td>auto</td>
-                                                <td>5인</td>
-                                                <td>20,000원</td>
-                                                <td><div class="badge badge-secondary text-muted">비활성화</div></td>
-                                                <td>
-                                                    <button class="btn btn-outline-primary" data-toggle="modal" data-target="#ModalRtCarInfo">View</button>
-                                                </td>
-                                            </tr>
+                                        	<c:forEach var="vo" items="${list }" varStatus="i">
+	                                            <tr>
+	                                                <td>${vo.car_serial }</td>
+	                                                <td>${vo.company_name }</td>
+	                                                <td>${vo.car_name }</td>
+	                                                <td>${vo.car_kind }</td>
+	                                                <td>${vo.gear }</td>
+	                                                <td>${vo.max_people }인</td>
+	                                                <td>${vo.price }원</td>
+	                                                <td>
+														<c:if test="${vo.state eq 'n'}">
+		                                                	<div class="badge badge-secondary text-muted">비활성화</div>
+		                                                </c:if>
+		                                                <c:if test="${vo.state eq 'y'}">
+		                                                	<div class="badge badge-primary">활성화</div>
+		                                                </c:if>
+													</td>
+	                                                <td>
+	                                                    <button class="btn btn-outline-primary" data-toggle="modal" data-target="#ModalRtCarInfo">View</button>
+	                                                </td>
+	                                            </tr>
+                                            </c:forEach>
                                         </tbody>
                                     </table>
                                 </div>

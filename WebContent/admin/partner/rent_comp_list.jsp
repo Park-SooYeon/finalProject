@@ -27,7 +27,6 @@
                                                 <th>#</th>
                                                 <th>업체명</th>
                                                 <th>주소</th>
-                                                <th>총 보유대수</th>
                                                 <th>상태</th>
                                                 <th>Actions</th>
                                             </tr>
@@ -38,12 +37,11 @@
 	                                                <td>${i.count }</td>
 	                                                <td>${vo.company_name }</td>
 	                                                <td>${vo.address }</td>
-	                                                <td>${vo.car_cnt }대</td>
 	                                                <td>
-	                                                	<c:if test="${vo.state == 0}">
+	                                                	<c:if test="${vo.state eq 'n'}">
 		                                                	<div class="badge badge-secondary text-muted">비활성화</div>
 		                                                </c:if>
-		                                                <c:if test="${vo.state == 1}">
+		                                                <c:if test="${vo.state eq 'y'}">
 		                                                	<div class="badge badge-primary">활성화</div>
 		                                                </c:if>
 	                                                <td>

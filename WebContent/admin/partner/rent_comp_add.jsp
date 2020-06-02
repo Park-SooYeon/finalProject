@@ -18,7 +18,7 @@
                                         <label class="col-form-label">업체명 <span class="text-danger">*</span></label>
                                     </div>
                                     <div class="col-lg-8">
-                                        <input class="form-control" maxlength="50" name="admRtComptNm" id="admRtComptNm" type="text"> 
+                                        <input class="form-control" maxlength="50" name="company_name" id="company_name" type="text"> 
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -26,7 +26,7 @@
                                         <label class="col-form-label">연락처 <span class="text-danger">*</span></label>
                                     </div>
                                     <div class="col-lg-8">
-                                        <input class="form-control form-phone" data-inputmask-alias="(+99) 9999-9999" im-insert="true">
+                                        <input class="form-control form-phone" name="address" id="address" data-inputmask-alias="(+99) 9999-9999" im-insert="true">
 									</div>
                                 </div>
                                 <div class="form-group row">

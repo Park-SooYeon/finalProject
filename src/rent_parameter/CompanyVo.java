@@ -9,6 +9,8 @@ public class CompanyVo {
 	private int price;
 	private int cars_count;
 	
+	String state;
+	
 	public CompanyVo() {
 		
 	}
@@ -67,6 +69,14 @@ public class CompanyVo {
 
 	public void setCars_count(int cars_count) {
 		this.cars_count = cars_count;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
 	}
 	
 	
