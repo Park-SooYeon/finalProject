@@ -334,7 +334,7 @@ public class PtnHtCompController {
 		int serial = dao.getSerial(member_id);
 		vo.setPartner_serial(serial);
 		
-		int result = dao.modify(vo, list, delList, photoNum);
+		int result = dao.modify(vo, list, delList, photoNum, uploadPath);
 		
 		
 		// 업로드 파일 삭제 해주어야함
@@ -363,8 +363,9 @@ public class PtnHtCompController {
 		vo.setPartner_serial(serial);
 		vo.setPlace_serial(place_serial);
 		
+		String uploadPath = req.getSession().getServletContext().getRealPath("/assets/images/upload/");
 		List<UploadVo> delList = dao.getAttList(place_serial);
-		int result = dao.delete(vo, delList);
+		int result = dao.delete(vo, delList, uploadPath);
 		
 		mv.addObject("result", result);
 		mv.addObject("vo", vo);

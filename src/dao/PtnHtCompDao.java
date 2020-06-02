@@ -103,7 +103,7 @@ public class PtnHtCompDao {
 		}
 	}
 	
-	public int modify(PlaceVo vo, List<UploadVo> photoList, List<UploadVo> delList, String[] photoNum) {
+	public int modify(PlaceVo vo, List<UploadVo> photoList, List<UploadVo> delList, String[] photoNum, String uploadPath) {
 		int result = 0;
 		
 		try {
@@ -125,7 +125,7 @@ public class PtnHtCompDao {
 
 			
 			// 파일 삭제
-			delFile(delList);
+			delFile(delList, uploadPath);
 			
 			sqlSession.commit();
 			result = 1;
@@ -138,7 +138,7 @@ public class PtnHtCompDao {
 		}
 	}
 	
-	public int delete(PlaceVo vo, List<UploadVo> delList) {
+	public int delete(PlaceVo vo, List<UploadVo> delList, String uploadPath) {
 		int result = 0;
 		int cnt = 0;
 		try {
@@ -161,7 +161,7 @@ public class PtnHtCompDao {
 			//}
 			
 			// 파일 삭제
-			delFile(delList);
+			delFile(delList, uploadPath);
 			sqlSession.commit();
 		}catch(Exception ex) {
 			ex.printStackTrace();
@@ -186,12 +186,12 @@ public class PtnHtCompDao {
 	}
 	
 	// insert, modify에서 sql 오류가 발생할 때, 삭제할 때 공통 사용  	
-	public void delFile(List<UploadVo> delList) {
+	public void delFile(List<UploadVo> delList, String uploadPath) {
 		if(delList != null) {
 			System.out.println("delLIst : " + delList);
 			for(UploadVo upVo : delList) {
 				System.out.println("delete!");
-				File f = new File(controller.PtnHtCompController.filePath + upVo.getSysFile());
+				File f = new File(uploadPath + upVo.getSysFile());
 				System.out.println("f : " +f);
 				if(f.exists()) f.delete();
 			}

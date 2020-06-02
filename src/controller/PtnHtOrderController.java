@@ -54,12 +54,7 @@ public class PtnHtOrderController {
 		// booking serial 가져오기 
 		int serial = Integer.parseInt(req.getParameter("bserial"));
 		vo = dao.view(serial);
-		
-		
-		System.out.println("vo : " + vo.getBooking_serial());
-		System.out.println("vo : " + vo.getMember_id());
-		System.out.println("vo : " + vo.getMember_name());
-		
+
 		mv.addObject("vo", vo);
 		mv.setViewName("hotel_order_modal");
 		return mv;
@@ -78,15 +73,7 @@ public class PtnHtOrderController {
 		return mv;
 	}
 	
-	@RequestMapping(value="/admin/partner/hotel_order_delete.ph", method= {RequestMethod.GET, RequestMethod.POST}) 
-	public ModelAndView delete(HttpServletRequest req) {
-		ModelAndView mv = new ModelAndView();
-		Object vo = null; 
-		
-		mv.addObject("vo", vo);
-		mv.setViewName("hotel_order_list");
-		return mv;
-	}
+	
 	
 	
 }
