@@ -13,6 +13,12 @@ public class hotelBookingVo {
      Date checkout_date;
      Date cancle_date;
 	 String cancle_reason;
+	 
+	 String place_name; // 호텔명 
+	 String rooms_name; // 객실타입
+	 int price; // 가격 
+
+ 
 	public int getBooking_serial() {
 		return booking_serial;
 	}
@@ -72,6 +78,24 @@ public class hotelBookingVo {
 	}
 	public void setCancle_reason(String cancle_reason) {
 		this.cancle_reason = cancle_reason;
+	}
+	public String getPlace_name() {
+		return place_name;
+	}
+	public void setPlace_name(String place_name) {
+		this.place_name = place_name;
+	}
+	public String getRooms_name() {
+		return rooms_name;
+	}
+	public void setRooms_name(String rooms_name) {
+		this.rooms_name = rooms_name;
+	}
+	public int getPrice() {
+		return price;
+	}
+	public void setPrice(int price) {
+		this.price = price;
 	}
 	
 	

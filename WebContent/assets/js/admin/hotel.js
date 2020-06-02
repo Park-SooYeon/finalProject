@@ -178,7 +178,6 @@ ptn.func = function(){
 	}); // end of click event 
 	
 	
-	
 }
 
  
@@ -215,3 +214,42 @@ ptn.chk = function(){
 	}
 	
 }
+
+
+orderDtView = function(serial){	// 예약번호(booking_serial) 매개변수로 받아옴
+	$('#ModalHtOrderInfo').modal({
+		 // keyboard: false
+	})
+	let fd = new FormData($("#frmAdmHtCompAdd")[0]);	// object형태로 데이터 만들어짐.
+	
+	$.ajax({
+		url : "hotel_order_view.ph",// data를 던질 곳  
+		type : "post",
+		data : fd,	// data가 json타입으로 넘어감.
+		contentType : false,
+		processData : false,
+		error : function(xhr, status, error){
+			console.log(error);
+			Swal.fire({
+            	icon: 'error',
+            	//title: status + "--" + error + "--" + xhr.responseText,
+            	title: "오류가 발생했습니다.",
+            	showConfirmButton: true
+            });
+		},
+		success : function(data, status, xhr){
+			if(status == "success"){
+				
+				//location.href="?inc=hotel_comp_list.ph"
+			}else{
+				
+			}
+			
+		} // end of success
+	}); // end of ajax
+	/*$('#ModalHtOrderInfo').on('shown.bs.modal', function () {
+		alert("dasdsa");
+	 //$('#myInput').trigger('focus')
+	})*/
+}
+
