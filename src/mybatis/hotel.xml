@@ -4,47 +4,164 @@
 
 <mapper namespace="ht">
 
-<!-- 호텔 탑메뉴 진입시 예약가능한 호텔을 평점순으로 보여줌니당 -->
-<select id='mainNo'  resultType="bean.PlaceVo">
-select 
-		PLACE_SERIAL,PARTNER_SERIAL, PLACE_CODE, PLACE_NAME, 
-		PLACE_LOCATION, LATITUDE, LONGITUDE, GRADE,  STATE,
-	    LOCAL_CODE 
-from place 
-where place_code = 4 and local_code=1
+	<!-- 호텔 탑메뉴 진입시 예약불가능한 호텔을 보여줌니당 -->
+	<select id='mainNo' resultType="bean.PlaceVo">
+		select
+		PLACE_SERIAL,PARTNER_SERIAL, PLACE_NAME,
+		PLACE_LOCATION, LATITUDE,
+		LONGITUDE, STATE,
+		LOCAL_CODE,place_tel
+		from place
+        
 
 
 
+	</select>
 
-</select>
+	<select id='mainYes' resultType="bean.PlaceVo">
+		select
+		p.PLACE_SERIAL
+		,p.PARTNER_SERIAL,p.PLACE_NAME,
+		p.PLACE_LOCATION, p.LATITUDE,
+		p.LONGITUDE, p.STATE,
+		p.LOCAL_CODE,p.place_tel,max(ph.sysFile) sysFile
+		from place p, place_photo ph
 
-<select id='mainYes'  resultType="bean.PlaceVo">
-select 
-		p.PLACE_SERIAL ,p.PARTNER_SERIAL, p.PLACE_CODE,p.PLACE_NAME, 
-		p.PLACE_LOCATION, p.LATITUDE, p.LONGITUDE, p.GRADE,  p.STATE,
-	    p.LOCAL_CODE,p.place_tel,max(ph.orifile) oriFile
-from place p, place_photo ph
+		where p.PLACE_SERIAL = ph.PLACE_SERIAL and
+		partner_serial is not null
 
-where p.PLACE_SERIAL = ph.PLACE_SERIAL and place_code = 4  and partner_serial is not null 
-
-group by p.PLACE_SERIAL,p.PARTNER_SERIAL, p.PLACE_CODE,p.PLACE_NAME, 
-		p.PLACE_LOCATION, p.LATITUDE, p.LONGITUDE, p.GRADE,  p.STATE,
-	    p.LOCAL_CODE,p.place_tel
+		group by p.PLACE_SERIAL,p.PARTNER_SERIAL,
+		p.PLACE_NAME,
+		p.PLACE_LOCATION, p.LATITUDE, p.LONGITUDE, p.STATE,
+		p.LOCAL_CODE,p.place_tel
 
 
 
-</select>
+	</select>
 
-<!-- 
-<select id='mainReview' parameterType="String"  resultType="Integer">
- select case
-       when count(member_id)>0 then 1
-       else 0
-       end result 
- from membership 
- where member_id=#{member_id} and state != 3 and state !=2
+       <!-- 예약가능 -->
+	<select id='searchMainOK' parameterType="Integer" resultType="bean.PlaceVo">
+select
+		p.PLACE_SERIAL
+		,p.PARTNER_SERIAL,p.PLACE_NAME,
+		p.PLACE_LOCATION, p.LATITUDE,
+		p.LONGITUDE, p.STATE,p.wi_fi,p.PARKING,p.BREAKFAST,
+		p.LOCAL_CODE,p.place_tel,max(ph.sysFile) sysFile
+		
+		from  place p,PLACE_PHOTO ph
 
-</select>
- -->
- 
- </mapper>
+		where  local_code=#{local_code} and PARTNER_SERIAL is not null and p.PLACE_SERIAL=ph.PLACE_SERIAL
+		
+  
+		group by p.PLACE_SERIAL,p.PARTNER_SERIAL,
+		p.PLACE_NAME,
+		p.PLACE_LOCATION, p.LATITUDE, p.LONGITUDE,p.STATE,p.wi_fi,p.PARKING,p.BREAKFAST,		p.LOCAL_CODE,p.place_tel
+
+
+	</select>
+
+
+
+  <!-- 예약 불가능 -->
+	<select id='searchMainNo' parameterType="Integer" resultType="bean.PlaceVo">
+			select
+		PLACE_SERIAL,PARTNER_SERIAL, PLACE_NAME,
+		PLACE_LOCATION, LATITUDE,
+		LONGITUDE, STATE,
+		LOCAL_CODE,place_tel
+		from place
+		where local_code=#{local_code}
+        
+
+
+	</select>
+
+<select id='detailView' parameterType="Integer" resultType="bean.roomVo">
+					select
+		p.PLACE_SERIAL,
+		r.ROOMS_SERIAL,r.PEOPLE,r.PRICE,r.NO_SMOKE,r.OCEAN_VIEW,r.CITY_VIEW,r.MT_VIEW,r.PEOPLE
+		from place p,rooms r
+		where p.place_serial=r.PLACE_SERIAL 
+		       and   p.PLACE_SERIAL=#{place_serial}
+        
+	</select>
+
+
+<select id='detailViewHotel' parameterType="Integer" resultType="bean.PlaceVo">
+	   	select
+		PLACE_SERIAL,PARTNER_SERIAL, PLACE_NAME,
+		PLACE_LOCATION,LATITUDE,
+		LONGITUDE,STATE,
+		LOCAL_CODE,place_tel
+		from place
+		where PLACE_SERIAL=#{place_serial}
+        
+	</select>
+
+
+  
+  <select id='photo_list' parameterType='Integer' resultType="bean.roomPhotoVo">
+        SELECT rp.PHOTO_SERIAL, rp.ROOMS_SERIAL, rp.SYSFILE ,r.place_serial
+       FROM SCOTT.ROOOMS_PHOTO rp,rooms r
+     where rp.rooms_serial=r.rooms_serial and PLACE_SERIAL= #{place_serial}
+  </select>
+  
+
+
+
+	<select id='placeSelect' resultType="bean.PlaceVo" parameterType="hashMap">
+		SELECT p.PLACE_SERIAL, p.PARTNER_SERIAL, p.PLACE_NAME,
+		p.PLACE_LOCATION, p.LATITUDE,
+		p.LONGITUDE, p.STATE, p.BREAKFAST,
+		p.WI_FI, p.PARKING, p.LOCAL_CODE, p.PLACE_TEL,
+		max(ph.sysFile) sysFile
+
+		<foreach item="filter" index="index" collection="filter">
+			<choose>
+
+
+				<when test='filter == "" or filter == null '>
+					FROM place p left outer join place_photo ph
+				</when>
+				<when test='filter !="" or filter != null'>
+					FROM place p join place_photo ph
+				</when>
+			</choose>
+		</foreach>
+		on p.PLACE_SERIAL = ph.PLACE_SERIAL
+		<where>
+
+			<foreach item="local" index="index" collection="local">
+				
+					<if test='local != "" or local != null'>
+		
+						<foreach item="local" index="index" collection="local"
+							separator="or">
+							p.local_code=${local}
+						</foreach>
+					</if>
+           </foreach>
+
+
+			<foreach item="filter" index="index" collection="filter">
+				
+					<if test='filter != "" or filter != null'>
+						and p.partner_serial is not null and
+						<foreach item="filter" collection="filter" separator="and">
+							${filter}=1
+						</foreach>
+					</if>
+			
+			</foreach>
+
+
+
+		</where>
+		group by p.PLACE_SERIAL, p.PARTNER_SERIAL, p.PLACE_NAME,
+		p.PLACE_LOCATION, p.LATITUDE,
+		p.LONGITUDE, p.STATE, p.BREAKFAST,
+		p.WI_FI, p.PARKING, p.LOCAL_CODE, p.PLACE_TEL
+	</select>
+
+
+</mapper>

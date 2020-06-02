@@ -342,15 +342,20 @@ $(document).ready(function(){
     });
     
     
+    $('#review_insert').on('click', function(){
+    	$('#place_serial').val(place_serial);
+    	$('#review_insert_frm').submit();
+    })
     
     
     
+   /* 
     $('#review_insert').click(function(){
     	$("input[name=place_serial]").prop("disabled", false);
     	$('#place_serial').val(place_serial);
     	let review_insert = new FormData($('#review_insert_frm')[0]);
     	
-/*    	//폼데이터 안에 값 확인
+    	//폼데이터 안에 값 확인
     	for (var key of review_insert.keys()) {
 
     		  alert(key);
@@ -361,11 +366,11 @@ $(document).ready(function(){
 
     		  alert(value);
 	
-    		}*/
+    		}
     		
     	document.review_insert_frm.action="?inc=review_insertR.rv";    	
     	document.review_insert_frm.submit();
-    });
+    });*/
 });
     
 

@@ -63,6 +63,7 @@
     
     <script src="../../js/admin.js"></script>
     <script src="../../assets/js/admin/hotel.js"></script>
+    <script src="../../assets/js/admin/room.js"></script>
     
     <!-- 다음 우편번호 서비스 관련 js -->
 	<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -92,6 +93,7 @@
     }
 	
 	ptn.func();
+	room.func();
 	</script>
 </body>
 

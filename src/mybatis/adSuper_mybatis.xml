@@ -26,6 +26,7 @@
 	      <result column="review_title" property="review_title"/>
 	      <result column="review_content" property="review_content"/>
 	      <result column="review_serial" property="review_serial"/>
+	      <result column="review_type" property="review_type"/>
 	      <collection property="p"  javaType="bean.PlaceVo">
 	         <result column="place_serial" property="place_serial"/>
 	         <result column="place_code" property="place_code"/>
@@ -35,6 +36,25 @@
 	   </resultMap>
 	   
 	   
+	    <resultMap id="r_view" type="bean.ReviewVo">
+	      <result column="review_date" property="review_date"/>
+	      <result column="member_id" property="member_id"/>
+	      <result column="review_title" property="review_title"/>
+	      <result column="review_content" property="review_content"/>
+	      <result column="review_serial" property="review_serial"/>
+	      <result column="review_type" property="review_type"/>
+	      <collection property="photo"  javaType="bean.Review_PhotoVo">
+	         <result column="photo_name" property="photo_name"/>
+	         <result column="place_code" property="place_code"/>
+	      </collection>
+	      <collection property="report"  javaType="bean.ReportVo">
+	         <result column="report_serial" property="report_serial"/>
+	         <result column="report_code" property="report_code"/>
+	         <result column="report_content" property="report_content"/>
+	         <result column="report_date" property="report_date"/>
+	         <result column="report_id" property="report_id"/>
+	      </collection>
+	   </resultMap>
 	   
 	<!-- 회원조회 -->
 	<select id="select_member" resultType="bean.membershipVo">
@@ -140,18 +160,35 @@
     </select> -->
     
     <!-- 리뷰전체조회 페이징  -->
-       <select id="count" parameterType="bean.Page" resultType="Integer">
+    <!--     <select id="count" parameterType="bean.Page" resultType="Integer">
    			select count(R.review_serial)
             from  review R, place P
             where R.place_serial = P.place_serial
             and (R.review_serial like '%${findStr}%'
             or R.member_id like '%${findStr}%')
       
+   </select>  -->
+  	<select id="count" parameterType="bean.Page" resultType="Integer">
+   			select count(review_serial)
+            from  review
+            where (review_serial like '%${findStr}%'
+            or member_id like '%${findStr}%')
+      
    </select> 
     
-    
-    
     <select id="review_all" parameterType="bean.Page" resultMap="review_Vo">
+        select * from(
+         select rownum rno, M.* from(
+            select member_id,review_date ,review_serial, review_content , review_title, review_type
+            from  review
+            where (review_serial like '%${findStr}%'
+            or member_id like '%${findStr}%')
+            )M
+         ) 
+      where rno BETWEEN ${startNo} and ${endNo}
+    </select>
+    
+   <!--  <select id="review_all" parameterType="bean.Page" resultMap="review_Vo">
         select * from(
          select rownum rno, M.* from(
             select R.member_id,R.review_date ,R.review_serial, R.review_content , R.review_title,P.place_code
@@ -163,6 +200,18 @@
          ) 
       where rno BETWEEN ${startNo} and ${endNo}
       
-   </select>
+   </select> -->
    
+ 	<!-- 리뷰상세보기 -->
+ 		
+ 		<select id="review_view" parameterType="Integer" resultMap="r_view">
+		  select R.member_id, R.review_date, R.review_content, R.review_title,
+	               P.photo_serial , P.sysFile, P.review_serial,
+	               T.report_serial, T.report_code, T.report_content, T.report_date,T.report_id,T.review_serial         
+	      from  review R , review_photo P, report T 
+	      where R.review_serial = P.review_serial
+	      and   R.review_serial = T.review_serial
+	      and  R.review_serial = ${_parameter}
+	    </select>
+ 	  
 </mapper>

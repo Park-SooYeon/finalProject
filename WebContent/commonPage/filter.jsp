@@ -126,7 +126,7 @@
 	</div>
 	<hr/>
 	<div class="single-element-widget">
-	    <h4 class="mb-20">지역</h4>
+	    <h4 class="mb-20">지역</h4> 
 	    <div class="row col-md-12 nopadding">
 	    <div class="custom-control custom-checkbox col-md-12 col-4">
 		  <input type="checkbox" class="custom-control-input" name='local_type' id='check_seoul' onclick="filter.check(this)" value='1'/>

@@ -19,8 +19,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import bean.FollowListVo;
 import bean.LikeListVo;
+import bean.PlaceVo;
 import bean.ReviewVo;
 import bean.TripListVo;
 import bean.membershipVo;
@@ -76,9 +79,10 @@ public class MyPageController {
 
 	// 여행리스트, 관심리스트, 좋아요한 리뷰 보기 페이지
 	@RequestMapping( value = "mytrip.mp", method = {RequestMethod.GET, RequestMethod.POST})
-	public ModelAndView select(HttpServletRequest req, HttpServletResponse resp) {
+	public ModelAndView select(HttpSession session) {
 		mv = new ModelAndView();
-		List<TripListVo> list = dao.select();
+		String member_id = (String)session.getAttribute("member_id");
+		List<TripListVo> list = dao.select(member_id);
 		mv.setViewName("trip_list");
 		mv.addObject("list", list);
 		return mv;
@@ -234,6 +238,7 @@ public class MyPageController {
 	public String editProfile(HttpServletRequest request, membershipVo vo){
 		
 		String msg = "";
+		String fullpath = "";
 		MultipartFile imgFile = vo.getImgFile();
 		
 		if (!imgFile.isEmpty()) { // 파일이 있으면
@@ -245,19 +250,19 @@ public class MyPageController {
 	     
 	    String rename = onlyFileName + "_" + getCurrentDayTime() + extension; // fileName_20150721-14-07-50.jpg
 //	    String fullpath = request.getContextPath()+"/images/myPage/profile/"+rename;
-	    String fullpath  = request.getSession().getServletContext().getRealPath("images/myPage/profile/")+rename;
+	    fullpath  = request.getSession().getServletContext().getRealPath("images/myPage/")+rename;
 //	    String fullpath  = request.getSession().getServletContext().getContext("/").getRealPath("");
 	    //String testpath = request.getSession().getServletContext().getContext("/images").getRealPath("");
 	    
 	    System.out.println(fullpath);
 	    //System.out.println(testpath);
 	    // 실제로 들어갈 파일경로 + 파일명 
-	    	vo.setMember_photo(fullpath);
+	    	vo.setMember_photo(rename);
 	    } 
 	     
 	    // 파라미터로 전달받은 vo 프로퍼티 setting
 		System.out.println(vo.toString());
-		msg = dao.modifyProfile(vo,imgFile);
+		msg = dao.modifyProfile(vo,imgFile,fullpath);
 	    
 	    return msg;
 	}
@@ -312,14 +317,51 @@ public class MyPageController {
 		mv.addObject("list", list);
 		return mv;
 	}
-	
-	@RequestMapping( value = "editTrip.mp", method = {RequestMethod.GET, RequestMethod.POST})
-	public String editTrip() {
+
+	// 여행 커스터마이징 
+	@RequestMapping( value = "editTrip.mp", method = {RequestMethod.GET})
+	public ModelAndView editTrip(HttpServletRequest req, HttpSession session) {
 		mv = new ModelAndView();
-		return "edit_trip";
+		
+		// serial을 get타입으로 넘겨받음
+		int serial = Integer.parseInt(req.getParameter("se"));
+		String member_id = (String)session.getAttribute("member_id");
+		
+		TripListVo vo = dao.viewTrip(serial,member_id);
+		System.out.println("뭐징");
+		System.out.println(vo.toString());
+		mv.addObject("vo", vo);
+		mv.setViewName("edit_trip");
+		return mv;
 	}
 	
 	
+		@ResponseBody
+		@RequestMapping( value = "selectTrip.mp", method = {RequestMethod.GET}, produces = "text/html;charset=utf8")
+		public String selectTrip(HttpServletRequest req, HttpSession session) {
+
+			System.out.println("들어옴");
+			// serial을 get타입으로 넘겨받음
+			int serial = Integer.parseInt(req.getParameter("serial"));
+			String member_id = (String)session.getAttribute("member_id");
+			
+			List<PlaceVo> list = dao.selectOneLike(serial,member_id);
+			System.out.println("뭐징");
+			System.out.println(list.toString());
+			String jsonVo = "";
+			
+			try {
+			ObjectMapper mapper = new ObjectMapper();
+			jsonVo = mapper.writeValueAsString(list);
+			System.out.println(jsonVo);
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+			return jsonVo;
+		}
+		
+		
 	// 파일명 만들어줄때 필요한 날짜변환 함수
 	public String getCurrentDayTime(){
 	    long time = System.currentTimeMillis();

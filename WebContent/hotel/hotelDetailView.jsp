@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>	
+	
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,71 +9,50 @@
 <script src="./js/festival_detail.js"></script>
 <script src="./js/main.js"></script>
 <script src='./lib/jquery-3.4.1.js'></script>
+<script src="./swiper-5.3.8/package/js/swiper.min.js"></script>
 <script type="text/javascript"
 	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a8effece1d8215cec0ceddf314763998&libraries=services,clusterer"></script>
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <link rel="stylesheet" href="css/detail_view.css">
-<script>
-let reserveMove = function() {
-	location.href = './?inc=hotel/reservation.jsp';
-}
 
-
-</script>
 
 </head>
 <body>
 	<!-- top.jsp -->
-	<section class="banner-area relative" >
-		<div class="container pt-50 mb-30">
-			<div class="row d-flex justify-content-center align-items-center"
-				style="height: 400px">
-				<div class="menu-content col-lg-8">
-					<div class="title text-center">
-						<h1 class="text-white mb-10">호텔 메인</h1>
-						<form method="post" name="frm_ms" id="frm_ms" class="row">
-							<div class="col-lg-4  ">
-								<input type="text" class="form-control" name="name"
-									placeholder="From " onfocus="this.placeholder = ''"
-									onblur="this.placeholder = 'From '">
-							</div>
-							<div class="col-lg-4  ">
-								<input type="text" id="datePickInput"
-									class="form-control  datepicker-here" data-range="true"
-									data-position="right top" data-language="kr"
-									data-multiple-dates-separator=" - " name="start"
-									placeholder="Start " onfocus="this.placeholder = ''"
-									onblur="this.placeholder = 'Start '">
-							</div>
-
-							<div class="col-lg-2  ">
-								<input type="number" min="1" max="20" class="form-control"
-									name="adults" placeholder="인원 " onfocus="this.placeholder = ''"
-									onblur="this.placeholder = 'Adults '">
-							</div>
-
-
-							<button class="btn btn-primary" style="width: 15%; height: 40px;"
-								type="submit">
-								<i class="fa fa-search"></i>
-							</button>
-
-						</form>
+	<section class="banner-area relative">
+	<div class="container pt-50 mb-30">
+		<div class="row d-flex justify-content-center align-items-center"
+			style="height: 250px">
+			<div class="menu-content col-lg-8">
+				<div class="title text-center">
+					<h1 class="text-white mb-10">호텔</h1>
+					<div class="ui-widget" style="display: flex;">
+						<input id="mainFindStr" type="text"
+							placeholder="지역 또는 검색어를 입력해주세요!" onfocus="this.placeholder = ''"
+							onblur="this.placeholder = '지역 또는 검색어를 입력해주세요!'"
+							class="single-input">
+						<button id="mainSearch" class="btn btn-primary"
+							style="width: 15%; height: 40px;">
+							<i class="fa fa-search"></i>
+						</button>
 					</div>
 				</div>
 			</div>
 		</div>
-
-
-	</section>
+	</div>
+</section>
 	
 	<!--  -->
+	
+	<input type="text" id="place_serial" name="place_serial" value="${param.place_serial }">
+	
+	
 	<form name='frm_review' id='frm_review' method='post'
 		class='frm_review'>
 		<br /> <br /> <br />
 		<div class='container'>
 			<div class="title1" style="margin-bottom: 10px">
-				<h2>맛있는 치킨집</h2>
+				<h2>${vo.place_name}</h2>
 			</div>
 			<div class="float-right" style="display: flex">
 				<div class="p-1 heart" onclick="main.like(this)">
@@ -112,8 +93,7 @@ let reserveMove = function() {
 					<!-- data-rate에 별점을입력(평균별점입력5를넘기지않아야함) -->
 					<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
 						class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-						class="fa fa-star" style="margin-right: 10px;"></i> <span>4건의
-						리뷰</span> <span>Type , World , menu , Local , Price </span>
+						class="fa fa-star" style="margin-right: 10px;"></i>
 				</div>
 
 
@@ -121,17 +101,11 @@ let reserveMove = function() {
 
 			<div class='preinfo' style='font-size: 18px'>
 				<span><i class="fa fa-location-arrow"
-					style="margin-right: 3px; margin-bottom: 10px" aria-hidden="true"></i>주소:
-					서울트윽벼얼시 조오옹로구우 </span> <span><i class="fa fa-mobile"
-					style="margin-right: 3px" aria-hidden="true"></i>연락처: 02-222-2222</span><br />
-				<div class="clearfix">
-					<i class="fa fa-desktop" style="margin-right: 3px"
-						aria-hidden="true"></i>홈페이지 <a
-						href='http://localhost:8888/review/review.jsp'
-						style="margin-right: 5px">http://localhost:8888/review/review.jsp</a>
-					<span><i class="fa fa-clock-o" style="margin-right: 3px"
-						aria-hidden="true"></i>오픈:10:00, 마감22:00 ,휴일 (일요일)</span>
-				</div>
+					style="margin-right: 3px; margin-bottom: 10px" aria-hidden="true">
+					</i>${vo.place_location } </span> <span>
+					<i class="fa fa-mobile" style="margin-right: 3px" aria-hidden="true">
+					</i>${vo.place_tel }</span><br />
+			
 
 			</div>
 			<div class="info row justify-content-center mb-5">
@@ -139,124 +113,69 @@ let reserveMove = function() {
 					<!-- 큰사이즈에서 8 스몰에서 12 -->
 					<!-- Swiper -->
 					<div class="swiper-container gallery-top">
+			<c:forEach var='i' items='${photoList}'>	
+					<div class="swiper-container gallery-thumbs">
 						<div class="swiper-wrapper">
-							<img class="swiper-slide" src="./images/festival/1.png"
-								style="cursor: pointer;" /> <img class="swiper-slide"
-								src="./images/festival/2.png" style="cursor: pointer;" /> <img
-								class="swiper-slide" src="./images/festival/3.png"
-								style="cursor: pointer;" /> <img class="swiper-slide"
-								src="./images/festival/4.png" style="cursor: pointer;" /> <img
-								class="swiper-slide" src="./images/festival/5.png"
-								style="cursor: pointer;" /> <img class="swiper-slide"
-								src="./images/festival/6.png" style="cursor: pointer;" /> <img
-								class="swiper-slide" src="./images/festival/7.png"
-								style="cursor: pointer;" /> <img class="swiper-slide"
-								src="./images/festival/8.png" style="cursor: pointer;" /> <img
-								class="swiper-slide" src="./images/festival/9.png"
-								style="cursor: pointer;" /> <img class="swiper-slide"
-								src="./images/festival/10.png" style="cursor: pointer;" />
+							 <img class="swiper-slide"
+								src="./assets/images/upload/${i.sysFile}" style="cursor: pointer;" />
 						</div>
+					</div>
+                </c:forEach>
+				
+ 
 						<!-- Add Arrows -->
 						<div class="swiper-button-next swiper-button-white"></div>
 						<div class="swiper-button-prev swiper-button-white"></div>
 					</div>
+					
+		 <c:forEach var='i' items='${photoList}'>	
 					<div class="swiper-container gallery-thumbs">
 						<div class="swiper-wrapper">
-							<img class="swiper-slide" src="./images/festival/1.png"
-								style="cursor: pointer;" /> <img class="swiper-slide"
-								src="./images/festival/2.png" style="cursor: pointer;" /> <img
-								class="swiper-slide" src="./images/festival/3.png"
-								style="cursor: pointer;" /> <img class="swiper-slide"
-								src="./images/festival/4.png" style="cursor: pointer;" /> <img
-								class="swiper-slide" src="./images/festival/5.png"
-								style="cursor: pointer;" /> <img class="swiper-slide"
-								src="./images/festival/6.png" style="cursor: pointer;" /> <img
-								class="swiper-slide" src="./images/festival/7.png"
-								style="cursor: pointer;" /> <img class="swiper-slide"
-								src="./images/festival/8.png" style="cursor: pointer;" /> <img
-								class="swiper-slide" src="./images/festival/9.png"
-								style="cursor: pointer;" /> <img class="swiper-slide"
-								src="./images/festival/10.png" style="cursor: pointer;" />
+							 <img class="swiper-slide"
+								src="./assets/images/upload/${i.sysFile}" style="cursor: pointer;" />
 						</div>
 					</div>
-
-					<div>
-						<h3>평가</h3>
-						<div class="clearfix" style='margin-top: 5px'>
-							<ul class='float-left'>
-								<li><i class="fa fa-cutlery" style="margin-right: 3px"></i>음식</li>
-								<li><i class="fa fa-share-alt" style="margin-right: 3px"
-									aria-hidden="true"></i>서비스</li>
-								<li><i class="fa fa-krw" style="margin-right: 3px"
-									aria-hidden="true"></i>가격</li>
-							</ul>
-							<ul class="float-right">
-								<li>
-									<div class='rating' data-rate='1'>
-										<!-- data-rate에 별점을입력(5초과금지) -->
-										<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-											class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-											class="fa fa-star"></i>
-									</div>
-								</li>
-								<li>
-									<div class='rating' data-rate='2'>
-										<!-- data-rate에 별점을입력(5초과금지) -->
-										<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-											class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-											class="fa fa-star"></i>
-									</div>
-								</li>
-								<li>
-									<div class='rating' data-rate='3'>
-										<!-- data-rate에 별점을입력(5초과금지) -->
-										<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-											class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-											class="fa fa-star"></i>
-									</div>
-								</li>
-
-							</ul>
-						</div>
-
+                </c:forEach>
+				
+ 
+ 
+						
 						<div>
+			 <c:forEach var='list' items='${list}'>	
+			      
 							<div class="col-md-12" id="hotel_list" style="padding-top: 10px;">
-								<div class="row">
-
+								<div class="row" style="margin:10px;">
 									<div class="col-md-6">
-
-										<img src="template/img/packages/d4.jpg" alt="">
+										<img src="assets/images/upload/${photoList[0].sysFile}">
 									</div>
 									<div class="col-md-6">
-										<h3>디럭스
-											 &nbsp;&nbsp;
-											 <span class="badge badge photel">예약
-												가능</span>
-										</h3>
-										<label>위치</label> <br>
-
+									  <c:if test="${list.rooms_name==1 }">
+										<h3>디럭스</h3>
+									   </c:if>
+									   <c:if test="${list.rooms_name==2 }">
+										<h3>패밀리</h3>
+									   </c:if>
+									   <c:if test="${list.rooms_name==3 }">
+										<h3>스위트</h3>
+									   </c:if>
 										<div class="tags">
 											<div>
-												<span class="badge badge-info">마운틴뷰</span> <span
-													class="badge badge-info">시티뷰</span>
+											
+											 <c:if test="${list.mt_view ==1 }">
+												<span class="badge badge-info">마운틴뷰</span> 
+												</c:if>
+												
+												 <c:if test="${list.city_view ==1 }">
+												<span class="badge badge-info">시티뷰</span>
+												</c:if>
+												
+												 <c:if test="${list.ocean_view ==1 }">
+												<span class="badge badge-info">오션뷰</span>
+												</c:if>
+												
 											</div>
-
-											<div class="clearfix" style='margin-top: 5px'>
-												<ul>
-													<li>
-														<div class='rating' data-rate='1'>
-															<!-- data-rate에 별점을입력(5초과금지) -->
-															<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-																class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-																class="fa fa-star"></i>
-														</div>
-													</li>
-												</ul>
-											</div>
-
-
-
-
+                                          <p>1박    ${list.price} 원</p>
+                                          <p>수용 가능 인원수 : ${list.people}</p>
 
 										 <input type="button"
 												class="genric-btn info min-width-180 pull-right  "
@@ -264,196 +183,46 @@ let reserveMove = function() {
 										</div>
 									</div>
 
-
 								</div>
 							</div>
-
 
 							<br/>
-<div class="col-md-12" id="hotel_list" style="padding-top: 10px;">
-								<div class="row">
+              </c:forEach>
 
-									<div class="col-md-6">
+									
+									
 
-										<img src="template/img/packages/d4.jpg" alt="">
-									</div>
-									<div class="col-md-6">
-										<h3>디럭스
-											 &nbsp;&nbsp;
-											 <span class="badge badge photel">예약
-												가능</span>
-										</h3>
-										<label>위치</label> <br>
-
-										<div class="tags">
-											<div>
-												<span class="badge badge-info">마운틴뷰</span> <span
-													class="badge badge-info">시티뷰</span>
-											</div>
-
-											<div class="clearfix" style='margin-top: 5px'>
-												<ul>
-													<li>
-														<div class='rating' data-rate='1'>
-															<!-- data-rate에 별점을입력(5초과금지) -->
-															<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-																class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-																class="fa fa-star"></i>
-														</div>
-													</li>
-												</ul>
-											</div>
-
-
-
-
-
-										 <input type="button"
-												class="genric-btn info min-width-180 pull-right  "
-												value="예약하러 가기" id="btnReserv" onclick="reserveMove()">
-										</div>
-									</div>
-
-
-								</div>
-							</div>
-							<br/>
-							
-							<div class="col-md-12" id="hotel_list" style="padding-top: 10px;">
-								<div class="row">
-
-									<div class="col-md-6">
-
-										<img src="template/img/packages/d4.jpg" alt="">
-									</div>
-									<div class="col-md-6">
-										<h3>스위트
-											 &nbsp;&nbsp;
-											 <span class="badge badge photel">예약
-												가능</span>
-										</h3>
-										<label>위치</label> <br>
-
-										<div class="tags">
-											<div>
-												<span class="badge badge-info">마운틴뷰</span> <span
-													class="badge badge-info">시티뷰</span>
-											</div>
-
-											<div class="clearfix" style='margin-top: 5px'>
-												<ul>
-													<li>
-														<div class='rating' data-rate='1'>
-															<!-- data-rate에 별점을입력(5초과금지) -->
-															<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-																class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-																class="fa fa-star"></i>
-														</div>
-													</li>
-												</ul>
-											</div>
-
-
-
-
-
-										 <input type="button"
-												class="genric-btn info min-width-180 pull-right  "
-												value="예약하러 가기" id="btnReserv" onclick="reserveMove()">
-										</div>
-									</div>
-
-
-								</div>
-							</div>
-
-
-						</div>
-
-					</div>
+			</div>
+	
+				
+					
+					
+					
+					
+					
+					
+					
+					
+					
 					<br />
+					
 					<div id="sw-map" style="width: 100%; height: 400px;"></div>
 				</div>
 			</div>
+			
+			
+			
+			
+			
 			<div class="row">
 				<div class="col-12 pt-3"
 					style='height: 70px; border-top: 1px solid black;'>
-					<h3 style='float: left'>리뷰(2)</h3>
+					<h3 style='float: left'>리뷰</h3>
 					<input class="btn btn-primary float-right" onclick="insertMove()"
 						type='button' id='review' name='review' value='리뷰작성' />
 
 				</div>
 
-				<div class="col-12">
-					<span
-						style='display: inline-block; margin-bottom: 10px; font-size: larger'>여행자
-						평가</span><br />
-					<div class="custom-control custom-checkbox">
-						<input type="checkbox" class="custom-control-input" name='5'
-							id='5' value='star5' /> <label
-							class="custom-control-label float-left mr-3" for="5">최고였어요</label>
-						<div class="progress">
-							<div class="progress-bar progress-bar-striped float-right"
-								role="progressbar" style="width: 10%" aria-valuenow="10"
-								aria-valuemin="0" aria-valuemax="100"></div>
-						</div>
-					</div>
-					<div class="custom-control custom-checkbox">
-						<input type='checkbox' class="custom-control-input" name='4'
-							id='4' value='star4' /> <label
-							class="custom-control-label float-left mr-3" for="4">좋았어요...</label>
-						<div class="progress">
-							<div class="progress-bar progress-bar-striped float-right"
-								role="progressbar" style="width: 20%" aria-valuenow="20"
-								aria-valuemin="0" aria-valuemax="100"></div>
-						</div>
-					</div>
-					<div class="custom-control custom-checkbox">
-						<input type='checkbox' class="custom-control-input" name='3'
-							id='3' value='star3'> <label
-							class="custom-control-label float-left mr-3" for="3">평범했어요</label>
-						<div class="progress">
-							<div class="progress-bar progress-bar-striped float-right"
-								role="progressbar" style="width: 30%" aria-valuenow="30"
-								aria-valuemin="0" aria-valuemax="100"></div>
-						</div>
-					</div>
-					<div class="custom-control custom-checkbox">
-						<input type='checkbox' class="custom-control-input" name='2'
-							id='2' value='stra2'> <label
-							class="custom-control-label float-left mr-3" for="2">별로였어요</label>
-						<div class="progress">
-							<div class="progress-bar progress-bar-striped float-right "
-								role="progressbar" style="width: 40%" aria-valuenow="40"
-								aria-valuemin="0" aria-valuemax="100"></div>
-						</div>
-					</div>
-					<div class="custom-control custom-checkbox">
-						<input type='checkbox' class="custom-control-input" name='1'
-							id='1' value='stra1'> <label
-							class="custom-control-label float-left mr-3" for="1">실망했어요</label>
-						<div class="progress">
-							<div class="progress-bar progress-bar-striped float-right "
-								role="progressbar" style="width: 50%" aria-valuenow="50"
-								aria-valuemin="0" aria-valuemax="100"></div>
-						</div>
-					</div>
-				</div>
-
-				<br />
-
-				<div class="col-12 mt-2 ">
-					<h5>여행자 리뷰 보기:</h5>
-					<div class="form-row mt-3">
-						<input type='text' class="form-control col-11 " id='find'
-							name='find' value='' placeholder="검색하실 리뷰를 작성해주세요........."
-							style="height: fit-content;">
-						<button class="form-group btn btn-primary col-1" id='findStr'
-							name='findStr'>
-							<i class="fa fa-search"></i>
-						</button>
-					</div>
-				</div>
 			</div>
 			<div class="row border-bottom py-3">
 				<div class="col-2">
@@ -628,46 +397,7 @@ let reserveMove = function() {
 						</div>
 					</div>
 
-					<!-- paging -->
-
-					<%--
-		스프링 셋팅 후  	
-		<div id='page' class='text-center mt-1'>
-			<c:if test="${page.nowPage >1}">
-				<input type='button' value='이전' onclick='goPage(${page.nowPage -1})' class='btn-sm btn-ok' />
-			</c:if>
-
-			<c:forEach var="i" begin="${page.startPage }" end="${page.endPage }">
-				<input type='button' value='${i }' class='${ (i== page.nowPage)? "btn-sm btn-sw" : "btn-sm btn-ok" }' onclick='goPage(${i })' />
-			</c:forEach>
-
-			<c:if test="${page.nowPage<page.totPage }">
-				<input type='button' value='다음' onclick='goPage(${page.nowPage +1})' class='btn-sm btn-ok' />
-			</c:if>
-		</div>
-	--%>
-					<!-- 스프링 셋팅 전 -->
-					<div
-						class="col-md-12 blog-pagination justify-content-center d-flex">
-						<ul class="pagination">
-							<li class="page-item"><a href="#" class="page-link"
-								aria-label="Previous"> <span aria-hidden="true"> <span
-										class="lnr lnr-chevron-left"></span>
-								</span>
-							</a></li>
-							<li class="page-item"><a href="#" class="page-link">01</a></li>
-							<li class="page-item active"><a href="#" class="page-link">02</a></li>
-							<li class="page-item"><a href="#" class="page-link">03</a></li>
-							<li class="page-item"><a href="#" class="page-link">04</a></li>
-							<li class="page-item"><a href="#" class="page-link">09</a></li>
-							<li class="page-item"><a href="#" class="page-link"
-								aria-label="Next"> <span aria-hidden="true"> <span
-										class="lnr lnr-chevron-right"></span>
-								</span>
-							</a></li>
-						</ul>
-					</div>
-					<!-- 페이징 -->
+		
 
 				</div>
 				<!-- 리뷰내용 -->

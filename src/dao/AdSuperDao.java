@@ -201,15 +201,32 @@ public class AdSuperDao {
 						p.setTotListSize(totList);
 						p.pageCompute();
 						list = sqlSession.selectList("admin.review_all", p);
+						
 //						for(ReviewVo vo : list) {
 //							System.out.println(vo.toString());
 //							
 //						}
+						
 					}catch(Exception ex) {
 						ex.printStackTrace();
 					}finally {
 						return list;
 					}
 				}	
+				
+				//리뷰상세보기 -조회
+				public ReviewVo review_view(int review_serial) {
+					System.out.println("dao_review_serial"+review_serial);
+					ReviewVo vo = null;
+					try {
+						vo = sqlSession.selectOne("admin.review_view",review_serial);
+					}catch(Exception ex) {
+						ex.printStackTrace();
+					}finally {
+						return vo;
+					}
+				}
+						
+				
 				
 }

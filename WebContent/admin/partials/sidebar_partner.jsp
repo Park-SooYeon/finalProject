@@ -1,5 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%
+	
+	//HttpSession session  = request.getSession();
+	String member_id = (String) session.getAttribute("member_id");
+	
+
+%>
     <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <ul class="nav">
             <li class="nav-item nav-profile">
@@ -9,8 +18,8 @@
                         <div class="dot-indicator bg-success"></div>
                     </div>
                     <div class="text-wrapper">
-                        <p class="profile-name">Allen Moreno</p>
-                        <p class="designation">Premium user</p>
+                        <p class="profile-name">${member_id }</p>
+                        <p class="designation">Partner</p>
                     </div>
                 </a>
             </li>

@@ -1,13 +1,18 @@
 package controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import dao.PtnHtCompDao;
 import dao.PtnRtCompDao;
+import rent_parameter.CompanyVo;
 
 @Controller
 public class PtnRtCompController {
@@ -21,9 +26,16 @@ public class PtnRtCompController {
 	@RequestMapping(value="/admin/partner/rent_comp_list.pr", method= {RequestMethod.GET, RequestMethod.POST}) 
 	public ModelAndView select(HttpServletRequest req) {
 		ModelAndView mv = new ModelAndView();
-		Object vo = null; 
+		// 세션 id 가져오기
+		HttpSession session  = req.getSession();
+		String member_id = (String) session.getAttribute("member_id");
+		// 세션 아이디로 파트너 시리얼 가져오기
+		PtnHtCompDao compDao = new PtnHtCompDao();
+		int serial = compDao.getSerial(member_id);
+
+		List<CompanyVo> list = dao.select(serial);
 		
-		mv.addObject("vo", vo);
+		mv.addObject("list", list);
 		mv.setViewName("rent_comp_list");
 		return mv;
 	}

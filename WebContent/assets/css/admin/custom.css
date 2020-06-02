@@ -181,3 +181,14 @@ div.dt-buttons {
 
 .navbar.default-layout .navbar-brand-wrapper .navbar-brand.brand-logo img {width: 140px;}
 
+
+.img-lg {
+    width: 92px !important;
+    min-width: 92px !important;
+    height: 92px !important;
+}
+.img-xl {
+    width: 145px !important;
+    min-width: 145px !important;
+    height: 145px !important;
+}

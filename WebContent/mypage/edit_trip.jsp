@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
   <head>
@@ -94,126 +96,48 @@
     </header>
     <!-- #header -->
 
+<!-- 
+	<fmt:parseDate var="start_date" value="${vo.start_date }" pattern="yyyy-MM-dd"/>
+	<fmt:parseDate var="end_date" value="${vo.end_date }" pattern="yyyy-MM-dd"/>
+	<fmt:parseNumber var="start_date_N" value="${vo.start_date }" integerOnly="true"/>
+	<fmt:parseNumber var="end_date_N" value="${vo.end_date }" integerOnly="true"/>
+	 -->
+	
     <div class="my-main-wrapper">
       <div class="my-main-side">
         <div class="date-box">
-            <div id="edit-day"><i class="far fa-calendar-alt"></i> 05.6 ~ 05.13</div>
+        
+        	<input type="hidden" id="start_hidden" value="${vo.start_date }">
+        	<input type="hidden" id="end_hidden" value="${vo.end_date }">
+        	<input type="hidden" id="cnt_hidden" value="${vo.another_days}">
+        
+            <div id="edit-day"><i class="far fa-calendar-alt"></i> 
+            <c:if test="${empty vo.start_date }">
+            	총 여행 일수 : ${vo.days_count} 일
+            </c:if>
+            
+            <c:if test="${vo.days_count == 0 }">
+            ${vo.start_date } ~ ${vo.end_date}
+            </c:if>
+            
+            </div>
           <div class="show-all-day text-center">전체 일정 보기</div>
         </div>
         <ul class="plan-category">
-          <li
-            data="1"
-            data-date="05.06"
-            data-day_week="3"
-            data-f_ci="310"
-            data-f_lat="37.56653500"
-            data-f_lng="126.97796920"
-            original-title="서울"
-          >
+        
+        <c:forEach var="i" begin="1" end="${vo.another_days }">
+          <li>
             <div class="cat-date-left-box">
-              <div class="cat-left-day">DAY1</div>
-              <div class="cat-left-date">05.06</div>
+              <div class="cat-left-day">DAY ${i }</div>
             </div>
             <div class="cat-date-right-box">
-              <div class="cat-right-weekday">수요일</div>
-              <div class="cat-right-city">서울</div>
+              <div class="cat-left-date-${i } pr-2 trip-date" style="color: #49b2e9;"></div>
+              <div class="cat-right-weekday-${i } trip-day"></div>
             </div>
           </li>
+         </c:forEach>
 
-          <li
-            data="1"
-            data-date="05.06"
-            data-day_week="3"
-            data-f_ci="310"
-            data-f_lat="37.56653500"
-            data-f_lng="126.97796920"
-            original-title="서울"
-          >
-            <div class="cat-date-left-box">
-              <div class="cat-left-day">DAY2</div>
-              <div class="cat-left-date">05.07</div>
-            </div>
-            <div class="cat-date-right-box">
-              <div class="cat-right-weekday">목요일</div>
-              <div class="cat-right-city">서울</div>
-            </div>
-          </li>
 
-          <li
-            data="1"
-            data-date="05.06"
-            data-day_week="3"
-            data-f_ci="310"
-            data-f_lat="37.56653500"
-            data-f_lng="126.97796920"
-            original-title="서울"
-          >
-            <div class="cat-date-left-box">
-              <div class="cat-left-day">DAY3</div>
-              <div class="cat-left-date">05.08</div>
-            </div>
-            <div class="cat-date-right-box">
-              <div class="cat-right-weekday">금요일</div>
-              <div class="cat-right-city">서울</div>
-            </div>
-          </li>
-
-          <li
-            data="1"
-            data-date="05.06"
-            data-day_week="3"
-            data-f_ci="310"
-            data-f_lat="37.56653500"
-            data-f_lng="126.97796920"
-            original-title="서울"
-          >
-            <div class="cat-date-left-box">
-              <div class="cat-left-day">DAY4</div>
-              <div class="cat-left-date">05.09</div>
-            </div>
-            <div class="cat-date-right-box">
-              <div class="cat-right-weekday">토요일</div>
-              <div class="cat-right-city">서울</div>
-            </div>
-          </li>
-
-          <li
-            data="1"
-            data-date="05.06"
-            data-day_week="3"
-            data-f_ci="310"
-            data-f_lat="37.56653500"
-            data-f_lng="126.97796920"
-            original-title="서울"
-          >
-            <div class="cat-date-left-box">
-              <div class="cat-left-day">DAY5</div>
-              <div class="cat-left-date">05.10</div>
-            </div>
-            <div class="cat-date-right-box">
-              <div class="cat-right-weekday">일요일</div>
-              <div class="cat-right-city">서울</div>
-            </div>
-          </li>
-
-          <li
-            data="1"
-            data-date="05.06"
-            data-day_week="3"
-            data-f_ci="310"
-            data-f_lat="37.56653500"
-            data-f_lng="126.97796920"
-            original-title="서울"
-          >
-            <div class="cat-date-left-box">
-              <div class="cat-left-day">DAY6</div>
-              <div class="cat-left-date">05.11</div>
-            </div>
-            <div class="cat-date-right-box">
-              <div class="cat-right-weekday">월요일</div>
-              <div class="cat-right-city">서울</div>
-            </div>
-          </li>
         </ul>
         <div class="cat-add-box">
           <div onclick="add_plan_day()">DAY 추가</div>
@@ -227,7 +151,7 @@
         <div class="title-box">
           <div id="schedule_detail_title" data-date="05-06" style="display: block;">
             <div class="schedule_detail_title_text">
-              DAY1 <span style="color: #999999;"> | </span> 05.06(수요일)
+              <span id="result-date" style="color: #fff;"></span>
               <button type="button" class="toggle-on"><h4><i class="fas fa-caret-down"></i></h4></button>
             </div>
             <div style="position: relative;">
@@ -424,22 +348,6 @@
               </div>
             </div>
 
-            <div class="form-check-inline" style="margin-bottom: 7px;">
-              <div class="d-flex" style="padding: 0 15px;">
-                <div class="primary-radio">
-                  <input type="radio" id="primary-radio" />
-                  <label class="custom-radio" for="primary-radio"></label>
-                </div>
-                <span class="radio-trip-option">&nbsp;도시 내 검색&nbsp;</span>
-              </div>
-              <div class="d-flex" style="padding: 0 15px;">
-                <div class="primary-radio">
-                  <input type="radio" id="primary-radio" checked />
-                  <label class="custom-radio" for="primary-radio"></label>
-                </div>
-                <span class="radio-trip-option">&nbsp;전체 검색&nbsp;</span>
-              </div>
-            </div>
           </div>
           <div class="list-category-wrapper">
             <div class="list-category-box pt-2">
@@ -460,59 +368,7 @@
         </div>
 
         <div class="list-box connectedSortable">
-          <div
-            class="day-spot-item ui-draggable"
-            data="0"
-            data-set_day="0"
-            data-rel_srl="845972"
-            data-pl_type="0"
-            data-no="0"
-            data-pl_cat="301"
-            data-ci="10907"
-          >
-            <div class="img-box fl">
-              <img src="./images/myPage/place2.jpg" />
-            </div>
-            <div class="info-box">
-              <div class="info-title">우리집</div>
-              <div class="small info-small">자연경관</div>
-              <div class="like-cnt-info">
-                <i class="fab fa-gratipay" style="color: rgb(253, 123, 145);"></i> 13 |
-                <i class="far fa-thumbs-up" style="color: #1a7ad9;"></i> 15
-              </div>
-              <!-- <div class="small info-small include_pn_day" style="color: #1a7ad9;">DAY1</div>  -->
-            </div>
-            <div class="spot-to-inspot">
-              <img class="add-icon" src="./images/myPage/interface.png"></img>
-            </div>
-          </div>
 
-          <div
-            class="day-spot-item ui-draggable"
-            data="0"
-            data-set_day="0"
-            data-rel_srl="845972"
-            data-pl_type="0"
-            data-no="0"
-            data-pl_cat="301"
-            data-ci="10907"
-          >
-            <div class="img-box fl">
-              <img src="./images/myPage/place3.jpg" />
-            </div>
-            <div class="info-box">
-              <div class="info-title">우리집앞</div>
-              <div class="small info-small">랜드마크</div>
-              <div class="like-cnt-info">
-                <i class="fab fa-gratipay" style="color: rgb(253, 123, 145);"></i> 13 |
-                <i class="far fa-thumbs-up" style="color: #1a7ad9;"></i> 15
-              </div>
-              <!-- <div class="small info-small include_pn_day" style="color: #1a7ad9;">DAY1</div>  -->
-            </div>
-            <div class="spot-to-inspot">
-              <img class="add-icon" src="./images/myPage/interface.png"/>
-            </div>
-          </div>
 
           <div
             class="day-spot-item ui-draggable"
@@ -531,8 +387,7 @@
               <div class="info-title">한강공원</div>
               <div class="small info-small">공원/정원</div>
               <div class="like-cnt-info">
-                <i class="fab fa-gratipay" style="color: rgb(253, 123, 145);"></i> 13 |
-                <i class="far fa-thumbs-up" style="color: #1a7ad9;"></i> 15
+                <i class="fab fa-gratipay" style="color: rgb(253, 123, 145);"></i> 13
               </div>
               <!-- <div class="small info-small include_pn_day" style="color: #1a7ad9;">DAY1</div>  -->
             </div>
@@ -554,22 +409,6 @@
           </div>
         </div>
 
-        <div class="form-check-inline" style="margin-bottom: 7px;">
-          <div class="d-flex" style="padding: 0 15px;">
-            <div class="primary-radio">
-              <input type="radio" id="primary-radio" />
-              <label class="custom-radio" for="primary-radio"></label>
-            </div>
-            <span class="radio-trip-option">&nbsp;도시 내 검색&nbsp;</span>
-          </div>
-          <div class="d-flex" style="padding: 0 15px;">
-            <div class="primary-radio">
-              <input type="radio" id="primary-radio" checked />
-              <label class="custom-radio" for="primary-radio"></label>
-            </div>
-            <span class="radio-trip-option">&nbsp;전체 검색&nbsp;</span>
-          </div>
-        </div>
       </div>
 
       <div id="mp-map" class="my-main-map" style="width: 100%; height: 100%;"></div>

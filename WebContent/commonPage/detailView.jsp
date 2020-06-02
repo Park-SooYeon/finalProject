@@ -42,7 +42,7 @@
 	<br/>
 	<div class='container'>
 		<div class="title1" style="margin-bottom:10px">
-		<%-- <h2>${vo.place_name }</h2> --%>
+		<h2>${vo.place_name}</h2>
 		</div>
 		<div class="float-right" style="display:flex">
   			<div class="p-1 heart" onclick="main.like(this)">
@@ -84,32 +84,32 @@
 		</div> --%>
 		
 		<div class='preinfo' style='font-size:18px'>
-			<%-- <span><i class="fa fa-location-arrow" style="margin-right: 3px; margin-bottom:10px"aria-hidden="true"></i>주소: ${vo.place_location }</span> --%>
-			<span><i class="fa fa-mobile"style="margin-right: 3px" aria-hidden="true"></i>연락처: 02-222-2222</span><br/>
+			<span><i class="fa fa-location-arrow" style="margin-right: 3px; margin-bottom:10px"aria-hidden="true"></i>주소: ${vo.place_location }</span>
+			<%-- <span><i class="fa fa-mobile"style="margin-right: 3px" aria-hidden="true"></i>연락처: ${vo2.place_tel }</span><br/> --%>
 			<div class="clearfix"><i class="fa fa-desktop"style="margin-right: 3px" aria-hidden="true"></i>홈페이지 
-				<a href='http://localhost:8888/review/review.jsp' style="margin-right:5px">http://localhost:8888/review/review.jsp</a>
-				<span><i class="fa fa-clock-o"style="margin-right: 3px" aria-hidden="true"></i>오픈:10:00, 마감22:00 ,휴일 (일요일)</span>
+				<a href='http://localhost:8888/review/review.jsp' style="margin-right:5px">${vo.homepage }</a>
+				<!-- <span><i class="fa fa-clock-o"style="margin-right: 3px" aria-hidden="true"></i>오픈:10:00, 마감22:00 ,휴일 (일요일)</span> -->
 			</div>
 			
 		</div>
 				<div class="info row justify-content-center mb-5">
 					<div class='col-lg-8 col-md-12'><!-- 큰사이즈에서 8 스몰에서 12 -->
 						  <!-- Swiper -->
-				    <%-- <c:forEach var="i" items="${list }" varStatus="status">
+				    <%-- <c:forEach var="i" items="${list }" varStatus="status"> --%>
 				 		<div class="swiper-container gallery-top">
 				    		<div class="swiper-wrapper">
-						    	<img class="swiper-slide" src="./images/${i.place_type }/${i.local_name }/${i.photo_name }${status.index+1 }.png"style="background-image;cursor:pointer;" />
+						    	<img class="swiper-slide" src="${vo.photo_name }"style="background-image;cursor:pointer;" />
 				    		</div>
 							 <!-- Add Arrows -->
 						     <div class="swiper-button-next swiper-button-white"></div>
 							 <div class="swiper-button-prev swiper-button-white"></div>
 				 		 </div>
-					  <div class="swiper-container gallery-thumbs">
+					  <%-- <div class="swiper-container gallery-thumbs">
 					    <div class="swiper-wrapper">
 							<img class="swiper-slide" src="./images/${i.place_type }/${i.local_name }/${i.photo_name }${status.index+1 }.png"style="background-image;cursor:pointer;" />
 					    </div>
-					  </div>
-					  </c:forEach> --%>
+					  </div> --%>
+					  <%-- </c:forEach> --%>
 				<div>
 								
 				<%-- <c:if test="${1 == vo.place_code }"><!-- 테스트 후 1를 2로 변경 -->

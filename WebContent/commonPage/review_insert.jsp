@@ -20,14 +20,14 @@
 				<img class="img-fluid" src="img/about/info-img.jpg" alt="">
 			</div>
 			<div class="col-8">
-				<h3>관광지명</h3>
-				<h6>위치</h6>
+				<h3>관광지명  공공디비에서 가저오자</h3>
+				<h6>위치 위치도 가저오자</h6>
 			</div>
 		</div>
 		<hr />
 		
 		
-		<form name="review_insert_frm" id="review_insert_frm" method="post" enctype='multipart/form-data'>
+		<form name="review_insert_frm" id="review_insert_frm" action="review_insertR.rv" method="post" enctype='multipart/form-data'>
 		<input type="hidden" name="place_serial" id="place_serial" >
 		
 		<h3>이 관광지의 전반적인 평가</h3>
@@ -78,7 +78,7 @@
 		-->
 		
 		<div id="fileUpload" class="dragAndDropDiv">Drag & Drop Files Here<br/><br/>or Browse Files</div>		        
-        <input type="file" name="fileUpload" id="fileUpload" style="display:none;" multiple/>
+        <input type="file" name="fileUpload" id="fileUpload" style="display:none;" multiple="multiple"/>
 		</br>
 		<h4><b>이미지 미리보기</b></h4>
 		
@@ -130,7 +130,7 @@
 		
 		<hr/>
 		<div class="mb-20">
-			<input type="button" class="btn btn-primary my-2 my-sm-0" id="review_insert">리뷰 저장</button>
+			<button type="button" class="btn btn-primary my-2 my-sm-0" id="review_insert">리뷰 저장</button>
 		</div>
 		</form>		
 	</div>

@@ -18,17 +18,18 @@
                         </div>
                         <div class="ml-auto d-flex align-items-stretch justify-content-end">
                             <button type="button" id="btnPtHtModify" class="btn btn-inverse-success no-wrap ml-4">수정</button>
-                            <a href="#" id="btnPtHtDelete" class="btn btn-inverse-danger no-wrap ml-2">삭제</a>
+                            <button type="button" id="btnPtHtDelete" class="btn btn-inverse-danger no-wrap ml-2">삭제</button>
                         </div>
                     </div> 
                     <form class="" name="frmAdmHtCompView" id='frmAdmHtCompView' method="post"> 
-                        <input type="text" name="pserial" id="pserial" value="${serial }" /> 
+                        <input type="hidden" name="pserial" id="pserial" value="${serial }" /> 
+					
                         <div class=""> 
                             <div class="d-flex justify-content-center justify-content-md-between mr-4 mr-xl-5 pr-xl-5 flex-wrap">
                                 <div class="profile-info d-flex align-items-center justify-content-center flex-wrap mr-sm-3">
                                 	<c:if test="${!empty vo.photos}">
-                                   		<c:forEach var="photo" items="${vo.photos}" begin="0" end="0" varStatus="status">
-										    <img class="img-xl rounded" src="../../assets/images/upload/${photo.oriFile }" alt="${photo.oriFile } image">
+                                   		<c:forEach var="photo" items="${vo.photos}" varStatus="status">
+										    <img class="img-xl rounded mr-2" src="../../assets/images/upload/${photo.sysFile }" alt="${photo.oriFile } image">
 										</c:forEach>
                                     </c:if>           
                                     <c:if test="${empty vo.photos}">
@@ -61,7 +62,25 @@
                                         <div class="row mt-3 pl-3">
                                             <div class="col-6">
                                                 <p>
-                                                    <strong>지역 :</strong> ${vo.local_name }
+                                                    <strong>지역 :</strong>
+													<c:if test="${vo.local_code == 1 }">
+														서울 
+													</c:if>
+													<c:if test="${vo.local_code == 2 }">
+														인천 
+													</c:if>
+													<c:if test="${vo.local_code == 3 }">
+														제주 
+													</c:if>
+													<c:if test="${vo.local_code == 4 }">
+														대구 
+													</c:if>
+													<c:if test="${vo.local_code == 6 }">
+														부산 
+													</c:if>
+													<c:if test="${vo.local_code == 31 }">
+														경기도 
+													</c:if>
                                                 </p>
                                                 <p>
                                                     <strong>호텔명 :</strong> ${vo.place_name }
@@ -156,3 +175,4 @@
             </div>
         </div>
     </div>
+   
