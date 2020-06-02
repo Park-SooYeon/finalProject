@@ -75,10 +75,10 @@ public class SubMainDao {
 	}
 	
 	// 여행 목록 불러오기
-	public List<TripListVo> callTripList() {
+	public List<TripListVo> callTripList(String id) {
 		List<TripListVo> list = null;
 		try {
-			list = sqlSession.selectList("mypage.select_trip");
+			list = sqlSession.selectList("mypage.select_trip", id);
 		}catch(Exception ex) {
 			ex.printStackTrace();
 		}finally {
