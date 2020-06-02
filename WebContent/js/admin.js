@@ -142,27 +142,28 @@ $('#frm_list').submit(function(){
 });
 
 //review상세보기
-function review_view(
-		r_serial,r_date,r_id,r_content,r_title, 
-		p_serial, p_sys , 
-		report_serial, report_code , report_content,
-		report_date,report_id){
-	alert(report_content);
-	$('#r_serial').html(r_serial);
-	$('#ReviewRegDt').html(r_date);
-	$('#m_id').html(r_id);
-	$('.r_content').html(r_content);
-	$('.r_title').html(r_title);
-	$('#usrInfoState').html(p_serial);
-	$('#usrInfoState').html(p_sys);
-	$('#usrInfoState').html(report_serial);
-	$('.report_code').html(report_code);
-	$('.report_content').html(report_content);
-	$('#usrInfoState').html(report_date);
-	$('.report_id').html(report_id);
+function review_view(review_serial){
+	//getjson하면 스트링말고 타입으로 변환이 됌 그냥겟은 스트링만 
+	$.getJSON("review_view.os", {"serial" : review_serial}, function(data, state) {
+        console.log(data);
+        $('#m_id').html(data.member_id);
+        $('.r_title').html(data.review_title);
+    	$('.r_content').html(data.review_content);
+        $('#r_date').html(data.review_date);
+    	$('.report_content').html(data.report.report_content);
+//    	$('#').html(data.report.report_code);
+//    	$('#').html(data.report.report_date);
+//    	$('#').html(data.report.report_id);
+//    	$('#').html(data.report.report_serial);
+//    	$('#').html(data.review_date);
+//    	$('#').html(data.review_serial);
+//    	$('#').html();
+//    	$('#').html();
+     });
 	
-	//$('#hidden_id').val(mId);
-}
+	}
+	
+
 
 
 
