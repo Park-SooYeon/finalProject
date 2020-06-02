@@ -5,19 +5,19 @@
 >
 <mapper namespace="hotel_order">
 	<!-- 매출액 조회 -->
-	<select id="sales" parameterType="Integer" resultType="Integer">
+	<select id="sales" parameterType="Integer" resultType="String">
 		SELECT sum(price)
 		FROM hotel_order_view WHERE state=1 AND partner_serial=#{partner_serial}
 	</select>
 	
 	<!-- 예약 취소 건수 조회 -->
-	<select id="cancleCnt" parameterType="Integer" resultType="Integer">
+	<select id="cancleCnt" parameterType="Integer" resultType="String">
 		SELECT count(BOOKING_SERIAL)
 		FROM hotel_order_view WHERE state=2 AND partner_serial=#{partner_serial}
 	</select>
 	
 	<!-- 전체 예약 건수 조회 -->
-	<select id="orderCnt" parameterType="Integer" resultType="Integer">
+	<select id="orderCnt" parameterType="Integer" resultType="String">
 		SELECT count(BOOKING_SERIAL)
 		FROM hotel_order_view WHERE partner_serial=#{partner_serial}
 	</select>
@@ -35,4 +35,11 @@
 		FROM hotel_order_view
 		where booking_serial=#{booking_serial}
 	</select>
+	
+	
+	<!-- 예약 취소 -->
+	<update id="update" parameterType="Integer">
+		update HOTEL_BOOKING set state=2 
+		where BOOKING_SERIAL=#{booking_serial}
+	</update>
 </mapper>

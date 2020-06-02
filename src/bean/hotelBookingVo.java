@@ -17,6 +17,9 @@ public class hotelBookingVo {
 	 String place_name; // 호텔명 
 	 String rooms_name; // 객실타입
 	 int price; // 가격 
+	 Date reserve_date;	// 예약일자
+	 String member_photo;
+	 
 
  
 	public int getBooking_serial() {
@@ -96,6 +99,18 @@ public class hotelBookingVo {
 	}
 	public void setPrice(int price) {
 		this.price = price;
+	}
+	public Date getReserve_date() {
+		return reserve_date;
+	}
+	public void setReserve_date(Date reserve_date) {
+		this.reserve_date = reserve_date;
+	}
+	public String getMember_photo() {
+		return member_photo;
+	}
+	public void setMember_photo(String member_photo) {
+		this.member_photo = member_photo;
 	}
 	
 	

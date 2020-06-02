@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
     <div class="row">
         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 grid-margin stretch-card">
             <div class="card card-statistics">
@@ -88,22 +89,38 @@
                                 <tbody>
                                 	<c:forEach var="vo" items="${list }" varStatus="i">
 	                                    <tr>
-	                                        <td>${vo.booking_serial }</td>
-	                                        <td>${vo.place_name }</td>
-	                                        <td>${vo.rooms_name }</td>
-	                                        <td>${vo.price }원</td>
-	                                        <td>${vo.member_id }</td>
-	                                        <td>${vo.checkin_date }</td>
-	                                        <td>${vo.checkout_date }</td>
+	                                        <td id="bserial_${vo.booking_serial }">${vo.booking_serial }</td>
+	                                        <td id="placeNm_${vo.booking_serial }">${vo.place_name }</td>
+	                                        <td id="roomNm_${vo.booking_serial }">
+	                                        	<c:if test="${vo.rooms_name == 1 }">디럭스</c:if>
+	                                        	<c:if test="${vo.rooms_name == 2 }">패밀리</c:if>
+	                                        	<c:if test="${vo.rooms_name == 3 }">스위트</c:if>
+	                                        </td>
+	                                        <td id="price_${vo.booking_serial }">${vo.price }원</td>
+	                                        <td id="memberId_${vo.booking_serial }">${vo.member_id }</td>
+	                                        <td id="chkIn_${vo.booking_serial }">
+	                                        	<fmt:formatDate value="${vo.checkin_date }" pattern="yyyy-MM-dd"/>
+	                                        </td>
+	                                        <td id="chkOut_${vo.booking_serial }"> 
+	                                        	<fmt:formatDate value="${vo.checkout_date }" pattern="yyyy-MM-dd"/>
+	                                        </td>
 	                                        <td>
 	                                        	<c:if test="${vo.state == 1 }">                                        	
-		                                            <div class="badge badge-inverse-primary text-muted font-weight-bold">예약완료</div>
-	                                        	</c:if>
+		                                            <div id="state_${vo.booking_serial }" class="badge badge-inverse-primary font-weight-bold">예약완료</div>
+		                                        </c:if>
 	                                        	<c:if test="${vo.state == 2 }">                                        	
-		                                            <div class="badge badge-inverse-secondary text-muted font-weight-bold">예약취소</div>
+		                                            <div id="state_${vo.booking_serial }" class="badge badge-inverse-secondary text-muted font-weight-bold">예약취소</div>
 	                                        	</c:if>
 	                                        </td>
 	                                        <td>
+	                                        	<c:if test="${empty vo.member_photo }">
+	                                        		<input type="hidden" id="memberPhoto_${vo.booking_serial }" value="queen.png" />
+	                                        	</c:if>
+	                                        	<c:if test="${!empty vo.member_photo }">
+		                                        	<input type="hidden" name="" id="memberPhoto_${vo.booking_serial }" value="${vo.member_photo }" />	                                        	
+	                                        	</c:if>
+	                                        	<span class="d-none" id="reserveDt_${vo.booking_serial }"><fmt:formatDate value="${vo.reserve_date}" pattern="yyyy-MM-dd"/></span>
+	                                        	<input type="hidden" name="" id="memberNm_${vo.booking_serial }" value="${vo.member_name }"/>
 	                                            <button class="btn btn-outline-primary" id="btnHtOrderModal" onclick="orderDtView(${vo.booking_serial})">View</button>
 	                                        </td>
 	                                    </tr>
@@ -116,7 +133,9 @@
             </div>
         </div>
     </div>
-	
+	<form action="" name="frmAdmHtOrder" id="frmAdmHtOrder" method="post">
+		<input type="text" name="bserial" id="bserial" />
+	</form>
 	<jsp:include page="./hotel_order_modal.jsp" />
-
+	
 	
