@@ -36,6 +36,34 @@ public class ReviewVo {
 	List<MultipartFile> fileUpload;	
 	
 	
+	String member_photo;
+	String nickName;
+	int likecount;
+	
+	
+	
+	
+	
+	
+	
+	public String getMember_photo() {
+		return member_photo;
+	}
+	public void setMember_photo(String member_photo) {
+		this.member_photo = member_photo;
+	}
+	public String getNickName() {
+		return nickName;
+	}
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
+	}
+	public int getLikecount() {
+		return likecount;
+	}
+	public void setLikecount(int likecount) {
+		this.likecount = likecount;
+	}
 	public List<MultipartFile> getFileUpload() {
 		return fileUpload;
 	}

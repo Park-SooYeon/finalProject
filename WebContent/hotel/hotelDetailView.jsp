@@ -5,13 +5,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script src='./css/css_syj.css'></script>
-<script src="./js/festival_detail.js"></script>
-<script src="./js/main.js"></script>
-<script src='./lib/jquery-3.4.1.js'></script>
-<script src="./swiper-5.3.8/package/js/swiper.min.js"></script>
-<script type="text/javascript"
-	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a8effece1d8215cec0ceddf314763998&libraries=services,clusterer"></script>
+
+ 
+<script src="js/festival_detail.js"></script>
+
+
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <link rel="stylesheet" href="css/detail_view.css">
 
@@ -112,33 +110,50 @@
 				<div class='col-lg-8 col-md-12'>
 					<!-- 큰사이즈에서 8 스몰에서 12 -->
 					<!-- Swiper -->
-					<div class="swiper-container gallery-top">
-			<c:forEach var='i' items='${photoList}'>	
-					<div class="swiper-container gallery-thumbs">
-						<div class="swiper-wrapper">
-							 <img class="swiper-slide"
-								src="./assets/images/upload/${i.sysFile}" style="cursor: pointer;" />
-						</div>
-					</div>
-                </c:forEach>
 				
+			
  
-						<!-- Add Arrows -->
-						<div class="swiper-button-next swiper-button-white"></div>
-						<div class="swiper-button-prev swiper-button-white"></div>
-					</div>
+ <section class="destinations-area pb-60">
+	<div class="container">
+		
+		<div class="row">
+			<div class="swiper-container m-2">
+				<div class="swiper-wrapper pl-50 pr-50">
+
+
 					
-		 <c:forEach var='i' items='${photoList}'>	
-					<div class="swiper-container gallery-thumbs">
-						<div class="swiper-wrapper">
+	        <c:forEach var='i' items='${photoList}'>	
+						<div class="swiper-slide">
+							
+							<div class="single-destinations">
+								<div class="thumb">
+									
+
 							 <img class="swiper-slide"
 								src="./assets/images/upload/${i.sysFile}" style="cursor: pointer;" />
+								</div>
+						
+							
+							</div>
 						</div>
-					</div>
                 </c:forEach>
 				
+				
+
+					<!-- Add Arrows -->
+					<div class="swiper-button-next"></div>
+					<div class="swiper-button-prev"></div>
+				</div>
+			</div>
+		</div>
+	
+	
+	</div>
+</section>
  
  
+ 
+ <%--객실 --%>
 						
 						<div>
 			 <c:forEach var='list' items='${list}'>	
@@ -213,7 +228,7 @@
 			
 			
 			
-			
+	<c:if test="${!empty reviewList}">	
 			<div class="row">
 				<div class="col-12 pt-3"
 					style='height: 70px; border-top: 1px solid black;'>
@@ -224,10 +239,13 @@
 				</div>
 
 			</div>
+		
+		
+		 <c:forEach var='i' items='${reviewList}'  >
 			<div class="row border-bottom py-3">
 				<div class="col-2">
-					<img class="rounded-circle" src="./images/festival/1.png" alt="글쓴이">
-					<p class='text-center mt-3'>작성자</p>
+					<img class="rounded-circle" src="./images/myPage/${i.member_photo }" >
+					<p class='text-center mt-3'>${i.nickName }</p>
 				</div>
 				<div class="col-10">
 					<div class='rating' data-rate='5'>
@@ -236,15 +254,16 @@
 							class="fa fa-star"></i> <i class="fa fa-star"></i> <i
 							class="fa fa-star"></i>
 					</div>
-					<span>2020년 1월 15일에 작성</span> <span class="float-right">8명의
-						이용자가 도움이 됐다고 하던뎁숑?!</span>
-					<h5>리뷰제목</h5>
+					
+					<span>${i.review_date}에 작성</span> <span class="float-right">${i.likecount} 명의 사용자가 좋아합니다!
+						</span>
+					<h5>${i.review_title }</h5>
 					<div class="review-box">
-						<p class="pre-view">리뷰입니다리뷰입니다리뷰입니다리뷰입니다리뷰입니다리뷰입니다리뷰입니다리뷰입니다리뷰입니다리뷰입니다리뷰입니다입니다리뷰입니다입니다리뷰입니다입니다리뷰입니다ㄴ난다리뷰입니다ㄴ난다리뷰입니다ㄴ난다리뷰입니다ㄴ난다리뷰입니다ㄴ난다리뷰입니다ㄴ난다리뷰입니다ㄴ난다리뷰입니다ㄴ난다리뷰입니다ㄴ난다리뷰입니다ㄴ난다리뷰입니다ㄴ난ㄴㄴ</p>
+						<p class="pre-view">${i.review_content }</p>
 						<span class="btn-moreInfo">[더보기]</span>
 					</div>
 					<p>
-						<span>방문 날짜 : </span>2020년 1월
+						<span>방문 날짜 :${t.visit_date} </span>
 					</p>
 					<p>
 						도움이 됐나요?
@@ -255,8 +274,17 @@
 
 					<button id="testBtn" class="testBtn btn btn-primary"
 						style='float: right'>신고하기</button>
-					<!-- 회원가입 확인 Modal-->
-					<div class="modal fade" id="testModal" tabindex="-1" role="dialog"
+			
+			
+				</div>
+			</div>
+			
+	  </c:forEach>
+			</c:if>	
+			
+			<!-- modal -->
+			 <!-- 신고 모달 -->
+              		<div class="modal fade" id="testModal" tabindex="-1" role="dialog"
 						aria-labelledby="exampleModalLabel" aria-hidden="true">
 						<div class="modal-dialog" role="document">
 							<div class="modal-content" style="width: 477px;">
@@ -331,44 +359,10 @@
 								</div>
 							</div>
 						</div>
-					</div>
-				</div>
-			</div>
-			<div class="row border-bottom py-3">
-				<div class="col-2">
-					<img class="rounded-circle" src="./images/festival/1.png" alt="글쓴이">
-					<p class='text-center mt-3'>작성자</p>
-				</div>
-				<div class="col-10">
-					<div class="rating" data-rate="3">
-						<!-- data-rate에 별점을입력(5초과금지) -->
-						<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-							class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-							class="fa fa-star"></i>
-					</div>
-					<span>2020년 1월 15일에 작성</span> <span class="float-right">8명의
-						이용자가 도움이 됐다고 하던뎁숑?!</span>
-					<h5>리뷰제목</h5>
-					<div class="review-box">
-						<p class="pre-view">리뷰입니다</p>
-						<span class="btn-moreInfo">[더보기]</span>
-					</div>
-					<p>
-						<span>방문 날짜 : </span>2020년 1월
-					</p>
-					<p>
-						도움이 됐나요?
-						<button class="btn btn-outline-secondary">
-							<i class="fa fa-thumbs-up"></i>
-						</button>
-					</p>
-
-					<!-- Modal -->
-					<button id="testBtn" class="testBtn btn btn-primary"
-						style='float: right'>신고하기</button>
-
-
-					<div class="modal fade" data-backdrop="static"
+					</div>			
+			
+			<!-- 라이크 리스트 추가 모달 -->
+			      		<div class="modal fade" data-backdrop="static"
 						id="exampleModalScrollable" tabindex="-1" role="dialog"
 						aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
 						<div class="modal-dialog modal-dialog-scrollable" role="document">
@@ -398,11 +392,6 @@
 					</div>
 
 		
-
-				</div>
-				<!-- 리뷰내용 -->
-			</div>
-			<!-- 리뷰사진부분 -->
 		</div>
 		<!-- 컨테이너끝 -->
 	</form>

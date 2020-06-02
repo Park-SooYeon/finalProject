@@ -27,12 +27,7 @@ public class roomVo {
    
    
    
-   public int getState() {
-	return state;
-}
-public void setState(int state) {
-	this.state = state;
-}
+ 
 public String getPlace_tel() {
 	return place_tel;
 }
@@ -46,12 +41,8 @@ public void setLocal_code(int local_code) {
 	this.local_code = local_code;
 	
 }
-public String getPlace_name() {
-		return place_name;
-	}
-	public void setPlace_name(String place_name) {
-		this.place_name = place_name;
-	}
+
+
 	public String getPlace_location() {
 		return place_location;
 	}

@@ -15,18 +15,7 @@ public class roomPhotoVo {
 	  this.oriFile = oriFile;
 	  this.sysFile = sysFile;
   }
-  public String getSysFile() {
-	return sysFile;
-}
-public void setSysFile(String sysFile) {
-	this.sysFile = sysFile;
-}
-public String getOreFile() {
-	return oreFile;
-}
-public void setOreFile(String oreFile) {
-	this.oreFile = oreFile;
-}
+ 
 public int getPhoto_serial() {
 	return photo_serial;
 }

@@ -1,7 +1,6 @@
 
 
 var code = document.getElementById("place_serial").value;
-alert(code);
 
 //place_serial 값 저장
 //var place_serial = document.getElementById("place_serial").value;
