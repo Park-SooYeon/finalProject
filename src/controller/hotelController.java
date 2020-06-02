@@ -27,6 +27,7 @@ import com.fasterxml.jackson.databind.type.TypeFactory;
 import bean.LikeListVo;
 import bean.Page;
 import bean.PlaceVo;
+import bean.ReviewVo;
 import bean.TripListVo;
 import bean.roomPhotoVo;
 import bean.roomVo;
@@ -80,6 +81,8 @@ public class hotelController {
 			System.out.println(place_serial); 
 			
 			List<roomVo> list = null;
+			List<ReviewVo> reviewList = null;
+			List<roomPhotoVo> photoList = null;
 	        PlaceVo vo =null;
 			hotelDao hdao = new hotelDao();
 			
@@ -87,14 +90,17 @@ public class hotelController {
 	        
 	        list = hdao.detailView(place_serial);
 	        vo = hdao.detailViewHotel(place_serial);
-	        List<roomPhotoVo> photoList = null;
 	        photoList  = hdao.getPhotoList(place_serial);
+	        reviewList = hdao.reviewList(place_serial);
 	        
 	      
+	        
+	        
+	        
 			
 			
+	        mv.addObject("reviewList",reviewList);
 	        mv.addObject("photoList",photoList);
-			
 			mv.addObject("list", list);
 			mv.addObject("vo", vo);
 			mv.setViewName("hotelDetailView");

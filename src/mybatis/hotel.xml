@@ -106,7 +106,20 @@ select
      where rp.rooms_serial=r.rooms_serial and PLACE_SERIAL= #{place_serial}
   </select>
   
-
+  <select id='reviewList' parameterType='Integer' resultType="bean.ReviewVo">
+       select m.member_photo,m.nickName,
+       r.review_serial,r.PLACE_SERIAL,r.reputation,r.REVIEW_TITLE,r.REVIEW_CONTENT,r.VISIT_DATE,r.REVIEW_DATE,
+       count(like_id) likecount
+		from review r left outer join membership m 
+		               on m.member_id=r.member_id
+		               left outer join REVIEW_LIKE l
+		               on r.REVIEW_SERIAL=l.review_serial 
+		where r.PLACE_SERIAL =#{place_serial}
+       
+       group by m.member_photo,m.nickName,
+       r.review_serial,r.PLACE_SERIAL,r.reputation,r.REVIEW_TITLE,r.REVIEW_CONTENT,r.VISIT_DATE,r.REVIEW_DATE
+      
+  </select>
 
 
 	<select id='placeSelect' resultType="bean.PlaceVo" parameterType="hashMap">
