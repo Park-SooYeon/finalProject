@@ -1,6 +1,6 @@
 function init() {
-	
-	$("#posts-here").load("selectPosts.mp");
+	const mid = $("#pro-id").text(); 
+	$("#posts-here").load("selectPosts.mp?mid="+mid);
 	
   //show modal
   $("#mp-modifyModal").on("show.bs.modal", function (event) {

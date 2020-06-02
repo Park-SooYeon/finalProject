@@ -121,11 +121,9 @@ load();
 	
 	// 여행(공개, 비공개)보기 토글
   $(document).on("click", "#mpPrivacyFilter span", function(e){
-	  console.log(e);
-	  console.log(e.target.dataset.index);
 	  const SELECT = e.target.dataset.index;//2 : 전체, 1 : 비공개, 0 : 공개
 	  const ELEMENTS = document.querySelectorAll(".mp-trip");
-
+	  
 	  for(const elem of ELEMENTS){
 		  if(elem.dataset.flag==SELECT){
 			  elem.style.display = "none"; // 다른 element는 숨김

@@ -36,6 +36,7 @@
 		<result column="review_content" property="review_content"/>
 		<result column="visit_date" property="visit_date"/>
 		<result column="review_date" property="review_date"/>
+		<result column="member_photo" property="member_photo"/>
 			<collection property="p" 
 						javaType="bean.PlaceVo">
 				<result column="place_serial" property="place_serial"/>
@@ -91,10 +92,9 @@
 				member_id, 
 				trip_name, 
 				days_count, 
-				to_char(start_date,'rrrr/mm/dd') start_date, 
-				to_char(end_date,'rrrr/mm/dd') end_date, 
 				trip_auth, 
-				trip_date 
+				trip_date ,
+				getTripCnt(trip_list_serial) trip_cnt
 				from trip_list
 				where member_id = #{_parameter}
 				order by trip_date desc
@@ -223,8 +223,10 @@
    		update membership set member_city = #{member_city},
    						   member_web = #{member_web},
    						   member_info = #{member_info}, 
-   						   nickname = #{nickName},
-   						   member_photo = #{member_photo}
+   						   nickname = #{nickName}
+   						   <if test='member_photo != null'>
+   						   , member_photo = #{member_photo}
+   						   </if>
    		where member_id = #{member_id}
    </update>
 	
@@ -241,12 +243,12 @@
 		and target_id = #{target_id}
 	</delete>
 	
-	<!-- 팔로워 카운트 -->
+	<!-- 팔로잉 카운트 -->
 	<select id="count_follow" parameterType="String" resultType="Integer">
 		select count(follow_serial) from follow_list where member_id = #{_parameter}
 	</select>
 	
-	<!-- 팔로잉 카운트-->
+	<!-- 팔로워 카운트-->
 	<select id="count_follower" parameterType="String" resultType="Integer">
 		select count(follow_serial) from follow_list where target_id = #{_parameter}
 	</select>
@@ -259,9 +261,12 @@
 			   r.review_content, 
 			   to_char(r.visit_date, 'rrrr"년" mm"월" dd"일"') visit_date, 
 			   r.review_date,
-			   getRevCnt(r.place_serial) review_cnt
+			   getRevCnt(r.place_serial) review_cnt,
+			   m.member_photo
 		from review r join follow_list f 
 		on r.member_id = f.target_id 
+		join membership m
+		on r.member_id = m.member_id
 		left outer join place p
 		on p.place_serial = r.place_serial
 		where f.member_id = #{member_id}
@@ -271,6 +276,7 @@
 		<if test='flag.equals("hotel")'>
 		and p.place_serial is not null
 		</if>
+		order by r.review_date desc
 	</select>
 	
 	

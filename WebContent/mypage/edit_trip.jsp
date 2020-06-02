@@ -96,12 +96,8 @@
     </header>
     <!-- #header -->
 
-<!-- 
-	<fmt:parseDate var="start_date" value="${vo.start_date }" pattern="yyyy-MM-dd"/>
-	<fmt:parseDate var="end_date" value="${vo.end_date }" pattern="yyyy-MM-dd"/>
-	<fmt:parseNumber var="start_date_N" value="${vo.start_date }" integerOnly="true"/>
-	<fmt:parseNumber var="end_date_N" value="${vo.end_date }" integerOnly="true"/>
-	 -->
+	<fmt:parseDate value="${vo.start_date}" var="start_date" pattern="yyyy-MM-dd"/>
+	<fmt:parseDate value="${vo.end_date}" var="end_date" pattern="yyyy-MM-dd"/>
 	
     <div class="my-main-wrapper">
       <div class="my-main-side">
@@ -117,7 +113,8 @@
             </c:if>
             
             <c:if test="${vo.days_count == 0 }">
-            ${vo.start_date } ~ ${vo.end_date}
+            <fmt:formatDate value="${start_date}" pattern="MM.dd"/> ~ 
+            <fmt:formatDate value="${end_date}" pattern="MM.dd"/>
             </c:if>
             
             </div>
