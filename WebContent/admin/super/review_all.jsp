@@ -52,15 +52,12 @@
                     <!-- 데이터넣깅... -->
                     <c:forEach var='i' items='${list }'>
                     <a href="#"  id='review_view' class="tickets-card row" data-toggle="modal" data-target="#modalReviewDt"
-                    	onclick="review_view('${i.review_serial }', '${i.review_date }' , '${i.member_id }', '${i.review_content }' ,'${i.review_title }'
-                    			,'${i.r_photo.photo_serial }','${i.r_photo.sysfile }'
-                    			,'${i.report.report_serial }','${i.report.report_code }','${i.report.report_content }','${i.report.report_date }','${i.report.report_id }'
-                    	)">
+                    	onclick="review_view(${i.review_serial})">
 
                         
                         <div class="tickets-details col-md-8">
                             <div class="wrapper">
-                                <h5>${i.review_serial }  -  ${i.review_title }</h5>
+                                <h5># ${i.review_serial }  -  ${i.review_title }</h5>
 
                             </div>
                             <div class="wrapper text-muted">
@@ -89,9 +86,6 @@
 	                            <c:if test='${i.review_type == 4 }'>
 	                            	<i class="category-icon mdi mdi-hotel"></i><span class="text-muted">호텔</span>
 	                            </c:if>
-                        	
-                        
-                      		
                         </div>
                     </a>
 	       		</c:forEach>            
@@ -141,7 +135,7 @@
                         <div class="wrapper ml-3">
                             <h6 class="ml-1 mb-1" id='m_id'></h6>
                         </div>
-                        <small class="time d-none d-sm-block ml-auto " id="ReviewRegDt"></small>
+                        <small class="time d-none d-sm-block ml-auto " id="r_date"></small>
                     </div>
                     <form class="row" name="usrInfoFrm">
                         <div class="col-12">
@@ -150,12 +144,11 @@
                                 <label class="r_title"></label>
                             </div>
 
-
                         </div>
                         <div class="col-12">
                             <div class="form-group">
                                 <label class="">content</label>
-                                <p id="r_content" class="r_content"></p>
+                                <p class="r_content"></p>
                             </div>
                         </div>
                         <div class="col-12">
@@ -179,7 +172,7 @@
                         </div>
                         <div class="col-12">
                             <div class="wrapper d-flex align-items-center py-2">
-                                <label class="report_content">신고</label>
+                                <label class="report_content"></label>
                                 <small id="reportTot" class="ml-auto">총 20건</small>
                             </div>
                             <div class="wrapper">
