@@ -91,6 +91,8 @@
 		select 	trip_list_serial, 
 				member_id, 
 				trip_name, 
+				to_char(start_date,'yyyy-mm-dd') start_date, 
+				to_char(end_date,'yyyy-mm-dd') end_date, 
 				days_count, 
 				trip_auth, 
 				trip_date ,

@@ -139,16 +139,16 @@ public class MyPageController {
 	                                                                                             
 	@ResponseBody
 	@RequestMapping( value = "modify_trip.mp", method = {RequestMethod.POST}, produces = "text/html;charset=utf8")
-	public String modifyR(HttpServletRequest req, HttpSession session) {
-		TripListVo vo = new TripListVo();
+	public String modifyR(HttpServletRequest req, HttpSession session, TripListVo vo) {
+		//TripListVo vo = new TripListVo();
 		
 		String trip_name = "";
 		String member_id = (String)session.getAttribute("member_id"); //추후 세션 아이디로 수정
 		int days_count = 0;
-		String start_date = null;
-		String end_date = null;
+		String start_date = vo.getStart_date();
+		String end_date = vo.getEnd_date();
 		int trip_auth = 1;
-		
+		/*
 		if(req.getParameter("trip_name")!=null && req.getParameter("trip_name")!="") {
 			trip_name = req.getParameter("trip_name");
 		};
@@ -170,7 +170,7 @@ public class MyPageController {
 		vo.setDays_count(days_count);
 
 		System.out.println(days_count);
-		
+		*/
 		if(start_date!="" && start_date!=null) {
 			String[] values = start_date.split(" - ");
 			start_date = values[0];
@@ -180,7 +180,6 @@ public class MyPageController {
 		vo.setStart_date(start_date);
 		vo.setEnd_date(end_date);
 		vo.setTrip_auth(trip_auth);
-		vo.setTrip_list_serial(trip_list_serial);
 		
 		System.out.println(vo.toString());
 		
