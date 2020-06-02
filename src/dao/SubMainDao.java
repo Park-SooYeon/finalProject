@@ -152,7 +152,7 @@ public class SubMainDao {
 		return list; 
 	}
 
-	public List<ReputationVo> reputationSelect() {
+	public List<ReputationVo> selectReputation() {
 		List<ReputationVo> list = null;
 		try {
 			list = sqlSession.selectList("sub_main.select_reputation");
@@ -160,5 +160,18 @@ public class SubMainDao {
 			ex.printStackTrace();
 		}
 		return list; 
+	}
+
+	public ReputationVo selectReputation(String place_serial) {
+		ReputationVo vo = null;
+		
+		try {
+			vo = sqlSession.selectOne("sub_main.select_reputation", place_serial);
+		} catch(Exception ex) {
+			System.out.println("별점 가져올 때 오류 발생");
+			ex.printStackTrace();
+		}
+		
+		return vo;
 	}
 }

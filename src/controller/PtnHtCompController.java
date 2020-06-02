@@ -142,7 +142,7 @@ public class PtnHtCompController {
 	    System.out.println(uploadPath);
 	    System.out.println(path);
 	    
-	    File dir = new File(uploadPath);
+	    File dir = new File(filePath);
         if (!dir.isDirectory()) {
             dir.mkdirs();
         }
@@ -185,7 +185,7 @@ public class PtnHtCompController {
 				
 				fileSize = mf.get(i).getSize(); // 파일 사이즈
 				
-				String savePath = uploadPath + image1; // 저장 될 파일 경로
+				String savePath = filePath + image1; // 저장 될 파일 경로
 				 
                 mf.get(i).transferTo(new File(savePath)); // 파일 저장
                 

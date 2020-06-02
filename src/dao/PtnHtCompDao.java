@@ -11,6 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import bean.Factory;
 import bean.PlaceVo;
+import oracle.jdbc.internal.OracleStatement.SqlKind;
 import partner.UploadVo;
 
 public class PtnHtCompDao {
