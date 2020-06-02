@@ -1,6 +1,8 @@
 package dao;
 
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
@@ -21,6 +23,8 @@ import rent_parameter.CarViewVo;
 import rent_parameter.CompanyPm;
 import rent_parameter.DateVo;
 import rent_parameter.ReservePm;
+import rent_parameter.ReserveSearchVo;
+import rent_parameter.ReserveVo;
 import rent_parameter.rentReviewPm;
 import rent_parameter.rentReviewTotVo;
 import rent_parameter.rentReviewVo;
@@ -151,14 +155,56 @@ public class RentDao {
 		}
 	}
 	
-	public List<ReservePm> reserveSearch1(String member_id){
-		List<ReservePm> list = null;
+	public List<ReserveVo> reserveSearch1(String member_id){
+		List<ReserveVo> list = null;
 		try {
-			//list = sqlSession.selectList("rent.reserveSearch1",member_id);
+			list = sqlSession.selectList("rent.reserveSearch1",member_id);
 		}catch(Exception e) {
 			e.printStackTrace();
 		}finally {
 			return list;
+		}
+	}
+	
+	public List<ReserveVo> reserveSearch2(String member_id){
+		List<ReserveVo> list = null;
+		try {
+			list = sqlSession.selectList("rent.reserveSearch2",member_id);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			return list;
+		}
+	}
+	
+	public List<ReserveVo> reserveSearch3(String member_id){
+		List<ReserveVo> list = null;
+		try {
+			list = sqlSession.selectList("rent.reserveSearch3",member_id);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			return list;
+		}
+	}
+	
+	public String reserveCancle(String reserve_serial) {
+		String msg = null;
+		try {
+			int cnt = sqlSession.update("reserveCancle", reserve_serial);
+			if(cnt<1) {
+				msg = "취소중 오류가 발생했습니다";
+				throw new Exception("예약중 오류발생");
+			}else {
+				msg ="취소가 완료 되었습니다";
+			}
+			sqlSession.commit();
+		}catch(Exception e) {
+			e.printStackTrace();
+			sqlSession.rollback();
+			msg = "취소중 오류가 발생했습니다";
+		}finally {
+			return msg;
 		}
 	}
 	
@@ -283,6 +329,52 @@ public class RentDao {
 		long diff = t2.getTime() - t1.getTime();
 		int between = (int) (diff / (60*60*1000*24));
 		return between;
+		
+	}
+	
+	public String undoTimemaker(Timestamp date) {
+		SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy HH:mm");
+		String a =sdf.format(date);
+		String year = a.substring(6,10);
+		String day = a.substring(3,5);
+		String month = a.substring(0,2);
+		String hour = a.substring(11,13);
+		String min = a.substring(14,16);
+		if(Integer.parseInt(hour) >12) {
+			hour = Integer.parseInt(hour)-12+"";
+			a +=" pm";
+		}else {
+			a +=" am";
+		}
+		return a;
+	}
+	
+	public List<ReserveSearchVo> paramMaker(List<ReserveVo> reserve_list1){
+		List<ReserveSearchVo> param_list1 = new ArrayList<ReserveSearchVo>();
+		int car_serial = 0;
+		Timestamp rentDate =null;
+		Timestamp returnDate = null;
+		CarViewVo vo = null;
+		DateVo dateVo1 = null;
+		DateVo dateVo2 = null;
+		ReserveSearchVo rvo = null;
+		long between = 0;
+		
+		for(int i =0; i< reserve_list1.size();i++) {
+			car_serial =  reserve_list1.get(i).getCar_serial();
+			rentDate =  reserve_list1.get(i).getRentDate();
+			returnDate =  reserve_list1.get(i).getReturnDate();
+			String a = undoTimemaker(rentDate);
+			String b = undoTimemaker(returnDate);
+			
+			between = DateBettween(a, b);
+			vo= carView(car_serial,a,b,between);
+			dateVo1 = paramTime(a);
+			dateVo2 = paramTime(b);
+			rvo = new ReserveSearchVo(vo,dateVo1,dateVo2);
+			param_list1.add(rvo);
+		}
+		return param_list1;
 		
 	}
 	

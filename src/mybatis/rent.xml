@@ -187,10 +187,29 @@
 		SELECT reserve_serial from rent_reserve where email = '${email}' and member_id='${member_id}'
 	</select>
 	
-	<select id="reserveSearch1" parameterType="String" resultType="rent_parameter.ReservePm">
-		select reserve_serial , car_serial , email , rent_date , return_date , fullcover , payment ,price ,RESERVED_DATE , place_main , place_sub from RENT_RESERVE where member_id='${_parameter}' and return_date <![CDATA[<]]>sysdate and CANCLE_DATE is null and review_check='n'
-			
+	<select id="reserveSearch1" parameterType="String" resultType="rent_parameter.ReserveVo">
+		select reserve_serial , car_serial , email , rent_date , return_date , fullcover , payment ,price ,reserved_date , place_main , place_sub 
+		from RENT_RESERVE 
+		where member_id='${_parameter}' and rent_date <![CDATA[>]]>systimestamp and CANCLE_DATE is null and (review_check='n' or REVIEW_CHECK is null)	
 	</select>
+	
+	<select id="reserveSearch2" parameterType="String" resultType="rent_parameter.ReserveVo">
+		select reserve_serial , car_serial , email , rent_date , return_date , fullcover , payment ,price ,RESERVED_DATE , place_main , place_sub ,review_check
+		from RENT_RESERVE 
+		where member_id='${_parameter}' and return_date <![CDATA[<]]>systimestamp and CANCLE_DATE is null
+	</select>
+	
+	<select id="reserveSearch3" parameterType="String" resultType="rent_parameter.ReserveVo">
+		select reserve_serial , car_serial , email , rent_date , return_date , fullcover , payment ,price ,RESERVED_DATE , place_main , place_sub ,review_check
+		from RENT_RESERVE 
+		where member_id='${_parameter}' and CANCLE_DATE is not null
+	</select>
+	
+	<update id="reserveCancle" parameterType="String">
+		update RENT_RESERVE set CANCLE_DATE=SYSTIMESTAMP , CANCLE_REASON='돈없어' where RESERVE_SERIAL='${_parameter}'
+	</update>
+	
+	
 </mapper>
 
 

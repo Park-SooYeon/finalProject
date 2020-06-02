@@ -56,13 +56,13 @@
 					<b>평가 : </b>
 					<span>
 						<c:choose>
-								<c:when test="${vo.review >= 9.0}"> 
+								<c:when test="${vo.review >= 9.0 }"> 
 								매우만족 <br/> 
 								</c:when>
-								<c:when test="${vo.review >= 8.0}"> 
+								<c:when test="${vo.review >= 8.0 and vo.review < 9.0}"> 
 								만족<br/>
 								</c:when>
-								<c:when test="${vo.review >= 7.0}"> 
+								<c:when test="${vo.review >= 7.0 and vo.review < 8.0}"> 
 								보통<br/>
 								</c:when>
 								<c:when test="${vo.review <= 7.0 and vo.review > 0.0}"> 

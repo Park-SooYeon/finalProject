@@ -3,7 +3,11 @@ package controller;
 
 
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,6 +23,8 @@ import rent_parameter.CarViewVo;
 import rent_parameter.CompanyPm;
 import rent_parameter.DateVo;
 import rent_parameter.ReservePm;
+import rent_parameter.ReserveSearchVo;
+import rent_parameter.ReserveVo;
 import rent_parameter.rentReviewPm;
 import rent_parameter.rentReviewTotVo;
 import rent_parameter.rentReviewVo;
@@ -369,10 +375,71 @@ public class RentControllor {
 		contentPage = "";
 		mainPage = "rentReserveSearch.jsp";
 		
+		String member_id = req.getParameter("member_id_t");
+		
+		//예약내역
+		List<ReserveVo> reserve_list1 = rentDao.reserveSearch1(member_id);
+		List<ReserveSearchVo> param_list1 = rentDao.paramMaker(reserve_list1);
+		
+		//지난 내역
+		List<ReserveVo> reserve_list2 = rentDao.reserveSearch2(member_id);
+		List<ReserveSearchVo> param_list2 = rentDao.paramMaker(reserve_list2);
+		
+		//취소 내역
+		
+		List<ReserveVo> reserve_list3 = rentDao.reserveSearch3(member_id);
+		List<ReserveSearchVo> param_list3 = rentDao.paramMaker(reserve_list3);
+		
+		
+		mv.addObject("reserve_list1",reserve_list1 );
+		mv.addObject("param_list1",param_list1);
+		
+		mv.addObject("reserve_list2",reserve_list2 );
+		mv.addObject("param_list2",param_list2);
+		
+		mv.addObject("reserve_list3",reserve_list3 );
+		mv.addObject("param_list3",param_list3);
+		
+		mv.addObject("contentPage",contentPage);
+		mv.addObject("mainPage",mainPage);
+		mv.setViewName("rent_index");
+		return mv;
+	}
+	
+	@RequestMapping(value="/reserveCancle.rent",method= {RequestMethod.POST,RequestMethod.GET})
+	public ModelAndView reserveCancle(HttpServletRequest req,HttpServletResponse resp) {
+		mv = new ModelAndView();
+		contentPage = "";
+		mainPage = "rentReserveSearch.jsp";
+		
 		String member_id = req.getParameter("member_id");
-		List<ReservePm> list = rentDao.reserveSearch1(member_id);
+		String reserve_serial = req.getParameter("reserve_serial");
 		
+		//예약 취소update
+		String msg = rentDao.reserveCancle(reserve_serial);
 		
+		//예약내역
+		List<ReserveVo> reserve_list1 = rentDao.reserveSearch1(member_id);
+		List<ReserveSearchVo> param_list1 = rentDao.paramMaker(reserve_list1);
+		
+		//지난 내역
+		List<ReserveVo> reserve_list2 = rentDao.reserveSearch2(member_id);
+		List<ReserveSearchVo> param_list2 = rentDao.paramMaker(reserve_list2);
+		
+		//취소 내역
+		List<ReserveVo> reserve_list3 = rentDao.reserveSearch3(member_id);
+		List<ReserveSearchVo> param_list3 = rentDao.paramMaker(reserve_list3);
+		
+		mv.addObject("msg",msg);
+		
+		mv.addObject("reserve_list1",reserve_list1 );
+		mv.addObject("param_list1",param_list1);
+		
+		mv.addObject("reserve_list2",reserve_list2 );
+		mv.addObject("param_list2",param_list2);
+		
+		mv.addObject("reserve_list3",reserve_list3 );
+		mv.addObject("param_list3",param_list3);
 		
 		mv.addObject("contentPage",contentPage);
 		mv.addObject("mainPage",mainPage);

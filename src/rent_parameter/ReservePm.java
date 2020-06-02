@@ -15,7 +15,7 @@ public class ReservePm {
 	int price;
 	String place_main;
 	String place_sub;
-	String reserved_date;
+	Timestamp reserved_date;
 	
 	public ReservePm(String member_id,String email) {
 		this.member_id = member_id;
@@ -59,11 +59,11 @@ public class ReservePm {
 		this.place_sub = place_sub;
 	}
 
-	public String getReserved_date() {
+	public Timestamp getReserved_date() {
 		return reserved_date;
 	}
 
-	public void setReserved_date(String reserved_date) {
+	public void setReserved_date(Timestamp reserved_date) {
 		this.reserved_date = reserved_date;
 	}
 
