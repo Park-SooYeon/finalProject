@@ -36,6 +36,13 @@ ms.func = function(){
 	
 		
 
+		
+		
+		
+		
+		
+		
+		
 		$('#btnMemberInsert').click(function(){ //회원가입
 			
 			var member_id=$("#member_id").val();

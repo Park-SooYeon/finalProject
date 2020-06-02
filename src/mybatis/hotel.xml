@@ -121,7 +121,7 @@ select
       
   </select>
 
-
+<!--  
 	<select id='placeSelect' resultType="bean.PlaceVo" parameterType="hashMap">
 		SELECT p.PLACE_SERIAL, p.PARTNER_SERIAL, p.PLACE_NAME,
 		p.PLACE_LOCATION, p.LATITUDE,
@@ -175,6 +175,6 @@ select
 		p.LONGITUDE, p.STATE, p.BREAKFAST,
 		p.WI_FI, p.PARKING, p.LOCAL_CODE, p.PLACE_TEL
 	</select>
-
+-->
 
 </mapper>

@@ -142,7 +142,7 @@ htfilter.removeAll = function() {
 }
 
 // 검색 요소에 따라 데이터 검색하기
-htfilter.ajax = function() {
+filter.ajax = function() {
 	let findStr = document.getElementById('filterFindStr').value;
 
 	$.ajax({
