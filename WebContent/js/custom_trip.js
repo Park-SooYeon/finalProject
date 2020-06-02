@@ -90,6 +90,67 @@ init();
 $("#searchPlace").on("keyup", function(){
 	let findStr = $(this).val();
 	let str = "";
+	let parseJson;
+	
+	
+	var xhr = new XMLHttpRequest();
+	var url = 'http://api.visitkorea.or.kr/openapi/service/rest/KorService/searchKeyword'; /*URL*/
+	var queryParams = '?' + encodeURIComponent('ServiceKey') + '='+'RGRZ7ZbtIrL2U4P0qfnA3puuV5UrzrqEFmf0aLwaZitXLcUQrOTbyRoZHRCpdViHuU1cTZ7jXX4GDbOMb%2Fc1gg%3D%3D'; /*Service Key*/
+	queryParams += '&' + encodeURIComponent('ServiceKey') + '=' + encodeURIComponent('인증키 (URL- Encode)'); /**/
+	queryParams += '&' + encodeURIComponent('MobileApp') + '=' + encodeURIComponent('AppTest'); /**/
+	queryParams += '&' + encodeURIComponent('MobileOS') + '=' + encodeURIComponent('ETC'); /**/
+	queryParams += '&' + encodeURIComponent('pageNo') + '=' + encodeURIComponent('1'); /**/
+	queryParams += '&' + encodeURIComponent('numOfRows') + '=' + encodeURIComponent('10'); /**/
+	queryParams += '&' + encodeURIComponent('listYN') + '=' + encodeURIComponent('Y'); /**/
+	queryParams += '&' + encodeURIComponent('arrange') + '=' + encodeURIComponent('A'); /**/
+	queryParams += '&' + encodeURIComponent('contentTypeId') + '=' + encodeURIComponent(''); /**/
+	queryParams += '&' + encodeURIComponent('areaCode') + '=' + encodeURIComponent(''); /**/
+	queryParams += '&' + encodeURIComponent('sigunguCode') + '=' + encodeURIComponent(''); /**/
+	queryParams += '&' + encodeURIComponent('cat1') + '=' + encodeURIComponent(''); /**/
+	queryParams += '&' + encodeURIComponent('cat2') + '=' + encodeURIComponent(''); /**/
+	queryParams += '&' + encodeURIComponent('cat3') + '=' + encodeURIComponent(''); /**/
+	queryParams += '&' + encodeURIComponent('keyword') + '=' + encodeURIComponent(findStr)
+	queryParams += '&_type=json';
+
+	xhr.open('GET', url + queryParams);
+	xhr.onreadystatechange = function () {
+	    if (this.readyState == 4) {
+	    	// 결과값을 json타입으로 담고
+	    	parseJson = JSON.parse(this.responseText).response.body.items.item;
+	    	console.log(parseJson[0]);
+	    	for(d of parseJson){
+	    		str += `<div
+		            class='day-spot-item ui-draggable'
+		                data-serial='${d.contentid}'
+		                data-long='${d.mapy}'
+		                data-lat='${d.mapx}'
+		                data-pl_type='0'
+		                data-no='0'
+		                data-pl_cat='301'
+		                data-ci='10907'
+		              >
+		                <div class='img-box fl'>
+		                  <img src='${d.firstimage}' />
+		                </div>
+		                <div class='info-box'>
+		                  <div class='info-title'>${d.title}</div>
+		                  <div class='small info-small'>공원/정원</div>
+		                  <div class='like-cnt-info'>
+		                    <i class='fab fa-gratipay' style='color: rgb(253, 123, 145);'></i> 
+		                  </div>
+		                </div>
+		                <div class='spot-to-inspot'>
+		                  <img class='add-icon' src='./images/myPage/interface.png'/>
+		                </div>
+		              </div>`;
+	    	}
+	    	$("#place-here").html(str);
+	    	}
+	};
+	xhr.send('');
+	
+	
+	/*
 	$.getJSON("selectAll.mp", {"findStr":findStr}, function(json){
 		
 		if(json.length>0){
@@ -124,13 +185,14 @@ $("#searchPlace").on("keyup", function(){
 	                </div>
 	              </div>`;
 			}
-			$("#place-here").html(str);
 		}else{
 			
 		}
+
 		
 		
 	});
+	 */
 	
 })
 
