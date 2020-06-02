@@ -125,19 +125,34 @@
 			<div class="swiper-container m-2">
 				<div class="swiper-wrapper pl-50 pr-50">
 					
-					<c:forEach var="i" begin="1" end="10">
+					<c:forEach var="i" items="${todayList }">
 						<div class="swiper-slide">
-							<div class="p-1 heart" onclick="main.like(this)">
-								<i class="fa fa-heart-o" style="vertical-align: middle;"></i>
+							<div class="p-1 heart" onclick="main.like(this, ${i.contentid})">
+								<c:set var = "temp_serial" value = "${i.contentid }"/>
+								<c:choose>
+									<c:when test="${fn:contains(likeList, temp_serial ) }">
+										<i class="fa fa-heart" style="vertical-align: middle;"></i>
+									</c:when>
+									<c:otherwise>
+										<i class="fa fa-heart-o" style="vertical-align: middle;"></i>
+									</c:otherwise>
+								</c:choose>
 							</div>
-							<div class="single-destinations" onclick="main.detailMove()">
+							<div class="single-destinations" onclick="main.detailMove(${i.contentid})">
 								<div class="thumb">
-									<img src="template/img/packages/d${i }.jpg" alt="no-image">
+									<img src="${i.firstimage }" alt="no-image">
 								</div>
 								<div class="details p-2">
-									<h4>Holiday Sea beach Blue Ocean</h4>
-									<p>United staes of America</p>
-									<h6 class="date">위치</h6>
+									<h4>${i.title }</h4>
+									<p class="rating" data-rate="${i.reputation }">
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i> 
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+									 ${i.review_cnt } 건의 리뷰
+									</p>
+									<h6 class="date">${i.addr1 }</h6>
 								</div>
 							</div>
 						</div>
