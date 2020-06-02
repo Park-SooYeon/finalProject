@@ -37,8 +37,7 @@ public class ReviewVo {
 	
 	// 리뷰 포스팅 가져올때 필요한 프로필 사진
 	String member_photo;
-	
-	String member_photo;
+
 	String nickName;
 	int likecount;
 	

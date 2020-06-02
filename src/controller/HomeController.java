@@ -15,6 +15,8 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.TypeFactory;
@@ -28,7 +30,7 @@ import vo.RestDataVo;
 @Controller
 public class HomeController {
 	
-	@GetMapping("/index.jsp")
+	@RequestMapping(value = "/index.jsp", method = {RequestMethod.GET, RequestMethod.POST} )
 	public String home(HttpServletRequest req, Model model) {
 		System.out.println("들어와??");
 		System.out.println("왜 여러번 ㄷㄹ어오지?");
@@ -43,7 +45,7 @@ public class HomeController {
 		
 		SubMainDao dao = new SubMainDao();
 		
-		// 쿠기에서 place_serial 값 가져오기
+		/*// 쿠기에서 place_serial 값 가져오기
 		Cookie[] cookies = req.getCookies();
 		System.out.println(cookies.length);
 		
@@ -302,7 +304,7 @@ public class HomeController {
 		} catch (Exception ex) {
 			System.out.println("rest api 오류");
 			ex.printStackTrace();
-		}
+		}*/
 		
 		model.addAttribute("todayList", todayList);
 		model.addAttribute("happyList", happyList);
