@@ -46,7 +46,7 @@
 	<div class="container">
 		<div class="col-lg-7 offset-lg-3">
 			<div class="jumbotron" style="padding-top: 20px; background: white">
-				<form method="post" name="frm_ms" id="frm_ms"  >
+				<form method="post" name="frm_ms" id="frm_ms" action="?inc=changeUserInfo.ms" >
 
 
 
@@ -54,7 +54,7 @@
 
 					<label>아이디</label> 
 					<input type="text" class="form-control "
-						name="mId" id="mId" value="id1234" readonly><br>
+						name="mId" id="mId" value="${sessionScope.member_id }" readonly><br>
                
       
      
@@ -77,7 +77,7 @@
 
 				<div class="form-group col-lg-10">
 					<label>이름</label> <input type="text" class="form-control"
-						name="mName" id="mName" value="이룸이요" required>
+						name="mName" id="mName" value="${UserInfo.member_name }" required>
 				</div>
 
 				
@@ -86,7 +86,7 @@
 				<div class="form-group col-lg-10" id="email_syj">
 					<label for="InputEmail">이메일 주소</label> 
 					<div class="input-group">
-					  <input type="text" class="form-control" placeholder="이메일을 입력해주세요" aria-describedby="basic-addon2"  required value="myemail@here.com">
+					  <input type="text" name="email" id="email" class="form-control" placeholder="이메일을 입력해주세요" aria-describedby="basic-addon2"  required value="${UserInfo.email }">
 					 
 					  <input type="button" class="genric-btn info radius input-group-append" value="인증받기"
 						id="btnSendMail">
@@ -108,7 +108,7 @@
 				<div class="col-lg-7">
 						<a class="pull-left" href="#" data-toggle="modal"
             				data-target="#mp-memberLeave">회원탈퇴</a>
-					<input type="button" class="genric-btn info min-width-150  e-large pull-right"
+					<input type="submit" class="genric-btn info min-width-150  e-large pull-right"
 						value="변경사항 저장" id="btnInsert" >
 				</div>
 				</form>
