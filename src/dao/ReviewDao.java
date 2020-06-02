@@ -44,6 +44,8 @@ public class ReviewDao {
 				throw new Exception("본문 저장중 오류 발생");
 			}
 			
+			vo.getPlace_serial();
+			System.out.println(vo.getPlace_serial());
 			
 			List<MultipartFile> file = vo.getFileUpload();
 			if(!file.isEmpty()) {

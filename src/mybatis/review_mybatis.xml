@@ -5,15 +5,15 @@
 
 	<!-- 본문글 -->
  	<insert id='insert' parameterType='bean.ReviewVo' >
- 		  <selectKey keyProperty="review_serial" resultType="java.lang.Integer" order="BEFORE">
- 		        select review_serial FROM review
+ 		  <selectKey keyProperty="review_serial" resultType="int" order="BEFORE">
+ 		        select seq_review.nextval FROM dual
 	      </selectKey>
  			insert into review(review_serial, member_id, place_serial, review_type, reputation, 
  			review_title, review_content, visit_date, review_date, service, accessibility,
  			price, scale, food)
- 			values(seq_review.nextval, #{member_id}, ${place_serial}, ${review_type}, ${reputation},
- 			#{review_title}, #{review_content}, to_date(#{visit_date}, 'yyyy-MM-dd'), sysdate, ${service},
- 			${accessibility}, ${price}, ${scale}, ${food})
+ 			values(seq_review.nextval, #{member_id}, ${place_serial}, ${review_type,jdbcType=INTEGER}, ${reputation},
+ 			#{review_title}, #{review_content}, to_date(#{visit_date}, 'yyyy-MM-dd'), sysdate, ${service,jdbcType=INTEGER},
+ 			${accessibility,jdbcType=INTEGER}, ${price,jdbcType=INTEGER}, ${scale,jdbcType=INTEGER}, ${food,jdbcType=INTEGER})
  		</insert>
  		
  	<insert id='photo' parameterType='bean.ReviewVo' >
