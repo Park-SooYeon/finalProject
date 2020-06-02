@@ -50,8 +50,8 @@
 
 			<div class='row'>			
 			<div id='mid_left' class='col-lg-4 col-md-4 col-sm-4 col-xs-12'>
-				<h4>Nissan Versa Note <span>또는 동급</span></h4>
-				<img src="../images/rent/viewCar.png"/>
+				<h4>${vo.car_name} <span>${vo.car_kind }</span></h4>
+				<img src="../images/rent/car/${vo.photo }"/>
 				<div>
 					<b>평가 : </b>
 					<span>

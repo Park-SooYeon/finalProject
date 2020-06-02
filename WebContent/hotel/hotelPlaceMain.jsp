@@ -1,127 +1,67 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <link rel="stylesheet" href="css/main.css">
-<script src="lib/jquery-3.4.1.js"></script>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+
+
+<c:set var="likeList" value="${likeList }" />
 
 <!-- start banner Area -->
-<section class="banner-area relative" >
-		<div class="container pt-50 mb-30">
-			<div class="row d-flex justify-content-center align-items-center"
-				style="height: 400px">
-				<div class="menu-content col-lg-8">
-					<div class="title text-center">
-						<h1 class="text-white mb-10">호텔 (지역)</h1>
-						<form method="post" name="frm_ms" id="frm_ms" class="row">
-							<div class="col-lg-4  ">
-								<input type="text" class="form-control" name="name"
-									placeholder="From " onfocus="this.placeholder = ''"
-									onblur="this.placeholder = 'From '">
-							</div>
-							<div class="col-lg-4  ">
-								<input type="text" id="datePickInput"
-									class="form-control  datepicker-here" data-range="true"
-									data-position="right top" data-language="kr"
-									data-multiple-dates-separator=" - " name="start"
-									placeholder="Start " onfocus="this.placeholder = ''"
-									onblur="this.placeholder = 'Start '">
-							</div>
-
-							<div class="col-lg-2  ">
-								<input type="number" min="1" max="20" class="form-control"
-									name="adults" placeholder="인원 " onfocus="this.placeholder = ''"
-									onblur="this.placeholder = 'Adults '">
-							</div>
-
-
-							<button class="btn btn-primary" style="width: 15%; height: 40px;"
-								type="submit">
-								<i class="fa fa-search"></i>
-							</button>
-
-						</form>
+<section class="banner-area relative">
+	<div class="container pt-50 mb-30">
+		<div class="row d-flex justify-content-center align-items-center"
+			style="height: 250px">
+			<div class="menu-content col-lg-8">
+				<div class="title text-center">
+					<h1 class="text-white mb-10">호텔</h1>
+					<c:choose>
+							<c:when test="${param.local == 1 }">
+								서울
+							</c:when>
+							<c:when test="${param.local == 39 }">
+								제주도
+							</c:when>
+							<c:when test="${param.local == 6 }">
+								부산
+							</c:when>
+							<c:when test="${param.local == 4 }">
+								대구
+							</c:when>
+							<c:when test="${param.local == 31 }">
+								경기도
+							</c:when>
+							<c:when test="${param.local == 2 }">
+								인천
+							</c:when>
+						</c:choose>
+					<div class="ui-widget" style="display: flex;">
+						<input id="mainFindStr" type="text"
+							placeholder="지역 또는 검색어를 입력해주세요!" onfocus="this.placeholder = ''"
+							onblur="this.placeholder = '지역 또는 검색어를 입력해주세요!'"
+							class="single-input">
+						<button id="mainSearch" class="btn btn-primary"
+							style="width: 15%; height: 40px;">
+							<i class="fa fa-search"></i>
+						</button>
 					</div>
-				</div>
-			</div>
-		</div>
-
-
-	</section>
-<!-- End banner Area -->
-	
-<script>
-let move = function() {
-	location.href = './?inc=commonPage/food_index.jsp';
-}
-</script>
-<section>
-	<div class="container pb-40 pt-2">
-		<div class="row">
-			<div class="col-lg-4">
-				<div class="row">
-					<div class="col">
-						<div class="single-menu relative">
-							<div class="thumb relative">
-								<div class="overlay overlay-bg"></div>
-							</div>
-							<div class="desc">
-								<h4>호텔</h4>
-							</div>
-						</div>
-					</div>
-					<div class="col">
-						<div class="single-menu relative" onclick="move()">
-							<div class="thumb relative">
-								<div class="overlay overlay-bg"></div>
-							</div>
-							<div class="desc">
-								<h4>즐길거리</h4>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-lg-4">
-				<div class="row">
-					<div class="col">
-						<div class="single-menu relative">
-							<div class="thumb relative">
-								<div class="overlay overlay-bg"></div>
-							</div>
-							<div class="desc">
-								<h4>음식점</h4>
-							</div>
-						</div>
-					</div>
-					<div class="col">
-						<div class="single-menu relative">
-							<div class="thumb relative">
-								<div class="overlay overlay-bg"></div>
-							</div>
-							<div class="desc">
-								<h4>축제</h4>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-lg-4">
-				<div class="row">
-					<div class="col">
-						<div class="single-menu relative">
-							<div class="thumb relative">
-								<div class="overlay overlay-bg"></div>
-							</div>
-							<div class="desc">
-								<h4>렌트카</h4>
-							</div>
-						</div>
-					</div>
-					<div class="col"></div>
 				</div>
 			</div>
 		</div>
 	</div>
 </section>
+<!-- End banner Area -->
+
+<script>
+	let hotelSearchMove = function() {
+		location.href = './?inc=hotel/hotel_body.jsp';
+	}
+
+	let locationMove = function() {
+
+		location.href = './?inc=hotel/hotelPlaceMain.jsp'
+	}
+</script>
 
 <!-- Swiper -->
 <section class="destinations-area pb-60">
@@ -129,414 +69,132 @@ let move = function() {
 		<div class="row d-flex justify-content-center">
 			<div class="menu-content col-lg-12">
 				<h1 class="mb-10">최근 본 장소</h1>
+				<a href="./?inc=hotel/hotel_body.jsp">더 많은 호텔 검색하기</a>
 			</div>
 		</div>
 		<div class="row">
-			<div class="swiper-container m-2">
-				<div class="swiper-wrapper pl-50 pr-50">
-					
-					<div class="swiper-slide">
-						<div class="p-1 heart" onclick="main.like(this)">
-							<i class="fa fa-heart-o" style="vertical-align: middle;"></i>
-						</div>
-						<div class="single-destinations" onclick="detailMove()">
-							<div class="thumb">
-								<img src="template/img/packages/d1.jpg" alt="">
-							</div>
-							<div class="details p-2">
-								<div class="tags">
-									<ul>
-										<li><a href="#">태그1</a></li>
-										<li><a href="#">태그2</a></li>
-									</ul>
-								</div>
-								<h4>Holiday Sea beach Blue Ocean</h4>
-								<p>United staes of America</p>
-								<h6 class="date">위치</h6>
-							</div>
-						</div>
-					</div>
-					
-					
-					<div class="swiper-slide">
-						<div class="single-destinations">
-							<div class="thumb">
-								<img src="template/img/packages/d2.jpg" alt="">
-							</div>
-							<div class="details p-2">
-								<div class="tags">
-									<ul>
-										<li><a href="#">태그1</a></li>
-										<li><a href="#">태그2</a></li>
-									</ul>
-								</div>
-								<h4>Holiday Sea beach Blue Ocean</h4>
-								<p>United staes of America</p>
-								<h6 class="date">위치</h6>
-							</div>
-						</div>
-					</div>
-					<div class="swiper-slide">
-						<div class="single-destinations">
-							<div class="thumb">
-								<img src="template/img/packages/d3.jpg" alt="">
-							</div>
-							<div class="details p-2">
-								<div class="tags">
-									<ul>
-										<li><a href="#">태그1</a></li>
-										<li><a href="#">태그2</a></li>
-									</ul>
-								</div>
-								<h4>Holiday Sea beach Blue Ocean</h4>
-								<p>United staes of America</p>
-								<h6 class="date">위치</h6>
-							</div>
-						</div>
-					</div>
-					<div class="swiper-slide">
-						<div class="single-destinations">
-							<div class="thumb">
-								<img src="template/img/packages/d4.jpg" alt="">
-							</div>
-							<div class="details p-2">
-								<div class="tags">
-									<ul>
-										<li><a href="#">태그1</a></li>
-										<li><a href="#">태그2</a></li>
-									</ul>
-								</div>
-								<h4>Holiday Sea beach Blue Ocean</h4>
-								<p>United staes of America</p>
-								<h6 class="date">위치</h6>
-							</div>
-						</div>
-					</div>
-					<div class="swiper-slide">Slide 5</div>
-					<div class="swiper-slide">Slide 6</div>
-					<div class="swiper-slide">Slide 7</div>
-					<div class="swiper-slide">Slide 8</div>
-					<div class="swiper-slide">Slide 9</div>
-					<div class="swiper-slide">Slide 10</div>
-				</div>
+			<div class="single-destinations" onclick="locationMove()">
 
-				<!-- Add Arrows -->
-				<div class="swiper-button-next"></div>
-				<div class="swiper-button-prev"></div>
+				<div class="details p-2">
+
+					<h4>부산</h4>
+					<p>2020/05/26~2020/06/28, 4명</p>
+
+				</div>
 			</div>
 		</div>
 	</div>
+
 </section>
+
 
 <!-- Swiper -->
 <section class="destinations-area pb-60">
 	<div class="container">
 		<div class="row d-flex justify-content-center">
 			<div class="menu-content col-lg-12">
-				<h1 class="mb-10">추천 즐길거리</h1>
-				<a>더 보기</a>
+				<h1 class="mb-10">예약 가능 호텔 !</h1>
+				<a href="./?inc=hotel/hotel_body.jsp">더 많은 호텔 검색하기</a>
 			</div>
 		</div>
 		<div class="row">
 			<div class="swiper-container m-2">
 				<div class="swiper-wrapper pl-50 pr-50">
-					<div class="swiper-slide">
-						<div class="p-1 heart" onclick="main.like(this)">
-							<i class="fa fa-heart-o" style="vertical-align: middle;"></i>
-						</div>
-						<div class="single-destinations" onclick="detailMove()">
-							<div class="thumb">
-								<img src="template/img/packages/d1.jpg" alt="">
-							</div>
-							<div class="details p-2">
-								<div class="tags">
-									<ul>
-										<li><a href="#">태그1</a></li>
-										<li><a href="#">태그2</a></li>
-									</ul>
-								</div>
-								<h4>Holiday Sea beach Blue Ocean</h4>
-								<p>United staes of America</p>
-								<h6 class="date">위치</h6>
-							</div>
-						</div>
-					</div>
-					<div class="swiper-slide">
-						<div class="single-destinations">
-							<div class="thumb">
-								<img src="template/img/packages/d2.jpg" alt="">
-							</div>
-							<div class="details p-2">
-								<div class="tags">
-									<ul>
-										<li><a href="#">태그1</a></li>
-										<li><a href="#">태그2</a></li>
-									</ul>
-								</div>
-								<h4>Holiday Sea beach Blue Ocean</h4>
-								<p>United staes of America</p>
-								<h6 class="date">위치</h6>
-							</div>
-						</div>
-					</div>
-					<div class="swiper-slide">
-						<div class="single-destinations">
-							<div class="thumb">
-								<img src="template/img/packages/d3.jpg" alt="">
-							</div>
-							<div class="details p-2">
-								<div class="tags">
-									<ul>
-										<li><a href="#">태그1</a></li>
-										<li><a href="#">태그2</a></li>
-									</ul>
-								</div>
-								<h4>Holiday Sea beach Blue Ocean</h4>
-								<p>United staes of America</p>
-								<h6 class="date">위치</h6>
-							</div>
-						</div>
-					</div>
-					<div class="swiper-slide">
-						<div class="single-destinations">
-							<div class="thumb">
-								<img src="template/img/packages/d4.jpg" alt="">
-							</div>
-							<div class="details p-2">
-								<div class="tags">
-									<ul>
-										<li><a href="#">태그1</a></li>
-										<li><a href="#">태그2</a></li>
-									</ul>
-								</div>
-								<h4>Holiday Sea beach Blue Ocean</h4>
-								<p>United staes of America</p>
-								<h6 class="date">위치</h6>
-							</div>
-						</div>
-					</div>
-					<div class="swiper-slide">Slide 5</div>
-					<div class="swiper-slide">Slide 6</div>
-					<div class="swiper-slide">Slide 7</div>
-					<div class="swiper-slide">Slide 8</div>
-					<div class="swiper-slide">Slide 9</div>
-					<div class="swiper-slide">Slide 10</div>
-				</div>
 
-				<!-- Add Arrows -->
-				<div class="swiper-button-next"></div>
-				<div class="swiper-button-prev"></div>
+
+					<c:forEach var='i' items='${hotelList2 }'>
+						<div class="swiper-slide">
+							<div class="p-1 heart" onclick="main.like(this)">
+								<i class="fa fa-heart-o" style="vertical-align: middle;"></i>
+							</div>
+							<div class="single-destinations">
+								<div class="thumb">
+									<img src="assets/images/upload/${i.oriFile}"
+										style="height: 200px;">
+								</div>
+								<div class="tags">
+									<div>
+										&nbsp;&nbsp;<span class="badge badge photel"
+											style="font-size: 15px;">예약 가능</span>
+
+									</div>
+								</div>
+								<div class="details p-2">
+
+									<h4>${i.place_name}</h4>
+									<p>${i.place_tel}</p>
+									<h6 class="date">${i.place_location}</h6>
+								</div>
+							</div>
+						</div>
+					</c:forEach>
+
+					<!-- Add Arrows -->
+					<div class="swiper-button-next"></div>
+					<div class="swiper-button-prev"></div>
+				</div>
 			</div>
 		</div>
 	</div>
 </section>
+
+
+
 
 <!-- Swiper -->
 <section class="destinations-area pb-60">
 	<div class="container">
 		<div class="row d-flex justify-content-center">
 			<div class="menu-content col-lg-12">
-				<h1 class="mb-10">추천 음식점</h1>
-				<a>더 보기</a>
+				<h1 class="mb-10">예약 불가능 호텔 !</h1>
+				<a href="./?inc=hotel/hotel_body.jsp">더 많은 호텔 검색하기</a>
 			</div>
 		</div>
 		<div class="row">
 			<div class="swiper-container m-2">
 				<div class="swiper-wrapper pl-50 pr-50">
-					<div class="swiper-slide">
-						<div class="p-1 heart" onclick="main.like(this)">
-							<i class="fa fa-heart-o" style="vertical-align: middle;"></i>
-						</div>
-						<div class="single-destinations" onclick="detailMove()">
-							<div class="thumb">
-								<img src="template/img/packages/d1.jpg" alt="">
-							</div>
-							<div class="details p-2">
-								<div class="tags">
-									<ul>
-										<li><a href="#">태그1</a></li>
-										<li><a href="#">태그2</a></li>
-									</ul>
-								</div>
-								<h4>Holiday Sea beach Blue Ocean</h4>
-								<p>United staes of America</p>
-								<h6 class="date">위치</h6>
-							</div>
-						</div>
-					</div>
-					<div class="swiper-slide">
-						<div class="single-destinations">
-							<div class="thumb">
-								<img src="template/img/packages/d2.jpg" alt="">
-							</div>
-							<div class="details p-2">
-								<div class="tags">
-									<ul>
-										<li><a href="#">태그1</a></li>
-										<li><a href="#">태그2</a></li>
-									</ul>
-								</div>
-								<h4>Holiday Sea beach Blue Ocean</h4>
-								<p>United staes of America</p>
-								<h6 class="date">위치</h6>
-							</div>
-						</div>
-					</div>
-					<div class="swiper-slide">
-						<div class="single-destinations">
-							<div class="thumb">
-								<img src="template/img/packages/d3.jpg" alt="">
-							</div>
-							<div class="details p-2">
-								<div class="tags">
-									<ul>
-										<li><a href="#">태그1</a></li>
-										<li><a href="#">태그2</a></li>
-									</ul>
-								</div>
-								<h4>Holiday Sea beach Blue Ocean</h4>
-								<p>United staes of America</p>
-								<h6 class="date">위치</h6>
-							</div>
-						</div>
-					</div>
-					<div class="swiper-slide">
-						<div class="single-destinations">
-							<div class="thumb">
-								<img src="template/img/packages/d4.jpg" alt="">
-							</div>
-							<div class="details p-2">
-								<div class="tags">
-									<ul>
-										<li><a href="#">태그1</a></li>
-										<li><a href="#">태그2</a></li>
-									</ul>
-								</div>
-								<h4>Holiday Sea beach Blue Ocean</h4>
-								<p>United staes of America</p>
-								<h6 class="date">위치</h6>
-							</div>
-						</div>
-					</div>
-					<div class="swiper-slide">Slide 5</div>
-					<div class="swiper-slide">Slide 6</div>
-					<div class="swiper-slide">Slide 7</div>
-					<div class="swiper-slide">Slide 8</div>
-					<div class="swiper-slide">Slide 9</div>
-					<div class="swiper-slide">Slide 10</div>
-				</div>
 
-				<!-- Add Arrows -->
-				<div class="swiper-button-next"></div>
-				<div class="swiper-button-prev"></div>
+
+					<c:forEach var='i' items='${hotelList }' begin='1' end='20'>
+						<div class="swiper-slide">
+							<div class="p-1 heart" onclick="main.like(this)">
+								<i class="fa fa-heart-o" style="vertical-align: middle;"></i>
+							</div>
+							<div class="single-destinations">
+								<div class="thumb">
+									<img src="images/hotel/seoul/${i.place_name}1.jpg"
+										style="height: 200px;">
+								</div>
+								<div class="tags">
+									<div>
+										&nbsp;&nbsp;<span class="badge badge-warning"
+											style="font-size: 15px; margin: 2px;">제휴준비중</span>
+
+									</div>
+								</div>
+								<div class="details p-2">
+
+									<h4>${i.place_name}</h4>
+
+									<h6 class="date">${i.place_location}</h6>
+								</div>
+							</div>
+						</div>
+					</c:forEach>
+
+					<!-- Add Arrows -->
+					<div class="swiper-button-next"></div>
+					<div class="swiper-button-prev"></div>
+				</div>
 			</div>
 		</div>
 	</div>
 </section>
+
 
 <!-- Swiper -->
-<section class="destinations-area pb-60">
-	<div class="container">
-		<div class="row d-flex justify-content-center">
-			<div class="menu-content col-lg-12">
-				<h1 class="mb-10">추천 축제</h1>
-				<a>더 보기</a>
-			</div>
-		</div>
-		<div class="row">
-			<div class="swiper-container m-2">
-				<div class="swiper-wrapper pl-50 pr-50">
-					<div class="swiper-slide">
-						<div class="p-1 heart" onclick="main.like(this)">
-							<i class="fa fa-heart-o" style="vertical-align: middle;"></i>
-						</div>
-						<div class="single-destinations" onclick="detailMove()">
-							<div class="thumb">
-								<img src="template/img/packages/d1.jpg" alt="">
-							</div>
-							<div class="details p-2">
-								<div class="tags">
-									<ul>
-										<li><a href="#">태그1</a></li>
-										<li><a href="#">태그2</a></li>
-									</ul>
-								</div>
-								<h4>Holiday Sea beach Blue Ocean</h4>
-								<p>United staes of America</p>
-								<h6 class="date">위치</h6>
-							</div>
-						</div>
-					</div>
-					<div class="swiper-slide">
-						<div class="single-destinations">
-							<div class="thumb">
-								<img src="template/img/packages/d2.jpg" alt="">
-							</div>
-							<div class="details p-2">
-								<div class="tags">
-									<ul>
-										<li><a href="#">태그1</a></li>
-										<li><a href="#">태그2</a></li>
-									</ul>
-								</div>
-								<h4>Holiday Sea beach Blue Ocean</h4>
-								<p>United staes of America</p>
-								<h6 class="date">위치</h6>
-							</div>
-						</div>
-					</div>
-					<div class="swiper-slide">
-						<div class="single-destinations">
-							<div class="thumb">
-								<img src="template/img/packages/d3.jpg" alt="">
-							</div>
-							<div class="details p-2">
-								<div class="tags">
-									<ul>
-										<li><a href="#">태그1</a></li>
-										<li><a href="#">태그2</a></li>
-									</ul>
-								</div>
-								<h4>Holiday Sea beach Blue Ocean</h4>
-								<p>United staes of America</p>
-								<h6 class="date">위치</h6>
-							</div>
-						</div>
-					</div>
-					<div class="swiper-slide">
-						<div class="single-destinations">
-							<div class="thumb">
-								<img src="template/img/packages/d4.jpg" alt="">
-							</div>
-							<div class="details p-2">
-								<div class="tags">
-									<ul>
-										<li><a href="#">태그1</a></li>
-										<li><a href="#">태그2</a></li>
-									</ul>
-								</div>
-								<h4>Holiday Sea beach Blue Ocean</h4>
-								<p>United staes of America</p>
-								<h6 class="date">위치</h6>
-							</div>
-						</div>
-					</div>
-					<div class="swiper-slide">Slide 5</div>
-					<div class="swiper-slide">Slide 6</div>
-					<div class="swiper-slide">Slide 7</div>
-					<div class="swiper-slide">Slide 8</div>
-					<div class="swiper-slide">Slide 9</div>
-					<div class="swiper-slide">Slide 10</div>
-				</div>
 
-				<!-- Add Arrows -->
-				<div class="swiper-button-next"></div>
-				<div class="swiper-button-prev"></div>
-			</div>
-		</div>
-	</div>
-</section>
-    
+
 <!-- Modal -->
 <div class="modal fade" data-backdrop="static"
 	id="exampleModalScrollable" tabindex="-1" role="dialog"
@@ -544,24 +202,27 @@ let move = function() {
 	<div class="modal-dialog modal-dialog-scrollable" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalScrollableTitle">여행 목록에 추가</h5>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<h5 class="modal-title" id="exampleModalScrollableTitle">여행 목록에
+					추가</h5>
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
 			<div class="modal-body" id="modal-body">
-				<div class="folder p-2" id="folderInsert" onclick="main.insertFolder(this)">
+				<div class="folder p-2" id="folderInsert"
+					onclick="main.insertFolder(this)">
 					<i class="fa fa-plus pr-2"></i>여행 추가
 				</div>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
-				<button type="button" class="btn btn-primary" id="btnLikeInsert" onclick="main.makeHeart()">추가</button>
+				<button type="button" class="btn btn-primary" id="btnLikeInsert"
+					onclick="main.makeHeart()">추가</button>
 			</div>
 		</div>
 	</div>
 </div>
 
-<!-- Swiper JS -->
 <script src="./swiper-5.3.8/package/js/swiper.min.js"></script>
 <script src="js/main.js"></script>

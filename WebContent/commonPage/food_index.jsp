@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 
 <!-- css -->
-<link rel="stylesheet" type="text/css" href="css/food.css">
+<link rel="stylesheet" type="text/css" href="css/search.css">
 
 <body>
 <header>

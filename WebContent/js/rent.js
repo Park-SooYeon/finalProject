@@ -5,12 +5,7 @@
 let rent ={}
 
 rent.func = function(){
-	//rent_Main >> rentReserveSearch
-	if($('#btnGoReserveSearch')!=null){
-	$('#btnGoReserveSearch').click(function(){
-		$('#rentTop_frm').attr('action','./reserveSearch.rent').submit();
-	});
-	}
+	
 	//rent_Main >> rentSearch(rentSearchSub1) 
 	if($('#btnCompanySearch')!=null){
 		$('#btnCompanySearch').click(function(){		
@@ -35,11 +30,14 @@ rent.func = function(){
 		});
 	}
 	
+	
 	if($('#btnReserveResult')!=null){
 		$('#btnReserveResult').click(function(){
 			$('#rent_frm').attr('action','./reserveResult.rent').submit();
 		});
 	}
+	
+	
 	
 	
 	//렌트 kind radio값 변경
@@ -82,6 +80,10 @@ rent.func = function(){
 rent.goMain = function(){
 	$('#rent_frm').attr('action','./rentMain.rent').submit();
 }
+rent.goReserveSearch =function(){
+	$('#rentTop_frm').attr('action','./reserveSearch.rent').submit();
+
+}
 
 
 rent.carInfo = function(car_serial){
@@ -112,6 +114,9 @@ rent.fillter = function(){
 	
 }
 rent.fullcover = function(a){
+	if($('#pr2').val() < 1){
+		$('#pr2').val('1'); 
+	}
 	if(a=='y'){
 		$('#car_serial').val($('#pppp1').val());
 		$('#price').val(Number($('#pr1').val()) + (Number($('#pr2').val()))*30000);

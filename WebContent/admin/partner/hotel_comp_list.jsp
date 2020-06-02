@@ -45,7 +45,7 @@
 	                                                    <div class="d-flex align-items-center">
 	                                                    	<c:if test="${!empty vo.photos}">
 	                                                    		<c:forEach var="photo" items="${vo.photos}" begin="0" end="0" varStatus="status">
-																    <img class="img-xs rounded" src="../../assets/images/upload/${photo.oriFile }" alt="${photo.oriFile } image">
+																    <img class="img-lg rounded" src="../../assets/images/upload/${photo.sysFile }" alt="${photo.oriFile } image">
 																</c:forEach>
 	                                                        </c:if>
 	                                                        

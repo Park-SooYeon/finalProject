@@ -53,7 +53,7 @@ $('#check_festival').on("click", function() {
 });
 
 // 관광 타입 radio 버튼 클릭시 작동하는 함수
-menuSelect = function(menu) {
+gmenuSelect = function(menu) {
 	
 	// 관광 타입 설정 및 filter 검색 조건 초기화
 	// local 검색 조건은 유지

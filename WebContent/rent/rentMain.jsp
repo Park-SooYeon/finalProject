@@ -40,12 +40,12 @@
 
 					
 					<div class="form-left-w3l">
-						<input id="mainRent"  class='datepicker-here' data-timepicker="true" data-language='en' name="rentDate" type="text" placeholder="차량인수일 " required="">
+						<input id="mainRent"  class='datepicker-here'  data-position='right top' data-timepicker="true" data-language='en' name="rentDate" type="text" placeholder="차량인수일 " required="">
 						
 						<div class="clear"></div>
 					</div>
 					<div class="form-left-w3l">
-						<input id="mainReturn" class='datepicker-here' data-timepicker="true" data-language='en' name="returnDate" type="text" placeholder="차량반납일 " required="">
+						<input id="mainReturn" class='datepicker-here'  data-position='left top' data-timepicker="true" data-language='en' name="returnDate" type="text" placeholder="차량반납일 " required="">
 						
 						<div class="clear"></div>
 					</div>

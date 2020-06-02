@@ -4,5 +4,11 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd"
 >
 <mapper namespace="rent">
-
+	<select id="select" parameterType="Integer" resultType="rent_parameter.CompanyVo">
+		SELECT r.COMPANY_NAME, r.ADDRESS, ( SELECT count(car.car_serial) cnt 
+		from RENT_CARS car JOIN RENT_COMPANY comp
+		ON car.COMPANY_SERIAL = comp.company_serial) car_cnt, r.state
+		FROM RENT_COMPANY r JOIN PARTNER p ON r.PARTNER_SERIAL = p.PARTNER_SERIAL
+		WHERE p.PARTNER_SERIAL=#{partner_serial}
+	</select>
 </mapper>
