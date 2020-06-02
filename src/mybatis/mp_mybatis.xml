@@ -319,4 +319,14 @@
         and member_id = #{member_id}
      </select>
 
+
+	<!-- 전체 place (호텔) 조회 -->
+	<select id="select_hotel" parameterType="String" resultType="bean.PlaceVo">
+		select place_serial, place_name, 
+			   place_location, latitude, longitude, local_code, place_tel,
+			   getPlacePhoto(place_serial) photo_name,
+			   getLikeCnt(place_serial) like_cnt
+		from place where place_name like '%${_parameter}%'
+	</select>
+	
 </mapper>

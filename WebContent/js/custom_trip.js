@@ -86,6 +86,54 @@ function init() {
 init();
 
 
+// 검색창에 검색어 입력되는 순간 ajax
+$("#searchPlace").on("keyup", function(){
+	let findStr = $(this).val();
+	let str = "";
+	$.getJSON("selectAll.mp", {"findStr":findStr}, function(json){
+		
+		if(json.length>0){
+			
+			
+			for(d of json){
+				if(d.place_code == 2){ // 호텔이면 경로수정
+					d.photo_name = "./images/hotel/"+d.photo_name;
+				}
+				str += `<div
+	            class='day-spot-item ui-draggable'
+	                data-serial='${d.place_serial}'
+	                data-long='${d.longitude}'
+	                data-lat='${d.latitude}'
+	                data-pl_type='0'
+	                data-no='0'
+	                data-pl_cat='301'
+	                data-ci='10907'
+	              >
+	                <div class='img-box fl'>
+	                  <img src='${d.photo_name}' />
+	                </div>
+	                <div class='info-box'>
+	                  <div class='info-title'>${d.place_name}</div>
+	                  <div class='small info-small'>공원/정원</div>
+	                  <div class='like-cnt-info'>
+	                    <i class='fab fa-gratipay' style='color: rgb(253, 123, 145);'></i> ${d.like_cnt}
+	                  </div>
+	                </div>
+	                <div class='spot-to-inspot'>
+	                  <img class='add-icon' src='./images/myPage/interface.png'/>
+	                </div>
+	              </div>`;
+			}
+			$("#place-here").html(str);
+		}else{
+			
+		}
+		
+		
+	});
+	
+})
+
 
 function add_plan_day() {
 	let end_value = $(".cat-left-date-"+cnt).html();

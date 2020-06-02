@@ -337,7 +337,7 @@
         <div class="list-search-full-wrap">
           <div class="list-search-box">
             <div class="input-group mb-2" style="padding: 0 20px;">
-              <input name="searchPlace" type="text" class="form-control" placeholder="장소검색" />
+              <input name="searchPlace" type="text" class="form-control" placeholder="장소검색" id="searchPlace"/>
               <div class="input-group-append search-append">
                 <button type="button">
                   <i class="fas fa-search"></i>
@@ -348,23 +348,23 @@
           </div>
           <div class="list-category-wrapper">
             <div class="list-category-box pt-2">
-              <div class="list-cat-item rounded-circle" data="1" title="즐길거리">
+              <div class="list-cat-item rounded-circle on" data-cat="1" title="즐길거리">
                 <span class="fas fa-camera-retro search-cat-icon"></span>
               </div>
-              <div class="list-cat-item rounded-circle" data="2" title="레스토랑/카페">
+              <div class="list-cat-item rounded-circle" data-cat="2" title="레스토랑/카페">
                 <span class="fas fa-utensils search-cat-icon"></span>
               </div>
-              <div class="list-cat-item rounded-circle" data="3" title="숙소">
+              <div class="list-cat-item rounded-circle" data-cat="3" title="숙소">
                 <span class="fas fa-bed search-cat-icon"></span>
               </div>
-              <div class="list-cat-item rounded-circle" data="4" title="관심리스트에서 보기">
-                <span class="fas fa-heart search-cat-icon" style="color:#777777;"></span>
+              <div class="list-cat-item rounded-circle" data-cat="4" title="관심리스트에서 보기">
+                <span class="fas fa-inbox search-cat-icon"></span>
               </div>
             </div>
           </div>
         </div>
 
-        <div class="list-box connectedSortable">
+        <div class="list-box connectedSortable" id="place-here">
 
 
           <div

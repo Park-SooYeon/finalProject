@@ -51,13 +51,12 @@ load();
 			let str = "";
 			
 			
-			// place_code가 2면 (호텔이면) 이미지 경로 수정
-			if(json.place_code == 2){
-				json.photo_name = "./images/hotel/"+json.photo_name;
-			}
 			
 			for(d of json){
-				console.log(d.like_cnt);
+				// place_code가 2면 (호텔이면) 이미지 경로 수정
+				if(d.place_code == 2){
+					d.photo_name = "./images/hotel/"+d.photo_name;
+				}
 				str += `<div class='day-spot-item ui-draggable' data='0'
 					data-set_day='0' data-rel_srl='845972' data-pl_type='0'
 					data-no='0' data-pl_cat='301' data-ci='10907'>
