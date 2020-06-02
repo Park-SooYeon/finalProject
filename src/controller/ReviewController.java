@@ -8,6 +8,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -74,13 +75,13 @@ public class ReviewController {
 		};
 		
 		
-		/*int place_serial = Integer.parseInt(req.getParameter("place_serial"));
+		
+		int place_serial = Integer.parseInt(req.getParameter("place_serial"));
 		HttpSession session = req.getSession();
 		String member_id = (String)session.getAttribute("member_id");
 		int reputation = Integer.parseInt(req.getParameter("reputation"));
 		String review_title = req.getParameter("review_title");
 		String review_content = req.getParameter("review_content");
-		MultipartFile file = req.getParameter("fileUpload");*/
 		
 		//방문일 뉴데이트에서 먼스 마이너스 연산 처리 후 입력
 		//Date 를 Calendar 맵핑
@@ -91,6 +92,12 @@ public class ReviewController {
 		cal.add(Calendar.MONTH, -date);
 		String visit_date = df.format(cal.getTime());
 		
+		vo.setMember_id(member_id);
+		vo.setPlace_serial(place_serial);
+		vo.setReputation(reputation);
+		vo.setReview_title(review_title);
+		vo.setReview_content(review_content);
+		vo.setVisit_date(visit_date);
 		/*System.out.println("member_id : " + member_id);
 		System.out.println("place_serial : " + place_serial);
 		System.out.println("reputation : " + reputation);
@@ -108,19 +115,13 @@ public class ReviewController {
 		
 		
 		
-		vo.setMember_id(member_id);
-		vo.setPlace_serial(place_serial);
-		vo.setReputation(reputation);
-		vo.setReview_title(review_title);
-		vo.setReview_content(review_content);
-		vo.setVisit_date(visit_date);
 		//ReviewVo vo = (ReviewVo) newReq.getAttribute("vo");
 		//System.out.println("vo에 잘 담겨있늬?? : " + vo);
 		//List<ReviewAttVo> attList = (List<ReviewAttVo>)req.getAttribute("attList");
 		
-		//msg = dao.insert(vo, attList);
-		
-		mv.addObject("msg", msg);*/
+		*/
+		msg = dao.insert(vo);
+		mv.addObject("msg", msg);
 		mv.setViewName("detailView");
 		return mv;
 	}
