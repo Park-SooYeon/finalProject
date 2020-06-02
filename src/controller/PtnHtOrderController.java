@@ -36,9 +36,10 @@ public class PtnHtOrderController {
 		int serial = compDao.getSerial(member_id);
 		
 		Map<String, Integer> info = dao.selectInfo(serial);
-		
+		 
 		List<hotelBookingVo> list = dao.select(serial);
 		
+		mv.addObject("info", info);
 		mv.addObject("list", list);
 		mv.setViewName("hotel_order_list");
 		return mv;
@@ -51,7 +52,7 @@ public class PtnHtOrderController {
 		Object vo = null; 
 		
 		mv.addObject("vo", vo);
-		mv.setViewName("hotel_order_list");
+		mv.setViewName("hotel_order_modal");
 		return mv;
 	}
 	
