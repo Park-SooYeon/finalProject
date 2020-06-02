@@ -135,7 +135,7 @@
 	              
 
 <div class="col-md-12">
-<form method="Get" id="frm_ht" name="frm_ht">	
+<form method="post" id="frm_ht" name="frm_ht">	
 <c:forEach var='i' items='${searchOK}'>	
 	<div class="row"  style="padding-top: 10px;margin:10px;">
 
