@@ -72,15 +72,5 @@
 <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
 <script type="text/javascript"> //<![CDATA[ $(function() { $("#frm_ms").validate(); }); //]]> </script>
 
-<script>
-$('#btnSendMail').click(function(){
- 
-	 $('#codeCheck').toggle();
-})
-
-
-</script>
-
-
 </body>
 </html>

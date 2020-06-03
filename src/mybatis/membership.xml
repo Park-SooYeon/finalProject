@@ -37,11 +37,11 @@
    
  </select>
 
- <select id="loginNickName" parameterType="String"  resultType="String">
+ <select id="loginUserInfo" parameterType="String"  resultType="bean.membershipVo">
                      
-   select nickName
+   select nickName, state
    from membership 
-   where member_id = #{member_id} 
+   where member_id = #{member_id}
 </select>
 
 
@@ -81,6 +81,13 @@ values(seq_partner.nextval, #{member_id},#{business_number},#{partner_name},888,
 <update id="changeUserInfo" parameterType="bean.membershipVo">
 	update membership
 	set pwd=#{pwd}, member_name=#{member_name}, email=#{email}
+	where member_id=#{member_id}
+</update>
+
+<!-- 회원 탈퇴 요청 -->
+<update id="deleteUser" parameterType="bean.membershipVo">
+	update membership
+	set state=2, delete_reason=#{delete_reason}
 	where member_id=#{member_id}
 </update>
 
