@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<script>
+if(${empty sessionScope.member_id}) {
+	$('.heart').attr("onclick", "location.href = './?inc=membership/login.jsp'");
+}
+</script>
 <!-- start footer Area -->		
 			<footer class="footer-area section-gap">
 				<div class="container">
