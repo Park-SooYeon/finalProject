@@ -7,18 +7,19 @@
 function setCookie(cName, code, exp){
 	var date = new Date();
 	date.setTime(date.getTime() + exp*24*60*60*1000);
-	document.cookie = cName + '=' + code + ';expires=' + date.toUTCString() + ';path=/finalProject';	
+	document.cookie = cName + '=' + code + ';expires=' + date.toUTCString() + ';path=/finalProject';
 };
 
 
 //쿠키에 값 추가
 function addCookie(cName, code){
+	alert("쿠키 추가");
 	var items = getCookie(cName); //이미 저장된 값을 쿠키에서 가져오기
 	var maxItemNum = 10; //최대 저장 가능한 아이템 개수
 	var expire = 7; //쿠키값을 저장할 기간
 	
 	if(items){
-		//var itemArray = items.split(',');
+		var itemArray = items.split('|');
 		if(itemArray.indexOf(code) != -1){
 			//이미 존재하는 경우 종료
 			console.log('Already exists.');
@@ -26,10 +27,9 @@ function addCookie(cName, code){
 		else{
 			// serial 번호가 존재할 경우에는 기존에 있던 serial 번호 제거
 			//새로운 값 저장 및 최대 개수 유지하기
-			//itemArray.unshift(code);
-			//if(itemArray.length > maxItemNum)itemArray.length=10;
-			//items=itemArray.join(',');
-			items += code;
+			itemArray.unshift(code);
+			if(itemArray.length > maxItemNum)itemArray.length=10;
+			items=itemArray.join('|');
 			setCookie(cName, items, expire);
 		}
 	}else{
