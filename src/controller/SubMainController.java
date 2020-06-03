@@ -42,7 +42,7 @@ public class SubMainController {
 	// 지역 메인으로 이동
 	@GetMapping("placeMain.sb")
 	public String placeMain(@RequestParam String local, HttpServletRequest req, Model model) {
-		List<RestDataVo> todayList = new ArrayList<>();
+		List<RestDataVo> todayList = null;
 		
 		List<RestDataVo> happyList = null;
 		List<RestDataVo> foodList = null;
@@ -64,6 +64,7 @@ public class SubMainController {
 				if(c.getName().equals("place_serial")) {
 					String value = c.getValue();
 					String[] cookieList = value.split("\\|");
+					todayList = new ArrayList<>();
 					
 					System.out.println("v : " + value);
 					for(int j = 0 ; j < cookieList.length ; j++) {
@@ -334,7 +335,7 @@ public class SubMainController {
 	// 지역 상관 없는 메인으로 이동
 	@GetMapping("menuMain.sb")
 	public String menuMain(@RequestParam String menu, HttpServletRequest req, Model model) {
-		List<RestDataVo> todayList = new ArrayList<>();
+		List<RestDataVo> todayList = null;
 		
 		List<ReputationVo> starList = null;
 		List<ReputationVo> reviewList = null;
@@ -355,6 +356,7 @@ public class SubMainController {
 				if(c.getName().equals("place_serial")) {
 					String value = c.getValue();
 					String[] cookieList = value.split("\\|");
+					todayList = new ArrayList<>();
 					
 					System.out.println("v : " + value);
 					for(int j = 0 ; j < cookieList.length ; j++) {

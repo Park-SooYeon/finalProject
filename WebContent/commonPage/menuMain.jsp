@@ -39,6 +39,7 @@
 <!-- End banner Area -->
 
 <!-- Swiper -->
+<c:if test='${!empty todayList }'>
 <section class="destinations-area pb-60">
 	<div class="container">
 		<div class="row d-flex justify-content-center">
@@ -92,6 +93,7 @@
 		</div>
 	</div>
 </section>
+</c:if>
 
 <!-- Swiper -->
 <section class="destinations-area pb-60">
