@@ -198,6 +198,8 @@ public List<PlaceVo> searchMainListNo(int local_code) {
 
 }
 
+
+/*
 public List<PlaceVo> searchList(List<String> local,List<String> filter) {
 	List<PlaceVo> list = null;
 	System.out.println("진입");
@@ -237,6 +239,6 @@ public List<PlaceVo> searchList(List<String> local,List<String> filter) {
 	
 	
 }
-
+*/
 	
 }

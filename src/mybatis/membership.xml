@@ -35,7 +35,7 @@
    from membership 
    where member_id = #{member_id} and pwd = #{pwd} and state != 3 and state !=2
    
-  </select>
+ </select>
 
  <select id="loginNickName" parameterType="String"  resultType="String">
                      
@@ -70,5 +70,18 @@ values(seq_partner.nextval, #{member_id},#{business_number},#{partner_name},888,
 
 </insert>
 
+<!-- 회원정보 가져오기 -->
+<select id="getUserInfo" parameterType="String" resultType="bean.membershipVo">
+	select member_name, email
+	from membership
+	where member_id=#{_parameter}
+</select>
+
+<!-- 회원정보 수정 -->
+<update id="changeUserInfo" parameterType="bean.membershipVo">
+	update membership
+	set pwd=#{pwd}, member_name=#{member_name}, email=#{email}
+	where member_id=#{member_id}
+</update>
 
 </mapper>

@@ -7,12 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
 
 import bean.Factory;
-import bean.hotelBookingVo;
 import rent_parameter.CompanyVo;
 
 public class PtnRtCompDao {
@@ -22,14 +18,31 @@ public class PtnRtCompDao {
 		sqlSession = Factory.getFactory().openSession();
 	}
 	
+	// 파트너 아이디로 파트너 시리얼 가져오기
+	public int getSerial(String mId) {
+		int serial = 0;
+		try {
+			serial = sqlSession.selectOne("partner_rent.select_serial", mId);
+		}catch(Exception ex) {
+			ex.toString();
+		}finally {
+			
+			return serial;
+		}
+	}
+	
+	
 	public List<CompanyVo> select(int serial){
 		List<CompanyVo> list = null;
 		try {
+			System.out.println("adssaddas");
+			list = sqlSession.selectList("partner_rent.select", serial);
 			
-			list = sqlSession.selectList("rent.select", serial);
-
+			System.out.println("serial : " + serial);
+			System.out.println("list : " + list.size());
+			
 		}catch(Exception ex) {
-			ex.toString();
+			ex.printStackTrace();
 		}finally {
 			
 			return list;

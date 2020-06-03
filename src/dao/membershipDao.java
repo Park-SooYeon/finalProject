@@ -198,8 +198,56 @@ public class membershipDao {
 		
 	}
 	
+	// 비밀번호 체크
+	public boolean pwdCheck(membershipVo vo) {
+		boolean result = false;
+		
+		try {
+			result = sqlSession.selectOne("ms.login", vo);
+			
+		} catch(Exception ex) {
+			System.out.println(ex.getMessage());
+			ex.printStackTrace();
+		}
+		
+		return result;
+	}
 	
+	// email, name 등 정보 가져오기
+	public membershipVo getUserInfo(String member_id) {
+		membershipVo vo = null;
+		
+		try {
+			vo = sqlSession.selectOne("ms.getUserInfo", member_id);
+			
+		} catch(Exception ex) {
+			System.out.println("회원 정보 가져올 때 에러 발생");
+			ex.printStackTrace();
+		}
+		
+		return vo;
+	}
 	
+	// 회원 정보 수정
+	public void changeUserInfo(membershipVo vo) {
+		try {
+			System.out.println("mId : " + vo.getMember_id());
+			System.out.println("pwd_check : " + vo.getPwd());
+			System.out.println("mName : " + vo.getMember_name());
+			System.out.println("email : " + vo.getEmail());
+			int r = sqlSession.update("ms.changeUserInfo", vo);
+			System.out.println("여기까지 오는가??");
+			if(r < 1) {
+				throw new Exception("회원 정보 수정 중 오류 발생");
+			}
+			
+			sqlSession.commit();
+		} catch(Exception ex) {
+			sqlSession.rollback();
+			System.out.println(ex.getMessage());
+			ex.printStackTrace();
+		}
+	}
 	
 	
 

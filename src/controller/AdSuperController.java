@@ -37,12 +37,14 @@ public class AdSuperController {
 		mv = new ModelAndView();
 		//System.out.println("user_list컨트롤 들어오나");
 		List<membershipVo> list = dao.select();
+		
+		
+		System.out.println();
 		mv.setViewName("user_list");
 		mv.addObject("list", list);
-//		for(membershipVo vo : list) {
-//			System.out.println(vo.getMember_id());
-//			System.out.println(vo.getState());
-//		}
+		for(membershipVo vo : list) {
+			System.out.println("zzz"+vo.getMember_photo());
+		}
 		return mv;
 		//admin/super/user_list.jsp
 	}

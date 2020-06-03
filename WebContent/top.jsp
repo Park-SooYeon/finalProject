@@ -53,7 +53,7 @@
 								<li>${sessionScope.nickName} 님</li>
 								<hr/>
 						<li><div onclick="location.href='./?inc=profile.mp?id=${sessionScope.member_id}'">프로필 보기</div></li>
-								<li><div onclick="location.href='./?inc=mypage/my_account.jsp'">계정관리</div></li>
+								<li><div onclick="location.href='./?inc=membership/pwd_check.jsp'">계정관리</div></li>
 								<li><div onclick="location.href='./?inc=mybooking.mp'">예약내역 확인</div></li>
 								<li><div onclick="location.href='./?inc=mypage/my_list.jsp'">My Trip</div></li>
 								<li><div onclick="location.href='./?inc=logout.ms'">로그아웃</div></li>

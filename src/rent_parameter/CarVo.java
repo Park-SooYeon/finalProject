@@ -21,6 +21,8 @@ public class CarVo {
 	int review_count;
 	String product;
 	
+	String state;
+	
 	CarVo(){
 		
 	}
@@ -177,6 +179,14 @@ public class CarVo {
 
 	public void setReview(double review) {
 		this.review = review;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
 	}
 	
 }

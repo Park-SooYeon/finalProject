@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpCookie;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -288,5 +289,47 @@ public class membershipController {
 		mv.setViewName("findPwd");
 		return mv;
 	}
-
+	
+	// 비밀번호 체크
+	@PostMapping("pwdCheck.ms")
+	public String pwdCheck(String mId, String pwd, Model model) {
+		System.out.println("mId : " + mId);
+		System.out.println("pwd : " + pwd);
+		
+		membershipVo vo = new membershipVo();
+		vo.setMember_id(mId);
+		vo.setPwd(pwd);
+		
+		boolean result = dao.pwdCheck(vo);
+		if(result) { // 비밀번호가 일치하면 회원 정보 수정 페이지로 이동
+			
+			// 회원 정보 가져오기
+			vo = dao.getUserInfo(mId);
+			
+			model.addAttribute("UserInfo", vo);
+			
+			return "my_account";			
+		} else { // 안 일치하면 현재페이지 유지
+			return "pwd_check";
+		}
+	}
+	
+	// 회원정보 수정
+	@PostMapping("changeUserInfo.ms")
+	public String changeUserInfo(String mId, String pwd_check, String mName, String email) {
+		System.out.println("mId : " + mId);
+		System.out.println("pwd_check : " + pwd_check);
+		System.out.println("mName : " + mName);
+		System.out.println("email : " + email);
+		
+		membershipVo vo = new membershipVo();
+		vo.setMember_id(mId);
+		vo.setPwd(pwd_check);
+		vo.setMember_name(mName);
+		vo.setEmail(email);
+		
+		dao.changeUserInfo(vo);
+		
+		return "pwd_check";
+	}
 }

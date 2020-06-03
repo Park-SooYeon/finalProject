@@ -35,7 +35,7 @@ public class PtnHtOrderController {
 		PtnHtCompDao compDao = new PtnHtCompDao();
 		int serial = compDao.getSerial(member_id);
 		
-		Map<String, Integer> info = dao.selectInfo(serial);
+		Map<String, String> info = dao.selectInfo(serial);
 		 
 		List<hotelBookingVo> list = dao.select(serial);
 		
@@ -49,32 +49,31 @@ public class PtnHtOrderController {
 	@RequestMapping(value="/admin/partner/hotel_order_view.ph", method= {RequestMethod.GET, RequestMethod.POST}) 
 	public ModelAndView view(HttpServletRequest req) {
 		ModelAndView mv = new ModelAndView();
-		Object vo = null; 
+		hotelBookingVo vo = null; 
 		
+		// booking serial 가져오기 
+		int serial = Integer.parseInt(req.getParameter("bserial"));
+		vo = dao.view(serial);
+
 		mv.addObject("vo", vo);
 		mv.setViewName("hotel_order_modal");
 		return mv;
 	}
 	
-	@RequestMapping(value="/admin/partner/hotel_order_modify.ph", method= {RequestMethod.GET, RequestMethod.POST}) 
+	@RequestMapping(value="/admin/partner/hotel_order_cancle.ph", method= {RequestMethod.GET, RequestMethod.POST}) 
 	public ModelAndView modify(HttpServletRequest req) {
 		ModelAndView mv = new ModelAndView();
-		Object vo = null; 
+		hotelBookingVo vo = null; 
 		
-		mv.addObject("vo", vo);
+		int serial = Integer.parseInt(req.getParameter("bserial"));
+		int result = dao.modify(serial);
+		
+		mv.addObject("result", result);
 		mv.setViewName("hotel_order_list");
 		return mv;
 	}
 	
-	@RequestMapping(value="/admin/partner/hotel_order_delete.ph", method= {RequestMethod.GET, RequestMethod.POST}) 
-	public ModelAndView delete(HttpServletRequest req) {
-		ModelAndView mv = new ModelAndView();
-		Object vo = null; 
-		
-		mv.addObject("vo", vo);
-		mv.setViewName("hotel_order_list");
-		return mv;
-	}
+	
 	
 	
 }
