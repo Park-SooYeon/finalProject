@@ -24,7 +24,7 @@
 	
 	<!-- view resolver (결과 페이지)-->
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="prefix" value="./commonPage/"/>
+		<property name="prefix" value="index.jsp?inc=./commonPage/"/>
 		<property name="suffix" value=".jsp"/>
 	</bean>
 </beans>

@@ -22,6 +22,7 @@ public class DetailViewDao {
 	}
 	
 	public PlaceVo view(String code) {
+		System.out.println("디테일뷰 Dao view 들어옴 code : " + code);
 		PlaceVo vo = new PlaceVo();
 		
 		try {
@@ -96,11 +97,9 @@ public class DetailViewDao {
 	        vo.setPhoto_name(contentResult.get("firstimage").getAsString());
 	        vo.setPlace_location(contentResult.get("addr1").getAsString());
 	        vo.setHomepage(contentResult.get("homepage").getAsString());
-	        
-	        vo.getPlace_name();
-	        vo.getPhoto_name();
-	        vo.getPlace_location();
-	        System.out.println("vo에는 무슨값이 있을까?" + vo.getPlace_name() + vo.getPhoto_name() + vo.getPlace_location());
+	        vo.setPlace_code(contentResult.get("contenttypeid").getAsInt());
+	        	        
+	        System.out.println("vo에 Place_code 들어옴??" + vo.getPlace_code());
 	        
 		}catch(Exception ex) {
 			ex.printStackTrace();

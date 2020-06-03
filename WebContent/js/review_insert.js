@@ -342,8 +342,10 @@ $(document).ready(function(){
     });
     
     
-    $('#review_insert').on('click', function(){
-    	$('#place_serial').val(place_serial);
+    $('#review_insert').on('click', function(){    	
+    	/*let insertMove = function(code) {
+    	location.href = './?inc=review_insert.rv&code=' + code;
+    	}*/
     	$('#review_insert_frm').submit();
     })
     

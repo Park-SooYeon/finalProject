@@ -20,15 +20,16 @@
 				<img class="img-fluid" src="img/about/info-img.jpg" alt="">
 			</div>
 			<div class="col-8">
-				<h3>관광지명  공공디비에서 가저오자</h3>
-				<h6>위치 위치도 가저오자</h6>
+				<h3>${vo.place_name}</h3>
+				<h6>위치 : ${vo.place_location }</h6>
 			</div>
 		</div>
 		<hr />
 		
 		
 		<form name="review_insert_frm" id="review_insert_frm" action="review_insertR.rv" method="post" enctype='multipart/form-data'>
-		<input type="hidden" name="place_serial" id="place_serial" >
+		<input type="hidden" name="place_serial" id="place_serial" value="${param.code }">
+		<input type="hidden" name="review_type" id="review_type" value="${vo.place_code }">
 		
 		<h3>이 관광지의 전반적인 평가</h3>
 		<input type="hidden" name="reputation" id="reputation">

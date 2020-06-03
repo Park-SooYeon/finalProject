@@ -221,7 +221,7 @@
 		<div class="row">
 			<div class="col-12 pt-3" style='height:70px; border-top:1px solid black;' >
 				<h3 style='float:left'>리뷰(2)</h3>
-				<input class="btn btn-primary float-right"  onclick="insertMove()"  type='button' id='review'  name='review' value='리뷰작성'/>
+				<input class="btn btn-primary float-right"  onclick="insertMove(${param.code })"  type='button' id='review'  name='review' value='리뷰작성'/>
 				 
 			</div>
 				
@@ -464,8 +464,8 @@
 	</form>
 <!-- 리뷰작성페이지 이동 -->
 <script>
-  let insertMove = function() {
-  	location.href = './?inc=review_insert.rv';
+  let insertMove = function(code) {
+  	location.href = './?inc=review_insert.rv&code=' + code;
   }
 </script>
 <script type="text/javascript">

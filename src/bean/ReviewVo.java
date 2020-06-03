@@ -22,11 +22,12 @@ public class ReviewVo {
 	int food;
 	
 	ReportVo report;
-	Review_PhotoVo r_photo;
+	List<Review_PhotoVo> r_photo;
 
 	
 	int photo_serial;
 	String photo_name;
+	String sysFile;
 	
 	int like_serial;
 	String like_id;
@@ -198,11 +199,20 @@ public class ReviewVo {
 	public void setReport(ReportVo report) {
 		this.report = report;
 	}
-	public Review_PhotoVo getR_photo() {
+	
+	
+	
+	public List<Review_PhotoVo> getR_photo() {
 		return r_photo;
 	}
-	public void setR_photo(Review_PhotoVo r_photo) {
+	public void setR_photo(List<Review_PhotoVo> r_photo) {
 		this.r_photo = r_photo;
+	}
+	public String getSysFile() {
+		return sysFile;
+	}
+	public void setSysFile(String sysFile) {
+		this.sysFile = sysFile;
 	}
 	@Override
 	public String toString() {

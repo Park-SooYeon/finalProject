@@ -1,5 +1,6 @@
 package controller;
 
+import java.io.File;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -11,18 +12,24 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import bean.Page;
+import bean.PlaceVo;
 import bean.ReviewVo;
+import dao.DetailViewDao;
 import dao.ReviewDao;
 
 @Controller
 public class ReviewController {
-	ReviewDao dao;
+	ReviewDao dao;	
+	
+	public static final String filePath = "/Users/choi/git/finalProject/WebContent/images/food";
 	
 	public ReviewController(ReviewDao dao) {
 		this.dao = dao;
@@ -46,9 +53,14 @@ public class ReviewController {
 	}
 	
 	
-	@RequestMapping(value = "review_insert.rv", method= {RequestMethod.GET})
-	public ModelAndView insert() {		
+	@RequestMapping(value = "review_insert.rv", method= {RequestMethod.GET, RequestMethod.POST})
+	public ModelAndView insert(@RequestParam String code, HttpServletRequest req, Model model) {		
 		ModelAndView mv = new ModelAndView();
+		DetailViewDao DetailViewDao = new DetailViewDao();
+		
+		PlaceVo vo = DetailViewDao.view(code);
+		
+		mv.addObject("vo", vo);
 		mv.setViewName("review_insert");
 		
 		return mv;
@@ -63,18 +75,18 @@ public class ReviewController {
 		ModelAndView mv = new ModelAndView();
 		//ReviewVo vo = new ReviewVo();		
 		String msg = null;
+		String uploadPath = req.getSession().getServletContext().getRealPath("/images/food/");		
+	    String path = req.getRealPath("/images/");//파일이 저장되는 경로
+	    
+	    System.out.println("uploadPath : " + uploadPath);
+	    System.out.println("path : " + path);
+	    
+	    File dir = new File(uploadPath);
+        if (!dir.isDirectory()) {
+            dir.mkdirs();
+        }
+		
 		List<MultipartFile> file = vo.getFileUpload();
-
-		if(!file.isEmpty()) {
-			for(int i=0; i<file.size(); i++) {
-				System.out.println(file.get(i));
-				String photo_name = file.get(i).getOriginalFilename();
-				System.out.println(photo_name);
-			}
-			
-		};
-		
-		
 		
 		int place_serial = Integer.parseInt(req.getParameter("place_serial"));
 		HttpSession session = req.getSession();
@@ -82,6 +94,7 @@ public class ReviewController {
 		int reputation = Integer.parseInt(req.getParameter("reputation"));
 		String review_title = req.getParameter("review_title");
 		String review_content = req.getParameter("review_content");
+		int review_type = Integer.parseInt(req.getParameter("review_type"));
 		
 		//방문일 뉴데이트에서 먼스 마이너스 연산 처리 후 입력
 		//Date 를 Calendar 맵핑
@@ -98,31 +111,12 @@ public class ReviewController {
 		vo.setReview_title(review_title);
 		vo.setReview_content(review_content);
 		vo.setVisit_date(visit_date);
-		/*System.out.println("member_id : " + member_id);
-		System.out.println("place_serial : " + place_serial);
-		System.out.println("reputation : " + reputation);
-		System.out.println("review_title : " + review_title);
-		System.out.println("review_content : " + review_content);
-		System.out.println("visit_date : " + visit_date);
-		System.out.println("file : " + file);*/
-		/*
-		//FileUpload
-		ReviewFileUpload fu = new ReviewFileUpload(req, resp);
-		HttpServletRequest newReq = fu.uploading();
-		System.out.println("newReq에는 뭐가있나??" + newReq);
-		//System.out.println("file" + file[0].getName());
+		vo.setReview_type(review_type);
 
-		
-		
-		
-		//ReviewVo vo = (ReviewVo) newReq.getAttribute("vo");
-		//System.out.println("vo에 잘 담겨있늬?? : " + vo);
-		//List<ReviewAttVo> attList = (List<ReviewAttVo>)req.getAttribute("attList");
-		
-		*/
-		msg = dao.insert(vo);
+		msg = dao.insert(vo, uploadPath);
 		mv.addObject("msg", msg);
-		mv.setViewName("detailView");
+		mv.addObject("code", place_serial);
+		mv.setViewName("redirect:detailView.dv");
 		return mv;
 	}
 	
