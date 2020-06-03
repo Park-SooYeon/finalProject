@@ -31,7 +31,9 @@
 					
 					<c:if test="${member_id != null}">
 					<li><a href="./?inc=logout.ms">로그아웃</a></li>
-					<li><a href="./?inc=membership/partnerJoin.jsp">파트너 등록하기</a></li>
+					<c:if test="${sessionScope.auth == 1 }">
+						<li><a href="./?inc=membership/partnerJoin.jsp">파트너 등록하기</a></li>					
+					</c:if>
 					</c:if>
 					
 					
@@ -74,8 +76,12 @@
 					<li><a href="#" onclick="menuMove(39)">음식점</a></li>
 					<li><a href="#" onclick="menuMove(15)">축제</a></li>
 					<li><a href="#" onclick="openInNewTab('rent/rent_index.jsp')">렌트카</a></li>
-					<li><a href="#" onclick="openInNewTab('admin/super')">관리자 페이지</a></li>
-					<li><a href="#" onclick="openInNewTab('admin/partner')">파트너 페이지</a></li>
+					<c:if test="${sessionScope.auth == 99 }">
+						<li><a href="#" onclick="openInNewTab('admin/super')">관리자 페이지</a></li>				
+					</c:if>
+					<c:if test="${sessionScope.auth == 88 }">
+						<li><a href="#" onclick="openInNewTab('admin/partner')">파트너 페이지</a></li>				
+					</c:if>
 				</ul>
 			</nav>
 		</div>
