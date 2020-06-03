@@ -194,7 +194,7 @@
 
 										 <input type="button"
 												class="genric-btn info min-width-180 pull-right  "
-												value="예약하러 가기" id="btnReserv" onclick="reserveMove()">
+												data-toggle="modal" data-target="#hotelReserv">
 										</div>
 									</div>
 
@@ -211,9 +211,7 @@
 	
 				
 					
-					
-					
-					
+				
 					
 					
 					
@@ -282,6 +280,109 @@
 			
 	  </c:forEach>
 			</c:if>	
+			
+			
+
+			
+			<!-- Button trigger modal -->
+
+<!-- Modal -->
+<div class="modal fade" id="hotelReserv" tabindex="-1" role="dialog" aria-labelledby="hotelReservLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="hotelReservLabel">예약하기</h4>
+      </div>
+      <div class="modal-body">
+         <div class='container'>
+            <div class="row">
+			<div class="title1" style="margin-bottom: 10px">
+				<h2>${vo.place_name}</h2>
+			</div>
+			<br/>
+             	<div class='preinfo' style='font-size: 18px'>
+				  <p>${vo.place_location }</p>
+					<p>${vo.place_tel }</p>
+             
+                   
+					
+
+			</div>   
+        </div>    
+<form method="post" name="frm_ms" id="frm_ms">
+      
+        <div class="container">
+						<div class="row">
+							<div class="col-lg-6 col-md-4 offset-1">
+
+				<div class="jumbotron" style="padding-top: 20px; background: white">
+      
+              		<div class="form-group trip-cal-input">
+							<label for="trip-cal-input" class="col-form-label">
+							 체크인 - 체크 아웃을 선택해주세요! </label> <input type="text" id="datePickInput"
+								class="form-control col-sm-8 col-xm-12 datepicker-here"
+								data-range="true" data-language="kr"
+								data-multiple-dates-separator=" - " data-toggle-selected="true"
+								name="start_date" />
+						</div>
+          
+              
+          
+					<h4>고객님의 정보를 입력해주세요!</h4>
+					<hr>
+					<br>
+				
+						<div class="mt-6">
+							<label>이름</label> <input type="text" class="form-control"
+								name="mName" id="mName" placeholder="이름을 입력해주세요" maxlength="20"
+								required><br>
+						</div>
+
+
+
+
+						<div class="mt-6" id="email_syj">
+							<label for="InputEmail">이메일 주소</label> <input type="text"
+								class="form-control" name="email" id="email"
+								placeholder="이메일을 입력해주세요" required>
+
+						</div>
+
+
+						<div class="mt-6" id="email_syj">
+							<label for="reInputEmail">이메일 주소 확인</label> <input type="text"
+								class="form-control" name="reEmail" id="reEmail"
+								placeholder="이메일을 입력해주세요" required>
+
+						</div>
+						
+						<br>
+						
+					</div>
+		</div>
+		</div>
+		</div>
+		
+</form>
+				</div>
+				
+              
+              
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+			
+			
+			
+			
+			
+			
 			
 			<!-- modal -->
 			 <!-- 신고 모달 -->
@@ -396,6 +497,10 @@
 		</div>
 		<!-- 컨테이너끝 -->
 	</form>
+
+
+
+
 
 
 
