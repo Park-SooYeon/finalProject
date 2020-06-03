@@ -147,7 +147,6 @@ public class MyPageController {
 		int days_count = 0;
 		String start_date = vo.getStart_date();
 		String end_date = vo.getEnd_date();
-		int trip_auth = 1;
 		/*
 		if(req.getParameter("trip_name")!=null && req.getParameter("trip_name")!="") {
 			trip_name = req.getParameter("trip_name");
@@ -179,7 +178,6 @@ public class MyPageController {
 		
 		vo.setStart_date(start_date);
 		vo.setEnd_date(end_date);
-		vo.setTrip_auth(trip_auth);
 		
 		System.out.println(vo.toString());
 		
@@ -345,6 +343,30 @@ public class MyPageController {
 			
 			List<PlaceVo> list = dao.selectOneLike(serial,member_id);
 			System.out.println("뭐징");
+			System.out.println(list.toString());
+			String jsonVo = "";
+			
+			try {
+			ObjectMapper mapper = new ObjectMapper();
+			jsonVo = mapper.writeValueAsString(list);
+			System.out.println(jsonVo);
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+			return jsonVo;
+		}
+		
+		@ResponseBody
+		@RequestMapping( value = "selectAll.mp", method = {RequestMethod.GET}, produces = "text/html;charset=utf8")
+		public String selectPlaceAll(@RequestParam String findStr, HttpServletRequest req, HttpSession session) {
+
+			System.out.println("들어옴");
+			// serial을 get타입으로 넘겨받음
+			String member_id = (String)session.getAttribute("member_id");
+			
+			System.out.println(findStr);
+			List<PlaceVo> list = dao.selectPlaceAll(findStr);
 			System.out.println(list.toString());
 			String jsonVo = "";
 			

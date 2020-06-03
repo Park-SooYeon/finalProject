@@ -443,6 +443,20 @@ public class MyPageDao {
 		return list;
 	}
 	
+	public List<PlaceVo> selectPlaceAll(String findStr) {
+		List<PlaceVo> list = null; 
+		try {
+			list = sqlSession.selectList("select_hotel", findStr);
+			for(PlaceVo vo : list) {
+				System.out.println("사진"+vo.getPhoto_name());
+				vo.setPlace_code(2); // 2는 호텔, 1은 api
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+	
 	public JsonObject getApi(int contentId) throws IOException {
 		
 		StringBuilder urlBuilder = new StringBuilder("http://api.visitkorea.or.kr/openapi/service/rest/KorService/detailCommon"); /*URL*/
