@@ -25,12 +25,19 @@
 <div id="rentSearch" style="padding-top: 70px;">
 	<form name='rent_frm' id='rent_frm' method='post'>
 	
+	<c:if test="${contentPage eq 'rentSearchSub1.jsp'}">
+		<input type='hidden' id='content_check' value='com'/>
+	</c:if>
+	<c:if test="${contentPage eq 'rentSearchSub2.jsp'}">
+		<input type='hidden' id='content_check' value='car'/>
+	</c:if>
+	
 	<input type='hidden' name='' value='${dateVo1.now}'/>
 	<input type='hidden' name='' value='${dateVo2.now}'/>
 	<input type='hidden' name='placeMain' value='${placeMain}'/>
 	<input type='hidden' name='placeSub' value='${placeSub}'/>
 	
-	<input type='hidden' name='company_serial' id='company_serial'/>
+	<input type='hidden' name='company_serial' value="${company_serial}" id='company_serial'/>
 	<input type='hidden' name='car_serial' id='car_serial'/>
 	<div class="row">
 		<div id='left' class="col-lg-4 col-md-4 col-sm-4 col-xs-12">

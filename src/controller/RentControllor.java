@@ -164,6 +164,8 @@ public class RentControllor {
 		List<rent_parameter.CarVo> car_list = rentDao.carSearch(company_serial,between,kindCheck,airconCheck,gearCheck,doorCheck,maxPeopleCheck,priceCheck);
 		mv.addObject("car_list", car_list);
 		
+		mv.addObject("company_serial",company_serial);
+		
 		mv.addObject("companyCheck",companyCheck);
 		mv.addObject("airconCheck", airconCheck);
 		mv.addObject("gearCheck",gearCheck);

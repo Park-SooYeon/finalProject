@@ -43,31 +43,55 @@ rent.func = function(){
 	//렌트 kind radio값 변경
 	$('#carPhoto_1').click(function(){
 		$('#kind_s').val('소형 차량'); 
-		$('#rent_frm').attr('action','./fillter.rent').submit();
+		if($('#content_check').val()=='com'){
+			$('#rent_frm').attr('action','./fillter.rent').submit();
+		}else if($('#content_check').val()=='car'){
+			$('#rent_frm').attr('action','./carSearch.rent').submit();
+		}
 	});
 	$('#carPhoto_2').click(function(){
 		$('#kind_s').val('중형 차량'); 
-		$('#rent_frm').attr('action','./fillter.rent').submit();
+		if($('#content_check').val()=='com'){
+			$('#rent_frm').attr('action','./fillter.rent').submit();
+		}else if($('#content_check').val()=='car'){
+			$('#rent_frm').attr('action','./carSearch.rent').submit();
+		}
 		
 	});
 	$('#carPhoto_3').click(function(){
 		$('#kind_s').val('대형 차량'); 
-		$('#rent_frm').attr('action','./fillter.rent').submit();
+		if($('#content_check').val()=='com'){
+			$('#rent_frm').attr('action','./fillter.rent').submit();
+		}else if($('#content_check').val()=='car'){
+			$('#rent_frm').attr('action','./carSearch.rent').submit();
+		}
 		
 	});
 	$('#carPhoto_4').click(function(){
 		$('#kind_s').val('프리미엄 차량'); 
-		$('#rent_frm').attr('action','./fillter.rent').submit();
+		if($('#content_check').val()=='com'){
+			$('#rent_frm').attr('action','./fillter.rent').submit();
+		}else if($('#content_check').val()=='car'){
+			$('#rent_frm').attr('action','./carSearch.rent').submit();
+		}
 		
 	});
 	$('#carPhoto_5').click(function(){
 		$('#kind_s').val('미니벤'); 
-		$('#rent_frm').attr('action','./fillter.rent').submit();
+		if($('#content_check').val()=='com'){
+			$('#rent_frm').attr('action','./fillter.rent').submit();
+		}else if($('#content_check').val()=='car'){
+			$('#rent_frm').attr('action','./carSearch.rent').submit();
+		}
 		
 	});
 	$('#carPhoto_6').click(function(){
 		$('#kind_s').val('SUV'); 
-		$('#rent_frm').attr('action','./fillter.rent').submit();
+		if($('#content_check').val()=='com'){
+			$('#rent_frm').attr('action','./fillter.rent').submit();
+		}else if($('#content_check').val()=='car'){
+			$('#rent_frm').attr('action','./carSearch.rent').submit();
+		}
 		
 	});
 	
@@ -110,8 +134,15 @@ rent.carView = function(carSerial){
 	$('#rent_frm').attr('action','./carView.rent').submit();
 }
 rent.fillter = function(){
-	$('#rent_frm').attr('action','./fillter.rent').submit();
+	if($('#content_check').val()=='com'){
+		$('#rent_frm').attr('action','./fillter.rent').submit();
+	}else if($('#content_check').val()=='car'){
+		$('#rent_frm').attr('action','./carSearch.rent').submit();
+	}
 	
+}
+rent.back = function(){
+	$('#rent_frm').attr('action','./fillter.rent').submit();
 }
 rent.fullcover = function(a){
 	if($('#pr2').val() < 1){
@@ -133,7 +164,6 @@ rent.reserveCancle= function(reserve_serial){
 	$('#rent_frm').attr('action','./reserveCancle.rent').submit();
 }
 rent.reviewInsert = function(reserve_serial,car_serial){
-	alert(car_serial+'---'+reserve_serial);
 	$('#car_serial').val(car_serial);
 	$('#reserve_serial').val(reserve_serial);
 	$('#rent_frm').attr('action','./reviewInsert.rent').submit();
