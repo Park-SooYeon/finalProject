@@ -25,6 +25,7 @@ import rent_parameter.DateVo;
 import rent_parameter.ReservePm;
 import rent_parameter.ReserveSearchVo;
 import rent_parameter.ReserveVo;
+import rent_parameter.ReviewPm;
 import rent_parameter.rentReviewPm;
 import rent_parameter.rentReviewTotVo;
 import rent_parameter.rentReviewVo;
@@ -417,6 +418,64 @@ public class RentControllor {
 		
 		//예약 취소update
 		String msg = rentDao.reserveCancle(reserve_serial);
+		
+		//예약내역
+		List<ReserveVo> reserve_list1 = rentDao.reserveSearch1(member_id);
+		List<ReserveSearchVo> param_list1 = rentDao.paramMaker(reserve_list1);
+		
+		//지난 내역
+		List<ReserveVo> reserve_list2 = rentDao.reserveSearch2(member_id);
+		List<ReserveSearchVo> param_list2 = rentDao.paramMaker(reserve_list2);
+		
+		//취소 내역
+		List<ReserveVo> reserve_list3 = rentDao.reserveSearch3(member_id);
+		List<ReserveSearchVo> param_list3 = rentDao.paramMaker(reserve_list3);
+		
+		mv.addObject("msg",msg);
+		
+		mv.addObject("reserve_list1",reserve_list1 );
+		mv.addObject("param_list1",param_list1);
+		
+		mv.addObject("reserve_list2",reserve_list2 );
+		mv.addObject("param_list2",param_list2);
+		
+		mv.addObject("reserve_list3",reserve_list3 );
+		mv.addObject("param_list3",param_list3);
+		
+		mv.addObject("contentPage",contentPage);
+		mv.addObject("mainPage",mainPage);
+		mv.setViewName("rent_index");
+		return mv;
+	}
+	
+	@RequestMapping(value="/reviewInsert.rent",method= {RequestMethod.POST,RequestMethod.GET})
+	public ModelAndView reviewInsert(HttpServletRequest req,HttpServletResponse resp) {
+		mv = new ModelAndView();
+		contentPage = "";
+		mainPage = "rentReserveSearch.jsp";
+		
+		String member_id = req.getParameter("member_id");
+		String reserve_serial = req.getParameter("reserve_serial");
+		
+		int car_serial = Integer.parseInt(req.getParameter("car_serial"));
+		int review_1 = Integer.parseInt(req.getParameter("review_1"));
+		int review_2 = Integer.parseInt(req.getParameter("review_2"));
+		int review_3 = Integer.parseInt(req.getParameter("review_3"));
+		int review_4 = Integer.parseInt(req.getParameter("review_4"));
+		int review_5 = Integer.parseInt(req.getParameter("review_5"));
+		int review_6 = Integer.parseInt(req.getParameter("review_6"));
+		int review_7 = Integer.parseInt(req.getParameter("review_7"));
+		String scale = req.getParameter("scale");
+		String take_overtime = req.getParameter("take_overtime");
+		String good_news = req.getParameter("good_news");
+		String bad_news = req.getParameter("bad_news");
+		
+		ReviewPm pm = new ReviewPm(reserve_serial, review_1, review_2, review_3, review_4, review_5, review_6, review_7, scale, take_overtime, good_news, bad_news, car_serial);
+		
+		
+		
+		//리뷰 입력
+		String msg = rentDao.reviewInsert(pm);
 		
 		//예약내역
 		List<ReserveVo> reserve_list1 = rentDao.reserveSearch1(member_id);

@@ -127,6 +127,7 @@
         startDate: start,
         minHours: startHours,
         maxHours: 18,
+        minDate: new Date(),
         onSelect: function (fd, d, picker) {
             // Do nothing if selection was cleared
             if (!d) return;

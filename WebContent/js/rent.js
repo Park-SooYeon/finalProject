@@ -132,3 +132,9 @@ rent.reserveCancle= function(reserve_serial){
 	$('#reserve_serial').val(reserve_serial);
 	$('#rent_frm').attr('action','./reserveCancle.rent').submit();
 }
+rent.reviewInsert = function(reserve_serial,car_serial){
+	alert(car_serial+'---'+reserve_serial);
+	$('#car_serial').val(car_serial);
+	$('#reserve_serial').val(reserve_serial);
+	$('#rent_frm').attr('action','./reviewInsert.rent').submit();
+}
