@@ -48,7 +48,7 @@
                                             <td>
                                                 <button class="btn btn-outline-primary" data-toggle="modal" data-target="#modalPartnerJoin"
                                                 onclick="a_partner_view('${i.member_id }','${i.partner_name }','${i.business_number }','${i.partner_phone }',
-                                                		'${i.partner_location}','${i.state}','${i.vo.email}')">View</button>
+                                                		'${i.partner_location}','${i.state}','${i.vo.email}','${i.vo.member_photo}')">View</button>
                                             </td>
                                         </tr>
                                       </c:forEach>                                  
@@ -74,7 +74,7 @@
                 </div>
                 <div class="modal-body pt-2">
                     <div class="wrapper d-flex align-items-center py-2 mb-3">
-                        <img class="img-sm rounded-circle" src="../../assets/images/faces/face5.jpg" alt="profile">
+                        <img class="img-sm rounded-circle member_photo" alt="profile">
                         <div class="wrapper ml-3">
                             <h6 class="ml-1 mb-1" id='member_id'></h6>
                         </div>
