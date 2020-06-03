@@ -60,6 +60,7 @@
 	<select id="select_member" resultType="bean.membershipVo">
 		select 	member_name,
 				member_id, 
+				member_photo,
 				phone,
 				email, 
 				mdate, 
@@ -212,6 +213,7 @@
 	      where R.review_serial = P.review_serial
 	      and   R.review_serial = T.review_serial
 	      and  R.review_serial = ${_parameter}
+	      
 	    </select>
  	  
  	  

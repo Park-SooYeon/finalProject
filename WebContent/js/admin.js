@@ -2,14 +2,18 @@
  * 
  */
 let  brd ={ }
-//member view의 js
-function member_view(mId,mName,phone,email,state,mDate){
-	
+
+//member view의 js (모달) 
+function member_view(mId,mName,phone,email,state,mDate,mPhoto){
+		alert(mPhoto);
+		let path = '../../images/myPage/'+mPhoto;
+		alert(path);
 	$('#member_id').html(mId);
 	$('#member_date').html(mDate);
 	$('.member_name').html(mName);
 	$('.member_phone').html(phone);
 	$('.member_email').html(email);
+	$('.member_photo').attr('src',path);
 	$('#usrInfoState').val(state);
 	
 	$('#hidden_id').val(mId);

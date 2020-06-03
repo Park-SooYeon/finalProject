@@ -24,7 +24,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="./?inc=user_list.os">
+                <a class="nav-link" href="./?inc=user_list.os"> <!-- 회원관리 컨트롤러.  -->
                     <i class="menu-icon typcn typcn-document-text"></i>
                     <span class="menu-title">회원관리</span>
                 </a>
