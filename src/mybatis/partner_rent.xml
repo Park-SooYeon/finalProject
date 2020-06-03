@@ -13,7 +13,7 @@
 	
 	<!-- 렌트 회사 목록 조회 -->
 	<select id="select" parameterType="Integer" resultType="rent_parameter.CompanyVo">
-		SELECT r.COMPANY_NAME, r.ADDRESS, r.state
+		SELECT r.company_serial, r.COMPANY_NAME,getCarCnt(r.COMPANY_SERIAL) cars_count, r.ADDRESS, r.state, r.LATITUDE, r.LONGITUDE, r.COMPANY_PHONE, r.STATE
 		FROM RENT_COMPANY r JOIN PARTNER p ON r.PARTNER_SERIAL = p.PARTNER_SERIAL
 		WHERE p.PARTNER_SERIAL=#{partner_serial}
 	</select>
@@ -32,4 +32,7 @@
 		FROM RENT_COMPANY
 		WHERE partner_serial=#{partner_serial}
 	</select>
+	
+	
+	
 </mapper>

@@ -34,6 +34,8 @@ public class PtnRtCompController {
 		System.out.println("member_id : " + member_id);
 		int serial = dao.getSerial(member_id);
 		
+	
+				
 		System.out.println("serial" + serial);
 		List<CompanyVo> list = dao.select(serial);
 		System.out.println("list : " + list);
@@ -49,7 +51,7 @@ public class PtnRtCompController {
 		Object vo = null; 
 		
 		mv.addObject("vo", vo);
-		mv.setViewName("rent_comp_add");
+		mv.setViewName("rent_comp_modal");
 		return mv;
 	}
 	
@@ -57,7 +59,15 @@ public class PtnRtCompController {
 	@RequestMapping(value="/admin/partner/rent_comp_view.pr", method= {RequestMethod.GET, RequestMethod.POST}) 
 	public ModelAndView view(HttpServletRequest req) {
 		ModelAndView mv = new ModelAndView();
-		Object vo = null; 
+		CompanyVo vo = null; 
+		
+		
+		HttpSession session  = req.getSession();
+		String member_id = (String) session.getAttribute("member_id");
+		// 세션 아이디로 파트너 시리얼 가져오기
+		//PtnHtCompDao compDao = new PtnHtCompDao();
+		int serial = dao.getSerial(member_id);
+		
 		
 		mv.addObject("vo", vo);
 		mv.setViewName("rent_comp_list");

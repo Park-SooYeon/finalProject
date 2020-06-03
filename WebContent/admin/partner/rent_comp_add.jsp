@@ -44,30 +44,6 @@
 					            </div>
                                 <div class="form-group row">
                                     <div class="col-lg-3">
-                                        <label class="col-form-label">총 보유대수 <span class="text-danger">*</span></label>
-                                    </div>
-                                    <div class="col-lg-8">
-                                    	<input class="form-control" type="number" min="0"> 
-									</div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-lg-3">
-                                        <label class="col-form-label">승용차 보유대수 <span class="text-danger">*</span></label>
-                                    </div>
-                                    <div class="col-lg-8">
-                                    	<input class="form-control" type="number" min="0"> 
-									</div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-lg-3">
-                                        <label class="col-form-label">승합차 보유대수 <span class="text-danger">*</span></label>
-                                    </div>
-                                    <div class="col-lg-8">
-                                    	<input class="form-control" type="number" min="0"> 
-									</div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-lg-3">
                                         <label class="col-form-label">위도 <span class="text-danger">*</span></label>
                                     </div>
                                     <div class="col-lg-8">

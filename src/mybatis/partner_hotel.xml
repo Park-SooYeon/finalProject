@@ -6,17 +6,14 @@
 <mapper namespace="hotel">
 	<!-- 호텔 목록 조회 -->
 	<select id="select" parameterType="Integer" resultType="bean.PlaceVo">
-		SELECT h.place_Serial, max(p.oriFile) ,h.place_name, h.place_location, h.place_tel, (
-			SELECT count(r.rooms_serial) cnt
-			FROM ROOMS r JOIN PLACE p
-			ON r.PLACE_SERIAL = p.PLACE_SERIAL
-		) room_cnt, h.state, h.place_serial
+		SELECT h.place_Serial, max(p.oriFile) ,h.place_name, h.place_location, h.place_tel, getRoomCnt(h.PLACE_SERIAL) room_cnt, h.state
 		FROM PLACE h 
 			LEFT OUTER JOIN partner pt ON h.partner_serial = pt.partner_serial 
 			LEFT OUTER JOIN PLACE_PHOTO p ON h.place_serial = p.place_serial 
-		where h.PARTNER_SERIAL=#{partner_serial}
+		WHERE h.PARTNER_SERIAL=#{place_serial}
 		GROUP BY h.place_Serial, h.place_name, h.place_location, h.place_tel, h.state
 		ORDER BY h.PLACE_SERIAL DESC
+
 	</select>	
 	
 	<!-- 상세조회 -->

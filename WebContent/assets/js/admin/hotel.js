@@ -221,6 +221,10 @@ ptn.chk = function(){
 orderDtView = function(serial){	// 예약번호(booking_serial) 매개변수로 받아옴
 	$("#bserial").val(serial);
 	
+	// modal id값 세팅
+	$("#ModalHtOrderInfo").attr("id", "ModalHtOrderInfo_"+serial);
+	$('#ModalHtOrderInfo_'+serial).modal();
+	
 	console.log("bserial : " +  $("#bserial").val());
 	$('#ModalHtOrderInfo').modal({
 		 // keyboard: false
@@ -265,7 +269,10 @@ orderDtView = function(serial){	// 예약번호(booking_serial) 매개변수로 
 					$("#state").removeClass("badge-inverse-primary").addClass("badge-inverse-secondary text-muted");
 				}
 				
-				
+				// id에서 serial 삭제 
+				$('#ModalHtOrderInfo_'+serial).on('hidden.bs.modal', function (e) {
+					$('#ModalHtOrderInfo_'+serial).attr("id", "ModalHtOrderInfo");
+				})
 				
 			}else{
 				
