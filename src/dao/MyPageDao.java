@@ -451,6 +451,26 @@ public class MyPageDao {
 				System.out.println("사진"+vo.getPhoto_name());
 				vo.setPlace_code(2); // 2는 호텔, 1은 api
 			}
+			
+			
+			/*
+			for(PlaceVo vo : list) {
+				JsonObject contentResult = getApiAll();
+				int place_serial = contentResult.get("contentid").getAsInt();
+		        String photo_name = contentResult.get("firstimage").getAsString();
+		        String place_name = contentResult.get("title").getAsString();
+		        int local_code = contentResult.get("areacode").getAsInt();
+		        
+		        vo.setPlace_serial(place_serial);
+		        vo.setLocal_code(local_code);
+		        vo.setPhoto_name(photo_name);
+		        vo.setPlace_name(place_name);
+				vo.setPlace_code(1); // place_code api로 설정해줌
+				
+				list.add(vo);
+			}
+			*/
+			
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -467,6 +487,7 @@ public class MyPageDao {
         urlBuilder.append("&" + URLEncoder.encode("defaultYN","UTF-8") + "=" + URLEncoder.encode("Y", "UTF-8")); /* 기본정보조회 */
         urlBuilder.append("&" + URLEncoder.encode("contentId","UTF-8") + "=" + URLEncoder.encode(contentId+"", "UTF-8")); /*지역코드, 시군구코드*/
         urlBuilder.append("&" + URLEncoder.encode("firstImageYN","UTF-8") + "=" + URLEncoder.encode("Y", "UTF-8")); /*대표이미지 조회*/
+        urlBuilder.append("&" + URLEncoder.encode("listYN","UTF-8") + "=" + URLEncoder.encode("Y", "UTF-8")); /*목록구분 (Y=목록, N=개수) */
         urlBuilder.append("&_type=json"); // json 타입으로 반환
         
         URL url = new URL(urlBuilder.toString());
@@ -494,21 +515,63 @@ public class MyPageDao {
 
         JsonObject jObject1 = (JsonObject)jParser.parse(result); //json 전체 파싱
         //jObejct1는 json 전체가 파싱됨
-        //System.out.println(jObject1.get("response")); //return "test1"
 
-        String str = jObject1.get("response").toString();
-        //System.out.println(str);
-        JsonObject jObject2 = (JsonObject)jParser.parse(str);
+        JsonObject jObject2 = (JsonObject)jParser.parse(jObject1.get("response").toString());
+        JsonObject jObject3 = (JsonObject)jParser.parse(jObject2.get("body").toString());
+        JsonObject jObject4 = (JsonObject)jParser.parse(jObject3.get("items").toString());
+        JsonObject contentResult = (JsonObject)jParser.parse(jObject4.get("item").toString());
+
+        return contentResult;
+	}
+	
+public JsonObject getApiAll() throws IOException {
+		
+	StringBuilder urlBuilder = new StringBuilder("http://api.visitkorea.or.kr/openapi/service/rest/KorService/searchKeyword"); /*URL*/
+    urlBuilder.append("?" + URLEncoder.encode("ServiceKey","UTF-8") + "=RGRZ7ZbtIrL2U4P0qfnA3puuV5UrzrqEFmf0aLwaZitXLcUQrOTbyRoZHRCpdViHuU1cTZ7jXX4GDbOMb%2Fc1gg%3D%3D"); /*Service Key*/
+    urlBuilder.append("&" + URLEncoder.encode("MobileApp","UTF-8") + "=" + URLEncoder.encode("AppTest", "UTF-8")); /*서비스명=어플명*/
+    urlBuilder.append("&" + URLEncoder.encode("MobileOS","UTF-8") + "=" + URLEncoder.encode("ETC", "UTF-8")); /*IOS (아이폰), AND(안드로이드), ETC*/
+    urlBuilder.append("&" + URLEncoder.encode("pageNo","UTF-8") + "=" + URLEncoder.encode("1", "UTF-8")); /*현재 페이지 번호*/
+    urlBuilder.append("&" + URLEncoder.encode("listYN","UTF-8") + "=" + URLEncoder.encode("N", "UTF-8")); /*목록 구분 (Y=목록, N=개수)*/
+    urlBuilder.append("&" + URLEncoder.encode("arrange","UTF-8") + "=" + URLEncoder.encode("A", "UTF-8")); /*(A=제목순, B=조회순, C=수정일순, D=생성일순) 대표이미지가 반드시 있는 정렬(O=제목순, P=조회순, Q=수정일순, R=생성일순)*/
+    urlBuilder.append("&" + URLEncoder.encode("contentTypeId","UTF-8") + "=" + URLEncoder.encode("", "UTF-8")); /*관광타입(관광지, 숙박 등) ID*/
+    urlBuilder.append("&" + URLEncoder.encode("areaCode","UTF-8") + "=" + URLEncoder.encode("", "UTF-8")); /*지역코드*/
+    urlBuilder.append("&" + URLEncoder.encode("sigunguCode","UTF-8") + "=" + URLEncoder.encode("", "UTF-8")); /*시군구코드(areaCode 필수)*/
+    urlBuilder.append("&" + URLEncoder.encode("cat1","UTF-8") + "=" + URLEncoder.encode("", "UTF-8")); /*대분류 코드*/
+    urlBuilder.append("&" + URLEncoder.encode("cat2","UTF-8") + "=" + URLEncoder.encode("", "UTF-8")); /*중분류 코드(cat1필수)*/
+    urlBuilder.append("&" + URLEncoder.encode("cat3","UTF-8") + "=" + URLEncoder.encode("", "UTF-8")); /*소분류 코드(cat1,cat2필수)*/
+    urlBuilder.append("&" + URLEncoder.encode("keyword","UTF-8") + "=" + URLEncoder.encode("강원", "UTF-8")); /*검색 요청할 키워드 (국문=인코딩 필요)*/
+    urlBuilder.append("&_type=json"); // json 타입으로 반환
+    
+    
+    URL url = new URL(urlBuilder.toString());
+    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+    conn.setRequestMethod("GET");
+    conn.setRequestProperty("Content-type", "application/json");
+    System.out.println("Response code: " + conn.getResponseCode());
+    BufferedReader rd;
+    if(conn.getResponseCode() >= 200 && conn.getResponseCode() <= 300) {
+        rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+    } else {
+        rd = new BufferedReader(new InputStreamReader(conn.getErrorStream()));
+    }
+    StringBuilder sb = new StringBuilder();
+    String line;
+    while ((line = rd.readLine()) != null) {
+        sb.append(line);
+    }
+    rd.close();
+    conn.disconnect();
+    String result = sb.toString();
         
-        String str2 = jObject2.get("body").toString();
-        //System.out.println(str2);
-        JsonObject jObject3 = (JsonObject)jParser.parse(str2);
-        
-        String str3 = jObject3.get("items").toString();
-        JsonObject jObject4 = (JsonObject)jParser.parse(str3);
-        
-        String str4 = jObject4.get("item").toString();
-        JsonObject contentResult = (JsonObject)jParser.parse(str4);
+        JsonParser jParser = new JsonParser();
+
+        JsonObject jObject1 = (JsonObject)jParser.parse(result); //json 전체 파싱
+        //jObejct1는 json 전체가 파싱됨
+
+        JsonObject jObject2 = (JsonObject)jParser.parse(jObject1.get("response").toString());
+        JsonObject jObject3 = (JsonObject)jParser.parse(jObject2.get("body").toString());
+        JsonObject jObject4 = (JsonObject)jParser.parse(jObject3.get("items").toString());
+        JsonObject contentResult = (JsonObject)jParser.parse(jObject4.get("item").toString());
 
         return contentResult;
 	}
