@@ -199,28 +199,9 @@
 
 		<div class="col-md-6">
 
-                     <c:choose>
-							
-							<c:when test="${i.local_code == 1 }">
-							  <img src="images/hotel/seoul/${i.place_name}1.jpg" style="height: 200px;weight:310px;" >
-							</c:when>
-							<c:when test="${i.local_code == 39 }">
-								  <img src="images/hotel/jeju/${i.place_name}1.jpg" style="height: 200px;weight:310px;" >
-							</c:when>
-							<c:when test="${i.local_code == 6 }">
-								    <img src="images/hotel/busan/${i.place_name}1.jpg" style="height: 200px;weight:310px;" >
-							</c:when>
-							<c:when test="${i.local_code == 4 }">
-								   <img src="images/hotel/daegu/${i.place_name}1.jpg" style="height: 200px;weight:310px;" >
-							</c:when>
-							<c:when test="${i.local_code == 31 }">
-								    <img src="images/hotel/gyeonggi/${i.place_name}1.jpg"  style="height: 200px;weight:310px;" >
-							</c:when>
-							<c:when test="${i.local_code == 2 }">
-								 <img src="images/hotel/incheon/${i.place_name}1.jpg"  style="height: 200px;weight:310px;" >
-							</c:when>
-						</c:choose>
-
+              
+							  <img src="images/hotel/${i.place_name}1.jpg" style="height: 200px;weight:310px;" >
+						
 
 		</div>
 		<div class="col-md-6">

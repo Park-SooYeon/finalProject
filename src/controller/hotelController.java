@@ -46,6 +46,45 @@ public class hotelController {
 	}
 
 	
+	
+	@RequestMapping(value = "Reserv.ht", method = { RequestMethod.GET , RequestMethod.POST})
+	   public ModelAndView Reserv(@RequestParam int place_serial, HttpServletRequest req) {
+		
+			ModelAndView  mv = new ModelAndView();
+			System.out.println("디테일뷰 진입!!!!");
+			System.out.println(place_serial); 
+			
+			List<roomVo> list = null;
+			List<ReviewVo> reviewList = null;
+			List<roomPhotoVo> photoList = null;
+	        PlaceVo vo =null;
+			hotelDao hdao = new hotelDao();
+			
+			
+	        
+	        list = hdao.detailView(place_serial);
+	        vo = hdao.detailViewHotel(place_serial);
+	        photoList  = hdao.getPhotoList(place_serial);
+	        reviewList = hdao.reviewList(place_serial);
+	        
+	      
+	        
+	        
+	       
+			
+			
+	        mv.addObject("reviewList",reviewList);
+	        mv.addObject("photoList",photoList);
+			mv.addObject("list", list);
+			mv.addObject("vo", vo);
+			mv.setViewName("hotelDetailView");
+			return mv;
+		
+			
+		}
+		
+
+	
 	@RequestMapping(value = "hotel_index.ht", method = { RequestMethod.GET , RequestMethod.POST})
    public ModelAndView searchMenu(@RequestParam String local, HttpServletRequest req) {
 	
@@ -96,7 +135,7 @@ public class hotelController {
 	      
 	        
 	        
-	        
+	       
 			
 			
 	        mv.addObject("reviewList",reviewList);
@@ -134,7 +173,7 @@ public class hotelController {
 		String id = (String) session.getAttribute("member_id");
 
 		if(id != null) {
-			tripList = dao.callTripList();
+			tripList = dao.callTripList(id);
 			likeList = dao.selectLike(id);
 		}		
 		

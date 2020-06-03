@@ -79,7 +79,7 @@ select
 <select id='detailView' parameterType="Integer" resultType="bean.roomVo">
 					select
 		p.PLACE_SERIAL,
-		r.ROOMS_SERIAL,r.PEOPLE,r.PRICE,r.NO_SMOKE,r.OCEAN_VIEW,r.CITY_VIEW,r.MT_VIEW,r.PEOPLE
+		r.ROOMS_SERIAL,r.rooms_name,r.PEOPLE,r.PRICE,r.NO_SMOKE,r.OCEAN_VIEW,r.CITY_VIEW,r.MT_VIEW,r.PEOPLE
 		from place p,rooms r
 		where p.place_serial=r.PLACE_SERIAL 
 		       and   p.PLACE_SERIAL=#{place_serial}
