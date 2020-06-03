@@ -141,7 +141,7 @@
 
 		<div class="col-md-6">
 
-			<img src="assets/images/upload/${i.sysFile}" style="height: 200px;weight:310px;"  >
+			<img src="assets/images/upload/${i.sysFile}" style="height:200px;width:310px;"  >
 		</div>
 		<div class="col-md-6">
 			<h3>
@@ -200,7 +200,7 @@
 		<div class="col-md-6">
 
               
-							  <img src="images/hotel/${i.place_name}1.jpg" style="height: 200px;weight:310px;" >
+							  <img src="images/hotel/${i.place_name}1.jpg" style="height: 200px;width:310px;" >
 						
 
 		</div>

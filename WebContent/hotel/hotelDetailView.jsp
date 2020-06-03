@@ -8,7 +8,7 @@
 
 
 <script src="js/festival_detail.js"></script>
-
+<script src="js/hotel.js"></script>
 
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <link rel="stylesheet" href="css/detail_view.css">
@@ -157,7 +157,7 @@
 				<div>
 					<c:forEach var='list' items='${list}' varStatus="vs">
 
-						<div class="col-md-12" id="hotel_list" style="padding-top: 10px;">
+						<div class="col-md-12" id="hotel_list" style="padding-top:10px;padding-bottom:10px;box-shadow: 10px 10px 10px rgba(0,0,0,0.2);">
 							<div class="row" style="margin: 10px;">
 								<div class="col-md-6">
 									<img src="assets/images/upload/${photoList[0].sysFile}">
@@ -195,174 +195,364 @@
 											class="genric-btn info min-width-180 pull-right  "
 											data-toggle="modal" data-target="#hotelReserv${vs.index}"
 											value="예약하러하기">
+											
 									</div>
+											
 								</div>
-
+                                    
 							</div>
 						</div>
 
 						<br />
-						
-						
-						
+
+
+
 						<%--  모달모달 --%>
+
+						<!-- Modal -->
 						
-						    <!-- Modal -->
-	<div class="modal fade" id="hotelReserv${vs.index}" tabindex="-1"
-		role="dialog" aria-labelledby="hotelReservLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<span aria-hidden="true">&times;</span>
-					<h4 class="modal-title" id="hotelReservLabel">예약하기</h4>
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close"></button>
-				</div>
-				<div class="modal-body">
-					<div class='container'>
-						<div class="row">
-							
+						<input type="hidden" id="myIndex" value="hotelReserv${vs.index}">
+						
+						<div class="modal fade" id="hotelReserv${vs.index}" tabindex="-1"
+							role="dialog" aria-labelledby="hotelReservLabel"
+							aria-hidden="true" >
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-header">
 
-
-
-
-
-
-						<div class="col-md-12" id="hotel_list" style="padding-top: 10px;">
-							<div class="row" style="margin: 10px;">
-								<div class="col-md-6">
-									<img src="assets/images/upload/${photoList[0].sysFile}">
-								</div>
-								<div class="col-md-6">
-									<c:if test="${list.rooms_name == 1 }">
-										<h3>디럭스</h3>
-									</c:if>
-									<c:if test="${list.rooms_name == 2 }">
-										<h3>패밀리</h3>
-									</c:if>
-									<c:if test="${list.rooms_name ==3  }">
-										<h3>스위트</h3>
-									</c:if>
-									<div class="tags">
-										<div>
-
-											<c:if test="${list.mt_view == 1 }">
-												<span class="badge badge-info">마운틴뷰</span>
-											</c:if>
-
-											<c:if test="${list.city_view == 1 }">
-												<span class="badge badge-info">시티뷰</span>
-											</c:if>
-
-											<c:if test="${list.ocean_view == 1 }">
-												<span class="badge badge-info">오션뷰</span>
-											</c:if>
-
-										</div>
-										<p>1박 ${list.price} 원</p>
-										<p>수용 가능 인원수 : ${list.people}</p>
-
-										
+										<h4 class="modal-title" id="hotelReservLabel">예약하기</h4>
+										<button type="button" class="close" data-dismiss="modal"
+											aria-label="Close" >Close</button>
 									</div>
+									<div class="modal-body">
+										
+										
+										
+										
+<form id="example-advanced-form" action="#">
+    <h3>1. 호텔 정보</h3>
+    <fieldset>
+        <legend>
+          
+          ${vo.place_name}
+          <span><i class="fa fa-location-arrow" style="margin-right: 3px; margin-bottom: 10px" aria-hidden="true">
+		 </i>${vo.place_location } </span>
+		 <br> 
+		 <span> <i class="fa fa-mobile" style="margin-right: 3px" aria-hidden="true"> </i>
+		 ${vo.place_tel }</span><br />
+        
+        
+        </legend>
+          
+ 
+ 
+        	<div class="col-md-12" id="hotel_list"
+													style="padding-top: 10px;">
+													<div class="row" style="margin: 10px;">
+														<div class="col-md-6">
+															<img src="assets/images/upload/${photoList[0].sysFile}">
+														</div>
+														<div class="col-md-6">
+														
+														    ${list.rooms_serial }
+																												
+															<c:if test="${list.rooms_name == 1 }">
+																<h3>디럭스</h3>
+															</c:if>
+															<c:if test="${list.rooms_name == 2 }">
+																<h3>패밀리</h3>
+															</c:if>
+															<c:if test="${list.rooms_name ==3  }">
+																<h3>스위트</h3>
+															</c:if>
+															<div class="tags">
+																<div>
+
+																	<c:if test="${list.mt_view == 1 }">
+																		<span class="badge badge-info">마운틴뷰</span>
+																	</c:if>
+
+																	<c:if test="${list.city_view == 1 }">
+																		<span class="badge badge-info">시티뷰</span>
+																	</c:if>
+
+																	<c:if test="${list.ocean_view == 1 }">
+																		<span class="badge badge-info">오션뷰</span>
+																	</c:if>
+
+																</div>
+																<p>1박 ${list.price} 원</p>
+																<p>수용 가능 인원수 : ${list.people}</p>
+
+
+															</div>
+														</div>
+
+													</div>
+												</div>
+
+   
+   
+   
+   
+    </fieldset>
+ 
+    <h3>2.예약 일자</h3>
+    <fieldset>
+        <legend></legend>
+ 
+      <div class="form-group trip-cal-input">
+															<label for="trip-cal-input" class="col-form-label">
+																체크인 </label> 
+														
+																<input type="text"
+																id="datePickInput"
+																class="form-control col-sm-8 col-xm-12 datepicker-here"
+																data-range="true" data-language="kr"
+																data-multiple-dates-separator=" - "
+																data-toggle-selected="true" name="start_date" >
+													    
+													      	<label for="trip-cal-input" class="col-form-label">
+																체크 아웃 </label> 
+																
+																<input type="text"
+																id="datePickInput"
+																class="form-control col-sm-8 col-xm-12 datepicker-here"
+																data-range="true" data-language="kr"
+																data-multiple-dates-separator=" - "
+																data-toggle-selected="true" name="end_date" >
+													
+                                           <div class="check_font" id="date_check" name="date_check"></div>
+                                         </div>
+   
+    </fieldset>
+ 
+    <h3>3. 개인 정보 입력하기.</h3>
+    <fieldset>
+        <legend>You are to young</legend>
+ 
+        <p>Please go away ;-)</p>
+    </fieldset>
+ 
+ 
+ 
+    <h3>Finish</h3>
+    <fieldset>
+        <legend>Terms and Conditions</legend>
+ 
+        <input id="acceptTerms-2" name="acceptTerms" type="checkbox" class="required"> <label for="acceptTerms-2">I agree with the Terms and Conditions.</label>
+    </fieldset>
+</form>
+										
+										
+										
+						
+										
+										
+										<div class='container'>
+											<div class="row">
+
+
+
+
+
+
+
+												<div class="col-md-12" id="hotel_list"
+													style="padding-top: 10px;">
+													<div class="row" style="margin: 10px;">
+														<div class="col-md-6">
+															<img src="assets/images/upload/${photoList[0].sysFile}">
+														</div>
+														<div class="col-md-6">
+														
+														    ${list.rooms_serial }
+																												
+															<c:if test="${list.rooms_name == 1 }">
+																<h3>디럭스</h3>
+															</c:if>
+															<c:if test="${list.rooms_name == 2 }">
+																<h3>패밀리</h3>
+															</c:if>
+															<c:if test="${list.rooms_name ==3  }">
+																<h3>스위트</h3>
+															</c:if>
+															<div class="tags">
+																<div>
+
+																	<c:if test="${list.mt_view == 1 }">
+																		<span class="badge badge-info">마운틴뷰</span>
+																	</c:if>
+
+																	<c:if test="${list.city_view == 1 }">
+																		<span class="badge badge-info">시티뷰</span>
+																	</c:if>
+
+																	<c:if test="${list.ocean_view == 1 }">
+																		<span class="badge badge-info">오션뷰</span>
+																	</c:if>
+
+																</div>
+																<p>1박 ${list.price} 원</p>
+																<p>수용 가능 인원수 : ${list.people}</p>
+
+
+															</div>
+														</div>
+
+													</div>
+												</div>
+
+												<br />
+
+
+
+                           <form id="mymo">
+	                                <div class="col-md-12" >
+
+													
+       
+													
+	                                     <div class="form-group trip-cal-input">
+															<label for="trip-cal-input" class="col-form-label">
+																체크인 </label> 
+														
+																<input type="text"
+																id="datePickInput"
+																class="form-control col-sm-8 col-xm-12 datepicker-here"
+																data-range="true" data-language="kr"
+																data-multiple-dates-separator=" - "
+																data-toggle-selected="true" name="start_date" >
+													    
+													      	<label for="trip-cal-input" class="col-form-label">
+																체크 아웃 </label> 
+																
+																<input type="text"
+																id="datePickInput"
+																class="form-control col-sm-8 col-xm-12 datepicker-here"
+																data-range="true" data-language="kr"
+																data-multiple-dates-separator=" - "
+																data-toggle-selected="true" name="end_date" >
+													
+                                           <div class="check_font" id="date_check" name="date_check"></div>
+                                         
+                                               
+                                                   <button type="button" class="genric-btn info min-width-180"
+                                                   onclick="goNextReserv()">
+                                                                                                       예약하기</button>
+												
+													
+														</div>
+                                            </div>
+                                            
+                                            </form>
+                                      </div>
+
+
+       
+										</div>
+
+									</div>
+
+
+
+                                 <div style="display:none" id="reserv">
+
+									<form method="post" name="frm_ms" id="frm_ms">
+									
+									   
+									     <input type="hidden" id="rSerial" name="rSerial" value="${list.rooms_serial}">
+										<div class="container">
+											<div class="row">
+												<div class="col-md-12">
+
+													<div class="jumbotron"
+														style="padding-top: 20px; background: white">
+                                                        
+														   <h4>고객님의 정보를 입력해주세요!</h4>
+														<hr>
+														<br>
+
+                                                        <div class="mt-6">
+													
+		                                             <input type="text"  id="price" value="${list.price}">
+		                                                        <p id="total_price"></p>
+                                             
+                                                          
+														</div>
+														
+														<div class="mt-6">
+															<label>이름</label> <input type="text" class="form-control"
+																name="mName" id="mName" placeholder="이름을 입력해주세요"
+																maxlength="20" required><br>
+														</div>
+
+
+
+
+														<div class="mt-6" id="email_syj">
+															<label for="InputEmail">이메일 주소</label> <input type="text"
+																class="form-control" name="email" id="email"
+																placeholder="이메일을 입력해주세요" required>
+
+														</div>
+
+
+														<div class="mt-6" id="email_syj">
+															<label for="reInputEmail">이메일 주소 확인</label> <input
+																type="text" class="form-control" name="reEmail"
+																id="reEmail" placeholder="이메일을 입력해주세요" required>
+
+														</div>
+
+														<br>
+
+													</div>
+												</div>
+
+											</div>
+										</div>
+                            
+										
+									</form>
+                            </div>
+                            
+                            
+										<div class="container">
+											<div class="row">
+												<div class="col-md-12">
+													<button type="button" class="btn btn-default pull-right"
+														data-dismiss="modal" id="close">닫기</button>
+												
+													<button type="button" class="btn btn-primary pull-right"
+													 onclick="GoReserv()"
+													>예약하기</button>
+												</div>
+											</div>
+										</div>
+										<br>
+									
 								</div>
+
+
 
 							</div>
+							
 						</div>
 
-						<br />
-			
 
 
 
 
-									</div>
-								</div>
-
-							</div>
-						
-						
-						
-						
-						
-						<form method="post" name="frm_ms" id="frm_ms">
-							<div class="container">
-								<div class="row">
-									<div class="col-lg-6 col-md-4 offset-1">
-
-										<div class="jumbotron"
-											style="padding-top: 20px; background: white">
-
-											<div class="form-group trip-cal-input">
-												<label for="trip-cal-input" class="col-form-label">
-													체크인 - 체크 아웃을 선택해주세요! </label> <input type="text" id="datePickInput"
-													class="form-control col-sm-8 col-xm-12 datepicker-here"
-													data-range="true" data-language="kr"
-													data-multiple-dates-separator=" - "
-													data-toggle-selected="true" name="start_date" />
-											</div>
 
 
-
-											<h4>고객님의 정보를 입력해주세요!</h4>
-											<hr>
-											<br>
-
-											<div class="mt-6">
-												<label>이름</label> <input type="text" class="form-control"
-													name="mName" id="mName" placeholder="이름을 입력해주세요"
-													maxlength="20" required><br>
-											</div>
-
-
-
-
-											<div class="mt-6" id="email_syj">
-												<label for="InputEmail">이메일 주소</label> <input type="text"
-													class="form-control" name="email" id="email"
-													placeholder="이메일을 입력해주세요" required>
-
-											</div>
-
-
-											<div class="mt-6" id="email_syj">
-												<label for="reInputEmail">이메일 주소 확인</label> <input
-													type="text" class="form-control" name="reEmail"
-													id="reEmail" placeholder="이메일을 입력해주세요" required>
-
-											</div>
-
-											<br>
-                                            
-										</div>
-									</div>
-								</div>
-							</div>
-
-						</form>
-					</div>
-
-
-
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-primary">Save changes</button>
-				</div>
-			</div>
-						
-						
-						
-						
-						
-						
-						
+	
 					</c:forEach>
 
 
 
 
 				</div>
-
 
 
 
@@ -379,70 +569,74 @@
 		</div>
 
 
-	
 
-	<c:if test="${!empty reviewList}">
-		<div class="row">
-			<div class="col-12 pt-3"
-				style='height: 70px; border-top: 1px solid black;'>
-				<h3 style='float: left'>리뷰</h3>
-				<input class="btn btn-primary float-right" onclick="insertMove()"
-					type='button' id='review' name='review' value='리뷰작성' />
+
+		<c:if test="${!empty reviewList}">
+			<div class="row">
+				<div class="col-12 pt-3"
+					style='height: 70px; border-top: 1px solid black;'>
+					<h3 style='float: left'>리뷰</h3>
+					<input class="btn btn-primary float-right" onclick="insertMove()"
+						type='button' id='review' name='review' value='리뷰작성' />
+
+				</div>
 
 			</div>
 
-		</div>
 
-
-		<c:forEach var='i' items='${reviewList}'>
-			<div class="row border-bottom py-3">
-				<div class="col-2">
-					<img class="rounded-circle"
-						src="./images/myPage/${i.member_photo }">
-					<p class='text-center mt-3'>${i.nickName }</p>
-				</div>
-				<div class="col-10">
-					<div class='rating' data-rate='5'>
-						<!-- data-rate에 별점을입력(5초과금지) -->
-						<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-							class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-							class="fa fa-star"></i>
+			<c:forEach var='i' items='${reviewList}'>
+				<div class="row border-bottom py-3">
+					<div class="col-2">
+					
+				
+						<img class="rounded-circle"
+							src="./images/myPage/${i.member_photo}">
+			
+					
+						<p class='text-center mt-3'>${i.nickName }</p>
 					</div>
+					<div class="col-10">
+						<div class='rating' data-rate='5'>
+							<!-- data-rate에 별점을입력(5초과금지) -->
+							<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+								class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+								class="fa fa-star"></i>
+						</div>
 
-					<span>${i.review_date}에 작성</span> <span class="float-right">${i.likecount}
-						명의 사용자가 좋아합니다! </span>
-					<h5>${i.review_title }</h5>
-					<div class="review-box">
-						<p class="pre-view">${i.review_content }</p>
-						<span class="btn-moreInfo">[더보기]</span>
+						<span>${i.review_date}에 작성</span> <span class="float-right">${i.likecount}
+							명의 사용자가 좋아합니다! </span>
+						<h5>${i.review_title }</h5>
+						<div class="review-box">
+							<p class="pre-view">${i.review_content }</p>
+							<span class="btn-moreInfo">[더보기]</span>
+						</div>
+						<p>
+							<span>방문 날짜 :${t.visit_date} </span>
+						</p>
+						<p>
+							도움이 됐나요?
+							<button class="btn btn-outline-secondary">
+								<i class="fa fa-thumbs-up"></i>
+							</button>
+						</p>
+
+						<button id="testBtn" class="testBtn btn btn-primary"
+							style='float: right'>신고하기</button>
+
+
 					</div>
-					<p>
-						<span>방문 날짜 :${t.visit_date} </span>
-					</p>
-					<p>
-						도움이 됐나요?
-						<button class="btn btn-outline-secondary">
-							<i class="fa fa-thumbs-up"></i>
-						</button>
-					</p>
-
-					<button id="testBtn" class="testBtn btn btn-primary"
-						style='float: right'>신고하기</button>
-
-
 				</div>
-			</div>
 
-		</c:forEach>
-	</c:if>
+			</c:forEach>
+		</c:if>
 
 
-</div>
+	</div>
 
 	<!-- Button trigger modal -->
 
-	
-		
+
+
 
 
 
@@ -560,14 +754,20 @@
 
 	<!-- 컨테이너끝 -->
 
+<script>
+
+var modalId = $('#myIndex').val();
 
 
+console.log($("#"+modalId));
+
+$("#"+modalId).on('hidden.bs.modal', function (e) {
+	$('#mymo').reset(); 
+	alert('di');
+})
 
 
-
-
-
-
+</script>
 
 </body>
 </html>
