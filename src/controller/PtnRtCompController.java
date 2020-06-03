@@ -30,10 +30,13 @@ public class PtnRtCompController {
 		HttpSession session  = req.getSession();
 		String member_id = (String) session.getAttribute("member_id");
 		// 세션 아이디로 파트너 시리얼 가져오기
-		PtnHtCompDao compDao = new PtnHtCompDao();
-		int serial = compDao.getSerial(member_id);
-
+		//PtnHtCompDao compDao = new PtnHtCompDao();
+		System.out.println("member_id : " + member_id);
+		int serial = dao.getSerial(member_id);
+		
+		System.out.println("serial" + serial);
 		List<CompanyVo> list = dao.select(serial);
+		System.out.println("list : " + list);
 		
 		mv.addObject("list", list);
 		mv.setViewName("rent_comp_list");

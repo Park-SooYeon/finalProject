@@ -142,7 +142,7 @@ public class PtnHtCompController {
 	    System.out.println(uploadPath);
 	    System.out.println(path);
 	    
-	    File dir = new File(filePath);
+	    File dir = new File(uploadPath);
         if (!dir.isDirectory()) {
             dir.mkdirs();
         }
@@ -185,7 +185,9 @@ public class PtnHtCompController {
 				
 				fileSize = mf.get(i).getSize(); // 파일 사이즈
 				
-				String savePath = filePath + image1; // 저장 될 파일 경로
+				String savePath = uploadPath + image1; // 저장 될 파일 경로
+				
+				System.out.println("savepath : " + savePath);
 				 
                 mf.get(i).transferTo(new File(savePath)); // 파일 저장
                 
@@ -332,7 +334,7 @@ public class PtnHtCompController {
 		int serial = dao.getSerial(member_id);
 		vo.setPartner_serial(serial);
 		
-		int result = dao.modify(vo, list, delList, photoNum);
+		int result = dao.modify(vo, list, delList, photoNum, uploadPath);
 		
 		
 		// 업로드 파일 삭제 해주어야함
@@ -361,8 +363,9 @@ public class PtnHtCompController {
 		vo.setPartner_serial(serial);
 		vo.setPlace_serial(place_serial);
 		
+		String uploadPath = req.getSession().getServletContext().getRealPath("/assets/images/upload/");
 		List<UploadVo> delList = dao.getAttList(place_serial);
-		int result = dao.delete(vo, delList);
+		int result = dao.delete(vo, delList, uploadPath);
 		
 		mv.addObject("result", result);
 		mv.addObject("vo", vo);

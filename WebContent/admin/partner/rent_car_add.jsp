@@ -18,10 +18,10 @@
                                     </div>
                                     <div class="col-lg-8">
                                         <select class="form-control" id="rtCompNm">
-				                        <option value="">A 렌터카</option>
-				                        <option value="">B 렌터카</option>
-				                        <option value="">C 렌터카</option>
-				                    </select>
+					                        <c:forEach var="vo" items="${list }" varStatus="i">
+						                        <option value="${vo.place_serial }">${vo.place_name }</option>
+					                        </c:forEach>
+					                    </select>
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -29,7 +29,7 @@
                                         <label class="col-form-label">차량명 <span class="text-danger">*</span></label>
                                     </div>
                                     <div class="col-lg-8">
-                                        <input type="text" class="form-control" />
+                                        <input type="text" name="car_name" id="car_name" class="form-control" />
 				                    </select>
                                     </div>
                                 </div>
@@ -53,7 +53,7 @@
 	                                    <label class="col-form-label">가격(시간당) <span class="text-danger">*</span></label>
 	                                </div>
 	                                <div class="col-lg-8">
-	                                    <input class="form-control" data-inputmask="'alias': 'currency'" im-insert="true" style="text-align: right;">
+	                                    <input class="form-control" type="number" name="price" id="price" />
 	                                </div>
 	                            </div>
                                 <div class="form-group row">
@@ -62,75 +62,102 @@
                                     </div>
                                     <div class="col-lg-8">
                                     	<div class="row">
-	                                    	<div class="col-md-4 mb-2">
-	                                    		<input type="file" class="dropify" />
-	                                    	</div>
-                                    		<div class="col-md-4 mb-2">
-	                                    		<input type="file" class="dropify" />
-	                                    	</div>
-	                                    	<div class="col-md-4 mb-2">
-	                                    		<input type="file" class="dropify" />
+	                                    	<div class="col-12 mb-2">
+	                                    		<input type="file" name="photo" id="photo" class="dropify" />
 	                                    	</div>
                                     	</div>
                                         
 									</div>
                                 </div>
                                 <div class="form-group row">
-	                                <div class="col-lg-3">
-	                                    <label class="col-form-label">차량 문수 <span class="text-danger">*</span></label>
-	                                </div>
-	                                <div class="col-lg-8">
-	                                    <input class="form-control" type="number" min="0">
-	                                </div>
-	                            </div>
-	                            <div class="form-group row">
-	                                <div class="col-lg-3">
-	                                    <label class="col-form-label">기어타입 <span class="text-danger">*</span></label>
-	                                </div>
-	                                <div class="col-lg-8">
-	                                    <input class="form-control" type="number" min="0">
-	                                </div>
-	                            </div>
-	                            <div class="form-group row">
-	                                <div class="col-lg-3">
-	                                    <label class="col-form-label">탑승자 정원 <span class="text-danger">*</span></label>
-	                                </div>
-	                                <div class="col-lg-8">
-	                                    <input class="form-control" type="number" min="0">
-	                                </div>
-	                            </div>
-	                            <div class="form-group row">
-	                                <div class="col-lg-3">
-	                                    <label class="col-form-label">옵션 <span class="text-danger">*</span></label>
-	                                </div>
-	                                <div class="col-lg-8">
-                                    	<div class="row">
-                                    		<div class="col-sm-3 col-6">
-                                    			<div class="form-check form-check-flat">
-					                              <label class="form-check-label">
-					                                <input type="checkbox" class="form-check-input"> 짐가방 <i class="input-helper"></i></label>
-					                            </div>
+	                                <div class="offset-lg-3 col-lg-8">
+	                                    <div class="row">
+                                    		<div class="col-sm-6">
+                                    			<div class="row">
+                                    				<div class="col-lg-4">
+					                                    <label class="col-form-label">차량 문수 <span class="text-danger">*</span></label>
+					                                </div>
+					                                <div class="col-lg-8">
+					                                    <input class="form-control" name="door" type="number" min="0">
+					                                </div>
+                                    			</div>
                                     		</div>
-                                    		<div class="col-sm-3 col-6">
-                                    			<div class="form-check form-check-flat">
-					                              <label class="form-check-label">
-					                                <input type="checkbox" class="form-check-input"> 작은가방 <i class="input-helper"></i></label>
-					                            </div>
-                                    		</div>
-                                    		<div class="col-sm-3 col-6">
-                                    			<div class="form-check form-check-flat">
-					                              <label class="form-check-label">
-					                                <input type="checkbox" class="form-check-input"> 에어컨 <i class="input-helper"></i></label>
-					                            </div>
+                                    		<div class="col-sm-6">
+                                    			<div class="row">
+	                                   				<div class="col-lg-4">
+					                                    <label class="col-form-label">탑승자 정원 <span class="text-danger">*</span></label>
+					                                </div>
+					                                <div class="col-lg-8">
+					                                    <input class="form-control" name="max_people" type="number" min="0">
+					                                </div>
+	                                   			</div>
                                     		</div>
                                     	</div>
-			                            
-									</div>
-	                            </div>
+                                    </div>
+								</div>
+								<div class="form-group row">
+                                    <div class="offset-lg-3 col-lg-8">
+	                                    <div class="row">		
+                                    		<div class="col-sm-6">
+	                                   			<div class="row">
+	                                   				<div class="col-lg-4">
+					                                    <label class="col-form-label">기어타입 <span class="text-danger">*</span></label>
+					                                </div>
+					                                <div class="col-lg-8">
+					                                    <input class="form-control" name="gear" type="text" min="0">
+					                                </div>
+	                                   			</div>
+	                                   		</div>
+	                                   		<div class="col-sm-6">
+	                                   			<div class="row">
+	                                   				<div class="col-lg-4">
+					                                    <label class="col-form-label">짐가방 <span class="text-danger">*</span></label>
+					                                </div>
+					                                <div class="col-lg-8">
+					                                    <input class="form-control" name="big_bag" type="number" min="0">
+					                                </div>
+	                                   			</div>
+	                                   		</div>
+										</div>
+                                    </div>
+								</div>
+								<div class="form-group row">
+                                    <div class="offset-lg-3 col-lg-8">
+	                                    <div class="row">
+	                                   		<div class="col-sm-6">
+	                                   			<div class="row">
+	                                   				<div class="col-lg-4">
+					                                    <label class="col-form-label">작은가방 <span class="text-danger">*</span></label>
+					                                </div>
+					                                <div class="col-lg-8">
+					                                    <input class="form-control" name="small_bag" type="number" min="0">
+					                                </div>
+	                                   			</div>
+	                                   		</div>
+	                                   		<div class="col-sm-6">
+	                                   			<div class="row">
+	                                   				<div class="col-lg-4">
+					                                    <label class="col-form-label">옵션 <span class="text-danger">*</span></label>
+					                                </div>
+					                                <div class="col-lg-8">
+					                                    <div class="form-check form-check-flat">
+							                              <label class="form-check-label">
+							                                <input type="checkbox" class="form-check-input"> 에어컨 <i class="input-helper"></i></label>
+							                            </div>
+					                                </div>
+	                                   			</div>
+	                                   		</div>
+	                                   </div>
+                                    </div>
+								</div>
+	                           
+	                            
                                 <div class="form-group col-12 text-right mt-5">
                                 	<button type="submit" class="btn btn-secondary mr-2">취소</button>
                                 	<button type="submit" class="btn btn-success" onclick="showSwal('success-message')">등록</button>
                                 </div>
+
+                                <input type="text" name="aircon" id="aircon" />
                             </form>
                         </div>
                     </div>
