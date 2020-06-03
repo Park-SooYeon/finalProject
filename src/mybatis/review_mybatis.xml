@@ -76,7 +76,7 @@
  			values(SEQ_REVIEW_PHOTO.nextval, ${review_serial}, #{photo_name}, #{sysFile})
 	</insert>	
 	
-	<select id='review_select' parameterType="bean.RivewVo" resultType="bean.ReviewVo">
+	<!-- <select id='review_select' parameterType="bean.RivewVo" resultType="bean.ReviewVo">
 		select
 		r.REVIEW_SERIAL,
 		r.MEMBER_ID,
@@ -120,7 +120,7 @@
 		
 		where
 		review_SERIAL=${place_serial}
-	</select>
+	</select> -->
 	
 
 </mapper>
