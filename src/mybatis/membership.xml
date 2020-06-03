@@ -35,7 +35,7 @@
    from membership 
    where member_id = #{member_id} and pwd = #{pwd} and state != 3 and state !=2
    
-  </select>
+ </select>
 
  <select id="loginNickName" parameterType="String"  resultType="String">
                      
