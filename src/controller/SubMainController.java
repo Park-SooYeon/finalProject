@@ -601,7 +601,7 @@ public class SubMainController {
 		// 새로운 여행 정보 setting
 		TripListVo vo = new TripListVo();
 		vo.setTrip_name(trip_name);
-		vo.setMember_id("test");
+		vo.setMember_id(id);
 		vo.setTrip_auth(1);
 		vo.setDays_count(0);
 		
