@@ -25,6 +25,7 @@ import rent_parameter.DateVo;
 import rent_parameter.ReservePm;
 import rent_parameter.ReserveSearchVo;
 import rent_parameter.ReserveVo;
+import rent_parameter.ReviewPm;
 import rent_parameter.rentReviewPm;
 import rent_parameter.rentReviewTotVo;
 import rent_parameter.rentReviewVo;
@@ -203,6 +204,34 @@ public class RentDao {
 			e.printStackTrace();
 			sqlSession.rollback();
 			msg = "취소중 오류가 발생했습니다";
+		}finally {
+			return msg;
+		}
+	}
+	
+	public String reviewInsert(ReviewPm pm) {
+		String msg = null;
+		try {
+			int cnt = sqlSession.insert("reviewInsert", pm);
+			if(cnt<1) {
+				msg = "리뷰 입력중 오류가 발생했습니다";
+				throw new Exception("리뷰 입력중 오류발생");
+			}else {
+				msg ="리뷰 입력이 완료 되었습니다";
+			}
+			cnt = sqlSession.update("reviewUpdate",pm.getReserve_serial());
+			if(cnt<1) {
+				msg = "리뷰 수정중 오류가 발생했습니다";
+				throw new Exception("리뷰 수정중 오류발생");
+			}else {
+				msg ="리뷰 입력이 완료 되었습니다";
+			}
+			
+			sqlSession.commit();
+		}catch(Exception e) {
+			e.printStackTrace();
+			sqlSession.rollback();
+			msg = "리뷰 입력중 오류가 발생했습니다";
 		}finally {
 			return msg;
 		}

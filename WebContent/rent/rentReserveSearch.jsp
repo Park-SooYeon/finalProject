@@ -7,13 +7,14 @@
 <form name='rent_frm' id='rent_frm' method='post'>
 <input type='hidden' name='member_id' value='${sessionScope.member_id}'/>
 <input type='hidden' name='reserve_serial' id='reserve_serial'/>
+<input type='hidden' name='car_serial' id='car_serial'/>
 
 <div class='row' style="padding-top: 70px;">
 	<div class='col-lg-3 col-md-3 col-sm-3'></div>
 	<div class='col-lg-6 col-md-6 col-sm-6 col-xs-12'>
 	
 	<c:if test="${msg != null }">
-		<h4 style='color:#f00; font-size: 1.3em;'> ${msg } </h4>
+		<h4 style='color:#2b96ed; font-size: 1.7em;text-align: center; font-weight: bold;margin-top: 50px;box-sizing: border-box; box-shadow: 1px 1px 5px 1px #aaa;padding: 10px;border-radius: 5px 5px 5px 5px'> ${msg } </h4>
 	</c:if>
 	
 	<div id='reserveResultHead'class='row' >
@@ -390,7 +391,7 @@
 			    		
 			    			<div>
 			    			렌트 비용대비 전반적인 평가 (1~10)
-			    			<select id="review_1"> 
+			    			<select id="review_1" name="review_1"> 
 						        <option value="1">1</option> 
 						        <option value="2">2</option> 
 						        <option value="3">3</option> 
@@ -406,7 +407,7 @@
 					        
 					        <div>
 			    			카운터직원의 친절도 및 전문성 (1~10)
-			    			<select id="review_2"> 
+			    			<select id="review_2" name="review_2"> 
 						        <option value="1">1</option> 
 						        <option value="2">2</option> 
 						        <option value="3">3</option> 
@@ -422,7 +423,7 @@
 					        
 					        <div>
 			    			차량인수 소요시간 (1~10)
-			    			<select id="review_3"> 
+			    			<select id="review_3" name="review_3"> 
 						        <option value="1">1</option> 
 						        <option value="2">2</option> 
 						        <option value="3">3</option> 
@@ -438,7 +439,7 @@
 					        
 					        <div>
 			    			차량반납 소요시간 (1~10)
-			    			<select id="review_4"> 
+			    			<select id="review_4" name="review_4"> 
 						        <option value="1">1</option> 
 						        <option value="2">2</option> 
 						        <option value="3">3</option> 
@@ -454,7 +455,7 @@
 					        
 					        <div>
 			    			차량 청결도 (1~10)
-			    			<select id="review_5"> 
+			    			<select id="review_5" name="review_5"> 
 						        <option value="1">1</option> 
 						        <option value="2">2</option> 
 						        <option value="3">3</option> 
@@ -470,7 +471,7 @@
 					        
 					        <div>
 			    			차량의 전반적인 상태 (1~10)
-			    			<select id="review_6"> 
+			    			<select id="review_6" name="review_6"> 
 						        <option value="1">1</option> 
 						        <option value="2">2</option> 
 						        <option value="3">3</option> 
@@ -486,7 +487,7 @@
 					        
 					        <div>
 			    			재선택 가능성 (1~10)
-			    			<select id="review_7"> 
+			    			<select id="review_7" name="review_7"> 
 						        <option value="1">1</option> 
 						        <option value="2">2</option> 
 						        <option value="3">3</option> 
@@ -502,7 +503,7 @@
 					        
 					        <div>
 					        	동행 규모
-					        	<select>
+					        	<select name="scale">
 					        		<option value="가족">가족</option> 
 							        <option value="그룹">그룹</option> 
 							        <option value="커플">커플</option> 
@@ -513,20 +514,26 @@
 					        
 					        <div>
 					        	차량 인수시간
-					        	<input type="text" id='returnedDate' class="form-control datepicker-here" data-timepicker="true" data-time-format='hh:ii aa' placeholder="">
+					        	<select name='take_overtime'>
+					        		<option value="10분 이하">10분 이하</option> 
+							        <option value="10분 ~ 20분">10분 ~ 20분</option> 
+							        <option value="20분 ~ 30분">20분 ~ 30분</option> 
+							        <option value="30분 ~ 1시간">30분 ~ 1시간</option>
+							        <option value="1시간 이상">1시간 이상</option>
+					        	</select>
 					        </div>
 					        
 					        <div>
 					        	좋았던 사항
-					        	<input type="text" class="form-control" placeholder="좋았던 한줄평을써주세요">
+					        	<input type="text" name='good_news' class="form-control" placeholder="좋았던 한줄평을써주세요">
 					        </div>
 					        
 					        <div>
 					        	좋지 않았던 사항
-					        	<input type="text" class="form-control" placeholder="좋지 않았던 한줄평을 써주세요">
+					        	<input type="text" name='bad_news' class="form-control" placeholder="좋지 않았던 한줄평을 써주세요">
 					        </div>
 					        
-					        <input type='date' style="display: none;"/>
+					        
 										    		
 			      	
 			      
@@ -537,7 +544,7 @@
 			      </div>
 			      <div class="modal-footer">
 			        <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
-			        <button type="button" id='btnReviewInsert' class="btn btn-primary">리뷰 작성</button>
+			        <button type="button" id='btnReviewInsert' onclick='rent.reviewInsert(${list1_2.reserve_serial},${list1_2.car_serial})' class="btn btn-primary">리뷰 작성</button>
 			      </div>
 			    </div>
 			  </div>

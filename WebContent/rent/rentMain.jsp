@@ -98,7 +98,7 @@
 		</form>
 	</div>
 	<div class="copy">
-		<p>&copy;차량렌트 - 검색,비교후 예약 900개 공급업체 보유, 최저가 맞춤 <a href="http://www.W3Layouts.com" target="_blank">마이리얼트립</a> <br/> 문의전화 000-0000-0000 <br/> 기타 상담전화 111-1111-1111</p>
+		<p>&copy;차량렌트 - 검색,비교후 예약 900개 공급업체 보유, 최저가 맞춤 <a href="../index.jsp" target="_blank">travelista</a> <br/> 문의전화 000-0000-0000 <br/> 기타 상담전화 111-1111-1111</p>
 	</div>
 	</div>
 	
@@ -121,12 +121,51 @@
         startHours = 10
     }
 
-    $('#mainRent , #mainReturn').datepicker({
+    $('#mainRent').datepicker({
         timepicker: true,
         language: 'en',
         startDate: start,
         minHours: startHours,
         maxHours: 18,
+        navTitles: {
+            days: '<h3>차량 인수일 : </h3> MM, yyyy'
+        },
+        minDate: new Date(),
+        onSelect: function (fd, d, picker) {
+            // Do nothing if selection was cleared
+            if (!d) return;
+
+            var day = d.getDay();
+
+            // Trigger only if date is changed
+            if (prevDay != undefined && prevDay == day) return;
+            prevDay = day;
+
+            // If chosen day is Saturday or Sunday when set
+            // hour value for weekends, else restore defaults
+            if (day == 6 || day == 0) {
+                picker.update({
+                    minHours: 10,
+                    maxHours: 16
+                })
+            } else {
+                picker.update({
+                    minHours: 9,
+                    maxHours: 18
+                })
+            }
+        }
+    })
+    $('#mainReturn').datepicker({
+        timepicker: true,
+        language: 'en',
+        startDate: start,
+        minHours: startHours,
+        maxHours: 18,
+        navTitles: {
+            days: '<h3>차량 반납일 : </h3> MM, yyyy'
+        },
+        minDate: new Date(),
         onSelect: function (fd, d, picker) {
             // Do nothing if selection was cleared
             if (!d) return;

@@ -209,6 +209,14 @@
 		update RENT_RESERVE set CANCLE_DATE=SYSTIMESTAMP , CANCLE_REASON='돈없어' where RESERVE_SERIAL='${_parameter}'
 	</update>
 	
+	<insert id="reviewInsert" parameterType="rent_parameter.ReviewPm">
+		insert into RENT_REVIEW(review_serial , car_serial , reserve_serial , review_1,review_2,review_3,review_4,review_5,review_6,review_7,scale, take_overtime , good_news , bad_news , WRITED_DATE)
+				values(seq_rent_review.nextval , ${car_serial} , '${reserve_serial}' , ${review_1},${review_2},${review_3},${review_4},${review_5},${review_6},${review_7},'${scale}','${take_overtime}','${good_news}','${bad_news}',sysdate)
+	</insert>
+	<update id="reviewUpdate" parameterType="String">
+		update rent_reserve set review_check='y' where reserve_serial='${_parameter}'
+	</update>
+	
 	
 </mapper>
 

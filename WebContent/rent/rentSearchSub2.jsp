@@ -4,7 +4,11 @@
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
-
+	
+	<div class='row' onclick="rent.back()" style="margin-top: 20px;font-size: 1.4em;color:#2b96ed;cursor: pointer;">
+		&lt;&lt; 회사정보로 돌아가기
+	</div>
+	
 	<c:if test="${fn:length(car_list) > 0}">
 	<c:forEach var="vo" items="${car_list }" varStatus="status">
 	
