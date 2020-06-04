@@ -34,7 +34,6 @@
 		</div>
 	</div>
 	</section>
-<form name='frm_review' id='frm_review' method='post' class='frm_review'>
 <input type="hidden" id="place_serial" name="place_serial" value="${param.code }" />
 	<br/>
 	<br/>
@@ -215,12 +214,12 @@
 					</div> --%>
 				
 				</div><br/>
-				<div id="sw-map" style="width:100%;height:400px;"></div>	
+				<div id="sw-map" style="width:100%;height:400px;"></div>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-12 pt-3" style='height:70px; border-top:1px solid black;' >
-				<h3 style='float:left'>리뷰(2)</h3>
+				<h3 style='float:left'>리뷰(${review_cnt })</h3>
 				<input class="btn btn-primary float-right"  onclick="insertMove(${param.code })"  type='button' id='review'  name='review' value='리뷰작성'/>
 				 
 			</div>
@@ -275,30 +274,34 @@
 			</div>
 		</div>
 		<div class="row border-bottom py-3">
+		<c:forEach var='i' items='${list }'>
 			<div class="col-2">
-				<img class="rounded-circle" src="./images/festival/1.png" alt="글쓴이">
-				<p class='text-center mt-3'>작성자</p>
+				<img class="rounded-circle" src="./images/myPage/니니즈_20200602-14-25-41.png" alt="글쓴이">
+				<p class='text-center mt-3'>${i.nickName }</p>
 			</div>
 			<div class="col-10">
-				<div class='rating' data-rate='5'> <!-- data-rate에 별점을입력(5초과금지) -->
+				<div class='rating' data-rate='${i.reputation }'> <!-- data-rate에 별점을입력(5초과금지) -->
 					<i class="fa fa-star"></i>
 					<i class="fa fa-star"></i>
 					<i class="fa fa-star"></i>
 					<i class="fa fa-star"></i>
 					<i class="fa fa-star"></i>
 				</div>
-				<span>2020년 1월 15일에 작성</span>
-				<span class="float-right">8명의 이용자가 도움이 됐다고 하던뎁숑?!</span>
-				<h5>리뷰제목</h5>
+				<span>${i.review_date }에 작성</span>
+				<span class="float-right">${i.like_id }명의 이용자가 도움이 됐다고 하던뎁숑?!</span>
+				<h5>${i.review_title }</h5>
 				<div class="review-box">
-					<p class="pre-view">리뷰입니다리뷰입니다리뷰입니다리뷰입니다리뷰입니다리뷰입니다리뷰입니다리뷰입니다리뷰입니다리뷰입니다리뷰입니다입니다리뷰입니다입니다리뷰입니다입니다리뷰입니다ㄴ난다리뷰입니다ㄴ난다리뷰입니다ㄴ난다리뷰입니다ㄴ난다리뷰입니다ㄴ난다리뷰입니다ㄴ난다리뷰입니다ㄴ난다리뷰입니다ㄴ난다리뷰입니다ㄴ난다리뷰입니다ㄴ난다리뷰입니다ㄴ난ㄴㄴ</p>
+					<p class="pre-view">${i.review_content }</p>
 					<span class="btn-moreInfo">[더보기]</span>
 				</div>
-				<p><span>방문 날짜 : </span>2020년 1월</p>
+				<p><span>방문 날짜 : </span>${i.visit_date }</p>
 				<p>도움이 됐나요? <button class="btn btn-outline-secondary"><i class="fa fa-thumbs-up"></i></button></p>
-					
-					<button id="testBtn" class="testBtn btn btn-primary" style='float:right'>신고하기</button>
-						<!-- 회원가입 확인 Modal-->
+					<button id="testBtn" class="testBtn btn btn-primary" style='float:right' data-toggle="modal" data-target="#testModal">신고하기</button>
+			</div>
+		</c:forEach>
+		</div>
+<!-- <form name='frm_report' id='frm_report' method='post' class='frm_report'> -->
+						<!-- 신고하기 Modal-->
 						<div class="modal fade" id="testModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 							<div class="modal-dialog" role="document">
 								<div class="modal-content" style="width:477px;">
@@ -350,27 +353,27 @@
 													<h5>신고 내용을 입력해주세요..</h5>
 												</div>
 										<div class='col-md-12'>
-											<textarea class='accuse_text' style="margin-top:10px" name='review_accuse' form='inform' 
+											<textarea class='accuse_text' style="margin-top:10px" id='review_accuse' form='inform' 
 												cols='60' rows='10' placeholder="신고하실내용을 입력해주세여" ></textarea>
 										</div>									
 									</div>
 								</div>
 									<div class="modal-footer">
-										<button class="btn success btn-primary" id="asd" >접수하기</button>
+										<button class="btn success btn-primary" onclick="report()" >접수하기</button>
 										<button class="btn btn-primary" type="button" data-dismiss="modal">취소하기</button>
 									</div>
 								</div>
 							</div>
 						</div>
-			</div>
 		</div>
-		<div class="row border-bottom py-3">
+	<!-- </form> -->
+		<!-- <div class="row border-bottom py-3">
 			<div class="col-2">
 				<img class="rounded-circle" src="./images/festival/1.png"alt="글쓴이">
 				<p class='text-center mt-3'>작성자</p>
 			</div>
 			<div class="col-10">
-				<div class="rating" data-rate="3"> <!-- data-rate에 별점을입력(5초과금지) -->
+				<div class="rating" data-rate="3"> data-rate에 별점을입력(5초과금지)
 					<i class="fa fa-star"></i>
 					<i class="fa fa-star"></i>
 					<i class="fa fa-star"></i>
@@ -385,13 +388,13 @@
 					<span class="btn-moreInfo">[더보기]</span>
 				</div>
 				<p><span>방문 날짜 : </span>2020년 1월</p>
-				<p>도움이 됐나요? <button class="btn btn-outline-secondary"><i class="fa fa-thumbs-up"></i></button></p>
+				<p>도움이 됐나요? <button class="btn btn-outline-secondary"><i class="fa fa-thumbs-up"></i></button></p> 
 			 
-		<!-- Modal -->
-				<button id="testBtn" class="testBtn btn btn-primary" style='float:right'>신고하기</button>
+				<button id="testBtn" class="testBtn btn btn-primary" style='float:right'>신고하기</button> -->
 		
 		    
-		<div class="modal fade" data-backdrop="static"
+		<!-- Modal -->
+<!-- 		<div class="modal fade" data-backdrop="static"
 			id="exampleModalScrollable" tabindex="-1" role="dialog"
 			aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
 			<div class="modal-dialog modal-dialog-scrollable" role="document">
@@ -413,7 +416,7 @@
 					</div>
 				</div>
 			</div>
-		</div>
+		</div> -->
 		
 	<!-- paging -->
 
@@ -461,7 +464,6 @@
 		</div><!-- 리뷰내용 -->
 		</div><!-- 리뷰사진부분 -->
 	</div> <!-- 컨테이너끝 -->
-	</form>
 <!-- 리뷰작성페이지 이동 -->
 <script>
   let insertMove = function(code) {

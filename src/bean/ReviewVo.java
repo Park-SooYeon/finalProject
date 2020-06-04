@@ -43,11 +43,17 @@ public class ReviewVo {
 	int likecount;
 	
 	
+	int review_cnt;
 	
 	
 	
 	
-	
+	public int getReview_cnt() {
+		return review_cnt;
+	}
+	public void setReview_cnt(int review_cnt) {
+		this.review_cnt = review_cnt;
+	}
 	public String getMember_photo() {
 		return member_photo;
 	}
