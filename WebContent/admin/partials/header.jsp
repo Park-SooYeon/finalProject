@@ -12,7 +12,6 @@
         <link rel="stylesheet" href="../../assets/vendors/iconfonts/mdi/css/materialdesignicons.min.css">
         <link rel="stylesheet" href="../../assets/vendors/iconfonts/ionicons/css/ionicons.css">
         <link rel="stylesheet" href="../../assets/vendors/iconfonts/typicons/src/font/typicons.css">
-        <link rel="stylesheet" href="../../assets/vendors/iconfonts/flag-icon-css/css/flag-icon.min.css">
         <link rel="stylesheet" href="../../assets/vendors/css/vendor.bundle.base.css">
         <link rel="stylesheet" href="../../assets/vendors/css/vendor.bundle.addons.css">
         <link rel="stylesheet" href="../../assets/vendors/dropify/dropify.min.css">

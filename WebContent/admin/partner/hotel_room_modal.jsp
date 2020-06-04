@@ -5,7 +5,7 @@
 
 
 <!-- 사용자 정보 modal -->
-<div class="modal fade" id="ModalHotelInfo" tabindex="-1" role="dialog" aria-labelledby="ModalHotelInfo" aria-hidden="true">
+<div class="modal fade" id="ModalRentCompAdd" tabindex="-1" role="dialog" aria-labelledby="ModalRentCompAdd" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">

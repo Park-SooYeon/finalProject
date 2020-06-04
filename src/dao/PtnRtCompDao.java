@@ -23,6 +23,7 @@ public class PtnRtCompDao {
 		int serial = 0;
 		try {
 			serial = sqlSession.selectOne("partner_rent.select_serial", mId);
+			System.out.println("dao serial : " + serial);
 		}catch(Exception ex) {
 			ex.toString();
 		}finally {
@@ -48,5 +49,6 @@ public class PtnRtCompDao {
 			return list;
 		}
 	}
+	
 	
 }

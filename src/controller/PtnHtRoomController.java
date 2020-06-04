@@ -54,7 +54,7 @@ public class PtnHtRoomController {
 		int serial = dao.getSerial(member_id);
 		
 		List<roomVo> list = dao.select(serial);
-		List<roomPhotoVo> photoList = null;
+		List<roomPhotoVo> photoList = new ArrayList<roomPhotoVo>();
 
 		for(roomVo vo : list) {
 			// room serial 가져오기 

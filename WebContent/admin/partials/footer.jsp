@@ -64,20 +64,32 @@
     <script src="../../js/admin.js"></script>
     <script src="../../assets/js/admin/hotel.js"></script>
     <script src="../../assets/js/admin/room.js"></script>
+    <script src="../../assets/js/admin/rent.js"></script>
     
     <!-- 다음 우편번호 서비스 관련 js -->
 	<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	
+	
 	<script>
 	// 다음 우편번호 서비스
     function openDaumZipAddress() {
+    	var addr = "";
         new daum.Postcode({
             oncomplete: function (data) {
+            	addr = data.address;
+            	console.log("addr in : " +addr);
+            	
                 jQuery("#postcode1").val(data.postcode1);
                 jQuery("#postcode2").val(data.postcode2);
                 jQuery("#zonecode").val(data.zonecode);
                 jQuery("#address").val(data.address);
+                jQuery("#compAddr").val(data.address);
                 jQuery("#address2").focus();
                 console.log(data);
+                
+                // kakaoMap 호출
+		        getKakaoMap(addr);
+                
             }
         }).open();
     }
@@ -85,15 +97,23 @@
     function openDaumZipAddress2() {
         new daum.Postcode({
             oncomplete: function (data) {
+            	addr = data.address;
                 jQuery("#placeLocation").val(data.address);
-                console.log(data);
-                console.log("placeLocation" + $("#placeLocation").val());
             }
         }).open();
+        
     }
 	
+    
+    
+    
+    
+    
 	ptn.func();
 	room.func();
+	rt.func();
+	
+	
 	</script>
 </body>
 

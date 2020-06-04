@@ -39,12 +39,13 @@
                                     </div>
                                     <div class="col-lg-8">
                                         <select class="form-control" id="rtCompNm">
-					                        <option value="">소형</option>
-					                        <option value="">중형</option>
-					                        <option value="">대형</option>
-					                        <option value="">승합</option>
-					                        <option value="">SUV/5인승</option>
-					                        <option value="">수입/전기차</option>
+                                        	<option value="">선택하세요.</option>
+					                        <option value="소형 차량">소형 차량</option>
+					                        <option value="중형 차량">중형 차량</option>
+					                        <option value="대형 차량">대형 차량</option>
+					                        <option value="SUV">SUV</option>
+					                        <option value="프리미엄 차량">프리미엄 차량</option>
+					                        <option value="미니밴">미니밴</option>
 					                    </select>
 									</div>
                                 </div>
