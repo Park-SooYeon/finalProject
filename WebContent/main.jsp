@@ -107,21 +107,21 @@
 		<div class="row justify-content-center">
 			<div class="col-lg-12 active-hot-deal-carusel">
 				<div class="single-carusel">
-					<div class="thumb relative" style="height: 230px">
-						<div class="overlay overlay-bg"></div>
-						<img class="img-fluid" alt="광고 이미지1">
+					<div class="thumb relative" style="height: 20em">
+						<div class="overlay"></div>
+						<img src="https://d2ur7st6jjikze.cloudfront.net/cms/1191_original_1590475785.jpg?1590475785" class="img-fluid" alt="광고 이미지1">
 					</div>
 				</div>
 				<div class="single-carusel">
-					<div class="thumb relative" style="height: 230px">
-						<div class="overlay overlay-bg"></div>
-						<img class="img-fluid" alt="광고 이미지2">
+					<div class="thumb relative" style="height: 20em">
+						<div class="overlay "></div>
+						<img src="https://d2ur7st6jjikze.cloudfront.net/cms/478_original_1577953842.jpg?1577953842" class="img-fluid" alt="광고 이미지2">
 					</div>
 				</div>
 				<div class="single-carusel">
-					<div class="thumb relative" style="height: 230px">
-						<div class="overlay overlay-bg"></div>
-						<img class="img-fluid" alt="광고 이미지3">
+					<div class="thumb relative" style="height: 20em">
+						<div class="overlay"></div>
+						<img src="https://d2ur7st6jjikze.cloudfront.net/cms/1168_original_1587974831.jpg?1587974831" class="img-fluid" alt="광고 이미지3">
 					</div>
 				</div>
 			</div>
