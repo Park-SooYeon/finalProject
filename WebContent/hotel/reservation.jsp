@@ -166,12 +166,6 @@ padding-bottom:5px;
 			<div class="row">
 			
 			
-			
-			
-		
-			
-			
-			
 			<div class="offset-6">
 				&nbsp;	&nbsp;	&nbsp; &nbsp;	&nbsp; 	&nbsp;
 						<input type="button" class="genric-btn info min-width-180  e-large"
@@ -188,7 +182,24 @@ padding-bottom:5px;
 			</div>		
                       
 
+	<script>
 	
+	$("#btnReservation").click(function(){
+		
+		
+	
+		
+		     document.frm_ms.action="?inc=Reserv.ht"
+			 document.frm_ms.submit();
+	
+	
+	})
+	
+	
+	
+	
+	
+	</script>
 		
    
 	

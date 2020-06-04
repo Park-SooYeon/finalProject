@@ -19,7 +19,7 @@
 							<c:when test="${param.local == 1 }">
 								서울
 							</c:when>
-							<c:when test="${param.local == 39 }">
+							<c:when test="${param.local == 3 }">
 								제주도
 							</c:when>
 							<c:when test="${param.local == 6 }">
@@ -162,7 +162,7 @@
 							</div>
 							<div class="single-destinations">
 								<div class="thumb">
-									<img src="images/hotel/seoul/${i.place_name}1.jpg"
+									<img src="images/hotel/${i.place_name}1.jpg"
 										style="height: 200px;">
 								</div>
 								<div class="tags">

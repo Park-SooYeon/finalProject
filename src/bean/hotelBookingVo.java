@@ -21,7 +21,17 @@ public class hotelBookingVo {
 	 String member_photo;
 	 
 
+	 
+	 int totalPrice; // 총 결제 금액입니당
+	 
+	 
  
+	public int getTotalPrice() {
+		return totalPrice;
+	}
+	public void setTotalPrice(int totalPrice) {
+		this.totalPrice = totalPrice;
+	}
 	public int getBooking_serial() {
 		return booking_serial;
 	}
