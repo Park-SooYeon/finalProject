@@ -16,20 +16,55 @@ public class hotelBookingVo {
 	 
 	 String place_name; // 호텔명 
 	 String rooms_name; // 객실타입
+	 
+	 
+	 
+	 
 	 int price; // 가격 
 	 Date reserve_date;	// 예약일자
 	 String member_photo;
 	 
+	 String place_location;// 호텔 주소
 
 	 
-	 int totalPrice; // 총 결제 금액입니당
+	 
+	 String totalPrice; // 총 결제 금액입니당
+	 String email;
+	 
+	 
+	 String betweenday; // 숙박일
+
+	 
 	 
 	 
  
-	public int getTotalPrice() {
+	public String getBetweenday() {
+		return betweenday;
+	}
+	public void setBetweenday(String betweenday) {
+		this.betweenday = betweenday;
+	}
+	
+	public String getPlace_location() {
+		return place_location;
+	}
+	public void setPlace_location(String place_location) {
+		this.place_location = place_location;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
+	
+	
+	
+	public String getTotalPrice() {
 		return totalPrice;
 	}
-	public void setTotalPrice(int totalPrice) {
+	public void setTotalPrice(String totalPrice) {
 		this.totalPrice = totalPrice;
 	}
 	public int getBooking_serial() {
@@ -100,9 +135,13 @@ public class hotelBookingVo {
 	}
 	public String getRooms_name() {
 		return rooms_name;
+		
 	}
 	public void setRooms_name(String rooms_name) {
 		this.rooms_name = rooms_name;
+
+		
+		
 	}
 	public int getPrice() {
 		return price;

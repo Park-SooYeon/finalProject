@@ -64,7 +64,7 @@ public class membershipDao {
 	
 	public membershipVo loginUserInfo(String member_id) {
 		
-	  System.out.println("닉네임 찾긔 : " + member_id);
+
 		
 	  membershipVo vo= null;
 		try {

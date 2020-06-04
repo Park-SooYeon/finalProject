@@ -177,4 +177,14 @@ select
 	</select>
 -->
 
+
+<insert id="hotelReserv" parameterType='bean.hotelBookingVo'>
+
+
+insert into hotel_booking(booking_serial,member_id,reserve_date)
+values(seq_hotel_booking.nextval,#{member_id},sysdate)
+
+</insert>
+
+
 </mapper>

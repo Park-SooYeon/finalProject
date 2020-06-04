@@ -4,9 +4,6 @@
 
 let hotel = {}
 
-let ReservMove = function(){
-	location.href = './?inc=reservation.ht';
-}
 
 
 
@@ -47,14 +44,14 @@ let goNextReserv = function(){
 		var beetween_day = (end_date.getTime() - start_date.getTime())/1000/60/60/24;
 		
 		
-		alert(beetween_day);  
+	 
 		
 		var price = $("#price").val();
 		
 		var totPrice = Number(price)*Number(beetween_day); 
 		
 		 $("#total_price").text(totPrice);
-		
+		 $("#between_day").text(beetween_day);
 		
 	}
 	
@@ -63,5 +60,39 @@ let goNextReserv = function(){
 }
 
 
+hotel.goReserve = function(){
 
+
+	frm_ht.start_date=$('#start_date').val();
+	frm_ht.end_date=$('#end_date').val();
+	
+	alert($('#start_date').val());
+	let param = $('#frm_ht').serialize();
+
+	
+	$.ajax({
+			
+			url : "hotelReserv.ht",
+			type :"post",
+			data : param,
+		
+			contentType: false,
+			processData : false,
+			error : function(xhr,status,error){
+				console.log(error);
+			},
+			success : function(data,xhr,status){
+				
+			}
+			
+		
+		});
+	
+			
+	
+	
+	
+	
+
+}
 

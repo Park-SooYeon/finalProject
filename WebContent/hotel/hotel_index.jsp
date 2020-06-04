@@ -177,7 +177,7 @@
 					</ul>
 				</div>
 
-<input type="text" id="place_serial" name="place_serial" value="${i.place_serial}">
+<input type="hidden" id="place_serial" name="place_serial" value="${i.place_serial}">
 
 
    <%-- 
