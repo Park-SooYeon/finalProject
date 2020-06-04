@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
     <div class="row profile-page">
         <div class="col-lg-12 grid-margin stretch-card">
             <div class="card">
@@ -135,29 +135,47 @@
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
-                                                                <!-- 어려워보임;; -->
-                                                                <tr>
-                                                                    <td>1</td>
-                                                                    <td>
-                                                                        <div class="d-flex align-items-center">
-                                                                            <img class="img-xs rounded" src="../../assets/images/faces/face2.jpg" alt="profile image">
-                                                                        </div>
-                                                                    </td>
-                                                                    <td>디럭스</td>
-                                                                    <td>3,552,600원</td>
-                                                                    <td>253개</td>
-                                                                    <td>
-						                                                <c:if test="${vo.state == 0}">
-						                                                	<div class="badge badge-secondary text-muted">비활성화</div>
-						                                                </c:if>
-						                                                <c:if test="${vo.state == 1}">
-						                                                	<div class="badge badge-primary">활성화</div>
-						                                                </c:if>
-					                                                </td>
-                                                                    <td>
-                                                                        <a class="btn btn-outline-primary" href="./partner_view.jsp">View</a>
-                                                                    </td>
-                                                                </tr>
+                                                                <c:forEach var="roomVo" items="${roomList }" varStatus="i">
+	                                                                <tr>
+	                                                                    <td>${i.count }</td>
+	                                                                    <td>
+	                                                                        <div class="d-flex align-items-center">
+	                                                                            <c:if test="${!empty roomVo.photos}">
+						                                                    		<c:forEach var="photo" items="${roomVo.photos}" begin="0" end="0" varStatus="status">
+																					    <img class="img-lg rounded" src="../../assets/images/upload/${photo.sysFile }" alt="${photo.oriFile } image">
+																					</c:forEach>
+						                                                        </c:if>
+						                                                        
+						                                                        <c:if test="${empty roomVo.photos}">
+						                                                        	<img class="img-xs rounded" src="https://via.placeholder.com/150" alt="이미지 없음">
+						                                                        </c:if>
+	                                                                        </div>
+	                                                                    </td>
+	                                                                    <td>
+	                                                                    	<c:if test="${roomVo.rooms_name == 1}">디럭스</c:if>
+						                                                	<c:if test="${roomVo.rooms_name == 2}">패밀리</c:if>
+						                                                	<c:if test="${roomVo.rooms_name == 3}">스위트</c:if>
+	                                                                    </td>
+	                                                                    <td><fmt:formatNumber value="${roomVo.price }" type="currency"/></td>
+	                                                                    <td>
+	                                                                    	<c:if test="${roomVo.no_smoking == 1}">금연</c:if>
+						                                                	<c:if test="${roomVo.mt_view == 1}">마운틴뷰</c:if>
+						                                                	<c:if test="${roomVo.ocean_view == 1}">오션뷰</c:if>
+						                                                	<c:if test="${roomVo.city_view == 1}">시티뷰</c:if>
+	                                                                    </td>
+	                                                                    <td>
+							                                                <c:if test="${roomVo.state == 0}">
+							                                                	<div class="badge badge-secondary text-muted">비활성화</div>
+							                                                </c:if>
+							                                                <c:if test="${roomVo.state == 1}">
+							                                                	<div class="badge badge-primary">활성화</div>
+							                                                </c:if>
+						                                                </td>
+	                                                                    <td>
+	                                                                        <button type="button" class="btn btn-outline-primary" id="btnPtRmView_${roomVo.rooms_serial }" onclick="roomDetialView(${roomVo.rooms_serial})">View</button>
+	                                                                    </td>
+	                                                                </tr>
+                                                                </c:forEach>
                                                             </tbody>
                                                         </table>
                                                     </div>
@@ -175,4 +193,3 @@
             </div>
         </div>
     </div>
-   

@@ -11,6 +11,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import bean.Factory;
 import bean.PlaceVo;
+import bean.roomPhotoVo;
+import bean.roomVo;
 import oracle.jdbc.internal.OracleStatement.SqlKind;
 import partner.UploadVo;
 
@@ -47,6 +49,20 @@ public class PtnHtCompDao {
 			return list;
 		}
 	}
+	
+	public List<roomVo> selectRoom(PlaceVo vo){
+		List<roomVo> list = null;
+		try {
+			list = sqlSession.selectList("room.select_room", vo);
+
+		}catch(Exception ex) {
+			ex.toString();
+		}finally {
+			
+			return list;
+		}
+	}
+	
 	
 	public int insert(int serial, PlaceVo vo, List<UploadVo> attList) {
 		int result = 0;
@@ -177,6 +193,20 @@ public class PtnHtCompDao {
 		
 		try {
 			attList = sqlSession.selectList("hotel.att_list", serial);
+			
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		}finally {
+			//sqlSession.close();
+			return attList;
+		}
+	}
+	
+	public List<roomPhotoVo> getRoomList(int serial){
+		List<roomPhotoVo> attList = null;
+		
+		try {
+			attList = sqlSession.selectList("room.att_list", serial);
 			
 		}catch(Exception ex) {
 			ex.printStackTrace();

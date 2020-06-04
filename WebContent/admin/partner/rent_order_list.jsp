@@ -50,7 +50,9 @@
                         <div class="float-right">
                             <p class="mb-0 text-right">총 매출액</p>
                             <div class="fluid-container">
-                                <h3 class="mb-0 font-weight-medium text-right">￦ ${info.sales }</h3>
+                                <h3 class="mb-0 font-weight-medium text-right">
+                                	<fmt:formatNumber value="${info.sales }" type="currency"/>
+                                </h3>
                             </div>
                         </div>
                     </div>

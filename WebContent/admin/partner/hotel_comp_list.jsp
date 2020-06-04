@@ -39,7 +39,7 @@
                                         <tbody>
                                         	<c:forEach var="vo" items="${list }" varStatus="i">
                                         		<tr>
-	                                                <td>${i.count }</td>
+	                                                <td>${vo.place_serial }</td>
 	                                                <td>
 	                                                	<input type="hidden"  id="place_serial_${vo.place_serial}" value="${vo.place_serial }" />
 	                                                    <div class="d-flex align-items-center">

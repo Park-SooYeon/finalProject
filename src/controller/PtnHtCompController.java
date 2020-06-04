@@ -25,7 +25,10 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import bean.PlaceVo;
+import bean.roomPhotoVo;
+import bean.roomVo;
 import dao.PtnHtCompDao;
+import dao.PtnHtRoomDao;
 import partner.UploadVo;
 
 
@@ -66,7 +69,7 @@ public class PtnHtCompController {
 		int serial = dao.getSerial(member_id);
 		List<PlaceVo> list = dao.select(serial);
 		
-		List<UploadVo> photoList = null;
+		List<UploadVo> photoList = new ArrayList<UploadVo>();
 
 		for(PlaceVo vo : list) {
 			// place serial 가져오기 
@@ -217,23 +220,52 @@ public class PtnHtCompController {
 	@RequestMapping(value="/admin/partner/hotel_comp_view.ph", method= {RequestMethod.GET, RequestMethod.POST}) 
 	public ModelAndView view(HttpServletRequest req) {
 		ModelAndView mv = new ModelAndView();
-		PlaceVo vo = null; 
+		PlaceVo vo = new PlaceVo(); 
 		List<UploadVo> photoList = null;
 		
 		// place_serial 
 		int serial = Integer.parseInt(req.getParameter("pserial"));
+		
+		// 객실정보 가져오기 
+		PtnHtRoomDao roomDao = new PtnHtRoomDao();
+		// 세션 id 가져오기
+		HttpSession session  = req.getSession();
+		String member_id = (String) session.getAttribute("member_id");
+		
+		// 파트너 시리얼 가져오기
+		int ptnSerial = dao.getSerial(member_id);
+		
+		vo.setPartner_serial(ptnSerial);
+		vo.setPlace_serial(serial);
+		List<roomVo> roomList = roomDao.selectRoom(vo);
+		List<roomPhotoVo> roomPhotos = new ArrayList<roomPhotoVo>();
+
+		for(roomVo rVo : roomList) {
+			// room serial 가져오기 
+			int rserial = rVo.getRooms_serial();
+			//int pserial = rVo.getPlace_serial();
+			
+			// room serial에 해당하는 사진정보 가져오기 
+			roomPhotos = roomDao.getAttList(rserial);
+			
+			rVo.setPhotos(roomPhotos);
+			
+		}
+		
+		
+		
 		vo = dao.view(serial);
 		photoList = dao.getAttList(serial);
-		
-		System.out.println("photoList : " + photoList);
-		
 		vo.setPhotos(photoList);
 		
-		System.out.println("vo photos : " + vo.getPhotos());
 		
+		System.out.println("list : " + roomList);
+		
+		mv.addObject("vo", vo);
+		mv.addObject("roomList", roomList);
 		mv.addObject("serial", serial);
 		mv.addObject("photoList", photoList);
-		mv.addObject("vo", vo);
+		mv.addObject("roomPhotos", roomPhotos);
 		mv.setViewName("hotel_comp_view");
 		return mv;
 	}
@@ -241,19 +273,48 @@ public class PtnHtCompController {
 	@RequestMapping(value="/admin/partner/hotel_comp_modify.ph", method= {RequestMethod.POST}) 
 	public ModelAndView modify(HttpServletRequest req) {
 		ModelAndView mv = new ModelAndView();
-		PlaceVo vo = null; 
+		PlaceVo vo = new PlaceVo(); 
 		List<UploadVo> photoList = null;
 		
 		// place_serial 
-		System.out.println("serial 1 : " + req.getParameter("pserial"));
 		int serial = Integer.parseInt(req.getParameter("pserial"));
-		System.out.println("modify serial : " + serial);
+		
+		// 객실정보 가져오기 
+		PtnHtRoomDao roomDao = new PtnHtRoomDao();
+		// 세션 id 가져오기
+		HttpSession session  = req.getSession();
+		String member_id = (String) session.getAttribute("member_id");
+		
+		// 파트너 시리얼 가져오기
+		int ptnSerial = dao.getSerial(member_id);
+		
+		vo.setPartner_serial(ptnSerial);
+		vo.setPlace_serial(serial);
+		List<roomVo> roomList = roomDao.selectRoom(vo);
+		List<roomPhotoVo> roomPhotos = new ArrayList<roomPhotoVo>();
+
+		for(roomVo rVo : roomList) {
+			// room serial 가져오기 
+			int rserial = rVo.getRooms_serial();
+			//int pserial = rVo.getPlace_serial();
+			
+			// room serial에 해당하는 사진정보 가져오기 
+			roomPhotos = roomDao.getAttList(rserial);
+			
+			rVo.setPhotos(roomPhotos);
+			
+		}
+		
+		
 		
 		
 		vo = dao.view(serial);
 		photoList = dao.getAttList(serial);
 		
 		vo.setPhotos(photoList);
+		
+		mv.addObject("roomList", roomList);
+		mv.addObject("roomPhotos", roomPhotos);
 		mv.addObject("serial", serial);
 		mv.addObject("photoList", photoList);
 		mv.addObject("delList", photoList);

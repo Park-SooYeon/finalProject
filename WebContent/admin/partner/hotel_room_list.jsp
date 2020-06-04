@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
             <div class="row">
                 <div class="col-lg-12 grid-margin stretch-card">
                     <div class="card">
@@ -61,7 +61,7 @@
 	                                                	<c:if test="${vo.rooms_name == 2}">패밀리</c:if>
 	                                                	<c:if test="${vo.rooms_name == 3}">스위트</c:if>
 	                                                </td>
-	                                                <td>${vo.price } 원</td>
+	                                                <td><fmt:formatNumber value="${vo.price }" type="currency"/></td>
 	                                                <td>
 	                                                	<c:if test="${vo.no_smoking == 1}">금연</c:if>
 	                                                	<c:if test="${vo.mt_view == 1}">마운틴뷰</c:if>
@@ -89,7 +89,4 @@
                     </div>
                 </div>
             </div>
-	
-	
-	<%@include file="./hotel_room_modal.jsp" %>
 	

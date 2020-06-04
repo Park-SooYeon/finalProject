@@ -138,7 +138,7 @@
 <script>
 
 //객실유형 세팅 
-const state = '${vo.rooms_name}';
+const state = '${roomVo.rooms_name}';
 var sel = document.getElementById("htRommType");
 
 switch (state) {

@@ -294,10 +294,12 @@ public class PtnHtRoomController {
         
         
         vo.setRooms_serial(Integer.parseInt(req.getParameter("rooms_name")));
-       
+        
+        System.out.println("vo price : " + vo.getPrice());
 		
 		int result = dao.modify(vo, list, delList, photoNum);
 		
+		System.out.println("result : " + result);
 		
 		// 업로드 파일 삭제 해주어야함
 		// getAttLIst 에서 filePath에 있는 파일 delete

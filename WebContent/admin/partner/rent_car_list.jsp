@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
             <div class="row">
                 <div class="col-lg-12 grid-margin stretch-card">
                     <div class="card">
@@ -42,7 +43,7 @@
 	                                                <td>${vo.car_kind }</td>
 	                                                <td>${vo.gear }</td>
 	                                                <td>${vo.max_people }인</td>
-	                                                <td>${vo.price }원</td>
+	                                                <td><fmt:formatNumber value="${vo.price }" type="currency"/></td>
 	                                                <td>
 														<c:if test="${vo.state eq 'n'}">
 		                                                	<div class="badge badge-secondary text-muted">비활성화</div>
