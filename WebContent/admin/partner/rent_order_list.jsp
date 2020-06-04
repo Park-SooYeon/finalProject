@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
     <div class="row">
         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 grid-margin stretch-card">
             <div class="card card-statistics">
@@ -11,7 +14,7 @@
                         <div class="float-right">
                             <p class="mb-0 text-right">전체예약건수</p>
                             <div class="fluid-container">
-                                <h3 class="font-weight-medium text-right mb-0">6,560</h3>
+                                <h3 class="font-weight-medium text-right mb-0">${info.orderCnt }</h3>
                             </div>
                         </div>
                     </div>
@@ -28,7 +31,7 @@
                         <div class="float-right">
                             <p class="mb-0 text-right">예약취소</p>
                             <div class="fluid-container">
-                                <h3 class="font-weight-medium text-right mb-0">3,455</h3>
+                                <h3 class="font-weight-medium text-right mb-0">${info.cancleCnt }</h3>
                             </div>
                         </div>
                     </div>
@@ -47,7 +50,7 @@
                         <div class="float-right">
                             <p class="mb-0 text-right">총 매출액</p>
                             <div class="fluid-container">
-                                <h3 class="mb-0 font-weight-medium text-right">￦ 32,451,690</h3>
+                                <h3 class="mb-0 font-weight-medium text-right">￦ ${info.sales }</h3>
                             </div>
                         </div>
                     </div>
@@ -83,91 +86,31 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>20200428051</td>
-                                        <td>A Rent</td>
-                                        <td>싼타페</td>
-                                        <td>Jason</td>
-
-                                        <td>2020/04/24 ~ 2020/04/26</td>
-
-                                        <td>183,000원</td>
-
-                                        <td>
-                                            <div class="badge badge-inverse-secondary text-muted font-weight-bold">예약취소</div>
-                                        </td>
-                                        <td>
-                                            <button class="btn btn-outline-primary" data-toggle="modal" data-target="#ModalRtOrderInfo">View</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>20200428051</td>
-                                        <td>A Rent</td>
-                                        <td>싼타페</td>
-                                        <td>Jason</td>
-
-                                        <td>2020/04/24 ~ 2020/04/26</td>
-
-                                        <td>183,000원</td>
-
-                                        <td>
-                                            <div class="badge badge-inverse-primary font-weight-bold">예약완료</div>
-                                        </td>
-                                        <td>
-                                            <button class="btn btn-outline-primary" data-toggle="modal" data-target="#ModalRtOrderInfo">View</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>20200428051</td>
-                                        <td>A Rent</td>
-                                        <td>싼타페</td>
-                                        <td>Jason</td>
-
-                                        <td>2020/04/24 ~ 2020/04/26</td>
-
-                                        <td>183,000원</td>
-
-                                        <td>
-                                            <div class="badge badge-inverse-warning font-weight-bold">투숙완료</div>
-                                        </td>
-                                        <td>
-                                            <button class="btn btn-outline-primary" data-toggle="modal" data-target="#ModalRtOrderInfo">View</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>20200428051</td>
-                                        <td>A Rent</td>
-                                        <td>싼타페</td>
-                                        <td>Jason</td>
-
-                                        <td>2020/04/24 ~ 2020/04/26</td>
-
-                                        <td>183,000원</td>
-
-                                        <td>
-                                            <div class="badge badge-inverse-primary font-weight-bold">예약완료</div>
-                                        </td>
-                                        <td>
-                                            <button class="btn btn-outline-primary" data-toggle="modal" data-target="#ModalRtOrderInfo">View</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>20200428051</td>
-                                        <td>A Rent</td>
-                                        <td>싼타페</td>
-                                        <td>Jason</td>
-
-                                        <td>2020/04/24 ~ 2020/04/26</td>
-
-                                        <td>183,000원</td>
-
-                                        <td>
-                                            <div class="badge badge-inverse-primary font-weight-bold">예약완료</div>
-                                        </td>
-                                        <td>
-                                            <button class="btn btn-outline-primary" data-toggle="modal" data-target="#ModalRtOrderInfo">View</button>
-                                        </td>
-                                    </tr>
+                                	<c:forEach var="vo" items="${list }" varStatus="i">
+	                                    <tr>
+	                                        <td>${vo.reserve_serial }</td>
+	                                        <td>${vo.company_name }</td>
+	                                        <td>${vo.car_name }</td>
+	                                        <td>${vo.member_id }</td>
+	                                        <td>
+	                                        	<fmt:formatDate value="${vo.rent_date }" pattern="yyyy-MM-dd"/> ~ <fmt:formatDate value="${vo.return_date }" pattern="yyyy-MM-dd"/>
+	                                        </td>
+	
+	                                        <td>${vo.price }원</td>
+	
+	                                        <td>
+	                                        	<c:if test="${vo.state == 'y' }">	                                        	
+		                                            <div class="badge badge-inverse-primary font-weight-bold">예약완료</div>
+	                                        	</c:if>
+	                                        	<c:if test="${vo.state == 'n' }">	                                        	
+		                                            <div class="badge badge-inverse-secondary text-muted font-weight-bold">예약취소</div>
+	                                        	</c:if>
+	                                        </td>
+	                                        <td>
+	                                            <button class="btn btn-outline-primary" data-toggle="modal" data-target="#ModalRtOrderInfo">View</button>
+	                                        </td>
+	                                    </tr>
+                                    </c:forEach>
                                 </tbody>
                             </table>
                         </div>

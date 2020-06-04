@@ -28,7 +28,7 @@ public class PtnRtCarDao {
 		}catch(Exception ex) {
 			ex.printStackTrace();
 		}finally {
-			
+
 			return list;
 		}
 	}
