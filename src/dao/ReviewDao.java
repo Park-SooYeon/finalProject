@@ -1,7 +1,10 @@
 package dao;
 
 import java.io.File;
+import java.io.IOException;
+import java.text.Normalizer;
 import java.util.List;
+import java.util.UUID;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.web.multipart.MultipartFile;
@@ -35,8 +38,9 @@ public class ReviewDao {
 		
 	}
 	
-	public String insert(ReviewVo vo) {
+	public String insert(ReviewVo vo, String uploadPath) {
 		String msg = "정상적으로 입력되었습니다.";	
+		System.out.println("ReviewVo insert 들어옴, 받아온 vo : " + vo);		
 		
 		try {
 			int cnt = sqlSession.insert("review.insert", vo);
@@ -44,20 +48,43 @@ public class ReviewDao {
 				throw new Exception("본문 저장중 오류 발생");
 			}
 			
-			vo.getPlace_serial();
-			System.out.println(vo.getPlace_serial());
+			vo.getReview_serial();
+			System.out.println("review_serial : " + vo.getReview_serial());
 			
 			List<MultipartFile> file = vo.getFileUpload();
+			
+			System.out.println("Dao에 file : " + file);
 			if(!file.isEmpty()) {
 				for(int i=0; i<file.size(); i++) {
+					String nnName = UUID.randomUUID().toString();
+					System.out.println("nnName : " + nnName);
 					System.out.println(file.get(i));
 					String photo_name = file.get(i).getOriginalFilename();
-					cnt = sqlSession.insert("review.photo", photo_name);
-					System.out.println(photo_name);
+					System.out.println("파일명 제대로 들어오는지?? " + photo_name);
+					vo.setPhoto_name(photo_name);
+					System.out.println("review_serial : " + vo.getReview_serial());
+					String tempName = Normalizer.normalize(photo_name, Normalizer.Form.NFC);
+					System.out.println("tempName : " + tempName);
+					String sysFile = nnName + tempName;
+					System.out.println("sysFile : " + sysFile);
+					vo.setSysFile(sysFile);
+					
+					String savePath = uploadPath + sysFile; // 저장 될 파일 경로
+					cnt = sqlSession.insert("review.photo", vo);
+					System.out.println("sysfile 적용적용");
+					
+
+				try {
+					file.get(i).transferTo(new File(savePath));					
+				} catch (IllegalStateException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 					if(cnt<1) {
 						throw new Exception("첨부 데이터 저장시 오류 발생");
 					}
-				}				
+				}
 			}
 			
 			sqlSession.commit();

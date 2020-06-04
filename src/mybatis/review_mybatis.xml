@@ -8,25 +8,119 @@
  		  <selectKey keyProperty="review_serial" resultType="int" order="BEFORE">
  		        select seq_review.nextval FROM dual
 	      </selectKey>
- 			insert into review(review_serial, member_id, place_serial, review_type, reputation, 
- 			review_title, review_content, visit_date, review_date, service, accessibility,
- 			price, scale, food)
- 			values(seq_review.nextval, #{member_id}, ${place_serial}, ${review_type,jdbcType=INTEGER}, ${reputation},
- 			#{review_title}, #{review_content}, to_date(#{visit_date}, 'yyyy-MM-dd'), sysdate, ${service,jdbcType=INTEGER},
- 			${accessibility,jdbcType=INTEGER}, ${price,jdbcType=INTEGER}, ${scale,jdbcType=INTEGER}, ${food,jdbcType=INTEGER})
+ 			insert into review(
+ 			review_serial, 
+ 			member_id, 
+ 			place_serial, 
+ 			<if test="review_type != null">
+ 			review_type, 
+ 			</if>
+ 			reputation, 
+ 			review_title, 
+ 			review_content, 
+ 			<if test="visit_date != null">
+ 			visit_date, 
+ 			</if>
+ 			review_date, 
+ 			<if test="service != null">
+ 			service, 
+ 			</if>
+ 			<if test="accessibility != null">
+ 			accessibility,
+ 			</if>
+ 			<if test="price != null">
+ 			price, 
+ 			</if>
+ 			<if test="scale != null">
+ 			scale, 
+ 			</if>
+ 			<if test="food != null">
+ 			food
+ 			</if>
+ 			)
+ 			
+ 			values(
+ 			seq_review.nextval,
+ 			#{member_id}, 
+ 			${place_serial}, 
+ 			<if test="review_type != null">
+ 			${review_type},
+ 			</if> 
+ 			${reputation},
+ 			#{review_title}, 
+ 			#{review_content},
+ 			<if test="visit_date != null"> 
+ 			to_date(#{visit_date}, 'yyyy-MM-dd'),
+ 			</if> 
+ 			sysdate, 
+ 			<if test="service != null">
+ 			${service},
+ 			</if>
+ 			<if test="accessibility != null">
+ 			${accessibility},
+ 			</if>
+ 			<if test="price != null">
+ 			${price},
+ 			</if>
+ 			<if test="scale != null"> 
+ 			${scale},
+ 			</if>
+ 			<if test="food != null"> 
+ 			${food}
+ 			</if>
+ 			)
  		</insert>
  		
  	<insert id='photo' parameterType='bean.ReviewVo' >
- 			insert into review_photo(photo_serial, review_serial, photo_name)
- 			values(seq_review_photo.nextval, ${review_serial}, #{photo_name})
-	</insert>
+ 			insert into review_photo(photo_serial, review_serial, orifile, sysfile)
+ 			values(SEQ_REVIEW_PHOTO.nextval, ${review_serial}, #{photo_name}, #{sysFile})
+	</insert>	
 	
+	<!-- <select id='review_select' parameterType="bean.RivewVo" resultType="bean.ReviewVo">
+		select
+		r.REVIEW_SERIAL,
+		r.MEMBER_ID,
+		r.PLACE_SERIAL,		
+		r.REPUTATION,
+		r.REVIEW_TITLE,
+		r.REVIEW_CONTENT,
+		r.VISIT_DATE,
+		r.REVIEW_DATE,		
+		
+		m.MEMBER_ID,
+		m.NICKNAME,
+		m.MEMBER_PHOTO,
+		
+		l.REVIEW_SERIAL,
+		l.LIKE_ID,
+				
+		from
+		review r left outer join
+		membership m,
+		review_like l
+		
+		
+		where
+		r.PLACE_SERIAL=${place_serial}
+		and
+		r.REVIEW_SERIAL=l.REVIEW_SERIAL		
+		and
+		r.MEMBER_ID=m.MEMBER_ID
+		
+	</select>
 	
-	<!--
-	<select id='count' parameterType="bean.RivewVo">
-	</select>
-	<select id='select' parameterType='bean.ReviewVo'>
-	</select>
-	-->
+	<select id='review_photo_select' parameterType='bean.ReviewVo' resultType="bean.ReviewVo">
+	select
+		PHOTO_SERIAL,
+		REVIEW_SERIAL,
+		SYSFILE
+		
+		from		
+		review_photo
+		
+		where
+		review_SERIAL=${place_serial}
+	</select> -->
+	
 
 </mapper>
