@@ -48,7 +48,7 @@
                                             <td>
                                                 <button class="btn btn-outline-primary" data-toggle="modal" data-target="#modalPartnerJoin"
                                                 onclick="a_partner_view('${i.member_id }','${i.partner_name }','${i.business_number }','${i.partner_phone }',
-                                                		'${i.partner_location}','${i.state}','${i.vo.email}','${i.vo.member_photo}')">View</button>
+                                                		'${i.partner_location}','${i.state}','${i.vo.email}','${i.vo.member_photo}','${i.vo.mDate }')">View</button>
                                             </td>
                                         </tr>
                                       </c:forEach>                                  
@@ -78,7 +78,7 @@
                         <div class="wrapper ml-3">
                             <h6 class="ml-1 mb-1" id='member_id'></h6>
                         </div>
-                        <small class="time d-none d-sm-block ml-auto ">2018.02.05 요청됨</small>
+                        <small class="time d-none d-sm-block ml-auto mDate "></small>
                     </div>
                     <form class="" name="usrInfoFrm" id='p_form'>
                         <div class="row">
