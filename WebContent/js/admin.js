@@ -29,8 +29,7 @@ function member_view(mId,mName,phone,email,state,mDate,mPhoto){
 	$('#hidden_id').val(mId);
 }
 //partner승인요청 
-function a_partner_view(mId,p_name,b_number,phone,location,state,email,mphoto){
-	
+function a_partner_view(mId,p_name,b_number,phone,location,state,email,mphoto,mDate){
 	let path = '../../images/myPage/'+mphoto;
 	let path1 ='../../images/myPage/queen.png';
 	if(mphoto!=""){
@@ -45,7 +44,9 @@ function a_partner_view(mId,p_name,b_number,phone,location,state,email,mphoto){
 	$('.partner_phone').html(phone);
 	$('.partner_location').html(location);
 	$('.eamil').html(email);
-
+	$('.member_photo').html(mphoto);
+	$('.mDate').html(mDate);
+	
 	$('#p_id').val(mId);
 	$('#p_save').val(state);
 	
