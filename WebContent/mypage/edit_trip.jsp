@@ -230,6 +230,7 @@
 
           </div>
           
+          -->
         </div>
 
         <div class="trip-detail-added">

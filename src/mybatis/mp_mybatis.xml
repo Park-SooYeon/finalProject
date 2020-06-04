@@ -77,6 +77,27 @@
 			</collection>
 	</resultMap>
 	
+	<resultMap id="mp_map_plan" type="bean.PlanVo">
+		<result column="day_serial" property="day_serial"/>
+		<result column="trip_list_serial" property="trip_list_serial"/>
+		<result column="place_serial" property="place_serial"/>
+		<result column="trip_order" property="trip_order"/>
+		<result column="trip_day" property="trip_day"/>
+			<collection property="p" 
+						javaType="bean.PlaceVo">
+				<result column="place_serial" property="place_serial"/>
+				<result column="place_name" property="place_name"/>
+				<result column="place_type" property="place_type"/>
+				<result column="place_location" property="place_location"/>
+				<result column="reputation" property="reputation"/>
+				<result column="review_cnt" property="review_cnt"/>
+				<result column="local_code" property="local_code"/>
+				<result column="local_name" property="local_name"/>
+				<result column="photo_serial" property="photo_serial"/>
+				<result column="photo_name" property="photo_name"/>
+			</collection>
+	</resultMap>
+	
    <insert id="insert_trip" parameterType="bean.TripListVo">
       <selectKey keyProperty="trip_list_serial" resultType="int" order="BEFORE">
          select seq_trip_list_serial.nextval
@@ -327,6 +348,30 @@
 			   getPlacePhoto(place_serial) photo_name,
 			   getLikeCnt(place_serial) like_cnt
 		from place where place_name like '%${_parameter}%'
+	</select>
+	
+	<insert id="insert_plan" parameterType="bean.PlanVo">
+		insert into trip_days(days_serial, trip_list_serial, place_serial, trip_order, trip_day)
+		values(seq_trip_days.nextval, 81, ${place_serial}, ${trip_order}, #{trip_day}) 
+	</insert>
+	
+	<select id="select_plan" parameterType="bean.PlanVo" resultType="bean.PlanVo">
+		select days_serial, trip_list_serial, place_serial, trip_order, trip_day 
+		from trip_days where trip_list_serial = ${trip_list_serial} and trip_day = #{trip_day} 
+		order by trip_order
+	</select>
+		
+	<select id="select_onePlace" parameterType="Integer" resultType="bean.PlaceVo">
+		select p.place_serial, longitude, latitude, place_name, sysfile photo_name
+		from place p left outer join place_photo t
+		on p.place_serial = t.place_serial
+		where p.place_serial = ${_parameter}
+	</select>
+	
+	<select id="select_allSerial_api" resultType="Integer">
+		select t.place_serial from place p right outer join trip_days t 
+		on t.place_serial = p.place_serial
+		where p.place_serial is null
 	</select>
 	
 </mapper>

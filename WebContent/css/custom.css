@@ -4,9 +4,11 @@ mypage css
 */
 
 /* my-social css */
-* {
+body {
 	font-family: '나눔바른고딕' !important;
 }
+
+
 
 .post-wrapper strong {
 	font-weight: 550;

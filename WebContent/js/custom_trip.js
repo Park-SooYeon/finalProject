@@ -4,6 +4,9 @@ let contentTypeId;
 let dayCnt=1;
 let image;
 let coords;
+let db = [];
+// 현재 작업하고 있는 일자
+let trip_date;
 
 function init() {
 
@@ -22,7 +25,8 @@ function init() {
      const $this = $(this);
      
      let day_cnt = $this.find(".cat-left-day").html();
-     let trip_date = $this.find(".trip-date").html();
+     trip_date = $this.find(".trip-date").html();
+     // 전역변수에도 저장
      let trip_day = $this.find(".trip-day").html();
      let result = " | " +trip_date+" ("+trip_day+")";
 
@@ -39,6 +43,26 @@ function init() {
           $("#result-date").html(day_cnt);
        }
        
+       coords = [];
+       // 거리정보 초기화
+       
+       $.getJSON("selectOnePlace.mp", {"serial" : 81, "trip_day" : trip_date}, function(data){
+    	   console.log(data);
+    	   if(data.length>0){
+    		   dayCnt = 1;
+    		   $("#schedule-here").empty();
+    		   for(d of data){
+    			   addPlan(d.p);
+    		   }
+    	   }else{
+    		   let temp = `<div id='temp-div' class='text-center pt-5'>
+    		        <h4 style='color:#707070;'>여행일정을 추가해주세요!</h4>
+    		        <img style='opacity:0.6; width:70%;'src='./images/myPage/car.png'/>
+    		        </div>`;
+    		   $("#schedule-here").html(temp);
+    	   }
+    	   
+       })
   })
 
   $(".show-all-day").click(function () {
@@ -305,13 +329,14 @@ function addPlan(d){
          longitude : longitude
       }
       
-      if(coords != null){
-    	  // 들어와있는 위치정보가 있으면 전에 저장해놓았던 coords와 계산, 소수점 반올림
-         distance = computeDistance(coords, coordsNow).toFixed(2);
-      }else{
+      if(coords == null || coords.length==0){
     	  // 첫번째 값이 없으면 거리출력 안 되게
     	  tempClass="d-none";
+      }else{
+    	  // 들어와있는 위치정보가 있으면 전에 저장해놓았던 coords와 계산, 소수점 반올림
+          distance = computeDistance(coords, coordsNow).toFixed(2); 
       }
+      
       
    ele = `<div
     class='day-spot-item'
@@ -347,6 +372,13 @@ function addPlan(d){
          latitude : latitude,
          longitude : longitude
    };
+   
+   
+   // ex) 2020-06-04자의 n번째 여행요소
+   let plan = new Plan(0, 81, place_serial, dayCnt, trip_date);
+   db.push(plan);
+   
+   console.log(db);
    
    // 1번, 2번, 3번 ...
    $("#schedule-here").append(ele);
@@ -408,4 +440,42 @@ function degreesToRadians(degrees) {
     radians = (degrees * Math.PI)/180;
     return radians;
 }
+$("#trip-save-btn").on("click", function(){
+	let param = JSON.stringify(db);
+	console.log(param);
+		$.ajax({
+			url:'insertPlan.mp',
+		    type:'post',
+		    contentType:'application/json;charset=UTF-8',
+		    dataType:'json',
+		    data:param,
+		    success:function(message){
+		    	alert("왜 여긴 들어오지도 않아");
+		    	alert(message);
+		    	
+		    	/*
+				  // 시도 세팅
+				  data.objCity.forEach(function(item, idx, arr){
+					  $('#select_locate').append("<option value='"+item.detailCode+"'>"+item.codeNm+"</option>");
+				  });
+		
+				  // 상품종류 세팅
+				  data.objGoodsType.forEach(function(item, idx, arr){
+					  $('#selectGoodsType').append("<option value='"+item.detailCode+"'>"+item.codeNm+"</option>");
+				  });
+				  */
+		    },
+		    error:function(error){
+		    	alert("성공적으로 저장되었습니다.");
+		    }
+		});
+})
 
+
+function Plan(days_serial, trip_list_serial, place_serial, trip_order, trip_day){
+	this.days_serial = days_serial;
+	this.trip_list_serial = trip_list_serial;
+	this.place_serial = place_serial;
+	this.trip_order = trip_order;
+	this.trip_day = trip_day;
+}
