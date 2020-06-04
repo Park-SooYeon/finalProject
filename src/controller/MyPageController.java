@@ -10,8 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,11 +21,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import bean.FollowListVo;
 import bean.LikeListVo;
 import bean.PlaceVo;
+import bean.PlanVo;
 import bean.ReviewVo;
 import bean.TripListVo;
 import bean.membershipVo;
@@ -322,10 +326,9 @@ public class MyPageController {
 		// serial을 get타입으로 넘겨받음
 		int serial = Integer.parseInt(req.getParameter("se"));
 		String member_id = (String)session.getAttribute("member_id");
-		
+
 		TripListVo vo = dao.viewTrip(serial,member_id);
-		System.out.println("뭐징");
-		System.out.println(vo.toString());
+		
 		mv.addObject("vo", vo);
 		mv.setViewName("edit_trip");
 		return mv;
@@ -381,6 +384,62 @@ public class MyPageController {
 			return jsonVo;
 		}
 		
+		
+		// 여행일정추가
+		@ResponseBody
+		@RequestMapping( value = "insertPlan.mp", consumes=MediaType.APPLICATION_JSON_VALUE, method = {RequestMethod.GET, RequestMethod.POST},produces = "text/html;charset=utf8")
+		public String insertPlan(@RequestBody String json) {
+			System.out.println(json);
+			String msg = "";
+			try {
+				ObjectMapper mapper = new ObjectMapper();
+				List<PlanVo> list = mapper.readValue(json, new TypeReference<List<PlanVo>>(){});
+				
+				for(PlanVo v : list) {
+					System.out.println(v.toString());
+				}
+				msg = dao.insertPlan(list);
+			}catch(Exception ex) {
+				ex.printStackTrace();
+			}
+			
+			//String msg = dao.insertPlan(vo);
+			return msg;
+		}
+		
+		
+		@ResponseBody
+		@RequestMapping( value = "selectOnePlace.mp", method = {RequestMethod.GET},produces = "text/html;charset=utf8")
+		public String selectOnePlan(HttpServletRequest req, HttpSession session) {
+			mv = new ModelAndView();
+			
+			int serial = Integer.parseInt(req.getParameter("serial"));
+			//trip_list_serial, trip_day
+			String trip_day = req.getParameter("trip_day");
+			
+			System.out.println("파라미터 "+serial + trip_day);
+			
+			PlanVo vo = new PlanVo();
+			vo.setTrip_list_serial(serial);
+			vo.setTrip_day(trip_day);
+			
+			List<PlanVo> list = dao.selectOnePlace(vo);
+			
+			for(PlanVo v : list) {
+				System.out.println("planVo들어오나 : "+v.toString());
+			}
+			String jsonVo = "";
+			
+			try {
+				ObjectMapper mapper = new ObjectMapper();
+				jsonVo = mapper.writeValueAsString(list);
+				System.out.println(jsonVo);
+				}catch (Exception e) {
+					e.printStackTrace();
+				}
+			
+			return jsonVo;
+		}
 		
 	// 파일명 만들어줄때 필요한 날짜변환 함수
 	public String getCurrentDayTime(){

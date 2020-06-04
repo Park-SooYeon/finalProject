@@ -28,6 +28,7 @@ import bean.Factory;
 import bean.FollowListVo;
 import bean.LikeListVo;
 import bean.PlaceVo;
+import bean.PlanVo;
 import bean.ReviewVo;
 import bean.TripListVo;
 import bean.membershipVo;
@@ -413,14 +414,14 @@ public class MyPageDao {
 		vo.setTrip_list_serial(serial);
 		
 		try {
-			list = sqlSession.selectList("select_oneLike", vo);
+			list = sqlSession.selectList("mypage.select_oneLike", vo);
 			
 			// place_code hotel로 설정해줌
 			for(PlaceVo p : list) {
 				p.setPlace_code(2);
 			}
 			
-			list2 = sqlSession.selectList("select_oneLike_api", vo);
+			list2 = sqlSession.selectList("mypage.select_oneLike_api", vo);
 			
 			for(PlaceVo p : list2) {
 				place_serial = p.getPlace_serial();
@@ -446,36 +447,81 @@ public class MyPageDao {
 	public List<PlaceVo> selectPlaceAll(String findStr) {
 		List<PlaceVo> list = null; 
 		try {
-			list = sqlSession.selectList("select_hotel", findStr);
+			list = sqlSession.selectList("mypage.select_hotel", findStr);
 			for(PlaceVo vo : list) {
 				System.out.println("사진"+vo.getPhoto_name());
 				vo.setPlace_code(2); // 2는 호텔, 1은 api
 			}
-			
-			
-			/*
-			for(PlaceVo vo : list) {
-				JsonObject contentResult = getApiAll();
-				int place_serial = contentResult.get("contentid").getAsInt();
-		        String photo_name = contentResult.get("firstimage").getAsString();
-		        String place_name = contentResult.get("title").getAsString();
-		        int local_code = contentResult.get("areacode").getAsInt();
-		        
-		        vo.setPlace_serial(place_serial);
-		        vo.setLocal_code(local_code);
-		        vo.setPhoto_name(photo_name);
-		        vo.setPlace_name(place_name);
-				vo.setPlace_code(1); // place_code api로 설정해줌
-				
-				list.add(vo);
-			}
-			*/
 			
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
 		return list;
 	}
+	
+	public String insertPlan(List<PlanVo> list){
+		int cnt = 0;
+		String msg = "";
+		try {
+			
+			for(PlanVo vo : list) {
+				cnt = sqlSession.insert("mypage.insert_plan", vo);
+				if(cnt>0) {
+					msg = "성공적으로 추가됨";
+					sqlSession.commit();
+				}else {
+					msg = "오류발생";
+					sqlSession.rollback();
+				}
+			}
+			
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		}
+		return msg;
+	}
+	
+	public List<PlanVo> selectOnePlace(PlanVo vo) {
+		List<PlanVo> list = null;
+		
+		try {
+			// trip_list_serial에 해당하는 plan 요소들
+			list = sqlSession.selectList("mypage.select_plan", vo);
+			
+			for(PlanVo v : list) {
+				PlaceVo p = sqlSession.selectOne("mypage.select_onePlace", v.getPlace_serial());
+				// 호텔 먼저 세팅해주고
+				v.setP(p);
+			}
+			
+			List<Integer> se = sqlSession.selectList("myPage.select_allSerial_api");
+			
+			for(int apiSerial : se) {
+				PlaceVo p2 = new PlaceVo();
+				PlanVo v2 = new PlanVo();
+				JsonObject contentResult = getApi(apiSerial);
+				String photo_name = contentResult.get("firstimage").getAsString();
+		        String place_name = contentResult.get("title").getAsString();
+		        int local_code = contentResult.get("areacode").getAsInt();
+		        
+		        p2.setPlace_serial(apiSerial);
+		        p2.setLocal_code(local_code);
+		        p2.setPhoto_name(photo_name);
+		        p2.setPlace_name(place_name);
+				p2.setPlace_code(1); // place_code api로 설정해줌
+				
+				v2.setP(p2);
+				
+				list.add(v2);
+				}
+			
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		}
+		
+		return list;
+	}
+	
 	
 	public JsonObject getApi(int contentId) throws IOException {
 		
