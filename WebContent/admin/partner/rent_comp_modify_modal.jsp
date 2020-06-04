@@ -51,7 +51,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-light" data-dismiss="modal">취소</button>
-                <button type="button" class="btn btn-danger" id="btnPtRtCompModal" onclick="rentCompInsert()">등록</button>
+                <button type="button" class="btn btn-danger" id="btnPtRtCompModal" onclick="rentCompUpdate()">저장</button>
             </div>
         </div>
     </div>

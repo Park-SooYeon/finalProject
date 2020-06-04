@@ -17,6 +17,11 @@ public class ReserveVo {
 	Timestamp reserved_date;
 	String review_check;
 	
+	String company_name;
+	String car_name;
+	String state;
+	
+	
 	public ReserveVo() {
 		
 	}
@@ -103,6 +108,76 @@ public class ReserveVo {
 	}
 	public void setReserved_date(Timestamp reserved_date) {
 		this.reserved_date = reserved_date;
+	}
+
+
+
+
+	public Timestamp getRent_date() {
+		return rent_date;
+	}
+
+
+
+
+	public void setRent_date(Timestamp rent_date) {
+		this.rent_date = rent_date;
+	}
+
+
+
+
+	public Timestamp getReturn_date() {
+		return return_date;
+	}
+
+
+
+
+	public void setReturn_date(Timestamp return_date) {
+		this.return_date = return_date;
+	}
+
+
+
+
+	public String getCompany_name() {
+		return company_name;
+	}
+
+
+
+
+	public void setCompany_name(String company_name) {
+		this.company_name = company_name;
+	}
+
+
+
+
+	public String getCar_name() {
+		return car_name;
+	}
+
+
+
+
+	public void setCar_name(String car_name) {
+		this.car_name = car_name;
+	}
+
+
+
+
+	public String getState() {
+		return state;
+	}
+
+
+
+
+	public void setState(String state) {
+		this.state = state;
 	}
 	
 	
