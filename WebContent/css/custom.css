@@ -958,10 +958,9 @@ p {
 
 .list-box {
   border-top: 1px solid #dadada;
-  max-height: 75%;
+  max-height: 100%;
   overflow-y: auto;
   background: #fff;
-  border-bottom: 1px solid #dadada;
 }
 
 .spot-to-inspot i {

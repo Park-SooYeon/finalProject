@@ -1,5 +1,9 @@
 let cnt;
 let addDate;
+let contentTypeId;
+let dayCnt=1;
+let image;
+let coords;
 
 function init() {
 
@@ -93,9 +97,49 @@ $("#searchPlace").on("keyup", function(){
 	let parseJson;
 	
 	
+	$.getJSON("selectAll.mp", {"findStr":findStr}, function(json){
+		
+		if(json.length>0){
+			
+			for(d of json){
+				
+				let json = JSON.stringify(d);
+				
+				if(d.place_code == 2){ // 호텔이면 경로수정
+					if(d.photo_name == 'undefined' || d.photo_name == null){
+						d.photo_name = './images/myPage/korea.png';
+					}else{
+						d.photo_name = "./images/hotel/"+d.photo_name;
+					}
+				}
+				
+				str += `<div
+	            class='day-spot-item ui-draggable'
+	                data-serial='${d.place_serial}'
+	                data-long='${d.longitude}'
+	                data-lat='${d.latitude}'
+	                data-cid='32'
+	                data-area='${d.local_code}'
+	              >
+	                <div class='img-box fl'>
+	                  <img src='${d.photo_name}' />
+	                </div>
+	                <div class='info-box'>
+	                  <div class='info-title'>${d.place_name}</div>
+	                  <div class='small info-small'>숙박</div>
+	                </div>
+	                <div class='spot-to-inspot pl-2' data-all='${d}' onclick='addPlan(${json});'>
+	                  <img class='add-icon' src='./images/myPage/interface.png'/>
+	                </div>
+	              </div>`;
+			}
+		}else{
+			str='';
+		}
+	
 	var xhr = new XMLHttpRequest();
 	var url = 'http://api.visitkorea.or.kr/openapi/service/rest/KorService/searchKeyword'; /*URL*/
-	var queryParams = '?' + encodeURIComponent('ServiceKey') + '='+'RGRZ7ZbtIrL2U4P0qfnA3puuV5UrzrqEFmf0aLwaZitXLcUQrOTbyRoZHRCpdViHuU1cTZ7jXX4GDbOMb%2Fc1gg%3D%3D'; /*Service Key*/
+	var queryParams = '?' + encodeURIComponent('ServiceKey') + '='+'1Dz1bR5MAy4n67kjDRt13zzTSNAaW7oNAcVIjOVXV6Dvh48PW8I4jVKIhaULA9oyhQXCfGmWceVxx3Psb%2B7Tyw%3D%3D'; /*Service Key*/
 	queryParams += '&' + encodeURIComponent('ServiceKey') + '=' + encodeURIComponent('인증키 (URL- Encode)'); /**/
 	queryParams += '&' + encodeURIComponent('MobileApp') + '=' + encodeURIComponent('AppTest'); /**/
 	queryParams += '&' + encodeURIComponent('MobileOS') + '=' + encodeURIComponent('ETC'); /**/
@@ -117,82 +161,39 @@ $("#searchPlace").on("keyup", function(){
 	    if (this.readyState == 4) {
 	    	// 결과값을 json타입으로 담고
 	    	parseJson = JSON.parse(this.responseText).response.body.items.item;
-	    	console.log(parseJson[0]);
-	    	for(d of parseJson){
-	    		str += `<div
-		            class='day-spot-item ui-draggable'
-		                data-serial='${d.contentid}'
-		                data-long='${d.mapy}'
-		                data-lat='${d.mapx}'
-		                data-pl_type='0'
-		                data-no='0'
-		                data-pl_cat='301'
-		                data-ci='10907'
-		              >
-		                <div class='img-box fl'>
-		                  <img src='${d.firstimage}' />
-		                </div>
-		                <div class='info-box'>
-		                  <div class='info-title'>${d.title}</div>
-		                  <div class='small info-small'>공원/정원</div>
-		                  <div class='like-cnt-info'>
-		                    <i class='fab fa-gratipay' style='color: rgb(253, 123, 145);'></i> 
-		                  </div>
-		                </div>
-		                <div class='spot-to-inspot'>
-		                  <img class='add-icon' src='./images/myPage/interface.png'/>
-		                </div>
-		              </div>`;
+	    	if(parseJson !=undefined){
+	    		for(d of parseJson){
+	    			contentTypeId = setType(d.contenttypeid);
+	    			image = setImage(d.firstimage);
+	    			let json = JSON.stringify(d);
+	    			
+	    			
+	    			str += `<div
+	    				class='day-spot-item ui-draggable'
+	    				data-serial='${d.contentid}'
+	    				data-long='${d.mapy}'
+	    				data-lat='${d.mapx}'
+	    				data-cid='${d.contenttypeid}'
+	    				data-area = '${d.areacode}'
+	    				>
+	    				<div class='img-box fl'>
+	    				<img src='${image}' />
+	    				</div>
+	    				<div class='info-box'>
+	    				<div class='info-title'>${d.title}</div>
+	    				<div class='small info-small'>${contentTypeId}</div>
+	    				</div>
+	    				<div class='spot-to-inspot pl-2' data-all = '${d}' onclick='addPlan(${json});'>
+	    				<img class='add-icon' src='./images/myPage/interface.png'/>
+	    				</div>
+	    				</div>`;
+	    		}
 	    	}
 	    	$("#place-here").html(str);
 	    	}
 	};
 	xhr.send('');
-	
-	
-	/*
-	$.getJSON("selectAll.mp", {"findStr":findStr}, function(json){
-		
-		if(json.length>0){
-			
-			
-			for(d of json){
-				if(d.place_code == 2){ // 호텔이면 경로수정
-					d.photo_name = "./images/hotel/"+d.photo_name;
-				}
-				str += `<div
-	            class='day-spot-item ui-draggable'
-	                data-serial='${d.place_serial}'
-	                data-long='${d.longitude}'
-	                data-lat='${d.latitude}'
-	                data-pl_type='0'
-	                data-no='0'
-	                data-pl_cat='301'
-	                data-ci='10907'
-	              >
-	                <div class='img-box fl'>
-	                  <img src='${d.photo_name}' />
-	                </div>
-	                <div class='info-box'>
-	                  <div class='info-title'>${d.place_name}</div>
-	                  <div class='small info-small'>공원/정원</div>
-	                  <div class='like-cnt-info'>
-	                    <i class='fab fa-gratipay' style='color: rgb(253, 123, 145);'></i> ${d.like_cnt}
-	                  </div>
-	                </div>
-	                <div class='spot-to-inspot'>
-	                  <img class='add-icon' src='./images/myPage/interface.png'/>
-	                </div>
-	              </div>`;
-			}
-		}else{
-			
-		}
-
-		
-		
 	});
-	 */
 	
 })
 
@@ -251,4 +252,175 @@ function getDay(date){
 	let week = ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'];
 	let dayOfWeek = week[new Date(date).getDay()];
 	return dayOfWeek;
+}
+
+$(".list-cat-item").on("click", function(){
+	let index = $(this).data("cat");
+	// 인덱스 = contentid
+	$(".list-box .day-spot-item[data-cid!="+index+"]").addClass("d-none");
+	$(".list-box .day-spot-item[data-cid="+index+"]").removeClass("d-none");
+	// contentid가 index와 같지 않은 요소들 다 숨기기
+})
+
+$("#chooseCity").on("change", function(){
+	let index = $("#chooseCity option:selected").val();
+	console.log(index);
+	$(".list-box .day-spot-item[data-area!="+index+"]").addClass("d-none");
+	$(".list-box .day-spot-item[data-area="+index+"]").removeClass("d-none");
+})
+
+
+// 관광지를 일정에 추가했을 때 이벤트 발생
+function addPlan(d){
+	let ele = "";
+	let distance = "";
+	
+	// 호텔, api 요소 변수명이 다르기때문에 undefined일 경우 새로운 변수에 담아서 처리
+	const place_serial = (d.contentid == undefined)? d.place_serial : d.contentid;
+	const longitude = (d.mapy == undefined)? d.longitude : d.mapy;
+	const latitude = (d.mapx == undefined)? d.latitude : d.mapx; 
+	const place_name = (d.title == undefined)? d.place_name : d.title;
+	let image = (d.firstimage == undefined)? d.photo_name : d.firstimage;
+	let place_code = (d.contenttypeid == undefined)? 32 : d.contenttypeid;
+
+	// place 코드 => 분류명으로 switch
+	place_code = setType(place_code);
+	
+	// 이미지 없는 경우 default 이미지 설정
+	image = setImage(image);
+	
+	
+		//let tempNum = dayCnt-1;
+		
+		//let elem = document.getElementById("order"+tempNum);
+		
+	/*
+		coords2 = {
+			latitude : elem.dataset.lat,
+			longitude : elem.dataset.long
+		}
+		*/
+
+		coordsNow = {
+			latitude : latitude,
+			longitude : longitude
+		}
+		
+		console.log(coords);
+		
+		if(coords != null){
+			distance = computeDistance(coords, coordsNow);
+		}
+		
+		
+//현재 cnt - 1한 요소의 경도 위도를 가져오면 되는디	
+	
+	
+	console.log("coords", coords);
+	//console.log(computeDistance(coords1, coords2));
+	
+	ele = `<div
+    class='day-spot-item'
+    id='order${dayCnt}'
+    data-index='${dayCnt}'
+    data-set_day='1'
+    data-rel_srl='6725'
+    data-contentid='${place_serial}'
+    data-lat='${longitude}'
+    data-long='${latitude}'>
+    
+     <div class='item-ctrl-box' style='display: none;'>
+        <div class='btn-del' title='삭제'>
+		<img class='add-icon' src='./images/myPage/sign.png'></img>
+        </div>
+      </div>
+
+    <div class='spot-distance-box'>${distance}</div>
+
+    <div class='img-box'>
+      <div class='spot-order-box'>${dayCnt}</div>
+      <img src='${image}' />
+    </div>
+    <div class='info-box'>
+      <div class='info-title'>${place_name}</div>
+      <div class='small info-small'>${place_code}</div>
+    </div>
+  </div>`;
+		
+	
+	coords = {
+			latitude : latitude,
+			longitude : longitude
+	};
+	
+	// 1번, 2번, 3번 ...
+	$("#schedule-here").append(ele);
+	dayCnt++;
+}
+
+
+// 이미지파일 세팅, contenttypeid 세팅작업
+function setType(cid){
+	
+	switch(cid){
+	case 12:
+		return '관광지';
+	case 14:
+		return '문화시설';
+	case 15:
+		return '축제/공연/행사';
+	case 25:
+		return '여행코스';
+		break;
+	case 32:
+		return '숙박';
+		break;
+	case 38:
+		return '쇼핑';
+		break;
+	case 39:
+		return '음식';
+		break;
+		
+}
+}
+function setImage(image){
+	// 이미지 파일이 없으면 정해진 이미지로 대체
+	if(image == undefined || image == null){
+		image = './images/myPage/korea.png';
+	}
+	return image;
+}
+
+
+let ourCoords = { //서울 시청 좌표
+	    latitude : 37.5666263,  //위도
+	    longitude : 126.9783924  //경도
+	};
+
+let startCoords = {
+		latitude : 37.566535,
+		longitude : 126.977969199999
+};
+
+console.log(computeDistance(ourCoords, startCoords));
+
+/* 위도, 경도로 거리 계산 */
+function computeDistance(startCoords, destCoords) {
+    var startLatRads = degreesToRadians(startCoords.latitude);
+    var startLongRads = degreesToRadians(startCoords.longitude);
+    var destLatRads = degreesToRadians(destCoords.latitude);
+    var destLongRads = degreesToRadians(destCoords.longitude);
+
+    var Radius = 6371; //지구의 반경(km)
+    var distance = Math.acos(Math.sin(startLatRads) * Math.sin(destLatRads) + 
+                    Math.cos(startLatRads) * Math.cos(destLatRads) *
+                    Math.cos(startLongRads - destLongRads)) * Radius;
+
+    return distance;
+}
+
+function degreesToRadians(degrees) {
+    radians = (degrees * Math.PI)/180;
+    return radians;
 }

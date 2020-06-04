@@ -163,7 +163,8 @@
         </div>
 
         <!--//(s)스케쥴 디테일 리스트-->
-        <div id="schedule-detail-list" class="connectedSortable ui-sortable">
+        <div id="schedule-here" class="connectedSortable ui-sortable">
+          <!-- 
           <div
             class="day-spot-item"
             data="1"
@@ -192,8 +193,6 @@
               <div class="small info-small">유명한거리/지역</div>
             </div>
           </div>
-
-          <div id="schedule-detail-list" class="connectedSortable ui-sortable">
             <div
               class="day-spot-item"
               data="1"
@@ -221,9 +220,10 @@
                 <div class="info-title">경복궁</div>
                 <div class="small info-small">랜드마크, 성/궁궐</div>
               </div>
-            </div>
 
           </div>
+          
+          -->
         </div>
 
         <div class="trip-detail-added">
@@ -310,25 +310,39 @@
       <!-- depth 2 -->
       <div id="right-full-box" style="display: none;">
         <div class="title-box" style="background: #1a7ad9;">
+          
           <div class="default-select" id="default-select">
-				<select style="display: none;">
+				<select style="display: none;" id="chooseCity">
+					<option value="0">도시선택</option>
 					<option value="1">서울</option>
-					<option value="1">제주도</option>
-					<option value="1">부산</option>
-					<option value="1">경주</option>
-					<option value="1">강릉</option>
-					<option value="1">여수</option>
+					<option value="3">제주도</option>
+					<option value="6">부산</option>
+					<option value="4">대구</option>
+					<option value="31">경기도</option>
+					<option value="2">인천</option>
 				</select><div class="nice-select" tabindex="0"><span class="current">도시선택</span>
 				<ul class="list">
-				<li data-value="1" class="option selected focus">서울</li>
-				<li data-value="2" class="option">제주도</li>
-				<li data-value="3" class="option">부산</li>
+				<li data-value="0" class="option">도시선택</li>
+				<li data-value="1" class="option">서울</li>
+				<li data-value="3" class="option">제주도</li>
+				<li data-value="6" class="option">부산</li>
 				<li data-value="4" class="option">경주</li>
-				<li data-value="5" class="option">강릉</li>
-				<li data-value="6" class="option">여수</li>
+				<li data-value="31" class="option">강릉</li>
+				<li data-value="2" class="option">여수</li>
 </ul></div>
 			</div>
-			
+			 
+			 <!-- 
+			 <select id="chooseCity">
+			 	<option value="0">도시선택</option>
+			 	<option value="1">서울</option>
+			 	<option value="3">제주도</option>
+			 	<option value="6">부산</option>
+			 	<option value="4">대구</option>
+			 	<option value="31">경기도</option>
+			 	<option value="2">인천</option>
+			 </select>
+			  -->
           <button type="button" id="on-city-close-btn">
             <i class="fas fa-chevron-left"></i>
           </button>
@@ -348,23 +362,23 @@
           </div>
           <div class="list-category-wrapper">
             <div class="list-category-box pt-2">
-              <div class="list-cat-item rounded-circle on" data-cat="1" title="즐길거리">
+              <div class="list-cat-item rounded-circle" data-cat="12" title="즐길거리">
                 <span class="fas fa-camera-retro search-cat-icon"></span>
               </div>
-              <div class="list-cat-item rounded-circle" data-cat="2" title="레스토랑/카페">
+              <div class="list-cat-item rounded-circle" data-cat="39" title="레스토랑/카페">
                 <span class="fas fa-utensils search-cat-icon"></span>
               </div>
-              <div class="list-cat-item rounded-circle" data-cat="3" title="숙소">
+              <div class="list-cat-item rounded-circle" data-cat="32" title="숙소">
                 <span class="fas fa-bed search-cat-icon"></span>
               </div>
-              <div class="list-cat-item rounded-circle" data-cat="4" title="관심리스트에서 보기">
+              <div class="list-cat-item rounded-circle" data-cat="1" title="관심리스트에서 보기">
                 <span class="fas fa-inbox search-cat-icon"></span>
               </div>
             </div>
           </div>
         </div>
 
-        <div class="list-box connectedSortable" id="place-here">
+        <div class="list-box connectedSortable" id="place-here" style="max-height:68%;">
 
 
           <div

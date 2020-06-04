@@ -15,10 +15,11 @@ var dots = {}; // 선이 그려지고 있을때 클릭할 때마다 클릭 지�
 // 지도에 클릭 이벤트를 등록합니다
 // 지도를 클릭하면 선 그리기가 시작됩니다 그려진 선이 있으면 지우고 다시 그립니다
 kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
-
+ 
     // 마우스로 클릭한 위치입니다 
     var clickPosition = mouseEvent.latLng;
-
+    console.log("clickpositon", clickPosition);
+    
     // 지도 클릭이벤트가 발생했는데 선을 그리고있는 상태가 아니면
     if (!drawingFlag) {
 
@@ -60,7 +61,8 @@ kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
 
         // 그려지고 있는 선의 좌표 배열을 얻어옵니다
         var path = clickLine.getPath();
-
+        console.log("path", path);
+        
         // 좌표 배열에 클릭한 위치를 추가합니다
         path.push(clickPosition);
         
