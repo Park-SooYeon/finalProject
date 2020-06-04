@@ -3,6 +3,7 @@ let addDate;
 let contentTypeId;
 let dayCnt=1;
 let image;
+let coords;
 
 function init() {
 
@@ -268,10 +269,13 @@ $("#chooseCity").on("change", function(){
 	$(".list-box .day-spot-item[data-area="+index+"]").removeClass("d-none");
 })
 
+
+// 관광지를 일정에 추가했을 때 이벤트 발생
 function addPlan(d){
-	console.log(d);
 	let ele = "";
-	console.log(d.contentid == undefined);
+	let distance = "";
+	
+	// 호텔, api 요소 변수명이 다르기때문에 undefined일 경우 새로운 변수에 담아서 처리
 	const place_serial = (d.contentid == undefined)? d.place_serial : d.contentid;
 	const longitude = (d.mapy == undefined)? d.longitude : d.mapy;
 	const latitude = (d.mapx == undefined)? d.latitude : d.mapx; 
@@ -279,12 +283,46 @@ function addPlan(d){
 	let image = (d.firstimage == undefined)? d.photo_name : d.firstimage;
 	let place_code = (d.contenttypeid == undefined)? 32 : d.contenttypeid;
 
+	// place 코드 => 분류명으로 switch
 	place_code = setType(place_code);
+	
+	// 이미지 없는 경우 default 이미지 설정
 	image = setImage(image);
+	
+	
+		//let tempNum = dayCnt-1;
+		
+		//let elem = document.getElementById("order"+tempNum);
+		
+	/*
+		coords2 = {
+			latitude : elem.dataset.lat,
+			longitude : elem.dataset.long
+		}
+		*/
+
+		coordsNow = {
+			latitude : latitude,
+			longitude : longitude
+		}
+		
+		console.log(coords);
+		
+		if(coords != null){
+			distance = computeDistance(coords, coordsNow);
+		}
+		
+		
+//현재 cnt - 1한 요소의 경도 위도를 가져오면 되는디	
+	
+	
+	console.log("coords", coords);
+	//console.log(computeDistance(coords1, coords2));
 	
 	ele = `<div
     class='day-spot-item'
-    data='1'
+    id='order${dayCnt}'
+    data-index='${dayCnt}'
     data-set_day='1'
     data-rel_srl='6725'
     data-contentid='${place_serial}'
@@ -297,7 +335,7 @@ function addPlan(d){
         </div>
       </div>
 
-    <div class='spot-distance-box'>0.88Km</div>
+    <div class='spot-distance-box'>${distance}</div>
 
     <div class='img-box'>
       <div class='spot-order-box'>${dayCnt}</div>
@@ -309,9 +347,15 @@ function addPlan(d){
     </div>
   </div>`;
 		
-	dayCnt++;
+	
+	coords = {
+			latitude : latitude,
+			longitude : longitude
+	};
+	
 	// 1번, 2번, 3번 ...
-	$("#schedule-here").append(ele);	
+	$("#schedule-here").append(ele);
+	dayCnt++;
 }
 
 
@@ -346,4 +390,37 @@ function setImage(image){
 		image = './images/myPage/korea.png';
 	}
 	return image;
+}
+
+
+let ourCoords = { //서울 시청 좌표
+	    latitude : 37.5666263,  //위도
+	    longitude : 126.9783924  //경도
+	};
+
+let startCoords = {
+		latitude : 37.566535,
+		longitude : 126.977969199999
+};
+
+console.log(computeDistance(ourCoords, startCoords));
+
+/* 위도, 경도로 거리 계산 */
+function computeDistance(startCoords, destCoords) {
+    var startLatRads = degreesToRadians(startCoords.latitude);
+    var startLongRads = degreesToRadians(startCoords.longitude);
+    var destLatRads = degreesToRadians(destCoords.latitude);
+    var destLongRads = degreesToRadians(destCoords.longitude);
+
+    var Radius = 6371; //지구의 반경(km)
+    var distance = Math.acos(Math.sin(startLatRads) * Math.sin(destLatRads) + 
+                    Math.cos(startLatRads) * Math.cos(destLatRads) *
+                    Math.cos(startLongRads - destLongRads)) * Radius;
+
+    return distance;
+}
+
+function degreesToRadians(degrees) {
+    radians = (degrees * Math.PI)/180;
+    return radians;
 }
