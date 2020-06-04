@@ -125,7 +125,7 @@
       <!--회원탈퇴승인 관리 조회 --> 
     <select id='m_select' resultType="bean.membershipVo">
    
-    select member_id, email, phone,state ,member_name,mdate
+    select member_id, email, phone,state ,member_name,mdate, delete_reason
 	from membership  
 	where state = 2
     
@@ -179,17 +179,6 @@
       
    </select> 
     
-    <!-- <select id="review_all" parameterType="bean.Page" resultMap="review_Vo">
-        select * from(
-         select rownum rno, M.* from(
-            select member_id, review_date ,review_serial, review_content , review_title, review_type
-            from  review
-            where (review_serial like '%${findStr}%'
-            or member_id like '%${findStr}%')
-            )M
-         ) 
-      where rno BETWEEN ${startNo} and ${endNo}
-    </select> -->
     <select id="review_all" parameterType="bean.Page" resultMap="review_Vo">
       select * from(
          select rownum rno, M.* from(
@@ -202,6 +191,14 @@
          ) 
       where rno BETWEEN ${startNo} and ${endNo}
      </select>
+     <!-- 리뷰카운트 -->
+     	<select id="count1"  resultType="Integer">
+   			select count(review_serial)
+            from  review
+          
+      
+  		 </select> 
+     
    <!--  <select id="review_all" parameterType="bean.Page" resultMap="review_Vo">
         select * from(
          select rownum rno, M.* from(
@@ -232,4 +229,11 @@
 		 where r.review_serial = ${_parameter}
 	    </select>
       
+      
+      <!-- 리뷰 삭제하기 -->
+      
+	      <delete id="review_delete" parameterType="bean.ReviewVo">
+	      delete from review where review_serial = ${review_serial}
+	  	 </delete>
+	     
 </mapper>

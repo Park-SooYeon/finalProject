@@ -155,10 +155,10 @@ public class AdSuperController {
 			List<membershipVo> list = dao.m_select();
 			mv.setViewName("out");
 			mv.addObject("list", list);
-//			for(partnerVo vo : list) {
-//				System.out.println(vo.getMember_id());
-//				System.out.println(vo.getState());
-//			}
+			for(membershipVo vo : list) {
+				System.out.println(vo.getMember_id());
+				System.out.println(vo.getState());
+			}
 			return mv;
 		}
 		
@@ -190,6 +190,7 @@ public class AdSuperController {
 			}
 			
 			List<ReviewVo> list = dao.review_all(p);
+			
 			//System.out.println("컨트롤러페이지"+p.toString());
 			
 //			System.out.println(list.size() +"Tㄲ싸이즈");
@@ -206,10 +207,21 @@ public class AdSuperController {
 				System.out.println(list.get(i));
 			}
 			mv.setViewName("review_all");
+			
+			return mv;
+		}
+		 //리뷰카운트
+		@RequestMapping(value = "/admin/super/review_list.os", method= {RequestMethod.GET, RequestMethod.POST},produces = "text/html;charset=utf8")
+		public ModelAndView cocount(HttpServletRequest req) {
+			int count = dao.review_count();
+			mv = new ModelAndView();
+			mv.addObject("count",count);
+			mv.setViewName("review_list");
 			return mv;
 		}
 		
-		//파트너 view
+		
+		//리뷰 상세보기
 		@RequestMapping(value = "/admin/super/review_view.os", method= {RequestMethod.GET, RequestMethod.POST},produces = "text/html;charset=utf8")
 		@ResponseBody   //모델뷰 말고 데이터 보내는법..
 		public String review_view(HttpServletRequest req) {
@@ -226,5 +238,18 @@ public class AdSuperController {
 				e.printStackTrace();
 			}
 			return result;
+		}
+		//리뷰 삭제하기
+		@ResponseBody 
+		@RequestMapping( value ="/admin/super/review_delete.os", method= {RequestMethod.GET, RequestMethod.POST},produces = "text/html;charset=utf8")
+		public String review_delete(HttpServletRequest req, HttpServletResponse resp ) {
+			System.out.println("리뷰삭제하기 컨트롤러");
+			ReviewVo vo = new ReviewVo();
+			int serial = Integer.parseInt(req.getParameter("serial")); //jsp에 있는 폼을 js에서 여기로 보낸다.. 그걸 받아서 브이오에 담아준다..
+			System.out.println("zjsxmfhffj :+ "+serial);
+			//System.out.println("권한박탈컨트롤러"+id+"~"+p_status);		
+			vo.setReview_serial(serial);
+			String msg=dao.review_delete(vo);
+			return msg;
 		}
 }

@@ -135,7 +135,7 @@
                         </div>
                         <small class="time d-none d-sm-block ml-auto " id="r_date"></small>
                     </div>
-                    <form class="row" name="usrInfoFrm">
+                    <form class="row"  id='review_del' name="'review_del'">
                         <div class="col-12">
                             <div class="form-group">
                                 <label>title</label><br/>
@@ -168,7 +168,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-12">
+                       <!--  <div class="col-12">
                             <div class="wrapper d-flex align-items-center py-2">
                                 <label class="">신고</label>
                                 <small id="reportTot" class="ml-auto">총 20건</small>
@@ -194,11 +194,15 @@
                                 </div>
                             </div>
                         </div>
-                    </form>
+                        
+ -->                    
+ 					   <input type='hidden'  id='del_serial' name='del_serial' value='${review_serial }'>
+ 
+ 					</form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-light" data-dismiss="modal">취소</button>
-                    <button type="button" class="btn btn-success" onclick="showSwal('warning-message-and-cancel')">게시글 삭제</button>
+                    <button type="button" class="btn btn-success" id='review_delete' onclick="review_delete()">게시글 삭제</button>
                 </div>
             </div>
         </div>
@@ -254,5 +258,4 @@
         </div>
     </div> -->
  </div>
- 
 

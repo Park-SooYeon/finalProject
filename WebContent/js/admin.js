@@ -59,7 +59,7 @@ function a_partner_view(mId,p_name,b_number,phone,location,state,email,mphoto){
 
 
 //회원탈퇴요청 
-function member_out_view(m_name,m_phone,m_email,m_state,m_date,m_id,mphoto){
+function member_out_view(m_name,m_phone,m_email,m_state,m_date,m_id,mphoto,delete_reason){
 	let path = '../../images/myPage/'+mphoto;
 	let path1 ='../../images/myPage/queen.png';
 	if(mphoto!=""){
@@ -67,20 +67,18 @@ function member_out_view(m_name,m_phone,m_email,m_state,m_date,m_id,mphoto){
 	}else{
 		$('.member_photo').attr('src',path1);
 	}
-	
 	$('#idid').html(m_id);
 	$('#datedate').html(m_date);
 	$('.naname').html(m_name);
 	$('.phonephone').html(m_phone);
 	$('.emailemail').html(m_email);
+	$('.delete_reason').html(delete_reason);
 	//$('#statestate').html(m_state);
 	
 	$('#out_id').val(m_id);
 	$('#out_state').val(m_state);
 	
 }
-
-
 
 //member view 수정
 let mm = {}
@@ -140,9 +138,6 @@ mm.func();
 $('#contain').load("review_all.os");  //ajax 콘테인안에 리뷰올을 넣음.
 
 
-
-
-
 brd.go = function(nowPage){
 	frm_list.nowPage.value = nowPage;
 	let param = $('#frm_list').serialize();
@@ -161,6 +156,9 @@ brd.func = function(){
 	})
 }
 
+
+
+
 $(document).ready(function(){
     brd.func();
     })
@@ -170,6 +168,17 @@ $('#frm_list').submit(function(){
 	return false;
 	
 });
+//리뷰 삭제하기
+let review_delete=function(){
+	let param = $('#del_serial').val();
+	console.log(param);			//밑에처럼 "시리얼:파람" 해주면 컨트롤러에서 가져다 쓸 수 있음.
+	$.post("review_delete.os" ,{"serial":param}, function(data, stat){ //post를가지고 페이지를 넘길것이다.	 //insert가 data로 들어와서 메인으로 가서 뿌린다
+		alert(data);
+		location.reload();
+}); 	
+}
+
+
 
 //review상세보기
 function review_view(review_serial,mphoto){
@@ -181,7 +190,7 @@ function review_view(review_serial,mphoto){
 			$('.member_photo').attr('src',path1);
 		}
 		
-		
+		$('#del_serial').val(review_serial);
 		//getjson하면 스트링말고 타입으로 변환이 됌 그냥겟은 스트링만 
 	$.getJSON("review_view.os", {"serial" : review_serial}, function(data, state) {
 		console.log(data);
@@ -207,14 +216,14 @@ function review_view(review_serial,mphoto){
         $('#m_id').html(data.member_id);
         $('.r_title').html(data.review_title);
     	$('.r_content').html(data.review_content);
-        $('#r_date').html(data.review_date);
-    	$('.report_content').html(data.report.report_content);
+ //       $('#r_date').html(data.review_date);
+ //   	$('.report_content').html(data.report.report_content);
  //   	$('.report_serial').html(data.report.report_serial);
     	//$('#').html(data.report.report_code);
 //    	$('#').html(data.report.report_date);
-    	$('.report_id').html(data.report.report_id);
+ //   	$('.report_id').html(data.report.report_id);
 //    	$('#').html(data.report.report_serial);
- //   	$('.review_serial').html(data.review_serial);
+//    	$('#del_serial').val(review_serial);
     	
     	
     	
