@@ -16,7 +16,7 @@
 			style="height: 250px">
 			<div class="menu-content col-lg-8">
 				<div class="title text-center">
-					<h1 class="text-white mb-10">호텔(변경)</h1>
+					<h1 class="text-white mb-10">호텔</h1>
 					
 				</div>
 			</div>

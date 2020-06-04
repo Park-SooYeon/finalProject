@@ -158,7 +158,7 @@
 							style="padding-top: 10px; padding-bottom: 10px; box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.2);">
 							<div class="row" style="margin: 10px;">
 								<div class="col-md-6">
-									<img src="assets/images/upload/${photoList[0].sysFile}">
+									<img src="./assets/images/upload/${photoList[0].sysFile}">
 								</div>
 								<div class="col-md-6">
 									<c:if test="${list.rooms_name == 1 }">
@@ -228,9 +228,11 @@
 										<input type="hidden" id="place_serial" name="place_serial"
 											value="${param.place_serial }">
 											
+										<input type="hidden" id="place_name" name="place_name"
+										value="${vo.place_name}">
 										
-										
-										
+										<input type="hidden" id="place_location" name="place_location"
+										value="${vo.place_location}">
 										
 										
 										
@@ -267,7 +269,7 @@
 
 
 															<div class="col-md-6">
-																<img src="assets/images/upload/${photoList[0].sysFile}">
+																<img src="./assets/images/upload/${photoList[0].sysFile}">
 															</div>
 															<div class="col-md-6">
 

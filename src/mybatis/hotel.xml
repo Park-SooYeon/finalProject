@@ -24,7 +24,7 @@
 		,p.PARTNER_SERIAL,p.PLACE_NAME,
 		p.PLACE_LOCATION, p.LATITUDE,
 		p.LONGITUDE, p.STATE,
-		p.LOCAL_CODE,p.place_tel,max(ph.sysFile) sysFile
+		p.LOCAL_CODE,p.place_tel,min(ph.sysFile) sysFile
 		from place p, place_photo ph
 
 		where p.PLACE_SERIAL = ph.PLACE_SERIAL and
@@ -181,8 +181,8 @@ select
 <insert id="hotelReserv" parameterType='bean.hotelBookingVo'>
 
 
-insert into hotel_booking(booking_serial,member_id,reserve_date)
-values(seq_hotel_booking.nextval,#{member_id},sysdate)
+insert into hotel_booking(booking_serial,member_id,reserve_date,member_name,rooms_serial,place_serial)
+values(seq_hotel_booking.nextval,#{member_id},sysdate,#{member_name},${rooms_serial},${place_serial})
 
 </insert>
 

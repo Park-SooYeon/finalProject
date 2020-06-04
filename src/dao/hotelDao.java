@@ -216,7 +216,7 @@ public int hotelReserv(hotelBookingVo vo) {
 	int r=2;
 	int result=0;
 	try {
-		
+		System.out.println("아이디 가져와"+vo.getMember_id() +vo.getMember_name());
 		
 		result=sqlSession.insert("ht.hotelReserv",vo);
 		if (result < 1) {// 예약 실패
@@ -224,9 +224,8 @@ public int hotelReserv(hotelBookingVo vo) {
 			throw new Exception("예약  중 오류 발생했다요~~!");
 		    
 		}
-		String email = vo.getEmail();
-		System.out.println(email);
-		String msg = MailSend(email);
+	
+		String msg = MailSend(vo);
 		
 		if(msg == "yes") {
 		    
@@ -251,7 +250,7 @@ public int hotelReserv(hotelBookingVo vo) {
 
 
 
-public String MailSend(String email) {
+public String MailSend(hotelBookingVo vo) {
     
 	String msg = "";
 	
@@ -280,7 +279,7 @@ public String MailSend(String email) {
        MimeMessage message = new MimeMessage(session);
        message.setFrom(new InternetAddress(user));
        //수신자 메일 주소 ( 예약할 때 넣은 이메일 주소입니다 )
-       message.addRecipient(Message.RecipientType.TO, new InternetAddress(email));
+       message.addRecipient(Message.RecipientType.TO, new InternetAddress(vo.getEmail()));
        
      
      
@@ -292,11 +291,14 @@ public String MailSend(String email) {
           message.setContent(
           		  "<h1>[예약 정보]</h1><br>"
         		+ "<div style=''>예약이 완료되었습니다.</div>"  
-               // + " <p>예약한 호텔 이름 : <b> "+ vo.getPlace_name() + "</b></p><br>"
-               // + " <p>위치 : <b> " + vo.getPlace_location() + "</b></p><br>"
-                //+ " <p>결제 아이디 : <b> " + vo.getMember_id()  + "</b></p><br>"
-               // + " <p>총 숙박일 : <b> " + vo.getBetweenday() + "</b></p><br>"
-               // + " <p>총 결제 금액 : <b> " + vo.getTotalPrice()  + "</b></p><br>"
+                + " <p>예약한 호텔 이름 : <b> "+ vo.getPlace_name() + "</b></p><br>"
+                + " <p>위치 : <b> " + vo.getPlace_location() + "</b></p><br>"
+                + " <p>투숙인 성함: <b> " + vo.getMember_name()  + "</b></p><br>"
+                + " <p>체크인 날짜 : <b> " + vo.getCheckin_date()  + "</b></p><br>"
+                + " <p>체크 아웃 : <b> " + vo.getCheckout_date()  + "</b></p><br>"
+                //+ " <p>총 숙박일 : <b> " + vo.getBetweenday() + "</b></p><br>"
+                
+                //+ " <p>총 결제 금액 : <b> " + vo.getTotalPrice()  + "</b></p><br>"
                 
                 + "<div style=''></div>" 
                 , "text/html; charset=utf-8");

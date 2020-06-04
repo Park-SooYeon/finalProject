@@ -35,9 +35,24 @@ public class hotelBookingVo {
 	 String betweenday; // 숙박일
 
 	 
+	 String in_date;
+	 String out_date;
+	 
 	 
 	 
  
+	public String getIn_date() {
+		return in_date;
+	}
+	public void setIn_date(String in_date) {
+		this.in_date = in_date;
+	}
+	public String getOut_date() {
+		return out_date;
+	}
+	public void setOut_date(String out_date) {
+		this.out_date = out_date;
+	}
 	public String getBetweenday() {
 		return betweenday;
 	}

@@ -89,7 +89,7 @@
 							</div>
 							<div class="single-destinations">
 								<div class="thumb">
-									<img src="assets/images/upload/${i.oriFile}"
+									<img src="assets/images/upload/${i.sysFile}"
 										style="height: 200px;">
 								</div>
 								<div class="tags">
@@ -144,7 +144,7 @@
 							</div>
 							<div class="single-destinations">
 								<div class="thumb">
-									<img src="images/hotel/seoul/${i.place_name}1.jpg"
+									<img src="images/hotel/${i.place_name}1.jpg"
 										style="height: 200px;">
 								</div>
 								<div class="tags">
