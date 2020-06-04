@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -263,13 +264,16 @@ public class membershipController {
 
 			System.out.println(member_id);
 
-			String nickName = dao.loginNickName(member_id);
+			membershipVo rVo = dao.loginUserInfo(member_id);
 
-			vo.setNickName(nickName);
-			System.out.println("닉네임 : " + vo.getNickName());
+			System.out.println("닉네임 : " + rVo.getNickName());
 
-			session.setAttribute("nickName", vo.getNickName());
-
+			session.setAttribute("nickName", rVo.getNickName());
+			
+			System.out.println("auth : " + rVo.getState());
+			
+			session.setAttribute("auth", rVo.getState());
+			
 			mv.setViewName("GoIndex");
 
 		} else {
@@ -331,5 +335,67 @@ public class membershipController {
 		dao.changeUserInfo(vo);
 		
 		return "pwd_check";
+	}
+	
+	// 회원탈퇴 요청
+	@PostMapping("deleteUser.ms")
+	public String deleteUser(HttpServletRequest req, String mId, String delete_reason) {
+		System.out.println("mId : " + mId);
+		System.out.println("content : " + delete_reason);
+		
+		membershipVo vo = new membershipVo();
+		vo.setMember_id(mId);
+		vo.setDelete_reason(delete_reason);
+		
+		dao.deleteUser(vo);
+		
+		// session에서 로그인 정보 지우기
+		HttpSession session = req.getSession();
+		session.setAttribute("member_id", null);
+		
+		return "redirect:index.jsp";
+	}
+	
+	// 인증 메일 보내기
+	@PostMapping("sendMail.ms")
+	@ResponseBody
+	public String sendMail(String email, HttpServletRequest req) {
+		System.out.println("email : " + email);
+		
+		// 이메일 중복 확인
+		
+		// 인증번호 만들고 session에 저장하기
+		String ran = dao.randomN() + new Random().nextInt(900000);
+		HttpSession session = req.getSession();
+		session.setAttribute("ran", ran);
+		
+		// 메일 보내기
+		String result = dao.MailSend(email, ran);
+		System.out.println(result);
+		
+		return result;
+	}
+
+	// 이메일 인증 번호 확인하기
+	@PostMapping("chkMail.ms")
+	@ResponseBody
+	public String chkMail(String number, HttpServletRequest req) {
+		System.out.println("number : " + number);
+		String result = "";
+		
+		// 인증번호 가져오기
+		HttpSession session = req.getSession();
+		String ran = (String) session.getAttribute("ran");
+		System.out.println("ran : " + ran);
+		
+		if(ran.equals(number)) {
+			result = "yes";
+			// session에서 값 제거
+			session.removeAttribute("ran");
+		} else {
+			result = "no";
+		}
+		
+		return result;
 	}
 }

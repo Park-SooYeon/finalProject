@@ -35,7 +35,7 @@ public class HomeController {
 		System.out.println("들어와??");
 		System.out.println("왜 여러번 ㄷㄹ어오지?");
 		
-		List<RestDataVo> todayList = new ArrayList<>();
+		List<RestDataVo> todayList = null;
 		
 		List<RestDataVo> happyList = null;
 		List<RestDataVo> foodList = null;
@@ -57,6 +57,7 @@ public class HomeController {
 				if(c.getName().equals("place_serial")) {
 					String value = c.getValue();
 					String[] cookieList = value.split("\\|");
+					todayList = new ArrayList<>();
 					
 					System.out.println("v : " + value);
 					for(int j = 0 ; j < cookieList.length ; j++) {
@@ -138,7 +139,7 @@ public class HomeController {
 		}		
 		
 		// 관광지 검색
-		/*try {
+		try {
 	        StringBuilder urlBuilder = new StringBuilder("http://api.visitkorea.or.kr/openapi/service/rest/KorService/areaBasedList"); //지역기반 관광정보조회 URL
 	        urlBuilder.append("?" + URLEncoder.encode("ServiceKey","UTF-8") + "=%2FL4mnuLP6k1JiEz28Z86MlqufwpG49Q%2FhOqk53jtJr3H9fz%2FrNt5DoGHgSHGaprmYQOT6VXfCJcydUXrFUo%2FOA%3D%3D"); //Service Key
 	        urlBuilder.append("&" + URLEncoder.encode("MobileOS","UTF-8") + "=" + URLEncoder.encode("ETC", "UTF-8")); //IOS (아이폰), AND (안드로이드), WIN (원도우폰), ETC
@@ -309,7 +310,7 @@ public class HomeController {
 		} catch (Exception ex) {
 			System.out.println("rest api 오류");
 			ex.printStackTrace();
-		}*/
+		}
 		
 		model.addAttribute("todayList", todayList);
 		model.addAttribute("happyList", happyList);

@@ -4,6 +4,17 @@ import bean.Factory;
 import bean.membershipVo;
 import bean.partnerVo;
 
+import java.util.Properties;
+import java.util.Random;
+
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+
 import org.apache.ibatis.session.SqlSession;
 
 public class membershipDao {
@@ -51,17 +62,17 @@ public class membershipDao {
 	}
 	
 	
-	public String loginNickName(String member_id) {
+	public membershipVo loginUserInfo(String member_id) {
 		
 	  System.out.println("닉네임 찾긔 : " + member_id);
 		
-		String n="";
+	  membershipVo vo= null;
 		try {
-	            n = sqlSession.selectOne("ms.loginNickName", member_id);
+			vo = sqlSession.selectOne("ms.loginUserInfo", member_id);
 		}catch(Exception ex) {
 			ex.printStackTrace();
 		}finally {
-		return n;
+		return vo;
 		}
 	}
 	
@@ -249,6 +260,83 @@ public class membershipDao {
 		}
 	}
 	
+	// 회원 탈퇴 요청
+	public void deleteUser(membershipVo vo) {
+		try {
+			System.out.println("id : " + vo.getMember_id());
+			System.out.println("delete reason : " + vo.getDelete_reason());
+			int r = sqlSession.update("ms.deleteUser", vo);
+			if(r < 1) {
+				throw new Exception("회원 정보 탈퇴 요청 중 오류 발생");
+			}
+			
+			sqlSession.commit();
+		} catch(Exception ex) {
+			sqlSession.rollback();
+			System.out.println(ex.getMessage());
+			ex.printStackTrace();
+		}
+	}
 	
+	// 인증 메일 보내기
+	public String MailSend(String email, String ran) {
+		String msg = "";
+		
+		String host = "smtp.gmail.com";
+		String user = "liliumk0204@gmail.com";
+	    String password = "dbwls2002";
+
+
+		// SMTP 서버 정보 설정
+		Properties prop = new Properties();
+		prop.put("mail.smtp.host", host);
+		prop.put("mail.smtp.port", 465);
+		prop.put("mail.smtp.auth", "true");
+		prop.put("mail.smtp.ssl.enable", "true");
+		prop.put("mail.smtp.ssl.trust", "smtp.gmail.com");
+
+		Session session = Session.getDefaultInstance(prop, new javax.mail.Authenticator() {
+			protected PasswordAuthentication getPasswordAuthentication() {
+				return new PasswordAuthentication(user, password);
+			}
+		});
+
+		try {
+			MimeMessage message = new MimeMessage(session);
+			message.setFrom(new InternetAddress(user));
+			// 수신자 메일 주소 ( 예약할 때 넣은 이메일 주소입니다 )
+			message.addRecipient(Message.RecipientType.TO, new InternetAddress(email));
+
+			// 제목
+			message.setSubject("[Travelista] 이메일 인증 안내 메일입니다.");
+
+			// 내용
+			message.setContent(
+					"<h1>[이메일 인증 정보]</h1><br>"
+					+ "<div style=''></div>" 
+					+ " <p>인증 번호 : <b> " + ran + "</b></p><br>"
+					+ "<div style=''></div>", "text/html; charset=utf-8"
+					);
+
+			Transport.send(message); // 전송
+
+			System.out.println("message sent successfully...");
+			msg = "yes";
+
+		} catch (MessagingException e) {
+			e.printStackTrace();
+			msg = "no";
+
+		}
+		
+		return msg;
+	}
+
+	// 인증 번호 확인
+	public String chkNumber(String number) {
+		String result = "";
+		
+		return result;
+	}
 
 }

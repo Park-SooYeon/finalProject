@@ -316,9 +316,8 @@ filter.makeElement = function() {
 			+ `<div class="col-md-3 nopadding">`
 			+ `<img src="${item['firstimage']}" alt="no-image" class="img-fluid">`
 			+ `</div>`
-			+ `<div class="col-md-9 mt-sm-20 left-align-p" style="background-color:white;">`
-			+ `<span>${item['title']}</span></br>`
-			+ `<div style="width: 30px; float: left;">별점</div>`
+			+ `<div class="col-md-9 mt-sm-20 left-align-p pt-3" style="background-color:white;">`
+			+ `<h3>${item['title']}</h3>`
 			+ `<div class="rating" data-rate="${item['reputation'] === undefined? 0:item['reputation']}" style="float: left;">`
 			+ `<i class="fa fa-star"></i>`
 			+ `<i class="fa fa-star"></i>`
@@ -341,8 +340,7 @@ filter.makeElement = function() {
 			+ `</div>`
 			+ `<div class="col-md-12 mt-sm-20 left-align-p">`
 			+ `<div style="background-color: white; padding: 10px;">`
-			+ `<div style="height: 10px;">&nbsp</div>`
-			+ `<span>${item['title'] }</span>`
+			+ `<h5>${item['title'] }</h5>`
 			+ `<div class="rating" data-rate="${item['reputation'] === undefined? 0:item['reputation']}">`
 			+ `<i class="fa fa-star checked"></i>`
 			+ `<i class="fa fa-star"></i>`

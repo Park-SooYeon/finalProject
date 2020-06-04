@@ -97,7 +97,7 @@
 			<div class="col-lg-4">
 				<div class="row">
 					<div class="col">
-						<div class="single-menu relative">
+						<div class="single-menu relative" onclick="openInNewTab('rent/rent_index.jsp')">
 							<div class="thumb relative">
 								<div class="overlay overlay-bg"></div>
 							</div>
@@ -114,6 +114,8 @@
 </section>
 
 <!-- Swiper -->
+
+<c:if test='${!empty todayList }'>
 <section class="destinations-area pb-60">
 	<div class="container">
 		<div class="row d-flex justify-content-center">
@@ -167,6 +169,7 @@
 		</div>
 	</div>
 </section>
+</c:if>
 
 <!-- Swiper -->
 <section class="destinations-area pb-60">

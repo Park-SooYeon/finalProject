@@ -152,6 +152,50 @@
 		  <input type="checkbox" class="custom-control-input" name='local_type' id='check_incheon' onclick="filter.check(this)" value='2'/>
 		  <label class="custom-control-label" for="check_incheon">인천</label>
 	    </div>
+	    	    <div class="custom-control custom-checkbox col-md-12 col-4">
+		  <input type="checkbox" class="custom-control-input" name='local_type' id='check_daejeon' onclick="filter.check(this)" value='3'/>
+		  <label class="custom-control-label" for="check_daejeon">대전</label>
+	    </div>
+		<div class="custom-control custom-checkbox col-md-12 col-4">
+		  <input type="checkbox" class="custom-control-input" name='local_type' id='check_gwangju' onclick="filter.check(this)" value='5'/>
+		  <label class="custom-control-label" for="check_gwangju">광주</label>
+	    </div>
+	    <div class="custom-control custom-checkbox col-md-12 col-4">
+		  <input type="checkbox" class="custom-control-input" name='local_type' id='check_ulsan' onclick="filter.check(this)" value='7'/>
+		  <label class="custom-control-label" for="check_ulsan">울산</label>
+	    </div>
+	    <div class="custom-control custom-checkbox col-md-12 col-4">
+		  <input type="checkbox" class="custom-control-input" name='local_type' id='check_sejong' onclick="filter.check(this)" value='8'/>
+		  <label class="custom-control-label" for="check_sejong">세종특별자치시</label>
+	    </div>
+	    <div class="custom-control custom-checkbox col-md-12 col-4">
+		  <input type="checkbox" class="custom-control-input" name='local_type' id='check_gangwon' onclick="filter.check(this)" value='32'/>
+		  <label class="custom-control-label" for="check_gangwon">강원도</label>
+	    </div>
+	    <div class="custom-control custom-checkbox col-md-12 col-4">
+		  <input type="checkbox" class="custom-control-input" name='local_type' id='check_cb' onclick="filter.check(this)" value='3'/>
+		  <label class="custom-control-label" for="check_cb">충청북도</label>
+	    </div>
+	    	    <div class="custom-control custom-checkbox col-md-12 col-4">
+		  <input type="checkbox" class="custom-control-input" name='local_type' id='check_cn' onclick="filter.check(this)" value='34'/>
+		  <label class="custom-control-label" for="check_cn">충청남도</label>
+	    </div>
+		<div class="custom-control custom-checkbox col-md-12 col-4">
+		  <input type="checkbox" class="custom-control-input" name='local_type' id='check_gb' onclick="filter.check(this)" value='35'/>
+		  <label class="custom-control-label" for="check_gb">경상북도</label>
+	    </div>
+	    <div class="custom-control custom-checkbox col-md-12 col-4">
+		  <input type="checkbox" class="custom-control-input" name='local_type' id='check_gn' onclick="filter.check(this)" value='36'/>
+		  <label class="custom-control-label" for="check_gn">경상남도</label>
+	    </div>
+	    <div class="custom-control custom-checkbox col-md-12 col-4">
+		  <input type="checkbox" class="custom-control-input" name='local_type' id='check_jb' onclick="filter.check(this)" value='37'/>
+		  <label class="custom-control-label" for="check_jb">전라북도</label>
+	    </div>
+	    <div class="custom-control custom-checkbox col-md-12 col-4">
+		  <input type="checkbox" class="custom-control-input" name='local_type' id='check_jn' onclick="filter.check(this)" value='38'/>
+		  <label class="custom-control-label" for="check_jn">전라남도</label>
+	    </div>
 	    </div>
 	</div>
   </div>   

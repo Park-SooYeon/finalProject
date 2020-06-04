@@ -131,6 +131,7 @@
 <!-- End hot-deal Area -->
 
 <!-- Swiper -->
+<c:if test='${!empty todayList }'>
 <section class="destinations-area pb-60">
 	<div class="container">
 		<div class="row d-flex justify-content-center">
@@ -184,6 +185,7 @@
 		</div>
 	</div>
 </section>
+</c:if>
 
 <!-- Swiper -->
 <section class="destinations-area pb-60">
@@ -363,13 +365,16 @@
 				<h5 class="modal-title" id="exampleModalScrollableTitle">여행 목록에 추가</h5>
 			</div>
 			<div class="modal-body" id="modal-body">
-				<div class="folder p-2" id="folderInsert" onclick="main.insertFolder(this)">
+				<c:forEach var="i" items="${tripList }">
+					<div class='folder p-2' onclick='main.selectFolder(this, ${i.trip_list_serial})'><i class='fa fa-folder pr-2'></i>${i.trip_name }</div>
+				</c:forEach>
+				<div class="folder p-2" id="folderInsert" onclick="main.insertFolder()">
 					<i class="fa fa-plus pr-2"></i>여행 추가
 				</div>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
-				<button type="button" class="btn btn-primary" id="btnLikeInsert" onclick="main.makeHeart()">추가</button>
+				<button type="button" class="btn btn-secondary" data-dismiss="modal" id="btnClose">닫기</button>
+				<button type="button" class="btn btn-primary" id="btnLikeInsert">추가</button>
 			</div>
 		</div>
 	</div>
