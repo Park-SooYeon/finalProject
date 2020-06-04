@@ -5,6 +5,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -13,6 +14,7 @@ import com.google.gson.JsonParser;
 
 import bean.Factory;
 import bean.PlaceVo;
+import bean.ReviewVo;
 
 public class DetailViewDao {
 	SqlSession sqlSession;	
@@ -108,7 +110,49 @@ public class DetailViewDao {
 		return vo;
 		
 	}
-
+	
+	public List<ReviewVo> select(String code){ //Page p
+		List<ReviewVo> list = null;
+		try {
+			/*int totList = sqlSession.selectOne("review.count", p);
+			p.setTotListSize(totList);
+			p.pageCompute();*/
+			int review_cnt = sqlSession.selectOne("detailView.review_cnt", code);
+			list = sqlSession.selectList("detailView.review_select", code);
+			
+		}catch(Exception ex){
+			ex.printStackTrace();
+		}
+		
+		return list;		
+	}
+	
+	public int review_cnt(String code) {
+		int review_cnt = 0;
+		try {			
+			review_cnt = sqlSession.selectOne("detailView.review_cnt", code);
+			
+		}catch(Exception ex){
+			ex.printStackTrace();
+		}
+		
+		return review_cnt;
+	}
+	
+	/*
+	public String report(String report_id) {
+		String msg = null;
+		try {			
+			msg = sqlSession.selectOne("detailView.report", report_id);
+			
+		}catch(Exception ex){
+			ex.printStackTrace();
+		}
+		
+		return msg;
+		
+	}
+*/
 /*
 public PlaceVo view2(String code) {
 	PlaceVo vo2 = new PlaceVo();

@@ -1,5 +1,7 @@
 package controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import bean.PlaceVo;
+import bean.ReviewVo;
 import dao.DetailViewDao;
 
 @Controller
@@ -27,16 +30,18 @@ public class DetailViewController {
 		System.out.println("detailView 컨트롤 들어옴");
 		ModelAndView mv = new ModelAndView();		
 				
-		PlaceVo vo = dao.view(code); 
-		//PlaceVo vo2 = dao.view2(code);
+		PlaceVo vo = dao.view(code);
+		int review_cnt = dao.review_cnt(code);
+		List<ReviewVo> list = dao.select(code);
 		
+		System.out.println("list 확인 : " + list);
+		
+		mv.addObject("review_cnt", review_cnt);
 		mv.addObject("vo", vo);		
-		//mv.addObject("vo2", vo2);
+		mv.addObject("list", list);
 		mv.setViewName("detailView");
 		return mv;
-	}
-	
-	
+	}	
 	
 	
 	/*
@@ -228,23 +233,29 @@ public class DetailViewController {
 		return mv;
 	}
 	
+	*/
+	
+	/*
 	//리뷰 신고하기
 	@RequestMapping(value = "report.dv", method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView report(HttpServletRequest req,
 							   @RequestParam(value = "report_code[]") List<String> report_code, 
 							   @RequestParam(value="report_content") String report_content) {
+		System.out.println("report 들어옴");
+		
 		ModelAndView mv = new ModelAndView();
 		HttpSession session = req.getSession();
 		String report_id = (String)session.getAttribute("member_id");
 		
+		dao.report(report_id);
 		
-		
+		System.out.println("받아온 값 확인 : " + report_code + report_content + report_id);
 		mv.addObject("report_id", report_id);
 		mv.addObject("report_code", report_code);
 		mv.addObject("report_content", report_content);
-		mv.setViewName("report");
+		//mv.setViewName("report");
 		
 		return mv;
-	}*/
-
+	}
+*/
 }

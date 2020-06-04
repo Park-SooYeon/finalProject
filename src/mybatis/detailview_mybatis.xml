@@ -20,6 +20,7 @@
 		group by p.PLACE_SERIAL, p.PARTNER_SERIAL, p.PLACE_CODE, p.PLACE_NAME, p.PLACE_LOCATION, 
 				 p.LATITUDE, p.LONGITUDE, p.GRADE, p.STATE, p.BREAKFAST, p.WI_FI, p.PARKING, p.LOCAL_CODE
 	</select>
+	
 	<select id='photoView' parameterType='Integer' resultType='bean.PlaceVo'>
 		select
 		PLACE_SERIAL, PLACE_CODE, LOCAL_CODE, PLACE_NAME photo_name
@@ -29,6 +30,65 @@
 		
 		where
 		place_serial = ${_parameter} 
+	</select>
+	
+	<select id='review_select' parameterType="Integer" resultType="bean.ReviewVo">
+		select
+		r.REVIEW_SERIAL,
+		r.MEMBER_ID,
+		r.PLACE_SERIAL,		
+		r.REPUTATION,
+		r.REVIEW_TITLE,
+		r.REVIEW_CONTENT,
+		r.VISIT_DATE,
+		r.REVIEW_DATE,	
+	        
+		p.REVIEW_SERIAL,
+		p.SYSFILE,
+	        
+	    l.REVIEW_SERIAL,
+		count(l.LIKE_ID) LIKE_ID,
+	        
+		m.MEMBER_ID,
+		m.NICKNAME,
+		m.MEMBER_PHOTO
+				
+		from review r
+	          left outer join review_photo p
+	            on r.REVIEW_SERIAL = p.REVIEW_SERIAL
+	              left outer join review_like l 
+	                on l.REVIEW_SERIAL = r.REVIEW_SERIAL
+	                  left outer join membership m
+	                    on m.MEMBER_ID = r.member_id
+	                      where	r.PLACE_SERIAL=${_parameter}
+	                      
+	                      group by r.REVIEW_SERIAL,
+								r.MEMBER_ID,
+								r.PLACE_SERIAL,		
+								r.REPUTATION,
+								r.REVIEW_TITLE,
+								r.REVIEW_CONTENT,
+								r.VISIT_DATE,
+								r.REVIEW_DATE,	
+						        
+								p.REVIEW_SERIAL,
+								p.SYSFILE,
+						        
+						        l.REVIEW_SERIAL,
+								l.LIKE_ID,
+						        
+								m.MEMBER_ID,
+								m.NICKNAME,
+								m.MEMBER_PHOTO		
+	</select>
+	
+	<select id='review_cnt' parameterType="Integer" resultType="Integer">
+	select
+	count(review_serial) review_cnt
+	from
+	review
+	where
+	place_serial=${_parameter}
 	</select>
 
 </mapper>

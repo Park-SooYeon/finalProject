@@ -10,7 +10,6 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.web.multipart.MultipartFile;
 
 import bean.Factory;
-import bean.Page;
 import bean.ReviewVo;
 import review.ReviewAttVo;
 import review.ReviewFileUpload;
@@ -20,23 +19,8 @@ public class ReviewDao {
 	
 	public ReviewDao() {
 		sqlSession = Factory.getFactory().openSession();
-	}
-	
-	public List<ReviewVo> select(Page p){
-		List<ReviewVo> list = null;
-		try {
-			int totList = sqlSession.selectOne("review.count", p);
-			p.setTotListSize(totList);
-			p.pageCompute();
-			list = sqlSession.selectList("review.select", p);
-			
-		}catch(Exception ex){
-			ex.printStackTrace();			
-		}
-		
-		return list;
-		
-	}
+	}	
+
 	
 	public String insert(ReviewVo vo, String uploadPath) {
 		String msg = "정상적으로 입력되었습니다.";	

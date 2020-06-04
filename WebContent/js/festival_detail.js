@@ -72,42 +72,33 @@ function init() {
       swiper: galleryThumbs,
     },
   });
-
-  
-  //신고하기 버튼
-  $(".testBtn").click(function (e) {
-    e.preventDefault();
-    $("#testModal").modal("show");
-  });
-  
-  //접수하기 버튼
-  $(".success").click(function (e) {
-    alert("성공적으로 접수되었습니다.");
-  });
-  
-  //접수하기버튼 아이디
-  $("#asd").click(function () {	  
-	  report();	  
-  });
-
 }
+
+/*
+//신고하기
 function report(){
+	alert("report 들어왔늬??")
 	//name이 같은 체크박스의 value값 받아오기
 	var report_code = [];
 	$("input[name='jb-radio']:checked").each(function(i){
 		report_code.push($(this).val());
+		alert("체크번호 확인 : " + report_code);
 	});
 
 	//신고내용 가저오기
-	var report_content = document.getElementByName('review_accuse').value();
+	var report_content = document.getElementById('review_accuse').value;
+	
+	alert("신고내용 들어오는지 확인 : " + report_content);
 	
 	//사용자 ID(문자열)와 체크박스 값들(배열)을  name/value 형태로 담는다.
-	var allDate = { "report_code": report_code, "report_content": report_content };
+	var allDate = {"report_code":report_code, "report_content":report_content};
 	
-	$.ajax({
+	alert("allDate 확인 : " + allDate);
+	
+	$.ajax({		
 		url:"report.dv", //컨트롤 어노테이션의 주소값
 		type:'GET',
-		data:allData,
+		data: {"report_code":report_code, "report_content":report_content},
 		success:function(data){
 			alert("신고가 정상적으로 접수되었습니다.");
 			window.opener.location.reload();
@@ -119,7 +110,7 @@ function report(){
 		}
 		
 	});
-	
 }
+*/
 
 init();

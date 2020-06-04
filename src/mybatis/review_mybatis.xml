@@ -76,51 +76,11 @@
  			values(SEQ_REVIEW_PHOTO.nextval, ${review_serial}, #{photo_name}, #{sysFile})
 	</insert>	
 	
-	<!-- <select id='review_select' parameterType="bean.RivewVo" resultType="bean.ReviewVo">
-		select
-		r.REVIEW_SERIAL,
-		r.MEMBER_ID,
-		r.PLACE_SERIAL,		
-		r.REPUTATION,
-		r.REVIEW_TITLE,
-		r.REVIEW_CONTENT,
-		r.VISIT_DATE,
-		r.REVIEW_DATE,		
-		
-		m.MEMBER_ID,
-		m.NICKNAME,
-		m.MEMBER_PHOTO,
-		
-		l.REVIEW_SERIAL,
-		l.LIKE_ID,
-				
-		from
-		review r left outer join
-		membership m,
-		review_like l
-		
-		
-		where
-		r.PLACE_SERIAL=${place_serial}
-		and
-		r.REVIEW_SERIAL=l.REVIEW_SERIAL		
-		and
-		r.MEMBER_ID=m.MEMBER_ID
-		
-	</select>
-	
-	<select id='review_photo_select' parameterType='bean.ReviewVo' resultType="bean.ReviewVo">
-	select
-		PHOTO_SERIAL,
-		REVIEW_SERIAL,
-		SYSFILE
-		
-		from		
-		review_photo
-		
-		where
-		review_SERIAL=${place_serial}
-	</select> -->
-	
+	<!-- <select id='count' parameterType="bean.Page"
+	                   resultType="Integer">
+		select count(serial) cnt from board
+		where  subject like '%${findStr}%'  
+		or     content like '%${findStr}%'   
+	</select> -->		
 
 </mapper>
