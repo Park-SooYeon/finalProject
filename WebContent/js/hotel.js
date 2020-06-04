@@ -62,26 +62,49 @@ let goNextReserv = function(){
 
 hotel.goReserve = function(){
 
-
-	frm_ht.start_date=$('#start_date').val();
-	frm_ht.end_date=$('#end_date').val();
-	
-	alert($('#start_date').val());
-	let param = $('#frm_ht').serialize();
-
+    let rooms_serial=$('#rooms_serial').val();
+    let place_serial =$('#place_serial').val();
+    
+	let start_date=$('#start_date').val();
+	let end_date=$('#end_date').val();
+    let totPrice = $('#total_price').val();
+    let member_name = $('#member_name').val();
+    let email = $('#email').val();
+    let betweenday =$("#between_day").val();
+    let place_name=$("#place_name").val();
+    let place_location=$("#place_location").val();
+    
+	console.log(totPrice+member_name+email);
 	
 	$.ajax({
 			
 			url : "hotelReserv.ht",
 			type :"post",
-			data : param,
-		
-			contentType: false,
-			processData : false,
-			error : function(xhr,status,error){
-				console.log(error);
+			data : {
+				"rooms_serial":rooms_serial,
+				"place_serial":place_serial,
+				"start_date":start_date,
+				"end_date" :end_date,
+				"totPrice" :totPrice,
+				"member_name":member_name ,
+				"email" : email,
+			     "betweenday":betweenday,
+			     "place_name":place_name,
+			     "place_location":place_location
 			},
-			success : function(data,xhr,status){
+		
+			
+			success : function(data){
+				if($.trim(data) == "no"){
+				     alert("예약 중 오류가 발생했습니다.");
+				
+					
+				}else{
+					 alert("예약이 정상적으로 완료되어 이메일로 예약 내역이 발송됐습니다.ㄴ");
+			
+					
+					
+				}
 				
 			}
 			
