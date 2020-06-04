@@ -12,11 +12,13 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.TypeFactory;
@@ -24,11 +26,14 @@ import com.fasterxml.jackson.databind.type.TypeFactory;
 import bean.PlaceVo;
 import bean.TripListVo;
 import dao.SubMainDao;
+import dao.membershipDao;
 import vo.ReputationVo;
 import vo.RestDataVo;
 
 @Controller
 public class HomeController {
+	@Autowired
+	SubMainDao dao;
 	
 	@RequestMapping(value = "/index.jsp", method = {RequestMethod.GET, RequestMethod.POST} )
 	public String home(HttpServletRequest req, Model model) {
@@ -41,9 +46,7 @@ public class HomeController {
 		List<RestDataVo> foodList = null;
 		List<RestDataVo> festivalList = null;
 		List<TripListVo> tripList = null;
-		List<Integer> likeList = null;
-		
-		SubMainDao dao = new SubMainDao();
+		List<Integer> likeList = null;	
 		
 		// 쿠키에서 place_serial 값 가져오기
 		Cookie[] cookies = req.getCookies();

@@ -20,13 +20,11 @@ main.like = function (ele, place_serial) {
     heart.setAttribute("data-toggle", "modal");
     heart.setAttribute("data-target", "#exampleModalScrollable");
   } else if (heart.classList.contains("fa-heart")) {
-	  alert(place_serial)
 	$.ajax({
 		url : "deleteLikeTrip.sb",
 		data : {"place_serial" : place_serial},
 		method : "post",
 		success : function() {
-			alert("성공!");
 			// 좋아요 해제
 		    heart.classList.remove("fa-heart");
 		    heart.classList.add("fa-heart-o");
@@ -83,8 +81,6 @@ main.insertFolder = function () {
 $('#btnLikeInsert').on("click", function() {
 	let check_trip = document.getElementsByClassName("folderSelect");
 	if(check_trip.length == 1) { // 체크된 여행 폴더가 있으면 여행지 저장
-		alert(now_trip_serial);
-		alert(now_place_serial);
 		$.ajax({
 			url : "insertLikeTrip.sb",
 			method : "post",
@@ -96,13 +92,13 @@ $('#btnLikeInsert').on("click", function() {
 				// 추가버튼 클릭 후, 여행 정보가 저장되면 좋아요가 선택됨
 				nowEle.classList.remove("fa-heart-o");
 				nowEle.classList.add("fa-heart");
-				alert("여행지 저장");
+				swal("여행 폴더에 저장되었습니다.", "", "success");
 				main.removeSelect();
 				$("#exampleModalScrollable").modal("hide");
 			}
 		});	
 	} else { // 없으면 선택된 여행지가 없다고 알려줌
-		alert("저장할 여행 폴더를 선택해주세요.");
+		swal("저장할 여행 폴더를 선택해주세요.", "", "info");
 	}
 });
 
