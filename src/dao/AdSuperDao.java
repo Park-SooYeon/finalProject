@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import bean.Factory;
 import bean.Page;
 import bean.ReviewVo;
+import bean.Review_PhotoVo;
 import bean.membershipVo;
 import bean.partnerVo;
 
@@ -217,14 +218,23 @@ public class AdSuperDao {
 				//리뷰상세보기 -조회
 				public ReviewVo review_view(int review_serial) {
 					System.out.println("dao_review_serial"+review_serial);
-					ReviewVo vo = null;
+					ReviewVo vo = new ReviewVo();
 					try {
-						vo = sqlSession.selectOne("admin.review_view",review_serial);
+					    vo = sqlSession.selectOne("admin.review_view",review_serial);
+						List<Review_PhotoVo> list2 = sqlSession.selectList("admin.review_att", review_serial);
+						
+							vo.setR_photo(list2);
+							for(Review_PhotoVo vo2 : list2) {
+								System.out.println("ㅗㅍ포토포토투스트링_"+vo.toString());
+							}
+						System.out.println(vo.toString()+"디에이오 상세ㅏㅅㅇ세");
+						
 					}catch(Exception ex) {
 						ex.printStackTrace();
 					}finally {
 						return vo;
 					}
+					
 				}
 						
 				

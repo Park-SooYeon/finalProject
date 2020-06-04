@@ -43,9 +43,11 @@
 	      <result column="review_content" property="review_content"/>
 	      <result column="review_serial" property="review_serial"/>
 	      <result column="review_type" property="review_type"/>
-	      <collection property="r_photo"  javaType="bean.Review_PhotoVo">
+	      <collection property="r_photo"  ofType="bean.Review_PhotoVo">
 	         <result column="photo_name" property="photo_name"/>
 	         <result column="place_code" property="place_code"/>
+	         <result column="photo_serial" property="photo_serial"/>
+	         <result column="review_serial" property="review_serial"/>
 	      </collection>
 	      <collection property="report"  javaType="bean.ReportVo">
 	         <result column="report_serial" property="report_serial"/>
@@ -96,7 +98,7 @@
     
        <!--파트너 관리 조회 --> 
     <select id='partner_M' resultMap="a_partner">
-   select M.member_id, M.email, P.partner_serial,p.business_number,p.partner_name,p.partner_phone,p.state,p.partner_location
+   select M.member_id, M.member_photo, M.email, P.partner_serial,p.business_number,p.partner_name,p.partner_phone,p.state,p.partner_location
 	from membership M  join partner P 
 	on M.member_id= P.member_id
 	where P.state = 8 or P.state = 9 <!-- 파트너관리조회할때는 8 또는 9로  -->
@@ -104,7 +106,7 @@
     	
     	<!-- 파트너 view  join -->
     <select id="partner_view" parameterType="String" resultMap="a_partner">
-   	select M.member_id, M.email, P.partner_serial,P.business_number
+   	select M.member_id, M.email,M.member_photo,P.partner_serial,P.business_number
    		   ,P.partner_name,P.partner_phone,P.state,P.partner_location
 	from membership M  join partner P 
 	on M.member_id= P.member_id
@@ -177,18 +179,29 @@
       
    </select> 
     
-    <select id="review_all" parameterType="bean.Page" resultMap="review_Vo">
+    <!-- <select id="review_all" parameterType="bean.Page" resultMap="review_Vo">
         select * from(
          select rownum rno, M.* from(
-            select member_id,review_date ,review_serial, review_content , review_title, review_type
+            select member_id, review_date ,review_serial, review_content , review_title, review_type
             from  review
             where (review_serial like '%${findStr}%'
             or member_id like '%${findStr}%')
             )M
          ) 
       where rno BETWEEN ${startNo} and ${endNo}
-    </select>
-    
+    </select> -->
+    <select id="review_all" parameterType="bean.Page" resultMap="review_Vo">
+      select * from(
+         select rownum rno, M.* from(
+            select R.member_id,R.review_date , R.review_content ,R.review_serial, R.review_title,R.review_type , M.member_photo
+            from  review R, membership M
+            where R.member_id = M.member_id
+            and (R.review_serial like '%${findStr}%'
+            or R.member_id like '%${findStr}%')
+            )M
+         ) 
+      where rno BETWEEN ${startNo} and ${endNo}
+     </select>
    <!--  <select id="review_all" parameterType="bean.Page" resultMap="review_Vo">
         select * from(
          select rownum rno, M.* from(
@@ -206,17 +219,17 @@
  	<!-- 리뷰상세보기 -->
  		
  		<select id="review_view" parameterType="Integer" resultMap="r_view">
-		  select R.member_id, R.review_date, R.review_content, R.review_title,
-	               P.photo_serial , P.sysFile, P.review_serial,
-	               T.report_serial, T.report_code, T.report_content, T.report_date,T.report_id,T.review_serial         
-	      from  review R , review_photo P, report T 
-	      where R.review_serial = P.review_serial
-	      and   R.review_serial = T.review_serial
-	      and  R.review_serial = ${_parameter}
-	      
+		select r.member_id, r.review_content,r.review_title, p.report_content, r.review_serial,report_serial
+		from review r left outer join report p 
+		on r.review_serial = p.review_serial
+	    where r.review_serial = ${_parameter}
 	    </select>
- 	  
- 	  
       
+      	<select id="review_att" parameterType="Integer" resultType="bean.Review_PhotoVo">
+		 select p.sysfile 
+		 from review r join review_photo p 
+		 on r.review_serial = p.review_serial 
+		 where r.review_serial = ${_parameter}
+	    </select>
       
 </mapper>

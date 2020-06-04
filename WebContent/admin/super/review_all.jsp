@@ -52,7 +52,7 @@
                     <!-- 데이터넣깅... -->
                     <c:forEach var='i' items='${list }'>
                     <a href="#"  id='review_view' class="tickets-card row" data-toggle="modal" data-target="#modalReviewDt"
-                    	onclick="review_view(${i.review_serial})">
+                    	onclick="review_view('${i.review_serial}', '${i.member_photo }')">
 
                         
                         <div class="tickets-details col-md-8">
@@ -66,24 +66,22 @@
                             </div>
                         </div>
                         <div class="ticket-float col-md-2 col-6">
-                            <img class="img-xs rounded-circle" src="../../assets/images/faces/face10.jpg" alt="profile image">
+                            <img class="img-xs rounded-circle" src="../../images/myPage/${ empty i.member_photo? 'queen.png' : i.member_photo }"  alt="profile image">
                             <span class="text-muted">${i.member_id }</span>
                         </div>
                         <div class="ticket-float col-md-2 col-6">
 	                          
-	                            <c:if test='${i.review_type == 0 }'>
-	                            	<i class="category-icon mdi mdi-theater"></i><span  class="text-muted" >즐길거리(문화시설)</span>
+	                            
+                        		<c:if test='${i.review_type == 12 }'>
+	                            	<i class="category-icon mdi  mdi-camera"></i><span class="text-muted">즐길거리</span>
 	                            </c:if>
-                        		<c:if test='${i.review_type == 1 }'>
-	                            	<i class="category-icon mdi  mdi-camera"></i><span class="text-muted">즐길거리(관광지)</span>
-	                            </c:if>
-	                            <c:if test='${i.review_type == 2 }'>
+	                            <c:if test='${i.review_type == 39 }'>
 	                            	<i class="category-icon mdi mdi-food"></i><span class="text-muted">음식점</span>
 	                            </c:if>
-	                            <c:if test='${i.review_type == 3 }'>
+	                            <c:if test='${i.review_type == 15 }'>
 	                            	<i class="category-icon mdi  mdi-human-male-female"></i><span class="text-muted">축제</span>
 	                            </c:if>
-	                            <c:if test='${i.review_type == 4 }'>
+	                            <c:if test='${i.review_type == 32 }'>
 	                            	<i class="category-icon mdi mdi-hotel"></i><span class="text-muted">호텔</span>
 	                            </c:if>
                         </div>
@@ -131,7 +129,7 @@
                 </div>
                 <div class="modal-body pt-2">
                     <div class="wrapper d-flex align-items-center py-2 mb-3">
-                        <img class="img-sm rounded-circle" src="../../assets/images/faces/face5.jpg" alt="profile">
+                        <img class="img-sm rounded-circle member_photo" alt="profile">
                         <div class="wrapper ml-3">
                             <h6 class="ml-1 mb-1" id='m_id'></h6>
                         </div>
@@ -154,28 +152,32 @@
                         <div class="col-12">
                             <div class="form-group">
                                 <label class="">사진</label>
-                                <div id="lightgallery" class="row lightGallery">
+                                <div id="lightgallery" class="row lightGallery ">
                                     <a href="../../assets/images/samples/1280x768/1.jpg" class="image-tile">
-                                        <img src="../../assets/images/samples/300x300/1.jpg" alt="image small">
+                                        <img class='sysfile1' alt="image small">
                                     </a>
                                     <a href="../../assets/images/samples/1280x768/2.jpg" class="image-tile">
-                                        <img src="../../assets/images/samples/300x300/2.jpg" alt="image small">
+                                        <img class='sysfile2'  alt="image small">
                                     </a>
                                     <a href="../../assets/images/samples/1280x768/3.jpg" class="image-tile">
-                                        <img src="../../assets/images/samples/300x300/3.jpg" alt="image small">
+                                        <img class='sysfile3' alt="image small">
                                     </a>
                                     <a href="../../assets/images/samples/1280x768/4.jpg" class="image-tile">
-                                        <img src="../../assets/images/samples/300x300/4.jpg" alt="image small">
+                                        <img class='sysfile4' alt="image small">
                                     </a>
                                 </div>
                             </div>
                         </div>
                         <div class="col-12">
                             <div class="wrapper d-flex align-items-center py-2">
-                                <label class="report_content"></label>
+                                <label class="">신고</label>
                                 <small id="reportTot" class="ml-auto">총 20건</small>
                             </div>
+                            <div class="wrapper d-flex align-items-center py-2">
+                                <label class="report_id">신고자</label>
+                            </div>
                             <div class="wrapper">
+                            		
                                 <div class="d-flex align-items-center py-2 border-bottom">
                                     <p class="mb-0 "><a href="#" class="font-weight-bold" data-toggle="modal" data-target="#modalRptView">욕설/인신공격</a></p>
                                     <p class="badge badge-pill badge-danger ml-auto mb-0">5</p>
@@ -205,7 +207,7 @@
 
 
     <!-- 신고내역 상세보기 modal -->
-    <div class="modal fade" id="modalRptView" tabindex="-1" role="dialog" aria-labelledby="modalRptView" aria-hidden="true">
+<!--     <div class="modal fade" id="modalRptView" tabindex="-1" role="dialog" aria-labelledby="modalRptView" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header border-0 pb-2">
@@ -250,7 +252,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
  </div>
  
 

@@ -23,8 +23,7 @@
                         <a class="nav-link" id="pending-tab" data-toggle="tab" href="#pending-tickets" role="tab" aria-controls="pending-tickets" aria-selected="false">신고된 리뷰 <div class="badge">50 </div></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="onhold-tab" data-toggle="tab" href="#onhold-tickets" role="tab" aria-controls="onhold-tickets" aria-selected="true">전체 리뷰 <div class="badge">29 </div>
-                                </a>
+                        <a class="nav-link" id="onhold-tab" data-toggle="tab" href="#onhold-tickets" role="tab" aria-controls="onhold-tickets" aria-selected="true">전체 리뷰 <div class="badge">29 </div></a>
                     </li>
                 </ul>
             </div>

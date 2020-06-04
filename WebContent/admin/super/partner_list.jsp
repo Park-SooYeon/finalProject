@@ -35,7 +35,7 @@
                                        	 <td>${status.count }</td>
                                            <td>
                                                <div class="d-flex align-items-center">
-                                                   <img class="img-xs rounded-circle" src="../../assets/images/faces/face2.jpg" alt="profile image">
+                                                   <img class="img-xs rounded-circle" src="../../images/myPage/${ empty i.vo.member_photo? 'queen.png' : i.vo.member_photo }" alt="profile image">
                                                    <div class="wrapper pl-2">
                                                        <p class="mb-0 text-gray">${i.member_id }</p>
                                                    </div>

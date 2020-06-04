@@ -22,7 +22,7 @@
                             <div class="">
                                 <div class="d-flex justify-content-center justify-content-md-between mx-4 mx-xl-5 px-xl-5 flex-wrap">
                                     <div class="profile-info d-flex align-items-center justify-content-center flex-wrap mr-sm-3">
-                                        <img class="rounded-circle img-lg mb-3 mb-sm-0" src="../../assets/images/faces/profile/profile.jpg" alt="profile image">
+                                        <img class="rounded-circle img-lg mb-3 mb-sm-0" src="../../images/myPage/${ empty pv.vo.member_photo? 'queen.png' : i.vo.member_photo }" alt="profile image">
                                         <div class="wrapper pl-sm-4">
                                             <p class="profile-user-name text-center text-sm-left">${pv.member_id }</p>
                                             <div class="wrapper d-flex flex-wrap">

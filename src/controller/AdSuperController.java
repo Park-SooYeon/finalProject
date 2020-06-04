@@ -202,9 +202,9 @@ public class AdSuperController {
 			
 			mv.addObject("p",p);
 			mv.addObject("list", list);
-//			for(int i=0; i<list.size();  i++) {
-//				System.out.println(list.get(i));
-//			}
+			for(int i=0; i<list.size();  i++) {
+				System.out.println(list.get(i));
+			}
 			mv.setViewName("review_all");
 			return mv;
 		}
@@ -214,8 +214,10 @@ public class AdSuperController {
 		@ResponseBody   //모델뷰 말고 데이터 보내는법..
 		public String review_view(HttpServletRequest req) {
 			String result = "dqwjdhqk";
-			System.out.println("리뷰시리얼"+req.getParameter("serial"));
+			//System.out.println("리뷰시리얼"+req.getParameter("serial"));
 			ReviewVo vo = dao.review_view(Integer.parseInt(req.getParameter("serial")));
+			//System.out.println("컨트롤렁"+vo.toString());
+			
 			try {
 				ObjectMapper mapper = new ObjectMapper();
 				result = mapper.writeValueAsString(vo);
