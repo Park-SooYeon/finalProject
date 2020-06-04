@@ -327,8 +327,14 @@ public class MyPageController {
 		int serial = Integer.parseInt(req.getParameter("se"));
 		String member_id = (String)session.getAttribute("member_id");
 
+		List<PlaceVo> list = dao.selectOneLike(serial, member_id);
 		TripListVo vo = dao.viewTrip(serial,member_id);
 		
+		for(PlaceVo v : list) {
+			System.out.println(v.toString());
+		}
+		
+		mv.addObject("list", list);
 		mv.addObject("vo", vo);
 		mv.setViewName("edit_trip");
 		return mv;
@@ -364,19 +370,15 @@ public class MyPageController {
 		@RequestMapping( value = "selectAll.mp", method = {RequestMethod.GET}, produces = "text/html;charset=utf8")
 		public String selectPlaceAll(@RequestParam String findStr, HttpServletRequest req, HttpSession session) {
 
-			System.out.println("들어옴");
 			// serial을 get타입으로 넘겨받음
 			String member_id = (String)session.getAttribute("member_id");
 			
-			System.out.println(findStr);
 			List<PlaceVo> list = dao.selectPlaceAll(findStr);
-			System.out.println(list.toString());
 			String jsonVo = "";
 			
 			try {
 			ObjectMapper mapper = new ObjectMapper();
 			jsonVo = mapper.writeValueAsString(list);
-			System.out.println(jsonVo);
 			}catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -389,7 +391,6 @@ public class MyPageController {
 		@ResponseBody
 		@RequestMapping( value = "insertPlan.mp", consumes=MediaType.APPLICATION_JSON_VALUE, method = {RequestMethod.GET, RequestMethod.POST},produces = "text/html;charset=utf8")
 		public String insertPlan(@RequestBody String json) {
-			System.out.println(json);
 			String msg = "";
 			try {
 				ObjectMapper mapper = new ObjectMapper();
@@ -398,7 +399,12 @@ public class MyPageController {
 				for(PlanVo v : list) {
 					System.out.println(v.toString());
 				}
+				if(list.size()>0){
+					System.out.println("리스트가 없다닝");
+					msg = dao.modifyDate(list.get(0));
+				}
 				msg = dao.insertPlan(list);
+				System.out.println("메시지"+msg);
 			}catch(Exception ex) {
 				ex.printStackTrace();
 			}

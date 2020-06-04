@@ -46,7 +46,12 @@
                       <div class="item-list-wrapper" style="width: 92%;">
                         <div class="travel-item-list">
                           <span class="travel-box my-2" style="width: 250px;">
+                            <c:if test="${i.p.place_code  eq 1}">
+                            <img src="./images/hotel/${i.p.photo_name }" />
+                            </c:if>
+                            <c:if test="${i.p.place_code eq 2 }">
                             <img src="${i.p.photo_name }" />
+                            </c:if>
                             <div class="m-2">
                               <h5>${i.p.place_name }</h5>
                               <div>

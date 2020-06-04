@@ -7,12 +7,19 @@ public class PlanVo {
 	int place_serial;
 	int trip_order;
 	String trip_day;
+	String end_date;
 	
 	PlaceVo p;
 	
 	
 	
 	
+	public String getEnd_date() {
+		return end_date;
+	}
+	public void setEnd_date(String end_date) {
+		this.end_date = end_date;
+	}
 	public PlaceVo getP() {
 		return p;
 	}
