@@ -164,6 +164,13 @@
 
         <!--//(s)스케쥴 디테일 리스트-->
         <div id="schedule-here" class="connectedSortable ui-sortable">
+        
+        <div id="temp-div" class="text-center pt-5">
+        <h4 style="color:#707070;">여행일정을 추가해주세요!</h4>
+        <img style="opacity:0.6; width:70%;"src="./images/myPage/car.png"/>
+        </div>
+        
+        
           <!-- 
           <div
             class="day-spot-item"
@@ -223,7 +230,6 @@
 
           </div>
           
-          -->
         </div>
 
         <div class="trip-detail-added">
@@ -331,18 +337,6 @@
 				<li data-value="2" class="option">여수</li>
 </ul></div>
 			</div>
-			 
-			 <!-- 
-			 <select id="chooseCity">
-			 	<option value="0">도시선택</option>
-			 	<option value="1">서울</option>
-			 	<option value="3">제주도</option>
-			 	<option value="6">부산</option>
-			 	<option value="4">대구</option>
-			 	<option value="31">경기도</option>
-			 	<option value="2">인천</option>
-			 </select>
-			  -->
           <button type="button" id="on-city-close-btn">
             <i class="fas fa-chevron-left"></i>
           </button>

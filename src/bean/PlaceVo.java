@@ -13,8 +13,8 @@ public class PlaceVo {
 	String place_type;
 	String place_name;
 	String place_location;
-	int latitude;
-	int longitude;
+	double latitude;
+	double longitude;
 	int grade;
 	int state;
 	int breakfast;
@@ -147,16 +147,16 @@ public class PlaceVo {
 	public void setPlace_location(String place_location) {
 		this.place_location = place_location;
 	}
-	public int getLatitude() {
+	public double getLatitude() {
 		return latitude;
 	}
-	public void setLatitude(int latitude) {
+	public void setLatitude(double latitude) {
 		this.latitude = latitude;
 	}
-	public int getLongitude() {
+	public double getLongitude() {
 		return longitude;
 	}
-	public void setLongitude(int longitude) {
+	public void setLongitude(double longitude) {
 		this.longitude = longitude;
 	}
 	public int getGrade() {
