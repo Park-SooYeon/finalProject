@@ -45,7 +45,7 @@
                                            </td>
                                            <td>
                                                <button class="btn btn-outline-primary" data-toggle="modal" data-target="#ModalUserOut"
-                                               onclick="member_out_view('${i.member_name }','${i.phone }','${i.email }','${i.state }','<fmt:formatDate value="${i.mDate}" pattern="yyyy-MM-dd"/>','${i.member_id }','${i.member_photo }')"
+                                               onclick="member_out_view('${i.member_name }','${i.phone }','${i.email }','${i.state }','<fmt:formatDate value="${i.mDate}" pattern="yyyy-MM-dd"/>','${i.member_id }','${i.member_photo }','${i.delete_reason }')"
                                                >View</button>
                                            </td>
                                        </tr>
@@ -119,6 +119,12 @@
                                <div class="form-group">
                                    <label class="">사용자 권한</label>
                                    	<p><label class="badge font-weight-bold badge-inverse-info">User</label></p>
+                               </div> 
+                           </div>
+                           <div class="col-md-6">
+                               <div class="form-group">
+                                   <label class="">탈퇴 사유</label>
+                                   	<p><label class='delete_reason'></label></p>
                                </div> 
                            </div>
                        </div>

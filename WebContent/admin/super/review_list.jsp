@@ -16,14 +16,9 @@
             </div>
             <div class="nav-scroller">
                 <ul class="nav nav-tabs tickets-tab-switch mb-5" role="tablist">
-                    <li class="nav-item">
-                        <a class="nav-link active" id="open-tab" data-toggle="tab" href="#open-tickets" role="tab" aria-controls="open-tickets" aria-selected="false">미확인 신고 리뷰<div class="badge">13</div></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="pending-tab" data-toggle="tab" href="#pending-tickets" role="tab" aria-controls="pending-tickets" aria-selected="false">신고된 리뷰 <div class="badge">50 </div></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="onhold-tab" data-toggle="tab" href="#onhold-tickets" role="tab" aria-controls="onhold-tickets" aria-selected="true">전체 리뷰 <div class="badge">29 </div></a>
+                    
+                    <li class="nav-item" style='width:100% !important'>
+                        <a class="nav-link" id="onhold-tab" data-toggle="tab" href="#onhold-tickets" role="tab" aria-controls="onhold-tickets" aria-selected="true">전체 리뷰 <div class="badge">${count } </div></a>
                     </li>
                 </ul>
             </div>

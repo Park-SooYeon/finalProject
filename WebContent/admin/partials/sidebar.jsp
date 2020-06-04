@@ -36,7 +36,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="./?inc=review_list.jsp">
+                <a class="nav-link" href="./?inc=review_list.os">
                     <i class="menu-icon typcn typcn-document-text"></i>
                     <span class="menu-title">리뷰관리</span>
                 </a>

@@ -41,11 +41,11 @@ public class AdSuperDao {
 			int count = sqlSession.update("admin.status_save",vo);//mybatis에 vo를 보내고 받아온걸 count에
 			System.out.println(count);
 			if(count >0) {
-				msg="성공하셨습니다.";
+				msg="완료되었습니다!!";
 				sqlSession.commit();
 				
 			}else {
-				msg="수정실패했어요..";
+				msg="오류가 발생했습니다!!";
 				sqlSession.rollback();
 			}
 		}catch(Exception ex) {
@@ -73,11 +73,11 @@ public class AdSuperDao {
 				int count = sqlSession.update("admin.p_save",vo);//mybatis에 vo를 보내고 받아온걸 count에
 				System.out.println(count);
 				if(count >0) {
-					msg="성공하셨습니다!!";
+					msg="완료되었습니다!!";
 					sqlSession.commit();
 					
 				}else {
-					msg="수정실패했어요!!";
+					msg="오류가 발생했습니다!!";
 					sqlSession.rollback();
 				}
 			}catch(Exception ex) {
@@ -101,7 +101,6 @@ public class AdSuperDao {
 		}
 		//파트너 view
 		public partnerVo partner_view(String member_id) {
-			System.out.println("dao아이디"+member_id);
 			partnerVo vo = null;
 			try {
 				vo = sqlSession.selectOne("admin.partner_view",member_id);
@@ -121,11 +120,11 @@ public class AdSuperDao {
 				System.out.println("daoz카운트1"+count1);
 				System.out.println("dao카운트"+count);
 				if(count >0) {
-					msg="성공하셨습니다!!";
+					msg="완료되었습니다!!";
 					sqlSession.commit();
 					
 				}else {
-					msg="수정실패했어요!!";
+					msg="오류가 발생했습니다!!";
 					sqlSession.rollback();
 				}
 			}catch(Exception ex) {
@@ -157,11 +156,11 @@ public class AdSuperDao {
 				
 				System.out.println(count);
 				if(count >0) {
-					msg="성공하셨습니다!!";
+					msg="완료되었습니다!!";
 					sqlSession.commit();
 					
 				}else {
-					msg="수정실패했어요!!";
+					msg="오류가 발생했습니다!!";
 					sqlSession.rollback();
 				}
 			}catch(Exception ex) {
@@ -178,11 +177,11 @@ public class AdSuperDao {
 						int count = sqlSession.update("admin.p_reject",vo);//mybatis에 vo를 보내고 받아온걸 count에
 						System.out.println(count);
 						if(count >0) {
-							msg="성공하셨습니다!!";
+							msg="완료되었습니다!!";
 							sqlSession.commit();
 							
-						}else {
-							msg="수정실패했어요!!";
+						}else { 
+							msg="오류가 발생했습니다!!";
 							sqlSession.rollback();
 						}
 					}catch(Exception ex) {
@@ -202,7 +201,7 @@ public class AdSuperDao {
 						p.setTotListSize(totList);
 						p.pageCompute();
 						list = sqlSession.selectList("admin.review_all", p);
-						
+						int cocount = sqlSession.selectOne("admin.count1",p);
 //						for(ReviewVo vo : list) {
 //							System.out.println(vo.toString());
 //							
@@ -214,7 +213,17 @@ public class AdSuperDao {
 						return list;
 					}
 				}	
-				
+				//리뷰 카운트
+				public int review_count() {	
+					int count=0;
+					try {
+					 count = sqlSession.selectOne("admin.count1");
+					}catch(Exception ex) {
+						ex.printStackTrace();
+					}finally {
+						return count;
+					}
+				}	
 				//리뷰상세보기 -조회
 				public ReviewVo review_view(int review_serial) {
 					System.out.println("dao_review_serial"+review_serial);
@@ -224,10 +233,9 @@ public class AdSuperDao {
 						List<Review_PhotoVo> list2 = sqlSession.selectList("admin.review_att", review_serial);
 						
 							vo.setR_photo(list2);
-							for(Review_PhotoVo vo2 : list2) {
-								System.out.println("ㅗㅍ포토포토투스트링_"+vo.toString());
-							}
-						System.out.println(vo.toString()+"디에이오 상세ㅏㅅㅇ세");
+//							for(Review_PhotoVo vo2 : list2) {
+//								System.out.println("ㅗㅍ포토포토투스트링_"+vo.toString());
+//							}
 						
 					}catch(Exception ex) {
 						ex.printStackTrace();
@@ -237,6 +245,28 @@ public class AdSuperDao {
 					
 				}
 						
-				
+				//리뷰 삭제하기
+				public String review_delete(ReviewVo vo) {
+					String msg="";
+					try {
+						int count1 = sqlSession.delete("admin.review_delete",vo);//mybatis에 vo를 보내고 받아온걸 count에
+						System.out.println("daoz카운트1"+count1);
+						if(count1 >0) {
+							msg="삭제가 완료되었습니다!!";
+							sqlSession.commit();
+							
+						}else {
+							
+							msg="실패했어요!!";
+							sqlSession.rollback();
+						 
+						}
+					}catch(Exception ex) {
+						ex.printStackTrace();
+					}finally {
+						
+						return msg;
+					}
+				}
 				
 }
