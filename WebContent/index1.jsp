@@ -101,5 +101,7 @@
 	<!-- search -->
 	<script src="js/search.js"></script>
 	
+	<!-- sweetalert -->
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </body>
 </html>

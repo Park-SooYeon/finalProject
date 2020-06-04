@@ -44,8 +44,6 @@ let source = $.map(area, function(item) { //json[i] 번째 에 있는게 item �
 $("#topFindStr").autocomplete({
     source: source,
     select: function(event, ui) {
-    	console.log(ui.item);
-    	console.log(ui.item.areaCode)
     	let local = ui.item.areaCode;
     	location.href = "?inc=mainMore.sb&menu=12&local=" + local;
     },
@@ -86,8 +84,6 @@ $('#topSearch').on("click", function() {
 $("#mainFindStr").autocomplete({
     source: source,
     select: function(event, ui) {
-    	console.log(ui.item);
-    	console.log(ui.item.areaCode)
     	let local = ui.item.areaCode;
     	location.href = "?inc=mainMore.sb&menu=12&local=" + local;
     },

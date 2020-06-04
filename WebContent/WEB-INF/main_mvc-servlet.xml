@@ -15,7 +15,7 @@
 	<context:annotation-config />
 	
 	<!-- bean -->
-
+	<bean class="dao.SubMainDao"/>
 	
 	<!-- controller (servlet code) -->
 	<bean id="main_controller" class="controller.HomeController"/>

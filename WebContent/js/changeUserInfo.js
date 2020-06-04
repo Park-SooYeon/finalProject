@@ -36,21 +36,24 @@ $('#btnSendMail').click(function(){
 		success: function(data) {
 			let str = data;
 			let msg = "";
+			let form = "";
 			if(data === "yes") { // 이메일이 정상 전송되면 인증 번호 입력란 띄움
 				msg = "이메일이 전송되었습니다.";
+				form = "success";
 				$('#codeCheck').fadeIn();
 				$('#btnSendMail').prop("disabled", true); // 버튼 비활성화
 			} else if(data === "no") { // 이메일 전송 실패하면 다시 요청
 				msg = "이메일 전송 중 오류가 발생하였습니다. 이메일 확인 후, 다시 시도해주세요.";
+				form = "error";
 				$('#btnSendMail').prop("disabled", false);
 			} else if(data === "same"){
 				msg = "등록된 이메일입니다. 다른 이메일을 사용해주세요.";
+				form = "warning";
 				$('#btnSendMail').prop("disabled", false);
 			}
-			alert(msg);
+			swal(msg, "", form);
 		},
 		error: function() {
-			alert("실패!");
 		}
 	});
 });
@@ -66,18 +69,19 @@ $('#btnChkMail').on("click", function() {
 		method: "post",
 		success: function(data) {
 			let msg = "";
-			alert("성공!");
+			let form = "";
 			if(data === "yes") {
 				emailState = 1;
 				msg = "인증 완료되었습니다.";
+				form = "success";
 			} else if(data === "no"){
 				emailState = 0;
 				msg = "인증 번호가 틀렸습니다. 인증 번호를 확인해주세요.";
+				form = "error";
 			}
-			alert(msg);
+			swal(msg, "", form);
 		},
 		error: function() {
-			alert("실패");
 		}
 	});
 })
@@ -91,12 +95,14 @@ $('#btnLeaveMember').on("click", function() {
 // 회원정보 수정 버튼 클릭
 $('#btnUpdate').on("click", function() {
 	let msg = "";
+	form = "info";
 	if(pwdState !== 1) {
 		msg = "비밀번호를 확인해주세요.";
+		swal(msg, "", form);
 	} else if(emailState !== 1) {
 		msg = "이메일 인증을 해주세요.";
+		swal(msg, "", form);
 	} else if(emailState === 1 && pwdState === 1) {
 		$('#frm_ms').submit();
 	}
-	alert(msg);
 });

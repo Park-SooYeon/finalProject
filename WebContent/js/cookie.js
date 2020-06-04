@@ -13,7 +13,6 @@ function setCookie(cName, code, exp){
 
 //쿠키에 값 추가
 function addCookie(cName, code){
-	alert("쿠키 추가");
 	var items = getCookie(cName); //이미 저장된 값을 쿠키에서 가져오기
 	var maxItemNum = 10; //최대 저장 가능한 아이템 개수
 	var expire = 7; //쿠키값을 저장할 기간
@@ -48,12 +47,10 @@ var getCookie = function(cName){
 
 //쿠키(Cookie) 삭제하기
 var deleteCookie = function(cName){
-	alert("쿠키 삭제")
 	document.cookie = cName + '=; expires=Thu, 01 Jan 1999 00:00:10 GMT;';
 }
 
 
 // 쿠키에 place_serial 값 추가하기
 let code = document.getElementById("place_serial").value;
-alert(getCookie("place_serial"));
 addCookie("place_serial", code);

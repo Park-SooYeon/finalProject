@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.swing.plaf.synth.SynthSeparatorUI;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -38,7 +39,9 @@ import vo.RestDataVo;
 
 @Controller
 public class SubMainController {
-	
+	@Autowired
+	SubMainDao dao;
+		
 	// 지역 메인으로 이동
 	@GetMapping("placeMain.sb")
 	public String placeMain(@RequestParam String local, HttpServletRequest req, Model model) {
@@ -50,7 +53,7 @@ public class SubMainController {
 		List<TripListVo> tripList = null;
 		List<Integer> likeList = null;
 		
-		SubMainDao dao = new SubMainDao();
+		
 		
 		// 쿠기에서 place_serial 값 가져오기
 		Cookie[] cookies = req.getCookies();
@@ -342,7 +345,7 @@ public class SubMainController {
 		List<TripListVo> tripList = null;
 		List<Integer> likeList = null;
 		
-		SubMainDao dao = new SubMainDao();
+		
 		
 		// 쿠키에서 place_serial 값 가져오기
 		Cookie[] cookies = req.getCookies();
@@ -593,7 +596,7 @@ public class SubMainController {
 	@PostMapping("insertTrip.sb")
 	public String insertTrip(@RequestParam("trip_name") String trip_name, HttpServletRequest req, Model model) {
 		System.out.println(trip_name);
-		SubMainDao dao = new SubMainDao();
+		
 		
 		// session에서 로그인 된 아이디 가져오기
 		HttpSession session = req.getSession();
@@ -620,7 +623,7 @@ public class SubMainController {
 	public String insertLikeTrip(@RequestParam("trip_serial") int trip_serial, @RequestParam("place_serial") int place_serial, HttpServletRequest req) {
 		System.out.println(trip_serial);
 		System.out.println(place_serial);
-		SubMainDao dao = new SubMainDao();
+		
 		
 		// session에서 로그인 된 아이디 가져오기
 		HttpSession session = req.getSession();
@@ -644,7 +647,7 @@ public class SubMainController {
 	@PostMapping("deleteLikeTrip.sb")
 	public String deleteLikeTrip(@RequestParam("place_serial") int place_serial, HttpServletRequest req) {
 		System.out.println(place_serial);
-		SubMainDao dao = new SubMainDao();
+		
 		
 		// session에서 로그인 된 아이디 가져오기
 		HttpSession session = req.getSession();
@@ -739,7 +742,7 @@ public class SubMainController {
 			        //sb = new StringBuilder();
 			        String line;
 			        List<ReputationVo> serial = new ArrayList<>();
-			        SubMainDao dao = new SubMainDao();
+			        
 			        serial = dao.selectReputation();
 			        String result = "";
 			        while ((line = rd.readLine()) != null) {

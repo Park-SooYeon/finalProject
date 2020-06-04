@@ -7,17 +7,7 @@
 					<div class="row d-flex align-items-center justify-content-center">
 						<div class="about-content col-lg-12">
 							<h1 class="text-white">
-								<c:choose>
-									<c:when test="${param.menu == 1 }">
-										즐길거리
-									</c:when>
-									<c:when test="${param.menu == 2 }">
-										음식점
-									</c:when>
-									<c:when test="${param.menu == 3 }">
-										축제
-									</c:when>
-								</c:choose>
+								원하는 관광지를 검색해보세요!
 							</h1>							
 						</div>	
 					</div>
