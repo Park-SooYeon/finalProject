@@ -86,8 +86,11 @@
 
 					</li>
 					
+					<!-- 
 					<li><a href="#">로그인</a></li>
 					<li><a href="#">회원가입</a></li>
+					 -->
+					 <li><a style="color:#fff;" onclick="history.back();">되돌아가기</a></li>
 </ul>
           </nav>
           <!-- #nav-menu-container -->
@@ -106,6 +109,7 @@
         	<input type="hidden" id="start_hidden" value="${vo.start_date }">
         	<input type="hidden" id="end_hidden" value="${vo.end_date }">
         	<input type="hidden" id="cnt_hidden" value="${vo.another_days}">
+        	<input type="hidden" id="trip_list_serial" value="${vo.trip_list_serial}">
         
             <div id="edit-day"><i class="far fa-calendar-alt"></i> 
             <c:if test="${empty vo.start_date }">
@@ -375,32 +379,22 @@
 
         <div class="list-box connectedSortable" id="place-here" style="max-height:68%;">
 
-
-          <div
-            class="day-spot-item ui-draggable"
-            data="0"
-            data-set_day="0"
-            data-rel_srl="845972"
-            data-pl_type="0"
-            data-no="0"
-            data-pl_cat="301"
-            data-ci="10907"
-          >
-            <div class="img-box fl">
-              <img src="./images/myPage/place1.jpg" />
-            </div>
-            <div class="info-box">
-              <div class="info-title">한강공원</div>
-              <div class="small info-small">공원/정원</div>
-              <div class="like-cnt-info">
-                <i class="fab fa-gratipay" style="color: rgb(253, 123, 145);"></i> 13
-              </div>
-              <!-- <div class="small info-small include_pn_day" style="color: #1a7ad9;">DAY1</div>  -->
-            </div>
-            <div class="spot-to-inspot">
-              <img class="add-icon" src="./images/myPage/interface.png"/>
-            </div>
-          </div>
+			<c:forEach items="${list }" var="d">
+          <div class='day-spot-item ui-draggable' data='0'
+					data-set_day='0' data-rel_srl='845972' data-pl_type='0'
+					data-no='0' data-pl_cat='301' data-ci='10907'>
+					<div class='img-box fl'>
+						<img src='${d.photo_name}' />
+					</div>
+					<div class='info-box' style='width:210px;'>
+						<div class='info-title'>${d.place_name}</div>
+						<div class='small info-small'>${d.local_name}</div>
+					</div>
+					<div class='spot-to-inspot'>
+						<img class='add-icon' src='./images/myPage/sign.png'></img>
+					</div>
+				</div>
+          </c:forEach>
         </div>
       </div>
       <!-- right full wrap -->

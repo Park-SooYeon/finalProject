@@ -310,16 +310,13 @@ public class MyPageDao {
 			for(ReviewVo vo : list) {
 				System.out.println("사진 : "+vo.getMember_photo());
 				System.out.println("호텔만 담았을때 "+vo.toString());
+				vo.getP().setPlace_code(1); //호텔
 			}
 			
 			// api로 가져오는 place
 			map.put("flag", "api");
 			list2 = sqlSession.selectList("mypage.select_follow_review", map);
 			
-			for(ReviewVo vo : list2) {
-				System.out.println("사진2 : "+vo.getMember_photo());
-				System.out.println("api만 담았을때 "+vo.toString());
-			}
 			
 			for(ReviewVo vo : list2) {
 				//vo에 api 응답정보를 담아서 재가공
@@ -333,6 +330,7 @@ public class MyPageDao {
 		        vo.getP().setLocal_code(local_code);
 		        vo.getP().setPhoto_name(photo_name);
 		        vo.getP().setPlace_name(place_name);
+		        vo.getP().setPlace_code(2);
 				list.add(vo);
 			}
 			
@@ -430,12 +428,12 @@ public class MyPageDao {
 		        String place_name = contentResult.get("title").getAsString();
 		        int local_code = contentResult.get("areacode").getAsInt();
 		        
+		        
 		        p.setPlace_serial(place_serial);
 		        p.setLocal_code(local_code);
 		        p.setPhoto_name(photo_name);
 		        p.setPlace_name(place_name);
 				p.setPlace_code(1); // place_code api로 설정해줌
-				
 				list.add(p);
 			}
 		}catch (Exception e) {
@@ -449,8 +447,7 @@ public class MyPageDao {
 		try {
 			list = sqlSession.selectList("mypage.select_hotel", findStr);
 			for(PlaceVo vo : list) {
-				System.out.println("사진"+vo.getPhoto_name());
-				vo.setPlace_code(2); // 2는 호텔, 1은 api
+				vo.setPlace_code(32); // 2는 호텔, 1은 api
 			}
 			
 		}catch (Exception e) {
@@ -481,39 +478,63 @@ public class MyPageDao {
 		return msg;
 	}
 	
+	public String modifyDate(PlanVo vo) {
+		int cnt = 0;
+		String msg = "";
+		try {
+			
+			cnt = sqlSession.update("mypage.modify_date", vo);
+			if(cnt>0) {
+				msg = "성공";
+			}else {
+				msg = "날짜 수정 중 오류 발생";
+			}
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		}
+		return msg;
+	}
+	
 	public List<PlanVo> selectOnePlace(PlanVo vo) {
 		List<PlanVo> list = null;
-		
+		List<PlanVo> list2 = null;
 		try {
 			// trip_list_serial에 해당하는 plan 요소들
-			list = sqlSession.selectList("mypage.select_plan", vo);
+			list = sqlSession.selectList("mypage.select_plan_hotel", vo);
+			list2 = sqlSession.selectList("mypage.select_plan_api", vo);
 			
 			for(PlanVo v : list) {
 				PlaceVo p = sqlSession.selectOne("mypage.select_onePlace", v.getPlace_serial());
 				// 호텔 먼저 세팅해주고
+				p.setPlace_code(32);
 				v.setP(p);
 			}
 			
-			List<Integer> se = sqlSession.selectList("myPage.select_allSerial_api");
-			
-			for(int apiSerial : se) {
+			for(PlanVo v2 :list2) {
 				PlaceVo p2 = new PlaceVo();
-				PlanVo v2 = new PlanVo();
+				int apiSerial = v2.getPlace_serial();
+				
 				JsonObject contentResult = getApi(apiSerial);
 				String photo_name = contentResult.get("firstimage").getAsString();
 		        String place_name = contentResult.get("title").getAsString();
 		        int local_code = contentResult.get("areacode").getAsInt();
+		        double latitude = contentResult.get("mapx").getAsDouble();
+		        double longitude = contentResult.get("mapy").getAsDouble();
+		        int contenttypeid = contentResult.get("contenttypeid").getAsInt();
 		        
+		        p2.setLatitude(latitude);
+		        p2.setLongitude(longitude);
+				p2.setPlace_code(contenttypeid);
 		        p2.setPlace_serial(apiSerial);
 		        p2.setLocal_code(local_code);
 		        p2.setPhoto_name(photo_name);
 		        p2.setPlace_name(place_name);
-				p2.setPlace_code(1); // place_code api로 설정해줌
 				
 				v2.setP(p2);
 				
 				list.add(v2);
-				}
+			}
+			
 			
 		}catch(Exception ex) {
 			ex.printStackTrace();
@@ -534,6 +555,7 @@ public class MyPageDao {
         urlBuilder.append("&" + URLEncoder.encode("contentId","UTF-8") + "=" + URLEncoder.encode(contentId+"", "UTF-8")); /*지역코드, 시군구코드*/
         urlBuilder.append("&" + URLEncoder.encode("firstImageYN","UTF-8") + "=" + URLEncoder.encode("Y", "UTF-8")); /*대표이미지 조회*/
         urlBuilder.append("&" + URLEncoder.encode("listYN","UTF-8") + "=" + URLEncoder.encode("Y", "UTF-8")); /*목록구분 (Y=목록, N=개수) */
+        urlBuilder.append("&" + URLEncoder.encode("mapinfoYN","UTF-8") + "=" + URLEncoder.encode("Y", "UTF-8")); /*목록구분 (Y=목록, N=개수) */
         urlBuilder.append("&_type=json"); // json 타입으로 반환
         
         URL url = new URL(urlBuilder.toString());

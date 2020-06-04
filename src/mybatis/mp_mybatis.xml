@@ -285,7 +285,10 @@
 			   to_char(r.visit_date, 'rrrr"년" mm"월" dd"일"') visit_date, 
 			   r.review_date,
 			   getRevCnt(r.place_serial) review_cnt,
-			   m.member_photo
+			   m.member_photo,
+			   place_name,
+			   (select sysfile from place_photo where place_serial = place_serial and rownum=1) photo_name,
+			   local_code
 		from review r join follow_list f 
 		on r.member_id = f.target_id 
 		join membership m
@@ -352,12 +355,23 @@
 	
 	<insert id="insert_plan" parameterType="bean.PlanVo">
 		insert into trip_days(days_serial, trip_list_serial, place_serial, trip_order, trip_day)
-		values(seq_trip_days.nextval, 81, ${place_serial}, ${trip_order}, #{trip_day}) 
+		values(seq_trip_days.nextval, ${trip_list_serial}, ${place_serial}, ${trip_order}, #{trip_day}) 
 	</insert>
 	
-	<select id="select_plan" parameterType="bean.PlanVo" resultType="bean.PlanVo">
-		select days_serial, trip_list_serial, place_serial, trip_order, trip_day 
-		from trip_days where trip_list_serial = ${trip_list_serial} and trip_day = #{trip_day} 
+	<select id="select_plan_hotel" parameterType="bean.PlanVo" resultType="bean.PlanVo">
+		select days_serial, trip_list_serial, t.place_serial, trip_order, trip_day 
+		from trip_days t join place p 
+		on t.place_serial = p.place_serial
+		where trip_list_serial = ${trip_list_serial} and trip_day = #{trip_day} 
+		order by trip_order
+	</select>
+	
+	<select id="select_plan_api" parameterType="bean.PlanVo" resultType="bean.PlanVo">
+		select days_serial, trip_list_serial, t.place_serial, trip_order, trip_day 
+		from trip_days t left outer join place p 
+		on t.place_serial = p.place_serial
+		where trip_list_serial = ${trip_list_serial} and trip_day = #{trip_day}
+		and p.place_serial is null 
 		order by trip_order
 	</select>
 		
@@ -368,10 +382,9 @@
 		where p.place_serial = ${_parameter}
 	</select>
 	
-	<select id="select_allSerial_api" resultType="Integer">
-		select t.place_serial from place p right outer join trip_days t 
-		on t.place_serial = p.place_serial
-		where p.place_serial is null
-	</select>
+	<!-- date 추가했을때 -->
+	<update id="modify_date" parameterType="bean.PlanVo">
+		update trip_list set end_date = #{end_date} where trip_list_serial = ${trip_list_serial} 
+	</update>	
 	
 </mapper>

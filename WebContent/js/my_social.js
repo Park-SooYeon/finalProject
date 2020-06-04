@@ -93,14 +93,10 @@ function init() {
   });
 
   // "도움이 됐어요" 눌렀을때 css 변경
-  $(".social-like").click(function () {
+  $(document).on("click",".social-like",function () {
     $(this).find("i").toggleClass("on");
   });
 
-  // "내 여행목록에 담기" 눌렀을때 css 변경
-  $(".social-save").click(function () {
-    $(this).find("i").toggleClass("fa-heart fa-heart-o");
-  });
 
   // 삭제버튼 나오게
   $(".ellipsis-btn").click(function () {

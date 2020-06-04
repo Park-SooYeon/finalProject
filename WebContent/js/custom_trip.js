@@ -7,6 +7,9 @@ let coords;
 let db = [];
 // 현재 작업하고 있는 일자
 let trip_date;
+const trip_list_serial = $("#trip_list_serial").val();
+let index = "";
+let end = "";
 
 function init() {
 
@@ -23,7 +26,7 @@ function init() {
   // Day 누르면 detail box 나타나고 on class toggle
   $(document).on("click", ".plan-category li", function(){
      const $this = $(this);
-     
+     dayCnt = 1;
      let day_cnt = $this.find(".cat-left-day").html();
      trip_date = $this.find(".trip-date").html();
      // 전역변수에도 저장
@@ -46,10 +49,10 @@ function init() {
        coords = [];
        // 거리정보 초기화
        
-       $.getJSON("selectOnePlace.mp", {"serial" : 81, "trip_day" : trip_date}, function(data){
+       $.getJSON("selectOnePlace.mp", {"serial" : trip_list_serial, "trip_day" : trip_date}, function(data){
     	   console.log(data);
     	   if(data.length>0){
-    		   dayCnt = 1;
+    		   
     		   $("#schedule-here").empty();
     		   for(d of data){
     			   addPlan(d.p);
@@ -86,9 +89,6 @@ function init() {
     $(this).toggleClass("on");
   });
 
-  $("#btnEditDay").click(function () {});
-  
-  
   // 시작날짜
   let start = $("#start_hidden").val();
   // 일수
@@ -113,127 +113,20 @@ function init() {
 
 init();
 
+let search = document.getElementById("searchPlace");
 
-// 검색창에 검색어 입력되는 순간 ajax
-$("#searchPlace").on("keyup", function(){
-   let findStr = $(this).val();
-   let str = "";
-   let parseJson;
-   
-   
-   $.getJSON("selectAll.mp", {"findStr":findStr}, function(json){
-      
-      if(json.length>0){
-         
-         for(d of json){
-            
-            let json = JSON.stringify(d);
-            
-            if(d.place_code == 2){ // 호텔이면 경로수정
-               if(d.photo_name == 'undefined' || d.photo_name == null){
-                  d.photo_name = './images/myPage/korea.png';
-               }else{
-                  d.photo_name = "./images/hotel/"+d.photo_name;
-               }
-            }
-            
-            str += `<div
-               class='day-spot-item ui-draggable'
-                   data-serial='${d.place_serial}'
-                   data-long='${d.longitude}'
-                   data-lat='${d.latitude}'
-                   data-cid='32'
-                   data-area='${d.local_code}'
-                 >
-                   <div class='img-box fl'>
-                     <img src='${d.photo_name}' />
-                   </div>
-                   <div class='info-box'>
-                     <div class='info-title'>${d.place_name}</div>
-                     <div class='small info-small'>숙박</div>
-                   </div>
-                   <div class='spot-to-inspot pl-2' data-all='${d}' onclick='addPlan(${json});'>
-                     <img class='add-icon' src='./images/myPage/interface.png'/>
-                   </div>
-                 </div>`;
-         }
-      }else{
-         str='';
-      }
-   
-   var xhr = new XMLHttpRequest();
-   var url = 'http://api.visitkorea.or.kr/openapi/service/rest/KorService/searchKeyword'; /* URL */
-   var queryParams = '?' + encodeURIComponent('ServiceKey') + '='+'1Dz1bR5MAy4n67kjDRt13zzTSNAaW7oNAcVIjOVXV6Dvh48PW8I4jVKIhaULA9oyhQXCfGmWceVxx3Psb%2B7Tyw%3D%3D'; /*
-																																									 * Service
-																																									 * Key
-																																									 */
-   queryParams += '&' + encodeURIComponent('ServiceKey') + '=' + encodeURIComponent('인증키 (URL- Encode)'); /**/
-   queryParams += '&' + encodeURIComponent('MobileApp') + '=' + encodeURIComponent('AppTest'); /**/
-   queryParams += '&' + encodeURIComponent('MobileOS') + '=' + encodeURIComponent('ETC'); /**/
-   queryParams += '&' + encodeURIComponent('pageNo') + '=' + encodeURIComponent('1'); /**/
-   queryParams += '&' + encodeURIComponent('numOfRows') + '=' + encodeURIComponent('10'); /**/
-   queryParams += '&' + encodeURIComponent('listYN') + '=' + encodeURIComponent('Y'); /**/
-   queryParams += '&' + encodeURIComponent('arrange') + '=' + encodeURIComponent('A'); /**/
-   queryParams += '&' + encodeURIComponent('contentTypeId') + '=' + encodeURIComponent(''); /**/
-   queryParams += '&' + encodeURIComponent('areaCode') + '=' + encodeURIComponent(''); /**/
-   queryParams += '&' + encodeURIComponent('sigunguCode') + '=' + encodeURIComponent(''); /**/
-   queryParams += '&' + encodeURIComponent('cat1') + '=' + encodeURIComponent(''); /**/
-   queryParams += '&' + encodeURIComponent('cat2') + '=' + encodeURIComponent(''); /**/
-   queryParams += '&' + encodeURIComponent('cat3') + '=' + encodeURIComponent(''); /**/
-   queryParams += '&' + encodeURIComponent('keyword') + '=' + encodeURIComponent(findStr)
-   queryParams += '&_type=json';
-
-   xhr.open('GET', url + queryParams);
-   xhr.onreadystatechange = function () {
-       if (this.readyState == 4) {
-          // 결과값을 json타입으로 담고
-          parseJson = JSON.parse(this.responseText).response.body.items.item;
-          if(parseJson !=undefined){
-             for(d of parseJson){
-                contentTypeId = setType(d.contenttypeid);
-                image = setImage(d.firstimage);
-                let json = JSON.stringify(d);
-                
-                
-                str += `<div
-                   class='day-spot-item ui-draggable'
-                   data-serial='${d.contentid}'
-                   data-long='${d.mapy}'
-                   data-lat='${d.mapx}'
-                   data-cid='${d.contenttypeid}'
-                   data-area = '${d.areacode}'
-                   >
-                   <div class='img-box fl'>
-                   <img src='${image}' />
-                   </div>
-                   <div class='info-box'>
-                   <div class='info-title'>${d.title}</div>
-                   <div class='small info-small'>${contentTypeId}</div>
-                   </div>
-                   <div class='spot-to-inspot pl-2' data-all = '${d}' onclick='addPlan(${json});'>
-                   <img class='add-icon' src='./images/myPage/interface.png'/>
-                   </div>
-                   </div>`;
-             }
-          }
-          $("#place-here").html(str);
-          }
-   };
-   xhr.send('');
-   });
-   
-})
-
+search.addEventListener("keyup", getElements);
 
 function add_plan_day() {
    let end_value = $(".cat-left-date-"+cnt).html();
    // yyyy-mm-dd 형태를 Date 형태로
-   let end = getInitDate(end_value);
+   end = getInitDate(end_value);
    
    // cnt에 1, date에 2 더해주고
    let newCnt = Number(cnt)+1;
    addDate = end.getDate()+2;
    end.setDate(addDate);
+   end = getFormatDate(end);
    
    // 리스트의 마지막 항목 on 클래스 제거한 뒤 append
   // $(".plan-category
@@ -244,11 +137,12 @@ function add_plan_day() {
             "</div>"+
             "<div class='cat-date-right-box'>"+
               "<div class='cat-left-date-"+newCnt+" pr-2 trip-date' style='color: #49b2e9;'>"+
-              getFormatDate(end)+"</div>"+
-              "<div class='cat-right-weekday-"+newCnt+" trip-day'>"+getDay(getFormatDate(end))+"</div>"+
+              end+"</div>"+
+              "<div class='cat-right-weekday-"+newCnt+" trip-day'>"+getDay(end)+"</div>"+
             "</div>"+
           "</li>");
   cnt++;
+  
 }
 
 
@@ -291,8 +185,9 @@ $(".list-cat-item").on("click", function(){
 })
 
 $("#chooseCity").on("change", function(){
-   let index = $("#chooseCity option:selected").val();
+   index = $("#chooseCity option:selected").val();
    console.log(index);
+   getElements();
    $(".list-box .day-spot-item[data-area!="+index+"]").addClass("d-none");
    $(".list-box .day-spot-item[data-area="+index+"]").removeClass("d-none");
 })
@@ -311,11 +206,11 @@ function addPlan(d){
    
    // 호텔, api 요소 변수명이 다르기때문에 undefined일 경우 새로운 변수에 담아서 처리
    const place_serial = (d.contentid == undefined)? d.place_serial : d.contentid;
-   const longitude = (d.mapy == undefined)? d.longitude : d.mapy;
-   const latitude = (d.mapx == undefined)? d.latitude : d.mapx; 
+   const longitude = (d.mapx == undefined)? d.longitude : d.mapx;
+   const latitude = (d.mapy == undefined)? d.latitude : d.mapy; 
    const place_name = (d.title == undefined)? d.place_name : d.title;
    let image = (d.firstimage == undefined)? d.photo_name : d.firstimage;
-   let place_code = (d.contenttypeid == undefined)? 32 : d.contenttypeid;
+   let place_code = (d.contenttypeid == undefined)? d.place_code : d.contenttypeid;
 
    // place 코드 => 분류명으로 switch
    place_code = setType(place_code);
@@ -345,8 +240,10 @@ function addPlan(d){
     data-set_day='1'
     data-rel_srl='6725'
     data-contentid='${place_serial}'
-    data-lat='${longitude}'
-    data-long='${latitude}'>
+    data-lat='${latitude}'
+    data-long='${longitude}'
+    data-contenttype='${place_code}'
+    >
     
      <div class='item-ctrl-box' style='display: none;'>
         <div class='btn-del' title='삭제'>
@@ -375,7 +272,7 @@ function addPlan(d){
    
    
    // ex) 2020-06-04자의 n번째 여행요소
-   let plan = new Plan(0, 81, place_serial, dayCnt, trip_date);
+   let plan = new Plan(0, trip_list_serial, place_serial, dayCnt, trip_date, end);
    db.push(plan);
    
    console.log(db);
@@ -398,16 +295,14 @@ function setType(cid){
       return '축제/공연/행사';
    case 25:
       return '여행코스';
-      break;
    case 32:
       return '숙박';
-      break;
    case 38:
       return '쇼핑';
-      break;
    case 39:
       return '음식';
-      break;
+   default:
+	   return '기타';
       
    }
 }
@@ -472,10 +367,137 @@ $("#trip-save-btn").on("click", function(){
 })
 
 
-function Plan(days_serial, trip_list_serial, place_serial, trip_order, trip_day){
+function Plan(days_serial, trip_list_serial, place_serial, trip_order, trip_day, end_date){
 	this.days_serial = days_serial;
 	this.trip_list_serial = trip_list_serial;
 	this.place_serial = place_serial;
 	this.trip_order = trip_order;
 	this.trip_day = trip_day;
+	this.end_date = end_date;
 }
+
+function getElements(){
+	console.log(index);
+	
+	let findStr = $("#searchPlace").val();
+	
+	if(findStr==null || findStr==""){
+		findStr = "%20";
+	}else{
+		findStr = encodeURIComponent(findStr);
+	}
+	
+	   let str = "";
+	   let parseJson;
+	   
+	   
+	   //호텔 정보 뿌리기
+	   $.getJSON("selectAll.mp", {"findStr":findStr}, function(json){
+	      
+	      if(json.length>0){
+	         
+	         for(d of json){
+	            
+	            let json = JSON.stringify(d);
+	            
+	            if(d.place_code == 32){ // 이미지없으면 경로수정
+	               if(d.photo_name == 'undefined' || d.photo_name == null){
+	                  d.photo_name = './images/myPage/korea.png';
+	               }else{
+	                  d.photo_name = "./images/hotel/"+d.photo_name;
+	               }
+	            }
+	            
+	            str += `<div
+	               class='day-spot-item ui-draggable'
+	                   data-serial='${d.place_serial}'
+	                   data-long='${d.longitude}'
+	                   data-lat='${d.latitude}'
+	                   data-cid='32'
+	                   data-area='${d.local_code}'
+	                 >
+	                   <div class='img-box fl'>
+	                     <img src='${d.photo_name}' />
+	                   </div>
+	                   <div class='info-box'>
+	                     <div class='info-title'>${d.place_name}</div>
+	                     <div class='small info-small'>숙박</div>
+	                   </div>
+	                   <div class='spot-to-inspot pl-2' data-all='${d}' onclick='addPlan(${json});'>
+	                     <img class='add-icon' src='./images/myPage/interface.png'/>
+	                   </div>
+	                 </div>`;
+	         }
+	      }else{
+	         str='';
+	      }
+	   
+	      
+	      
+	    /* api에서 가져온 정보 */
+	   var xhr = new XMLHttpRequest();
+	   var url = 'http://api.visitkorea.or.kr/openapi/service/rest/KorService/searchKeyword'; /* URL */
+	   var queryParams = '?' + encodeURIComponent('ServiceKey') + '='+'1Dz1bR5MAy4n67kjDRt13zzTSNAaW7oNAcVIjOVXV6Dvh48PW8I4jVKIhaULA9oyhQXCfGmWceVxx3Psb%2B7Tyw%3D%3D'; /*
+																																										 * Service
+																																										 * Key
+																																										 */
+	   queryParams += '&' + encodeURIComponent('MobileApp') + '=' + encodeURIComponent('AppTest'); /**/
+	   queryParams += '&' + encodeURIComponent('MobileOS') + '=' + encodeURIComponent('ETC'); /**/
+	   queryParams += '&' + encodeURIComponent('pageNo') + '=' + encodeURIComponent('1'); /**/
+	   queryParams += '&' + encodeURIComponent('numOfRows') + '=' + encodeURIComponent('500'); /**/
+	   queryParams += '&' + encodeURIComponent('listYN') + '=' + encodeURIComponent('Y'); /**/
+	   queryParams += '&' + encodeURIComponent('arrange') + '=' + encodeURIComponent('A'); /**/
+	   queryParams += '&' + encodeURIComponent('contentTypeId') + '=' + encodeURIComponent(''); /**/
+	   queryParams += '&' + encodeURIComponent('areaCode') + '=' + encodeURIComponent(index); /**/
+	   queryParams += '&' + encodeURIComponent('sigunguCode') + '=' + encodeURIComponent(''); /**/
+	   queryParams += '&' + encodeURIComponent('cat1') + '=' + encodeURIComponent(''); /**/
+	   queryParams += '&' + encodeURIComponent('cat2') + '=' + encodeURIComponent(''); /**/
+	   queryParams += '&' + encodeURIComponent('cat3') + '=' + encodeURIComponent(''); /**/
+	   queryParams += '&' + encodeURIComponent('keyword') + '=' + findStr;
+	   queryParams += '&_type=json';
+
+	   console.log(findStr);
+	   console.log(url + queryParams);
+	   xhr.open('GET', url + queryParams);
+	   xhr.onreadystatechange = function () {
+	       if (this.readyState == 4) {
+	          // 결과값을 json타입으로 담고
+	          parseJson = JSON.parse(this.responseText).response.body.items.item;
+	          if(parseJson !=undefined){
+	             for(d of parseJson){
+	                contentTypeId = setType(d.contenttypeid);
+	                image = setImage(d.firstimage);
+	                let json = JSON.stringify(d);
+	                
+	                
+	                str += `<div
+	                   class='day-spot-item ui-draggable'
+	                   data-serial='${d.contentid}'
+	                   data-long='${d.mapx}'
+	                   data-lat='${d.mapy}'
+	                   data-cid='${d.contenttypeid}'
+	                   data-area = '${d.areacode}'
+	                   >
+	                   <div class='img-box fl'>
+	                   <img src='${image}' />
+	                   </div>
+	                   <div class='info-box'>
+	                   <div class='info-title'>${d.title}</div>
+	                   <div class='small info-small'>${contentTypeId}</div>
+	                   </div>
+	                   <div class='spot-to-inspot pl-2' data-all = '${d}' onclick='addPlan(${json});'>
+	                   <img class='add-icon' src='./images/myPage/interface.png'/>
+	                   </div>
+	                   </div>`;
+	             }
+	          }else{
+	        	  str = '';
+	          }
+	          $("#place-here").html(str);
+	          }
+	   };
+	   xhr.send('');
+	   });
+}
+
+

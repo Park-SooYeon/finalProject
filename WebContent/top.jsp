@@ -47,9 +47,9 @@
 							<li>
 							<div class="d-flex">
 							<div class="main-profile">
-							<img width="100%" src="https://i.ibb.co/T1FbwJ5/3x4-blue.jpg" alt="3x4-blue" border="0">
+							<img width="100%" src="./images/myPage/queen.png" alt="3x4-blue" border="0">
 							</div>
-							<div class="mobile-userId" style="display:none;">안주현 님</div>
+							<div class="mobile-userId" style="display:none;">${sessionScope.nickName } 님</div>
 							</div>
 								<ul class="main-pro-menu">
 								<li>${sessionScope.nickName} 님</li>

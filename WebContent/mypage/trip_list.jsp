@@ -171,7 +171,7 @@
 		aria-hidden="true">
 		<div class="modal-dialog" role="document" style="max-width: 800px;">
 			<form id="mpModifyTripFrm">
-				<input type="text" id="trip_serial" name="trip_list_serial" /><!-- hidden serial -->
+				<input type="hidden" id="trip_serial" name="trip_list_serial" /><!-- hidden serial -->
 				<div class="modal-content">
 					<div class="modal-header">
 						<h5 class="modal-title" id="mp-modifyTripLabel">여행편집</h5>
