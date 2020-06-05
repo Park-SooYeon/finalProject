@@ -228,7 +228,7 @@ public class membershipController {
 		HttpSession session = req.getSession();
 		session.removeAttribute("member_id");
 		session.removeAttribute("nickName");
-
+		session.removeAttribute("auth");
 		return mv;
 	}
 
