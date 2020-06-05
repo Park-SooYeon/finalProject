@@ -157,7 +157,7 @@
                values(seq_like_list.nextval, 
                		#{member_id}, 
                		${trip_list_serial}, 
-               		${place_serial} 
+               		${place_serial})
    </insert>
    
    
