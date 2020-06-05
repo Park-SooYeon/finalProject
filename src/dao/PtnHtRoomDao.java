@@ -44,6 +44,22 @@ public class PtnHtRoomDao {
 		}
 	}
 	
+	public List<roomVo> selectRoom(PlaceVo vo){
+		List<roomVo> list = null;
+		try {
+			System.out.println("vo : " + vo.getPartner_serial());
+			System.out.println("vo : " + vo.getPlace_serial());
+			list = sqlSession.selectList("room.select_room", vo);
+			
+			System.out.println("list : " + list);
+		}catch(Exception ex) {
+			ex.toString();
+		}finally {
+			
+			return list;
+		}
+	}
+	
 	public List<PlaceVo> selectHotel(int partner_serial){
 		List<PlaceVo> list = null;
 		try {
@@ -107,9 +123,13 @@ public class PtnHtRoomDao {
 	public int modify(roomVo vo, List<roomPhotoVo> photoList, List<roomPhotoVo> delList, String[] photoNum) {
 		int result = 0;
 		try {
+			
+			System.out.println("vo price dao : " + vo.getPrice());
 			// 본문글 수정 
 			int cnt = sqlSession.update("room.update", vo);
 			if(cnt<1) throw new Exception("본문글 수정중 오류발생");
+			System.out.println("vo price dao : " + vo.getPrice());
+			System.out.println("cnt : " + cnt);
 			
 			// boardAtt 테이블에 첨부파일 정보 추가  
 			for(roomPhotoVo rpVo : photoList) {

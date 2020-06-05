@@ -65,7 +65,7 @@
                 </div>
             </div>
 		<form action="" name="frmAdmRtComp" id="frmAdmRtComp" method="post">
-			<input type="text" name="compSerial" id="compSerial" />
+			<input type="hidden" name="compSerial" id="compSerial" />
 		</form>
         <jsp:include page="./rent_comp_insert_modal.jsp" />
         <jsp:include page="./rent_comp_modify_modal.jsp" />

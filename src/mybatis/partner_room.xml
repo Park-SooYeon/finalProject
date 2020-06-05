@@ -8,8 +8,8 @@
 		<result column="rooms_serial" property="rooms_serial"/>
 		<result column="place_serial" property="place_serial"/>
 		<result column="rooms_name" property="rooms_name"/>
-		<result column="price" property="price"/>
 		<result column="people" property="people"/>
+		<result column="price" property="price"/>
 		<result column="no_smoking" property="no_smoking"/>
 		<result column="mt_view" property="mt_view"/>
 		<result column="ocean_view" property="ocean_view"/>
@@ -34,9 +34,20 @@
 		GROUP BY p.place_serial, r.ROOMS_SERIAL, p.place_name, r.rooms_name, r.price, r.no_smoke, r.ocean_view, r.city_view, r.mt_view, p.state, p.PARTNER_SERIAL
 		ORDER BY r.rooms_serial DESC
 	</select>
+
+	<!-- 호텔 상세 뷰 - 객실 목록 조회 -->
+	<select id="select_room" parameterType="bean.PlaceVo" resultMap="roomRslt">
+		SELECT p.place_serial, r.rooms_serial, max(ph.sysFile), p.place_name, r.rooms_name, r.price, r.no_smoke, r.ocean_view, r.city_view, r.mt_view, p.state, p.PARTNER_SERIAL
+		FROM ROOMS r JOIN PLACE p ON p.place_serial = r.place_serial
+					 LEFT OUTER JOIN ROOOMS_PHOTO ph on r.rooms_serial = ph.ROOMS_SERIAL 
+		WHERE p.PARTNER_SERIAL=#{partner_serial}
+		AND p.place_serial=#{place_serial}
+		GROUP BY p.place_serial, r.ROOMS_SERIAL, p.place_name, r.rooms_name, r.price, r.no_smoke, r.ocean_view, r.city_view, r.mt_view, p.state, p.PARTNER_SERIAL
+		ORDER BY r.rooms_serial DESC
+	</select>
 	
 	<!-- 상세조회 -->
-	<select id="view" parameterType="Integer" resultType="bean.roomVo">
+	<select id="view" parameterType="Integer" resultMap="roomRslt">
 		SELECT place_serial, rooms_serial, rooms_name, price, people, no_smoke, ocean_view, city_view, mt_view
 		FROM ROOMS
 		WHERE rooms_SERIAL=#{rooms_serial}
@@ -71,7 +82,7 @@
 	
 	<!-- 객실정보 수정 -->
 	<update id="update" parameterType="bean.roomVo">
-		update ROOMS set PLACE_SERIAL=#{place_serial}, ROOMS_NAME=#{rooms_name}, PRICE=#{price}, PEOPLE=#{people}, NO_SMOKE=#{no_smoking}, OCEAN_VIEW=#{ocean_view}, CITY_VIEW=#{city_view}, MT_VIEW=#{mt_view}
+		update ROOMS set PLACE_SERIAL=#{place_serial}, ROOMS_NAME=#{rooms_name}, PEOPLE=#{people}, PRICE=#{price}, NO_SMOKE=#{no_smoking}, OCEAN_VIEW=#{ocean_view}, CITY_VIEW=#{city_view}, MT_VIEW=#{mt_view}
 		where ROOMS_SERIAL=#{rooms_serial}
 	</update>
 	
