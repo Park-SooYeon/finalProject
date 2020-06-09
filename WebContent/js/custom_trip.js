@@ -205,9 +205,9 @@ function addPlan(d){
    let tempClass = "";
    
    // 호텔, api 요소 변수명이 다르기때문에 undefined일 경우 새로운 변수에 담아서 처리
-   const place_serial = (d.contentid == undefined)? d.place_serial : d.contentid;
-   const longitude = (d.mapx == undefined)? d.longitude : d.mapx;
-   const latitude = (d.mapy == undefined)? d.latitude : d.mapy; 
+   const place_serial = (d.contentid == undefined || d.contentid == null)? d.place_serial : d.contentid;
+   const longitude = (d.mapy == undefined)? d.longitude : d.mapy;
+   const latitude = (d.mapx == undefined)? d.latitude : d.mapx; 
    const place_name = (d.title == undefined)? d.place_name : d.title;
    let image = (d.firstimage == undefined)? d.photo_name : d.firstimage;
    let place_code = (d.contenttypeid == undefined)? d.place_code : d.contenttypeid;
