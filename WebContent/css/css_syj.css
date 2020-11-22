@@ -7,6 +7,29 @@
 	
 }
 
+.min-width-350 {
+	
+    min-width:350px;
+	font-size:15px;
+	
+}
+
+.min-width-90 {
+	
+	min-width:90px;
+	font-size:15px;
+	
+}
+
+.ms{
+	
+	padding-top: 20px;
+	 background: white;
+	 padding-top:70px;
+	
+}
+
+
 #codeCheck {
 	
 	
@@ -14,3 +37,12 @@
 	
 }
 
+
+
+
+.photel {
+	
+	    background-color: #55a3ede8;
+    color: white;
+    padding-top: 8px;
+}

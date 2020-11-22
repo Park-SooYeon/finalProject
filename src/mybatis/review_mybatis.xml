@@ -1,0 +1,86 @@
+<!DOCTYPE mapper
+   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="review">
+
+	<!-- 본문글 -->
+ 	<insert id='insert' parameterType='bean.ReviewVo' >
+ 		  <selectKey keyProperty="review_serial" resultType="int" order="BEFORE">
+ 		        select seq_review.nextval FROM dual
+	      </selectKey>
+ 			insert into review(
+ 			review_serial, 
+ 			member_id, 
+ 			place_serial, 
+ 			<if test="review_type != null">
+ 			review_type, 
+ 			</if>
+ 			reputation, 
+ 			review_title, 
+ 			review_content, 
+ 			<if test="visit_date != null">
+ 			visit_date, 
+ 			</if>
+ 			review_date, 
+ 			<if test="service != null">
+ 			service, 
+ 			</if>
+ 			<if test="accessibility != null">
+ 			accessibility,
+ 			</if>
+ 			<if test="price != null">
+ 			price, 
+ 			</if>
+ 			<if test="scale != null">
+ 			scale, 
+ 			</if>
+ 			<if test="food != null">
+ 			food
+ 			</if>
+ 			)
+ 			
+ 			values(
+ 			seq_review.nextval,
+ 			#{member_id}, 
+ 			${place_serial}, 
+ 			<if test="review_type != null">
+ 			${review_type},
+ 			</if> 
+ 			${reputation},
+ 			#{review_title}, 
+ 			#{review_content},
+ 			<if test="visit_date != null"> 
+ 			to_date(#{visit_date}, 'yyyy-MM-dd'),
+ 			</if> 
+ 			sysdate, 
+ 			<if test="service != null">
+ 			${service},
+ 			</if>
+ 			<if test="accessibility != null">
+ 			${accessibility},
+ 			</if>
+ 			<if test="price != null">
+ 			${price},
+ 			</if>
+ 			<if test="scale != null"> 
+ 			${scale},
+ 			</if>
+ 			<if test="food != null"> 
+ 			${food}
+ 			</if>
+ 			)
+ 		</insert>
+ 		
+ 	<insert id='photo' parameterType='bean.ReviewVo' >
+ 			insert into review_photo(photo_serial, review_serial, orifile, sysfile)
+ 			values(SEQ_REVIEW_PHOTO.nextval, ${review_serial}, #{photo_name}, #{sysFile})
+	</insert>	
+	
+	<!-- <select id='count' parameterType="bean.Page"
+	                   resultType="Integer">
+		select count(serial) cnt from board
+		where  subject like '%${findStr}%'  
+		or     content like '%${findStr}%'   
+	</select> -->		
+
+</mapper>

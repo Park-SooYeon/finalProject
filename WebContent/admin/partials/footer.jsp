@@ -22,7 +22,13 @@
     <script src="../../assets/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
     <script src="../../assets/vendors/datatables.net-fixedcolumns-bs4/dataTables.fixedColumns.min.js"></script>
     <script src="../../assets/vendors/lightgallery/js/lightgallery-all.min.js"></script>
-    
+    <script src="../../assets/vendors/jquery-validation/jquery.validate.min.js"></script>
+    <script src="../../assets/vendors/bootstrap-maxlength/bootstrap-maxlength.min.js"></script>
+    <script src="../../assets/vendors/dropify/dropify.min.js"></script>
+    <script src="../../assets/vendors/inputmask/jquery.inputmask.bundle.js"></script>
+    <script src="../../assets/vendors/jquery-validation/jquery.validate.min.js"></script>
+	<script src="../../assets/vendors/bootstrap-maxlength/bootstrap-maxlength.min.js"></script>
+	<script src="../../assets/vendors/dropify/dropify.min.js"></script>
     
     
     <script src="https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js"></script>
@@ -34,36 +40,81 @@
 	<script src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.print.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9.10.12/dist/sweetalert2.all.min.js"></script>
 	
-	<!-- 다음 우편번호 서비스 관련 js -->
-	<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-	
-
-		
-	<!-- Plugin js for this page -->
-	    <script src="../../assets/vendors/jquery-validation/jquery.validate.min.js"></script>
-	    <script src="../../assets/vendors/bootstrap-maxlength/bootstrap-maxlength.min.js"></script>
-	    <script src="../../assets/vendors/dropify/dropify.min.js"></script>
-	    <script src="../../assets/vendors/inputmask/jquery.inputmask.bundle.js"></script>
-	    <!-- End plugin js for this page -->
-        
-       
-        <!-- Custom js for this page -->
-        <script src="../../assets/js/shared/form-validation.js"></script>
-        <script src="../../assets/js/shared/bt-maxLength.js"></script>
-        <script src="../../assets/js/shared/dropify.js"></script>
-        <script src="../../assets/js/shared/inputmask.js"></script>
-        <!-- End custom js for this page -->
-        
-
-    <!-- End plugin js for this page-->
+    <!-- Custom js for page -->
+    <script src="../../assets/js/shared/form-validation.js"></script>
+    <script src="../../assets/js/shared/bt-maxLength.js"></script>
+    <script src="../../assets/js/shared/dropify.js"></script>
+    <script src="../../assets/js/shared/inputmask.js"></script>
+    <script src="../../assets/js/shared/data-table.js"></script>
+    <script src="../../assets/js/shared/light-gallery.js"></script>
+ 	<!-- End Custom js for page -->
+ 	
     <!-- inject:js -->
     <script src="../../assets/js/shared/off-canvas.js"></script>
     <script src="../../assets/js/shared/misc.js"></script>
     <script src="../../assets/js/shared/alert.js"></script>
+    <script src="../../assets/js/shared/Swalert.js"></script>
+    
     <!-- endinject -->
+    
     <!-- Custom js for this page-->
     <script src="../../assets/js/demo_1/dashboard.js"></script>
     <!-- End custom js for this page-->
+    
+    <script src="../../js/admin.js"></script>
+    <script src="../../assets/js/admin/hotel.js"></script>
+    <script src="../../assets/js/admin/room.js"></script>
+    <script src="../../assets/js/admin/rent.js"></script>
+    
+    <!-- 다음 우편번호 서비스 관련 js -->
+	<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	
+	
+	<script>
+	// 다음 우편번호 서비스
+    function openDaumZipAddress() {
+    	var addr = "";
+        new daum.Postcode({
+            oncomplete: function (data) {
+            	addr = data.address;
+            	console.log("addr in : " +addr);
+            	
+                jQuery("#postcode1").val(data.postcode1);
+                jQuery("#postcode2").val(data.postcode2);
+                jQuery("#zonecode").val(data.zonecode);
+                jQuery("#address").val(data.address);
+                jQuery("#compAddr").val(data.address);
+                jQuery("#address2").focus();
+                console.log(data);
+                
+                // kakaoMap 호출
+		        getKakaoMap(addr);
+                
+            }
+        }).open();
+    }
+	
+    function openDaumZipAddress2() {
+        new daum.Postcode({
+            oncomplete: function (data) {
+            	addr = data.address;
+                jQuery("#placeLocation").val(data.address);
+            }
+        }).open();
+        
+    }
+	
+    
+    
+    
+    
+    
+	ptn.func();
+	room.func();
+	rt.func();
+	
+	
+	</script>
 </body>
 
 </html>

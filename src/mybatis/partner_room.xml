@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd"
+>
+<mapper namespace="room">
+	<resultMap type="bean.roomVo" id="roomRslt">
+		<result column="rooms_serial" property="rooms_serial"/>
+		<result column="place_serial" property="place_serial"/>
+		<result column="rooms_name" property="rooms_name"/>
+		<result column="people" property="people"/>
+		<result column="price" property="price"/>
+		<result column="no_smoking" property="no_smoking"/>
+		<result column="mt_view" property="mt_view"/>
+		<result column="ocean_view" property="ocean_view"/>
+		<result column="city_view" property="city_view"/>
+		<result column="place_name" property="place_name"/>
+		<result column="room_type" property="room_type"/>
+		<result column="state" property="state"/>
+		<collection property="photos" ofType="bean.roomPhotoVo"><!-- 1:n 관계는 javaType이 아닌 oftType으로 받아야함  -->
+			<result column="photo_serial" property="photo_serial"/>
+			<result column="rooms_serial" property="rooms_serial"/>
+			<result column="oriFile" property="oriFile"/>
+			<result column="sysFile" property="sysFile"/>
+		</collection>
+	</resultMap>
+	
+	<!-- 객실 목록 조회 -->
+	<select id="select" parameterType="Integer" resultMap="roomRslt">
+		SELECT p.place_serial, r.rooms_serial, max(ph.sysFile), p.place_name, r.rooms_name, r.price, r.no_smoke, r.ocean_view, r.city_view, r.mt_view, p.state, p.PARTNER_SERIAL
+		FROM ROOMS r JOIN PLACE p ON p.place_serial = r.place_serial
+					 LEFT OUTER JOIN ROOOMS_PHOTO ph on r.rooms_serial = ph.ROOMS_SERIAL 
+		WHERE p.PARTNER_SERIAL=#{parameter}
+		GROUP BY p.place_serial, r.ROOMS_SERIAL, p.place_name, r.rooms_name, r.price, r.no_smoke, r.ocean_view, r.city_view, r.mt_view, p.state, p.PARTNER_SERIAL
+		ORDER BY r.rooms_serial DESC
+	</select>
+
+	<!-- 호텔 상세 뷰 - 객실 목록 조회 -->
+	<select id="select_room" parameterType="bean.PlaceVo" resultMap="roomRslt">
+		SELECT p.place_serial, r.rooms_serial, max(ph.sysFile), p.place_name, r.rooms_name, r.price, r.no_smoke, r.ocean_view, r.city_view, r.mt_view, p.state, p.PARTNER_SERIAL
+		FROM ROOMS r JOIN PLACE p ON p.place_serial = r.place_serial
+					 LEFT OUTER JOIN ROOOMS_PHOTO ph on r.rooms_serial = ph.ROOMS_SERIAL 
+		WHERE p.PARTNER_SERIAL=#{partner_serial}
+		AND p.place_serial=#{place_serial}
+		GROUP BY p.place_serial, r.ROOMS_SERIAL, p.place_name, r.rooms_name, r.price, r.no_smoke, r.ocean_view, r.city_view, r.mt_view, p.state, p.PARTNER_SERIAL
+		ORDER BY r.rooms_serial DESC
+	</select>
+	
+	<!-- 상세조회 -->
+	<select id="view" parameterType="Integer" resultMap="roomRslt">
+		SELECT place_serial, rooms_serial, rooms_name, price, people, no_smoke, ocean_view, city_view, mt_view
+		FROM ROOMS
+		WHERE rooms_SERIAL=#{rooms_serial}
+	</select>
+	
+	<!-- 객실관리 - 등록된 호텔 목록 조회 -->
+	<select id="hotel_list" parameterType="Integer" resultType="bean.PlaceVo">
+		SELECT PLACE_SERIAL, place_name
+		FROM PLACE
+		WHERE partner_serial=#{partner_serial}
+	</select>
+	
+	<!-- 첨부파일 조회 -->
+	<select id="att_list" parameterType="Integer" resultType="bean.roomPhotoVo">
+		select photo_serial, ROOMS_SERIAL, oriFile, sysFile
+		from ROOOMS_PHOTO
+		where ROOMS_SERIAL=#{rooms_serial}
+	</select>
+	
+	
+	
+	<!-- 객실정보 등록 -->
+	<insert id="insert" parameterType="bean.roomVo" >
+		INSERT INTO rooms (ROOMS_SERIAL, PLACE_SERIAL, ROOMS_NAME, PRICE, PEOPLE, NO_SMOKE, OCEAN_VIEW, CITY_VIEW, MT_VIEW)
+		VALUES (seq_rooms.nextval, #{place_serial}, #{rooms_name}, #{price}, #{people}, #{no_smoking}, #{ocean_view}, #{city_view}, #{mt_view})
+	</insert>
+	<!-- 객실정보 첨부파일 등록 -->
+	<insert id="att_insert" parameterType="bean.roomPhotoVo">
+		insert into ROOOMS_PHOTO (PHOTO_SERIAL, ROOMS_SERIAL , ORIFILE, SYSFILE)
+		values (seq_rooms_photo.nextval, seq_rooms.currval, #{oriFile}, #{sysFile})
+	</insert>
+	
+	<!-- 객실정보 수정 -->
+	<update id="update" parameterType="bean.roomVo">
+		update ROOMS set PLACE_SERIAL=#{place_serial}, ROOMS_NAME=#{rooms_name}, PEOPLE=#{people}, PRICE=#{price}, NO_SMOKE=#{no_smoking}, OCEAN_VIEW=#{ocean_view}, CITY_VIEW=#{city_view}, MT_VIEW=#{mt_view}
+		where ROOMS_SERIAL=#{rooms_serial}
+	</update>
+	
+	<!-- 객실정보 첨부파일 수정 -->
+	<update id="att_update" parameterType="bean.roomPhotoVo">
+		update ROOOMS_PHOTO set oriFile=#{oriFile}, sysFile=#{sysFile} 
+		where photo_serial=#{photo_serial}
+	</update>
+	
+	<!-- 객실 정보 삭제 -->
+	<delete id="delete" parameterType="bean.roomVo">
+		delete from rooms where ROOMS_SERIAL=#{rooms_serial} and PLACE_SERIAL=#{place_serial}
+	</delete>
+	
+	<!-- 객실 첨부파일 삭제 -->
+	<delete id="att_delete" parameterType="Integer">
+		delete from ROOOMS_PHOTO where rooms_serial=#{rooms_serial} 
+	</delete>
+</mapper>

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ms">
+
+<select id='idCheck' parameterType="String"  resultType="Integer">
+ select case
+       when count(member_id)>0 then 1
+       else 0
+       end result 
+ from membership 
+ where member_id=#{member_id} and state != 3 and state !=2
+
+</select>
+ 
+
+<select id='loginCheck' parameterType="bean.membershipVo"  resultType="boolean">
+ select case
+       when count(member_id)>0 then 1
+       else 0
+       end result 
+ from membership 
+ where member_id=#{member_id} and state != 3 and state !=2
+
+</select>
+ 
+ 
+ <select id="login" parameterType="bean.membershipVo"  resultType="boolean">
+                     
+   select case
+       when count(member_id)>0 then 1
+       else 0
+       end result 
+   from membership 
+   where member_id = #{member_id} and pwd = #{pwd} and state != 3 and state !=2
+   
+ </select>
+
+ <select id="loginUserInfo" parameterType="String"  resultType="bean.membershipVo">
+                     
+   select nickName, state
+   from membership 
+   where member_id = #{member_id}
+</select>
+
+
+
+<insert id="join" parameterType='bean.membershipVo'>
+insert into membership(member_id, email, member_name, mDate, state,nickName, pwd, phone)
+values(#{member_id}, #{email},#{member_name},sysdate,1,#{nickName},#{pwd},#{phone})
+
+</insert>
+
+<insert id="hotelJoin" parameterType='bean.partnerVo'>
+
+
+insert into partner(partner_serial, member_id, business_number, partner_name, state,partner_phone, partner_location)
+values(seq_partner.nextval, #{member_id},#{business_number},#{partner_name},999,#{partner_phone},#{partner_location})
+
+
+</insert>
+
+<insert id="rentJoin" parameterType='bean.partnerVo'>
+
+
+insert into partner(partner_serial, member_id, business_number, partner_name, state,partner_phone, partner_location)
+values(seq_partner.nextval, #{member_id},#{business_number},#{partner_name},888,#{partner_phone},#{partner_location})
+
+
+</insert>
+
+<!-- 회원정보 가져오기 -->
+<select id="getUserInfo" parameterType="String" resultType="bean.membershipVo">
+	select member_name, email
+	from membership
+	where member_id=#{_parameter}
+</select>
+
+<!-- 회원정보 수정 -->
+<update id="changeUserInfo" parameterType="bean.membershipVo">
+	update membership
+	set pwd=#{pwd}, member_name=#{member_name}, email=#{email}
+	where member_id=#{member_id}
+</update>
+
+<!-- 회원 탈퇴 요청 -->
+<update id="deleteUser" parameterType="bean.membershipVo">
+	update membership
+	set state=2, delete_reason=#{delete_reason}
+	where member_id=#{member_id}
+</update>
+
+</mapper>

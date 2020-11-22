@@ -1,174 +1,97 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>		
 <!DOCTYPE html>
-<html lang="zxx" class="no-js">
-<head>
-<!-- Mobile Specific Meta -->
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<!-- Favicon-->
-<link rel="shortcut icon" href="img/fav.png">
-<!-- Author Meta -->
-<meta name="author" content="colorlib">
-<!-- Meta Description -->
-<meta name="description" content="">
-<!-- Meta Keyword -->
-<meta name="keywords" content="">
-<!-- meta character set -->
-<meta charset="UTF-8">
-<!-- Site Title -->
-<title>Travel</title>
 
-<link
-	href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700"
-	rel="stylesheet">
-<!--
-			CSS
-			============================================= -->
-<link rel="stylesheet" href="../css/linearicons.css">
-<link rel="stylesheet" href="../css/font-awesome.min.css">
-<link rel="stylesheet" href="../css/bootstrap.css">
-<link rel="stylesheet" href="../css/magnific-popup.css">
-<link rel="stylesheet" href="../css/jquery-ui.css">
-<link rel="stylesheet" href="../css/nice-select.css">
-<link rel="stylesheet" href="../css/animate.min.css">
-<link rel="stylesheet" href="../css/owl.carousel.css">
-<link rel="stylesheet" href="../css/main.css">
-<link rel="stylesheet" href="../css/css_syj.css">
-
-<script src='./lib/jquery-3.4.1.js'></script>
-
-</head>
 <body>
 
-	<header id="header">
-		<div class="header-top">
-			<div class="container">
-				<div class="row align-items-center">
-					<div class="col-lg-6 col-sm-6 col-6 header-top-left">
-						<ul>
-							<li><a href="#">Visit Us</a></li>
-							<li><a href="#">Buy Tickets</a></li>
-						</ul>
+	<section class="banner-area relative">
+		<div class="container pt-50">
+			<div class="row d-flex justify-content-center align-items-center"
+				style="height: 250px">
+				<div class="menu-content col-lg-8">
+					<div class="title text-center">
+						<h1 class="text-white mb-10">로그인</h1>
 					</div>
-					<div class="col-lg-6 col-sm-6 col-6 header-top-right">
-						<div class="header-social">
-							<a href="#"><i class="fa fa-facebook"></i></a> <a href="#"><i
-								class="fa fa-twitter"></i></a> <a href="#"><i
-								class="fa fa-dribbble"></i></a> <a href="#"><i
-								class="fa fa-behance"></i></a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="container main-menu">
-			<div class="row align-items-center justify-content-between d-flex">
-				<div id="logo">
-					<a href="index.html"><img src="img/logo.png" alt="" title="" /></a>
-				</div>
-				<nav id="nav-menu-container">
-					<ul class="nav-menu">
-						<li><a href="index.html">Home</a></li>
-						<li><a href="about.html">About</a></li>
-						<li><a href="packages.html">Packages</a></li>
-						<li><a href="hotels.html">Hotels</a></li>
-						<li><a href="insurance.html">Insurence</a></li>
-						<li class="menu-has-children"><a href="">Blog</a>
-							<ul>
-								<li><a href="blog-home.html">Blog Home</a></li>
-								<li><a href="blog-single.html">Blog Single</a></li>
-							</ul></li>
-						<li class="menu-has-children"><a href="">Pages</a>
-							<ul>
-								<li><a href="elements.html">Elements</a></li>
-								<li class="menu-has-children"><a href="">Level 2 </a>
-									<ul>
-										<li><a href="#">Item One</a></li>
-										<li><a href="#">Item Two</a></li>
-									</ul></li>
-							</ul></li>
-						<li><a href="contact.html">Contact</a></li>
-					</ul>
-				</nav>
-				<!-- #nav-menu-container -->
-			</div>
-		</div>
-	</header>
-	<!-- #header -->
-	<!-- start banner Area -->
-	<section class="relative about-banner" id="home">
-		<div class="overlay overlay-bg"></div>
-		<div class="container">
-			<div class="row d-flex align-items-center justify-content-center">
-				<div class="about-content col-lg-12">
-					<h1 class="text-white">로그인</h1>
-					<p class="text-white link-nav">
-						<a href="index.html">Home </a> <span class="lnr lnr-arrow-right"></span>
-						<a href="elements.html">로그인</a>
-					</p>
+
 				</div>
 			</div>
 		</div>
 	</section>
-	<!-- End banner Area -->
 
 
 	<div class="container">
 		<div class="col-lg-7 offset-lg-3">
-			<div class="jumbotron" style="padding-top: 20px; background: white">
-				<form method="post" name="frm_ms" id="frm_ms"></form>
-
-				<div class="form-group col-lg-10">
-
-					<label>아이디</label> <input type="text" class="form-control"
-						name="mId" id="mId" placeholder="아이디을 입력해 주세요" maxlength="20">
-				</div>
+			<div class="jumbotron ms">
+				<div style="border: 1px solid #EAEAEA; padding: 50px;">
 
 
-				<div class="form-group col-lg-10">
-					<label>비밀번호</label><br> <input type="password"
-						class="form-control" name="pwd" id="pwd"
-						placeholder="비밀번호를 입력해주세요" maxlength="20" required>
-				</div>
+					<form method="post" name="frm_ms" id="frm_ms">
 
-				<div class="form-group col-lg-10">
-					<div class="input-group">
-						<div class="primary-checkbox">
-							<input type="checkbox" id="default-checkbox"><label
-								for="default-checkbox"></label>
-						</div>
-                   
-                        <div class="pull-left">
-						<label>&nbsp;로그인 상태 유지
-					
-						</label>
-						</div>
-						
-						<div class="offset-6 ">
-						<a href="memberJoin.jsp" >비밀번호 찾기</a>
-						</div>
-						
-						
+					<div class="form-group col-lg-10 offset-1">
+
+						<label>아이디</label> <input type="text" class="form-control"
+							name="mId" id="mId" placeholder="아이디을 입력해 주세요" maxlength="20">
 					</div>
 
+
+					<div class="form-group col-lg-10 offset-1">
+						<label>비밀번호</label><br> <input type="password"
+							class="form-control" name="pwd" id="pwd"
+							placeholder="비밀번호를 입력해주세요" maxlength="20" required>
+					</div>
+
+					<div class="form-group col-lg-10 offset-1 ">
+
+
+
+						<input type="button"
+							class="genric-btn info min-width-350  e-large" value="로그인"
+							id="btnLogin" 
+							 style="padding-left: 20px;">
+
+
+
+
+					</div>
+
+					<div class="form-group col-lg-10 offset-1">
+
+						<input type="text" class="genric-btn min-width-350 link"
+							id="findPwd" onclick="location.href='./?inc=membership/findPwd.jsp'"
+							value="비밀번호 찾기"> <br /> 
+							
+							<input type="text"
+							class="genric-btn min-width-350 link" id="memberJoin"
+							onclick="location.href='./?inc=memberJoin.ms'" value="회원가입">
+
+
+					</div>
+					
+				
+					<c:if test="${msg == 'noId'}">
+				      <div class="form-group col-lg-10 offset-1">
+				           <label>아이디가 존재하지 않습니다!</label>
+				      </div>
+				      
+					</c:if>
+					
+						<c:if test="${msg == 'noPwd'}">
+				      <div class="form-group col-lg-10 offset-1">
+				           <label>비밀번호를 다시 확인해주세요!</label>
+				      </div>
+				      
+					</c:if>
+					
+					
+					</form>
 				</div>
-
-				<div class="col-lg-7 offset-lg-3">
-					<input type="button" class="genric-btn info min-width-180  e-large"
-						value="로그인" id="btnLogin"><br>
-				</div>
-        <br>
-             <div class="col-lg-7 offset-lg-3">
-             <label>아직 회원이 아니신가요? </label><a href="memberJoin.jsp" >&nbsp;&nbsp;회원가입</a>
-             </div>
-
-
 			</div>
+
 		</div>
-
 	</div>
+	<script>
+           ms.func();
 
-
+	</script>
 </body>
-</html>

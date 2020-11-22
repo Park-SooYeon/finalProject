@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+	PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-config.dtd"
+>
+<configuration>
+	
+	<properties resource="config/config.properties"/>
+		<settings>
+     	 <setting name="localCacheScope" value="STATEMENT" /> <!-- STATEMENT / SESSION -->
+ 	   </settings>
+	<!-- JDBC 설정 -->
+	<environments default="development">
+		<environment id="development">
+			<transactionManager type="JDBC"/>
+			<dataSource type="POOLED">
+				<property name="driver" value="${driver}"/>
+				<property name="url" value="${url}"/>
+				<property name="username" value="${username}"/>
+				<property name="password" value="${password}"/>
+			</dataSource>
+		</environment>
+	</environments>
+	
+	<mappers>
+		<!-- mapper 파일 -->
+		
+		<!--  main -->
+		<mapper resource= "./mybatis/sb_mybatis.xml"/>
+		<!-- membership -->
+		   <mapper resource="./mybatis/membership.xml"/>
+		
+		<!-- mypage -->
+		<mapper resource="./mybatis/mp_mybatis.xml"/>
+		
+		<!-- admin -->
+		<mapper resource="./mybatis/adSuper_mybatis.xml"/>
+		
+		<!-- detailView -->
+		<mapper resource="./mybatis/detailview_mybatis.xml"/>
+		
+		<!-- review -->
+		<mapper resource="./mybatis/review_mybatis.xml"/>
+		
+		<!-- amdin-partner -->
+		<mapper resource="./mybatis/partner_hotel.xml"/>
+		<mapper resource="./mybatis/partner_room.xml"/>
+		<mapper resource="./mybatis/hotel_order.xml"/>
+		<mapper resource="./mybatis/partner_rent.xml"/>
+		
+		<!-- rent -->
+		<mapper resource="./mybatis/rent.xml"/>
+		
+		<!-- hotel-->
+ 		<mapper resource="./mybatis/hotel.xml"/> 
+		
+	</mappers>
+
+</configuration>

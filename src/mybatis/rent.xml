@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="rent">
+	<select id='company' parameterType="rent_parameter.CompanyPm" resultType="rent_parameter.CompanyVo">
+		select C.company_serial company_serial, C.company_name company_name, C.address address, C.latitude latitude, C.longitude longitude, min(A.price)*${between} price, count(A.car_serial) cars_count
+		from RENT_COMPANY C , RENT_CARS A 
+		where C.company_serial = A.company_serial 
+		and C.state ='y' and A.RESERVE_STATE='n' and  C.address like '%${placeMain}%' and C.address like '%${placeSub}%'
+		group by C.company_serial,C.company_name, C.address, C.latitude, C.longitude
+		order by price
+	</select>
+	
+	<select id='companyFillter' parameterType="rent_parameter.CompanyPm" resultType="rent_parameter.CompanyVo">
+		select C.company_serial company_serial, C.company_name company_name, C.address address, C.latitude latitude, C.longitude longitude, min(A.price)*${between} price, count(A.car_serial) cars_count
+		from RENT_COMPANY C , RENT_CARS A 
+		where C.company_serial = A.company_serial 
+		and C.state ='y' and A.RESERVE_STATE='n' and  C.address like '%${placeMain}%' and C.address like '%${placeSub}%'
+		<if test="companyCheck !=null ">
+			and C.company_name = #{companyCheck}
+		</if>
+		<if test="airconCheck !=null">
+			and A.aircon = 'y'
+		</if>
+		<if test="gearCheck !=null">
+			and A.gear = '오토'
+		</if>
+		<if test="doorCheck !=null">
+			and A.door <![CDATA[>]]>= 4
+		</if>
+		<if test='maxPeopleCheck !=null and(maxPeopleCheck eq "1".toString())'>
+				and A.max_people <![CDATA[<]]>=2 and A.max_people <![CDATA[>]]>=1
+			</if>
+			<if test='maxPeopleCheck !=null and(maxPeopleCheck eq "2".toString())'>
+				and A.max_people <![CDATA[<]]>=4 and A.max_people <![CDATA[>]]>=1
+			</if>
+			<if test='maxPeopleCheck !=null and(maxPeopleCheck eq "3".toString())'>
+				and A.max_people <![CDATA[>]]>4
+			</if>
+		
+		
+			<if test='priceCheck !=null and(priceCheck eq "1".toString())'>
+				and price*${between} <![CDATA[<]]>= 500000
+			</if>
+			<if test='priceCheck !=null and(priceCheck eq "2".toString())'>
+				and price*${between} <![CDATA[<]]>= 300000
+			</if>
+			<if test='priceCheck !=null and(priceCheck eq "3".toString())'>
+				and price*${between} <![CDATA[<]]>= 100000
+			</if>
+			<if test='kindCheck !=null and(kindCheck eq "소형 차량".toString())'>
+				and A.car_kind = '소형 차량'
+			</if>
+			<if test='kindCheck !=null and(kindCheck eq "중형 차량".toString())'>
+				and A.car_kind = '중형 차량'
+			</if>
+			<if test='kindCheck !=null and(kindCheck eq "대형 차량".toString())'>
+				and A.car_kind = '대형 차량'
+			</if>
+			<if test='kindCheck !=null and(kindCheck eq "프리미엄 차량".toString())'>
+				and A.car_kind = '프리미엄 차량'
+			</if>
+			<if test='kindCheck !=null and(kindCheck eq "미니벤".toString())'>
+				and A.car_kind = '미니벤'
+			</if>
+			<if test='kindCheck !=null and(kindCheck eq "SUV".toString())'>
+				and A.car_kind = 'SUV'
+			</if>	
+		
+		group by C.company_serial,C.company_name, C.address, C.latitude, C.longitude
+		order by price
+	</select>
+	
+	<select id='carSearch' parameterType="rent_parameter.CarPm" resultType="rent_parameter.CarVo">
+		select A.COMPANY_NAME company_name, A.ADDRESS address, C.CAR_SERIAL car_serial , C.CAR_NAME car_name ,C.CAR_KIND car_kind, C.PRICE*${between} price , C.DOOR door ,C.GEAR gear, C.MAX_PEOPLE max_people , C.BIG_BAG big_bag , C.SMALL_BAG small_bag ,
+				C.AIRCON aircon , C.RESERVATION reservation , C.THEFT theft , C.MY_CAR my_car , C.PHOTO photo , round((avg(R.REVIEW_1)+avg(R.REVIEW_2)+avg(R.REVIEW_2)+avg(R.REVIEW_3)+avg(R.REVIEW_4)+avg(R.REVIEW_5)+avg(R.REVIEW_6)+avg(R.REVIEW_7))/7,1)  review ,count(R.REVIEW_SERIAL) review_count
+				,CASE WHEN 0 = count(R.REVIEW_SERIAL) THEN null  
+				ELSE  case WHEN 1 = RANK() OVER (ORDER BY count(R.REVIEW_SERIAL) DESC ) THEN '최고인기상품'  else NULL end END product 
+		FROM RENT_COMPANY A, RENT_CARS C, RENT_REVIEW R
+		where C.CAR_SERIAL = R.CAR_SERIAL(+) and A.COMPANY_SERIAL = C.COMPANY_SERIAL
+		and	C.RESERVE_STATE = 'n' and C.COMPANY_SERIAL =${company_serial}
+		
+		<if test="airconCheck !=null">
+			and C.aircon = 'y'
+		</if>
+		<if test="gearCheck !=null">
+			and C.gear = '오토'
+		</if>
+		<if test="doorCheck !=null">
+			and C.door <![CDATA[>]]>= 4
+		</if>
+		<if test='maxPeopleCheck !=null and(maxPeopleCheck eq "1".toString())'>
+				and C.max_people <![CDATA[<]]>=2 and A.max_people <![CDATA[>]]>=1
+			</if>
+			<if test='maxPeopleCheck !=null and(maxPeopleCheck eq "2".toString())'>
+				and C.max_people <![CDATA[<]]>=4 and A.max_people <![CDATA[>]]>=1
+			</if>
+			<if test='maxPeopleCheck !=null and(maxPeopleCheck eq "3".toString())'>
+				and C.max_people <![CDATA[>]]>4
+			</if>
+		
+		
+			<if test='priceCheck !=null and(priceCheck eq "1".toString())'>
+				and price*${between} <![CDATA[<]]>= 500000
+			</if>
+			<if test='priceCheck !=null and(priceCheck eq "2".toString())'>
+				and price*${between} <![CDATA[<]]>= 300000
+			</if>
+			<if test='priceCheck !=null and(priceCheck eq "3".toString())'>
+				and price*${between} <![CDATA[<]]>= 100000
+			</if>
+			<if test='kindCheck !=null and(kindCheck eq "소형 차량".toString())'>
+				and C.car_kind = '소형 차량'
+			</if>
+			<if test='kindCheck !=null and(kindCheck eq "중형 차량".toString())'>
+				and C.car_kind = '중형 차량'
+			</if>
+			<if test='kindCheck !=null and(kindCheck eq "대형 차량".toString())'>
+				and C.car_kind = '대형 차량'
+			</if>
+			<if test='kindCheck !=null and(kindCheck eq "프리미엄 차량".toString())'>
+				and C.car_kind = '프리미엄 차량'
+			</if>
+			<if test='kindCheck !=null and(kindCheck eq "미니벤".toString())'>
+				and C.car_kind = '미니벤'
+			</if>
+			<if test='kindCheck !=null and(kindCheck eq "SUV".toString())'>
+				and C.car_kind = 'SUV'
+			</if>	
+			
+		GROUP by A.COMPANY_NAME, A.ADDRESS ,C.CAR_SERIAL  , C.CAR_NAME  ,C.CAR_KIND, C.PRICE  , C.DOOR  ,C.GEAR , C.MAX_PEOPLE  , C.BIG_BAG  , C.SMALL_BAG  ,C.AIRCON  , C.RESERVATION  , C.THEFT  , C.MY_CAR  , C.PHOTO 
+		ORDER by price
+	</select>
+
+	<select id='carView' parameterType="rent_parameter.CarViewPm" resultType="rent_parameter.CarViewVo">
+		select C.CAR_SERIAL car_serial , C.CAR_NAME car_name , C.CAR_KIND car_kind,C.PRICE*${between} price , C.DOOR door ,C.GEAR gear, C.MAX_PEOPLE max_people , C.BIG_BAG big_bag , C.SMALL_BAG small_bag ,
+				C.AIRCON aircon , C.RESERVATION reservation , C.THEFT theft , C.MY_CAR my_car , C.PHOTO photo , round((avg(R.REVIEW_1)+avg(R.REVIEW_2)+avg(R.REVIEW_2)+avg(R.REVIEW_3)+avg(R.REVIEW_4)+avg(R.REVIEW_5)+avg(R.REVIEW_6)+avg(R.REVIEW_7))/7,1)  review ,count(R.REVIEW_SERIAL) review_count
+		FROM RENT_CARS C, RENT_REVIEW R	
+		where C.CAR_SERIAL = R.CAR_SERIAL(+)
+		and C.RESERVE_STATE = 'n' and C.car_SERIAL =${car_serial} 
+		GROUP by C.CAR_SERIAL  , C.CAR_NAME ,C.CAR_KIND , C.PRICE  , C.DOOR  ,C.GEAR , C.MAX_PEOPLE  , C.BIG_BAG  , C.SMALL_BAG  ,C.AIRCON  , C.RESERVATION  , C.THEFT  , C.MY_CAR  , C.PHOTO
+		
+	</select>
+	
+	<select id='reviewSearch' parameterType="rent_parameter.rentReviewPm" resultType="rent_parameter.rentReviewVo">
+		select review_serial , car_serial , reserve_serial , scale , take_overtime , good_news , bad_news , writed_date , round((review_1+review_2+review_3+review_4+review_5+review_6+review_7)/7,1) score
+		from RENT_REVIEW
+		where CAR_SERIAL = ${car_serial}
+		<if test='scale_kind !=null and(scale_kind eq "가족".toString())'>
+				and scale = '가족'
+		</if>
+		<if test='scale_kind !=null and(scale_kind eq "그룹".toString())'>
+				and scale = '그룹'
+		</if>
+		<if test='scale_kind !=null and(scale_kind eq "커플".toString())'>
+				and scale = '커플'
+		</if>
+		<if test='scale_kind !=null and(scale_kind eq "개인".toString())'>
+				and scale = '개인'
+		</if>
+		<if test='scale_kind !=null and(scale_kind eq "a".toString())'>
+				
+		</if>
+		ORDER by WRITED_DATE desc
+	</select>
+	
+	<select id='reviewTotSearch' parameterType="Integer" resultType="rent_parameter.rentReviewTotVo">
+	select round(avg(review_1),1) re1 , round(avg(review_2),1) re2 ,round(avg(review_3),1) re3 ,round(avg(review_4),1) re4 , round(avg(review_5),1) re5 , round(avg(review_6),1) re6 ,round(avg(review_7),1) re7 ,
+			round((avg(REVIEW_1)+avg(REVIEW_2)+avg(REVIEW_2)+avg(REVIEW_3)+avg(REVIEW_4)+avg(REVIEW_5)+avg(REVIEW_6)+avg(REVIEW_7))/7,1)  totRe, count(REVIEW_SERIAL) review_count
+	FROM RENT_REVIEW
+	where CAR_SERIAL = ${_parameter}
+	</select>
+	
+	<insert id="reserveInsert" parameterType="rent_parameter.ReservePm">
+		insert into rent_reserve(reserve_serial , car_serial , member_id , email ,phone , rent_date , return_date , state , fullcover , payment ,price ,reserved_date ,place_main ,place_sub)
+				values ( seq_rent_reserve.nextval , ${car_serial} , '${member_id}' ,'${email}' , '${phone}' , TO_TIMESTAMP('${rentDate}','YYYYMMDDHH24MISS') ,TO_TIMESTAMP('${returnDate}','YYYYMMDDHH24MISS')  , 'y' , '${fullcover}' , '${payment}' , ${price} , systimestamp , '${place_main}' , '${place_sub}')
+			
+	</insert>
+	
+	<select id="reserveSerial" resultType="Integer">
+		SELECT seq_rent_reserve.currval FROM dual
+	</select>
+	
+	<select id="reserveSerialSearch" parameterType="rent_parameter.ReservePm" resultType="Integer">
+		SELECT reserve_serial from rent_reserve where email = '${email}' and member_id='${member_id}'
+	</select>
+	
+	<select id="reserveSearch1" parameterType="String" resultType="rent_parameter.ReserveVo">
+		select reserve_serial , car_serial , email , rent_date , return_date , fullcover , payment ,price ,reserved_date , place_main , place_sub 
+		from RENT_RESERVE 
+		where member_id='${_parameter}' and rent_date <![CDATA[>]]>systimestamp and CANCLE_DATE is null and (review_check='n' or REVIEW_CHECK is null)	
+	</select>
+	
+	<select id="reserveSearch2" parameterType="String" resultType="rent_parameter.ReserveVo">
+		select reserve_serial , car_serial , email , rent_date , return_date , fullcover , payment ,price ,RESERVED_DATE , place_main , place_sub ,review_check
+		from RENT_RESERVE 
+		where member_id='${_parameter}' and return_date <![CDATA[<]]>systimestamp and CANCLE_DATE is null
+	</select>
+	
+	<select id="reserveSearch3" parameterType="String" resultType="rent_parameter.ReserveVo">
+		select reserve_serial , car_serial , email , rent_date , return_date , fullcover , payment ,price ,RESERVED_DATE , place_main , place_sub ,review_check
+		from RENT_RESERVE 
+		where member_id='${_parameter}' and CANCLE_DATE is not null
+	</select>
+	
+	<update id="reserveCancle" parameterType="String">
+		update RENT_RESERVE set CANCLE_DATE=SYSTIMESTAMP , CANCLE_REASON='돈없어' where RESERVE_SERIAL='${_parameter}'
+	</update>
+	
+	<insert id="reviewInsert" parameterType="rent_parameter.ReviewPm">
+		insert into RENT_REVIEW(review_serial , car_serial , reserve_serial , review_1,review_2,review_3,review_4,review_5,review_6,review_7,scale, take_overtime , good_news , bad_news , WRITED_DATE)
+				values(seq_rent_review.nextval , ${car_serial} , '${reserve_serial}' , ${review_1},${review_2},${review_3},${review_4},${review_5},${review_6},${review_7},'${scale}','${take_overtime}','${good_news}','${bad_news}',sysdate)
+	</insert>
+	<update id="reviewUpdate" parameterType="String">
+		update rent_reserve set review_check='y' where reserve_serial='${_parameter}'
+	</update>
+	
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

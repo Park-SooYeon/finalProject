@@ -2,10 +2,10 @@
     pageEncoding="UTF-8"%>
     <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
         <div class="text-center navbar-brand-wrapper d-flex align-items-top justify-content-center">
-            <a class="navbar-brand brand-logo" href="index.html">
-                <img src="/traveler/assets/images/logo.svg" alt="logo" /> </a>
-            <a class="navbar-brand brand-logo-mini" href="index.html">
-                <img src="/traveler/assets/images/logo-mini.svg" alt="logo" /> </a>
+            <a class="navbar-brand brand-logo" href="./?inc=dashboard.jsp">
+                <img src="../../template/img/logo.png" alt="logo" /> </a>
+            <a class="navbar-brand brand-logo-mini" href="./?inc=dashboard.jsp">
+                <img src="../../assets/images/logo-mini.svg" alt="logo" /> </a>
         </div>
         <div class="navbar-menu-wrapper d-flex align-items-center">
             
@@ -16,7 +16,7 @@
             </form> -->
             <ul class="navbar-nav ml-auto">
             	<li class="nav-item">
-            		<a href="/" class="nav-link count-indicator" id="" >
+            		<a href="../../" class="nav-link count-indicator" id="" target="_blank" >
             			<i class="mdi mdi-home-outline"></i>
             		</a>
             	</li>
@@ -33,7 +33,7 @@
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item preview-item">
                             <div class="preview-thumbnail">
-                                <img src="/traveler/assets/images/faces/face10.jpg" alt="image" class="img-sm profile-pic"> </div>
+                                <img src="../../assets/images/faces/face10.jpg" alt="image" class="img-sm profile-pic"> </div>
                             <div class="preview-item-content flex-grow py-2">
                                 <p class="preview-subject ellipsis font-weight-medium text-dark">Marian Garner </p>
                                 <p class="font-weight-light small-text"> The meeting is cancelled </p>
@@ -41,7 +41,7 @@
                         </a>
                         <a class="dropdown-item preview-item">
                             <div class="preview-thumbnail">
-                                <img src="/traveler/assets/images/faces/face12.jpg" alt="image" class="img-sm profile-pic"> </div>
+                                <img src="../../assets/images/faces/face12.jpg" alt="image" class="img-sm profile-pic"> </div>
                             <div class="preview-item-content flex-grow py-2">
                                 <p class="preview-subject ellipsis font-weight-medium text-dark">David Grey </p>
                                 <p class="font-weight-light small-text"> The meeting is cancelled </p>
@@ -49,7 +49,7 @@
                         </a>
                         <a class="dropdown-item preview-item">
                             <div class="preview-thumbnail">
-                                <img src="/traveler/assets/images/faces/face1.jpg" alt="image" class="img-sm profile-pic"> </div>
+                                <img src="../../assets/images/faces/face1.jpg" alt="image" class="img-sm profile-pic"> </div>
                             <div class="preview-item-content flex-grow py-2">
                                 <p class="preview-subject ellipsis font-weight-medium text-dark">Travis Jenkins </p>
                                 <p class="font-weight-light small-text"> The meeting is cancelled </p>
@@ -98,10 +98,10 @@
                 </li>
                 <li class="nav-item dropdown d-none d-xl-inline-block user-dropdown">
                     <a class="nav-link dropdown-toggle" id="UserDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
-                        <img class="img-xs rounded-circle" src="/traveler/assets/images/faces/face8.jpg" alt="Profile image"> </a>
+                        <img class="img-xs rounded-circle" src="../../assets/images/faces/face8.jpg" alt="Profile image"> </a>
                     <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
                         <div class="dropdown-header text-center">
-                            <img class="img-md rounded-circle" src="/traveler/assets/images/faces/face8.jpg" alt="Profile image">
+                            <img class="img-md rounded-circle" src="../../assets/images/faces/face8.jpg" alt="Profile image">
                             <p class="mb-1 mt-3 font-weight-semibold">Allen Moreno</p>
                             <p class="font-weight-light text-muted mb-0">allenmoreno@gmail.com</p>
                         </div>

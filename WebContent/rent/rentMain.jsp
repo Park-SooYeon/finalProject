@@ -15,23 +15,23 @@
 	</script>
 	<!-- Meta tags -->
 	<!--stylesheets-->
-	<link href="./css/style.css" rel='stylesheet' type='text/css' media="all">
+	<link href="../plugin/KDGtemplate/style.css" rel='stylesheet' type='text/css' media="all">
 	<!--//style sheet end here-->
 	<!-- Calendar -->
-	<link rel="stylesheet" href="./css/jquery-ui.css" />
+	<link rel="stylesheet" href="../template/css/jquery-ui.css" />
 	<!-- //Calendar -->
-	<link href="./css/wickedpicker.css" rel="stylesheet" type='text/css' media="all" />
+	<link href="../plugin/wickedpicker/css/wickedpicker.css" rel="stylesheet" type='text/css' media="all" />
 	<!-- Time-script-CSS -->
 
 	<link href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
 </head>
 
 <body>
-	<div class='rentmain'>
+	<div class='rentmain' style="padding-top: 70px;">
 	<h1 class="header-w3ls">
 		어디에서 픽업하세요?</h1>
 	<div class="appointment-w3">
-		<form action="#" method="post">
+		<form name="rent_frm" id="rent_frm" method="post">
 			
 			<div class="information">
 				
@@ -40,77 +40,50 @@
 
 					
 					<div class="form-left-w3l">
-						<input id="datepicker1" name="text1" type="text" placeholder="차량인수일  &" required="">
-						<input type="text" id="timepicker1" name="Time" class="timepicker form-control hasWickedpicker" placeholder="Time" required=""
-						 onkeypress="return false;">
+						<input id="mainRent"  class='datepicker-here'  data-position='right top' data-timepicker="true" data-language='en' name="rentDate" type="text" placeholder="차량인수일 " required="">
+						
 						<div class="clear"></div>
 					</div>
 					<div class="form-left-w3l">
-						<input id="datepicker2" name="text2" type="text" placeholder="차량반납일  &" required="">
-						<input type="text" id="timepicker2" name="Time" class="timepicker form-control hasWickedpicker" placeholder="Time" required=""
-						 onkeypress="return false;">
+						<input id="mainReturn" class='datepicker-here'  data-position='left top' data-timepicker="true" data-language='en' name="returnDate" type="text" placeholder="차량반납일 " required="">
+						
 						<div class="clear"></div>
 					</div>
 				</div>
 				
 				<div class="main">
-
 					<div class="form-left-w3l">
-						<select class="form-control" id="place" >
+						<select class="form-control" name='placeMain' id="place" >
 							<option value="지역">지역</option>
 							<option value="서울">서울</option>
+							<option value="경기도">경기도</option>
+							<option value="안천">인천</option>
 							<option value="부산">부산</option>
 							<option value="대구">대구</option>
-							<option value="안천">인천</option>
-							<option value="광주">광주</option>
-							<option value="대전">대전</option>
-							<option value="울산">울산</option>
-							<option value="경기도">경기도</option>
-							<option value="강원도">강원도</option>
-							<option value="츙정북도">충청북도</option>
-							<option value="츙정남도">충청남도</option>
-							<option value="전라북도">전라북도</option>
-							<option value="전라남도">전라남도</option>
-							<option value="경상북도">경상북도</option>
-							<option value="경상남도">경상남도</option>
 							<option value="제주도">제주도</option>
 						</select>
 					</div>
 					<div class="form-right-w3ls">
-						<select class="form-control" id="subplace">
+						<select class="form-control" name='placeSub' id="subplace">
 						<option value="">시</option>
 						</select>
 					</div>
-					<label class="defrent" id="defrent">> 다른 지점에서 차량 반납하기</label><br/><br/>
+					<label class="defrent" id="defrent">> 전화 예약이 필요하신가요??</label><br/><br/>
 					
 					<div class="hiddenmain" id="hiddenmain">
-						<label class="give">차량반납</label>
-						<div class="form-left-w3l">
-						<select class="form-control" id="hiddenplace">
-							<option value="지역">지역</option>
-							<option value="서울">서울</option>
-							<option value="부산">부산</option>
-							<option value="대구">대구</option>
-							<option value="안천">인천</option>
-							<option value="광주">광주</option>
-							<option value="대전">대전</option>
-							<option value="울산">울산</option>
-							<option value="경기도">경기도</option>
-							<option value="강원도">강원도</option>
-							<option value="충청북도">충청북도</option>
-							<option value="충청남도">충청남도</option>
-							<option value="전라북도">전라북도</option>
-							<option value="전라남도">전라남도</option>
-							<option value="경상북도">경상북도</option>
-							<option value="경상남도">경상남도</option>
-							<option value="제주도">제주도</option>
-						</select>
+						<div id="callimg"><img src="../images/rent/phone.png"/></div>
+						<div>예약 전화</div>
+						
+						<div class="hiddenmainsub" id="hiddenmainsub">
+							<div>02 2023 6423</div>
+							<span>
+							영업시간<br/>
+							콜센터로 연락이 어려우신 경우, 오후 3시 이후에 다시 전화 부탁 드리겠습니다.<br/>
+							오후 3시 이후부터는 보다 원활한 상담이 가능합니다.<br/>
+							감사합니다. &nbsp; <i id='callInfosub' data-toggle="tooltip" data-placement="top" title="예약 및 상담시간 : 월 ~ 금  08:00-23:00"><img src='../images/rent/callInfo.png'/></i>
+							</span>
 						</div>
-						<div class="form-right-w3ls">
-							<select class="form-control" id="hiddensubplace">
-								<option value="">시</option>
-							</select>
-						</div>
+						
 					</div>
 				
 				
@@ -120,38 +93,115 @@
 			
 			
 			<div class="btnn">
-				<input type="submit" value="검색">
+				<input id='btnCompanySearch' type="submit" value="검색">
 			</div>
 		</form>
 	</div>
 	<div class="copy">
-		<p>&copy;차량렌트 - 검색,비교후 예약 900개 공급업체 보유, 최저가 맞춤 <a href="http://www.W3Layouts.com" target="_blank">마이리얼트립</a> <br/> 문의전화 000-0000-0000 <br/> 기타 상담전화 111-1111-1111</p>
+		<p>&copy;차량렌트 - 검색,비교후 예약 900개 공급업체 보유, 최저가 맞춤 <a href="../index.jsp" target="_blank">travelista</a> <br/> 문의전화 000-0000-0000 <br/> 기타 상담전화 111-1111-1111</p>
 	</div>
 	</div>
-	<!-- js -->
-	<script type='text/javascript' src='./lib/jquery-3.4.1.js'></script>
-	<!-- //js -->
+	
+	
+	
 	<!-- Calendar -->
-	<script src="./js/jquery-ui.js"></script>
 	<script>
-	$("#datepicker1,#datepicker2").datepicker();
-	</script>
-	<!-- //Calendar -->
-	<!-- Time -->
-	<script type="text/javascript" src="./js/wickedpicker.js"></script>
-	<script type="text/javascript">
-		$('#timepicker1,#timepicker2').wickedpicker({ twentyFour: false });
-	</script>
-	<!-- //Time -->
-	
-	
-	
+    // Create start date
+    var start = new Date(),
+        prevDay,
+        startHours = 9;
+
+    // 09:00 AM
+    start.setHours(9);
+    start.setMinutes(0);
+
+    // If today is Saturday or Sunday set 10:00 AM
+    if ([6, 0].indexOf(start.getDay()) != -1) {
+        start.setHours(10);
+        startHours = 10
+    }
+
+    $('#mainRent').datepicker({
+        timepicker: true,
+        language: 'en',
+        startDate: start,
+        minHours: startHours,
+        maxHours: 18,
+        navTitles: {
+            days: '<h3>차량 인수일 : </h3> MM, yyyy'
+        },
+        minDate: new Date(),
+        onSelect: function (fd, d, picker) {
+            // Do nothing if selection was cleared
+            if (!d) return;
+
+            var day = d.getDay();
+
+            // Trigger only if date is changed
+            if (prevDay != undefined && prevDay == day) return;
+            prevDay = day;
+
+            // If chosen day is Saturday or Sunday when set
+            // hour value for weekends, else restore defaults
+            if (day == 6 || day == 0) {
+                picker.update({
+                    minHours: 10,
+                    maxHours: 16
+                })
+            } else {
+                picker.update({
+                    minHours: 9,
+                    maxHours: 18
+                })
+            }
+        }
+    })
+    $('#mainReturn').datepicker({
+        timepicker: true,
+        language: 'en',
+        startDate: start,
+        minHours: startHours,
+        maxHours: 18,
+        navTitles: {
+            days: '<h3>차량 반납일 : </h3> MM, yyyy'
+        },
+        minDate: new Date(),
+        onSelect: function (fd, d, picker) {
+            // Do nothing if selection was cleared
+            if (!d) return;
+
+            var day = d.getDay();
+
+            // Trigger only if date is changed
+            if (prevDay != undefined && prevDay == day) return;
+            prevDay = day;
+
+            // If chosen day is Saturday or Sunday when set
+            // hour value for weekends, else restore defaults
+            if (day == 6 || day == 0) {
+                picker.update({
+                    minHours: 10,
+                    maxHours: 16
+                })
+            } else {
+                picker.update({
+                    minHours: 9,
+                    maxHours: 18
+                })
+            }
+        }
+    })
+</script>
 	
 	
 	<script>
 		$('#defrent').click(function(){
 			$('#hiddenmain').slideToggle("fast");
 		});
+		$('#callimg,#hiddenmain>div:nth-child(2)').click(function(){
+			$('#hiddenmainsub').slideToggle("fast");
+		});
+		$('#callInfosub').tooltip();
 		
 		var seoul = new Array("서울전체","종로구","중구","용산구","성동구","광진구","동대문구","중랑구","성북구","강북구","도봉구","노원구","은평구","서대문구","마포구","양천구","강서구","구로구","금천구","영등포구","동작구","관악구","서초구","강남구","송파구","강동구");
 		var busan = new Array("부산전체","중구","서구","동구","영도구","부산진구","동래구","남구","북구","강서구","해운대구","사하구","금정구","연제구","수영구","사상구");
@@ -374,7 +424,7 @@
 		});
 		
 		
-		
+		rent.func();
 	</script>
 
 </body>

@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ht">
+
+	<!-- 호텔 탑메뉴 진입시 예약불가능한 호텔을 보여줌니당 -->
+	<select id='mainNo' resultType="bean.PlaceVo">
+		select
+		PLACE_SERIAL,PARTNER_SERIAL, PLACE_NAME,
+		PLACE_LOCATION, LATITUDE,
+		LONGITUDE, STATE,
+		LOCAL_CODE,place_tel
+		from place
+        
+
+
+
+	</select>
+
+	<select id='mainYes' resultType="bean.PlaceVo">
+		select
+		p.PLACE_SERIAL
+		,p.PARTNER_SERIAL,p.PLACE_NAME,
+		p.PLACE_LOCATION, p.LATITUDE,
+		p.LONGITUDE, p.STATE,
+		p.LOCAL_CODE,p.place_tel,min(ph.sysFile) sysFile
+		from place p, place_photo ph
+
+		where p.PLACE_SERIAL = ph.PLACE_SERIAL and
+		partner_serial is not null
+
+		group by p.PLACE_SERIAL,p.PARTNER_SERIAL,
+		p.PLACE_NAME,
+		p.PLACE_LOCATION, p.LATITUDE, p.LONGITUDE, p.STATE,
+		p.LOCAL_CODE,p.place_tel
+
+
+
+	</select>
+
+       <!-- 예약가능 -->
+	<select id='searchMainOK' parameterType="Integer" resultType="bean.PlaceVo">
+select
+		p.PLACE_SERIAL
+		,p.PARTNER_SERIAL,p.PLACE_NAME,
+		p.PLACE_LOCATION, p.LATITUDE,
+		p.LONGITUDE, p.STATE,p.wi_fi,p.PARKING,p.BREAKFAST,
+		p.LOCAL_CODE,p.place_tel,max(ph.sysFile) sysFile
+		
+		from  place p,PLACE_PHOTO ph
+
+		where  local_code=#{local_code} and PARTNER_SERIAL is not null and p.PLACE_SERIAL=ph.PLACE_SERIAL
+		
+  
+		group by p.PLACE_SERIAL,p.PARTNER_SERIAL,
+		p.PLACE_NAME,
+		p.PLACE_LOCATION, p.LATITUDE, p.LONGITUDE,p.STATE,p.wi_fi,p.PARKING,p.BREAKFAST,		p.LOCAL_CODE,p.place_tel
+
+
+	</select>
+
+
+
+  <!-- 예약 불가능 -->
+	<select id='searchMainNo' parameterType="Integer" resultType="bean.PlaceVo">
+			select
+		PLACE_SERIAL,PARTNER_SERIAL, PLACE_NAME,
+		PLACE_LOCATION, LATITUDE,
+		LONGITUDE, STATE,
+		LOCAL_CODE,place_tel
+		from place
+		where local_code=#{local_code}
+        
+
+
+	</select>
+
+<select id='detailView' parameterType="Integer" resultType="bean.roomVo">
+					select
+		p.PLACE_SERIAL,
+		r.ROOMS_SERIAL,r.rooms_name,r.PEOPLE,r.PRICE,r.NO_SMOKE,r.OCEAN_VIEW,r.CITY_VIEW,r.MT_VIEW,r.PEOPLE
+		from place p,rooms r
+		where p.place_serial=r.PLACE_SERIAL 
+		       and   p.PLACE_SERIAL=#{place_serial}
+        
+	</select>
+
+
+<select id='detailViewHotel' parameterType="Integer" resultType="bean.PlaceVo">
+	   	select
+		PLACE_SERIAL,PARTNER_SERIAL, PLACE_NAME,
+		PLACE_LOCATION,LATITUDE,
+		LONGITUDE,STATE,
+		LOCAL_CODE,place_tel
+		from place
+		where PLACE_SERIAL=#{place_serial}
+        
+	</select>
+
+
+  
+  <select id='photo_list' parameterType='Integer' resultType="bean.roomPhotoVo">
+        SELECT rp.PHOTO_SERIAL, rp.ROOMS_SERIAL, rp.SYSFILE ,r.place_serial
+       FROM SCOTT.ROOOMS_PHOTO rp,rooms r
+     where rp.rooms_serial=r.rooms_serial and PLACE_SERIAL= #{place_serial}
+  </select>
+  
+  <select id='reviewList' parameterType='Integer' resultType="bean.ReviewVo">
+       select m.member_photo,m.nickName,
+       r.review_serial,r.PLACE_SERIAL,r.reputation,r.REVIEW_TITLE,r.REVIEW_CONTENT,r.VISIT_DATE,r.REVIEW_DATE,
+       count(like_id) likecount
+		from review r left outer join membership m 
+		               on m.member_id=r.member_id
+		               left outer join REVIEW_LIKE l
+		               on r.REVIEW_SERIAL=l.review_serial 
+		where r.PLACE_SERIAL =#{place_serial}
+       
+       group by m.member_photo,m.nickName,
+       r.review_serial,r.PLACE_SERIAL,r.reputation,r.REVIEW_TITLE,r.REVIEW_CONTENT,r.VISIT_DATE,r.REVIEW_DATE
+      
+  </select>
+
+<!--  
+	<select id='placeSelect' resultType="bean.PlaceVo" parameterType="hashMap">
+		SELECT p.PLACE_SERIAL, p.PARTNER_SERIAL, p.PLACE_NAME,
+		p.PLACE_LOCATION, p.LATITUDE,
+		p.LONGITUDE, p.STATE, p.BREAKFAST,
+		p.WI_FI, p.PARKING, p.LOCAL_CODE, p.PLACE_TEL,
+		max(ph.sysFile) sysFile
+
+		<foreach item="filter" index="index" collection="filter">
+			<choose>
+
+
+				<when test='filter == "" or filter == null '>
+					FROM place p left outer join place_photo ph
+				</when>
+				<when test='filter !="" or filter != null'>
+					FROM place p join place_photo ph
+				</when>
+			</choose>
+		</foreach>
+		on p.PLACE_SERIAL = ph.PLACE_SERIAL
+		<where>
+
+			<foreach item="local" index="index" collection="local">
+				
+					<if test='local != "" or local != null'>
+		
+						<foreach item="local" index="index" collection="local"
+							separator="or">
+							p.local_code=${local}
+						</foreach>
+					</if>
+           </foreach>
+
+
+			<foreach item="filter" index="index" collection="filter">
+				
+					<if test='filter != "" or filter != null'>
+						and p.partner_serial is not null and
+						<foreach item="filter" collection="filter" separator="and">
+							${filter}=1
+						</foreach>
+					</if>
+			
+			</foreach>
+
+
+
+		</where>
+		group by p.PLACE_SERIAL, p.PARTNER_SERIAL, p.PLACE_NAME,
+		p.PLACE_LOCATION, p.LATITUDE,
+		p.LONGITUDE, p.STATE, p.BREAKFAST,
+		p.WI_FI, p.PARKING, p.LOCAL_CODE, p.PLACE_TEL
+	</select>
+-->
+
+
+<insert id="hotelReserv" parameterType='bean.hotelBookingVo'>
+
+
+insert into hotel_booking(booking_serial,member_id,reserve_date,member_name,rooms_serial,place_serial)
+values(seq_hotel_booking.nextval,#{member_id},sysdate,#{member_name},${rooms_serial},${place_serial})
+
+</insert>
+
+
+</mapper>

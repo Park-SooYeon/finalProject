@@ -25,16 +25,17 @@
 <!--
 			CSS
 			============================================= -->
-<link rel="stylesheet" href="../css/linearicons.css">
-<link rel="stylesheet" href="../css/font-awesome.min.css">
-<link rel="stylesheet" href="../css/bootstrap.css">
-<link rel="stylesheet" href="../css/magnific-popup.css">
-<link rel="stylesheet" href="../css/jquery-ui.css">
-<link rel="stylesheet" href="../css/nice-select.css">
-<link rel="stylesheet" href="../css/animate.min.css">
-<link rel="stylesheet" href="../css/owl.carousel.css">
-<link rel="stylesheet" href="../css/main.css">
+<link rel="stylesheet" href="../template/css/linearicons.css">
+<link rel="stylesheet" href="../template/css/font-awesome.min.css">
+<link rel="stylesheet" href="../template/css/bootstrap.css">
+<link rel="stylesheet" href="../template/css/magnific-popup.css">
+<link rel="stylesheet" href="../template/css/jquery-ui.css">
+<link rel="stylesheet" href="../template/css/nice-select.css">
+<link rel="stylesheet" href="../template/css/animate.min.css">
+<link rel="stylesheet" href="../template/css/owl.carousel.css">
+<link rel="stylesheet" href="../template/css/main.css">
 <link rel="stylesheet" href="../css/css_syj.css">
+
 
 <script src='../lib/jquery-3.4.1.js'></script>
 
@@ -48,111 +49,22 @@ padding-bottom:5px;
 </style>
 </head>
 <body>
-
-	<header id="header">
-		<div class="header-top">
-			<div class="container">
-				<div class="row align-items-center">
+<!-- start banner Area -->
+<section class="banner-area relative">
+	<div class="container pt-50 mb-30">
+		<div class="row d-flex justify-content-center align-items-center"
+			style="height: 250px">
+			<div class="menu-content col-lg-12">
+				<div class="title text-center">
+					<h1 class="text-white mb-10"> 호텔 예약하기</h1>
 				
-				
-					<div class="col-lg-6 col-sm-6 col-6 header-top-left">
-						<ul>
-							<li><a href="#">Visit Us</a></li>
-							<li><a href="#">Buy Tickets</a></li>
-						</ul>
-					</div>
-					<div class="col-lg-6 col-sm-6 col-6 header-top-right">
-						<div class="header-social">
-							<a href="#"><i class="fa fa-facebook"></i></a> <a href="#"><i
-								class="fa fa-twitter"></i></a> <a href="#"><i
-								class="fa fa-dribbble"></i></a> <a href="#"><i
-								class="fa fa-behance"></i></a>
-						</div>
-					</div>
 				</div>
 			</div>
 		</div>
-		<div class="container main-menu">
-			<div class="row align-items-center justify-content-between d-flex">
-				<div id="logo">
-					<a href="index.html"><img src="img/logo.png" alt="" title="" /></a>
-				</div>
-				<nav id="nav-menu-container">
-					<ul class="nav-menu">
-						<li><a href="index.html">Home</a></li>
-						<li><a href="about.html">About</a></li>
-						<li><a href="packages.html">Packages</a></li>
-						<li><a href="hotels.html">Hotels</a></li>
-						<li><a href="insurance.html">Insurence</a></li>
-						<li class="menu-has-children"><a href="">Blog</a>
-							<ul>
-								<li><a href="blog-home.html">Blog Home</a></li>
-								<li><a href="blog-single.html">Blog Single</a></li>
-							</ul></li>
-						<li class="menu-has-children"><a href="">Pages</a>
-							<ul>
-								<li><a href="elements.html">Elements</a></li>
-								<li class="menu-has-children"><a href="">Level 2 </a>
-									<ul>
-										<li><a href="#">Item One</a></li>
-										<li><a href="#">Item Two</a></li>
-									</ul></li>
-							</ul></li>
-						<li><a href="contact.html">Contact</a></li>
-					</ul>
-				</nav>
-				<!-- #nav-menu-container -->
-			</div>
-		</div>
-	</header>
-	<!-- #header -->
-	<!-- start banner Area -->
-	<section class="relative about-banner" id="home">
-		<div class="overlay overlay-bg"></div>
-		<div class="container">
-			<div class="row d-flex align-items-center justify-content-center">
-				<div class="about-content col-lg-12">
-					<h1 class="text-white">회원가입</h1>
-					<p class="text-white link-nav">
-						<a href="index.html">Home </a> <span class="lnr lnr-arrow-right"></span>
-						<a href="elements.html">회원가입</a>
-					</p>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!-- End banner Area -->
+	</div>
+</section>
+<!-- End banner Area -->
 
-
-
-<div style="background: #38a4ff">
-	<div class="container" style="background: #38a4ff">
-			<div class="jumbotron" style="padding-top: 20px; background: #38a4ff">
-		<div class="col-lg-10 offset-2 " >
-		
- </div>           
-
-<form  method="post" name="frm_ms" id="frm_ms" class="row" >
-	                        <div class="col-lg-2 offset-lg-1 col-md-12 ">
-									<input type="text" class="form-control" name="name" placeholder="From " onfocus="this.placeholder = ''" onblur="this.placeholder = 'From '">									
-									</div>
-									<div class="col-lg-2  " >
-									<input type="text" class="form-control date-picker" name="start" placeholder="Start " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Start '">
-									</div>
-									<div class="col-lg-2">
-									<input type="text" class="form-control date-picker" name="return" placeholder="Return " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Return '">
-									</div>
-									<div class="col-lg-2  ">
-									<input type="number" min="1" max="20" class="form-control" name="adults" placeholder="Adults " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Adults '">
-									</div>
-									
-									<div class="col-lg-2 ">	
-									<input type="button" class="genric-btn info-border"  value="검색" id="btnReservation">
-										</div>						
-								</form>		
-</div>
-</div>
-</div>
 
 <div class="container">
 						<div class="row">
@@ -261,15 +173,33 @@ padding-bottom:5px;
 						&nbsp;	&nbsp;	
 						<input type="button" class="genric-btn info min-width-180  e-large"
 						value="예약하기" id="btnReservation"><br>
-			
+			       
 						
                        </div>
+                      
             </div>
 				
 			</div>		
                       
 
+	<script>
 	
+	$("#btnReservation").click(function(){
+		
+		
+	
+		
+		     document.frm_ms.action="?inc=Reserv.ht"
+			 document.frm_ms.submit();
+	
+	
+	})
+	
+	
+	
+	
+	
+	</script>
 		
    
 	

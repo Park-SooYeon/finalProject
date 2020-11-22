@@ -79,13 +79,13 @@
 	
 }
 #rentSearch #left #map{
-	position: absolute;
+	position: fixed;
 	height: 930px;
 	z-index: 0!important;
 }
 #rentSearch #left #hiddenFillterBack{
 	background-color:#eee;
-	opacity: 0.8;
+	opacity: 0.5;
 	position: absolute;
 	height: 930px;
 	z-index: 1;
@@ -236,6 +236,7 @@
 #rentSearch #right{
 	background-color:#eee;
 	padding: 20px 40px 20px 40px;
+	border-radius: 10px 10px 10px 10px;
 }
 #rentSearch #right #depart{
 	height: auto;
@@ -262,7 +263,7 @@
 	height: auto;
 	text-align: right;
 	padding-top:15px;
-	padding-bottom:15px;
+	padding-bottom:10px;
 }
 #rentSearch #right #depart #depart_2 span{
 	font-size: 2.1em;
@@ -299,7 +300,7 @@
 	height: auto;
 	text-align: right;
 	padding-top:15px;
-	padding-bottom:15px;
+	padding-bottom:10px;
 }
 #rentSearch #right #arrive #arrive_2 span{
 	font-size: 2.1em;
@@ -355,7 +356,7 @@
 
 
 /*---------rentSearchsub1------------------------------------------------*/
-#rentSearch #right #company{
+#rentSearch #right .company{
 	margin-top:20px;
 	background-color: #fff;
 	padding-top: 10px;
@@ -364,70 +365,70 @@
 	border-radius: 5px 5px 5px 5px;
 	box-shadow: 1px 1px 5px 1px rgba(143,143,143,0.2);
 }
-#rentSearch #right #company:hover{
+#rentSearch #right .company:hover{
 	border: 1px solid #2b96ed;
 	cursor: pointer;
 }
-#rentSearch #right #company>div{
+#rentSearch #right .company>div{
 }
-#rentSearch #right #company #companyLeft{
+#rentSearch #right .company #companyLeft{
 }
-#rentSearch #right #company #companyLeft #leftImage{
+#rentSearch #right .company #companyLeft #leftImage{
 	padding: 0px;
 }
-#rentSearch #right #company #companyLeft #leftImage img{
+#rentSearch #right .company #companyLeft #leftImage img{
 	max-width: 100%;
 	height: auto;
 }
-#rentSearch #right #company #companyLeft #rightInfo{
+#rentSearch #right .company #companyLeft #rightInfo{
 	font-size: 1.4em;
 	font-weight: 800;
 	padding-top: 15px;
 	padding-bottom: 15px;
 	color:#222;
 }
-#rentSearch #right #company #companyLeft #rightInfo span{
+#rentSearch #right .company #companyLeft #rightInfo span{
 	font-size: 0.7em;
 	font-weight: 600;
 	color:#666;
 }
-#rentSearch #right #company #companyMid1{
+#rentSearch #right .company #companyMid1{
 	text-align: center;
 	padding-top:10px;
 }
-#rentSearch #right #company #companyMid1 span{
+#rentSearch #right .company #companyMid1 span{
 	font-size: 0.3em;
 	color:#333;
 	
 }
-#rentSearch #right #company #companyMid1 div{
+#rentSearch #right .company #companyMid1 div{
 	font-size:1.4em;
 	font-weight:800;
 	color:#222;
 }
-#rentSearch #right #company #companyMid2{
+#rentSearch #right .company #companyMid2{
 	text-align: center;
 	padding-top:20px;
 }
-#rentSearch #right #company #companyMid2 span{
+#rentSearch #right .company #companyMid2 span{
 	font-size:1.4em;
 	font-weight:800;
 	color:#222;
 }
-#rentSearch #right #company #companyMid2 div{
+#rentSearch #right .company #companyMid2 div{
 	font-size: 0.3em;
 	color:#333;
 }
-#rentSearch #right #company #companyRight{
+#rentSearch #right .company #companyRight{
 	text-align: center;
 }
-#rentSearch #right #company #companyRight button{
+#rentSearch #right .company #companyRight button{
 	width: 100%;
 	margin-top:25px;
 	background-color:#2b96ed;
 	font-weight: 800;
 }
-#rentSearch #right #company #companyRight span{
+#rentSearch #right .company #companyRight span{
 	font-size: 0.3em;
 	color:green;
 	font-weight: 700;
@@ -478,6 +479,7 @@
 	font-size:0.9em;
 	font-weight: 300;
 	color:#222;
+	cursor: pointer;
 }
 
 #rentSearch #right #car #carPrice{
@@ -554,6 +556,7 @@
 	padding-bottom:5px;
 	border-right: 0.5px solid #bbb;
 	border-bottom: 0.5px solid #bbb;
+	font-size: 0.7em;
 }
 #rentSearch #right #underInfo div #carSubInfo2 #carSubInfo2_1 span{
 	color:green;
@@ -567,6 +570,13 @@
 	font-size: 0.9em;
 	color:#ggg!important;
 	font-weight: normal;
+}
+#rentSearch #right #underInfo div #carSubInfo3,#carSubInfo2 .info_f2{
+	cursor: pointer;
+}
+#rentSearch #right #underInfo div #carSubInfo3,#carSubInfo2 .info_f2>b{
+	font-size: 0.7em;
+	
 }
 #rentSearch #right #underInfo div #carSubInfo3 {
 	padding-top:5px;
@@ -655,6 +665,7 @@
 	color:white;
 	padding-top:10px;
 	padding-bottom:10px;
+	margin-bottom: 30px;
 }
 #rentView>div #viewMid #viewLeft .rentInfo:hover{
 	cursor: pointer;
@@ -664,10 +675,342 @@
 }
 
 
-
-
 #rentView>div #viewMid #viewRight{
+	padding-left: 30px;
+	padding-right: 30px;
+}
+#rentView>div #viewMid #viewRight div #viewRightTop>#viewNavbar{
+	height: auto;
+	border: none;
+	background-color:#fff;
+	border-bottom: 2px solid #2b96ed;
+	border-radius: 0px 0xp 0px 0px;
+}
+#rentView>div #viewMid #viewRight div #viewRightTop nav #viewCon{
+	height: 20px;
+	border: none;
+	background-color:#fff;
+	text-align: center;
+}
+#rentView>div #viewMid #viewRight div #viewRightTop nav #viewCon>div{
+	text-align: center;
+	height: 20px;
+}
+#rentView>div #viewMid #viewRight div #viewRightTop nav #viewCon div #viewNav{
+	height: 20px;
+	margin: 0px;
+}
+#rentView>div #viewMid #viewRight div #viewRightTop nav #viewCon div #viewNav a{
+	margin-left: 15px;
+}
+#rentView>div #viewMid #viewRight div #viewRightTop nav #viewCon div #viewNav a img{
+	width: 20px;
+	height: 20px;
+}
+
+
+#rentView>div #viewMid #viewRight #viewRightBot{
+	border: 1px solid #bbb;
+	box-sizing: border-box;
+	border-radius: 5px 5px 5px 5px ;
+	margin-bottom:20px;
+}
+#rentView>div #viewMid #viewRight #viewRightBot #fullInfo{
+	margin-bottom: 20px;
+}
+#rentView>div #viewMid #viewRight #viewRightBot #fullInfo i{
+	font-size: 0.5em;
+	color:#bbb;
+}
+#rentView>div #viewMid #viewRight #viewRightBot #fullcheck>div>div{
+	text-align: center;
+}
+
+
+#rentView>div #viewMid #viewRight #viewRightMid{
+	padding: 10px;
+}
+
+#rentView>div #viewMid #viewRight #fullBtn>div>button{
+	width:100%;
+	height: auto;
+}
+#rentView>div #viewMid #viewRight #fullBtn>div>button:first-child{
+	border: 1px solid #2b96cb!important;
+}
+#rentView>div #viewMid #viewRight #fullBtn>div>.btn-default>div{
+	font-weight: bold;
+	font-size: 1.2em;
+}
+#rentView>div #viewMid #viewRight #fullBtn>div>.btn-primary>div{
+	font-weight: bold;
+	font-size: 1.2em;
+}
+#rentView>div #viewMid #viewRight #fullBtn>div>.btn-default>span{
+	font-size: 0.3em;
+}
+#rentView>div #viewMid #viewRight #fullBtn>div>.btn-primary>span{
+	font-size: 0.3em;
+}
+
+
+#rentView>div #viewMid #viewRight #viewRightMid{
+	margin-bottom: 40px;
+}
+#rentView>div #viewMid #viewRight #viewRightMid #mid_left h4{
+	font-weight: bold;
+}
+#rentView>div #viewMid #viewRight #viewRightMid #mid_left h4 span{
+	font-size: 0.6em;
+	color:#aaa;
+}
+#rentView>div #viewMid #viewRight #viewRightMid #mid_left img{
+	max-width: 100%;
+	height: auto;
+}
+#rentView>div #viewMid #viewRight #viewRightMid #mid_left>div>b{
+	font-size: 0.7em;
+	color:#aaa;
+}
+#rentView>div #viewMid #viewRight #viewRightMid #mid_left>div>span{
+	color:#2b96cb;
+	font-size: 1.0em;
+}
+#rentView>div #viewMid #viewRight #viewRightMid #mid_left>p>i{
+	font-size: 1.5em;
+	color:#2b96ed;
+	font-weight: bold;
+}
+#rentView>div #viewMid #viewRight #viewRightMid #mid_left>p>b{
+	font-size:0.9em;
+	color:#aaa;
+}
+#rentView>div #viewMid #viewRight #viewRightMid #mid_left>p>span{
+	font-size:0.5em;
+	color:#bbb;
+}
+#rentView>div #viewMid #viewRight #viewRightMid #mid_left_info{
+	text-align: center;
+	color: #bbb;
+	font-size: 0.7em;
+	border: 1px solid #bbb;
+	padding: 5px;
+	cursor: pointer;
+	margin-bottom: 20px;
+}
+#rentView>div #viewMid #viewRight #viewRightMid #mid_right>div>div{
+	height: 20px;
+}
+#rentView>div #viewMid #viewRight #viewRightMid #mid_right>div>div img{
+	max-height:100%;
+	width: auto;
+}
+#rentView>div #viewMid #viewRight #viewRightMid #mid_right>h4{
+	font-size: 0.9em;
+	color:#bbb;
+	margin-top: 20px;
+}
+#rentView>div #viewMid #viewRight #viewRightMid #mid_right #mid_left_free>div>div{
+	height: 20px;
+	font-size: 0.8em;
+	color:#888;
+}
+#rentView>div #viewMid #viewRight #viewRightMid #mid_right #mid_left_free>div>div img{
+	max-height: 100%;
+	width: auto;
+	margin-right: 10px;
+}
+
+#rentView>div #viewMid #viewRight #viewRightMid #viewReview>div:nth-child(2){
+	border: 2px solid #eee;
+	height: auto;
+	margin-bottom: 30px;
+}
+
+#rentView>div #viewMid #viewRight #viewRightMid #viewReview #viewReviewTop{
+	margin-top:20px;
+	margin-bottom: 20px;
+}
+#rentView>div #viewMid #viewRight #viewRightMid #viewReview #viewReviewTop h5{
+	color: #ccc;
+	font-weight: bold;
 	
+}
+#rentView>div #viewMid #viewRight #viewRightMid #viewReview #viewReviewTop span{
+	font-size: 1.4em;
+	color:#888;
+	font-weight: bold;
+}
+#rentView>div #viewMid #viewRight #viewRightMid #viewReview #viewReviewMid>div>#viewReviewMidLeft{
+	border-right: 2px solid #eee;
+}
+#rentView>div #viewMid #viewRight #viewRightMid #viewReview #viewReviewMid>div>#viewReviewMidLeft>div{
+	height: 30px;
+	padding-top:5px;
+	height: auto;
+}
+#rentView>div #viewMid #viewRight #viewRightMid #viewReview #viewReviewMid>div>#viewReviewMidLeft>div:nth-child(2n-1) {
+	background-color:#eee;
+}
+#rentView>div #viewMid #viewRight #viewRightMid #viewReview #viewReviewMid>div>#viewReviewMidLeft>div>div:first-child {
+	color:#2b96ed;
+	font-weight: bold;
+	text-align: center;
+	font-size: 1.05em;
+	
+}
+#rentView>div #viewMid #viewRight #viewRightMid #viewReview #viewReviewMid>div>#viewReviewMidLeft>div>div:last-child {
+	font-size: 0.9em;
+	color:#888;
+	padding-top:3px;
+	padding-bottom:3px;
+	border-left: 3px solid #2b96cb;
+}
+#rentView>div #viewMid #viewRight #viewRightMid #viewReview #viewReviewMid>div>#viewReviewMidRight{
+	text-align: center;
+	padding-top:60px;
+}
+#rentView>div #viewMid #viewRight #viewRightMid #viewReview #viewReviewMid>div>#viewReviewMidRight>div{
+	font-size:1.2em;
+	font-weight: bold;
+	color:#2b96dc;
+}
+#rentView>div #viewMid #viewRight #viewRightMid #viewReview #viewReviewMid>div>#viewReviewMidRight>span{
+	font-size:1.7em;
+	font-weight: bold;
+	color:#2b96ed;
+}
+#rentView>div #viewMid #viewRight #viewRightMid #viewReview #viewReviewMid>div>#viewReviewMidRight>span>b{
+	font-size:0.7em;
+	color:#bbb;
+}
+#rentView>div #viewMid #viewRight #viewRightMid #viewReview #viewReviewMid>div>#viewReviewMidRight>p{
+	font-size:0.6em;
+	color:#aaa;
+	margin-top:40px;
+}
+
+#rentView>div #viewMid #viewRight #viewRightMid #viewReview>div:nth-child(3) {
+}
+#rentView>div #viewMid #viewRight #viewRightMid #viewReview>div:nth-child(3)>div{
+	padding-right: 35px;
+	padding-top:  25px;
+}
+#rentView>div #viewMid #viewRight #viewRightMid #viewReview>div:nth-child(3)>div:nth-child(2) {
+	background-color: #f9f9f9;
+	margin-top: 15px;
+	
+}
+
+#rentView>div #viewMid #viewRight #viewRightMid #viewReview>div:nth-child(3)>div:nth-child(2)>div>div>div>div:first-child {
+	height: 40px;
+	text-align: right;
+	padding: 0px;
+}
+#rentView>div #viewMid #viewRight #viewRightMid #viewReview>div:nth-child(3)>div:nth-child(2)>div>div>div>div:first-child img{
+	max-height: 100%;
+	width: auto;
+}
+#rentView>div #viewMid #viewRight #viewRightMid #viewReview>div:nth-child(3)>div:nth-child(2)>div>div>div>div:nth-child(2) {
+	background-color:#fff;
+	border:1px solid #ddd;
+	padding: 15px 15px 15px 15px;
+	margin-bottom: 15px;
+	box-sizing: border-box;
+}
+#rentView>div #viewMid #viewRight #viewRightMid #viewReview>div:nth-child(3)>div:nth-child(2)>div>div>div>div:nth-child(2):hover{
+	box-shadow: 1px 1px 5px 1px #ddd;
+}
+
+
+#rentView>div #viewMid #viewRight #viewRightMid #viewReview>div:nth-child(3)>div:nth-child(2)>div>div>div>div:nth-child(2)>div:nth-child(1){
+	
+}
+#rentView>div #viewMid #viewRight #viewRightMid #viewReview>div:nth-child(3)>div:nth-child(2)>div>div>div>div:nth-child(2)>div:nth-child(1)>div:nth-child(1){
+	margin-bottom: 20px;
+}
+#rentView>div #viewMid #viewRight #viewRightMid #viewReview>div:nth-child(3)>div:nth-child(2)>div>div>div>div:nth-child(2)>div:nth-child(1)>div:nth-child(1)>span{
+	color:#fff;
+	background-color:#2b96ed;
+	font-weight: bold;
+	padding: 5px;
+	
+}
+#rentView>div #viewMid #viewRight #viewRightMid #viewReview>div:nth-child(3)>div:nth-child(2)>div>div>div>div:nth-child(2)>div:nth-child(1)>div:nth-child(2){
+	text-align: right;
+}
+#rentView>div #viewMid #viewRight #viewRightMid #viewReview>div:nth-child(3)>div:nth-child(2)>div>div>div>div:nth-child(2)>div:nth-child(1)>div:nth-child(2)>span:nth-child(1){
+	color:#bbb;
+	font-size: 0.9em;
+}
+#rentView>div #viewMid #viewRight #viewRightMid #viewReview>div:nth-child(3)>div:nth-child(2)>div>div>div>div:nth-child(2)>div:nth-child(1)>div:nth-child(2)>span:nth-child(2){
+	color: #2b96ed;
+	font-size: 1.1em;
+	font-weight: bold;
+}
+
+
+
+#rentView>div #viewMid #viewRight #viewRightMid #viewReview>div:nth-child(3)>div:nth-child(2)>div>div>div>div:nth-child(2)>div:nth-child(2)>div{
+	height: 15px!important;
+	color:#aaa;
+	font-size: 0.6em;
+	margin-bottom: 15px;
+}
+#rentView>div #viewMid #viewRight #viewRightMid #viewReview>div:nth-child(3)>div:nth-child(2)>div>div>div>div:nth-child(2)>div:nth-child(2)>div>img{
+	max-height: 100%;
+	width: auto;
+}
+
+#rentView>div #viewMid #viewRight #viewRightMid #viewReview>div:nth-child(3)>div:nth-child(2)>div>div>div>div:nth-child(2)>div:nth-child(3)>{
+	
+}
+#rentView>div #viewMid #viewRight #viewRightMid #viewReview>div:nth-child(3)>div:nth-child(2)>div>div>div>div:nth-child(2)>div:nth-child(3)>div:nth-child(1){
+	height: auto;
+}
+#rentView>div #viewMid #viewRight #viewRightMid #viewReview>div:nth-child(3)>div:nth-child(2)>div>div>div>div:nth-child(2)>div:nth-child(3)>div:nth-child(1)>div{
+	height: 17px!important;
+	width: 17px;
+	display: inline-block;
+}
+#rentView>div #viewMid #viewRight #viewRightMid #viewReview>div:nth-child(3)>div:nth-child(2)>div>div>div>div:nth-child(2)>div:nth-child(3)>div:nth-child(1)>span{
+	height: 17px!important;
+	color:#666;
+	font-size: 0.8em!important;
+	margin-bottom: 5px;
+}
+#rentView>div #viewMid #viewRight #viewRightMid #viewReview>div:nth-child(3)>div:nth-child(2)>div>div>div>div:nth-child(2)>div:nth-child(3)>div:nth-child(1)>div>img{
+	max-height: 100%;
+	width: auto;
+}
+#rentView>div #viewMid #viewRight #viewRightMid #viewReview>div:nth-child(3)>div:nth-child(2)>div>div>div>div:nth-child(2)>div:nth-child(3)>div:nth-child(2){
+	height: auto;
+}
+#rentView>div #viewMid #viewRight #viewRightMid #viewReview>div:nth-child(3)>div:nth-child(2)>div>div>div>div:nth-child(2)>div:nth-child(3)>div:nth-child(2)>div{
+	height: 17px!important;
+	width: 17px;
+	display: inline-block;
+}
+#rentView>div #viewMid #viewRight #viewRightMid #viewReview>div:nth-child(3)>div:nth-child(2)>div>div>div>div:nth-child(2)>div:nth-child(3)>div:nth-child(2)>span{
+	height: 17px!important;
+	color:#666;
+	font-size: 0.8em;
+	margin-bottom: 5px;
+}
+#rentView>div #viewMid #viewRight #viewRightMid #viewReview>div:nth-child(3)>div:nth-child(2)>div>div>div>div:nth-child(2)>div:nth-child(3)>div:nth-child(2)>div>img{
+	max-height: 100%;
+	width: auto;
+}
+#rentView>div #viewMid #viewRight #viewRightMid #viewReview>div:nth-child(3)>div:nth-child(2)>div>div>div>div:nth-child(2)>div:nth-child(4){
+	border-top: 1px dashed #bbb;
+	margin-top: 10px;
+	padding-top : 5px;
+}
+#rentView>div #viewMid #viewRight #viewRightMid #viewReview>div:nth-child(3)>div:nth-child(2)>div>div>div>div:nth-child(2)>div:nth-child(4)>div{
+	font-size: 0.6em!important;
+	color:#2b96ba;
+	cursor: pointer;
+	text-align: right;
 }
 
 
@@ -676,6 +1019,34 @@
 
 
 
+#rentView>div #viewMid #viewRight #viewRightMid #view_inprotant_info{
+	border:1px solid #eee;
+	box-sizing: border-box;
+	padding: 15px;
+	border-radius: 10px 10px 10px 10px;
+}
+
+#rentView>div #viewMid #viewRight #viewRightMid #view_inprotant_info>div>span{
+	font-size:1.3em;
+	color:#777;
+	font-weight: bold;
+}
+#rentView>div #viewMid #viewRight #viewRightMid #view_inprotant_info>div>div{
+	border-bottom: 1px dashed #bbb;
+	padding-bottom: 20px;
+	margin-bottom: 20px;
+}
+#rentView>div #viewMid #viewRight #viewRightMid #view_inprotant_info>div>div>div:nth-child(1) {
+	font-size: 0.9em;
+	font-weight: bold;
+	color:#444;
+	padding: 0px;
+}
+#rentView>div #viewMid #viewRight #viewRightMid #view_inprotant_info>div>div>div:nth-child(2) {
+	font-size: 0.8em;
+	color:#777;
+	padding: 0px;
+}
 
 
 
@@ -683,18 +1054,430 @@
 
 
 
+/*----------------rentReserveResult----------------------------*/
+#mid_left h4{
+	font-weight: bold;
+}
+#mid_left h4 span{
+	font-size: 0.6em;
+	color:#aaa;
+}
+#mid_left img{
+	max-width: 100%;
+	height: auto;
+}
+#mid_left>div>b{
+	font-size: 0.7em;
+	color:#aaa;
+}
+#mid_left>div>span{
+	color:#2b96cb;
+	font-size: 1.0em;
+}
+#mid_left>p>i{
+	font-size: 1.5em;
+	color:#2b96ed;
+	font-weight: bold;
+}
+#mid_left>p>b{
+	font-size:0.9em;
+	color:#aaa;
+}
+#mid_left>p>span{
+	font-size:0.5em;
+	color:#bbb;
+}
+#mid_left_info{
+	text-align: center;
+	color: #bbb;
+	font-size: 0.7em;
+	border: 1px solid #bbb;
+	padding: 5px;
+	cursor: pointer;
+	margin-bottom: 20px;
+}
+#mid_right>div>div{
+	height: 20px;
+}
+#mid_right>div>div img{
+	max-height:100%;
+	width: auto;
+}
+#mid_right>h4{
+	font-size: 0.9em;
+	color:#bbb;
+	margin-top: 20px;
+}
+#mid_right #mid_left_free>div>div{
+	height: 20px;
+	font-size: 0.8em;
+	color:#888;
+}
+#mid_right #mid_left_free>div>div img{
+	max-height: 100%;
+	width: auto;
+	margin-right: 10px;
+}
 
 
 
 
 
 
+#reserveResultTop{
+	padding: 20px 0px 20px 0px;
+	margin-bottom: 30px;
+}
+#reserveResultTop #depart{
+	height: auto;
+	background-color:#fff;
+	border: 1px solid #eee;
+	box-sizing: border-box;
+	box-shadow: 1px 1px 4px 1px #ccc;
+}
+#reserveResultTop #depart #depart_1{
+	height: auto;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+#reserveResultTop #depart #depart_1 div{
+	font-size: 0.9em;
+	color:#ccc;
+	margin-bottom: 5px;
+}
+#reserveResultTop #depart #depart_1 span{
+	font-size: 1.2em;
+	color: #777;
+}
+#reserveResultTop #depart #depart_2{
+	height: auto;
+	text-align: right;
+	padding-top:15px;
+	padding-bottom:10px;
+}
+#reserveResultTop #depart #depart_2 span{
+	font-size: 2.1em;
+	color:#777;
+}
+#reserveResultTop #depart #depart_2 span b{
+	font-size: 0.5em;
+	color:#ccc;
+}
+
+
+#reserveResultTop #arrive{
+	height: auto;
+	background-color:#eee;
+	border: 1px solid #eee;
+	box-sizing: border-box;
+	box-shadow: 1px 1px 4px 1px #ccc;
+}
+#reserveResultTop #arrive #arrive_1{
+	height: auto;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+#reserveResultTop #arrive #arrive_1 div{
+	font-size: 0.9em;
+	color:#ccc;
+	margin-bottom: 5px;
+}
+#reserveResultTop #arrive #arrive_1 span{
+	font-size: 1.2em;
+	color: #777;
+}
+#reserveResultTop #arrive #arrive_2{
+	height: auto;
+	text-align: right;
+	padding-top:15px;
+	padding-bottom:10px;
+}
+#reserveResultTop #arrive #arrive_2 span{
+	font-size: 2.1em;
+	color:#777;
+}
+#reserveResultTop #arrive #arrive_2 span b{
+	font-size: 0.5em;
+	color:#ccc;
+}
+
+
+
+
+#reserveResultBot{
+	padding: 20px 0px 20px 0px;
+	margin-bottom: 30px;
+	margin-top:30px;
+}
+#reserveResultBot #depart{
+	height: auto;
+	background-color:#fff;
+	border: 1px solid #eee;
+	box-sizing: border-box;
+	box-shadow: 1px 1px 4px 1px #ccc;
+}
+#reserveResultBot #depart #depart_1{
+	height: auto;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+#reserveResultBot #depart #depart_1 div{
+	font-size: 0.9em;
+	color:#ccc;
+	margin-bottom: 5px;
+}
+#reserveResultBot #depart #depart_1 span{
+	font-size: 1.2em;
+	color: #777;
+}
+#reserveResultBot #depart #depart_2{
+	height: auto;
+	text-align: right;
+	padding-top:15px;
+	padding-bottom:10px;
+}
+#reserveResultBot #depart #depart_2 span{
+	font-size: 2.1em;
+	color:#777;
+}
+#reserveResultBot #depart #depart_2 span b{
+	font-size: 0.5em;
+	color:#ccc;
+}
+
+
+#reserveResultBot #arrive{
+	height: auto;
+	background-color:#eee;
+	border: 1px solid #eee;
+	box-sizing: border-box;
+	box-shadow: 1px 1px 4px 1px #ccc;
+}
+#reserveResultBot #arrive #arrive_1{
+	height: auto;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+#reserveResultBot #arrive #arrive_1 div{
+	font-size: 0.9em;
+	color:#ccc;
+	margin-bottom: 5px;
+}
+#reserveResultBot #arrive #arrive_1 span{
+	font-size: 1.2em;
+	color: #777;
+}
+#reserveResultBot #arrive #arrive_2{
+	height: auto;
+	text-align: right;
+	padding-top:15px;
+	padding-bottom:10px;
+}
+#reserveResultBot #arrive #arrive_2 span{
+	font-size: 2.1em;
+	color:#777;
+}
+#reserveResultBot #arrive #arrive_2 span b{
+	font-size: 0.5em;
+	color:#ccc;
+}
+#reserveResultBot #arrive #depart_2 button{
+	width: 100%;
+	height: auto;
+	margin-top:15px;
+}
+
+
+
+
+
+#reserveResultHead>div>h4{
+	margin-top:70px;
+	text-align: center;
+	font-weight: bold;
+	color: #2b96cb;
+	font-size: 1.6em;
+}
+#reserveResultCansel>div>h4{
+	margin-top:70px;
+	text-align: center;
+	font-weight: bold;
+	color: orange;
+	font-size: 1.6em;
+}
+
+
+#reserveResultPrice>div{
+	text-align: right;
+}
+#reserveResultPrice>div>span:nth-child(1) {
+	font-size: 1.1em;
+	color:#888;
+}
+#reserveResultPrice>div>span:nth-child(1)>b {
+	font-size: 1.8em;
+	color:#2b96cb;
+	font-weight: bold;
+}
+#reserveResultPrice>div>div {
+	font-size: 0.8em;
+	color:green;
+}
+#reserveResultPrice>div>i {
+	font-size: 1.1em;
+	color:#bbb;
+}
+#reserveResultPrice>div>i>b {
+	font-size: 0.8em;
+	color:orange!important;
+}
 
 
 
 
 
 
+.reserveCansel{
+	opacity: 0.3;
+}
+.canselInfo{
+	font-size: 0.7em;
+	color: #e17070;
+	text-align: right;
+}
+.canselInfo>span{
+	font-size: 1.1em;
+	font-weight: bold;
+}
+
+.review_warning:hover{
+	cursor: pointer;
+	color: #eb5353;
+	font-weight: bold;
+	text-shadow: 1px 1px 1px #eee;
+}
+
+
+
+
+.warning{
+	height: 400px;
+}
+.warning>div>div:nth-child(1) {
+	margin-top: 20px;
+}
+.warning>div>div:nth-child(1)>div:nth-child(1){
+	font-size: 1.2em!important;
+	color: #555!important;
+}
+.warning>div>div:nth-child(1)>div:nth-child(2){
+	font-size: 1.2em!important;
+	color: #ddd!important;
+}
+
+.warning>div>div:nth-child(2) {
+	margin-top: 20px;
+}
+.warning>div>div:nth-child(2)>div:nth-child(1){
+	font-size: 1.2em!important;
+	color: #555!important;
+}
+.warning>div>div:nth-child(2)>div:nth-child(2){
+	font-size: 1.2em!important;
+	color: #ddd!important;
+}
+
+.warning>div>div:nth-child(3) {
+	margin-top: 20px;
+}
+.warning>div>div:nth-child(3)>div:nth-child(1){
+	font-size: 1.1em!important;
+	color: #ddd!important;
+}
+.warning>div>div:nth-child(3)>div:nth-child(2){
+	font-size: 1.1em!important;
+	color: #555!important;
+}
+
+.warning>div>div:nth-child(4) {
+	margin-top: 20px;
+}
+.warning>div>div:nth-child(4) div label{
+	font-size: 1.0em!important;
+	color:#555!important;
+}
+
+.warning>div>div:nth-child(5) {
+	margin-top: 20px;
+}
+.warning>div>div:nth-child(5)>div>div{
+	font-size: 1.1em!important;
+	color:#555!important;
+}
+.warning>div>div:nth-child(5)>div>input{
+	width: 100%!important;
+	height: 150px!important;
+	border: 1px solid #aaa!important;
+	background-color: #eee!important;
+	border-radius: 5px 5px 5px 5px!important;
+}
+
+
+#kind1_s,#kind2_s,#kind3_s,#kind4_s,#kind4_s,#kind5_s,#kind6_s{
+	display: none!improtant;
+}
+
+
+
+
+.my_kakao{
+	width:150px;
+	height: 200px;
+	box-sizing: border-box;
+	box-shadow: 1px 1px 1px 1px #aaa;
+	border-radius: 5px 5px 5px 5px;
+	padding:20px 10px 10px 10px;
+	text-align: center;
+	background-color: #fff;
+
+}
+.my_kakao>div:nth-child(1){
+	font-weight: bold;
+	margin-bottom: 5px;
+}
+.my_kakao>div:nth-child(1)>span{
+	font-size: 0.6em;
+}
+.my_kakao>div:nth-child(3){
+	font-size:0.8em;
+	margin-top: 20px;
+}
+.my_kakao>div:nth-child(3)>span{
+	font-size: 1.8em;
+	font-weight: bold;
+}
+
+
+
+
+.carPriceView_info1{
+	text-align:right;
+	margin-top: 40px;
+	font-size: 0.8em;
+	color:#444;
+}
+.carPriceView_info2{
+	text-align:right;
+	font-size: 1.7em;
+	font-weight: 800;
+	color:#333;
+}
+.carPriceView_info3{
+	text-align:right;
+	color: green;
+	font-size:0.5em;
+	font-weight: 600;
+}
 
 
 

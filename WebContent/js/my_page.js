@@ -1,46 +1,38 @@
-function init() {
-  var mapContainer = document.getElementById("map"), // 지도를 표시할 div
-    mapOption = {
-      center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-      level: 3, // 지도의 확대 레벨
-    };
+let $li = $(".mp-side-li");
+let commonPage = "my_page_common.jsp";
 
-  // 지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
-  var map = new kakao.maps.Map(mapContainer, mapOption);
+/* 추후 el 사용해서 값 넣어줄거라면 필요없는 변수
+let tripName = $("#mp-tripName").text();
+let authorName = $("#mp-authorName").text();
+*/
 
-  $("#on-city-close-btn").click(function () {
-    $("#right-full-box").toggle({ direction: "left" });
-  });
+function init(){
+	
+	//body 영역에 페이지 로드시키기
+	$(".mp-body-wrapper").load("mypage/"+commonPage);
+	
+	$li.click(function(){
+		
+		$(this).addClass("on");
+		$li.not(this).removeClass("on");
+		
+		//commonPage로 내용만 el로 변경
+		$(".mp-body-wrapper").load("mypage/"+commonPage);
+	})
 
-  $("#on-city-open-btn").click(function () {
-    $("#right-full-box").toggle("fade", { direction: "left" });
-  });
+	  //show modal
+	  $("#mp-modifyTripModal").on("show.bs.modal", function (event) {
+	    const ADD_BTN = $(event.relatedTarget); // Button that triggered the modal
+	    const TRIP_NAME = ADD_BTN.find("#mp-tripName").text(); // Extract info from data-* attributes
+	    // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+	    // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
 
-  $(".plan-category li").click(function () {
-      $(".schedule-detail-box").show("fade", { direction: "left" });
-      $(".plan-category li").not(this).removeClass("on");
-      $(".show-all-day").removeClass("on");
-      $(this).addClass("on");
-    });
+	    //TODO
+	    // submit -> profile modify
+	  });
 
-  $(".show-all-day").click(function () {
-    $(".schedule-detail-box, #right-full-box").hide();
-    $(".plan-category li").removeClass("on");
-    $(this).addClass("on");
-  });
-
-  $(".toggle-on").click(function () {
-    $(this).find("svg").toggleClass("fa-caret-up fa-caret-down");
-    $(this).parentsUntil(".schedule-detail-box").next().toggle();
-  });
-
-  $(".schedule-detail-box .day-spot-item").hover(function () {
-    $(this).find(".item-ctrl-box").toggle();
-  });
-} // end of init
+}
 
 init();
 
-function add_plan_day(){
-	$(".plan-category li:last-child").clone().appendTo(".plan-category");
-}
+

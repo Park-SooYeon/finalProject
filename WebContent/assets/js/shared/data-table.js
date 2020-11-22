@@ -2,9 +2,10 @@
   'use strict';
   $(function () {
     $('#order-listing').DataTable({
+    	order: [ 0, 'desc' ],
     	dom: 'Bfrtip',
 		buttons : [
-			{ extend: 'copy', className: 'btn btn-inverse-light' },
+			//{ extend: 'copy', className: 'btn btn-inverse-light' },
 			{ extend: 'csv', className: 'btn btn-inverse-light' },
 			{ extend: 'excel', className: 'btn btn-inverse-light' },
 			{ extend: 'pdf', className: 'btn btn-inverse-light' },

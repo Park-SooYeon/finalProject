@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTDMapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+	<mapper namespace="admin">
+	   <resultMap id="a_partner" type="bean.partnerVo">
+	      <result column="partner_serial" property="partner_serial"/>
+	      <result column="member_id" property="member_id"/>
+	      <result column="business_number" property="business_number"/>
+	      <result column="partner_name" property="partner_name"/>
+	      <result column="partner_phone" property="partner_phone"/>
+	      <result column="state" property="state"/>
+	      <result column="partner_location" property="partner_location"/>
+	      <collection property="vo"  javaType="bean.membershipVo">
+	         <result column="member_id" property="member_id"/>
+	         <result column="email" property="email"/>
+	    		<!-- 옆집테이블에 가져올게 많으면 vo를 통째로 가져와서 쓸때 주로 사용 -->
+	    		<!-- 내 브이오에 사용할 브이오를 만들어줘야함 -->
+	      </collection>
+	   </resultMap>
+	   
+	   <resultMap id="review_Vo" type="bean.ReviewVo">
+	      <result column="review_date" property="review_date"/>
+	      <result column="member_id" property="member_id"/>
+	      <result column="review_title" property="review_title"/>
+	      <result column="review_content" property="review_content"/>
+	      <result column="review_serial" property="review_serial"/>
+	      <result column="review_type" property="review_type"/>
+	      <collection property="p"  javaType="bean.PlaceVo">
+	         <result column="place_serial" property="place_serial"/>
+	         <result column="place_code" property="place_code"/>
+	    		<!-- 옆집테이블에 가져올게 많으면 vo를 통째로 가져와서 쓸때 주로 사용 -->
+	    		<!-- 내 브이오에 사용할 브이오를 만들어줘야함 -->
+	      </collection>
+	   </resultMap>
+	   
+	   
+	    <resultMap id="r_view" type="bean.ReviewVo">
+	      <result column="review_date" property="review_date"/>
+	      <result column="member_id" property="member_id"/>
+	      <result column="review_title" property="review_title"/>
+	      <result column="review_content" property="review_content"/>
+	      <result column="review_serial" property="review_serial"/>
+	      <result column="review_type" property="review_type"/>
+	      <collection property="r_photo"  ofType="bean.Review_PhotoVo">
+	         <result column="photo_name" property="photo_name"/>
+	         <result column="place_code" property="place_code"/>
+	         <result column="photo_serial" property="photo_serial"/>
+	         <result column="review_serial" property="review_serial"/>
+	      </collection>
+	      <collection property="report"  javaType="bean.ReportVo">
+	         <result column="report_serial" property="report_serial"/>
+	         <result column="report_code" property="report_code"/>
+	         <result column="report_content" property="report_content"/>
+	         <result column="report_date" property="report_date"/>
+	         <result column="report_id" property="report_id"/>
+	      </collection>
+	   </resultMap>
+	   
+	<!-- 회원조회 -->
+	<select id="select_member" resultType="bean.membershipVo">
+		select 	member_name,
+				member_id, 
+				member_photo,
+				phone,
+				email, 
+				mdate, 
+				state
+				from membership
+				order by mdate desc
+	</select>
+	 
+	<!-- 회원관리 상태값변경 -->
+	<update id="status_save" parameterType="bean.membershipVo">
+      update membership set state = ${state} 
+      where member_id = #{member_id} 
+   </update>
+    
+    <!--파트너 승인요청 조회 --> 
+    <select id='partner_approval' resultMap="a_partner">
+   select M.member_id, M.email, P.partner_serial,p.business_number,p.partner_name,p.partner_phone,p.state,p.partner_location
+	from membership M  join partner P 
+	on M.member_id= P.member_id
+	where P.state = 888 or P.state = 999 <!-- 파트너관리조회할때는 8 또는 9로  -->
+    </select>
+    
+    <!-- 파트너승인요청 상태값변경 -->
+	<update id="p_save" parameterType="bean.partnerVo">
+      <if test='state == 888'>
+      	 update partner set state = 8 
+      </if>
+ 	  <if test='state == 999'>
+      	 update partner set state = 9 
+      </if>
+      	where member_id = #{member_id} 
+   </update>
+    
+       <!--파트너 관리 조회 --> 
+    <select id='partner_M' resultMap="a_partner">
+   select M.member_id, M.member_photo, M.email, P.partner_serial,p.business_number,p.partner_name,p.partner_phone,p.state,p.partner_location
+	from membership M  join partner P 
+	on M.member_id= P.member_id
+	where P.state = 8 or P.state = 9 <!-- 파트너관리조회할때는 8 또는 9로  -->
+    </select>
+    	
+    	<!-- 파트너 view  join -->
+    <select id="partner_view" parameterType="String" resultMap="a_partner">
+   	select M.member_id, M.email,M.member_photo,P.partner_serial,P.business_number
+   		   ,P.partner_name,P.partner_phone,P.state,P.partner_location
+	from membership M  join partner P 
+	on M.member_id= P.member_id
+    where M.member_id= #{member_id} 
+    </select>
+    
+    	<!-- 파트너 권한박탈 -->
+	 <delete id="p_deprive_del" parameterType="bean.partnerVo">
+      delete from partner where member_id = #{member_id}
+  	 </delete>
+     <update id="p_deprive" parameterType="bean.partnerVo">
+      update membership set state = 1
+      where member_id = #{member_id} 
+     </update>
+     
+      <!--회원탈퇴승인 관리 조회 --> 
+    <select id='m_select' resultType="bean.membershipVo">
+   
+    select member_id, email, phone,state ,member_name,mdate, delete_reason
+	from membership  
+	where state = 2
+    
+    </select>
+    
+    
+    <!-- 회원탈퇴승인요청 수정 -->
+	<update id="out_save" parameterType="bean.membershipVo">
+      <if test='state == 2'>
+      	 update membership set state = 3 
+      </if>
+      	where member_id = #{member_id}
+   </update>
+   <delete id="out_del" parameterType="bean.partnerVo">
+      delete from membership where member_id = #{member_id}
+  	</delete>
+   
+    <!-- 파트너승인요청 상태값변경 -->
+	<update id="p_reject" parameterType="bean.partnerVo">
+      <if test='state == 888'>
+      	 update partner set state = 1 
+      </if>
+ 	  <if test='state == 999'>
+      	 update partner set state = 1 
+      </if>
+      	where member_id = #{member_id} 
+   </update>
+   
+   
+   	<!-- 전체리뷰조회 view join -->
+  <!--   <select id="review_all" resultMap="review_Vo">
+    select R.member_id ,R.review_date, R.review_content,R.review_title,P.place_code
+	from  review R, place P
+    where R.place_serial = P.place_serial
+    </select> -->
+    
+    <!-- 리뷰전체조회 페이징  -->
+    <!--     <select id="count" parameterType="bean.Page" resultType="Integer">
+   			select count(R.review_serial)
+            from  review R, place P
+            where R.place_serial = P.place_serial
+            and (R.review_serial like '%${findStr}%'
+            or R.member_id like '%${findStr}%')
+      
+   </select>  -->
+  	<select id="count" parameterType="bean.Page" resultType="Integer">
+   			select count(review_serial)
+            from  review
+            where (review_serial like '%${findStr}%'
+            or member_id like '%${findStr}%')
+      
+   </select> 
+    
+    <select id="review_all" parameterType="bean.Page" resultMap="review_Vo">
+      select * from(
+         select rownum rno, M.* from(
+            select R.member_id,R.review_date , R.review_content ,R.review_serial, R.review_title,R.review_type , M.member_photo
+            from  review R, membership M
+            where R.member_id = M.member_id
+            and (R.review_serial like '%${findStr}%'
+            or R.member_id like '%${findStr}%')
+            )M
+         ) 
+      where rno BETWEEN ${startNo} and ${endNo}
+     </select>
+     <!-- 리뷰카운트 -->
+     	<select id="count1"  resultType="Integer">
+   			select count(review_serial)
+            from  review
+          
+      
+  		 </select> 
+     
+   <!--  <select id="review_all" parameterType="bean.Page" resultMap="review_Vo">
+        select * from(
+         select rownum rno, M.* from(
+            select R.member_id,R.review_date ,R.review_serial, R.review_content , R.review_title,P.place_code
+            from  review R, place P
+            where R.place_serial = P.place_serial
+            and (R.review_serial like '%${findStr}%'
+            or R.member_id like '%${findStr}%')
+            )M
+         ) 
+      where rno BETWEEN ${startNo} and ${endNo}
+      
+   </select> -->
+   
+ 	<!-- 리뷰상세보기 -->
+ 		
+ 		<select id="review_view" parameterType="Integer" resultMap="r_view">
+		select r.member_id, r.review_content,r.review_title, p.report_content, r.review_serial,report_serial
+		from review r left outer join report p 
+		on r.review_serial = p.review_serial
+	    where r.review_serial = ${_parameter}
+	    </select>
+      
+      	<select id="review_att" parameterType="Integer" resultType="bean.Review_PhotoVo">
+		 select p.sysfile 
+		 from review r join review_photo p 
+		 on r.review_serial = p.review_serial 
+		 where r.review_serial = ${_parameter}
+	    </select>
+      
+      
+      <!-- 리뷰 삭제하기 -->
+      
+	      <delete id="review_delete" parameterType="bean.ReviewVo">
+	      delete from review where review_serial = ${review_serial}
+	  	 </delete>
+	     
+</mapper>

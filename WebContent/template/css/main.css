@@ -93,7 +93,7 @@ $black			: #222;
 
 body {
 	color: #777777;
-	font-family: "Poppins", sans-serif;
+	/*font-family: "Poppins", sans-serif;*/
 	font-size: 14px;
 	font-weight: 300;
 	line-height: 1.625em;
@@ -2139,7 +2139,7 @@ h1, h2, h3, h4, h5, h6 {
 	list-style: none;
 }
 
-.nav-menu ul {
+.nav-menu ul:not(.main-pro-menu) {
 	position: absolute;
 	display: none;
 	top: 100%;
@@ -2362,12 +2362,62 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @media ( max-width : 991px) {
+	/* 모바일모드 nav 메뉴 */
 	#mobile-nav-toggle {
 		display: inline;
 	}
 	#nav-menu-container {
 		display: none;
 	}
+	
+	#mobile-nav ul {
+	  display: flex;
+	  flex-direction: column;
+	}
+	#mobile-nav ul li:nth-child(1) {
+	  order: 0;
+	}
+	#mobile-nav ul li:nth-child(4) {
+	  order: 1;
+	}
+	#mobile-nav ul li:nth-child(2) {
+	  order: 2;
+	}
+	#mobile-nav ul li:nth-child(3) {
+	  order: 3;
+	}
+	
+	.main-pro-menu li:first-child,
+	.main-pro-menu::after,
+	.main-pro-menu::before,
+	.main-pro-menu hr{
+		display:none;
+	}
+	
+	.main-profile{
+		margin-left:12px;
+	}
+	
+	.mobile-userId{
+		display:inline-block !important;
+		cursor:pointer;
+		color: #fff;
+	    font-size: 13px;
+	    position: relative;
+	    font-weight: 400;
+	    padding-left:10px;
+	}
+	
+	.main-pro-menu{
+   		all:unset !important;
+    }
+    .main-pro-menu div{
+    	font-size:13px !important;
+    	font-weight:normal !important;
+    	color:white !important;
+    	cursor:pointer;
+    	padding-left:30px;
+    }
 }
 
 /* Mobile Nav Styling */
@@ -3334,7 +3384,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 	box-shadow: 0px 10px 30px 0px rgba(60, 64, 143, 0.2);
 }
 
-.destinations-area .star .checked {
+.star .checked {
 	color: orange;
 }
 
@@ -3662,7 +3712,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 .blog-pagination .page-item.active .page-link {
-	background-color: #f8b600;
+	background-color: #2b96ed;
 	border-color: transparent;
 	color: #fff;
 }
@@ -3689,7 +3739,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 .blog-pagination .page-link:hover {
 	color: #fff;
 	text-decoration: none;
-	background-color: #f8b600;
+	background-color: #2b96ed;
 	border-color: #eee;
 }
 
@@ -4913,7 +4963,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 
 /* 좋아요 하트 색깔 */
 .fa-heart, .fa-heart-o {
-	color: red;
+	color: red !important;
 }
 
 /* main 지역 선택부분 겹치게.. */
@@ -4923,4 +4973,72 @@ body.mobile-nav-active #mobile-nav-toggle {
 .main-location .location-div {
 	position: absolute;
 	top : 90%;
+}
+
+
+/* 메인 - top mypage 프로필 */
+.main-profile{
+	width: 40px;
+    height: 40px;
+    border: 2px solid #eee;
+    text-align: center;
+    line-height: 35px;
+    border-radius: 50%;
+    cursor: pointer;
+    overflow:hidden;
+}
+
+.main-pro-menu{
+    position: absolute;
+    width: 9rem;
+    padding: 0 15px;
+    background-color: #fff;
+    border: 1px solid #c1c1c1;
+    border-radius: 4px;
+    line-height: 35px;
+    vertical-align: middle;
+    right: -24px;
+    top: 39px;
+    z-index: 2;
+    /*display: block !important;*/
+    display: none;
+    cursor: pointer;
+}
+
+.main-pro-menu li, 
+.main-pro-menu div{
+	font-weight: bold;
+    font-size: 14px;
+    color:#232323;
+    opacity:0.8;
+}
+
+.main-pro-menu li div:hover{
+	opacity:1;
+}
+
+.main-pro-menu:before {
+  content: "";
+  position: absolute;
+  left: 90px;
+  top: -42px;
+  z-index: 2;
+  width: 15px;
+  height: 41px;
+  border-bottom: solid 11px #c1c1c1;
+  border-left: solid 11px transparent;
+  border-right: solid 12px transparent;
+}
+
+.main-pro-menu:after {
+  content: "";
+  position: absolute;
+  left: 91px;
+  top: -41px;
+  z-index: 2;
+  width: 15px;
+  height: 41px;
+  border-bottom: solid 10px white;
+  border-left: solid 10px transparent;
+  border-right: solid 11px transparent;
 }

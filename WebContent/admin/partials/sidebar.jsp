@@ -5,7 +5,7 @@
             <li class="nav-item nav-profile">
                 <a href="#" class="nav-link">
                     <div class="profile-image">
-                        <img class="img-xs rounded-circle" src="/traveler/assets/images/faces/face8.jpg" alt="profile image">
+                        <img class="img-xs rounded-circle" src="../../assets/images/faces/face8.jpg" alt="profile image">
                         <div class="dot-indicator bg-success"></div>
                     </div>
                     <div class="text-wrapper">
@@ -18,25 +18,25 @@
             
             <!-- super menu -->
             <li class="nav-item"> 
-                <a class="nav-link" href="../super/index.jsp">
+                <a class="nav-link" href="./?inc=dashboard.jsp">
                     <i class="menu-icon typcn typcn-document-text"></i>
                     <span class="menu-title">Dashboard</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="../super/user_list.jsp">
+                <a class="nav-link" href="./?inc=user_list.os"> <!-- 회원관리 컨트롤러.  -->
                     <i class="menu-icon typcn typcn-document-text"></i>
                     <span class="menu-title">회원관리</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="../super/partner_list.jsp">
+                <a class="nav-link" href="./?inc=partner_list.os">
                     <i class="menu-icon typcn typcn-document-text"></i>
                     <span class="menu-title">파트너관리</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="../super/review_list.jsp">
+                <a class="nav-link" href="./?inc=review_list.os">
                     <i class="menu-icon typcn typcn-document-text"></i>
                     <span class="menu-title">리뷰관리</span>
                 </a>
@@ -50,16 +50,16 @@
                 <div class="collapse" id="ui-basic">
                     <ul class="nav flex-column sub-menu">
                         <li class="nav-item">
-                            <a class="nav-link" href="../super/out.jsp">회원탈퇴 승인</a>
+                            <a class="nav-link" href="./?inc=out.os">회원탈퇴 승인</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="../super/join.jsp">파트너 가입 승인</a>
+                            <a class="nav-link" href="./?inc=join.os">파트너 가입 승인</a>
                         </li>
                     </ul>
                 </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="../super/site.jsp">
+                <a class="nav-link" href="./?inc=site.jsp">
                     <i class="menu-icon typcn typcn-document-text"></i>
                     <span class="menu-title">홈페이지관리</span>
                 </a>
@@ -67,53 +67,5 @@
             <!-- super end -->
             
             
-            <!-- partner menu -->
-            <li class="nav-item">
-                <a class="nav-link" href="index.jsp">
-                    <i class="menu-icon typcn typcn-document-text"></i>
-                    <span class="menu-title">Dashboard</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" data-toggle="collapse" href="#hotel" aria-expanded="false" aria-controls="hotel">
-                    <i class="menu-icon typcn typcn-coffee"></i>
-                    <span class="menu-title">호텔관리</span>
-                    <i class="menu-arrow"></i>
-                </a>
-                <div class="collapse" id="hotel">
-                    <ul class="nav flex-column sub-menu">
-                        <li class="nav-item">
-                            <a class="nav-link" href="../partner/hotel_comp_list.jsp">호텔관리</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="../partner/hotel_room_list.jsp">객실관리</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="../partner/hotel_order_list.jsp">예약관리</a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" data-toggle="collapse" href="#rent" aria-expanded="false" aria-controls="rent">
-                    <i class="menu-icon typcn typcn-coffee"></i>
-                    <span class="menu-title">렌트관리</span>
-                    <i class="menu-arrow"></i>
-                </a>
-                <div class="collapse" id="rent">
-                    <ul class="nav flex-column sub-menu">
-                        <li class="nav-item">
-                            <a class="nav-link" href="pages/ui-features/buttons.html">회사관리</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="pages/ui-features/dropdowns.html">차량관리</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="pages/ui-features/dropdowns.html">주문관리</a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
-            <!-- partner end -->
         </ul>
     </nav>

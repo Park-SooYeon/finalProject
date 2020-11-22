@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd"
+>
+<mapper namespace="hotel">
+	<!-- 호텔 목록 조회 -->
+	<select id="select" parameterType="Integer" resultType="bean.PlaceVo">
+		SELECT h.place_Serial, max(p.oriFile) ,h.place_name, h.place_location, h.place_tel, getRoomCnt(h.PLACE_SERIAL) room_cnt, h.state
+		FROM PLACE h 
+			LEFT OUTER JOIN partner pt ON h.partner_serial = pt.partner_serial 
+			LEFT OUTER JOIN PLACE_PHOTO p ON h.place_serial = p.place_serial 
+		WHERE h.PARTNER_SERIAL=#{place_serial}
+		GROUP BY h.place_Serial, h.place_name, h.place_location, h.place_tel, h.state
+		ORDER BY h.PLACE_SERIAL DESC
+
+	</select>	
+	
+	<!-- 상세조회 -->
+	<select id="view" parameterType="Integer" resultType="bean.PlaceVo">
+		SELECT h.place_name, h.place_location, h.place_tel, (
+			SELECT count(r.rooms_serial) cnt
+			FROM ROOMS r JOIN PLACE p
+			ON r.PLACE_SERIAL = p.PLACE_SERIAL
+		) room_cnt, h.state, h.BREAKFAST, h.WI_FI, h.PARKING, h.local_code
+		FROM PLACE h 
+			LEFT OUTER JOIN partner pt ON h.partner_serial = pt.partner_serial  
+		where h.place_Serial=#{place_serial}
+	</select>
+	
+	<!-- 첨부파일 조회 -->
+	<select id="att_list" parameterType="Integer" resultType="partner.UploadVo">
+		select photo_serial, PLACE_SERIAL, oriFile, sysFile
+		from PLACE_PHOTO
+		where place_Serial=#{partner_serial}
+	</select>
+	
+	<!-- 파트너 시리얼 조회 -->
+	<select id="select_serial" parameterType="String" resultType="Integer">
+		SELECT partner_serial
+		FROM PARTNER
+		WHERE MEMBER_ID=#{member_id}
+	</select>
+	
+	
+	<insert id="insert" parameterType="bean.PlaceVo" >
+		INSERT INTO place (place_serial, partner_serial, place_name, place_location, LATITUDE, LONGITUDE, state, BREAKFAST, WI_FI, PARKING, LOCAL_CODE, PLACE_TEL)
+		VALUES (seq_place.nextval, #{partner_serial}, #{place_name}, #{place_location}, #{latitude}, #{longitude}, #{state}, #{breakfast}, #{wifi}, #{parking}, #{local_code}, #{place_tel})
+	</insert>
+	
+	<insert id="att_insert" parameterType="partner.UploadVo">
+		insert into place_photo (photo_serial, place_serial , oriFile, sysFile)
+		values (seq_place_photo.nextval, seq_place.currval, #{oriFile}, #{sysFile})
+	</insert>
+	
+	
+	<update id="update" parameterType="bean.PlaceVo">
+		update place set place_name=#{place_name}, place_location=#{place_location}, state=#{state}, BREAKFAST=#{breakfast}, WI_FI=#{wifi}, PARKING=#{parking}, LOCAL_CODE=#{local_code}, PLACE_TEL=#{place_tel}
+		where place_serial=#{place_serial}
+	</update>
+	
+	<update id="att_update" parameterType="partner.UploadVo">
+		update place_photo set oriFile=#{oriFile}, sysFile=#{sysFile} 
+		where photo_serial=#{photo_serial}
+	</update>
+	
+	
+	<!-- 호텔정보 삭제 -->
+	<delete id="delete" parameterType="bean.PlaceVo">
+		delete from place where place_serial=#{place_serial} and partner_serial=#{partner_serial}
+	</delete>
+	
+	<!-- 호텔 첨부파일 삭제 -->
+	<delete id="att_delete" parameterType="Integer">
+		delete from place_photo where place_serial=#{place_serial} 
+	</delete>
+</mapper>

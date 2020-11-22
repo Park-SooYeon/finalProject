@@ -1,12 +1,16 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <meta charset="UTF-8" />
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!-- Mobile Specific Meta -->
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <!-- Favicon-->
-<link rel="shortcut icon" href="./img/fav.png" />
+<link rel="shortcut icon" href="./template/img/fav.png" />
 <!-- Author Meta -->
 <meta name="author" content="colorlib" />
 <!-- Meta Description -->
+
 <meta name="description" content="" />
 <!-- Meta Keyword -->
 <meta name="keywords" content="" />
@@ -14,187 +18,245 @@
 <meta charset="UTF-8" />
 <!-- Site Title -->
 <title>Travel</title>
- 
-<link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet" />
-<!--
-			CSS
-			============================================= -->
-<link rel="stylesheet" href="./css/linearicons.css" />
-<link rel="stylesheet" href="./css/font-awesome.min.css" />
-<link rel="stylesheet" href="./css/bootstrap.css" />
-<link rel="stylesheet" href="./css/magnific-popup.css" />
-<link rel="stylesheet" href="./css/jquery-ui.css" />
-<link rel="stylesheet" href="./css/nice-select.css" />
-<link rel="stylesheet" href="./css/animate.min.css" />
-<link rel="stylesheet" href="./css/owl.carousel.css" />
-<link rel="stylesheet" href="./css/main.css" />
-<link rel="stylesheet" href="./css/custom.css" />
 
-<section class="destinations-area mb-20">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-4 add-new-trip" data-toggle="modal" data-target="#exampleModal">
-        <div class="single-destinations">
-          <div class="list-container">
-            <span><h3><i class="fa fa-plus-circle"></i> 추가하기</h3></span
-            >
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4" onclick="location.href='./edit-trip2.jsp';">
-        <div class="single-destinations">
-          <div class="list-container">
-            <div class="thumb-custom">
-              <img src="./custom-image/food10.jpg" alt="" />
-            </div>
-            <div class="details">
-              <h4 class="d-flex justify-content-between">
-                <span>카페투어</span>
-              </h4>
-              <p>작성자 : <b> 카페왕</b></p>
-              <small>만든 날짜 : 2020년 5월 1일</small>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4">
-        <div class="single-destinations">
-          <div class="list-container">
-            <div class="thumb-custom">
-              <img src="./custom-image/food16.jpg" alt="" />
-            </div>
-            <div class="details">
-              <h4 class="d-flex justify-content-between">
-                <span>강남 맛집투어</span>
-              </h4>
-              <p>작성자 : <b> 오세왕</b></p>
-              <small>만든 날짜 : 2020년 5월 1일</small>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4">
-        <div class="single-destinations">
-          <div class="list-container">
-            <div class="thumb-custom">
-              <img src="./custom-image/place.jpg" alt="" />
-            </div>
-            <div class="details">
-              <h4 class="d-flex justify-content-between">
-                <span>연남동 나들이</span>
-              </h4>
-              <p>작성자 : <b> 김연남</b></p>
-              <small>만든 날짜 : 2020년 5월 1일</small>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4">
-        <div class="single-destinations">
-          <div class="list-container">
-            <div class="thumb-custom">
-              <img src="./custom-image/hotel1.jpg" alt="" />
-            </div>
-            <div class="details">
-              <h4 class="d-flex justify-content-between">
-                <span>부산 여행</span>
-              </h4>
-              <p>작성자 : <b> 김부산</b></p>
-              <small>만든 날짜 : 2020년 5월 1일</small>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4">
-        <div class="single-destinations">
-          <div class="list-container">
-            <div class="thumb-custom">
-              <img src="img/hotels/d5.jpg" alt="" />
-            </div>
-            <div class="details">
-              <h4 class="d-flex justify-content-between">
-                <span>떠나보자 서울여행</span>
-              </h4>
-              <p>작성자 : <b>JuHyeonAn</b></p>
-              <small>만든 날짜 : 2020년 5월 1일</small>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  
-  
-  <!-- modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">여행 추가하기</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form>
-          <div class="form-group">
-            <label for="trip-name" class="col-form-label">여행이름 : </label>
-            <input type="text" class="form-control" id="trip-name">
-          </div>
-          <div class="form-group">
-            <label for="set-privacy" class="col-form-label">공개범위 설정 : </label>
-            
-            <div style="border:1px solid #ced4da; border-radius:0.25rem; padding:5px;">
-				<div><label><input type="radio" name="privacy"><i class="fas fa-unlock-alt"></i> 공개</label></div>
-				<div><label><input type="radio" name="privacy"><i class="fas fa-lock"></i> 비공개</label></div>
+<div class="mb-3 text-right" id="mpPrivacyFilter">
+	<span data-index="2">전체보기</span> | <span data-index="0">여행 (공개)</span>
+	| <span data-index="1">여행 (비공개)</span>
+</div>
+<hr />
+<section class="destinations-area my-list-area mb-20">
+	<div class="row">
+		<div class="col-lg-4 add-new-trip" data-toggle="modal"
+			data-target="#newTripModal">
+			<div class="single-destinations">
+				<div class="list-container">
+					<div class="add-new-container">
+						<h3>
+							<i class="fa fa-plus-circle"></i> 추가하기
+						</h3>
+					</div>
+				</div>
 			</div>
-            
-          </div>
-           <div class="form-group">
-            <label for="set-privacy" class="col-form-label">날짜 또는 일수 사용 </label>
-			<select id="select-day">
-				<option>선택하세요</option>
-				<option value="1">일수 사용</option>
-				<option value="2">날짜 사용</option>
-			</select>
-          </div>
-          
-          <div class="form-group" id="trip-day-input" style="display:none;">
-            <label for="trip-day-input" class="col-form-label">일수 입력 : </label>
-            <input type="text" class="form-control col-sm-4"> 
-          </div>
-          
-          <div class="form-group" id="trip-cal-input" style="display:none;">
-            <label for="trip-cal-input" class="col-form-label">날짜 선택 : </label>
-            <input type="text" class="form-control col-sm-4"> 
-          </div>
-          
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
-        <button type="button" class="btn btn-primary" data-dismiss="modal" id="btnCreateTrip">저장</button>
-      </div>
-    </div>
-  </div>
-</div><!-- model end -->
+		</div>
 
+		<c:forEach var="i" items="${list }" varStatus="status">
+			<div class="col-lg-4 mp-trip" data-index="${status.count }"
+				data-flag="${i.trip_auth }">
+				<div class="single-destinations">
+					<div class="list-container">
+						<div class="thumb-custom">
+							<img src="./images/myPage/imgPlaceholder.png" alt="" />
+						</div>
+						<div class="details">
+							<span class="privacy-circle mx-1 position-absolute"> <i
+								class="fa ${(i.trip_auth == 1)? 'fa-unlock-alt' : 'fa-lock'}"></i>
+							</span>
+							<div class="d-flex justify-content-between">
+								<h4 id="mp-tripName">${i.trip_name }</h4>
+								<div class="mp-trip-modify-btn">
+									<span class="mp-trip-modify" 
+										data-toggle="modal"
+										data-target="#mp-modifyTripModal"
+										data-name="${i.trip_name }"
+										data-auth="${i.trip_auth }"
+										data-member="${i.member_id}"
+										data-days="${i.days_count }"
+										data-start="${i.start_date}"
+										data-end="${i.end_date }"
+										data-serial="${i.trip_list_serial }
+										">보기</span>
+									<span> | </span> <span class="mp-trip-delete"
+										id="btnDeleteTrip" onclick="deleteTrip(${i.trip_list_serial})">삭제</span>
+								</div>
+							</div>
+							<p>
+								포함 여행 : <b class="mp-authorName">${i.trip_cnt } 개</b>
+							</p>
+							<small>만든 날짜 : ${i.trip_date }</small>
+						</div>
+					</div>
+				</div>
+			</div>
+		</c:forEach>
+
+
+
+	</div>
+
+	<!-- 여행 추가 modal -->
+	<div class="modal fade" id="newTripModal" tabindex="-1" role="dialog"
+		aria-labelledby="newTripModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<form name="mpNewtripFrm" method="post" id="mpNewtripFrm">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="newTripModalLabel">여행 추가하기</h5>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body" style="color: #000;">
+						<div class="form-group">
+							<input type="text" class="trip_name" id="trip_name"
+								name="trip_name" placeholder="여행이름을 입력해주세요."
+								onfocus="this.placeholder=''"
+								onblur="this.placeholder='여행이름을 입력해주세요.'" />
+						</div>
+						<div class="form-group">
+							<label for="set-privacy" class="col-form-label"><h5>공개범위
+									설정하기</h5> </label>
+
+							<div class="privacy-option">
+								<div>
+									<label><input type="radio"
+										name="trip_auth" value="1" checked /><span
+										class="privacy-circle mx-1"><i
+											class="fa fa-unlock-alt"></i></span>
+										<h6>공개</h6> </label>
+								</div>
+								<div>
+									<label><input type="radio"
+										name="trip_auth" value="0" /><span
+										class="privacy-circle circle-dark mx-1"><i
+											class="fa fa-lock"></i></span>
+										<h6>비공개</h6></label>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="set-privacy" class="col-form-label"><h5
+									class="d-inline-block">날짜 또는 일수 사용</h5>(선택사항)</label> <select
+								class="select-day">
+								<option>선택하세요</option>
+								<option value="1">일수 사용</option>
+								<option value="2">날짜 사용</option>
+							</select>
+						</div>
+
+						<div class="form-group trip-day-input" style="display: none;">
+							<label for="trip-day-input" class="col-form-label"><h5>일수
+									입력</h5> </label><br /> <input type="number" name="days_count"
+								class="form-control col-sm-3" style="display: inline-block;" />
+							일
+						</div>
+
+						<div class="form-group trip-cal-input" style="display: none;">
+							<label for="trip-cal-input" class="col-form-label"><h5>날짜
+									선택</h5> </label> <input type="text" id="datePickInput"
+								class="form-control col-sm-8 col-xm-12 datepicker-here"
+								data-range="true" data-position="top left" data-language="kr"
+								data-multiple-dates-separator=" - " data-toggle-selected="true"
+								name="start_date" />
+						</div>
+
+						<div class="modal-footer">
+							<input type="button" class="btn btn-secondary"
+								data-dismiss="modal" value="닫기"> <input type="button"
+								class="btn btn-primary" id="btnCreateTrip" value="저장">
+						</div>
+					</div>
+				</div>
+			</form>
+
+		</div>
+	</div>
+	<!-- model end -->
+
+
+
+	<!-- 여행 수정 모달 -->
+	<div class="modal fade" id="mp-modifyTripModal" tabindex="-1"
+		role="dialog" aria-labelledby="mp-modifyTripModalLabel"
+		aria-hidden="true">
+		<div class="modal-dialog" role="document" style="max-width: 800px;">
+			<form id="mpModifyTripFrm">
+				<input type="hidden" id="trip_serial" name="trip_list_serial" /><!-- hidden serial -->
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="mp-modifyTripLabel">여행편집</h5>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body" style="color: #000; padding: 2rem 2rem;">
+						<div class="row">
+							<div class="col-md-6" style="border-right: 1px solid #eee;">
+								<div class="form-group">
+									<input type="text" id="mTrip_name" name="trip_name"
+										class="trip_name" placeholder="여행이름을 입력해주세요."
+										onfocus="this.placeholder=''"
+										onblur="this.placeholder='여행이름을 입력해주세요.'" />
+								</div>
+								<div class="form-group">
+									<label for="set-privacy" class="col-form-label"><h5>공개범위
+											설정하기</h5> </label>
+
+									<div class="privacy-option">
+										<div>
+											<label><input type="radio"
+												name="trip_auth" id="unlock" value="1" /><span
+												class="privacy-circle mx-1"><i
+													class="fa fa-unlock-alt"> </i></span>
+												<h6>공개</h6> </label>
+										</div>
+										<div>
+											<label><input type="radio"
+												name="trip_auth" id="lock" value="0" /><span
+												class="privacy-circle circle-dark mx-1"><i
+													class="fa fa-lock"></i></span>
+												<h6>비공개</h6></label>
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="set-privacy" class="col-form-label">
+									<h5 class="d-inline-block">날짜 또는 일수 사용</h5>(선택사항)</label> <select
+										class="select-day">
+										<option selected>선택하세요</option>
+										<option value="1">일수 사용</option>
+										<option value="2">날짜 사용</option>
+									</select>
+								</div>
+
+								<div class="form-group trip-day-input" style="display: none;">
+									<label for="trip-day-input" class="col-form-label"><h5>일수
+											입력</h5> </label><br /> <input type="number" id="mDays_count"
+										name="days_count" class="form-control col-sm-3"
+										style="display: inline-block;" /> 일
+								</div>
+
+								<div class="form-group trip-cal-input" style="display: none;">
+									<label for="trip-cal-input" class="col-form-label"><h5>날짜
+											선택</h5> </label> <input type="text" id="datePickInput2" name="start_date"
+										class="form-control col-sm-8 datepicker-here"
+										data-range="true" data-position="top left" data-language="kr"
+										data-multiple-dates-separator=" - " />
+								</div>
+							</div>
+							<div class="col-md-6" style="height:330px;">
+								<h4 class="text-center mb-3">포함된 여행</h4>
+								
+								
+								<div class="list-box connectedSortable" id="json-here">
+								
+								</div>
+								
+
+
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<input type="button" class="btn btn-secondary"
+							data-dismiss="modal" value="닫기"> <input type="button"
+							class="btn btn-primary" id="btnModifyTrip" value="수정"> <input
+							type="button" class="btn btn-primary" id="btnGoTrip"
+							onclick="goTrip();" value="여행일정 짜기">
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
 </section>
-
-<script src="./js/vendor/jquery-2.2.4.min.js"></script>
-<script src="./js/popper.min.js"></script>
-<script src="./js/vendor/bootstrap.min.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script>
-<script src="./js/jquery-ui.js"></script>
-<script src="./js/easing.min.js"></script>
-<script src="./js/hoverIntent.js"></script>
-<script src="./js/superfish.min.js"></script>
-<script src="./js/jquery.ajaxchimp.min.js"></script>
-<script src="./js/jquery.magnific-popup.min.js"></script>
-<script src="./js/jquery.nice-select.min.js"></script>
-<script src="./js/owl.carousel.min.js"></script>
-<script src="./js/mail-script.js"></script>
-<script src="./js/main.js"></script>
-<script src="./trip_list.js"></script>
-
-<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>

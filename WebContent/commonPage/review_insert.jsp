@@ -1,118 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.js"></script>
-<script type="text/javascript">
-    $(document).ready(function(){
-        var objDragAndDrop = $(".dragAndDropDiv");
-        
-        $(document).on("dragenter",".dragAndDropDiv",function(e){
-            e.stopPropagation();
-            e.preventDefault();
-            $(this).css('border', '2px solid #0B85A1');
-        });
-        $(document).on("dragover",".dragAndDropDiv",function(e){
-            e.stopPropagation();
-            e.preventDefault();
-        });
-        $(document).on("drop",".dragAndDropDiv",function(e){
-            
-            $(this).css('border', '2px dotted #0B85A1');
-            e.preventDefault();
-            var files = e.originalEvent.dataTransfer.files;
-        
-            handleFileUpload(files,objDragAndDrop);
-        });
-        
-        $(document).on('dragenter', function (e){
-            e.stopPropagation();
-            e.preventDefault();
-        });
-        $(document).on('dragover', function (e){
-          e.stopPropagation();
-          e.preventDefault();
-          objDragAndDrop.css('border', '2px dotted #0B85A1');
-        });
-        $(document).on('drop', function (e){
-            e.stopPropagation();
-            e.preventDefault();
-        });
-        //drag 영역 클릭시 파일 선택창
-        objDragAndDrop.on('click',function (e){
-            $('input[type=file]').trigger('click');
-        });
-
-        $('input[type=file]').on('change', function(e) {
-            var files = e.originalEvent.target.files;
-            handleFileUpload(files,objDragAndDrop);
-        });
-        
-        function handleFileUpload(files,obj)
-        {
-           for (var i = 0; i < files.length; i++) 
-           {
-                var fd = new FormData();
-                fd.append('file', files[i]);
-         
-                var status = new createImage(obj); //Using this we can set progress.
-         
-           }
-        }
-        
-        var rowCount=0;
-        function createImage(obj){
-                
-            rowCount++;
-            var row="odd";
-            if(rowCount %2 ==0) row ="even";
-            
-            this.statusbar = $("<div class='image "+row+"'></div>");
-            this.abort = $("<img src='img/about/info-img.jpg' style='width: 100%; height: 100%;'/>").appendTo(this.statusbar);
-            
-            
-            obj.after(this.statusbar);
-      
-        }
-       
-        $("#btnImgInsert").on("click", function() {
-        	var ele = document.getElementById("modal-body");//$("#fileUpload");
-
-        	for(var i = 0 ; i < ele.childElementCount - 2 ; i++) {
-        		$(".picture_area").append("<img src='img/about/info-img.jpg' style='width: 25%; height: 25%'/>");
-        	}
-        });
-		
-        $('#review_star').hover(function() {
-        	let starArea = document.getElementById('review_star');
-        	for(var i = 7 ; i >= 1 ; i -= 2) {
-        		let ele = starArea.childNodes[i];
-
-        		ele.classList.remove("checked");
-        	}
-        }, function() {
-        	let starArea = document.getElementById('review_star');
-
-        	for(var i = 9 ; i >= 1 ; i -= 2) {
-        		let ele = starArea.childNodes[i];
-
-
-        	 	if(i >= stars) ele.classList.add("checked");
-        		else ele.classList.remove("checked");
-        	}
-        });
-    });
-    stars = 9;
-    let star = function(starNum) {
-    	let starArea = document.getElementById('review_star');
-
-    	for(var i = 9 ; i >= 1 ; i -= 2) {
-    		let ele = starArea.childNodes[i];
-
-			stars = starNum;
-    	 	if(i >= starNum) ele.classList.add("checked");
-    		else ele.classList.remove("checked");
-    	}
-    }
-</script>
+<script src="js/review_insert.js"></script>
 
 <!-- start banner Area -->
 <section class="banner-area relative" style="height: 104px">
@@ -131,41 +20,51 @@
 				<img class="img-fluid" src="img/about/info-img.jpg" alt="">
 			</div>
 			<div class="col-8">
-				<h3>관광지명</h3>
-				<h6>위치</h6>
+				<h3>${vo.place_name}</h3>
+				<h6>위치 : ${vo.place_location }</h6>
 			</div>
 		</div>
 		<hr />
+		
+		
+		<form name="review_insert_frm" id="review_insert_frm" action="review_insertR.rv" method="post" enctype='multipart/form-data'>
+		<input type="hidden" name="place_serial" id="place_serial" value="${param.code }">
+		<input type="hidden" name="review_type" id="review_type" value="${vo.place_code }">
+		
 		<h3>이 관광지의 전반적인 평가</h3>
-		<div class="review_star p-2" id="review_star">
-			<span class="fa fa-star fa-3x" onclick="star(1)"></span>
-			<span class="fa fa-star fa-3x" onclick="star(3)"></span>
-			<span class="fa fa-star fa-3x" onclick="star(5)"></span>
-			<span class="fa fa-star fa-3x" onclick="star(7)"></span>
-			<span class="fa fa-star fa-3x checked" onclick="star(9)"></span>
+		<input type="hidden" name="reputation" id="reputation">
+		<div class="review_star p-2" id="review_star" name="review_star">
+			<span class="fa fa-star fa-3x" onclick="star(1)" id="star_5"></span>
+			<span class="fa fa-star fa-3x" onclick="star(3)" id="star_4"></span>
+			<span class="fa fa-star fa-3x" onclick="star(5)" id="star_3"></span>
+			<span class="fa fa-star fa-3x" onclick="star(7)" id="star_2"></span>
+			<span class="fa fa-star fa-3x checked" onclick="star(9)" id="star_1"></span>
 		</div>
 		<br />
 		<h3>리뷰 제목</h3>
 		<input type="text" placeholder="방문 목적이나 인상 깊었던 프로모션에 대해 언급하세요"
 			onfocus="this.placeholder = ''"
 			onblur="this.placeholder = '방문 목적이나 인상 깊었던 프로모션에 대해 언급하세요'"
-			class="review-title mt-2"> <br />
+			class="review-title mt-2"
+			name="review_title"> <br />
 		<h3>리뷰 내용</h3>
 		<textarea class="review-textarea mt-2"
 			placeholder="고객님의 경험을 공유하세요. 장소 또는 액티비티, 여행자를 위한 추천 정보를 알려주세요."
 			onfocus="this.placeholder = ''"
 			onblur="this.placeholder = '고객님의 경험을 공유하세요. 장소 또는 액티비티, 여행자를 위한 추천 정보를 알려주세요.'"
-			required></textarea>
+			required
+			name="review_content"></textarea>
 		<a style="float: right;">(최소 50자 이상)</a>
 		<br />
 		<h3>언제 방문하셨나요?</h3>
 		<div class="review-select mt-2" id="default-select">
-			<select>
-				<option value="1">이번달</option>
-				<option value="1">저번달</option>
-				<option value="1">저저번달</option>
-				<option value="1">저저저번달</option>
-				<option value="1">저저저저번달</option>
+			<select name="visit_date">
+				<option value="0">1개월 이내</option>
+				<option value="1">2개월 이내</option>
+				<option value="2">3개월 이내</option>
+				<option value="3">4개월 이내</option>
+				<option value="4">5개월 이내</option>
+				<option value="5">6개월 이내</option>
 			</select>
 		</div>
 		<hr/>
@@ -173,13 +72,42 @@
 			<h3 style="float:left">사진을 첨부하시겠어요?</h3><a>(선택사항)</a>
 		</div>
 		<br/>
-		<!-- Button trigger modal -->
-		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalScrollable">
+		<!-- Button trigger modal 
+		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalScrollable" >		 	
 		 	사진 추가
 		</button>
+		-->
 		
-		<!-- Modal -->
-		<div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+		<div id="fileUpload" class="dragAndDropDiv">Drag & Drop Files Here<br/><br/>or Browse Files</div>		        
+        <input type="file" name="fileUpload" id="fileUpload" style="display:none;" multiple="multiple"/>
+		</br>
+		<h4><b>이미지 미리보기</b></h4>
+		
+		<div class="picture_area mt-2" name="photo_name"></div>
+		
+		<!-- 모달없이 파일업로드 
+		<h2><b>이미지 미리보기</b></h2>
+		<div class="input_wrap">
+		  <a href="javascript:" onclick="fileUploadAction();" class="my_button">파일 업로드</a>
+		  <input type="file" id="input_imgs" multiple/>
+		</div>
+		
+		<div>
+		  <div class="imgs_wrap">
+		    <img id="img" />
+		  </div>
+		</div>
+		
+		<a href="javascript:" class="my_button" onclick="submitAction();">업로드</a>
+		
+		<div class="mt-2">리뷰 선택사항 목록</div>
+		-->
+		<button type="button" class="btn btn-primary" onclick='delete_photo();' >		 	
+		 	사진 전체 삭제
+		</button>
+		
+		<!-- Modal 
+		<div class="modal fade" data-backdrop="static" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
 		  <div class="modal-dialog modal-dialog-scrollable" role="document">
 		    <div class="modal-content">
 		      <div class="modal-header">
@@ -189,7 +117,7 @@
 		        </button>
 		      </div>
 		      <div class="modal-body" id="modal-body">
-		        <div id="fileUpload" class="dragAndDropDiv">Drag & Drop Files Here<br/><br/>or Browse Files</div>
+		        <div id="fileUpload" class="dragAndDropDiv">Drag & Drop Files Here<br/><br/>or Browse Files</div>		        
         		<input type="file" name="fileUpload" id="fileUpload" style="display:none;" multiple/>
 		      </div>
 		      <div class="modal-footer">
@@ -199,11 +127,13 @@
 		    </div>
 		  </div>
 		</div>
-		<div class="picture_area mt-2"></div>
+		-->
+		
 		<hr/>
 		<div class="mb-20">
-			<button class="btn btn-primary my-2 my-sm-0" type="submit">리뷰 저장</button>
+			<button type="button" class="btn btn-primary my-2 my-sm-0" id="review_insert">리뷰 저장</button>
 		</div>
+		</form>		
 	</div>
 </section>
 <!-- End about-info Area -->

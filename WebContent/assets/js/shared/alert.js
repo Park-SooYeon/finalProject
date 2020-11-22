@@ -120,3 +120,4 @@
     }
 
 })(jQuery);
+$.fn.modal.Constructor.prototype._enforceFocus = function() {};

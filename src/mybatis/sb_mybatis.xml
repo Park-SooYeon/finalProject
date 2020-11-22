@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTDMapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="sub_main">
+	
+	<!-- 모든 관광지(즐길거리) 가져오기 -->
+	<select id="select_place_happy" parameterType="Integer" resultType="bean.PlaceVo">
+		select place_code, local_code, a.place_serial, place_name, place_location, avg(reputation) reputation, count(review_serial) review_cnt, place_name photo_name
+		from place a 
+		left outer join review b
+		on a.place_serial = b.place_serial
+		where place_code = 1
+		<if test="_parameter != 0">
+			and local_code = #{_parameter}
+		</if>
+		group by place_code, local_code, a.place_serial, place_name, place_location
+		order by place_serial
+	</select>
+	
+	<!-- 모든 관광지(음식점) 가져오기 -->
+	<select id="select_place_food" parameterType="Integer" resultType="bean.PlaceVo">
+		select place_code, local_code, a.place_serial, place_name, place_location, avg(reputation) reputation, count(review_serial) review_cnt, place_name photo_name
+		from place a 
+		left outer join review b
+		on a.place_serial = b.place_serial
+		where place_code = 2
+		<if test="_parameter != 0">
+			and local_code = #{_parameter}
+		</if>
+		group by place_code, local_code, a.place_serial, place_name, place_location
+		order by place_serial
+	</select>
+	
+	<!-- 모든 관광지(축제) 가져오기 -->
+	<select id="select_place_festival" parameterType="Integer" resultType="bean.PlaceVo">
+		select place_code, local_code, a.place_serial, place_name, place_location, avg(reputation) reputation, count(review_serial) review_cnt, place_name photo_name
+		from place a 
+		left outer join review b
+		on a.place_serial = b.place_serial
+		where place_code = 3
+		<if test="_parameter != 0">
+			and local_code = #{_parameter}
+		</if>
+		group by place_code, local_code, a.place_serial, place_name, place_location
+		order by place_serial
+	</select>
+
+	<!-- 관광지별 메인에서 별점 높은 순으로 10개 가져오기 -->
+	<select id="select_high_stars" parameterType="String" resultType="vo.ReputationVo">
+		 select * from (
+    		select a.*, ROW_NUMBER() OVER (order by reputation DESC) r
+    		from (
+        		select place_serial, avg(reputation) reputation, count(review_serial) review_cnt
+        		from review
+        		where review_type = #{_parameter}
+        		group by place_serial
+    		) a
+		)
+		where r between 1 and 10
+	</select>
+	
+	<!-- 관광지별 메인에서 리뷰 많은 순으로 10개 가져오기 -->
+	<select id="select_many_review" parameterType="String" resultType="vo.ReputationVo">
+		select * from (
+    		select a.*, ROW_NUMBER() OVER (order by review_cnt DESC) r
+    		from (
+        		select place_serial, avg(reputation) reputation, count(review_serial) review_cnt
+        		from review
+        		where review_type = #{_parameter}
+        		group by place_serial
+    		) a
+		)
+		where r between 1 and 10
+	</select>
+	
+	<!-- 아이디별 관심리스트에 추가한 내역들 가져오기 -->
+	<select id="select_like" parameterType="String" resultType="Integer">
+		select place_serial from like_list
+		where member_id = #{_parameter}
+	</select>
+	
+	<!-- 관심 리스트로 추가한 목록 삭제 -->
+	<delete id="delete_like" parameterType="bean.LikeListVo">
+		delete from like_list
+		where member_id = #{member_id}
+		and place_serial = #{place_serial}
+	</delete>
+	
+	<!-- 관광지별 평균 별점, 총 리뷰 개수 가져오기 -->
+	<select id="select_reputation" parameterType="String" resultType="vo.ReputationVo">
+		select place_serial, avg(reputation) reputation, count(review_serial) review_cnt
+		from review
+		<if test="_parameter != null">
+			where place_serial = #{_parameter}
+		</if>
+		group by place_serial
+	</select>
+	
+	<!--
+	<resultMap id="my_map"/>
+	<update/>
+	<insert/>
+	<delete/>
+	-->
+</mapper>

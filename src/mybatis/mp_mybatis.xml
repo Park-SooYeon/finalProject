@@ -1,0 +1,390 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTDMapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mypage">
+	
+	<resultMap id="mp_map_like" type="bean.LikeListVo">
+		<result column="like_serial" property="like_serial"/>
+		<result column="member_id" property="member_id"/>
+		<result column="trip_list_serial" property="trip_list_serial"/>
+		<result column="place_serial" property="place_serial"/>
+		<result column="partner_serial" property="partner_serial"/>
+		<result column="trip_name" property="trip_name"/>
+			<collection property="p" 
+						javaType="bean.PlaceVo">
+				<result column="place_serial" property="place_serial"/>
+				<result column="place_name" property="place_name"/>
+				<result column="place_type" property="place_type"/>
+				<result column="place_location" property="place_location"/>
+				<result column="reputation" property="reputation"/>
+				<result column="review_cnt" property="review_cnt"/>
+				<result column="local_code" property="local_code"/>
+				<result column="local_name" property="local_name"/>
+				<result column="photo_serial" property="photo_serial"/>
+				<result column="photo_name" property="photo_name"/>
+			</collection>
+	</resultMap>
+	
+		<resultMap id="mp_map_review" type="bean.ReviewVo">
+		<result column="review_serial" property="review_serial"/>
+		<result column="member_id" property="member_id"/>
+		<result column="place_serial" property="place_serial"/>
+		<result column="review_type" property="review_type"/>
+		<result column="review_title" property="review_title"/>
+		<result column="review_content" property="review_content"/>
+		<result column="visit_date" property="visit_date"/>
+		<result column="review_date" property="review_date"/>
+		<result column="member_photo" property="member_photo"/>
+			<collection property="p" 
+						javaType="bean.PlaceVo">
+				<result column="place_serial" property="place_serial"/>
+				<result column="place_name" property="place_name"/>
+				<result column="place_type" property="place_type"/>
+				<result column="place_location" property="place_location"/>
+				<result column="reputation" property="reputation"/>
+				<result column="review_cnt" property="review_cnt"/>
+				<result column="local_code" property="local_code"/>
+				<result column="local_name" property="local_name"/>
+				<result column="photo_serial" property="photo_serial"/>
+				<result column="photo_name" property="photo_name"/>
+			</collection>
+	</resultMap>
+	
+	<resultMap id="mp_map_trip" type="bean.TripListVo">
+		<result column="trip_list_serial" property="trip_list_serial"/>
+		<result column="member_id" property="member_id"/>
+		<result column="trip_name" property="trip_name"/>
+		<result column="days_count" property="days_count"/>
+		<result column="start_date" property="start_date"/>
+		<result column="end_date" property="end_date"/>
+		<result column="trip_auth" property="trip_auth"/>
+		<result column="trip_date" property="trip_date"/>
+		<result column="flag" property="flag"/>
+			<collection property="p" 
+						javaType="bean.PlaceVo">
+				<result column="place_serial" property="place_serial"/>
+				<result column="place_name" property="place_name"/>
+				<result column="place_type" property="place_type"/>
+				<result column="place_location" property="place_location"/>
+				<result column="reputation" property="reputation"/>
+				<result column="review_cnt" property="review_cnt"/>
+				<result column="local_code" property="local_code"/>
+				<result column="local_name" property="local_name"/>
+				<result column="photo_serial" property="photo_serial"/>
+				<result column="photo_name" property="photo_name"/>
+			</collection>
+	</resultMap>
+	
+	<resultMap id="mp_map_plan" type="bean.PlanVo">
+		<result column="day_serial" property="day_serial"/>
+		<result column="trip_list_serial" property="trip_list_serial"/>
+		<result column="place_serial" property="place_serial"/>
+		<result column="trip_order" property="trip_order"/>
+		<result column="trip_day" property="trip_day"/>
+			<collection property="p" 
+						javaType="bean.PlaceVo">
+				<result column="place_serial" property="place_serial"/>
+				<result column="place_name" property="place_name"/>
+				<result column="place_type" property="place_type"/>
+				<result column="place_location" property="place_location"/>
+				<result column="reputation" property="reputation"/>
+				<result column="review_cnt" property="review_cnt"/>
+				<result column="local_code" property="local_code"/>
+				<result column="local_name" property="local_name"/>
+				<result column="photo_serial" property="photo_serial"/>
+				<result column="photo_name" property="photo_name"/>
+			</collection>
+	</resultMap>
+	
+   <insert id="insert_trip" parameterType="bean.TripListVo">
+      <selectKey keyProperty="trip_list_serial" resultType="int" order="BEFORE">
+         select seq_trip_list_serial.nextval
+         from dual
+       </selectKey>
+      insert into trip_list(trip_list_serial, member_id, trip_name, days_count, start_date, end_date, trip_auth, trip_date) 
+      values(#{trip_list_serial}, #{member_id}, #{trip_name}, ${days_count}, #{start_date,jdbcType=DATE}, #{end_date,jdbcType=DATE}, ${trip_auth}, sysdate)
+   </insert>
+	
+	<!-- 전체 여행 리스트 -->
+	<select id="select_trip" parameterType = "String" resultType="bean.TripListVo">
+		select 	trip_list_serial, 
+				member_id, 
+				trip_name, 
+				to_char(start_date,'yyyy-mm-dd') start_date, 
+				to_char(end_date,'yyyy-mm-dd') end_date, 
+				days_count, 
+				trip_auth, 
+				trip_date ,
+				getTripCnt(trip_list_serial) trip_cnt
+				from trip_list
+				where member_id = #{_parameter}
+				order by trip_date desc
+	</select>
+	
+	<!-- 하나의 여행 리스트 (view)-->
+	<select id="view_trip" parameterType = "bean.TripListVo" resultType="bean.TripListVo">
+		select 	trip_list_serial, 
+				member_id, 
+				trip_name, 
+				days_count, 
+				to_char(start_date,'yyyy-mm-dd') start_date, 
+				to_char(end_date,'yyyy-mm-dd') end_date, 
+				(end_date - start_date) another_days,
+				trip_auth, 
+				trip_date 
+				from trip_list
+				where member_id = #{member_id}
+				and trip_list_serial = ${trip_list_serial}
+	</select>
+	
+	<update id="modify_trip" parameterType="bean.TripListVo">
+		update trip_list set trip_name = #{trip_name}, 
+							 days_count = ${days_count},
+							 start_date = #{start_date,jdbcType=DATE},
+							 end_date = #{end_date,jdbcType=DATE},
+							 trip_auth = ${trip_auth}
+							 where trip_list_serial = ${trip_list_serial}
+	</update>
+	
+	<delete id="delete_trip" parameterType="Integer">
+		delete from trip_list where trip_list_serial = ${_parameter}
+	</delete>
+	
+	<insert id="insert_like" parameterType="bean.LikeListVo">
+      insert into like_list(like_serial, member_id, trip_list_serial, place_serial) 
+               values(seq_like_list.nextval, 
+               		#{member_id}, 
+               		${trip_list_serial}, 
+               		${place_serial})
+   </insert>
+   
+   
+   <!-- 관심여행지 조회 (호텔만)-->
+   <select id="select_like" parameterType="String" resultMap="mp_map_like">
+  	select like_serial, 
+   		   L.member_id, 
+   		   T.trip_name, 
+   		   place_name,
+   		   P.place_serial place_serial,
+   		   place_name photo_name, 
+   		   T.trip_list_serial, 
+   		   P.local_code, 
+   		   getRevCnt(P.place_serial) review_cnt, 
+		   getReputation(P.place_serial) reputation   		   
+   		   from trip_list T, place P, like_list L 
+   		   where P.place_serial = L.place_serial 
+   		   and T.trip_list_serial = L.trip_list_serial 
+   		   and L.member_id = #{_parameter}
+   </select>
+   
+	<!-- 관심여행 중 api 요청 -->
+   <select id="select_places" parameterType="String" resultMap="mp_map_like">
+   		select t.trip_list_serial, t.trip_name,
+   			   l.place_serial, 
+   			   getrevCnt(l.place_serial) review_cnt,
+   			   getReputation(l.place_serial) reputation
+   		from place p right outer join like_list l on p.place_serial = l.place_serial 
+        join trip_list t on t.trip_list_serial = l.trip_list_serial
+        where p.place_serial is null and l.member_id = #{_parameter}   		
+   </select>
+   
+   <!-- 좋아요 누른 리뷰 중 api 요청 -->
+   <select id="select_apiReview" parameterType="String" resultMap="mp_map_review">
+		select r.review_serial, 
+			   r.member_id, r.place_serial, 
+			   r.reputation, r.review_title, 
+			   r.review_content, r.visit_date,
+			   getRevCnt(r.place_serial) review_cnt
+		from review r join review_like l 
+		on l.review_serial = r.review_serial
+		left outer join place p
+		on p.place_serial = r.place_serial
+		where l.like_id = #{_parameter}
+		and p.place_serial is null
+	</select>
+   
+   <!-- 좋아요 누른 리뷰 조회 (호텔)-->
+   <select id="select_review" parameterType="String" resultMap="mp_map_review">
+   		select review_like_serial,
+   			   R.review_serial, 
+   			   member_id, 
+   			   (select place_name from place where place_serial = R.place_serial) place_name,  
+   			   reputation, 
+   			   review_title, 
+   			   review_content,
+			   P.local_code,
+			   P.place_name photo_name, 	
+			   visit_date,
+			   getRevCnt(R.place_serial) review_cnt		   
+   		from review R, review_like L, place P
+   		where R.review_serial = L.review_serial
+   		and like_id = #{_parameter}
+   		and P.place_serial = R.place_serial
+   </select>
+   
+   <select id="select_profile" parameterType="String" resultType="bean.membershipVo">
+   		select member_id, member_city, 
+   			   member_web, member_info, nickname,
+   			   member_photo, mDate
+   		from membership 
+   		where member_id = #{_parameter}
+   </select>
+   
+   <!-- member_id가 대상 target_id를 팔로우하고 있는지 알아보는 sql (0 : false, 1: true)-->
+   <select id="select_follow" parameterType="bean.FollowListVo" resultType="Integer">
+   		select count(follow_serial)  
+   		from follow_list
+   		where member_id = #{member_id} 
+   		and target_id = #{target_id}
+   </select>
+   
+   <!-- 사진없이 프로필정보만 수정 -->
+   <!-- nickname이 프로필 테이블로 넘어오면 수정해야됨 -->
+   <update id="modify_profile" parameterType="bean.membershipVo">
+   		update membership set member_city = #{member_city},
+   						   member_web = #{member_web},
+   						   member_info = #{member_info}, 
+   						   nickname = #{nickName}
+   						   <if test='member_photo != null'>
+   						   , member_photo = #{member_photo}
+   						   </if>
+   		where member_id = #{member_id}
+   </update>
+	
+	<!-- 팔로우버튼 눌렀을 때 -->
+	<insert id="follow" parameterType="bean.FollowListVo">
+		insert into follow_list 
+		values(seq_follow_list.nextval, #{member_id}, #{target_id}, systimestamp)
+	</insert>
+	
+	<!-- 팔로우취소 -->
+	<delete id="delete_follow" parameterType="bean.FollowListVo">
+		delete from follow_list
+		where member_id = #{member_id}
+		and target_id = #{target_id}
+	</delete>
+	
+	<!-- 팔로잉 카운트 -->
+	<select id="count_follow" parameterType="String" resultType="Integer">
+		select count(follow_serial) from follow_list where member_id = #{_parameter}
+	</select>
+	
+	<!-- 팔로워 카운트-->
+	<select id="count_follower" parameterType="String" resultType="Integer">
+		select count(follow_serial) from follow_list where target_id = #{_parameter}
+	</select>
+	
+	<!-- 팔로우하는 사람들의 리뷰 게시물 (api)-->
+	<select id="select_follow_review" parameterType="hashMap" resultMap="mp_map_review">
+		select r.review_serial, 
+			   r.member_id, r.place_serial, 
+			   r.reputation, r.review_title, 
+			   r.review_content, 
+			   to_char(r.visit_date, 'rrrr"년" mm"월" dd"일"') visit_date, 
+			   r.review_date,
+			   getRevCnt(r.place_serial) review_cnt,
+			   m.member_photo,
+			   place_name,
+			   (select sysfile from place_photo where place_serial = place_serial and rownum=1) photo_name,
+			   local_code
+		from review r join follow_list f 
+		on r.member_id = f.target_id 
+		join membership m
+		on r.member_id = m.member_id
+		left outer join place p
+		on p.place_serial = r.place_serial
+		where f.member_id = #{member_id}
+		<if test='flag.equals("api")'>
+		and p.place_serial is null
+		</if>
+		<if test='flag.equals("hotel")'>
+		and p.place_serial is not null
+		</if>
+		order by r.review_date desc
+	</select>
+	
+	
+	<!-- 아이디에 해당하는 trip list와 해당  trip list에 속하는 관심리스트 장소들 모두 조회하기-->
+	    <!-- api : place_serial is null -->
+	    <!-- hotel : place_serial is not null  -->
+	<select id="select_custom" parameterType="bean.TripListVo" resultMap="mp_map_trip">
+		select t.trip_list_serial, t.member_id, t.trip_name, 
+		t.days_count, t.start_date, t.end_date, l.place_serial
+        from trip_list t join like_list l
+        on l.trip_list_serial = t.trip_list_serial
+        left outer join place p
+        on p.place_serial = l.place_serial
+        where t.member_id = #{member_id}
+        and t.trip_list_serial = ${trip_list_serial}
+        and p.place_serial is null
+	</select>
+	
+	
+	<!-- 특정 여행리스트 시리얼 파라미터값으로 hotel 관심여행만 가져오기 -->
+	<select id = "select_oneLike" parameterType="bean.TripListVo" resultType="bean.PlaceVo">
+		select p.place_serial, p.place_name, p.local_code, sysfile photo_name, getLikeCnt(p.place_serial) like_cnt
+        from place p, place_photo h, like_list l
+        where p.place_serial = h.place_serial
+        and l.place_serial = p.place_serial
+        and l.trip_list_serial = ${trip_list_serial}
+        and l.member_id = #{member_id}
+    </select>
+    
+    
+    <!-- 특정 여행리스트 시리얼 파라미터값으로 api 관심여행만 가져오기 -->
+    <select id = "select_oneLike_api" parameterType="bean.TripListVo" resultType="bean.PlaceVo">
+        select l.place_serial, getLikeCnt(l.place_serial) like_cnt
+        from like_list l left outer join place p
+        on l.place_serial = p.place_serial
+        where p.place_serial is null
+        and l.trip_list_serial = ${trip_list_serial}
+        and member_id = #{member_id}
+     </select>
+
+
+	<!-- 전체 place (호텔) 조회 -->
+	<select id="select_hotel" parameterType="String" resultType="bean.PlaceVo">
+		select place_serial, place_name, 
+			   place_location, latitude, longitude, local_code, place_tel,
+			   getPlacePhoto(place_serial) photo_name,
+			   getLikeCnt(place_serial) like_cnt
+		from place where place_name like '%${_parameter}%'
+	</select>
+	
+	<insert id="insert_plan" parameterType="bean.PlanVo">
+		insert into trip_days(days_serial, trip_list_serial, place_serial, trip_order, trip_day)
+		values(seq_trip_days.nextval, ${trip_list_serial}, ${place_serial}, ${trip_order}, #{trip_day}) 
+	</insert>
+	
+	<select id="select_plan_hotel" parameterType="bean.PlanVo" resultType="bean.PlanVo">
+		select days_serial, trip_list_serial, t.place_serial, trip_order, trip_day 
+		from trip_days t join place p 
+		on t.place_serial = p.place_serial
+		where trip_list_serial = ${trip_list_serial} and trip_day = #{trip_day} 
+		order by trip_order
+	</select>
+	
+	<select id="select_plan_api" parameterType="bean.PlanVo" resultType="bean.PlanVo">
+		select days_serial, trip_list_serial, t.place_serial, trip_order, trip_day 
+		from trip_days t left outer join place p 
+		on t.place_serial = p.place_serial
+		where trip_list_serial = ${trip_list_serial} and trip_day = #{trip_day}
+		and p.place_serial is null 
+		order by trip_order
+	</select>
+		
+	<select id="select_onePlace" parameterType="Integer" resultType="bean.PlaceVo">
+		select p.place_serial, longitude, latitude, place_name, sysfile photo_name
+		from place p left outer join place_photo t
+		on p.place_serial = t.place_serial
+		where p.place_serial = ${_parameter}
+	</select>
+	
+	<!-- date 추가했을때 -->
+	<update id="modify_date" parameterType="bean.PlanVo">
+		update trip_list set end_date = #{end_date} where trip_list_serial = ${trip_list_serial} 
+	</update>	
+	
+</mapper>
